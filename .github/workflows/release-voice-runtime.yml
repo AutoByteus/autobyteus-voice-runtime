@@ -27,7 +27,8 @@ jobs:
         shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            runtime_version="${{ inputs.runtime_version#v }}"
+            runtime_version="${{ inputs.runtime_version }}"
+            runtime_version="${runtime_version#v}"
             release_tag="v${runtime_version}"
           else
             release_tag="${GITHUB_REF_NAME}"
