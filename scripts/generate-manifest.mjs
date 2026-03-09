@@ -11,7 +11,7 @@ const projectRoot = path.resolve(__dirname, '..')
 const distDir = process.env.AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR || path.join(projectRoot, 'dist')
 const metadataPath = process.env.AUTOBYTEUS_VOICE_RUNTIME_METADATA_PATH || path.join(projectRoot, 'metadata', 'runtime-assets.json')
 const outputPath = process.argv[2] || path.join(distDir, 'voice-input-runtime-manifest.json')
-const runtimeVersion = process.env.AUTOBYTEUS_VOICE_RUNTIME_VERSION || '0.1.1'
+const runtimeVersion = process.env.AUTOBYTEUS_VOICE_RUNTIME_VERSION || '0.2.0'
 const releaseRepository = process.env.AUTOBYTEUS_RELEASE_REPOSITORY || 'AutoByteus/autobyteus-voice-runtime'
 const releaseTag = process.env.AUTOBYTEUS_RELEASE_TAG || `v${runtimeVersion}`
 
@@ -25,54 +25,46 @@ function buildReleaseAssetUrl(fileName) {
   return `https://github.com/${releaseRepository}/releases/download/${releaseTag}/${fileName}`
 }
 
-function listRuntimeAssets() {
-  if (!fs.existsSync(distDir) || !fs.existsSync(metadataPath)) {
-    return []
-  }
+function buildModel(model) {
+  const modelPath = path.join(distDir, model.fileName)
+  const fileExists = fs.existsSync(modelPath)
 
-  const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'))
-  return metadata.assets.map((asset) => {
-    const assetPath = path.join(distDir, asset.fileName)
-    return {
-      platform: asset.platform,
-      arch: asset.arch,
-      fileName: asset.fileName,
-      url: buildReleaseAssetUrl(asset.fileName),
-      sha256: fs.existsSync(assetPath) ? sha256(assetPath) : '',
-      entrypoint: asset.entrypoint,
-      distributionType: asset.distributionType,
-    }
-  })
+  return {
+    id: model.id,
+    fileName: model.fileName,
+    url: buildReleaseAssetUrl(model.fileName),
+    sha256: fileExists ? sha256(modelPath) : '',
+    sizeBytes: fileExists ? fs.statSync(modelPath).size : 0,
+    version: model.version || model.id || model.fileName,
+    distributionType: model.distributionType,
+  }
 }
 
 const metadata = fs.existsSync(metadataPath)
   ? JSON.parse(fs.readFileSync(metadataPath, 'utf8'))
-  : { model: { fileName: 'ggml-tiny.en-q5_1.bin', id: 'tiny.en-q5_1' } }
-const modelFileName = process.env.AUTOBYTEUS_VOICE_MODEL_FILE || metadata.model.fileName
-const modelPath = path.join(distDir, modelFileName)
-const model = fs.existsSync(modelPath)
-  ? {
-      fileName: modelFileName,
-      url: buildReleaseAssetUrl(modelFileName),
-      sha256: sha256(modelPath),
-      sizeBytes: fs.statSync(modelPath).size,
-      version: metadata.model.id || modelFileName,
-    }
-  : {
-      fileName: modelFileName,
-      url: buildReleaseAssetUrl(modelFileName),
-      sha256: '',
-      sizeBytes: 0,
-      version: metadata.model.id || modelFileName,
-    }
+  : { schemaVersion: 2, runtimeId: 'voice-input', assets: [] }
+
+const assets = metadata.assets.map((asset) => {
+  const assetPath = path.join(distDir, asset.fileName)
+  return {
+    platform: asset.platform,
+    arch: asset.arch,
+    fileName: asset.fileName,
+    url: buildReleaseAssetUrl(asset.fileName),
+    sha256: fs.existsSync(assetPath) ? sha256(assetPath) : '',
+    entrypoint: asset.entrypoint,
+    distributionType: asset.distributionType,
+    backendKind: asset.backendKind,
+    model: buildModel(asset.model),
+  }
+})
 
 const manifest = {
-  schemaVersion: 1,
-  runtimeId: 'voice-input',
+  schemaVersion: metadata.schemaVersion || 2,
+  runtimeId: metadata.runtimeId || 'voice-input',
   runtimeVersion,
   generatedAt: new Date().toISOString(),
-  assets: listRuntimeAssets(),
-  model,
+  assets,
 }
 
 fs.mkdirSync(path.dirname(outputPath), { recursive: true })

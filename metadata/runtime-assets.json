@@ -1,38 +1,71 @@
 {
-  "whisperCppVersion": "1.8.3",
-  "model": {
-    "id": "tiny.en-q5_1",
-    "fileName": "ggml-tiny.en-q5_1.bin",
-    "sourceUrl": "https://huggingface.co/ggerganov/whisper.cpp/resolve/main/ggml-tiny.en-q5_1.bin"
-  },
+  "schemaVersion": 2,
+  "runtimeId": "voice-input",
+  "supportedLanguageModes": [
+    "auto",
+    "en",
+    "zh"
+  ],
   "assets": [
     {
       "platform": "darwin",
       "arch": "arm64",
-      "fileName": "whisper-cli-darwin-arm64",
-      "entrypoint": "whisper-cli-darwin-arm64",
-      "distributionType": "file"
+      "fileName": "voice-input-runtime-darwin-arm64.tar.gz",
+      "entrypoint": "bin/voice-input-worker",
+      "distributionType": "archive",
+      "backendKind": "mlx",
+      "model": {
+        "id": "whisper-small-mlx",
+        "fileName": "voice-input-model-whisper-small-mlx.tar.gz",
+        "sourceRepo": "mlx-community/whisper-small-mlx",
+        "distributionType": "archive",
+        "version": "mlx-community/whisper-small-mlx"
+      }
     },
     {
       "platform": "darwin",
       "arch": "x64",
-      "fileName": "whisper-cli-darwin-x64",
-      "entrypoint": "whisper-cli-darwin-x64",
-      "distributionType": "file"
+      "fileName": "voice-input-runtime-darwin-x64.tar.gz",
+      "entrypoint": "bin/voice-input-worker",
+      "distributionType": "archive",
+      "backendKind": "faster-whisper",
+      "model": {
+        "id": "faster-whisper-small",
+        "fileName": "voice-input-model-faster-whisper-small.tar.gz",
+        "sourceRepo": "Systran/faster-whisper-small",
+        "distributionType": "archive",
+        "version": "Systran/faster-whisper-small"
+      }
     },
     {
       "platform": "linux",
       "arch": "x64",
-      "fileName": "whisper-cli-linux-x64",
-      "entrypoint": "whisper-cli-linux-x64",
-      "distributionType": "file"
+      "fileName": "voice-input-runtime-linux-x64.tar.gz",
+      "entrypoint": "bin/voice-input-worker",
+      "distributionType": "archive",
+      "backendKind": "faster-whisper",
+      "model": {
+        "id": "faster-whisper-small",
+        "fileName": "voice-input-model-faster-whisper-small.tar.gz",
+        "sourceRepo": "Systran/faster-whisper-small",
+        "distributionType": "archive",
+        "version": "Systran/faster-whisper-small"
+      }
     },
     {
       "platform": "win32",
       "arch": "x64",
-      "fileName": "whisper-cli-win32-x64.exe",
-      "entrypoint": "whisper-cli-win32-x64.exe",
-      "distributionType": "file"
+      "fileName": "voice-input-runtime-win32-x64.tar.gz",
+      "entrypoint": "bin/voice-input-worker.cmd",
+      "distributionType": "archive",
+      "backendKind": "faster-whisper",
+      "model": {
+        "id": "faster-whisper-small",
+        "fileName": "voice-input-model-faster-whisper-small.tar.gz",
+        "sourceRepo": "Systran/faster-whisper-small",
+        "distributionType": "archive",
+        "version": "Systran/faster-whisper-small"
+      }
     }
   ]
 }

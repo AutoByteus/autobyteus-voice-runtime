@@ -3,145 +3,70 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
-DIST_DIR="$PROJECT_ROOT/dist"
-METADATA_PATH="$PROJECT_ROOT/metadata/runtime-assets.json"
+DIST_DIR="${AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR:-$PROJECT_ROOT/dist}"
+METADATA_PATH="${AUTOBYTEUS_VOICE_RUNTIME_METADATA_PATH:-$PROJECT_ROOT/metadata/runtime-assets.json}"
 WORK_DIR="$PROJECT_ROOT/.work"
 
 PLATFORM="${1:-}"
 ARCH="${2:-}"
-RUNTIME_VERSION="${AUTOBYTEUS_VOICE_RUNTIME_VERSION:-0.1.1}"
+RUNTIME_VERSION="${AUTOBYTEUS_VOICE_RUNTIME_VERSION:-0.2.0}"
 
 if [[ -z "$PLATFORM" || -z "$ARCH" ]]; then
   echo "Usage: build-runtime.sh <platform> <arch>" >&2
   exit 1
 fi
 
-mkdir -p "$DIST_DIR"
-mkdir -p "$WORK_DIR"
+mkdir -p "$DIST_DIR" "$WORK_DIR"
 
-read_metadata() {
-  local field="$1"
-  node -e '
-    const fs = require("fs");
-    const metadata = JSON.parse(fs.readFileSync(process.argv[1], "utf8"));
-    const field = process.argv[2];
-    if (field === "whisperCppVersion") {
-      process.stdout.write(metadata.whisperCppVersion);
-      process.exit(0);
-    }
-    if (field === "fileName") {
-      const asset = metadata.assets.find((entry) => entry.platform === process.argv[3] && entry.arch === process.argv[4]);
-      if (!asset) {
-        process.stderr.write(`No runtime asset metadata for ${process.argv[3]}/${process.argv[4]}\n`);
-        process.exit(1);
-      }
-      process.stdout.write(asset.fileName);
-      process.exit(0);
-    }
-    process.stderr.write(`Unsupported metadata field: ${field}\n`);
-    process.exit(1);
-  ' "$METADATA_PATH" "$field" "$PLATFORM" "$ARCH"
+read_asset_json() {
+  node - "$METADATA_PATH" "$PLATFORM" "$ARCH" <<'NODE'
+const fs = require('fs')
+
+const metadataPath = process.argv[2]
+const platform = process.argv[3]
+const arch = process.argv[4]
+const metadata = JSON.parse(fs.readFileSync(metadataPath, 'utf8'))
+const asset = metadata.assets.find((entry) => entry.platform === platform && entry.arch === arch)
+
+if (!asset) {
+  console.error(`No runtime asset metadata for ${platform}/${arch}`)
+  process.exit(1)
 }
 
-WHISPER_CPP_VERSION="${WHISPER_CPP_VERSION:-$(read_metadata whisperCppVersion)}"
-OUTPUT_FILE_NAME="$(read_metadata fileName)"
-SOURCE_ROOT="${WHISPER_CPP_SOURCE_DIR:-}"
-TARBALL_PATH="$WORK_DIR/whisper.cpp-v${WHISPER_CPP_VERSION}.tar.gz"
-EXTRACT_ROOT="$WORK_DIR/whisper.cpp-v${WHISPER_CPP_VERSION}"
-SOURCE_DIR="$EXTRACT_ROOT/whisper.cpp-${WHISPER_CPP_VERSION}"
-BUILD_DIR="$WORK_DIR/build-${PLATFORM}-${ARCH}"
+process.stdout.write(JSON.stringify(asset))
+NODE
+}
 
-if [[ -z "$SOURCE_ROOT" ]]; then
-  if [[ ! -d "$SOURCE_DIR" ]]; then
-    if [[ ! -f "$TARBALL_PATH" ]]; then
-      echo "Downloading whisper.cpp v${WHISPER_CPP_VERSION}"
-      curl -L --fail --output "$TARBALL_PATH" \
-        "https://github.com/ggml-org/whisper.cpp/archive/refs/tags/v${WHISPER_CPP_VERSION}.tar.gz"
-    fi
-
-    rm -rf "$EXTRACT_ROOT"
-    mkdir -p "$EXTRACT_ROOT"
-    tar -xzf "$TARBALL_PATH" -C "$EXTRACT_ROOT"
-  fi
-
-  SOURCE_ROOT="$SOURCE_DIR"
-fi
+ASSET_JSON="$(read_asset_json)"
+OUTPUT_FILE_NAME="$(node -e "const asset = JSON.parse(process.argv[1]); process.stdout.write(asset.fileName)" "$ASSET_JSON")"
+ENTRYPOINT="$(node -e "const asset = JSON.parse(process.argv[1]); process.stdout.write(asset.entrypoint)" "$ASSET_JSON")"
+BUILD_DIR="$WORK_DIR/runtime-${PLATFORM}-${ARCH}"
+STAGING_DIR="$BUILD_DIR/staging"
 
 rm -rf "$BUILD_DIR"
+mkdir -p "$STAGING_DIR/bin"
 
-CMAKE_ARGS=(
-  -S "$SOURCE_ROOT"
-  -B "$BUILD_DIR"
-  -DBUILD_SHARED_LIBS=OFF
-  -DGGML_NATIVE=OFF
-  -DWHISPER_BUILD_TESTS=OFF
-  -DWHISPER_BUILD_SERVER=OFF
-  -DWHISPER_BUILD_EXAMPLES=ON
-)
+cp "$PROJECT_ROOT/runtime/voice_input_worker.py" "$STAGING_DIR/voice_input_worker.py"
+cp "$PROJECT_ROOT/runtime/requirements-mlx.txt" "$STAGING_DIR/requirements-mlx.txt"
+cp "$PROJECT_ROOT/runtime/requirements-faster-whisper.txt" "$STAGING_DIR/requirements-faster-whisper.txt"
 
-case "$PLATFORM" in
-  darwin)
-    CMAKE_ARGS+=(-DCMAKE_BUILD_TYPE=Release)
-    if [[ "$ARCH" == "arm64" ]]; then
-      CMAKE_ARGS+=(-DCMAKE_OSX_ARCHITECTURES=arm64)
-    elif [[ "$ARCH" == "x64" ]]; then
-      CMAKE_ARGS+=(-DCMAKE_OSX_ARCHITECTURES=x86_64)
-    else
-      echo "Unsupported macOS architecture: $ARCH" >&2
-      exit 1
-    fi
-    ;;
-  linux)
-    if [[ "$ARCH" != "x64" ]]; then
-      echo "Unsupported Linux architecture: $ARCH" >&2
-      exit 1
-    fi
-    CMAKE_ARGS+=(-DCMAKE_BUILD_TYPE=Release)
-    ;;
-  win32)
-    if [[ "$ARCH" != "x64" ]]; then
-      echo "Unsupported Windows architecture: $ARCH" >&2
-      exit 1
-    fi
-    CMAKE_ARGS+=(-G "Visual Studio 17 2022" -A x64)
+case "$ENTRYPOINT" in
+  *.cmd)
+    cp "$PROJECT_ROOT/runtime/voice-input-worker.cmd" "$STAGING_DIR/$ENTRYPOINT"
     ;;
   *)
-    echo "Unsupported platform: $PLATFORM" >&2
-    exit 1
+    cp "$PROJECT_ROOT/runtime/voice-input-worker.sh" "$STAGING_DIR/$ENTRYPOINT"
+    chmod 755 "$STAGING_DIR/$ENTRYPOINT"
     ;;
 esac
 
-echo "Building voice runtime"
+echo "Packaging voice runtime"
 echo "Platform: $PLATFORM"
 echo "Arch: $ARCH"
 echo "Runtime version: $RUNTIME_VERSION"
-echo "whisper.cpp version: $WHISPER_CPP_VERSION"
-echo "Source root: $SOURCE_ROOT"
+echo "Entrypoint: $ENTRYPOINT"
 
-cmake "${CMAKE_ARGS[@]}"
-cmake --build "$BUILD_DIR" --config Release --target whisper-cli -j 4
+tar -czf "$DIST_DIR/$OUTPUT_FILE_NAME" -C "$STAGING_DIR" .
 
-RUNTIME_BINARY=""
-for candidate in \
-  "$BUILD_DIR/bin/whisper-cli" \
-  "$BUILD_DIR/bin/whisper-cli.exe" \
-  "$BUILD_DIR/bin/Release/whisper-cli.exe"; do
-  if [[ -f "$candidate" ]]; then
-    RUNTIME_BINARY="$candidate"
-    break
-  fi
-done
-
-if [[ -z "$RUNTIME_BINARY" ]]; then
-  echo "Failed to locate built whisper-cli binary in $BUILD_DIR" >&2
-  exit 1
-fi
-
-cp "$RUNTIME_BINARY" "$DIST_DIR/$OUTPUT_FILE_NAME"
-
-if [[ "$PLATFORM" != "win32" ]]; then
-  chmod 755 "$DIST_DIR/$OUTPUT_FILE_NAME"
-fi
-
-echo "Runtime binary written to:"
+echo "Runtime bundle written to:"
 echo "  $DIST_DIR/$OUTPUT_FILE_NAME"
