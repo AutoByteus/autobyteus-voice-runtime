@@ -56,8 +56,7 @@ if not exist "%BOOTSTRAP_STAMP%" (
     exit /b 1
   )
 
-  "%VENV_DIR%\Scripts\python.exe" -m pip install --upgrade pip >nul || exit /b 1
-  "%VENV_DIR%\Scripts\python.exe" -m pip install --requirement "%REQUIREMENTS_FILE%" >nul || exit /b 1
+  "%VENV_DIR%\Scripts\python.exe" "%RUNTIME_ROOT%\run_pip_ipv4.py" install --requirement "%REQUIREMENTS_FILE%" >nul || exit /b 1
   > "%BOOTSTRAP_STAMP%" echo ok
 )
 

@@ -56,6 +56,7 @@ test('build-runtime packages the runtime launcher bundle for darwin arm64', asyn
 
   const { stdout } = await execFileAsync('tar', ['-tzf', archivePath])
   assert.match(stdout, /bin\/voice-input-worker/)
+  assert.match(stdout, /run_pip_ipv4.py/)
   assert.match(stdout, /voice_input_worker.py/)
   assert.match(stdout, /requirements-mlx.txt/)
   assert.match(stdout, /requirements-faster-whisper.txt/)

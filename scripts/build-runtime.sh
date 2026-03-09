@@ -47,6 +47,7 @@ rm -rf "$BUILD_DIR"
 mkdir -p "$STAGING_DIR/bin"
 
 cp "$PROJECT_ROOT/runtime/voice_input_worker.py" "$STAGING_DIR/voice_input_worker.py"
+cp "$PROJECT_ROOT/runtime/run_pip_ipv4.py" "$STAGING_DIR/run_pip_ipv4.py"
 cp "$PROJECT_ROOT/runtime/requirements-mlx.txt" "$STAGING_DIR/requirements-mlx.txt"
 cp "$PROJECT_ROOT/runtime/requirements-faster-whisper.txt" "$STAGING_DIR/requirements-faster-whisper.txt"
 
@@ -66,7 +67,7 @@ echo "Arch: $ARCH"
 echo "Runtime version: $RUNTIME_VERSION"
 echo "Entrypoint: $ENTRYPOINT"
 
-tar -czf "$DIST_DIR/$OUTPUT_FILE_NAME" -C "$STAGING_DIR" .
+COPYFILE_DISABLE=1 tar -czf "$DIST_DIR/$OUTPUT_FILE_NAME" -C "$STAGING_DIR" .
 
 echo "Runtime bundle written to:"
 echo "  $DIST_DIR/$OUTPUT_FILE_NAME"

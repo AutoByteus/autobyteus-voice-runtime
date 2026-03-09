@@ -61,8 +61,7 @@ bootstrap_venv() {
       exit 1
     fi
 
-    "$VENV_DIR/bin/python" -m pip install --upgrade pip >/dev/null
-    "$VENV_DIR/bin/python" -m pip install --requirement "$requirements_file" >/dev/null
+    "$VENV_DIR/bin/python" "$RUNTIME_ROOT/run_pip_ipv4.py" install --requirement "$requirements_file" >/dev/null
     touch "$BOOTSTRAP_STAMP"
   fi
 }
