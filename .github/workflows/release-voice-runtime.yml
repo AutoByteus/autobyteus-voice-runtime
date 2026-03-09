@@ -77,32 +77,6 @@ jobs:
             dist/voice-input-runtime-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz
           if-no-files-found: error
 
-  download-models:
-    name: Download Model Bundles
-    needs: resolve-release
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout runtime repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install model download dependency
-        run: python -m pip install huggingface_hub
-
-      - name: Download model assets
-        run: python scripts/download-model.py
-
-      - name: Upload model artifacts
-        uses: actions/upload-artifact@v4
-        with:
-          name: voice-runtime-models
-          path: dist/voice-input-model-*.tar.gz
-          if-no-files-found: error
-
   verify-runtime:
     name: Verify Runtime Packaging
     needs: resolve-release
@@ -122,7 +96,6 @@ jobs:
     needs:
       - resolve-release
       - build-runtime
-      - download-models
       - verify-runtime
     runs-on: ubuntu-latest
     steps:

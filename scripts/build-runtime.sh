@@ -9,7 +9,7 @@ WORK_DIR="$PROJECT_ROOT/.work"
 
 PLATFORM="${1:-}"
 ARCH="${2:-}"
-RUNTIME_VERSION="${AUTOBYTEUS_VOICE_RUNTIME_VERSION:-0.2.0}"
+RUNTIME_VERSION="${AUTOBYTEUS_VOICE_RUNTIME_VERSION:-0.3.0}"
 
 if [[ -z "$PLATFORM" || -z "$ARCH" ]]; then
   echo "Usage: build-runtime.sh <platform> <arch>" >&2

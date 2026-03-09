@@ -5,6 +5,8 @@ import tempfile
 import unittest
 import wave
 from pathlib import Path
+from types import ModuleType
+from unittest import mock
 
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -47,6 +49,26 @@ class VoiceInputWorkerTests(unittest.TestCase):
             ]
             write_wav(audio_path, samples)
             self.assertFalse(voice_input_worker.is_probable_no_speech(str(audio_path)))
+
+    def test_prepare_model_install_downloads_into_model_directory(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="voice-input-worker-model-") as temp_dir_name:
+            model_path = Path(temp_dir_name) / "model"
+
+            def fake_snapshot_download(*, repo_id: str, local_dir: str, local_dir_use_symlinks: bool, revision=None):
+                self.assertEqual(repo_id, "fixtures/model")
+                self.assertEqual(local_dir, str(model_path))
+                self.assertFalse(local_dir_use_symlinks)
+                self.assertEqual(revision, "main")
+                Path(local_dir).mkdir(parents=True, exist_ok=True)
+                (Path(local_dir) / "weights.bin").write_text("fixture", encoding="utf-8")
+
+            fake_hf_module = ModuleType("huggingface_hub")
+            fake_hf_module.snapshot_download = fake_snapshot_download  # type: ignore[attr-defined]
+
+            with mock.patch.dict("sys.modules", {"huggingface_hub": fake_hf_module}):
+                voice_input_worker.prepare_model_install(str(model_path), "fixtures/model", "main")
+
+            self.assertTrue((model_path / "weights.bin").exists())
 
 
 if __name__ == "__main__":

@@ -11,7 +11,7 @@ const projectRoot = path.resolve(__dirname, '..')
 const distDir = process.env.AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR || path.join(projectRoot, 'dist')
 const metadataPath = process.env.AUTOBYTEUS_VOICE_RUNTIME_METADATA_PATH || path.join(projectRoot, 'metadata', 'runtime-assets.json')
 const outputPath = process.argv[2] || path.join(distDir, 'voice-input-runtime-manifest.json')
-const runtimeVersion = process.env.AUTOBYTEUS_VOICE_RUNTIME_VERSION || '0.2.0'
+const runtimeVersion = process.env.AUTOBYTEUS_VOICE_RUNTIME_VERSION || '0.3.0'
 const releaseRepository = process.env.AUTOBYTEUS_RELEASE_REPOSITORY || 'AutoByteus/autobyteus-voice-runtime'
 const releaseTag = process.env.AUTOBYTEUS_RELEASE_TAG || `v${runtimeVersion}`
 
@@ -26,17 +26,11 @@ function buildReleaseAssetUrl(fileName) {
 }
 
 function buildModel(model) {
-  const modelPath = path.join(distDir, model.fileName)
-  const fileExists = fs.existsSync(modelPath)
-
   return {
     id: model.id,
-    fileName: model.fileName,
-    url: buildReleaseAssetUrl(model.fileName),
-    sha256: fileExists ? sha256(modelPath) : '',
-    sizeBytes: fileExists ? fs.statSync(modelPath).size : 0,
-    version: model.version || model.id || model.fileName,
-    distributionType: model.distributionType,
+    sourceRepo: model.sourceRepo,
+    sourceRevision: model.sourceRevision || undefined,
+    version: model.version || model.id || model.sourceRepo,
   }
 }
 

@@ -2,11 +2,23 @@
 import argparse
 import audioop
 import json
+import shutil
+import socket
 import sys
 import traceback
 import wave
 from dataclasses import dataclass
+from pathlib import Path
 from typing import Any, Optional
+
+
+_ORIGINAL_GETADDRINFO = socket.getaddrinfo
+
+
+def _ipv4_only_getaddrinfo(host, port, family=0, type=0, proto=0, flags=0):
+    if family == socket.AF_UNSPEC:
+        family = socket.AF_INET
+    return _ORIGINAL_GETADDRINFO(host, port, family, type, proto, flags)
 
 
 def normalize_language_mode(value: Optional[str]) -> Optional[str]:
@@ -47,6 +59,24 @@ class TranscriptionResult:
 class Backend:
     def transcribe_file(self, audio_path: str, language_mode: Optional[str]) -> TranscriptionResult:
         raise NotImplementedError
+
+
+def prepare_model_install(model_path: str, model_source_repo: str, model_source_revision: Optional[str]) -> None:
+    from huggingface_hub import snapshot_download  # type: ignore
+
+    model_dir = Path(model_path)
+    model_dir.mkdir(parents=True, exist_ok=True)
+    socket.getaddrinfo = _ipv4_only_getaddrinfo
+    try:
+        snapshot_download(
+            repo_id=model_source_repo,
+            local_dir=str(model_dir),
+            local_dir_use_symlinks=False,
+            revision=model_source_revision,
+        )
+    finally:
+        socket.getaddrinfo = _ORIGINAL_GETADDRINFO
+    shutil.rmtree(model_dir / ".cache", ignore_errors=True)
 
 
 class MlxBackend(Backend):
@@ -123,9 +153,23 @@ def emit(payload: dict[str, Any]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description="AutoByteus Voice Input worker")
-    parser.add_argument("--backend", choices=["mlx", "faster-whisper"], required=True)
-    parser.add_argument("--model-path", required=True)
+    subparsers = parser.add_subparsers(dest="command", required=True)
+
+    prepare_parser = subparsers.add_parser("prepare", help="Bootstrap local dependencies and model assets")
+    prepare_parser.add_argument("--backend", choices=["mlx", "faster-whisper"], required=True)
+    prepare_parser.add_argument("--model-path", required=True)
+    prepare_parser.add_argument("--model-source-repo", required=True)
+    prepare_parser.add_argument("--model-source-revision")
+
+    serve_parser = subparsers.add_parser("serve", help="Run the Voice Input worker")
+    serve_parser.add_argument("--backend", choices=["mlx", "faster-whisper"], required=True)
+    serve_parser.add_argument("--model-path", required=True)
+
     args = parser.parse_args()
+
+    if args.command == "prepare":
+        prepare_model_install(args.model_path, args.model_source_repo, args.model_source_revision)
+        return 0
 
     backend = build_backend(args.backend, args.model_path)
     emit({
