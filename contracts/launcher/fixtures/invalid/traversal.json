@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "packageId": "voice.english.mlx-whisper-small.darwin-arm64",
+  "target": { "platform": "darwin", "architecture": "arm64" },
+  "invocation": {
+    "kind": "python-worker",
+    "executable": "../python",
+    "worker": "worker/voice_provider.py"
+  }
+}

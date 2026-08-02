@@ -1,0 +1,10 @@
+{
+  "type": "transcription-result",
+  "protocolVersion": 1,
+  "requestId": "0198f0f0-7e65-7f72-9c3e-95b59eeb72b0",
+  "outcome": "no-speech",
+  "rawText": "speech",
+  "normalizedText": "speech",
+  "detectedLanguage": "zh",
+  "metrics": { "audioDurationMs": 1000, "inferenceMs": 1, "normalizationMs": 1 }
+}

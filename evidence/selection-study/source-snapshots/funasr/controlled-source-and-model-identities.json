@@ -1,0 +1,47 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-02T00:00:00+02:00",
+  "funAsrSource": {
+    "repository": "https://github.com/FunAudioLLM/Fun-ASR.git",
+    "commit": "53a56d80667320b44a7dd779f5bf8c024b6c30a8",
+    "license": "Apache-2.0"
+  },
+  "llamaCppSource": {
+    "repository": "https://github.com/ggml-org/llama.cpp.git",
+    "commit": "8086439a4cea94c71a5dfb8fe4ad1546aebd640f"
+  },
+  "models": [
+    {
+      "repository": "FunAudioLLM/Fun-ASR-Nano-GGUF",
+      "revision": "46e849502a867080d66d351b8dfb1018b607e509",
+      "file": "funasr-encoder-f16.gguf",
+      "bytes": 469331008,
+      "sha256": "f92f91d01a24fbed6c863495b2ee8c6a6788144a02858b75743f0946668de8a2"
+    },
+    {
+      "repository": "FunAudioLLM/Fun-ASR-Nano-GGUF",
+      "revision": "46e849502a867080d66d351b8dfb1018b607e509",
+      "file": "qwen3-0.6b-q8_0.gguf",
+      "bytes": 804753280,
+      "sha256": "819f385dc0e035dccc3d9e7edaf6b7b044b8ba7ace63cbcbf84c7e397eecbf27"
+    },
+    {
+      "repository": "FunAudioLLM/fsmn-vad-GGUF",
+      "revision": "6840bae4c5c92ee8c04faaf4db23dd0105098d7f",
+      "file": "fsmn-vad.gguf",
+      "bytes": 1720512,
+      "sha256": "1270f2559c495f4e7b6e739541151027d360761a3fda43fc147034f5719f5479"
+    }
+  ],
+  "experimentalDarwinArm64Binary": {
+    "fileBytes": 5336976,
+    "upstreamPromptSha256": "1f46b465cbe722a8fd5f81164f9d0f4f72deed7f8f861b5b6f64fad8793c2677",
+    "boundedProductTermsV2Sha256": "b69396200e3140796ef258121cfbed8ce41394b426fd5fdb437168e25f5122c7"
+  },
+  "firstEverLocalInvocation": {
+    "wallSeconds": 13.48,
+    "internalSeconds": 13.40,
+    "maximumResidentSetBytes": 2092122112,
+    "note": "First invocation after build/download; includes initial file-page and runtime preparation. Later isolated sequential process invocations are in funasr-nano-q8-isolated-sequential.json."
+  }
+}

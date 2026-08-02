@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 2,
+  "status": "experimental-packaging-proof-only",
+  "host": {
+    "kind": "bundled-python",
+    "distribution": "python-build-standalone",
+    "release": "20260718",
+    "pythonVersion": "3.12.13",
+    "sourceArchiveBytes": 25153180,
+    "sourceArchiveSha256": "62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b"
+  },
+  "dependencies": {
+    "mlx": "0.29.3",
+    "mlx-metal": "0.29.3",
+    "mlx-whisper": "0.4.3",
+    "lock": "mlx-python-provider-lock-py312.txt",
+    "pipCheckBeforeBuildToolPrune": "No broken requirements found.",
+    "declaredTorchDependencyRetained": true
+  },
+  "package": {
+    "fileBytes": 1333502573,
+    "sizeGateBytes": 1342177280,
+    "archiveBytes": 662014179,
+    "archiveSha256": "fcf1f4ba1dcd65fef802afa3a1606400e354f3b24cd3978ddf2e7a63b71ef004",
+    "modelIncluded": true,
+    "modelFileBytes": 481309678,
+    "externalFfmpegRequired": false,
+    "livePipAvailable": false,
+    "inputBoundary": "mono PCM16LE 16000 Hz WAV",
+    "runtimeBytecodePolicy": "Only build-primed imported-module bytecode retained; runtime sets PYTHONDONTWRITEBYTECODE=1."
+  },
+  "proofs": {
+    "beforeRelocation": "mlx-python-provider-final-before-relocation.json",
+    "afterRelocation": "mlx-python-provider-final-after-relocation.json",
+    "performance": "mlx-python-provider-final-performance.json"
+  }
+}

@@ -1,0 +1,292 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "sourceCommit",
+    "runnerCommit",
+    "selectionStudy",
+    "catalog",
+    "corpora",
+    "candidateHistory",
+    "profileQualifications",
+    "mainReachability",
+    "preTagQualification"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "sourceCommit": { "$ref": "#/$defs/commit" },
+    "runnerCommit": { "$ref": "#/$defs/commit" },
+    "selectionStudy": { "$ref": "#/$defs/digestRecord" },
+    "catalog": { "$ref": "#/$defs/digestRecord" },
+    "corpora": {
+      "type": "array",
+      "minItems": 2,
+      "items": { "$ref": "#/$defs/corpus" }
+    },
+    "candidateHistory": {
+      "type": "array",
+      "minItems": 5,
+      "items": { "$ref": "#/$defs/candidate" }
+    },
+    "profileQualifications": {
+      "type": "array",
+      "minItems": 8,
+      "items": { "$ref": "#/$defs/qualification" }
+    },
+    "mainReachability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maintainedMainCommit", "releaseCommit", "reachable"],
+      "properties": {
+        "maintainedMainCommit": { "$ref": "#/$defs/commit" },
+        "releaseCommit": { "$ref": "#/$defs/commit" },
+        "reachable": { "type": "boolean" }
+      }
+    },
+    "preTagQualification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "qualifiedCommit",
+        "catalogSha256",
+        "assetSetSha256",
+        "completedBeforeTag"
+      ],
+      "properties": {
+        "qualifiedCommit": { "$ref": "#/$defs/commit" },
+        "catalogSha256": { "$ref": "#/$defs/sha" },
+        "assetSetSha256": { "$ref": "#/$defs/sha" },
+        "completedBeforeTag": { "type": "boolean" }
+      }
+    }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "commit": { "type": "string", "pattern": "^(?!0{40}$)[a-f0-9]{40}$" },
+    "digestRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sha256"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "corpus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "manifestSha256",
+        "provenanceReference",
+        "license",
+        "redistributionApproved",
+        "consentReferenceDigest",
+        "uniqueIds",
+        "uniquePaths",
+        "uniqueAudioHashes",
+        "limitations"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "manifestSha256": { "$ref": "#/$defs/sha" },
+        "provenanceReference": { "type": "string", "minLength": 1 },
+        "license": { "type": "string", "minLength": 1 },
+        "redistributionApproved": { "const": true },
+        "consentReferenceDigest": { "$ref": "#/$defs/sha" },
+        "uniqueIds": { "const": true },
+        "uniquePaths": { "const": true },
+        "uniqueAudioHashes": { "const": true },
+        "limitations": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        }
+      }
+    },
+    "candidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "candidateId",
+        "profileId",
+        "providerId",
+        "modelId",
+        "resultDigest",
+        "outcome",
+        "reason"
+      ],
+      "properties": {
+        "candidateId": { "type": "string", "minLength": 1 },
+        "profileId": { "enum": ["english", "chinese", "auto"] },
+        "providerId": { "type": "string", "minLength": 1 },
+        "modelId": { "type": "string", "minLength": 1 },
+        "resultDigest": { "$ref": "#/$defs/sha" },
+        "outcome": { "enum": ["selected", "preserved", "rejected", "future"] },
+        "reason": { "type": "string", "minLength": 1 }
+      }
+    },
+    "latency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["count", "failures", "timeouts", "p50Ms", "p95Ms", "maxMs"],
+      "properties": {
+        "count": { "type": "integer", "minimum": 0 },
+        "failures": { "type": "integer", "minimum": 0 },
+        "timeouts": { "type": "integer", "minimum": 0 },
+        "p50Ms": { "type": "number", "minimum": 0 },
+        "p95Ms": { "type": "number", "minimum": 0 },
+        "maxMs": { "type": "number", "minimum": 0 }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metric",
+        "value",
+        "baseline",
+        "pairedUncertainty",
+        "sampleCount",
+        "emptyCount",
+        "failedCount",
+        "rawResultsSha256",
+        "resultIndexSha256"
+      ],
+      "properties": {
+        "metric": { "enum": ["WER", "CER", "AUTO_DIAGNOSTIC"] },
+        "value": { "type": "number", "minimum": 0 },
+        "baseline": { "$ref": "#/$defs/baseline" },
+        "pairedUncertainty": { "$ref": "#/$defs/uncertainty" },
+        "sampleCount": { "type": "integer", "minimum": 1 },
+        "emptyCount": { "type": "integer", "minimum": 0 },
+        "failedCount": { "type": "integer", "minimum": 0 },
+        "rawResultsSha256": { "$ref": "#/$defs/sha" },
+        "resultIndexSha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "baseline": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "evidenceSha256",
+        "configurationDigest",
+        "providerId",
+        "modelId",
+        "value",
+        "sampleCount"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "evidenceSha256": { "$ref": "#/$defs/sha" },
+        "configurationDigest": { "$ref": "#/$defs/sha" },
+        "providerId": { "type": "string", "minLength": 1 },
+        "modelId": { "type": "string", "minLength": 1 },
+        "value": { "type": "number", "minimum": 0 },
+        "sampleCount": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "uncertainty": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["method", "repetitions", "difference", "lower95", "upper95"],
+      "properties": {
+        "method": { "const": "paired-bootstrap-v1" },
+        "repetitions": { "const": 10000 },
+        "difference": { "type": "number" },
+        "lower95": { "type": "number" },
+        "upper95": { "type": "number" }
+      }
+    },
+    "qualification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "languageMode",
+        "platform",
+        "architecture",
+        "decision",
+        "packageId",
+        "providerId",
+        "modelId",
+        "buildReportSha256",
+        "buildInputManifestSha256",
+        "reproducibilityProofSha256",
+        "runtimeConformanceSha256",
+        "qualificationSummarySha256",
+        "archiveSha256",
+        "descriptorSha256",
+        "fileManifestSha256",
+        "launcherSha256",
+        "launcherPlanSha256",
+        "hostSha256",
+        "engineConfigurationSha256",
+        "modelSha256",
+        "normalizerSha256",
+        "protocolSha256",
+        "noticeInventorySha256",
+        "quality",
+        "handshake",
+        "coldPreparation",
+        "warmPreparation",
+        "coldResult",
+        "warmRequest",
+        "maxRssBytes",
+        "extractedSizeBytes",
+        "packageRuns",
+        "actualPlatform",
+        "normalizationFixtures",
+        "relocation",
+        "offline",
+        "noPackageMutation",
+        "recovery",
+        "licenseApproved"
+      ],
+      "properties": {
+        "profileId": { "enum": ["english", "chinese", "auto"] },
+        "languageMode": { "enum": ["en", "zh", "auto"] },
+        "platform": { "enum": ["darwin", "linux", "win32"] },
+        "architecture": { "enum": ["arm64", "x64"] },
+        "decision": { "enum": ["preserve", "select"] },
+        "packageId": { "type": "string", "minLength": 1 },
+        "providerId": { "type": "string", "minLength": 1 },
+        "modelId": { "type": "string", "minLength": 1 },
+        "buildReportSha256": { "$ref": "#/$defs/sha" },
+        "buildInputManifestSha256": { "$ref": "#/$defs/sha" },
+        "reproducibilityProofSha256": { "$ref": "#/$defs/sha" },
+        "runtimeConformanceSha256": { "$ref": "#/$defs/sha" },
+        "qualificationSummarySha256": { "$ref": "#/$defs/sha" },
+        "archiveSha256": { "$ref": "#/$defs/sha" },
+        "descriptorSha256": { "$ref": "#/$defs/sha" },
+        "fileManifestSha256": { "$ref": "#/$defs/sha" },
+        "launcherSha256": { "$ref": "#/$defs/sha" },
+        "launcherPlanSha256": { "$ref": "#/$defs/sha" },
+        "hostSha256": { "$ref": "#/$defs/sha" },
+        "engineConfigurationSha256": { "$ref": "#/$defs/sha" },
+        "modelSha256": { "$ref": "#/$defs/sha" },
+        "normalizerSha256": { "$ref": "#/$defs/sha" },
+        "protocolSha256": { "$ref": "#/$defs/sha" },
+        "noticeInventorySha256": { "$ref": "#/$defs/sha" },
+        "quality": { "$ref": "#/$defs/quality" },
+        "handshake": { "$ref": "#/$defs/latency" },
+        "coldPreparation": { "$ref": "#/$defs/latency" },
+        "warmPreparation": { "$ref": "#/$defs/latency" },
+        "coldResult": { "$ref": "#/$defs/latency" },
+        "warmRequest": { "$ref": "#/$defs/latency" },
+        "maxRssBytes": { "type": "integer", "minimum": 1 },
+        "extractedSizeBytes": { "type": "integer", "minimum": 1 },
+        "packageRuns": { "type": "integer", "minimum": 1 },
+        "actualPlatform": { "const": true },
+        "normalizationFixtures": { "const": true },
+        "relocation": { "const": true },
+        "offline": { "const": true },
+        "noPackageMutation": { "const": true },
+        "recovery": { "const": true },
+        "licenseApproved": { "const": true }
+      }
+    }
+  }
+}

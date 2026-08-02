@@ -1,0 +1,3362 @@
+{
+  "schemaVersion": 1,
+  "backend": "sherpa-fp32",
+  "language": "en",
+  "threads": 4,
+  "command": [
+    "node",
+    "/tmp/autobyteus-voice-backend-study-20260802/harness/sherpa_whisper_worker.cjs",
+    "--sherpa-package",
+    "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/node_modules/sherpa-onnx-node",
+    "--encoder",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-whisper-small/small-encoder.onnx",
+    "--decoder",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-whisper-small/small-decoder.onnx",
+    "--tokens",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-whisper-small/small-tokens.txt",
+    "--language",
+    "en",
+    "--precision",
+    "fp32",
+    "--threads",
+    "4"
+  ],
+  "corpusId": "fleurs-controlled-mandarin-english-v1",
+  "coldClip": {
+    "id": "fleurs-en-1772",
+    "durationMs": 5860,
+    "reference": "so it is likely that the notation was added simply as a label"
+  },
+  "coldRuns": [
+    {
+      "index": 0,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 15895,
+        "importMs": 11.152,
+        "modelLoadMs": 1117.066,
+        "workerReadyMs": 1128.442,
+        "rssBytes": 1402912768,
+        "threads": 4,
+        "spawnToReadyMs": 1160.011,
+        "sampledRssBytes": 1404305408
+      },
+      "first": {
+        "type": "result",
+        "requestId": "3a1d1225c2c947dfb84c3a8014ac61ec",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 1.086,
+        "decodeMs": 1206.768,
+        "transcribeMs": 1228.579,
+        "rssBytes": 1598865408,
+        "requestRoundTripMs": 1229.433,
+        "sampledRssBytes": 1598865408
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1598881792
+      }
+    },
+    {
+      "index": 1,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 15904,
+        "importMs": 6.629,
+        "modelLoadMs": 1067.297,
+        "workerReadyMs": 1074.068,
+        "rssBytes": 1403207680,
+        "threads": 4,
+        "spawnToReadyMs": 1104.405,
+        "sampledRssBytes": 1404583936
+      },
+      "first": {
+        "type": "result",
+        "requestId": "fbab07d74ad14c7fb3d10125b8dfddd2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.347,
+        "decodeMs": 1130.542,
+        "transcribeMs": 1151.419,
+        "rssBytes": 1599193088,
+        "requestRoundTripMs": 1152.182,
+        "sampledRssBytes": 1599193088
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599209472
+      }
+    },
+    {
+      "index": 2,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 15908,
+        "importMs": 7.314,
+        "modelLoadMs": 1046.007,
+        "workerReadyMs": 1053.478,
+        "rssBytes": 1403355136,
+        "threads": 4,
+        "spawnToReadyMs": 1084.325,
+        "sampledRssBytes": 1404731392
+      },
+      "first": {
+        "type": "result",
+        "requestId": "d938e3acdea440e6a2f690eca851cc19",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.307,
+        "decodeMs": 1094.251,
+        "transcribeMs": 1115.457,
+        "rssBytes": 1598996480,
+        "requestRoundTripMs": 1116.259,
+        "sampledRssBytes": 1598996480
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599012864
+      }
+    },
+    {
+      "index": 3,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 16221,
+        "importMs": 6.745,
+        "modelLoadMs": 1044.547,
+        "workerReadyMs": 1051.458,
+        "rssBytes": 1404338176,
+        "threads": 4,
+        "spawnToReadyMs": 1083.387,
+        "sampledRssBytes": 1405730816
+      },
+      "first": {
+        "type": "result",
+        "requestId": "dda99bd926f84ccc8695826d32b30b3f",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.301,
+        "decodeMs": 1246.052,
+        "transcribeMs": 1267.038,
+        "rssBytes": 1599913984,
+        "requestRoundTripMs": 1267.823,
+        "sampledRssBytes": 1599913984
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599930368
+      }
+    },
+    {
+      "index": 4,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 16224,
+        "importMs": 7.271,
+        "modelLoadMs": 1100.516,
+        "workerReadyMs": 1107.932,
+        "rssBytes": 1403076608,
+        "threads": 4,
+        "spawnToReadyMs": 1139.402,
+        "sampledRssBytes": 1404469248
+      },
+      "first": {
+        "type": "result",
+        "requestId": "9c56d8d9e0e74d868c2505d0fdf9fb2b",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.347,
+        "decodeMs": 1113.71,
+        "transcribeMs": 1135.378,
+        "rssBytes": 1599635456,
+        "requestRoundTripMs": 1136.178,
+        "sampledRssBytes": 1599635456
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599651840
+      }
+    },
+    {
+      "index": 5,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 16957,
+        "importMs": 7.336,
+        "modelLoadMs": 1030.129,
+        "workerReadyMs": 1037.617,
+        "rssBytes": 1402929152,
+        "threads": 4,
+        "spawnToReadyMs": 1070.956,
+        "sampledRssBytes": 1404338176
+      },
+      "first": {
+        "type": "result",
+        "requestId": "c55ffede18fc41d5870ee20ddae51a84",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.421,
+        "decodeMs": 1334.954,
+        "transcribeMs": 1356.648,
+        "rssBytes": 1599225856,
+        "requestRoundTripMs": 1357.5,
+        "sampledRssBytes": 1599225856
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599242240
+      }
+    },
+    {
+      "index": 6,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 17269,
+        "importMs": 7.304,
+        "modelLoadMs": 1166.485,
+        "workerReadyMs": 1173.975,
+        "rssBytes": 1403715584,
+        "threads": 4,
+        "spawnToReadyMs": 1207.173,
+        "sampledRssBytes": 1405108224
+      },
+      "first": {
+        "type": "result",
+        "requestId": "1f05aabaaf914a0b865ef5ffcd2db5da",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.417,
+        "decodeMs": 1097.155,
+        "transcribeMs": 1118.387,
+        "rssBytes": 1599504384,
+        "requestRoundTripMs": 1119.36,
+        "sampledRssBytes": 1599504384
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599520768
+      }
+    },
+    {
+      "index": 7,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 17348,
+        "importMs": 6.854,
+        "modelLoadMs": 1109.722,
+        "workerReadyMs": 1116.72,
+        "rssBytes": 1403502592,
+        "threads": 4,
+        "spawnToReadyMs": 1148.576,
+        "sampledRssBytes": 1404895232
+      },
+      "first": {
+        "type": "result",
+        "requestId": "de77ae08ce7c47148f51d7a7b45b358f",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.29,
+        "decodeMs": 1097.726,
+        "transcribeMs": 1118.937,
+        "rssBytes": 1599160320,
+        "requestRoundTripMs": 1119.714,
+        "sampledRssBytes": 1599160320
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599176704
+      }
+    },
+    {
+      "index": 8,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 17659,
+        "importMs": 7.105,
+        "modelLoadMs": 1072.154,
+        "workerReadyMs": 1079.468,
+        "rssBytes": 1403895808,
+        "threads": 4,
+        "spawnToReadyMs": 1111.493,
+        "sampledRssBytes": 1405272064
+      },
+      "first": {
+        "type": "result",
+        "requestId": "5c7640ac45ea4f66bc98101db15f6665",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.281,
+        "decodeMs": 1206.426,
+        "transcribeMs": 1227.379,
+        "rssBytes": 1599209472,
+        "requestRoundTripMs": 1228.087,
+        "sampledRssBytes": 1599209472
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599225856
+      }
+    },
+    {
+      "index": 9,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 17971,
+        "importMs": 7.039,
+        "modelLoadMs": 1081.679,
+        "workerReadyMs": 1088.858,
+        "rssBytes": 1403879424,
+        "threads": 4,
+        "spawnToReadyMs": 1120.031,
+        "sampledRssBytes": 1405272064
+      },
+      "first": {
+        "type": "result",
+        "requestId": "3c241ba3303848c1aeaf1cdc47d6fb23",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.3,
+        "decodeMs": 1102.014,
+        "transcribeMs": 1123.108,
+        "rssBytes": 1599782912,
+        "requestRoundTripMs": 1123.904,
+        "sampledRssBytes": 1599782912
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599799296
+      }
+    },
+    {
+      "index": 10,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 17977,
+        "importMs": 6.393,
+        "modelLoadMs": 1057.844,
+        "workerReadyMs": 1064.403,
+        "rssBytes": 1403502592,
+        "threads": 4,
+        "spawnToReadyMs": 1100.404,
+        "sampledRssBytes": 1404895232
+      },
+      "first": {
+        "type": "result",
+        "requestId": "3dfb9a1139f742e0ae530b14b85e22ed",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.259,
+        "decodeMs": 1139.779,
+        "transcribeMs": 1160.861,
+        "rssBytes": 1599537152,
+        "requestRoundTripMs": 1161.711,
+        "sampledRssBytes": 1599537152
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599553536
+      }
+    },
+    {
+      "index": 11,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 18285,
+        "importMs": 6.706,
+        "modelLoadMs": 1115.584,
+        "workerReadyMs": 1122.436,
+        "rssBytes": 1402961920,
+        "threads": 4,
+        "spawnToReadyMs": 1151.8,
+        "sampledRssBytes": 1404452864
+      },
+      "first": {
+        "type": "result",
+        "requestId": "63820be8507c417c8e13226b569a1181",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.28,
+        "decodeMs": 1076.553,
+        "transcribeMs": 1097.278,
+        "rssBytes": 1599455232,
+        "requestRoundTripMs": 1097.983,
+        "sampledRssBytes": 1599455232
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599471616
+      }
+    },
+    {
+      "index": 12,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 18289,
+        "importMs": 6.6,
+        "modelLoadMs": 1051.982,
+        "workerReadyMs": 1058.726,
+        "rssBytes": 1402912768,
+        "threads": 4,
+        "spawnToReadyMs": 1088.949,
+        "sampledRssBytes": 1404289024
+      },
+      "first": {
+        "type": "result",
+        "requestId": "d3bdad410a7c46e0a0a6b2a26a316447",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.279,
+        "decodeMs": 1052.969,
+        "transcribeMs": 1074.074,
+        "rssBytes": 1599488000,
+        "requestRoundTripMs": 1074.76,
+        "sampledRssBytes": 1599488000
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599504384
+      }
+    },
+    {
+      "index": 13,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 18605,
+        "importMs": 6.891,
+        "modelLoadMs": 1073.557,
+        "workerReadyMs": 1080.598,
+        "rssBytes": 1403682816,
+        "threads": 4,
+        "spawnToReadyMs": 1113.359,
+        "sampledRssBytes": 1405059072
+      },
+      "first": {
+        "type": "result",
+        "requestId": "92336dfa977149968b59ed86af3dec8d",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.331,
+        "decodeMs": 1193.213,
+        "transcribeMs": 1214.884,
+        "rssBytes": 1599766528,
+        "requestRoundTripMs": 1215.706,
+        "sampledRssBytes": 1599766528
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599782912
+      }
+    },
+    {
+      "index": 14,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 18923,
+        "importMs": 6.581,
+        "modelLoadMs": 1072.541,
+        "workerReadyMs": 1079.274,
+        "rssBytes": 1403846656,
+        "threads": 4,
+        "spawnToReadyMs": 1108.906,
+        "sampledRssBytes": 1405239296
+      },
+      "first": {
+        "type": "result",
+        "requestId": "6513f9a885ca436e8326b053831f1525",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.337,
+        "decodeMs": 1148.602,
+        "transcribeMs": 1169.808,
+        "rssBytes": 1599160320,
+        "requestRoundTripMs": 1170.669,
+        "sampledRssBytes": 1599160320
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599176704
+      }
+    },
+    {
+      "index": 15,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 19231,
+        "importMs": 7.469,
+        "modelLoadMs": 1063.128,
+        "workerReadyMs": 1070.745,
+        "rssBytes": 1402552320,
+        "threads": 4,
+        "spawnToReadyMs": 1101.758,
+        "sampledRssBytes": 1403928576
+      },
+      "first": {
+        "type": "result",
+        "requestId": "d3a035c59e0840a0885331c7b8041ca5",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.362,
+        "decodeMs": 1260.928,
+        "transcribeMs": 1282.209,
+        "rssBytes": 1598914560,
+        "requestRoundTripMs": 1283.625,
+        "sampledRssBytes": 1598914560
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1598930944
+      }
+    },
+    {
+      "index": 16,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 19234,
+        "importMs": 7.363,
+        "modelLoadMs": 1079.133,
+        "workerReadyMs": 1086.755,
+        "rssBytes": 1403895808,
+        "threads": 4,
+        "spawnToReadyMs": 1118.364,
+        "sampledRssBytes": 1405321216
+      },
+      "first": {
+        "type": "result",
+        "requestId": "ecc16c7c64c74c6e8e3850429e84c913",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.268,
+        "decodeMs": 1178.678,
+        "transcribeMs": 1199.734,
+        "rssBytes": 1599209472,
+        "requestRoundTripMs": 1200.514,
+        "sampledRssBytes": 1599209472
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599225856
+      }
+    },
+    {
+      "index": 17,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 19237,
+        "importMs": 7.167,
+        "modelLoadMs": 1190.377,
+        "workerReadyMs": 1197.686,
+        "rssBytes": 1403781120,
+        "threads": 4,
+        "spawnToReadyMs": 1231.177,
+        "sampledRssBytes": 1405190144
+      },
+      "first": {
+        "type": "result",
+        "requestId": "a145ea00c2684dfea321a98f08fc1b9e",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.406,
+        "decodeMs": 1403.428,
+        "transcribeMs": 1449.844,
+        "rssBytes": 1599635456,
+        "requestRoundTripMs": 1451.697,
+        "sampledRssBytes": 1599635456
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599651840
+      }
+    },
+    {
+      "index": 18,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 19266,
+        "importMs": 7.508,
+        "modelLoadMs": 1148.771,
+        "workerReadyMs": 1156.475,
+        "rssBytes": 1404518400,
+        "threads": 4,
+        "spawnToReadyMs": 1189.479,
+        "sampledRssBytes": 1405943808
+      },
+      "first": {
+        "type": "result",
+        "requestId": "0486372a8d124d6da9317be105602bd8",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.393,
+        "decodeMs": 1562.616,
+        "transcribeMs": 1583.392,
+        "rssBytes": 1599553536,
+        "requestRoundTripMs": 1584.198,
+        "sampledRssBytes": 1599553536
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599569920
+      }
+    },
+    {
+      "index": 19,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 19345,
+        "importMs": 7.612,
+        "modelLoadMs": 1125.293,
+        "workerReadyMs": 1133.075,
+        "rssBytes": 1403305984,
+        "threads": 4,
+        "spawnToReadyMs": 1166.249,
+        "sampledRssBytes": 1404682240
+      },
+      "first": {
+        "type": "result",
+        "requestId": "d73a9ec5d68549bd8197adcc8564a34c",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.344,
+        "decodeMs": 1134.758,
+        "transcribeMs": 1155.884,
+        "rssBytes": 1599143936,
+        "requestRoundTripMs": 1156.749,
+        "sampledRssBytes": 1599143936
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599160320
+      }
+    },
+    {
+      "index": 20,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 19656,
+        "importMs": 7.215,
+        "modelLoadMs": 1128.437,
+        "workerReadyMs": 1135.799,
+        "rssBytes": 1403912192,
+        "threads": 4,
+        "spawnToReadyMs": 1166.772,
+        "sampledRssBytes": 1405304832
+      },
+      "first": {
+        "type": "result",
+        "requestId": "c8a7de7d996246fa8dc67e78a81849d0",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.304,
+        "decodeMs": 1132.727,
+        "transcribeMs": 1153.983,
+        "rssBytes": 1599275008,
+        "requestRoundTripMs": 1154.789,
+        "sampledRssBytes": 1599275008
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599291392
+      }
+    },
+    {
+      "index": 21,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 19659,
+        "importMs": 7.003,
+        "modelLoadMs": 1141.969,
+        "workerReadyMs": 1149.137,
+        "rssBytes": 1403781120,
+        "threads": 4,
+        "spawnToReadyMs": 1183.516,
+        "sampledRssBytes": 1405173760
+      },
+      "first": {
+        "type": "result",
+        "requestId": "ed3b18b346c94171aba00e0b24258dd2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.34,
+        "decodeMs": 1221.731,
+        "transcribeMs": 1242.953,
+        "rssBytes": 1599111168,
+        "requestRoundTripMs": 1243.858,
+        "sampledRssBytes": 1599111168
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599127552
+      }
+    },
+    {
+      "index": 22,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 19841,
+        "importMs": 6.822,
+        "modelLoadMs": 1215.869,
+        "workerReadyMs": 1222.867,
+        "rssBytes": 1403895808,
+        "threads": 4,
+        "spawnToReadyMs": 1256.228,
+        "sampledRssBytes": 1405272064
+      },
+      "first": {
+        "type": "result",
+        "requestId": "77ad6d1d26444ac8aaf97cfa8ca34a5d",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.328,
+        "decodeMs": 1200.01,
+        "transcribeMs": 1221.988,
+        "rssBytes": 1600225280,
+        "requestRoundTripMs": 1223.579,
+        "sampledRssBytes": 1600225280
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1600241664
+      }
+    },
+    {
+      "index": 23,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 20672,
+        "importMs": 6.634,
+        "modelLoadMs": 1088.103,
+        "workerReadyMs": 1095.012,
+        "rssBytes": 1403109376,
+        "threads": 4,
+        "spawnToReadyMs": 1128.405,
+        "sampledRssBytes": 1404485632
+      },
+      "first": {
+        "type": "result",
+        "requestId": "d9e5d9e56b33483b87e13c4047554708",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.288,
+        "decodeMs": 1178.693,
+        "transcribeMs": 1199.944,
+        "rssBytes": 1598799872,
+        "requestRoundTripMs": 1200.712,
+        "sampledRssBytes": 1598799872
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1598816256
+      }
+    },
+    {
+      "index": 24,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 20993,
+        "importMs": 6.842,
+        "modelLoadMs": 1113.825,
+        "workerReadyMs": 1120.81,
+        "rssBytes": 1403879424,
+        "threads": 4,
+        "spawnToReadyMs": 1151.453,
+        "sampledRssBytes": 1405288448
+      },
+      "first": {
+        "type": "result",
+        "requestId": "b9df377835c2471dbe63e4b6a16e7049",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.274,
+        "decodeMs": 1316.682,
+        "transcribeMs": 1337.44,
+        "rssBytes": 1599242240,
+        "requestRoundTripMs": 1338.252,
+        "sampledRssBytes": 1599242240
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599258624
+      }
+    },
+    {
+      "index": 25,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 21567,
+        "importMs": 7.541,
+        "modelLoadMs": 1298.255,
+        "workerReadyMs": 1305.979,
+        "rssBytes": 1402847232,
+        "threads": 4,
+        "spawnToReadyMs": 1346.454,
+        "sampledRssBytes": 1404272640
+      },
+      "first": {
+        "type": "result",
+        "requestId": "0881d6aab9394f66a59cb9092c83489a",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.372,
+        "decodeMs": 1182.256,
+        "transcribeMs": 1204.657,
+        "rssBytes": 1598865408,
+        "requestRoundTripMs": 1205.413,
+        "sampledRssBytes": 1598865408
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1598881792
+      }
+    },
+    {
+      "index": 26,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 21639,
+        "importMs": 8.202,
+        "modelLoadMs": 1095.735,
+        "workerReadyMs": 1104.126,
+        "rssBytes": 1402765312,
+        "threads": 4,
+        "spawnToReadyMs": 1136.723,
+        "sampledRssBytes": 1404157952
+      },
+      "first": {
+        "type": "result",
+        "requestId": "4ddd4f6ed27e4e4cbddd34c082fb3b9d",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.272,
+        "decodeMs": 1182.398,
+        "transcribeMs": 1203.089,
+        "rssBytes": 1599504384,
+        "requestRoundTripMs": 1203.868,
+        "sampledRssBytes": 1599504384
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599520768
+      }
+    },
+    {
+      "index": 27,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 21666,
+        "importMs": 6.469,
+        "modelLoadMs": 1089.615,
+        "workerReadyMs": 1096.291,
+        "rssBytes": 1403699200,
+        "threads": 4,
+        "spawnToReadyMs": 1128.785,
+        "sampledRssBytes": 1405075456
+      },
+      "first": {
+        "type": "result",
+        "requestId": "4f22b8ed7fc8458cac7481c042ccc5e7",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.376,
+        "decodeMs": 1202.865,
+        "transcribeMs": 1224.184,
+        "rssBytes": 1600372736,
+        "requestRoundTripMs": 1225.123,
+        "sampledRssBytes": 1600372736
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1600389120
+      }
+    },
+    {
+      "index": 28,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 21671,
+        "importMs": 7.032,
+        "modelLoadMs": 1118.033,
+        "workerReadyMs": 1125.207,
+        "rssBytes": 1403469824,
+        "threads": 4,
+        "spawnToReadyMs": 1158.916,
+        "sampledRssBytes": 1404895232
+      },
+      "first": {
+        "type": "result",
+        "requestId": "9f2d8ec0f826417aaa052be5d36209f4",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.346,
+        "decodeMs": 1285.13,
+        "transcribeMs": 1306.307,
+        "rssBytes": 1600356352,
+        "requestRoundTripMs": 1307.553,
+        "sampledRssBytes": 1600356352
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1600372736
+      }
+    },
+    {
+      "index": 29,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-whisper-fp32",
+        "pid": 21677,
+        "importMs": 8.333,
+        "modelLoadMs": 1206.322,
+        "workerReadyMs": 1214.896,
+        "rssBytes": 1403830272,
+        "threads": 4,
+        "spawnToReadyMs": 1247.421,
+        "sampledRssBytes": 1405206528
+      },
+      "first": {
+        "type": "result",
+        "requestId": "4e12fa0080544eb2bb8ed57bdf5f3912",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.338,
+        "decodeMs": 1272.384,
+        "transcribeMs": 1294.686,
+        "rssBytes": 1599406080,
+        "requestRoundTripMs": 1295.984,
+        "sampledRssBytes": 1599406080
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1599422464
+      }
+    }
+  ],
+  "warmSession": {
+    "ready": {
+      "type": "ready",
+      "backend": "sherpa-onnx-whisper-fp32",
+      "pid": 22019,
+      "importMs": 7.38,
+      "modelLoadMs": 1078.655,
+      "workerReadyMs": 1086.178,
+      "rssBytes": 1404682240,
+      "threads": 4,
+      "spawnToReadyMs": 1117.284,
+      "sampledRssBytes": 1406091264
+    },
+    "warmup": {
+      "type": "result",
+      "requestId": "fd0a3772fb314476acd2c83c7f5f577f",
+      "ok": true,
+      "text": "So it is likely that the notation was added simply as a label.",
+      "detectedLanguage": "en",
+      "readMs": 0.351,
+      "decodeMs": 1100.961,
+      "transcribeMs": 1122.056,
+      "rssBytes": 1600126976,
+      "requestRoundTripMs": 1122.874,
+      "sampledRssBytes": 1600126976
+    },
+    "quality": [
+      {
+        "id": "fleurs-en-1660",
+        "category": "english",
+        "reference": "romanticism had a large element of cultural determinism drawn from writers such as goethe fichte and schlegel",
+        "durationMs": 10680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "3c808dae781a45528da8d506eda04097",
+          "ok": true,
+          "text": "Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.",
+          "detectedLanguage": "en",
+          "readMs": 1.54,
+          "decodeMs": 1886.186,
+          "transcribeMs": 1930.209,
+          "rssBytes": 1665843200,
+          "requestRoundTripMs": 1930.743,
+          "sampledRssBytes": 1665843200
+        }
+      },
+      {
+        "id": "fleurs-en-1662",
+        "category": "english",
+        "reference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
+        "durationMs": 8380,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "90e975e598b3438fac2794d105c45188",
+          "ok": true,
+          "text": "Alloys are basically a mixture of two or more metals. Don't forget there are many elements on the periodic table.",
+          "detectedLanguage": "en",
+          "readMs": 1.306,
+          "decodeMs": 1691.246,
+          "transcribeMs": 1733.219,
+          "rssBytes": 1667252224,
+          "requestRoundTripMs": 1733.738,
+          "sampledRssBytes": 1667252224
+        }
+      },
+      {
+        "id": "fleurs-en-1673",
+        "category": "english",
+        "reference": "during the revolutionary war the thirteen states first formed a weak central government-with the congress being its only component-under the articles of confederation",
+        "durationMs": 10680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "27c3f708abef488f929baa5d3b35fb4e",
+          "ok": true,
+          "text": "During the Revolutionary War, the 13 states first formed a weak central government, with the Congress being its only component under the Articles of Confederation.",
+          "detectedLanguage": "en",
+          "readMs": 2.183,
+          "decodeMs": 2014.552,
+          "transcribeMs": 2055.918,
+          "rssBytes": 1669005312,
+          "requestRoundTripMs": 2056.525,
+          "sampledRssBytes": 1669005312
+        }
+      },
+      {
+        "id": "fleurs-en-1675",
+        "category": "english",
+        "reference": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+        "durationMs": 8760,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "71d95e694b0a421ba753b41f0705e202",
+          "ok": true,
+          "text": "All nouns, alongside the word \"C\" for you, always begin with a capital letter, even in the middle of a sentence.",
+          "detectedLanguage": "en",
+          "readMs": 1.355,
+          "decodeMs": 1614.029,
+          "transcribeMs": 1639.665,
+          "rssBytes": 1670332416,
+          "requestRoundTripMs": 1640.027,
+          "sampledRssBytes": 1670332416
+        }
+      },
+      {
+        "id": "fleurs-en-1687",
+        "category": "english",
+        "reference": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+        "durationMs": 11220,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "bc78c8a99e684710abd7b64c5577de20",
+          "ok": true,
+          "text": "segregation and recombination shuffle variation back and forth between the two pools with each generation.",
+          "detectedLanguage": "en",
+          "readMs": 1.595,
+          "decodeMs": 1521.57,
+          "transcribeMs": 1564.61,
+          "rssBytes": 1670348800,
+          "requestRoundTripMs": 1565.033,
+          "sampledRssBytes": 1670348800
+        }
+      },
+      {
+        "id": "fleurs-en-1689",
+        "category": "english",
+        "reference": "europe is a continent that is relatively small but with many independent countries under normal circumstances travelling through multiple countries would mean having to go through visa applications and passport control multiple times",
+        "durationMs": 13020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "7de0304610644688bf7360c96f425bdf",
+          "ok": true,
+          "text": "European is the continent that is relatively small but with many independent countries and our normal circumstances traveling through multiple countries would mean having to go through visa applications and passport control multiple times.",
+          "detectedLanguage": "en",
+          "readMs": 2.544,
+          "decodeMs": 2331.826,
+          "transcribeMs": 2381.901,
+          "rssBytes": 1680211968,
+          "requestRoundTripMs": 2382.278,
+          "sampledRssBytes": 1680211968
+        }
+      },
+      {
+        "id": "fleurs-en-1701",
+        "category": "english",
+        "reference": "goats seem to have been first domesticated roughly 10,000 years ago in the zagros mountains of iran",
+        "durationMs": 10620,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "45951a328ee642aca89e047f27035666",
+          "ok": true,
+          "text": "Goats seem to have been first domesticated roughly 10,000 years ago in the Zagros Mountains of Iran.",
+          "detectedLanguage": "en",
+          "readMs": 2.188,
+          "decodeMs": 1575.286,
+          "transcribeMs": 1603.244,
+          "rssBytes": 1681440768,
+          "requestRoundTripMs": 1603.82,
+          "sampledRssBytes": 1681457152
+        }
+      },
+      {
+        "id": "fleurs-en-1704",
+        "category": "english",
+        "reference": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+        "durationMs": 7320,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "0a020e4d9f344b9d88c50c2e1a4b939b",
+          "ok": true,
+          "text": "In 1990, it was added to the list of World Heritage Sites in danger due to the threat of desert sands.",
+          "detectedLanguage": "en",
+          "readMs": 1.489,
+          "decodeMs": 1797.336,
+          "transcribeMs": 1836.766,
+          "rssBytes": 1682391040,
+          "requestRoundTripMs": 1837.344,
+          "sampledRssBytes": 1682391040
+        }
+      },
+      {
+        "id": "fleurs-en-1714",
+        "category": "english",
+        "reference": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+        "durationMs": 10840,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9a1e965c2f564ac9aeec954cf17d83f9",
+          "ok": true,
+          "text": "The satellite was sent into space by a rocket. Scientists use telescopes in space because the Earth's atmosphere distorts some of our light and view.",
+          "detectedLanguage": "en",
+          "readMs": 2.432,
+          "decodeMs": 2113.309,
+          "transcribeMs": 2155.541,
+          "rssBytes": 1685045248,
+          "requestRoundTripMs": 2155.98,
+          "sampledRssBytes": 1685045248
+        }
+      },
+      {
+        "id": "fleurs-en-1720",
+        "category": "english",
+        "reference": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+        "durationMs": 6420,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "68310dcf2b45415397fa144ed19a7ecc",
+          "ok": true,
+          "text": "The hot chocolate is up to Belgian standards. Fruit juices are pricey but excellent.",
+          "detectedLanguage": "en",
+          "readMs": 2.305,
+          "decodeMs": 1305.591,
+          "transcribeMs": 1333.51,
+          "rssBytes": 1685405696,
+          "requestRoundTripMs": 1333.856,
+          "sampledRssBytes": 1685405696
+        }
+      },
+      {
+        "id": "fleurs-en-1731",
+        "category": "english",
+        "reference": "in the archipelagos and lakes you do not necessarily need a yacht",
+        "durationMs": 7480,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f747a42be5bf4287a22f4ea988a24bd8",
+          "ok": true,
+          "text": "In the Arsha Palagos and lakes, you do not necessarily need a yacht.",
+          "detectedLanguage": "en",
+          "readMs": 2.193,
+          "decodeMs": 1456.434,
+          "transcribeMs": 1484.609,
+          "rssBytes": 1686061056,
+          "requestRoundTripMs": 1484.921,
+          "sampledRssBytes": 1686061056
+        }
+      },
+      {
+        "id": "fleurs-en-1737",
+        "category": "english",
+        "reference": "lions are the most social cats living in large groups called prides",
+        "durationMs": 4140,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "332ac174bb5d416492d5bf47121de963",
+          "ok": true,
+          "text": "I enter the most social cancelling in large groups called Pride.",
+          "detectedLanguage": "en",
+          "readMs": 1.013,
+          "decodeMs": 1040.645,
+          "transcribeMs": 1057.037,
+          "rssBytes": 1686241280,
+          "requestRoundTripMs": 1057.445,
+          "sampledRssBytes": 1686241280
+        }
+      },
+      {
+        "id": "fleurs-en-1745",
+        "category": "english",
+        "reference": "plants look their best when in a natural environment so resist the temptation to remove even just one specimen",
+        "durationMs": 9660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fcfbd789a6884b9fa186ccdbad71e742",
+          "ok": true,
+          "text": "Planets look their best when in a natural environment, so resist the temptation to remove even just one specimen.",
+          "detectedLanguage": "en",
+          "readMs": 1.728,
+          "decodeMs": 1583.515,
+          "transcribeMs": 1620.495,
+          "rssBytes": 1686732800,
+          "requestRoundTripMs": 1620.837,
+          "sampledRssBytes": 1686732800
+        }
+      },
+      {
+        "id": "fleurs-en-1755",
+        "category": "english",
+        "reference": "one bomb exploded outside the governor general's office",
+        "durationMs": 6640,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "5bbbb888b82543f68fb8f1cab7d52849",
+          "ok": true,
+          "text": "One bomb exploded outside the Governor's General's office.",
+          "detectedLanguage": "en",
+          "readMs": 2.12,
+          "decodeMs": 1101.89,
+          "transcribeMs": 1122.344,
+          "rssBytes": 1687289856,
+          "requestRoundTripMs": 1122.916,
+          "sampledRssBytes": 1687306240
+        }
+      },
+      {
+        "id": "fleurs-en-1756",
+        "category": "english",
+        "reference": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced us troops would be leaving syria",
+        "durationMs": 9960,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "8b12081419af41c885618368825a32df",
+          "ok": true,
+          "text": "Late on Sunday, the United States President Donald Trump, in a statement delivered via the press secretary, announced U.S. troops would be leaving Syria.",
+          "detectedLanguage": "en",
+          "readMs": 2.966,
+          "decodeMs": 2286.383,
+          "transcribeMs": 2339.524,
+          "rssBytes": 1692975104,
+          "requestRoundTripMs": 2339.918,
+          "sampledRssBytes": 1692975104
+        }
+      },
+      {
+        "id": "fleurs-en-1768",
+        "category": "english",
+        "reference": "most of the buildings on the edges of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+        "durationMs": 7620,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "deef90a85eea480194c0ffb33b9b5132",
+          "ok": true,
+          "text": "Most of the buildings on the edge of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared.",
+          "detectedLanguage": "en",
+          "readMs": 1.356,
+          "decodeMs": 1898.501,
+          "transcribeMs": 1934.673,
+          "rssBytes": 1693319168,
+          "requestRoundTripMs": 1935.061,
+          "sampledRssBytes": 1693335552
+        }
+      },
+      {
+        "id": "fleurs-en-1772",
+        "category": "english",
+        "reference": "so it is likely that the notation was added simply as a label",
+        "durationMs": 5860,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "dcab30b837354edc9b72748d344b8877",
+          "ok": true,
+          "text": "So it is likely that the notation was added simply as a label.",
+          "detectedLanguage": "en",
+          "readMs": 0.248,
+          "decodeMs": 1105.935,
+          "transcribeMs": 1126.857,
+          "rssBytes": 1700888576,
+          "requestRoundTripMs": 1127.205,
+          "sampledRssBytes": 1700888576
+        }
+      },
+      {
+        "id": "fleurs-en-1781",
+        "category": "english",
+        "reference": "madagascar is by far the biggest and a continent on its own when it comes to wildlife",
+        "durationMs": 8880,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "773d7684f62a4b7c9de1fa89694957da",
+          "ok": true,
+          "text": "Madden Gascar is by far the biggest and the continent on its own when it comes to wildlife.",
+          "detectedLanguage": "en",
+          "readMs": 1.224,
+          "decodeMs": 1640.664,
+          "transcribeMs": 1674.478,
+          "rssBytes": 1701871616,
+          "requestRoundTripMs": 1674.822,
+          "sampledRssBytes": 1701871616
+        }
+      },
+      {
+        "id": "fleurs-en-1782",
+        "category": "english",
+        "reference": "also between each dynasty was an unstable age of divided provinces the best-known of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+        "durationMs": 11760,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "d0df966e663b457b85a8c95203840206",
+          "ok": true,
+          "text": "Also between each dynasty was an unstable age of Dividend provinces. The best line of these periods was the Three Kingdoms epoch, taking place for 60 years between the Han and the Jin Dynasty.",
+          "detectedLanguage": "en",
+          "readMs": 1.412,
+          "decodeMs": 2465.912,
+          "transcribeMs": 2511.524,
+          "rssBytes": 1704837120,
+          "requestRoundTripMs": 2511.887,
+          "sampledRssBytes": 1704837120
+        }
+      },
+      {
+        "id": "fleurs-en-1793",
+        "category": "english",
+        "reference": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+        "durationMs": 11100,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "ce2f961d39a1437cabf2e72d5cd340c8",
+          "ok": true,
+          "text": "If you're not used to driving on country roads, keep your wits about you. Steep grades, narrow lanes, and sharp curves predominate.",
+          "detectedLanguage": "en",
+          "readMs": 1.085,
+          "decodeMs": 1924.812,
+          "transcribeMs": 1956.42,
+          "rssBytes": 1705132032,
+          "requestRoundTripMs": 1956.738,
+          "sampledRssBytes": 1705132032
+        }
+      },
+      {
+        "id": "fleurs-en-1799",
+        "category": "english",
+        "reference": "beyond wednesday's event carpanedo competed in two individual races at the championships",
+        "durationMs": 5700,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "4abbc885ec3d4c0bb37a8288d9f58dfc",
+          "ok": true,
+          "text": "Beyond Wednesday's event, Carpigneto competed in two individual races at the championships.",
+          "detectedLanguage": "en",
+          "readMs": 1.048,
+          "decodeMs": 1471.553,
+          "transcribeMs": 1501.309,
+          "rssBytes": 1706622976,
+          "requestRoundTripMs": 1501.698,
+          "sampledRssBytes": 1706622976
+        }
+      },
+      {
+        "id": "fleurs-en-1802",
+        "category": "english",
+        "reference": "the internet combines elements of both mass and interpersonal communication",
+        "durationMs": 5760,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "b8726470df56483b9349f7e26fee9afd",
+          "ok": true,
+          "text": "The Internet combines elements of both mass and interpersonal communication.",
+          "detectedLanguage": "en",
+          "readMs": 1.447,
+          "decodeMs": 1017.833,
+          "transcribeMs": 1041.884,
+          "rssBytes": 1706852352,
+          "requestRoundTripMs": 1042.264,
+          "sampledRssBytes": 1706852352
+        }
+      },
+      {
+        "id": "fleurs-en-1813",
+        "category": "english",
+        "reference": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+        "durationMs": 10260,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "0eb7a1575ac24a999a0804a7e36c9656",
+          "ok": true,
+          "text": "Barcelona's official languages are Catalan and Spanish. About a half prefer to speak Catalan, a vast majority understands it and virtually everyone knows Spanish.",
+          "detectedLanguage": "en",
+          "readMs": 1.818,
+          "decodeMs": 2043.326,
+          "transcribeMs": 2083.179,
+          "rssBytes": 1805533184,
+          "requestRoundTripMs": 2083.648,
+          "sampledRssBytes": 1805533184
+        }
+      },
+      {
+        "id": "fleurs-en-1817",
+        "category": "english",
+        "reference": "the schengen zone however works somewhat like one country in this respect",
+        "durationMs": 6800,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c4db7a8e96e74e9eb6370198a5ca27d4",
+          "ok": true,
+          "text": "The Shenggeng Zone however works somewhat like one country in this respect.",
+          "detectedLanguage": "en",
+          "readMs": 0.901,
+          "decodeMs": 1167.986,
+          "transcribeMs": 1185.749,
+          "rssBytes": 1805746176,
+          "requestRoundTripMs": 1186.086,
+          "sampledRssBytes": 1805746176
+        }
+      },
+      {
+        "id": "fleurs-en-1828",
+        "category": "english",
+        "reference": "a search of the internet for hostile environment course' will probably provide the address of a local company",
+        "durationMs": 7200,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "cebb57623a19487b8d07324f13185afa",
+          "ok": true,
+          "text": "A search of the Internet for hostile environment course will probably provide the address of a local company.",
+          "detectedLanguage": "en",
+          "readMs": 1.528,
+          "decodeMs": 1541.035,
+          "transcribeMs": 1578.183,
+          "rssBytes": 1806942208,
+          "requestRoundTripMs": 1578.521,
+          "sampledRssBytes": 1806958592
+        }
+      },
+      {
+        "id": "fleurs-en-1839",
+        "category": "english",
+        "reference": "think of the skiing route as of a similar hiking route",
+        "durationMs": 4940,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "7d6cb743682c4292b1a0d8e61a3c62d4",
+          "ok": true,
+          "text": "Think of the scheme route as of a similar hiking route.",
+          "detectedLanguage": "en",
+          "readMs": 1.155,
+          "decodeMs": 1090.241,
+          "transcribeMs": 1109.567,
+          "rssBytes": 1807171584,
+          "requestRoundTripMs": 1109.931,
+          "sampledRssBytes": 1807171584
+        }
+      },
+      {
+        "id": "fleurs-en-1840",
+        "category": "english",
+        "reference": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+        "durationMs": 8400,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "1dde4fd89a8a4f4ab2f9488c36c858f6",
+          "ok": true,
+          "text": "In many other cities of Italy and in the rest of the world, particularly in Poland, similar setups were made which were viewed by a great number of people.",
+          "detectedLanguage": "en",
+          "readMs": 2.543,
+          "decodeMs": 2054.698,
+          "transcribeMs": 2097.534,
+          "rssBytes": 1808973824,
+          "requestRoundTripMs": 2098.067,
+          "sampledRssBytes": 1808973824
+        }
+      },
+      {
+        "id": "fleurs-en-1851",
+        "category": "english",
+        "reference": "rip currents are the returning flow from waves breaking off the beach often at a reef or similar",
+        "durationMs": 4980,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "1e7c12acb06f450d8c59d7c2ba050975",
+          "ok": true,
+          "text": "Rupkirn's are the returning flow from waves breaking off the sea often at a reef or similar.",
+          "detectedLanguage": "en",
+          "readMs": 0.892,
+          "decodeMs": 1825.924,
+          "transcribeMs": 1844.913,
+          "rssBytes": 1809645568,
+          "requestRoundTripMs": 1845.242,
+          "sampledRssBytes": 1809645568
+        }
+      },
+      {
+        "id": "fleurs-en-1857",
+        "category": "english",
+        "reference": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+        "durationMs": 10260,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "2f0e7cdb5642479fb62b1eb06591c388",
+          "ok": true,
+          "text": "He added that they should not however be asked to take on obligations that go beyond their development stage, responsibility and capabilities.",
+          "detectedLanguage": "en",
+          "readMs": 1.6,
+          "decodeMs": 2025.056,
+          "transcribeMs": 2066.714,
+          "rssBytes": 1811005440,
+          "requestRoundTripMs": 2067.098,
+          "sampledRssBytes": 1811005440
+        }
+      },
+      {
+        "id": "fleurs-en-1866",
+        "category": "english",
+        "reference": "first most riders wear riding boots with a heel and a smooth quite narrow sole",
+        "durationMs": 4680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "460154fba2b54454bb048666f6b590b7",
+          "ok": true,
+          "text": "First, most riders were riding boots with a heel and a smooth, quite narrow sole.",
+          "detectedLanguage": "en",
+          "readMs": 0.868,
+          "decodeMs": 1298.981,
+          "transcribeMs": 1317.626,
+          "rssBytes": 1811169280,
+          "requestRoundTripMs": 1317.965,
+          "sampledRssBytes": 1811169280
+        }
+      },
+      {
+        "id": "fleurs-en-1873",
+        "category": "english",
+        "reference": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it ok!",
+        "durationMs": 10980,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f313da86df1945c7a2eed225abbf46d6",
+          "ok": true,
+          "text": "Be firm in turning down men and don't be afraid to stand your ground, cultural differences or not, it doesn't make it okay.",
+          "detectedLanguage": "en",
+          "readMs": 1.305,
+          "decodeMs": 1890.786,
+          "transcribeMs": 1924.314,
+          "rssBytes": 1811709952,
+          "requestRoundTripMs": 1925.627,
+          "sampledRssBytes": 1811709952
+        }
+      },
+      {
+        "id": "fleurs-en-1881",
+        "category": "english",
+        "reference": "sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes",
+        "durationMs": 7740,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "cbcfff8dbb5b4bd4ad231248e6d00926",
+          "ok": true,
+          "text": "Sharing a field trip virtually is also a great way to reflect on a trip and share experiences with future classes.",
+          "detectedLanguage": "en",
+          "readMs": 3.412,
+          "decodeMs": 1651.409,
+          "transcribeMs": 1686.779,
+          "rssBytes": 1812496384,
+          "requestRoundTripMs": 1687.284,
+          "sampledRssBytes": 1812496384
+        }
+      },
+      {
+        "id": "fleurs-en-1889",
+        "category": "english",
+        "reference": "it has brought us the train the car and many other transportation devices",
+        "durationMs": 6780,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "94b5303859e2414899c220a19daba6cb",
+          "ok": true,
+          "text": "It has brought us to train the car and many other transportation devices.",
+          "detectedLanguage": "en",
+          "readMs": 1.131,
+          "decodeMs": 1266.066,
+          "transcribeMs": 1292.518,
+          "rssBytes": 1812856832,
+          "requestRoundTripMs": 1292.862,
+          "sampledRssBytes": 1812856832
+        }
+      },
+      {
+        "id": "fleurs-en-1893",
+        "category": "english",
+        "reference": "the sundarbans are the largest littoral mangrove belt in the world stretching 80 km 50 mi into the bangladeshi and indian hinterland from the coast",
+        "durationMs": 12240,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "5bdf34639cab4e13941119bee6206c62",
+          "ok": true,
+          "text": "The Sundarbans are the largest littoral mangrove bell in the world, stretching 80 kilometers, 50 miles, into the Bangladeshi and Indian hinterland from the coast.",
+          "detectedLanguage": "en",
+          "readMs": 1.64,
+          "decodeMs": 2609.948,
+          "transcribeMs": 2657.989,
+          "rssBytes": 1815674880,
+          "requestRoundTripMs": 2658.36,
+          "sampledRssBytes": 1815674880
+        }
+      },
+      {
+        "id": "fleurs-en-1902",
+        "category": "english",
+        "reference": "he was initially hospitalised in the james paget hospital in great yarmouth",
+        "durationMs": 7500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "bdd63c156cad482a98eb8575bdf353a2",
+          "ok": true,
+          "text": "He was initially hospitalized in the James Pageant Hospital in Great Yarmouth.",
+          "detectedLanguage": "en",
+          "readMs": 2.197,
+          "decodeMs": 1373.702,
+          "transcribeMs": 1401.948,
+          "rssBytes": 1816510464,
+          "requestRoundTripMs": 1402.271,
+          "sampledRssBytes": 1816510464
+        }
+      },
+      {
+        "id": "fleurs-en-1909",
+        "category": "english",
+        "reference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
+        "durationMs": 5640,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "42c0f4e0be1148959c575c3755c3eb92",
+          "ok": true,
+          "text": "Virtual teams are held to the same standard of excellent and conventional teams, but there are subtle differences.",
+          "detectedLanguage": "en",
+          "readMs": 0.986,
+          "decodeMs": 1428.835,
+          "transcribeMs": 1452.736,
+          "rssBytes": 1817362432,
+          "requestRoundTripMs": 1453.038,
+          "sampledRssBytes": 1817362432
+        }
+      },
+      {
+        "id": "fleurs-en-1912",
+        "category": "english",
+        "reference": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+        "durationMs": 10520,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e6ecc88da5364552a787599c759e931c",
+          "ok": true,
+          "text": "Most of the smaller islands are independent nations or associated with France and known as luxury beach resorts.",
+          "detectedLanguage": "en",
+          "readMs": 2.412,
+          "decodeMs": 1635.719,
+          "transcribeMs": 1677.094,
+          "rssBytes": 1818804224,
+          "requestRoundTripMs": 1677.44,
+          "sampledRssBytes": 1818804224
+        }
+      },
+      {
+        "id": "fleurs-en-1922",
+        "category": "english",
+        "reference": "there are of course christian theological explanations for this tradition but it may well be a pre-christian spring and fertility ritual",
+        "durationMs": 9060,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "54bc42c72e824ac585061a049b18bba3",
+          "ok": true,
+          "text": "There are of course Christian theological explanations for this tradition, but it may well be a pre-Christian spring and fertility ritual.",
+          "detectedLanguage": "en",
+          "readMs": 2.311,
+          "decodeMs": 1880.92,
+          "transcribeMs": 1917.864,
+          "rssBytes": 1819131904,
+          "requestRoundTripMs": 1918.298,
+          "sampledRssBytes": 1819131904
+        }
+      },
+      {
+        "id": "fleurs-en-1938",
+        "category": "english",
+        "reference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+        "durationMs": 11420,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "352052051d3942b38b53f5cf3e95c85a",
+          "ok": true,
+          "text": "The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+          "detectedLanguage": "en",
+          "readMs": 1.99,
+          "decodeMs": 2147.602,
+          "transcribeMs": 2189.268,
+          "rssBytes": 1820819456,
+          "requestRoundTripMs": 2189.825,
+          "sampledRssBytes": 1820819456
+        }
+      },
+      {
+        "id": "fleurs-en-1939",
+        "category": "english",
+        "reference": "also after the revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed",
+        "durationMs": 7020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f4d51b2552704a7a9c608c155b244412",
+          "ok": true,
+          "text": "Also, after Revolution, occupants were open to all male applicants, allowing the most ambitious and successful to succeed.",
+          "detectedLanguage": "en",
+          "readMs": 1.504,
+          "decodeMs": 1730.046,
+          "transcribeMs": 1769.967,
+          "rssBytes": 1821851648,
+          "requestRoundTripMs": 1770.377,
+          "sampledRssBytes": 1821868032
+        }
+      },
+      {
+        "id": "fleurs-en-1951",
+        "category": "english",
+        "reference": "in 2002 goma was destroyed by lava from the nyiragongo volcano which buried most of the town's streets particularly the town centre",
+        "durationMs": 9600,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c77385d886da4ea7a57fef6a6b0c8183",
+          "ok": true,
+          "text": "In 2002, Goma was destroyed by lava from the Niren Gogo volcano which buried most of the town streets, particularly the town center.",
+          "detectedLanguage": "en",
+          "readMs": 1.224,
+          "decodeMs": 1894.994,
+          "transcribeMs": 1931.681,
+          "rssBytes": 1822851072,
+          "requestRoundTripMs": 1932.031,
+          "sampledRssBytes": 1822851072
+        }
+      },
+      {
+        "id": "fleurs-en-1952",
+        "category": "english",
+        "reference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+        "durationMs": 11320,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "911119d730c64d759d45f807710f0c9f",
+          "ok": true,
+          "text": "Anyone who is going to drive at high latitudes or over mountain passes should consider the possibility of snow, ice, or freezing temperatures.",
+          "detectedLanguage": "en",
+          "readMs": 2.284,
+          "decodeMs": 1984.714,
+          "transcribeMs": 2028.198,
+          "rssBytes": 1827061760,
+          "requestRoundTripMs": 2028.546,
+          "sampledRssBytes": 1827061760
+        }
+      },
+      {
+        "id": "fleurs-en-1964",
+        "category": "english",
+        "reference": "the 25 dunlap broadsides still known to exist are the oldest surviving copies of the document the original handwritten copy has not survived",
+        "durationMs": 9840,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "cee000969e4a4d77a320c160d4806e38",
+          "ok": true,
+          "text": "The 25 Dunlap broad sides, still known to exist, are the oldest surviving copies of the document. The original handwriting copying has not survived.",
+          "detectedLanguage": "en",
+          "readMs": 1.203,
+          "decodeMs": 1966.086,
+          "transcribeMs": 2010.989,
+          "rssBytes": 1845002240,
+          "requestRoundTripMs": 2011.303,
+          "sampledRssBytes": 1845002240
+        }
+      },
+      {
+        "id": "fleurs-en-1969",
+        "category": "english",
+        "reference": "it states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally see example",
+        "durationMs": 12800,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "ff2b8835c8844a5eb6cdef12c0265648",
+          "ok": true,
+          "text": "It states that the most effective place for the main subject is at the intersection of lines dividing the images into thirds vertically and horizontally. See example.",
+          "detectedLanguage": "en",
+          "readMs": 1.582,
+          "decodeMs": 1891.525,
+          "transcribeMs": 1929.163,
+          "rssBytes": 1845886976,
+          "requestRoundTripMs": 1929.547,
+          "sampledRssBytes": 1845886976
+        }
+      },
+      {
+        "id": "fleurs-en-1977",
+        "category": "english",
+        "reference": "prides are made up of one to three related adult males along with as many as thirty females and cubs",
+        "durationMs": 6780,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "83addd59827044de94bf8f9cc2c48d05",
+          "ok": true,
+          "text": "Brides are made up of 1-3 related adult males, along with as many as 30 females and cubs.",
+          "detectedLanguage": "en",
+          "readMs": 2.208,
+          "decodeMs": 1511.347,
+          "transcribeMs": 1537.741,
+          "rssBytes": 1846165504,
+          "requestRoundTripMs": 1538.073,
+          "sampledRssBytes": 1846165504
+        }
+      },
+      {
+        "id": "fleurs-en-1981",
+        "category": "english",
+        "reference": "if you only go ashore using shipboard excursions you will not need a separate visa as of 2009",
+        "durationMs": 9260,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "59456b05f4a64b2e9e8e0a11b7a6f4df",
+          "ok": true,
+          "text": "If you only go ashore using ship or excursions you will not need a separate visa as of 2009.",
+          "detectedLanguage": "en",
+          "readMs": 2.323,
+          "decodeMs": 1597.072,
+          "transcribeMs": 1635.983,
+          "rssBytes": 1847476224,
+          "requestRoundTripMs": 1636.306,
+          "sampledRssBytes": 1847476224
+        }
+      },
+      {
+        "id": "fleurs-en-1992",
+        "category": "english",
+        "reference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
+        "durationMs": 9500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9016dd49581949ec9594252e37b2245c",
+          "ok": true,
+          "text": "The turn safari in popular use refers to overland travel to view the stunning African wildlife, particularly on Savannah.",
+          "detectedLanguage": "en",
+          "readMs": 1.251,
+          "decodeMs": 1635.076,
+          "transcribeMs": 1670.736,
+          "rssBytes": 1848492032,
+          "requestRoundTripMs": 1671.074,
+          "sampledRssBytes": 1848492032
+        }
+      },
+      {
+        "id": "fleurs-en-1995",
+        "category": "english",
+        "reference": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been to challenging for the student to handle alone",
+        "durationMs": 9720,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "695330864dbf4c93972a61af5aec4b3a",
+          "ok": true,
+          "text": "Virtual scaffolds are internalized in the software and are meant to question, prompt, and explain procedures that may have been too challenging for the student to handle alone.",
+          "detectedLanguage": "en",
+          "readMs": 2.715,
+          "decodeMs": 2383.584,
+          "transcribeMs": 2426.248,
+          "rssBytes": 1849720832,
+          "requestRoundTripMs": 2426.651,
+          "sampledRssBytes": 1849720832
+        }
+      },
+      {
+        "id": "fleurs-en-2009",
+        "category": "english",
+        "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+        "durationMs": 13860,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "720014b733c64952a6e2b8cd512f54e0",
+          "ok": true,
+          "text": "The most readily accessible plant resources would have been the proteins accessible in leaves and legumes, but these are hard for primates like us to digest unless they are cooked.",
+          "detectedLanguage": "en",
+          "readMs": 2.554,
+          "decodeMs": 2332.088,
+          "transcribeMs": 2374.923,
+          "rssBytes": 1850933248,
+          "requestRoundTripMs": 2375.379,
+          "sampledRssBytes": 1850933248
+        }
+      },
+      {
+        "id": "fleurs-en-2009",
+        "category": "english",
+        "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+        "durationMs": 11040,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "7457d30422bc4f4cb92adfabf9d3ef9e",
+          "ok": true,
+          "text": "The most readily accessible plant resources would have been the proteins accessible in leaves and legumes, but these are hard for primates like us to digest unless they are cooked.",
+          "detectedLanguage": "en",
+          "readMs": 0.493,
+          "decodeMs": 2171.053,
+          "transcribeMs": 2212.922,
+          "rssBytes": 1862270976,
+          "requestRoundTripMs": 2213.248,
+          "sampledRssBytes": 1862270976
+        }
+      }
+    ],
+    "performance": [
+      {
+        "type": "result",
+        "requestId": "1f043c1594224db28d74c14687f39029",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.282,
+        "decodeMs": 1064.668,
+        "transcribeMs": 1085.397,
+        "rssBytes": 1862467584,
+        "requestRoundTripMs": 1085.714,
+        "sampledRssBytes": 1862467584
+      },
+      {
+        "type": "result",
+        "requestId": "819d801e8eb7428cb0ec1b6182c9e47f",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.267,
+        "decodeMs": 1076.28,
+        "transcribeMs": 1097.221,
+        "rssBytes": 1862729728,
+        "requestRoundTripMs": 1097.503,
+        "sampledRssBytes": 1862729728
+      },
+      {
+        "type": "result",
+        "requestId": "89bd0c26ed584e149b5541dcd0c75b95",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.362,
+        "decodeMs": 1114.07,
+        "transcribeMs": 1135.654,
+        "rssBytes": 1862959104,
+        "requestRoundTripMs": 1135.993,
+        "sampledRssBytes": 1862959104
+      },
+      {
+        "type": "result",
+        "requestId": "ed252298bb6c4aa4b685b4a6899a51fc",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.233,
+        "decodeMs": 1070.101,
+        "transcribeMs": 1090.917,
+        "rssBytes": 1861156864,
+        "requestRoundTripMs": 1091.271,
+        "sampledRssBytes": 1861156864
+      },
+      {
+        "type": "result",
+        "requestId": "c12155d4cedb4a28810312640907586c",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.261,
+        "decodeMs": 1066.272,
+        "transcribeMs": 1087.109,
+        "rssBytes": 1861517312,
+        "requestRoundTripMs": 1087.45,
+        "sampledRssBytes": 1861517312
+      },
+      {
+        "type": "result",
+        "requestId": "aad1cf7f2a5846f39354edda5627377f",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.242,
+        "decodeMs": 1082.452,
+        "transcribeMs": 1103.218,
+        "rssBytes": 1861517312,
+        "requestRoundTripMs": 1103.567,
+        "sampledRssBytes": 1861517312
+      },
+      {
+        "type": "result",
+        "requestId": "69254f967595427594c32fd3b066e907",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.234,
+        "decodeMs": 1140.378,
+        "transcribeMs": 1161.5,
+        "rssBytes": 1861664768,
+        "requestRoundTripMs": 1161.832,
+        "sampledRssBytes": 1861664768
+      },
+      {
+        "type": "result",
+        "requestId": "58a54f2308c44687a95bb96c1dea08a8",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.251,
+        "decodeMs": 1102.429,
+        "transcribeMs": 1123.646,
+        "rssBytes": 1861664768,
+        "requestRoundTripMs": 1124.213,
+        "sampledRssBytes": 1861664768
+      },
+      {
+        "type": "result",
+        "requestId": "82eb959cc1f140cf959fab28d9af4c66",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.24,
+        "decodeMs": 1101.683,
+        "transcribeMs": 1122.673,
+        "rssBytes": 1861681152,
+        "requestRoundTripMs": 1123.039,
+        "sampledRssBytes": 1861681152
+      },
+      {
+        "type": "result",
+        "requestId": "d2fb999407c24e4f8c80eef01a87c0f5",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.225,
+        "decodeMs": 1151.95,
+        "transcribeMs": 1172.628,
+        "rssBytes": 1861681152,
+        "requestRoundTripMs": 1172.901,
+        "sampledRssBytes": 1861681152
+      },
+      {
+        "type": "result",
+        "requestId": "9188038537804d3eb5709d152d79b5e6",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.242,
+        "decodeMs": 1082.167,
+        "transcribeMs": 1103.051,
+        "rssBytes": 1860239360,
+        "requestRoundTripMs": 1103.384,
+        "sampledRssBytes": 1860239360
+      },
+      {
+        "type": "result",
+        "requestId": "0bea1ac9c7994409bb77e6703a0a28fa",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.371,
+        "decodeMs": 1074.194,
+        "transcribeMs": 1095.084,
+        "rssBytes": 1860239360,
+        "requestRoundTripMs": 1095.406,
+        "sampledRssBytes": 1860239360
+      },
+      {
+        "type": "result",
+        "requestId": "9e9edea9778c4866aa9e09d23cd2733e",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.253,
+        "decodeMs": 1051.142,
+        "transcribeMs": 1071.967,
+        "rssBytes": 1860255744,
+        "requestRoundTripMs": 1072.301,
+        "sampledRssBytes": 1860255744
+      },
+      {
+        "type": "result",
+        "requestId": "4a2c5685148f486588e45365a0380bda",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.239,
+        "decodeMs": 1068.267,
+        "transcribeMs": 1089.002,
+        "rssBytes": 1860255744,
+        "requestRoundTripMs": 1089.358,
+        "sampledRssBytes": 1860255744
+      },
+      {
+        "type": "result",
+        "requestId": "6bc0c0b895ac4e95b2870f2683eeef3e",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.255,
+        "decodeMs": 1212.836,
+        "transcribeMs": 1233.792,
+        "rssBytes": 1860272128,
+        "requestRoundTripMs": 1234.161,
+        "sampledRssBytes": 1860272128
+      },
+      {
+        "type": "result",
+        "requestId": "340d9a77f7b84945893eb0c31628d0c8",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.233,
+        "decodeMs": 1159.16,
+        "transcribeMs": 1180.534,
+        "rssBytes": 1860272128,
+        "requestRoundTripMs": 1180.87,
+        "sampledRssBytes": 1860288512
+      },
+      {
+        "type": "result",
+        "requestId": "d0cd6a6bda564e8e83872d3cdd1e8940",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.267,
+        "decodeMs": 1157.323,
+        "transcribeMs": 1178.52,
+        "rssBytes": 1860288512,
+        "requestRoundTripMs": 1178.926,
+        "sampledRssBytes": 1860288512
+      },
+      {
+        "type": "result",
+        "requestId": "f8bd39789f754a5fbe08461eac246ff2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.389,
+        "decodeMs": 1089.691,
+        "transcribeMs": 1112.49,
+        "rssBytes": 1860665344,
+        "requestRoundTripMs": 1112.932,
+        "sampledRssBytes": 1860665344
+      },
+      {
+        "type": "result",
+        "requestId": "822f14e5c00643f8a502774dbe90f6e3",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.252,
+        "decodeMs": 1070.95,
+        "transcribeMs": 1091.99,
+        "rssBytes": 1860665344,
+        "requestRoundTripMs": 1092.344,
+        "sampledRssBytes": 1860665344
+      },
+      {
+        "type": "result",
+        "requestId": "a9d73c9d41c84b47a3ebd3546b0294bf",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.243,
+        "decodeMs": 1048.771,
+        "transcribeMs": 1070.476,
+        "rssBytes": 1860681728,
+        "requestRoundTripMs": 1070.846,
+        "sampledRssBytes": 1860681728
+      },
+      {
+        "type": "result",
+        "requestId": "5622b2b5b20140a68d9915d6c2ed86fd",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.243,
+        "decodeMs": 1069.52,
+        "transcribeMs": 1090.362,
+        "rssBytes": 1860747264,
+        "requestRoundTripMs": 1090.667,
+        "sampledRssBytes": 1860747264
+      },
+      {
+        "type": "result",
+        "requestId": "ff45a5919bde469fa42a1af37bec73e5",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.277,
+        "decodeMs": 1222.35,
+        "transcribeMs": 1243.378,
+        "rssBytes": 1861779456,
+        "requestRoundTripMs": 1243.687,
+        "sampledRssBytes": 1861779456
+      },
+      {
+        "type": "result",
+        "requestId": "d68b9f1184fb4191903ddb4f34483b4b",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.247,
+        "decodeMs": 1085.288,
+        "transcribeMs": 1106.832,
+        "rssBytes": 1861779456,
+        "requestRoundTripMs": 1107.165,
+        "sampledRssBytes": 1861779456
+      },
+      {
+        "type": "result",
+        "requestId": "e500f1ddc0534040b2eefa946cbc53a8",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.234,
+        "decodeMs": 1079.353,
+        "transcribeMs": 1100.206,
+        "rssBytes": 1861795840,
+        "requestRoundTripMs": 1100.536,
+        "sampledRssBytes": 1861795840
+      },
+      {
+        "type": "result",
+        "requestId": "118b2ca925b242428ca3c19f757bacfa",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.254,
+        "decodeMs": 1122.628,
+        "transcribeMs": 1143.668,
+        "rssBytes": 1862156288,
+        "requestRoundTripMs": 1144.013,
+        "sampledRssBytes": 1862172672
+      },
+      {
+        "type": "result",
+        "requestId": "e50bf83b843a45049aeb7c305d2f214d",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.263,
+        "decodeMs": 1067.943,
+        "transcribeMs": 1089.261,
+        "rssBytes": 1862172672,
+        "requestRoundTripMs": 1089.572,
+        "sampledRssBytes": 1862172672
+      },
+      {
+        "type": "result",
+        "requestId": "6f417f3253fd497888f0bda8773f56ba",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.295,
+        "decodeMs": 1039.863,
+        "transcribeMs": 1060.712,
+        "rssBytes": 1862549504,
+        "requestRoundTripMs": 1061.102,
+        "sampledRssBytes": 1862549504
+      },
+      {
+        "type": "result",
+        "requestId": "31b386cf93a6485b936599de46e04bdf",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.255,
+        "decodeMs": 1132.929,
+        "transcribeMs": 1153.542,
+        "rssBytes": 1862549504,
+        "requestRoundTripMs": 1153.888,
+        "sampledRssBytes": 1862549504
+      },
+      {
+        "type": "result",
+        "requestId": "bb178d5823c14fedaaa8239d0264c455",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.26,
+        "decodeMs": 1085.819,
+        "transcribeMs": 1107.081,
+        "rssBytes": 1862565888,
+        "requestRoundTripMs": 1107.489,
+        "sampledRssBytes": 1862565888
+      },
+      {
+        "type": "result",
+        "requestId": "22ba611395b34a84820c199b1a461770",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.301,
+        "decodeMs": 1076.879,
+        "transcribeMs": 1097.913,
+        "rssBytes": 1862565888,
+        "requestRoundTripMs": 1098.267,
+        "sampledRssBytes": 1862565888
+      },
+      {
+        "type": "result",
+        "requestId": "6f98686645c945a58411143ef0398ad1",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.281,
+        "decodeMs": 1100.944,
+        "transcribeMs": 1122,
+        "rssBytes": 1862647808,
+        "requestRoundTripMs": 1122.408,
+        "sampledRssBytes": 1862647808
+      },
+      {
+        "type": "result",
+        "requestId": "4a5b7ea0cbd74bb285cb58d60770e590",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.253,
+        "decodeMs": 1054.202,
+        "transcribeMs": 1075.112,
+        "rssBytes": 1862828032,
+        "requestRoundTripMs": 1075.451,
+        "sampledRssBytes": 1862828032
+      },
+      {
+        "type": "result",
+        "requestId": "e22bdae9665b45aeb4636a54cd174486",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.271,
+        "decodeMs": 1082.51,
+        "transcribeMs": 1103.288,
+        "rssBytes": 1862893568,
+        "requestRoundTripMs": 1103.616,
+        "sampledRssBytes": 1862893568
+      },
+      {
+        "type": "result",
+        "requestId": "a9f9a0ec73a94f538f185909c7589fb9",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.251,
+        "decodeMs": 1101.869,
+        "transcribeMs": 1122.719,
+        "rssBytes": 1862893568,
+        "requestRoundTripMs": 1123.081,
+        "sampledRssBytes": 1862909952
+      },
+      {
+        "type": "result",
+        "requestId": "583ffe0c05ec46bca2f74ce22352ccba",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.268,
+        "decodeMs": 1054.333,
+        "transcribeMs": 1075.646,
+        "rssBytes": 1862909952,
+        "requestRoundTripMs": 1076.236,
+        "sampledRssBytes": 1862909952
+      },
+      {
+        "type": "result",
+        "requestId": "67b9422e3087437899a4ee19a9271b47",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.295,
+        "decodeMs": 1061.309,
+        "transcribeMs": 1081.981,
+        "rssBytes": 1862942720,
+        "requestRoundTripMs": 1082.334,
+        "sampledRssBytes": 1862942720
+      },
+      {
+        "type": "result",
+        "requestId": "e28d820badd34420a0edec42f44878e2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.242,
+        "decodeMs": 1073.755,
+        "transcribeMs": 1094.991,
+        "rssBytes": 1862942720,
+        "requestRoundTripMs": 1095.326,
+        "sampledRssBytes": 1862942720
+      },
+      {
+        "type": "result",
+        "requestId": "66596b3107d74d00862bcfa75b61d03f",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.239,
+        "decodeMs": 1077.501,
+        "transcribeMs": 1098.857,
+        "rssBytes": 1862942720,
+        "requestRoundTripMs": 1099.171,
+        "sampledRssBytes": 1862942720
+      },
+      {
+        "type": "result",
+        "requestId": "b1965c17bb3e4dd98ba5e53c832b5458",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.25,
+        "decodeMs": 1117.432,
+        "transcribeMs": 1138.261,
+        "rssBytes": 1862959104,
+        "requestRoundTripMs": 1138.596,
+        "sampledRssBytes": 1862959104
+      },
+      {
+        "type": "result",
+        "requestId": "1bec053556e14c8a872aede33f8273b2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.293,
+        "decodeMs": 1147.408,
+        "transcribeMs": 1168.894,
+        "rssBytes": 1862959104,
+        "requestRoundTripMs": 1169.306,
+        "sampledRssBytes": 1862959104
+      },
+      {
+        "type": "result",
+        "requestId": "f92638bd72534781b6f49b015df016b7",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.273,
+        "decodeMs": 1049.126,
+        "transcribeMs": 1070.162,
+        "rssBytes": 1862975488,
+        "requestRoundTripMs": 1070.484,
+        "sampledRssBytes": 1862975488
+      },
+      {
+        "type": "result",
+        "requestId": "0838a7cd79cd46eaa8dba316a089b142",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.268,
+        "decodeMs": 1100.088,
+        "transcribeMs": 1121.152,
+        "rssBytes": 1862975488,
+        "requestRoundTripMs": 1121.469,
+        "sampledRssBytes": 1862975488
+      },
+      {
+        "type": "result",
+        "requestId": "6538118ff98444548ac752f74fe143b6",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.246,
+        "decodeMs": 1103.668,
+        "transcribeMs": 1124.67,
+        "rssBytes": 1862991872,
+        "requestRoundTripMs": 1125.026,
+        "sampledRssBytes": 1862991872
+      },
+      {
+        "type": "result",
+        "requestId": "4979ed803bb14bc4b0337dd5833cc62f",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.295,
+        "decodeMs": 1106.217,
+        "transcribeMs": 1127.507,
+        "rssBytes": 1862991872,
+        "requestRoundTripMs": 1127.837,
+        "sampledRssBytes": 1862991872
+      },
+      {
+        "type": "result",
+        "requestId": "d61670e7e1ad4cd48a3e9d7a598f66d5",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.257,
+        "decodeMs": 1060.865,
+        "transcribeMs": 1081.683,
+        "rssBytes": 1863008256,
+        "requestRoundTripMs": 1082.031,
+        "sampledRssBytes": 1863008256
+      },
+      {
+        "type": "result",
+        "requestId": "fff5b2c6f64c4034a0cce9308eb91e62",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.272,
+        "decodeMs": 1145.562,
+        "transcribeMs": 1166.559,
+        "rssBytes": 1863008256,
+        "requestRoundTripMs": 1166.894,
+        "sampledRssBytes": 1863024640
+      },
+      {
+        "type": "result",
+        "requestId": "05165b511c754b85a7b63b6ab3c3bad2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.259,
+        "decodeMs": 1104.539,
+        "transcribeMs": 1125.68,
+        "rssBytes": 1863024640,
+        "requestRoundTripMs": 1125.991,
+        "sampledRssBytes": 1863024640
+      },
+      {
+        "type": "result",
+        "requestId": "e4834711398c4e23b07b5225e28c62b3",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.242,
+        "decodeMs": 1057.693,
+        "transcribeMs": 1079.076,
+        "rssBytes": 1863041024,
+        "requestRoundTripMs": 1079.399,
+        "sampledRssBytes": 1863041024
+      },
+      {
+        "type": "result",
+        "requestId": "136f091eada043b8a8484aeb25500463",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.247,
+        "decodeMs": 1062.274,
+        "transcribeMs": 1083.334,
+        "rssBytes": 1863041024,
+        "requestRoundTripMs": 1083.651,
+        "sampledRssBytes": 1863041024
+      },
+      {
+        "type": "result",
+        "requestId": "68422eee906c482e96d8f3fa9e02dd9b",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.272,
+        "decodeMs": 1299.861,
+        "transcribeMs": 1320.9,
+        "rssBytes": 1863057408,
+        "requestRoundTripMs": 1321.264,
+        "sampledRssBytes": 1863057408
+      },
+      {
+        "type": "result",
+        "requestId": "4a1d2fa2807245009e3fe723bf5f7763",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.227,
+        "decodeMs": 1170.497,
+        "transcribeMs": 1191.299,
+        "rssBytes": 1863057408,
+        "requestRoundTripMs": 1191.633,
+        "sampledRssBytes": 1863057408
+      },
+      {
+        "type": "result",
+        "requestId": "af1404735e5f4d7a822fbfe7dd1ec727",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.281,
+        "decodeMs": 1078.714,
+        "transcribeMs": 1099.484,
+        "rssBytes": 1863073792,
+        "requestRoundTripMs": 1099.794,
+        "sampledRssBytes": 1863073792
+      },
+      {
+        "type": "result",
+        "requestId": "526783d3d0ef4f368d09f15b0cef891a",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.251,
+        "decodeMs": 1086.609,
+        "transcribeMs": 1107.434,
+        "rssBytes": 1863073792,
+        "requestRoundTripMs": 1107.738,
+        "sampledRssBytes": 1863073792
+      },
+      {
+        "type": "result",
+        "requestId": "4f46ac3742084966a396519852d89dee",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.296,
+        "decodeMs": 1056.353,
+        "transcribeMs": 1077.403,
+        "rssBytes": 1863090176,
+        "requestRoundTripMs": 1077.713,
+        "sampledRssBytes": 1863090176
+      },
+      {
+        "type": "result",
+        "requestId": "38aa729d7bf94bb79006aef80e11639d",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.318,
+        "decodeMs": 1091.764,
+        "transcribeMs": 1112.609,
+        "rssBytes": 1863090176,
+        "requestRoundTripMs": 1112.968,
+        "sampledRssBytes": 1863106560
+      },
+      {
+        "type": "result",
+        "requestId": "4f41512625784aee9214edb2f7a242d8",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.32,
+        "decodeMs": 1090.506,
+        "transcribeMs": 1111.551,
+        "rssBytes": 1863172096,
+        "requestRoundTripMs": 1111.911,
+        "sampledRssBytes": 1863172096
+      },
+      {
+        "type": "result",
+        "requestId": "d854e64ec630431bb9f6eaa7aec39480",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.264,
+        "decodeMs": 1097.866,
+        "transcribeMs": 1118.853,
+        "rssBytes": 1863188480,
+        "requestRoundTripMs": 1119.156,
+        "sampledRssBytes": 1863188480
+      },
+      {
+        "type": "result",
+        "requestId": "c4aa9d48a030485881dce28315a4dc77",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.252,
+        "decodeMs": 1113.165,
+        "transcribeMs": 1134.637,
+        "rssBytes": 1863188480,
+        "requestRoundTripMs": 1135.018,
+        "sampledRssBytes": 1863188480
+      },
+      {
+        "type": "result",
+        "requestId": "d96d8188ed8242b3a9bff56dde47b6e2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.249,
+        "decodeMs": 1175.219,
+        "transcribeMs": 1196.218,
+        "rssBytes": 1863204864,
+        "requestRoundTripMs": 1196.686,
+        "sampledRssBytes": 1863204864
+      },
+      {
+        "type": "result",
+        "requestId": "0e452079de2144da85c37bf99e89213a",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.303,
+        "decodeMs": 1168.328,
+        "transcribeMs": 1189.811,
+        "rssBytes": 1863204864,
+        "requestRoundTripMs": 1190.279,
+        "sampledRssBytes": 1863204864
+      },
+      {
+        "type": "result",
+        "requestId": "599c6520b4e44a9a9d1493373dfdbd51",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.337,
+        "decodeMs": 1161.876,
+        "transcribeMs": 1209.042,
+        "rssBytes": 1863221248,
+        "requestRoundTripMs": 1209.464,
+        "sampledRssBytes": 1863221248
+      },
+      {
+        "type": "result",
+        "requestId": "26622c5be46840b68cc92cfd6cddad45",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.346,
+        "decodeMs": 1102.553,
+        "transcribeMs": 1123.975,
+        "rssBytes": 1863286784,
+        "requestRoundTripMs": 1124.324,
+        "sampledRssBytes": 1863286784
+      },
+      {
+        "type": "result",
+        "requestId": "86f0f01abb964f72a514a329663b5c78",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.251,
+        "decodeMs": 1059.478,
+        "transcribeMs": 1080.559,
+        "rssBytes": 1863303168,
+        "requestRoundTripMs": 1080.907,
+        "sampledRssBytes": 1863303168
+      },
+      {
+        "type": "result",
+        "requestId": "55354978d3874b36b2528df1339fcaa6",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.264,
+        "decodeMs": 1052.3,
+        "transcribeMs": 1073.23,
+        "rssBytes": 1863319552,
+        "requestRoundTripMs": 1073.543,
+        "sampledRssBytes": 1863335936
+      },
+      {
+        "type": "result",
+        "requestId": "14fef704537f41f7a0895db6d8e75a15",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.227,
+        "decodeMs": 1152.147,
+        "transcribeMs": 1172.914,
+        "rssBytes": 1863335936,
+        "requestRoundTripMs": 1173.26,
+        "sampledRssBytes": 1863335936
+      },
+      {
+        "type": "result",
+        "requestId": "a2362a9d47034880a133dfa85edd3687",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.224,
+        "decodeMs": 1076.638,
+        "transcribeMs": 1097.785,
+        "rssBytes": 1863335936,
+        "requestRoundTripMs": 1098.091,
+        "sampledRssBytes": 1863335936
+      },
+      {
+        "type": "result",
+        "requestId": "c1b4b96f8c7a48dd9caa5c66e07e980f",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.258,
+        "decodeMs": 1077.848,
+        "transcribeMs": 1098.762,
+        "rssBytes": 1863335936,
+        "requestRoundTripMs": 1099.082,
+        "sampledRssBytes": 1863335936
+      },
+      {
+        "type": "result",
+        "requestId": "680434594cc74bfa828a1099dbe62550",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.258,
+        "decodeMs": 1079.306,
+        "transcribeMs": 1100.433,
+        "rssBytes": 1863827456,
+        "requestRoundTripMs": 1100.762,
+        "sampledRssBytes": 1863827456
+      },
+      {
+        "type": "result",
+        "requestId": "fd2406a6b203471ab7174e18a7c956f6",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.26,
+        "decodeMs": 1111.502,
+        "transcribeMs": 1132.388,
+        "rssBytes": 1863827456,
+        "requestRoundTripMs": 1132.757,
+        "sampledRssBytes": 1863843840
+      },
+      {
+        "type": "result",
+        "requestId": "c6d2700a184c4fae963f005da9954fd4",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.271,
+        "decodeMs": 1102.526,
+        "transcribeMs": 1124.141,
+        "rssBytes": 1864220672,
+        "requestRoundTripMs": 1124.541,
+        "sampledRssBytes": 1864220672
+      },
+      {
+        "type": "result",
+        "requestId": "c291a089abef412c928836af99ceff5b",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.307,
+        "decodeMs": 1165.59,
+        "transcribeMs": 1186.301,
+        "rssBytes": 1864253440,
+        "requestRoundTripMs": 1188.037,
+        "sampledRssBytes": 1864253440
+      },
+      {
+        "type": "result",
+        "requestId": "f481bd1b69c14486bf28f7736dd2360a",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.308,
+        "decodeMs": 1064.062,
+        "transcribeMs": 1088.449,
+        "rssBytes": 1864253440,
+        "requestRoundTripMs": 1088.824,
+        "sampledRssBytes": 1864253440
+      },
+      {
+        "type": "result",
+        "requestId": "8e3ce0aaf27e4ea79fe1735101a83a73",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.241,
+        "decodeMs": 1061.517,
+        "transcribeMs": 1082.369,
+        "rssBytes": 1864302592,
+        "requestRoundTripMs": 1082.682,
+        "sampledRssBytes": 1864302592
+      },
+      {
+        "type": "result",
+        "requestId": "d3aed13f87ec4122b1d1f88513c88d1c",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.292,
+        "decodeMs": 1058.34,
+        "transcribeMs": 1079.542,
+        "rssBytes": 1864302592,
+        "requestRoundTripMs": 1079.888,
+        "sampledRssBytes": 1864302592
+      },
+      {
+        "type": "result",
+        "requestId": "c7a05d7727db4fada6d2c61a5e89f944",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.237,
+        "decodeMs": 1102.101,
+        "transcribeMs": 1123.11,
+        "rssBytes": 1864318976,
+        "requestRoundTripMs": 1123.721,
+        "sampledRssBytes": 1864318976
+      },
+      {
+        "type": "result",
+        "requestId": "5de93cdbd9ae4c4d972870fc608e0ea1",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.562,
+        "decodeMs": 1097.197,
+        "transcribeMs": 1118.847,
+        "rssBytes": 1864597504,
+        "requestRoundTripMs": 1119.355,
+        "sampledRssBytes": 1864597504
+      },
+      {
+        "type": "result",
+        "requestId": "26d0d64331c042b9a1dd2c623fd20784",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.248,
+        "decodeMs": 1052.379,
+        "transcribeMs": 1073.407,
+        "rssBytes": 1864630272,
+        "requestRoundTripMs": 1073.723,
+        "sampledRssBytes": 1864630272
+      },
+      {
+        "type": "result",
+        "requestId": "5942fd07b4a34f6da1783ee92defaad0",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.25,
+        "decodeMs": 1117.016,
+        "transcribeMs": 1138.121,
+        "rssBytes": 1865678848,
+        "requestRoundTripMs": 1138.495,
+        "sampledRssBytes": 1865695232
+      },
+      {
+        "type": "result",
+        "requestId": "09be4ca98ee2433cab44f08d86dab222",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.266,
+        "decodeMs": 1038.435,
+        "transcribeMs": 1059.702,
+        "rssBytes": 1865695232,
+        "requestRoundTripMs": 1060.037,
+        "sampledRssBytes": 1865695232
+      },
+      {
+        "type": "result",
+        "requestId": "76104b57598d49ef84c6e15561d29d17",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.247,
+        "decodeMs": 1078.229,
+        "transcribeMs": 1099.056,
+        "rssBytes": 1865777152,
+        "requestRoundTripMs": 1099.429,
+        "sampledRssBytes": 1865777152
+      },
+      {
+        "type": "result",
+        "requestId": "0ca26ab8c52247f7a9310e92c57f1e33",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.222,
+        "decodeMs": 1085.893,
+        "transcribeMs": 1106.689,
+        "rssBytes": 1865809920,
+        "requestRoundTripMs": 1107.164,
+        "sampledRssBytes": 1865809920
+      },
+      {
+        "type": "result",
+        "requestId": "b9204fed2d604f28ba92fabe58b8f9d2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.312,
+        "decodeMs": 1172.049,
+        "transcribeMs": 1193.824,
+        "rssBytes": 1865859072,
+        "requestRoundTripMs": 1195.8,
+        "sampledRssBytes": 1865859072
+      },
+      {
+        "type": "result",
+        "requestId": "42ca1ff048264e629a729fa10fb87265",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.591,
+        "decodeMs": 1095.623,
+        "transcribeMs": 1119.168,
+        "rssBytes": 1865859072,
+        "requestRoundTripMs": 1120.275,
+        "sampledRssBytes": 1865859072
+      },
+      {
+        "type": "result",
+        "requestId": "71aac094052d4486bcf60bafa7f7b367",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.257,
+        "decodeMs": 1128.331,
+        "transcribeMs": 1149.282,
+        "rssBytes": 1865891840,
+        "requestRoundTripMs": 1149.615,
+        "sampledRssBytes": 1865891840
+      },
+      {
+        "type": "result",
+        "requestId": "790cf612d625496389494b50a57bdd51",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.228,
+        "decodeMs": 1065.273,
+        "transcribeMs": 1086.123,
+        "rssBytes": 1865908224,
+        "requestRoundTripMs": 1086.42,
+        "sampledRssBytes": 1865908224
+      },
+      {
+        "type": "result",
+        "requestId": "2315b1aa79e54e818bd056258cd3ea81",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.276,
+        "decodeMs": 1080.054,
+        "transcribeMs": 1100.858,
+        "rssBytes": 1865940992,
+        "requestRoundTripMs": 1101.329,
+        "sampledRssBytes": 1865940992
+      },
+      {
+        "type": "result",
+        "requestId": "10bfd0f5a7944be6ab4418ba68c15f4b",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.259,
+        "decodeMs": 1088.508,
+        "transcribeMs": 1109.412,
+        "rssBytes": 1865940992,
+        "requestRoundTripMs": 1109.8,
+        "sampledRssBytes": 1865957376
+      },
+      {
+        "type": "result",
+        "requestId": "4d3390904a444244b7ef249b6497cc52",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.221,
+        "decodeMs": 1052.202,
+        "transcribeMs": 1073.074,
+        "rssBytes": 1865990144,
+        "requestRoundTripMs": 1073.382,
+        "sampledRssBytes": 1865990144
+      },
+      {
+        "type": "result",
+        "requestId": "8acc59c8bcf741dcab0da81dcc0224ec",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.253,
+        "decodeMs": 1087.255,
+        "transcribeMs": 1108.089,
+        "rssBytes": 1866055680,
+        "requestRoundTripMs": 1108.407,
+        "sampledRssBytes": 1866055680
+      },
+      {
+        "type": "result",
+        "requestId": "44a8839ec723466b827167063530aa94",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.232,
+        "decodeMs": 1041.608,
+        "transcribeMs": 1062.299,
+        "rssBytes": 1866268672,
+        "requestRoundTripMs": 1062.588,
+        "sampledRssBytes": 1866268672
+      },
+      {
+        "type": "result",
+        "requestId": "169ddac7514744e38d7d5481ffe29c67",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.255,
+        "decodeMs": 1058.929,
+        "transcribeMs": 1079.663,
+        "rssBytes": 1866842112,
+        "requestRoundTripMs": 1079.961,
+        "sampledRssBytes": 1866842112
+      },
+      {
+        "type": "result",
+        "requestId": "b5ab82a5bb5c41a2ae0f98f57db66228",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.259,
+        "decodeMs": 1042.377,
+        "transcribeMs": 1063.464,
+        "rssBytes": 1867038720,
+        "requestRoundTripMs": 1063.805,
+        "sampledRssBytes": 1867038720
+      },
+      {
+        "type": "result",
+        "requestId": "17a1928cf2de4ba6aee52e0a5479515a",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.265,
+        "decodeMs": 1050.429,
+        "transcribeMs": 1071.654,
+        "rssBytes": 1867923456,
+        "requestRoundTripMs": 1071.977,
+        "sampledRssBytes": 1867923456
+      },
+      {
+        "type": "result",
+        "requestId": "3b9517bdcde8419e8c01cd9661a3641a",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.259,
+        "decodeMs": 1120.997,
+        "transcribeMs": 1142.067,
+        "rssBytes": 1868136448,
+        "requestRoundTripMs": 1142.405,
+        "sampledRssBytes": 1868136448
+      },
+      {
+        "type": "result",
+        "requestId": "f8b0fbddf0654f0783f631ae3b9b2328",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.309,
+        "decodeMs": 1077.07,
+        "transcribeMs": 1097.999,
+        "rssBytes": 1868546048,
+        "requestRoundTripMs": 1098.357,
+        "sampledRssBytes": 1868546048
+      },
+      {
+        "type": "result",
+        "requestId": "1dfee7b0d9db4350bd97f072ea3f208c",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.25,
+        "decodeMs": 1109.69,
+        "transcribeMs": 1131.206,
+        "rssBytes": 1868759040,
+        "requestRoundTripMs": 1131.56,
+        "sampledRssBytes": 1868759040
+      },
+      {
+        "type": "result",
+        "requestId": "8461e7416da64bcb9f88a4819f96fa48",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.234,
+        "decodeMs": 1079.585,
+        "transcribeMs": 1100.592,
+        "rssBytes": 1868955648,
+        "requestRoundTripMs": 1100.931,
+        "sampledRssBytes": 1868955648
+      },
+      {
+        "type": "result",
+        "requestId": "bbaa4cc93967432eb6ceb51753d2fc37",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.259,
+        "decodeMs": 1125.585,
+        "transcribeMs": 1146.868,
+        "rssBytes": 1869185024,
+        "requestRoundTripMs": 1147.294,
+        "sampledRssBytes": 1869185024
+      },
+      {
+        "type": "result",
+        "requestId": "3084af81e9cb4a5c9963bf335350775e",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.262,
+        "decodeMs": 1056.556,
+        "transcribeMs": 1077.976,
+        "rssBytes": 1869381632,
+        "requestRoundTripMs": 1078.329,
+        "sampledRssBytes": 1869398016
+      },
+      {
+        "type": "result",
+        "requestId": "289a1935c263429394669c2b45c03cea",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "readMs": 0.245,
+        "decodeMs": 1138.327,
+        "transcribeMs": 1159.161,
+        "rssBytes": 1869807616,
+        "requestRoundTripMs": 1159.499,
+        "sampledRssBytes": 1869807616
+      }
+    ],
+    "shutdown": {
+      "type": "shutdown-complete",
+      "rssBytes": 1869807616
+    }
+  },
+  "summaries": {
+    "spawnToReadyMs": {
+      "count": 30,
+      "min": 1070.956,
+      "median": 1138.062,
+      "p95": 1252.265,
+      "max": 1346.454,
+      "mean": 1150.163
+    },
+    "firstRequestMs": {
+      "count": 30,
+      "min": 1074.76,
+      "median": 1204.64,
+      "p95": 1409.308,
+      "max": 1584.198,
+      "mean": 1221.573
+    },
+    "coldEndToEndMs": {
+      "count": 30,
+      "min": 2163.709,
+      "median": 2334.349,
+      "p95": 2623.921,
+      "max": 2773.677,
+      "mean": 2371.735
+    },
+    "warmRequestMs": {
+      "count": 100,
+      "min": 1060.037,
+      "median": 1107.164,
+      "p95": 1195.844,
+      "max": 1321.264,
+      "mean": 1118.027
+    },
+    "maxSampledRssBytes": 1869807616
+  }
+}

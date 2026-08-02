@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.com/voice/catalog-v3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "runtimeId",
+    "runtimeVersion",
+    "sourceCommit",
+    "releaseTag",
+    "entries"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 3 },
+    "runtimeId": { "const": "voice-input" },
+    "runtimeVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "sourceCommit": { "$ref": "#/$defs/commit" },
+    "releaseTag": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 8,
+      "items": { "$ref": "#/$defs/entry" }
+    }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "$ref": "#/$defs/path" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "path": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9._/-]+$",
+      "maxLength": 240
+    },
+    "archive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "format",
+        "formatVersion",
+        "compression",
+        "canonicalization",
+        "rootDirectory",
+        "fileName",
+        "url",
+        "sha256",
+        "compressedSizeBytes",
+        "extractedSizeBytes",
+        "entryCount"
+      ],
+      "properties": {
+        "format": { "const": "zip" },
+        "formatVersion": { "const": 1 },
+        "compression": { "const": "deflate" },
+        "canonicalization": { "const": "autobyteus-provider-zip-v1" },
+        "rootDirectory": { "const": "package" },
+        "fileName": { "type": "string", "pattern": "^[A-Za-z0-9._-]+\\.zip$" },
+        "url": { "type": "string", "pattern": "^https://" },
+        "sha256": { "$ref": "#/$defs/sha" },
+        "compressedSizeBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1342177280
+        },
+        "extractedSizeBytes": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1342177280
+        },
+        "entryCount": { "type": "integer", "minimum": 1, "maximum": 65534 }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "languageMode",
+        "platform",
+        "architecture",
+        "packageId",
+        "providerId",
+        "modelId",
+        "archive",
+        "launcher",
+        "packageDescriptor",
+        "fileManifest",
+        "protocolVersion",
+        "sessionConfigVersion",
+        "capabilityDigest",
+        "noticeInventoryDigest",
+        "qualificationEvidenceDigest",
+        "decision"
+      ],
+      "properties": {
+        "profileId": { "enum": ["english", "chinese", "auto"] },
+        "languageMode": { "enum": ["en", "zh", "auto"] },
+        "platform": { "enum": ["darwin", "linux", "win32"] },
+        "architecture": { "enum": ["arm64", "x64"] },
+        "packageId": { "type": "string", "minLength": 1 },
+        "providerId": { "type": "string", "minLength": 1 },
+        "modelId": { "type": "string", "minLength": 1 },
+        "archive": { "$ref": "#/$defs/archive" },
+        "launcher": { "$ref": "#/$defs/path" },
+        "packageDescriptor": { "$ref": "#/$defs/asset" },
+        "fileManifest": { "$ref": "#/$defs/asset" },
+        "protocolVersion": { "const": 1 },
+        "sessionConfigVersion": { "const": 1 },
+        "capabilityDigest": { "$ref": "#/$defs/sha" },
+        "noticeInventoryDigest": { "$ref": "#/$defs/sha" },
+        "qualificationEvidenceDigest": { "$ref": "#/$defs/sha" },
+        "decision": { "enum": ["preserve", "select"] }
+      }
+    }
+  }
+}

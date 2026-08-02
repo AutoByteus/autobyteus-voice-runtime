@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "runtime": {
+    "id": "voice-input",
+    "version": "1.0.0",
+    "buildCommit": "89348070ae36d3075d25fadd708ff596c6e5a76f"
+  },
+  "host": {
+    "kind": "bundled-node",
+    "version": "22.23.1",
+    "platform": "darwin",
+    "arch": "arm64",
+    "executable": {
+      "path": "host/bin/node",
+      "sha256": "2e3f1286a7eb3736346ed1803e458a0ff909e2b2d5bc746144dcb76970e9b99d"
+    }
+  },
+  "worker": {
+    "entrypoint": {
+      "path": "runtime/voice-input-worker.cjs",
+      "sha256": "74b334d6a5b12a98ebee75d2b430c9d86396138ad1e5ccda1f1ce31d5a7c8704"
+    }
+  },
+  "protocol": {
+    "version": 1,
+    "schema": {
+      "path": "protocol/voice-input-protocol-v1.schema.json",
+      "sha256": "049ae6e5a5a307447140385e2d39642ee43ef4fad6a7f5e44e9b420834b22c61"
+    }
+  },
+  "engine": {
+    "kind": "sherpa-onnx",
+    "version": "1.13.4",
+    "gitSha1": "14280725",
+    "wrapper": {
+      "packageName": "sherpa-onnx-node",
+      "version": "1.13.4",
+      "packageMetadata": {
+        "path": "node_modules/sherpa-onnx-node/package.json",
+        "sha256": "e039d05ac963b879215a15b4a9b055d05c5fec7ff6afedbcf9f64229564eceb0"
+      },
+      "packageEntry": {
+        "path": "node_modules/sherpa-onnx-node/sherpa-onnx.js",
+        "sha256": "cdfe88a1a55358dbee071f57aea874ae16a2862c83fbc720d2f2830343057185"
+      }
+    },
+    "native": {
+      "packageName": "sherpa-onnx-darwin-arm64",
+      "version": "1.13.4",
+      "packageMetadata": {
+        "path": "node_modules/sherpa-onnx-darwin-arm64/package.json",
+        "sha256": "061c365803b9c6830b71091a1cea4bc1904c9518ed06df6ebaeeef9ed532d421"
+      },
+      "binary": {
+        "path": "node_modules/sherpa-onnx-darwin-arm64/sherpa-onnx.node",
+        "sha256": "62bcb019dd59696542bdfe74c7c0d5cb62a07cbcb26d67b7fdb0da38635638f3"
+      }
+    }
+  },
+  "normalization": {
+    "packageName": "opencc-js",
+    "version": "1.4.1",
+    "packageMetadata": {
+      "path": "node_modules/opencc-js/package.json",
+      "sha256": "8693c4734d8b667f5f204ad164d7839db138fb517cf073e1eabaae23c7e3812b"
+    }
+  },
+  "capabilities": {
+    "languageModes": [
+      "auto",
+      "en",
+      "zh"
+    ],
+    "inverseTextNormalization": true,
+    "simplifiedChineseNormalization": true,
+    "maxInFlightRequests": 1
+  }
+}

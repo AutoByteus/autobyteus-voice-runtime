@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "profileId": "english",
+  "languageMode": "en",
+  "targets": ["darwin-arm64"],
+  "providerId": "autobyteus.voice.mlx-whisper-small",
+  "model": {
+    "id": "whisper-small-mlx-fp16",
+    "family": "whisper",
+    "size": "small",
+    "precision": "fp16",
+    "source": "mlx-community/whisper-small-mlx",
+    "weightsSha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+    "revision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+    "files": [
+      {
+        "name": "config.json",
+        "sizeBytes": 266,
+        "sha256": "e8f58e638208af66d5d5d67801259dc7a12d199e971967a9f9d33a8e3635668e"
+      },
+      {
+        "name": "weights.npz",
+        "sizeBytes": 481307592,
+        "sha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5"
+      }
+    ]
+  },
+  "engine": {
+    "kind": "mlx-whisper",
+    "version": "0.4.3",
+    "mlx": "0.29.3",
+    "mlxMetal": "0.29.3"
+  },
+  "pythonDependencyLock": {
+    "path": "evidence/selection-study/results/mlx-python-provider-lock-py312.txt",
+    "sha256": "0f60ac6e4da4f7160d64423bf84af9b3c7164d02bdecc82f9171f8f55f4745a2"
+  },
+  "buildInputPolicy": "offline wheelhouse must carry its own complete sha256 manifest; dependency versions must equal the promoted lock exactly"
+}

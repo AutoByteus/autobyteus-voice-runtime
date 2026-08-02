@@ -1,0 +1,669 @@
+{
+  "schemaVersion": 1,
+  "conditions": "sequential process-cold runs with warm filesystem and Metal caches; sanitized environment; same packaged provider and clip",
+  "packagePath": "/private/tmp/autobyteus-voice-trimmed-provider-proof-20260802",
+  "audioPath": "/private/tmp/autobyteus-voice-backend-study-20260802/corpus/fleurs-controlled-v1/audio/fleurs-en-1772.wav",
+  "coldRuns": [
+    {
+      "index": 0,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22348,
+        "importMs": 697.897,
+        "modelLoadMs": 156.513,
+        "workerReadyMs": 856.199,
+        "maxRssBytes": 826556416,
+        "controllerReadyMs": 922.475
+      },
+      "first": {
+        "type": "result",
+        "requestId": "0",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 598.086,
+        "maxRssBytes": 876199936,
+        "controllerRoundTripMs": 598.294
+      },
+      "coldEndToEndMs": 1698.295,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 876199936
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 1,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22355,
+        "importMs": 677.419,
+        "modelLoadMs": 148.457,
+        "workerReadyMs": 827.977,
+        "maxRssBytes": 828211200,
+        "controllerReadyMs": 898.748
+      },
+      "first": {
+        "type": "result",
+        "requestId": "1",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 357.232,
+        "maxRssBytes": 878018560,
+        "controllerRoundTripMs": 357.458
+      },
+      "coldEndToEndMs": 1427.527,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 878018560
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 2,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22365,
+        "importMs": 654.718,
+        "modelLoadMs": 155.434,
+        "workerReadyMs": 812.144,
+        "maxRssBytes": 827441152,
+        "controllerReadyMs": 878.225
+      },
+      "first": {
+        "type": "result",
+        "requestId": "2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 348.787,
+        "maxRssBytes": 879050752,
+        "controllerRoundTripMs": 348.977
+      },
+      "coldEndToEndMs": 1411.209,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 879050752
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 3,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22371,
+        "importMs": 665.629,
+        "modelLoadMs": 144.885,
+        "workerReadyMs": 812.271,
+        "maxRssBytes": 828686336,
+        "controllerReadyMs": 880.476
+      },
+      "first": {
+        "type": "result",
+        "requestId": "3",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 354.763,
+        "maxRssBytes": 878231552,
+        "controllerRoundTripMs": 354.969
+      },
+      "coldEndToEndMs": 1416.422,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 878231552
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 4,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22377,
+        "importMs": 689.163,
+        "modelLoadMs": 142.823,
+        "workerReadyMs": 834.632,
+        "maxRssBytes": 826261504,
+        "controllerReadyMs": 900.394
+      },
+      "first": {
+        "type": "result",
+        "requestId": "4",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 349.405,
+        "maxRssBytes": 876560384,
+        "controllerRoundTripMs": 349.621
+      },
+      "coldEndToEndMs": 1429.203,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 876560384
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 5,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22384,
+        "importMs": 627.669,
+        "modelLoadMs": 141.273,
+        "workerReadyMs": 770.735,
+        "maxRssBytes": 827588608,
+        "controllerReadyMs": 835.438
+      },
+      "first": {
+        "type": "result",
+        "requestId": "5",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 371.361,
+        "maxRssBytes": 878477312,
+        "controllerRoundTripMs": 371.564
+      },
+      "coldEndToEndMs": 1383.991,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 878477312
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 6,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22390,
+        "importMs": 641.261,
+        "modelLoadMs": 150.767,
+        "workerReadyMs": 794.118,
+        "maxRssBytes": 826392576,
+        "controllerReadyMs": 860.267
+      },
+      "first": {
+        "type": "result",
+        "requestId": "6",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 336.949,
+        "maxRssBytes": 875986944,
+        "controllerRoundTripMs": 337.142
+      },
+      "coldEndToEndMs": 1327.883,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 875986944
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 7,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22396,
+        "importMs": 662.478,
+        "modelLoadMs": 143.601,
+        "workerReadyMs": 808.288,
+        "maxRssBytes": 826556416,
+        "controllerReadyMs": 889.191
+      },
+      "first": {
+        "type": "result",
+        "requestId": "7",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 347.731,
+        "maxRssBytes": 877346816,
+        "controllerRoundTripMs": 347.976
+      },
+      "coldEndToEndMs": 1420.637,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 877346816
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 8,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22408,
+        "importMs": 659.183,
+        "modelLoadMs": 143.226,
+        "workerReadyMs": 804.286,
+        "maxRssBytes": 827719680,
+        "controllerReadyMs": 871.343
+      },
+      "first": {
+        "type": "result",
+        "requestId": "8",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 344.983,
+        "maxRssBytes": 877690880,
+        "controllerRoundTripMs": 345.308
+      },
+      "coldEndToEndMs": 1396.427,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 877690880
+      },
+      "exitCode": 0,
+      "stderr": ""
+    },
+    {
+      "index": 9,
+      "ready": {
+        "type": "ready",
+        "backend": "mlx-whisper-fp16",
+        "pid": 22417,
+        "importMs": 663.698,
+        "modelLoadMs": 147.834,
+        "workerReadyMs": 815.284,
+        "maxRssBytes": 829603840,
+        "controllerReadyMs": 894.431
+      },
+      "first": {
+        "type": "result",
+        "requestId": "9",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 347.138,
+        "maxRssBytes": 879345664,
+        "controllerRoundTripMs": 347.321
+      },
+      "coldEndToEndMs": 1371.286,
+      "shutdown": {
+        "type": "shutdown-complete",
+        "maxRssBytes": 879345664
+      },
+      "exitCode": 0,
+      "stderr": ""
+    }
+  ],
+  "warmSession": {
+    "ready": {
+      "type": "ready",
+      "backend": "mlx-whisper-fp16",
+      "pid": 22423,
+      "importMs": 685.302,
+      "modelLoadMs": 151.716,
+      "workerReadyMs": 838.869,
+      "maxRssBytes": 828080128,
+      "controllerReadyMs": 909.678
+    },
+    "warmup": {
+      "type": "result",
+      "requestId": "warmup",
+      "ok": true,
+      "text": "So it is likely that the notation was added simply as a label.",
+      "detectedLanguage": "en",
+      "transcribeMs": 338.023,
+      "maxRssBytes": 878395392,
+      "controllerRoundTripMs": 338.219
+    },
+    "runs": [
+      {
+        "type": "result",
+        "requestId": "0",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 145.2,
+        "maxRssBytes": 878903296,
+        "controllerRoundTripMs": 145.394
+      },
+      {
+        "type": "result",
+        "requestId": "1",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 145.839,
+        "maxRssBytes": 878985216,
+        "controllerRoundTripMs": 146.008
+      },
+      {
+        "type": "result",
+        "requestId": "2",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 145.43,
+        "maxRssBytes": 879083520,
+        "controllerRoundTripMs": 145.616
+      },
+      {
+        "type": "result",
+        "requestId": "3",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 145.139,
+        "maxRssBytes": 879083520,
+        "controllerRoundTripMs": 145.293
+      },
+      {
+        "type": "result",
+        "requestId": "4",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 141.975,
+        "maxRssBytes": 879116288,
+        "controllerRoundTripMs": 142.136
+      },
+      {
+        "type": "result",
+        "requestId": "5",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 144.564,
+        "maxRssBytes": 879116288,
+        "controllerRoundTripMs": 144.718
+      },
+      {
+        "type": "result",
+        "requestId": "6",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 142.937,
+        "maxRssBytes": 879149056,
+        "controllerRoundTripMs": 143.162
+      },
+      {
+        "type": "result",
+        "requestId": "7",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 144.518,
+        "maxRssBytes": 879149056,
+        "controllerRoundTripMs": 144.713
+      },
+      {
+        "type": "result",
+        "requestId": "8",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 152.407,
+        "maxRssBytes": 879149056,
+        "controllerRoundTripMs": 152.555
+      },
+      {
+        "type": "result",
+        "requestId": "9",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 144.029,
+        "maxRssBytes": 879345664,
+        "controllerRoundTripMs": 144.172
+      },
+      {
+        "type": "result",
+        "requestId": "10",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 142.276,
+        "maxRssBytes": 879362048,
+        "controllerRoundTripMs": 142.421
+      },
+      {
+        "type": "result",
+        "requestId": "11",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 143.525,
+        "maxRssBytes": 879378432,
+        "controllerRoundTripMs": 143.682
+      },
+      {
+        "type": "result",
+        "requestId": "12",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 146.805,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 147.026
+      },
+      {
+        "type": "result",
+        "requestId": "13",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 143.772,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 143.943
+      },
+      {
+        "type": "result",
+        "requestId": "14",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 146.801,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 147.042
+      },
+      {
+        "type": "result",
+        "requestId": "15",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 144.637,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 144.804
+      },
+      {
+        "type": "result",
+        "requestId": "16",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 141.685,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 141.834
+      },
+      {
+        "type": "result",
+        "requestId": "17",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 146.385,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 146.595
+      },
+      {
+        "type": "result",
+        "requestId": "18",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 141.908,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 142.082
+      },
+      {
+        "type": "result",
+        "requestId": "19",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 143.957,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 144.103
+      },
+      {
+        "type": "result",
+        "requestId": "20",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 146.517,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 146.732
+      },
+      {
+        "type": "result",
+        "requestId": "21",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 144.78,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 144.962
+      },
+      {
+        "type": "result",
+        "requestId": "22",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 143.405,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 143.574
+      },
+      {
+        "type": "result",
+        "requestId": "23",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 144.321,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 144.553
+      },
+      {
+        "type": "result",
+        "requestId": "24",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 144.425,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 144.582
+      },
+      {
+        "type": "result",
+        "requestId": "25",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 144.889,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 145.052
+      },
+      {
+        "type": "result",
+        "requestId": "26",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 145.235,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 145.372
+      },
+      {
+        "type": "result",
+        "requestId": "27",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 145.015,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 145.192
+      },
+      {
+        "type": "result",
+        "requestId": "28",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 147.283,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 147.461
+      },
+      {
+        "type": "result",
+        "requestId": "29",
+        "ok": true,
+        "text": "So it is likely that the notation was added simply as a label.",
+        "detectedLanguage": "en",
+        "transcribeMs": 148.613,
+        "maxRssBytes": 879394816,
+        "controllerRoundTripMs": 148.769
+      }
+    ],
+    "shutdown": {
+      "type": "shutdown-complete",
+      "maxRssBytes": 879394816
+    },
+    "exitCode": 0,
+    "stderr": ""
+  },
+  "summaries": {
+    "ready": {
+      "count": 10,
+      "p50Ms": 884.833,
+      "p95Ms": 912.539,
+      "minMs": 835.438,
+      "maxMs": 922.475
+    },
+    "firstInference": {
+      "count": 10,
+      "p50Ms": 349.299,
+      "p95Ms": 496.265,
+      "minMs": 337.142,
+      "maxMs": 598.294
+    },
+    "coldEndToEnd": {
+      "count": 10,
+      "p50Ms": 1413.816,
+      "p95Ms": 1577.204,
+      "minMs": 1327.883,
+      "maxMs": 1698.295
+    },
+    "warmInference": {
+      "count": 30,
+      "p50Ms": 144.883,
+      "p95Ms": 148.18,
+      "minMs": 141.834,
+      "maxMs": 152.555
+    },
+    "maxRssBytes": 879394816
+  }
+}

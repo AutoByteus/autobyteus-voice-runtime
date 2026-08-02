@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "packageId", "target", "invocation"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packageId": { "type": "string", "minLength": 1 },
+    "target": { "$ref": "#/$defs/target" },
+    "invocation": {
+      "oneOf": [{ "$ref": "#/$defs/python" }, { "$ref": "#/$defs/native" }]
+    }
+  },
+  "$defs": {
+    "path": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9._/-]+$",
+      "maxLength": 240
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "architecture"],
+      "properties": {
+        "platform": { "enum": ["darwin", "linux", "win32"] },
+        "architecture": { "enum": ["arm64", "x64"] }
+      }
+    },
+    "python": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "executable", "worker"],
+      "properties": {
+        "kind": { "const": "python-worker" },
+        "executable": { "$ref": "#/$defs/path" },
+        "worker": { "$ref": "#/$defs/path" }
+      }
+    },
+    "native": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "executable"],
+      "properties": {
+        "kind": { "const": "native-worker" },
+        "executable": { "$ref": "#/$defs/path" }
+      }
+    }
+  }
+}

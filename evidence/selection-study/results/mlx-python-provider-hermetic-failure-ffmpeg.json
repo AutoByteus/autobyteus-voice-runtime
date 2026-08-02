@@ -1,0 +1,49 @@
+{
+  "schemaVersion": 1,
+  "packagePath": "/private/tmp/autobyteus-voice-backend-study-20260802/packages/mlx-python-provider-base-31213",
+  "launcherPath": "/private/tmp/autobyteus-voice-backend-study-20260802/packages/mlx-python-provider-base-31213/provider-launch",
+  "audioPath": "/private/tmp/autobyteus-voice-backend-study-20260802/corpus/fleurs-controlled-v1/audio/fleurs-en-1772.wav",
+  "audioSha256": "99b20596262179f1549a9b50b7aa4fcfa39eb8ee41b9aa1ff70671aea0b896f3",
+  "controllerPython": "3.9.6",
+  "sanitizedEnvironment": {
+    "HOME": "/tmp/autobyteus-voice-provider-hermetic-home",
+    "PATH": "/usr/bin:/bin",
+    "LANG": "en_US.UTF-8"
+  },
+  "readyObservedMs": 3178.965,
+  "ready": {
+    "type": "ready",
+    "backend": "mlx-whisper-fp16",
+    "pid": 80560,
+    "importMs": 2564.665,
+    "modelLoadMs": 254.863,
+    "workerReadyMs": 2825.582,
+    "maxRssBytes": 828620800
+  },
+  "responses": [
+    {
+      "type": "result",
+      "requestId": "relocation-1",
+      "ok": false,
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'",
+      "transcribeMs": 6.757,
+      "maxRssBytes": 828620800,
+      "controllerRoundTripMs": 7.03
+    },
+    {
+      "type": "result",
+      "requestId": "relocation-2",
+      "ok": false,
+      "error": "FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'",
+      "transcribeMs": 3.864,
+      "maxRssBytes": 828620800,
+      "controllerRoundTripMs": 4.056
+    }
+  ],
+  "shutdown": {
+    "type": "shutdown-complete",
+    "maxRssBytes": 828620800
+  },
+  "exitCode": 0,
+  "stderr": ""
+}

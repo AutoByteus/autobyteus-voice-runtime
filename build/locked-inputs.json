@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "goToolchain": {
+    "version": "1.26.5",
+    "archives": {
+      "darwin-arm64": {
+        "fileName": "go1.26.5.darwin-arm64.tar.gz",
+        "url": "https://go.dev/dl/go1.26.5.darwin-arm64.tar.gz",
+        "sha256": "efb87ff28af9a188d0536ef5d42e63dd52ba8263cd7344a993cc48dd11dedb6a",
+        "sizeBytes": 64738542
+      },
+      "darwin-x64": {
+        "fileName": "go1.26.5.darwin-amd64.tar.gz",
+        "url": "https://go.dev/dl/go1.26.5.darwin-amd64.tar.gz",
+        "sha256": "6231d8d3b8f5552ec6cbf6d685bdd5482e1e703214b120e89b3bf0d7bf1ef725",
+        "sizeBytes": 67836304
+      },
+      "linux-x64": {
+        "fileName": "go1.26.5.linux-amd64.tar.gz",
+        "url": "https://go.dev/dl/go1.26.5.linux-amd64.tar.gz",
+        "sha256": "5c2c3b16caefa1d968a94c1daca04a7ca301a496d9b086e17ad77bb81393f053",
+        "sizeBytes": 66879095
+      },
+      "win32-x64": {
+        "fileName": "go1.26.5.windows-amd64.zip",
+        "url": "https://go.dev/dl/go1.26.5.windows-amd64.zip",
+        "sha256": "97e6b2a833b6d89f9ff17d25419ac0a7e3b482a044e9ab18cdef834bd834fd38",
+        "sizeBytes": 74927386
+      }
+    }
+  },
+  "pythonBuildStandalone": {
+    "release": "20260718",
+    "pythonVersion": "3.12.13",
+    "archives": {
+      "darwin-arm64": {
+        "sha256": "62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b",
+        "sizeBytes": 25153180
+      },
+      "darwin-x64": {
+        "sha256": "10b47148de86f9d87ba6e96a3db606ced90a206a3454d7d6d8fa68536a05d81f",
+        "sizeBytes": 24828291
+      },
+      "linux-x64": {
+        "sha256": "7eea0959fa425c8aff3ea0a1352ee7d01d794b51439ed8f5fcfa017dbc0ec661",
+        "sizeBytes": 111280988
+      },
+      "win32-x64": {
+        "sha256": "56c9dd9681c4810cb8bfdec277ee2606d8ab17e678e5bc2bd138eb8098e330b6",
+        "sizeBytes": 46136591
+      }
+    }
+  },
+  "packageSizeLimitBytes": 1342177280,
+  "loadedRssLimitBytes": 2684354560
+}

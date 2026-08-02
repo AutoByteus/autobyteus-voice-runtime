@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-02",
+  "source": "https://github.com/ggml-org/llama.cpp",
+  "sourceCommit": "f5919bf458ef190468b5c329bb293f8a54a1e69c",
+  "build": {
+    "cmakeType": "Release",
+    "GGML_METAL": true,
+    "LLAMA_CURL": false,
+    "architecture": "arm64"
+  },
+  "binary": {
+    "file": "llama-server",
+    "bytes": 49984,
+    "sha256": "7c5d45ecf097adc79d45b33e5674c43accd55f69c29bfdfa8357126703e41c04"
+  },
+  "model": {
+    "source": "ggml-org/Qwen3-ASR-0.6B-GGUF",
+    "huggingFaceRevision": "928ab958557df9aa2ef1c93e0e83c7ad0933fae2",
+    "license": "Apache-2.0",
+    "decoder": {
+      "file": "Qwen3-ASR-0.6B-Q8_0.gguf",
+      "bytes": 804749248,
+      "sha256": "bca259818b50ca7c4c05e9bdb35a5dc04fa039653a6d6f3f0f331f96f6aa1971"
+    },
+    "multimodalProjector": {
+      "file": "mmproj-Qwen3-ASR-0.6B-Q8_0.gguf",
+      "bytes": 214392480,
+      "sha256": "41a342b5e4c514e968cb756de6cd1b7be39eff43c44c57a2ef5fc6522e36603d"
+    },
+    "combinedModelBytes": 1019141728
+  },
+  "experiment": {
+    "hardware": "MacBookPro18,4 Apple M1 Max 10-core 64GB",
+    "threads": 4,
+    "contextSize": 4096,
+    "parallel": 1,
+    "gpuLayers": 999,
+    "flashAttention": true,
+    "screenCorpus": "fleurs-simplified-mandarin-profile-v2-screen-50",
+    "profileCorpus": "fleurs-simplified-mandarin-profile-v2",
+    "nativeResponsePrefix": "language <language><asr_text>",
+    "normalization": "prefix stripped; transcript content otherwise unchanged"
+  },
+  "excludedLargerVariants": {
+    "Qwen3-ASR-0.6B-bf16": {
+      "reason": "model plus projector exceeds the current 1.25 GiB language-provider package ceiling"
+    },
+    "Qwen3-ASR-1.7B-Q8_0": {
+      "decoderBytes": 2165034944,
+      "projectorBytes": 355709344,
+      "combinedBytes": 2520744288,
+      "huggingFaceRevision": "36a678687ba7d07a74ca70ccb0e36902e005fb80",
+      "reason": "combined weights alone are about 2.35 GiB and exceed the 1.25 GiB package ceiling before the runtime binary"
+    },
+    "Qwen3-ASR-1.7B-bf16": {
+      "decoderBytes": 4069674944,
+      "projectorBytes": 641773984,
+      "combinedBytes": 4711448928,
+      "reason": "combined weights alone exceed the package ceiling by more than three times"
+    }
+  }
+}

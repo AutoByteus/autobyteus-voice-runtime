@@ -1,0 +1,3 @@
+{"type":"ready","backend":"mlx-whisper-fp16","pid":59192,"importMs":3583.458,"modelLoadMs":388.78,"workerReadyMs":3981.577,"maxRssBytes":823427072}
+{"type":"result","requestId":"minimal2","ok":true,"text":"Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.","detectedLanguage":"en","transcribeMs":1574.816,"maxRssBytes":865042432}
+{"type":"shutdown-complete","maxRssBytes":865042432}

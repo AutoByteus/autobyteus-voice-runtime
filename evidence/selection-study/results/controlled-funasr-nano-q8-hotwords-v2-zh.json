@@ -1,0 +1,877 @@
+{
+  "schemaVersion": 1,
+  "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+  "language": "zh",
+  "command": [
+    "/tmp/autobyteus-voice-backend-study-20260802/build/funasr-llamacpp/bin/llama-funasr-cli-hotwords-v2",
+    "--enc",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/funasr-encoder-f16.gguf",
+    "-m",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/qwen3-0.6b-q8_0.gguf",
+    "-a",
+    "<clip>",
+    "--chunk",
+    "15"
+  ],
+  "corpusId": "fleurs-controlled-mandarin-english-v1",
+  "screeningExecution": {
+    "concurrentWorkers": 1,
+    "performanceAuthority": "Rejected — quality screening only"
+  },
+  "warmSession": {
+    "quality": [
+      {
+        "id": "fleurs-zh-1660",
+        "category": "mandarin",
+        "reference": "浪 漫 主 义 具 有 很 强 的 文 化 决 定 论 色 彩 这 源 于 歌 德 费 希 特 和 施 莱 格 尔 等 作 家",
+        "durationMs": 9600,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1660",
+          "ok": true,
+          "text": "浪漫主义具有很强的文化决定论色彩，这源于歌德、费希特和施莱格尔等作家。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2054.582,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.81 ms, sched copies = 1\n[done] 1.99s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1662",
+        "category": "mandarin",
+        "reference": "合 金 基 本 上 由 两 种 或 以 上 金 属 混 合 而 成 不 要 忘 记 一 点 元 素 周 期 表 上 有 很 多 元 素",
+        "durationMs": 7500,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1662",
+          "ok": true,
+          "text": "合金基本上由两种或以上金属混合而成，不要忘记一点元素周期表上有很多元素。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2342.128,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.32 ms, sched copies = 1\n[done] 2.28s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1673",
+        "category": "mandarin",
+        "reference": "在 独 立 战 争 期 间 十 三 个 州 最 初 根 据 联 邦 条 例 组 成 了 弱 小 的 中 央 政 府 国 会 是 其 唯 一 的 组 成 部 分",
+        "durationMs": 8580,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1673",
+          "ok": true,
+          "text": "在独立战争期间，十三个州最初根据联邦条例组成了弱小的中央政府，国会是其唯一的组成部分。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2327.724,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.35 ms, sched copies = 1\n[done] 2.27s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1675",
+        "category": "mandarin",
+        "reference": "除 去 表 示 您 的 sie 之 外 的 所 有 名 词 都 应 以 大 写 字 母 开 头 即 使 在 句 子 中 间 也 应 如 此",
+        "durationMs": 10500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1675",
+          "ok": true,
+          "text": "除去表示您的SIE之外的所有名词，都应以大写字母开头，即使在句子中间也应如此。/sil",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 4106.352,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.64 ms, sched copies = 1\n[done] 4.04s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1689",
+        "category": "mandarin",
+        "reference": "欧 洲 是 片 面 积 相 对 较 小 但 有 着 许 多 独 立 国 家 的 大 陆 在 通 常 情 况 下 穿 越 多 个 国 家 旅 行 意 味 着 必 须 多 次 经 历 签 证 申 请 和 护 照 检 查",
+        "durationMs": 12360,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1689",
+          "ok": true,
+          "text": "欧洲试片面积相对较小，但有着许多独立国家的大陆，在通常情况下，穿越多个国家旅行意味着必须多次经历签证申请和护照检查。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2464.143,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.90 ms, sched copies = 1\n[done] 2.41s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1693",
+        "category": "mandarin",
+        "reference": "但 在 队 长 输 掉 三 柱 门 后 印 度 在 结 束 这 一 局 的 比 赛 时 只 得 了 36 分 输 掉 7 个 三 柱 门",
+        "durationMs": 12580,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1693",
+          "ok": true,
+          "text": "但在队长输掉三助门后，印度在结束这一局的比赛时只得了三十六分，输掉了七个三助门。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2121.744,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.71 ms, sched copies = 1\n[done] 2.07s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1703",
+        "category": "mandarin",
+        "reference": "昨 天 马 尔 泰 利 在 由 9 名 成 员 组 成 的 新 临 时 选 举 委 员 会 cep 中 宣 誓 就 职",
+        "durationMs": 9360,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1703",
+          "ok": true,
+          "text": "昨天，马尔泰利在由九名成员组成的新临时选举会中宣誓就职。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1784.326,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.98 ms, sched copies = 1\n[done] 1.73s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1707",
+        "category": "mandarin",
+        "reference": "它 是 南 非 的 主 要 景 点 之 一 被 认 为 是 南 非 国 家 公 园 体 系 sanparks 的 主 打 景 点",
+        "durationMs": 7260,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1707",
+          "ok": true,
+          "text": "它是南非的主要景点之一，被认为是南非国家公园体系的主打景点。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1967.07,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.89 ms, sched copies = 1\n[done] 1.92s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1720",
+        "category": "mandarin",
+        "reference": "热 巧 克 力 达 到 了 比 利 时 的 标 准 果 汁 价 格 昂 贵 但 品 质 很 好",
+        "durationMs": 9660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1720",
+          "ok": true,
+          "text": "热巧克力达到了比利时的标准，果汁价格昂贵但品质很好。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1869.301,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.65 ms, sched copies = 1\n[done] 1.81s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1726",
+        "category": "mandarin",
+        "reference": "实 地 考 察 是 任 何 教 学 活 动 的 重 要 组 成 部 分 通 常 老 师 会 很 乐 意 带 学 生 去 那 些 公 交 车 无 法 到 达 的 地 方",
+        "durationMs": 9000,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1726",
+          "ok": true,
+          "text": "实地考察是任何教学活动的重要组成部分。通常老师会很乐意带学生去那些公交车无法到达的地方。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2155.165,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.52 ms, sched copies = 1\n[done] 2.09s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1736",
+        "category": "mandarin",
+        "reference": "罗 兰 多 门 多 萨 rolando mendoza 架 起 他 的 m16 步 枪 对 游 客 扫 射",
+        "durationMs": 8220,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1736",
+          "ok": true,
+          "text": "罗兰多·门多萨架起他的M-16步枪对游客扫射。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2060.108,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.90 ms, sched copies = 1\n[done] 2.01s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1745",
+        "category": "mandarin",
+        "reference": "植 物 在 自 然 环 境 中 状 态 最 好 因 此 要 抵 住 诱 惑 不 去 摘 掉 植 物 哪 怕 只 是 一 株",
+        "durationMs": 8220,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1745",
+          "ok": true,
+          "text": "植物在自然环境中状态最好，因此要抵住诱惑，不要摘掉植物，哪怕只是一株。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2313.063,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.88 ms, sched copies = 1\n[done] 2.25s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1747",
+        "category": "mandarin",
+        "reference": "其 他 摔 跤 选 手 也 纷 纷 悼 念 露 娜 luna",
+        "durationMs": 7980,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1747",
+          "ok": true,
+          "text": "其他摔跤选手也纷纷悼念露娜。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1855.83,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.58 ms, sched copies = 1\n[done] 1.80s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1760",
+        "category": "mandarin",
+        "reference": "沧 龙 是 那 个 时 代 的 顶 级 掠 食 者 除 了 同 类 它 什 么 都 不 怕",
+        "durationMs": 5880,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1760",
+          "ok": true,
+          "text": "苍龙是那个时代的顶级掠食者，除了同类，它什么都不怕。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1776.402,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.65 ms, sched copies = 1\n[done] 1.69s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1761",
+        "category": "mandarin",
+        "reference": "两 位 摄 影 师 其 后 顶 替 一 位 需 要 上 洗 手 间 的 老 妇 门 多 萨 则 被 击 毙",
+        "durationMs": 9960,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1761",
+          "ok": true,
+          "text": "两位摄影师其后顶替一位需要上洗手间的老妇，门多萨则被击毙。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2040.65,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.59 ms, sched copies = 1\n[done] 1.98s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1772",
+        "category": "mandarin",
+        "reference": "因 此 很 可 能 这 个 符 号 只 是 作 为 一 个 标 签 添 加 的",
+        "durationMs": 11500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1772",
+          "ok": true,
+          "text": "因此，很可能这个符号只是作为一个标签添加的。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1830.933,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.79 ms, sched copies = 1\n[done] 1.77s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1774",
+        "category": "mandarin",
+        "reference": "在 外 围 岛 屿 可 能 无 法 使 用 信 用 卡 但 可 以 使 用 英 美 货 币 请 事 先 与 房 主 联 系 确 认 可 接 受 的 付 款 方 式",
+        "durationMs": 9780,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1774",
+          "ok": true,
+          "text": "在外围岛屿无法使用信用卡，但可以使用英美货币，请事先与房主联系确定可接受的付款方式。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2183.07,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.73 ms, sched copies = 1\n[done] 2.13s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1787",
+        "category": "mandarin",
+        "reference": "写 博 客 是 一 种 能 够 激 发 合 作 的 工 具 还 能 鼓 励 学 生 把 学 习 延 伸 到 传 统 的 学 校 授 课 之 外",
+        "durationMs": 9660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1787",
+          "ok": true,
+          "text": "写博客是一种能够激发合作的工具，还能鼓励学生把学习延伸到传统的学校授课之外。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2186.613,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.55 ms, sched copies = 1\n[done] 2.11s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1789",
+        "category": "mandarin",
+        "reference": "其 他 提 名 包 括 最 佳 影 片 最 佳 导 演 最 佳 摄 影 最 佳 服 装 设 计 最 佳 电 影 剪 辑 最 佳 原 创 配 乐 最 佳 艺 术 指 导 最 佳 音 效 剪 辑 最 佳 混 音 和 最 佳 原 创 剧 本",
+        "durationMs": 11160,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1789",
+          "ok": true,
+          "text": "其他提名包括：最佳影片、最佳导演、最佳摄影、最佳服装设计、最佳电影剪辑、最佳原创配乐、最佳艺术指导、最佳音效剪辑、最佳婚姻和最佳原创剧本。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2246.841,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.74 ms, sched copies = 1\n[done] 2.19s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1800",
+        "category": "mandarin",
+        "reference": "大 桥 预 计 将 于 2017 年 9 月 全 面 投 入 使 用 届 时 巴 西 海 关 检 查 站 预 计 也 将 完 工",
+        "durationMs": 8460,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1800",
+          "ok": true,
+          "text": "大桥预计将于 2017 年 9 月全面投入使用，届时巴西海关检查站预计也将完工。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2338.509,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.82 ms, sched copies = 1\n[done] 2.28s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1804",
+        "category": "mandarin",
+        "reference": "海 地 正 义 与 民 主 研 究 所 haitian institute for justice and democracy 引 用 的 独 立 研 究 表 明 是 尼 泊 尔 的 联 合 国 维 和 部 队 在 不 知 情 的 情 况 下 将 这 种 疾 病 带 到 了 海 地",
+        "durationMs": 13920,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1804",
+          "ok": true,
+          "text": "海地正义与民主研究所引用的独立研究表明，是尼泊尔的联合国维和部队在不知情的情况下，将这种疾病带到了海地。/sil",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2693.125,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.58 ms, sched copies = 1\n[done] 2.63s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1813",
+        "category": "mandarin",
+        "reference": "巴 塞 罗 那 的 官 方 语 言 为 加 泰 罗 尼 亚 语 和 西 班 牙 语 大 约 一 半 的 当 地 人 更 愿 意 说 加 泰 罗 尼 亚 语 绝 大 多 数 人 都 听 懂 加 泰 罗 尼 亚 语 至 于 西 班 牙 语 几 乎 每 个 人 都 能 听 懂",
+        "durationMs": 14340,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1813",
+          "ok": true,
+          "text": "巴塞罗那的官方语言为加泰罗尼亚语和西班牙语，大约一半的当地人更愿意说加泰罗尼亚语，觉得多数人都能听懂加泰罗尼亚语，至于西班牙语，几乎每个人都能听懂。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 3513.813,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.68 ms, sched copies = 1\n[done] 3.46s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1818",
+        "category": "mandarin",
+        "reference": "人 们 可 能 想 不 到 旅 行 者 在 回 程 中 也 需 要 耐 心 和 理 解",
+        "durationMs": 7920,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1818",
+          "ok": true,
+          "text": "人们可能想不到，旅行者在回程中也需要耐心和理解。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2051.034,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.75 ms, sched copies = 1\n[done] 2.00s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1825",
+        "category": "mandarin",
+        "reference": "如 果 想 近 距 离 观 看 演 出 你 得 早 点 到 在 靠 近 舞 台 的 地 方 占 好 营 地",
+        "durationMs": 6360,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1825",
+          "ok": true,
+          "text": "如果想近距离观看演出，你得早点到，在靠近舞台的地方站好营地。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1945.684,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.63 ms, sched copies = 1\n[done] 1.89s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1831",
+        "category": "mandarin",
+        "reference": "普 利 特 维 茨 湖 国 家 公 园 森 林 茂 密 主 要 树 种 有 山 毛 榉 云 杉 和 冷 杉 并 以 高 山 和 地 中 海 植 被 混 合 为 特 色",
+        "durationMs": 14160,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1831",
+          "ok": true,
+          "text": "普利特维茨湖国家公园森林茂盛，主要树种有山毛榉、云杉和冷杉，并以高山和地中海植被混合为特色。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2445.438,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.93 ms, sched copies = 1\n[done] 2.38s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1834",
+        "category": "mandarin",
+        "reference": "也 可 以 到 北 部 参 观 法 蒂 玛 圣 母 院 圣 地 它 是 举 世 闻 名 的 圣 母 玛 丽 亚 显 现 之 地",
+        "durationMs": 8520,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1834",
+          "ok": true,
+          "text": "也可以到北部参观法蒂玛圣母院圣地，它是举世闻名的圣母玛利亚显现之地。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1869.117,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.64 ms, sched copies = 1\n[done] 1.81s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1847",
+        "category": "mandarin",
+        "reference": "他 受 到 了 新 加 坡 副 总 理 黄 根 成 的 欢 迎 并 与 新 加 坡 总 理 李 显 龙 探 讨 了 贸 易 和 恐 怖 主 义 问 题",
+        "durationMs": 11820,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1847",
+          "ok": true,
+          "text": "他受到了新加坡副总理黄根城的欢迎，并与新加坡总理李显龙探讨了贸易和恐怖主义问题。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2110.485,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.82 ms, sched copies = 1\n[done] 2.05s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1850",
+        "category": "mandarin",
+        "reference": "它 能 向 后 兼 容 802.11a 802.11b 和 802.11g 前 提 是 基 站 要 有 双 无 线 电",
+        "durationMs": 10020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1850",
+          "ok": true,
+          "text": "它能向后兼容802.11A、802.11B和802.11G，前提是基带要有双无线电。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2053.87,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.80 ms, sched copies = 1\n[done] 1.98s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1862",
+        "category": "mandarin",
+        "reference": "美 国 联 邦 航 空 局 faa 称 新 一 代 航 空 运 输 系 统 nextgen 可 以 使 飞 机 缩 短 飞 行 航 线 每 年 节 省 数 百 万 加 仑 的 燃 料 并 减 少 碳 排 放",
+        "durationMs": 12900,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1862",
+          "ok": true,
+          "text": "美国联邦航空局称，新一代的航空运输系统可以使飞机缩短飞行航线，每年节省数百万加仑的燃料，并减少碳排放。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2444.478,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.66 ms, sched copies = 1\n[done] 2.38s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1871",
+        "category": "mandarin",
+        "reference": "在 中 东 温 暖 的 气 候 中 房 子 并 不 是 多 重 要",
+        "durationMs": 6960,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1871",
+          "ok": true,
+          "text": "在中东温暖的气候中，房子并不是多重要。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1801.545,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.86 ms, sched copies = 1\n[done] 1.74s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1878",
+        "category": "mandarin",
+        "reference": "教 会 中 央 集 权 制 在 罗 马 存 在 了 一 千 多 年 这 种 权 力 和 金 钱 的 集 中 让 许 多 人 开 始 质 疑 他 们 是 否 遵 守 了 这 一 信 条",
+        "durationMs": 10800,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1878",
+          "ok": true,
+          "text": "教会中央集权制在罗马存在了一千多年，这种权力和金钱的集中让许多人开始质疑他们是否遵守了这一信条。/sil",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2646.509,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.60 ms, sched copies = 1\n[done] 2.58s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1885",
+        "category": "mandarin",
+        "reference": "山 区 夏 令 时 晚 上 10 点 到 11 点 之 间 院 子 里 的 犯 人 们 引 发 了 一 场 火 灾",
+        "durationMs": 11380,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1885",
+          "ok": true,
+          "text": "山剧《下令》时，晚上十点到十一点之间，院子里的犯人们引发了一场火灾。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1980.016,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.61 ms, sched copies = 1\n[done] 1.92s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1895",
+        "category": "mandarin",
+        "reference": "随 着 希 腊 知 识 的 衰 落 西 方 脱 离 了 其 希 腊 哲 学 和 科 学 根 源",
+        "durationMs": 6300,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1895",
+          "ok": true,
+          "text": "随着希腊知识的衰落，西方脱离了其希腊哲学和科学根源。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1965.38,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.14 ms, sched copies = 1\n[done] 1.90s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1901",
+        "category": "mandarin",
+        "reference": "人 工 智 能 有 很 强 的 科 幻 色 彩 但 它 其 实 是 计 算 机 科 学 非 常 重 要 的 一 个 分 支 研 究 的 是 机 器 的 行 为 学 习 和 智 能 适 应",
+        "durationMs": 11160,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1901",
+          "ok": true,
+          "text": "人工智能有很强的科幻色彩，但它其实是计算机科学非常重要的一个分支，研究的是机器的行为、学习和智能适应。/sil",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2505.118,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.79 ms, sched copies = 1\n[done] 2.44s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1910",
+        "category": "mandarin",
+        "reference": "巴 黎 人 是 出 了 名 的 以 自 我 中 心 粗 鲁 和 傲 慢",
+        "durationMs": 5100,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1910",
+          "ok": true,
+          "text": "巴黎人是出了名的以自我为中心、粗鲁和傲慢。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1855.931,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.63 ms, sched copies = 1\n[done] 1.79s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1911",
+        "category": "mandarin",
+        "reference": "同 理 有 了 申 根 签 证 你 就 不 必 分 别 向 每 个 申 根 成 员 国 申 请 签 证 从 而 节 省 了 时 间 金 钱 和 手 续",
+        "durationMs": 11940,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1911",
+          "ok": true,
+          "text": "同理，有了申根签证，你就不必分别向每个申根成员国申请签证，从而节省了时间、金钱和手续。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2048.516,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.60 ms, sched copies = 1\n[done] 1.99s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1920",
+        "category": "mandarin",
+        "reference": "他 们 通 常 会 提 供 特 别 的 食 品 饮 料 和 娱 乐 活 动 让 客 人 保 持 愉 悦 留 在 赌 场",
+        "durationMs": 9360,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1920",
+          "ok": true,
+          "text": "他们通常会提供特别的食品、饮料和娱乐活动，让客人保持愉悦，留在赌场。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2112.937,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.78 ms, sched copies = 1\n[done] 2.05s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1931",
+        "category": "mandarin",
+        "reference": "该 服 务 经 常 用 于 航 运 包 括 游 艇 以 及 有 远 程 数 据 和 语 音 需 求 的 探 险",
+        "durationMs": 6900,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1931",
+          "ok": true,
+          "text": "该服务经常用于航运，包括游艇以及有远程数据和语音需求的探险。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1934.905,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.59 ms, sched copies = 1\n[done] 1.87s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1934",
+        "category": "mandarin",
+        "reference": "平 时 你 总 能 在 这 里 听 到 游 客 和 小 摊 贩 的 声 音 声 光 交 织 就 像 在 讲 述 一 个 动 人 的 故 事",
+        "durationMs": 10280,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1934",
+          "ok": true,
+          "text": "平时你总能在这里听到游客和小摊贩的声音，声光交织，就像在讲述一个动人的故事。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2164.371,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.60 ms, sched copies = 1\n[done] 2.10s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1948",
+        "category": "mandarin",
+        "reference": "三 国 是 中 国 古 代 历 史 上 最 血 腥 的 时 代 之 一 成 千 上 万 的 人 为 了 争 夺 西 安 豪 华 宫 殿 最 高 的 权 力 而 死 去",
+        "durationMs": 8460,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1948",
+          "ok": true,
+          "text": "三国是中国古代历史上最血腥的时代之一，成千上万的人为了争夺西安豪华宫殿最高的权力而死去。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2033.423,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.48 ms, sched copies = 1\n[done] 1.97s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1953",
+        "category": "mandarin",
+        "reference": "他 随 后 被 转 送 到 剑 桥 的 阿 登 布 鲁 克 医 院",
+        "durationMs": 7800,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1953",
+          "ok": true,
+          "text": "他随后被转送到剑桥的阿登布鲁克医院。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2352.307,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.64 ms, sched copies = 1\n[done] 2.29s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1957",
+        "category": "mandarin",
+        "reference": "他 把 谣 言 称 为 政 治 碎 碎 念 和 愚 蠢 行 为",
+        "durationMs": 4500,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1957",
+          "ok": true,
+          "text": "他把谣言称为政治碎碎念和愚蠢行为。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1735.237,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.99 ms, sched copies = 1\n[done] 1.67s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1967",
+        "category": "mandarin",
+        "reference": "莱 顿 layton 在 与 首 相 会 面 期 间 要 求 修 改 保 守 党 的 环 境 法 案 他 要 求 ' 彻 底 重 写 ' 保 守 党 的 环 境 法 案",
+        "durationMs": 10320,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1967",
+          "ok": true,
+          "text": "莱顿在与首相会面期间要求修改保守党的环境法案，他要求彻底重写保守党的环境法案。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2231.894,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.57 ms, sched copies = 1\n[done] 2.17s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1970",
+        "category": "mandarin",
+        "reference": "它 的 舌 头 有 可 能 是 分 叉 的 对 此 我 们 尚 不 确 定 它 的 食 物 包 括 海 龟 大 型 鱼 类 其 他 沧 龙 甚 至 会 吃 人",
+        "durationMs": 11400,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1970",
+          "ok": true,
+          "text": "它们的舌头有可能是分叉的。对此，我们尚不确定。它的食物包括海龟、大型鱼类、其他沧龙，甚至会吃人。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2259.797,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.90 ms, sched copies = 1\n[done] 2.18s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1979",
+        "category": "mandarin",
+        "reference": "福 克 兰 群 岛 的 官 方 货 币 是 福 克 兰 英 镑 与 英 镑 等 值",
+        "durationMs": 8040,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1979",
+          "ok": true,
+          "text": "福克兰群岛的官方货币是福克兰英镑与英镑等值。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2106.126,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.84 ms, sched copies = 1\n[done] 2.01s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1987",
+        "category": "mandarin",
+        "reference": "坠 机 发 生 在 高 海 拔 山 区 据 称 是 敌 方 火 力 所 致",
+        "durationMs": 4800,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1987",
+          "ok": true,
+          "text": "坠机发生在高海拔山区，据说是敌方火力所致。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1661.94,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.96 ms, sched copies = 1\n[done] 1.60s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1994",
+        "category": "mandarin",
+        "reference": "毋 庸 置 疑 的 是 如 果 你 会 讲 一 门 罗 曼 语 那 么 学 习 葡 萄 牙 语 会 更 加 容 易",
+        "durationMs": 11620,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1994",
+          "ok": true,
+          "text": "毋庸置疑的是，如果你会讲一门罗曼语，那么学习葡萄牙语会更加容易。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1882.246,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.69 ms, sched copies = 1\n[done] 1.83s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-1998",
+        "category": "mandarin",
+        "reference": "它 们 脚 上 有 鳞 片 和 爪 子 会 产 卵 还 像 霸 王 龙 一 样 用 两 条 后 腿 走 路",
+        "durationMs": 6300,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-1998",
+          "ok": true,
+          "text": "它们脚上有鳞片和爪子，会产卵，还像霸王龙一样用两条后腿走路。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2716.203,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.84 ms, sched copies = 1\n[done] 2.66s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-2009",
+        "category": "mandarin",
+        "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+        "durationMs": 11760,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-2009",
+          "ok": true,
+          "text": "最容易获得植物性资源，应该是叶子和豆科植物中的蛋白质。但像我们的，像我们这样的灵长类食物，灵长类动物很难消化这种蛋白质，除非是煮熟的。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2618.409,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.65 ms, sched copies = 1\n[done] 2.55s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-zh-2009",
+        "category": "mandarin",
+        "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+        "durationMs": 11760,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-zh-2009",
+          "ok": true,
+          "text": "最容易获得植物性资源，应该是叶子和豆科植物中的蛋白质。但像我们的，像我们这样的灵长类食物，灵长类动物很难消化这种蛋白质，除非是煮熟的。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2618.409,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.65 ms, sched copies = 1\n[done] 2.55s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      }
+    ],
+    "performance": []
+  },
+  "summaries": {}
+}

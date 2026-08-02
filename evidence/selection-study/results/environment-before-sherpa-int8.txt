@@ -1,0 +1,3 @@
+started_utc=2026-08-02T06:00:04Z
+ 8:00  up 12 days, 23:40, 7 users, load averages: 12.64 14.56 11.40
+43376 540592   0.0 /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/normy/.autobyteus/extensions/voice-input/runtime/voice_input_worker.py serve --backend mlx --model-path /Users/normy/.autobyteus/extensions/voice-input/models/whisper-small-mlx

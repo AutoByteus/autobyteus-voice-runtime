@@ -1,0 +1,889 @@
+{
+  "schemaVersion": 1,
+  "corpusId": "macos-tingting-mandarin-english-code-switch-v1",
+  "scoring": "NFKC + Traditional-to-Simplified; Han characters and contiguous lowercase English/alphanumeric words are edit units; multiset English-word recall reported separately.",
+  "reports": [
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/mixed-mlx-fp16-auto.json",
+      "backend": "mlx-fp16",
+      "clipCount": 30,
+      "speakerCount": 1,
+      "durationSeconds": 143.614,
+      "mixedErrorRate": 0.248705,
+      "mandarinCharacterErrorRate": 0.141631,
+      "embeddedEnglishWordErrorRate": 0.51634,
+      "embeddedEnglishWordRecall": {
+        "found": 104,
+        "total": 153,
+        "recall": 0.679739
+      },
+      "perSpeaker": {
+        "macos-tingting-tts": {
+          "mixedErrorRate": 0.248705,
+          "referenceUnits": 386
+        }
+      },
+      "emptyHypotheses": 0,
+      "perClip": [
+        {
+          "id": "mixed-tts-01",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请打开 AutoByteus settings 然后选择 Luna Medium 模型。",
+          "hypothesis": "请打开Otto by Gears Settings 然后选择Lunar Medium模型。",
+          "mixedErrorRate": 0.307692,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 298.057
+        },
+        {
+          "id": "mixed-tts-02",
+          "speakerId": "macos-tingting-tts",
+          "reference": "今天的 sprint review 安排在下午三点，请提前准备 demo。",
+          "hypothesis": "今天的SprintReview安排在下午3點,請提前準備demo",
+          "mixedErrorRate": 0.166667,
+          "embeddedEnglishRecall": 0.333333,
+          "requestRoundTripMs": 277.91
+        },
+        {
+          "id": "mixed-tts-03",
+          "speakerId": "macos-tingting-tts",
+          "reference": "把这个 markdown file 保存到 local workspace 里面。",
+          "hypothesis": "把这个 markdown file 保存到 local workspace 里面。",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 257.307
+        },
+        {
+          "id": "mixed-tts-04",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们需要检查 backend logs 才能找到 performance bottleneck。",
+          "hypothesis": "我们需要检查Back and Locks才能找到Performance Botanical Nick",
+          "mixedErrorRate": 0.357143,
+          "embeddedEnglishRecall": 0.25,
+          "requestRoundTripMs": 272.757
+        },
+        {
+          "id": "mixed-tts-05",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请使用 Codex runtime 运行这个 software engineering team。",
+          "hypothesis": "请使用Codex runtime运行这个software engineering team",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 253.808
+        },
+        {
+          "id": "mixed-tts-06",
+          "speakerId": "macos-tingting-tts",
+          "reference": "点击 architecture reviewer 发送的 reference file。",
+          "hypothesis": "the reference file.",
+          "mixedErrorRate": 0.777778,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 223.241
+        },
+        {
+          "id": "mixed-tts-07",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 WebSocket stream 每秒发送很多 content delta events。",
+          "hypothesis": "這個WebSocketStream每秒發送很多Content Delta Events",
+          "mixedErrorRate": 0.153846,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 265.383
+        },
+        {
+          "id": "mixed-tts-08",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我想比较 MLX Whisper 和 sherpa ONNX 的 latency。",
+          "hypothesis": "我想比较",
+          "mixedErrorRate": 0.636364,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 221.131
+        },
+        {
+          "id": "mixed-tts-09",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Mandarin Chinese output 应该统一转换成 simplified Chinese。",
+          "hypothesis": "Mandarin Chinese output應該統一轉換成 simplified Chinese.",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 246.978
+        },
+        {
+          "id": "mixed-tts-10",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请把 voice input language mode 设置成 auto detect。",
+          "hypothesis": "Please set the voice input language mode to auto-detect",
+          "mixedErrorRate": 0.545455,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 244.891
+        },
+        {
+          "id": "mixed-tts-11",
+          "speakerId": "macos-tingting-tts",
+          "reference": "明天上午十点进行 API end to end testing。",
+          "hypothesis": "明天上午10點進行B-P-I-N-2-N-T-T-I-N",
+          "mixedErrorRate": 0.846154,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 302.957
+        },
+        {
+          "id": "mixed-tts-12",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 pull request 需要 code review 和 regression tests。",
+          "hypothesis": "This pool request, need code review and regression tests.",
+          "mixedErrorRate": 0.545455,
+          "embeddedEnglishRecall": 0.833333,
+          "requestRoundTripMs": 242.788
+        },
+        {
+          "id": "mixed-tts-13",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请记录 cold start warm inference 和 peak memory。",
+          "hypothesis": "Please record Cold Start Warm Inference and Peak Memory.",
+          "mixedErrorRate": 0.4,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 246.065
+        },
+        {
+          "id": "mixed-tts-14",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Electron app 不应该在 renderer thread 里面运行模型。",
+          "hypothesis": "Election App不应该在Renderer Thread里面运行模型。",
+          "mixedErrorRate": 0.071429,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 269.79
+        },
+        {
+          "id": "mixed-tts-15",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们先优化 voice runtime 然后再修改 AutoByteus Web。",
+          "hypothesis": "我们先优化 voice runtime 然后再修改 Autobi-gears web",
+          "mixedErrorRate": 0.142857,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 269.404
+        },
+        {
+          "id": "mixed-tts-16",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 model package 的 SHA two five six 必须能够验证。",
+          "hypothesis": "这个model package的cell256必须能够验证",
+          "mixedErrorRate": 0.266667,
+          "embeddedEnglishRecall": 0.333333,
+          "requestRoundTripMs": 266.33
+        },
+        {
+          "id": "mixed-tts-17",
+          "speakerId": "macos-tingting-tts",
+          "reference": "用户说 start recording 以后应该立即显示 loading state。",
+          "hypothesis": "用戶说Start Recording以后应该立即显示Loading State。",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 270.612
+        },
+        {
+          "id": "mixed-tts-18",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请不要使用 network fallback 所有 transcription 必须 local。",
+          "hypothesis": "请不要使用 Network Failback 所有 Transcription 必须 Local",
+          "mixedErrorRate": 0.076923,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 251.981
+        },
+        {
+          "id": "mixed-tts-19",
+          "speakerId": "macos-tingting-tts",
+          "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。",
+          "hypothesis": "Sense Voice Small 對 Chinese, A, S, R,可能更快但需要測試Quality。",
+          "mixedErrorRate": 0.333333,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 288.818
+        },
+        {
+          "id": "mixed-tts-20",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Whisper Small 在 English speech 上通常保持很好的 accuracy。",
+          "hypothesis": "Whispers more 在English speech 上通常保持很好的accuracy。",
+          "mixedErrorRate": 0.142857,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 266.528
+        },
+        {
+          "id": "mixed-tts-21",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们要测试 punctuation numbers proper nouns 和 mixed language。",
+          "hypothesis": "我们要测试 punctuation numbers proper nouns 和 mic's language。",
+          "mixedErrorRate": 0.083333,
+          "embeddedEnglishRecall": 0.833333,
+          "requestRoundTripMs": 263.141
+        },
+        {
+          "id": "mixed-tts-22",
+          "speakerId": "macos-tingting-tts",
+          "reference": "把 meeting notes 导出为 UTF eight encoded text file。",
+          "hypothesis": "Fanmeeting notes.ua, u, t, f, it encoded text file.",
+          "mixedErrorRate": 0.636364,
+          "embeddedEnglishRecall": 0.571429,
+          "requestRoundTripMs": 270.396
+        },
+        {
+          "id": "mixed-tts-23",
+          "speakerId": "macos-tingting-tts",
+          "reference": "如果 runtime handshake 失败就返回 stable error code。",
+          "hypothesis": "如果 runtime handshake 失敗就返回 stable error code",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 257.866
+        },
+        {
+          "id": "mixed-tts-24",
+          "speakerId": "macos-tingting-tts",
+          "reference": "selected model identity 必须和 installed manifest 完全一致。",
+          "hypothesis": "Selected Model Identity必須和Installed Manifest完全一致",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 265.567
+        },
+        {
+          "id": "mixed-tts-25",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请运行 thirty cold trials 和 one hundred warm trials。",
+          "hypothesis": "Qingyun Xing 30 cold drills and 100 warm drills",
+          "mixedErrorRate": 0.818182,
+          "embeddedEnglishRecall": 0.285714,
+          "requestRoundTripMs": 240.408
+        },
+        {
+          "id": "mixed-tts-26",
+          "speakerId": "macos-tingting-tts",
+          "reference": "在 M one Max MacBook Pro 上测量 resident set size。",
+          "hypothesis": "在 M1 Max MacBook Pro 上侧两 Resident Set Size",
+          "mixedErrorRate": 0.333333,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 250.937
+        },
+        {
+          "id": "mixed-tts-27",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 release candidate 不能在 architecture approval 以前发布。",
+          "hypothesis": "這個 Release Candidate 不能在 Architecture Approval 以前發佈。",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 262.129
+        },
+        {
+          "id": "mixed-tts-28",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请把 transcript 插入当前 active text field 的 cursor position。",
+          "hypothesis": "请把 Transcript 插入当前 Active Text Field 的 cursor position。",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 293.859
+        },
+        {
+          "id": "mixed-tts-29",
+          "speakerId": "macos-tingting-tts",
+          "reference": "今天我们测试 Wi Fi settings OpenAI API 和 local database。",
+          "hypothesis": "今天我们测试WiFi Settings Open IAPI和Local Database",
+          "mixedErrorRate": 0.285714,
+          "embeddedEnglishRecall": 0.428571,
+          "requestRoundTripMs": 267.991
+        },
+        {
+          "id": "mixed-tts-30",
+          "speakerId": "macos-tingting-tts",
+          "reference": "最终设计应该 evidence driven 而不是先假设 Node 或 Python。",
+          "hypothesis": "最終設計應該 evidence driven 而不是先假設 Note或 Pism",
+          "mixedErrorRate": 0.117647,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 260.99
+        }
+      ]
+    },
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/mixed-sherpa-int8-auto.json",
+      "backend": "sherpa-int8",
+      "clipCount": 30,
+      "speakerCount": 1,
+      "durationSeconds": 143.614,
+      "mixedErrorRate": 0.354922,
+      "mandarinCharacterErrorRate": 0.304721,
+      "embeddedEnglishWordErrorRate": 0.653595,
+      "embeddedEnglishWordRecall": {
+        "found": 103,
+        "total": 153,
+        "recall": 0.673203
+      },
+      "perSpeaker": {
+        "macos-tingting-tts": {
+          "mixedErrorRate": 0.354922,
+          "referenceUnits": 386
+        }
+      },
+      "emptyHypotheses": 0,
+      "perClip": [
+        {
+          "id": "mixed-tts-01",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请打开 AutoByteus settings 然后选择 Luna Medium 模型。",
+          "hypothesis": "請打開「Autobi-Gear Settings」然後選Luna Medium模型。",
+          "mixedErrorRate": 0.230769,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 921.279
+        },
+        {
+          "id": "mixed-tts-02",
+          "speakerId": "macos-tingting-tts",
+          "reference": "今天的 sprint review 安排在下午三点，请提前准备 demo。",
+          "hypothesis": "今天的SprintReview安排在下午3點,請提前準備demo。",
+          "mixedErrorRate": 0.166667,
+          "embeddedEnglishRecall": 0.333333,
+          "requestRoundTripMs": 878.07
+        },
+        {
+          "id": "mixed-tts-03",
+          "speakerId": "macos-tingting-tts",
+          "reference": "把这个 markdown file 保存到 local workspace 里面。",
+          "hypothesis": "把這個 markdown file 保存到 local workspace 裡面",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 674.164
+        },
+        {
+          "id": "mixed-tts-04",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们需要检查 backend logs 才能找到 performance bottleneck。",
+          "hypothesis": "我们需要查背的才能找到\"表现\"的Botonic",
+          "mixedErrorRate": 0.5,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1165.626
+        },
+        {
+          "id": "mixed-tts-05",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请使用 Codex runtime 运行这个 software engineering team。",
+          "hypothesis": "請使用Codx Runtime運行這個software engineering team",
+          "mixedErrorRate": 0.083333,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 891.146
+        },
+        {
+          "id": "mixed-tts-06",
+          "speakerId": "macos-tingting-tts",
+          "reference": "点击 architecture reviewer 发送的 reference file。",
+          "hypothesis": "the reference file",
+          "mixedErrorRate": 0.777778,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 391.343
+        },
+        {
+          "id": "mixed-tts-07",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 WebSocket stream 每秒发送很多 content delta events。",
+          "hypothesis": "This web-soccered stream every second presents a lot of content-delta events.",
+          "mixedErrorRate": 0.692308,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 932.247
+        },
+        {
+          "id": "mixed-tts-08",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我想比较 MLX Whisper 和 sherpa ONNX 的 latency。",
+          "hypothesis": "我想比較M,L,X,Whisperer和Sherpa,O,N,N,X,The Latency。",
+          "mixedErrorRate": 0.818182,
+          "embeddedEnglishRecall": 0.4,
+          "requestRoundTripMs": 1389.608
+        },
+        {
+          "id": "mixed-tts-09",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Mandarin Chinese output 应该统一转换成 simplified Chinese。",
+          "hypothesis": "Mandarin Chinese output should be replaced with simplified Chinese.",
+          "mixedErrorRate": 0.583333,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 601.949
+        },
+        {
+          "id": "mixed-tts-10",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请把 voice input language mode 设置成 auto detect。",
+          "hypothesis": "請把 Voice Input Language Mode 設置成 AutoDirect",
+          "mixedErrorRate": 0.181818,
+          "embeddedEnglishRecall": 0.666667,
+          "requestRoundTripMs": 682.409
+        },
+        {
+          "id": "mixed-tts-11",
+          "speakerId": "macos-tingting-tts",
+          "reference": "明天上午十点进行 API end to end testing。",
+          "hypothesis": "明天上午10點進行API End to End Testing",
+          "mixedErrorRate": 0.076923,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 743.133
+        },
+        {
+          "id": "mixed-tts-12",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 pull request 需要 code review 和 regression tests。",
+          "hypothesis": "This pool request needs to code review and regression tests.",
+          "mixedErrorRate": 0.545455,
+          "embeddedEnglishRecall": 0.833333,
+          "requestRoundTripMs": 703.063
+        },
+        {
+          "id": "mixed-tts-13",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请记录 cold start warm inference 和 peak memory。",
+          "hypothesis": "Please record Cold Start Born Inference and Peak Memory.",
+          "mixedErrorRate": 0.5,
+          "embeddedEnglishRecall": 0.833333,
+          "requestRoundTripMs": 612.541
+        },
+        {
+          "id": "mixed-tts-14",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Electron app 不应该在 renderer thread 里面运行模型。",
+          "hypothesis": "Election App不應該在Renderer Thread裡面運行模型",
+          "mixedErrorRate": 0.071429,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 790.556
+        },
+        {
+          "id": "mixed-tts-15",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们先优化 voice runtime 然后再修改 AutoByteus Web。",
+          "hypothesis": "我们先化 Boys Runtime 然后再改 Autobi-Cheers Web",
+          "mixedErrorRate": 0.357143,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 985.166
+        },
+        {
+          "id": "mixed-tts-16",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 model package 的 SHA two five six 必须能够验证。",
+          "hypothesis": "這個model package的Cell 256必能夠",
+          "mixedErrorRate": 0.466667,
+          "embeddedEnglishRecall": 0.333333,
+          "requestRoundTripMs": 809.787
+        },
+        {
+          "id": "mixed-tts-17",
+          "speakerId": "macos-tingting-tts",
+          "reference": "用户说 start recording 以后应该立即显示 loading state。",
+          "hypothesis": "用说Start Recording以后应该立即示Loading State。",
+          "mixedErrorRate": 0.133333,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 923.236
+        },
+        {
+          "id": "mixed-tts-18",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请不要使用 network fallback 所有 transcription 必须 local。",
+          "hypothesis": "请不要使用 Network, Failback 所有 Transcription 必 Local。",
+          "mixedErrorRate": 0.153846,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 846.644
+        },
+        {
+          "id": "mixed-tts-19",
+          "speakerId": "macos-tingting-tts",
+          "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。",
+          "hypothesis": "Sense Voice Small 對 Chinese(A、S、R)可能更快但需要試Quality",
+          "mixedErrorRate": 0.4,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 1133.153
+        },
+        {
+          "id": "mixed-tts-20",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Whisper Small 在 English speech 上通常保持很好的 accuracy。",
+          "hypothesis": "Whispers more 在英文上通常保持很好的 Accuracy",
+          "mixedErrorRate": 0.285714,
+          "embeddedEnglishRecall": 0.2,
+          "requestRoundTripMs": 895.867
+        },
+        {
+          "id": "mixed-tts-21",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们要测试 punctuation numbers proper nouns 和 mixed language。",
+          "hypothesis": "我們要試 punctuation numbers proper nouns 和 mic's language",
+          "mixedErrorRate": 0.166667,
+          "embeddedEnglishRecall": 0.833333,
+          "requestRoundTripMs": 799.167
+        },
+        {
+          "id": "mixed-tts-22",
+          "speakerId": "macos-tingting-tts",
+          "reference": "把 meeting notes 导出为 UTF eight encoded text file。",
+          "hypothesis": "\"FAMI-jin notes.ua.u.t.f.it encoded text file\"",
+          "mixedErrorRate": 0.636364,
+          "embeddedEnglishRecall": 0.571429,
+          "requestRoundTripMs": 979.659
+        },
+        {
+          "id": "mixed-tts-23",
+          "speakerId": "macos-tingting-tts",
+          "reference": "如果 runtime handshake 失败就返回 stable error code。",
+          "hypothesis": "如果Round Time Hand Shake 失就回Stable Error Code。",
+          "mixedErrorRate": 0.5,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 881.591
+        },
+        {
+          "id": "mixed-tts-24",
+          "speakerId": "macos-tingting-tts",
+          "reference": "selected model identity 必须和 installed manifest 完全一致。",
+          "hypothesis": "Selected Model Identity 必和Institut Manifest完全一",
+          "mixedErrorRate": 0.25,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 906.338
+        },
+        {
+          "id": "mixed-tts-25",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请运行 thirty cold trials 和 one hundred warm trials。",
+          "hypothesis": "Qingyun行 30 cold trails and 100 warm trails",
+          "mixedErrorRate": 0.727273,
+          "embeddedEnglishRecall": 0.285714,
+          "requestRoundTripMs": 580.105
+        },
+        {
+          "id": "mixed-tts-26",
+          "speakerId": "macos-tingting-tts",
+          "reference": "在 M one Max MacBook Pro 上测量 resident set size。",
+          "hypothesis": "In M1 Max MacBook, the box is on the side-to-side, two-resident set size.",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.625,
+          "requestRoundTripMs": 1056.247
+        },
+        {
+          "id": "mixed-tts-27",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 release candidate 不能在 architecture approval 以前发布。",
+          "hypothesis": "這個 Release Candidate 不能在 Architecture Approval 以前發",
+          "mixedErrorRate": 0.076923,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 761.034
+        },
+        {
+          "id": "mixed-tts-28",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请把 transcript 插入当前 active text field 的 cursor position。",
+          "hypothesis": "請把 Transcript 入當前 Active Text Field 的 cursor position。",
+          "mixedErrorRate": 0.076923,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 815.171
+        },
+        {
+          "id": "mixed-tts-29",
+          "speakerId": "macos-tingting-tts",
+          "reference": "今天我们测试 Wi Fi settings OpenAI API 和 local database。",
+          "hypothesis": "今天我们WiFi Settings Open AI, AI, P, AI, Local Database。",
+          "mixedErrorRate": 0.571429,
+          "embeddedEnglishRecall": 0.428571,
+          "requestRoundTripMs": 1073.064
+        },
+        {
+          "id": "mixed-tts-30",
+          "speakerId": "macos-tingting-tts",
+          "reference": "最终设计应该 evidence driven 而不是先假设 Node 或 Python。",
+          "hypothesis": "最終設計應該Evidence driven而不是先假設Note或Person",
+          "mixedErrorRate": 0.117647,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 832.091
+        }
+      ]
+    },
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/mixed-sensevoice-int8-auto.json",
+      "backend": "sensevoice-int8",
+      "clipCount": 30,
+      "speakerCount": 1,
+      "durationSeconds": 143.614,
+      "mixedErrorRate": 0.227979,
+      "mandarinCharacterErrorRate": 0.094421,
+      "embeddedEnglishWordErrorRate": 0.51634,
+      "embeddedEnglishWordRecall": {
+        "found": 97,
+        "total": 153,
+        "recall": 0.633987
+      },
+      "perSpeaker": {
+        "macos-tingting-tts": {
+          "mixedErrorRate": 0.227979,
+          "referenceUnits": 386
+        }
+      },
+      "emptyHypotheses": 0,
+      "perClip": [
+        {
+          "id": "mixed-tts-01",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请打开 AutoByteus settings 然后选择 Luna Medium 模型。",
+          "hypothesis": "请打开autobyte settings，然后选择lunar medium模型。",
+          "mixedErrorRate": 0.153846,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 79.632
+        },
+        {
+          "id": "mixed-tts-02",
+          "speakerId": "macos-tingting-tts",
+          "reference": "今天的 sprint review 安排在下午三点，请提前准备 demo。",
+          "hypothesis": "今天的spprint review安排在下午3点，请提前准备d。",
+          "mixedErrorRate": 0.166667,
+          "embeddedEnglishRecall": 0.333333,
+          "requestRoundTripMs": 85.85
+        },
+        {
+          "id": "mixed-tts-03",
+          "speakerId": "macos-tingting-tts",
+          "reference": "把这个 markdown file 保存到 local workspace 里面。",
+          "hypothesis": "把这个markdown file保存到local workspace里面。",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 67.662
+        },
+        {
+          "id": "mixed-tts-04",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们需要检查 backend logs 才能找到 performance bottleneck。",
+          "hypothesis": "我们需要检查backend locks才能找到performance bottleneck。",
+          "mixedErrorRate": 0.071429,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 72.431
+        },
+        {
+          "id": "mixed-tts-05",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请使用 Codex runtime 运行这个 software engineering team。",
+          "hypothesis": "请使用cardex runtime运行这个software engineering team。",
+          "mixedErrorRate": 0.083333,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 83.77
+        },
+        {
+          "id": "mixed-tts-06",
+          "speakerId": "macos-tingting-tts",
+          "reference": "点击 architecture reviewer 发送的 reference file。",
+          "hypothesis": "NT architecture Reviewer Fa the reference file.",
+          "mixedErrorRate": 0.555556,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 107.977
+        },
+        {
+          "id": "mixed-tts-07",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 WebSocket stream 每秒发送很多 content delta events。",
+          "hypothesis": "这个wescket stream每秒发送很多 content de to events。",
+          "mixedErrorRate": 0.230769,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 83.184
+        },
+        {
+          "id": "mixed-tts-08",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我想比较 MLX Whisper 和 sherpa ONNX 的 latency。",
+          "hypothesis": "我想比较MLX whisper和 shirtONNX的 latency。",
+          "mixedErrorRate": 0.181818,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 118.646
+        },
+        {
+          "id": "mixed-tts-09",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Mandarin Chinese output 应该统一转换成 simplified Chinese。",
+          "hypothesis": "Mdanderarin Chinese output应该统一转换成 simplified Chinese.",
+          "mixedErrorRate": 0.083333,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 92.497
+        },
+        {
+          "id": "mixed-tts-10",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请把 voice input language mode 设置成 auto detect。",
+          "hypothesis": "Qing把 voiceice input language mode设置成aude.",
+          "mixedErrorRate": 0.363636,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 114.65
+        },
+        {
+          "id": "mixed-tts-11",
+          "speakerId": "macos-tingting-tts",
+          "reference": "明天上午十点进行 API end to end testing。",
+          "hypothesis": "明天上午10点进行dayI and to interesting。",
+          "mixedErrorRate": 0.384615,
+          "embeddedEnglishRecall": 0.2,
+          "requestRoundTripMs": 86.982
+        },
+        {
+          "id": "mixed-tts-12",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 pull request 需要 code review 和 regression tests。",
+          "hypothesis": "这个 pool request需要 code review和 regression tests.",
+          "mixedErrorRate": 0.090909,
+          "embeddedEnglishRecall": 0.833333,
+          "requestRoundTripMs": 70.96
+        },
+        {
+          "id": "mixed-tts-13",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请记录 cold start warm inference 和 peak memory。",
+          "hypothesis": "Qing Jilu cold startwarm influence her peak memory.",
+          "mixedErrorRate": 0.7,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 67.241
+        },
+        {
+          "id": "mixed-tts-14",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Electron app 不应该在 renderer thread 里面运行模型。",
+          "hypothesis": "electron app不应该在re threat里面运行模型。",
+          "mixedErrorRate": 0.142857,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 72.684
+        },
+        {
+          "id": "mixed-tts-15",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们先优化 voice runtime 然后再修改 AutoByteus Web。",
+          "hypothesis": "我们先优化voice run time，然后再修改auto by cheer。",
+          "mixedErrorRate": 0.357143,
+          "embeddedEnglishRecall": 0.25,
+          "requestRoundTripMs": 79.312
+        },
+        {
+          "id": "mixed-tts-16",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 model package 的 SHA two five six 必须能够验证。",
+          "hypothesis": "这个model package的 cell to five six必须能够验证。",
+          "mixedErrorRate": 0.133333,
+          "embeddedEnglishRecall": 0.666667,
+          "requestRoundTripMs": 62.808
+        },
+        {
+          "id": "mixed-tts-17",
+          "speakerId": "macos-tingting-tts",
+          "reference": "用户说 start recording 以后应该立即显示 loading state。",
+          "hypothesis": "用户说start recording以后应该立即显示loading state。",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 70.935
+        },
+        {
+          "id": "mixed-tts-18",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请不要使用 network fallback 所有 transcription 必须 local。",
+          "hypothesis": "请不要使用networkfellback所有 transcriptionscription必须local。",
+          "mixedErrorRate": 0.230769,
+          "embeddedEnglishRecall": 0.25,
+          "requestRoundTripMs": 79.668
+        },
+        {
+          "id": "mixed-tts-19",
+          "speakerId": "macos-tingting-tts",
+          "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。",
+          "hypothesis": "since voice more对chineese ASR可能更快，但需要测试 qualityality。",
+          "mixedErrorRate": 0.333333,
+          "embeddedEnglishRecall": 0.2,
+          "requestRoundTripMs": 96.743
+        },
+        {
+          "id": "mixed-tts-20",
+          "speakerId": "macos-tingting-tts",
+          "reference": "Whisper Small 在 English speech 上通常保持很好的 accuracy。",
+          "hypothesis": "with far small在engglish speech上通常保持很好的 accuracy。",
+          "mixedErrorRate": 0.214286,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 74.934
+        },
+        {
+          "id": "mixed-tts-21",
+          "speakerId": "macos-tingting-tts",
+          "reference": "我们要测试 punctuation numbers proper nouns 和 mixed language。",
+          "hypothesis": "我们要测试 punctuation numbers pro pronouns和m language。",
+          "mixedErrorRate": 0.25,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 76.337
+        },
+        {
+          "id": "mixed-tts-22",
+          "speakerId": "macos-tingting-tts",
+          "reference": "把 meeting notes 导出为 UTF eight encoded text file。",
+          "hypothesis": "F me Jo Chhuwei, UTF it encoded text file.",
+          "mixedErrorRate": 0.636364,
+          "embeddedEnglishRecall": 0.571429,
+          "requestRoundTripMs": 82.283
+        },
+        {
+          "id": "mixed-tts-23",
+          "speakerId": "macos-tingting-tts",
+          "reference": "如果 runtime handshake 失败就返回 stable error code。",
+          "hypothesis": "如果rontime handshake失败，就返回stable error code。",
+          "mixedErrorRate": 0.083333,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 72.598
+        },
+        {
+          "id": "mixed-tts-24",
+          "speakerId": "macos-tingting-tts",
+          "reference": "selected model identity 必须和 installed manifest 完全一致。",
+          "hypothesis": "selected model identity必须和inststate manifest完全一致。",
+          "mixedErrorRate": 0.083333,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 75.933
+        },
+        {
+          "id": "mixed-tts-25",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请运行 thirty cold trials 和 one hundred warm trials。",
+          "hypothesis": "Qing Yunxing 30 cold trails和 100 warm trails.",
+          "mixedErrorRate": 0.727273,
+          "embeddedEnglishRecall": 0.285714,
+          "requestRoundTripMs": 71.497
+        },
+        {
+          "id": "mixed-tts-26",
+          "speakerId": "macos-tingting-tts",
+          "reference": "在 M one Max MacBook Pro 上测量 resident set size。",
+          "hypothesis": "在 M1 max Macbook pro上ang侧iliang resident set size.",
+          "mixedErrorRate": 0.416667,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 75.008
+        },
+        {
+          "id": "mixed-tts-27",
+          "speakerId": "macos-tingting-tts",
+          "reference": "这个 release candidate 不能在 architecture approval 以前发布。",
+          "hypothesis": "这个release candidate不能在architecture approval以前发布。",
+          "mixedErrorRate": 0.0,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 74.091
+        },
+        {
+          "id": "mixed-tts-28",
+          "speakerId": "macos-tingting-tts",
+          "reference": "请把 transcript 插入当前 active text field 的 cursor position。",
+          "hypothesis": "请ing把 transcript插入当前 active text field the cursor position.",
+          "mixedErrorRate": 0.153846,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 86.413
+        },
+        {
+          "id": "mixed-tts-29",
+          "speakerId": "macos-tingting-tts",
+          "reference": "今天我们测试 Wi Fi settings OpenAI API 和 local database。",
+          "hypothesis": "今天我们测试wifi settings openen IAPI和local database。",
+          "mixedErrorRate": 0.285714,
+          "embeddedEnglishRecall": 0.428571,
+          "requestRoundTripMs": 107.563
+        },
+        {
+          "id": "mixed-tts-30",
+          "speakerId": "macos-tingting-tts",
+          "reference": "最终设计应该 evidence driven 而不是先假设 Node 或 Python。",
+          "hypothesis": "最终设计应该evidence driven，而不是先假设note或。",
+          "mixedErrorRate": 0.117647,
+          "embeddedEnglishRecall": 0.5,
+          "requestRoundTripMs": 73.339
+        }
+      ]
+    }
+  ]
+}

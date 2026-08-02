@@ -1,0 +1,122 @@
+import Ajv2020 from "ajv/dist/2020.js";
+import path from "node:path";
+import { readJson, ROOT, sha256 } from "../../build/lib/files.mjs";
+
+const validateCorpusManifest = new Ajv2020({
+  allErrors: true,
+  strict: true,
+}).compile(
+  await readJson(path.join(ROOT, "benchmark/corpus/corpus-v1.schema.json")),
+);
+
+export function verifyRuntimeConformance(value) {
+  const expected = [
+    "cleanNextStart",
+    "forcedTermination",
+    "malformedAudio",
+    "malformedMessage",
+    "noAutomaticReplay",
+    "noSpeech",
+    "requestTimeout",
+    "schemaVersion",
+    "unexpectedExit",
+  ];
+  if (
+    !value ||
+    Object.keys(value).sort().join(",") !== expected.join(",") ||
+    value.schemaVersion !== 1 ||
+    expected
+      .filter((key) => key !== "schemaVersion")
+      .some((key) => value[key] !== true)
+  )
+    throw new Error("Runtime conformance evidence incomplete.");
+}
+
+export function verifyCorpusBinding(corpus, raw, summary, qualification) {
+  if (
+    !validateCorpusManifest(corpus) ||
+    corpus.corpusId !== summary.corpus.id ||
+    corpus.profileId !== qualification.profileId ||
+    corpus.metric !== qualification.quality.metric ||
+    corpus.license !== summary.corpus.license ||
+    corpus.provenanceReference !== summary.corpus.provenanceReference ||
+    corpus.redistributionApproved !== true ||
+    corpus.clips.length !== raw.results.length
+  )
+    throw new Error("Preserved corpus manifest identity mismatch.");
+  const ids = new Set(),
+    paths = new Set(),
+    hashes = new Set();
+  for (let index = 0; index < corpus.clips.length; index++) {
+    const clip = corpus.clips[index],
+      result = raw.results[index];
+    if (
+      ids.has(clip.id) ||
+      paths.has(clip.audioPath) ||
+      hashes.has(clip.audioSha256) ||
+      clip.id !== result.clipId ||
+      clip.audioSha256 !== result.audioSha256 ||
+      clip.reference !== result.reference
+    )
+      throw new Error("Corpus uniqueness/result pairing mismatch.");
+    ids.add(clip.id);
+    paths.add(clip.audioPath);
+    hashes.add(clip.audioSha256);
+  }
+  const consentReferenceDigest = sha256(
+    Buffer.from(
+      `${corpus.clips
+        .map((item) => `${item.id}:${item.consentReference}`)
+        .sort()
+        .join("\n")}\n`,
+    ),
+  );
+  if (consentReferenceDigest !== summary.corpus.consentReferenceDigest)
+    throw new Error("Corpus consent-reference evidence mismatch.");
+}
+
+export function verifyBuildBinding(
+  build,
+  inputManifest,
+  qualification,
+  sourceCommit,
+) {
+  if (
+    build.sourceCommit !== sourceCommit ||
+    build.packageId !== qualification.packageId ||
+    build.providerId !== qualification.providerId ||
+    build.modelId !== qualification.modelId ||
+    build.profileId !== qualification.profileId ||
+    build.target.platform !== qualification.platform ||
+    build.target.architecture !== qualification.architecture ||
+    build.buildInputManifestSha256 !== qualification.buildInputManifestSha256 ||
+    build.archive.sha256 !== qualification.archiveSha256
+  )
+    throw new Error("Build report identity mismatch.");
+  for (const [field, expected] of [
+    ["descriptorSha256", qualification.descriptorSha256],
+    ["fileManifestSha256", qualification.fileManifestSha256],
+    ["launcherSha256", qualification.launcherSha256],
+    ["launcherPlanSha256", qualification.launcherPlanSha256],
+    ["hostSha256", qualification.hostSha256],
+    ["engineConfigurationSha256", qualification.engineConfigurationSha256],
+    ["modelSha256", qualification.modelSha256],
+    ["normalizerSha256", qualification.normalizerSha256],
+    ["protocolSha256", qualification.protocolSha256],
+    ["noticeInventorySha256", qualification.noticeInventorySha256],
+  ])
+    if (build[field] !== expected)
+      throw new Error(`Build report ${field} mismatch.`);
+  if (
+    inputManifest.schemaVersion !== 1 ||
+    !Array.isArray(inputManifest.files) ||
+    inputManifest.files.length === 0 ||
+    inputManifest.files.some(
+      (item) =>
+        !/^[A-Za-z0-9._/-]+$/.test(item.path) ||
+        !/^[a-f0-9]{64}$/.test(item.sha256) ||
+        !Number.isSafeInteger(item.sizeBytes),
+    )
+  )
+    throw new Error("Preserved build-input manifest invalid.");
+}

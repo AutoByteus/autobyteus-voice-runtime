@@ -1,0 +1,162 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packageId",
+    "packageVersion",
+    "providerId",
+    "sourceCommit",
+    "target",
+    "protocolVersion",
+    "sessionConfigVersion",
+    "launcher",
+    "launcherPlan",
+    "host",
+    "worker",
+    "engine",
+    "model",
+    "profiles",
+    "audioContract",
+    "fileManifestPath",
+    "noticeInventoryPath"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packageId": { "type": "string", "minLength": 1 },
+    "packageVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "providerId": { "type": "string", "minLength": 1 },
+    "sourceCommit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "target": { "$ref": "#/$defs/target" },
+    "protocolVersion": { "const": 1 },
+    "sessionConfigVersion": { "const": 1 },
+    "launcher": { "$ref": "#/$defs/path" },
+    "launcherPlan": { "$ref": "#/$defs/asset" },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "version", "executable", "sha256"],
+      "properties": {
+        "kind": { "enum": ["bundled-python", "native"] },
+        "version": { "type": "string", "minLength": 1 },
+        "executable": { "$ref": "#/$defs/path" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "worker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entrypoint", "sha256"],
+      "properties": {
+        "entrypoint": { "$ref": "#/$defs/path" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "version", "configuration"],
+      "properties": {
+        "kind": { "enum": ["mlx-whisper", "faster-whisper", "funasr-native"] },
+        "version": { "type": "string", "minLength": 1 },
+        "configuration": { "$ref": "#/$defs/asset" }
+      }
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "family",
+        "size",
+        "precision",
+        "root",
+        "descriptor",
+        "sha256"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "family": { "type": "string", "minLength": 1 },
+        "size": { "type": "string", "minLength": 1 },
+        "precision": { "type": "string", "minLength": 1 },
+        "root": { "$ref": "#/$defs/path" },
+        "descriptor": { "$ref": "#/$defs/path" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 2,
+      "items": { "$ref": "#/$defs/profile" }
+    },
+    "audioContract": { "const": "autobyteus-pcm16-mono-16khz-wav-v1" },
+    "fileManifestPath": { "const": "provider/package-files-v1.json" },
+    "noticeInventoryPath": { "const": "THIRD_PARTY_NOTICES.json" }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "path": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9._/-]+$",
+      "maxLength": 240
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "$ref": "#/$defs/path" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "architecture"],
+      "properties": {
+        "platform": { "enum": ["darwin", "linux", "win32"] },
+        "architecture": { "enum": ["arm64", "x64"] }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "languageMode",
+        "normalizationProfile",
+        "capabilities"
+      ],
+      "properties": {
+        "profileId": { "enum": ["english", "chinese", "auto"] },
+        "languageMode": { "enum": ["en", "zh", "auto"] },
+        "normalizationProfile": {
+          "enum": [
+            "autobyteus-english-v1",
+            "autobyteus-simplified-zh-v1",
+            "autobyteus-auto-v1"
+          ]
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "maxInFlightRequests",
+            "rawAndNormalizedText",
+            "noSpeech"
+          ],
+          "properties": {
+            "maxInFlightRequests": { "const": 1 },
+            "rawAndNormalizedText": { "const": true },
+            "noSpeech": { "const": true }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "packagePath": "/private/tmp/autobyteus-voice-trimmed-provider-proof-20260802",
+  "launcherPath": "/private/tmp/autobyteus-voice-trimmed-provider-proof-20260802/provider-launch",
+  "audioPath": "/private/tmp/autobyteus-voice-backend-study-20260802/corpus/fleurs-controlled-v1/audio/fleurs-en-1772.wav",
+  "audioSha256": "99b20596262179f1549a9b50b7aa4fcfa39eb8ee41b9aa1ff70671aea0b896f3",
+  "controllerPython": "3.9.6",
+  "sanitizedEnvironment": {
+    "HOME": "/tmp/autobyteus-voice-provider-hermetic-home",
+    "PATH": "/usr/bin:/bin",
+    "LANG": "en_US.UTF-8"
+  },
+  "readyObservedMs": 2506.814,
+  "ready": {
+    "type": "ready",
+    "backend": "mlx-whisper-fp16",
+    "pid": 22342,
+    "importMs": 2065.846,
+    "modelLoadMs": 247.409,
+    "workerReadyMs": 2317.428,
+    "maxRssBytes": 826638336
+  },
+  "responses": [
+    {
+      "type": "result",
+      "requestId": "relocation-1",
+      "ok": true,
+      "text": "So it is likely that the notation was added simply as a label.",
+      "detectedLanguage": "en",
+      "transcribeMs": 375.606,
+      "maxRssBytes": 876691456,
+      "controllerRoundTripMs": 375.863
+    },
+    {
+      "type": "result",
+      "requestId": "relocation-2",
+      "ok": true,
+      "text": "So it is likely that the notation was added simply as a label.",
+      "detectedLanguage": "en",
+      "transcribeMs": 139.369,
+      "maxRssBytes": 878346240,
+      "controllerRoundTripMs": 139.542
+    }
+  ],
+  "shutdown": {
+    "type": "shutdown-complete",
+    "maxRssBytes": 878346240
+  },
+  "exitCode": 0,
+  "stderr": ""
+}

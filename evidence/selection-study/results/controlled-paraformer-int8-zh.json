@@ -1,0 +1,1259 @@
+{
+  "schemaVersion": 1,
+  "backend": "paraformer-int8",
+  "language": "zh",
+  "threads": null,
+  "command": [
+    "node",
+    "/tmp/autobyteus-voice-backend-study-20260802/harness/sherpa_paraformer_worker.cjs",
+    "--sherpa-package",
+    "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/node_modules/sherpa-onnx-node",
+    "--model",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-paraformer-zh-2024-03-09/model.int8.onnx",
+    "--tokens",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-paraformer-zh-2024-03-09/tokens.txt",
+    "--precision",
+    "int8",
+    "--threads",
+    "4"
+  ],
+  "corpusId": "fleurs-controlled-mandarin-english-v1",
+  "coldClip": {
+    "id": "fleurs-zh-1760",
+    "durationMs": 5880,
+    "reference": "沧 龙 是 那 个 时 代 的 顶 级 掠 食 者 除 了 同 类 它 什 么 都 不 怕"
+  },
+  "coldRuns": [
+    {
+      "index": 0,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 22262,
+        "importMs": 55.171,
+        "modelLoadMs": 1187.386,
+        "workerReadyMs": 1242.753,
+        "rssBytes": 612696064,
+        "threads": 4,
+        "spawnToReadyMs": 1277.985,
+        "sampledRssBytes": 614105088
+      },
+      "first": {
+        "type": "result",
+        "requestId": "2e38816de63c43eea13cd187e495ab6c",
+        "ok": true,
+        "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+        "detectedLanguage": "zh-en",
+        "readMs": 1.226,
+        "decodeMs": 74.849,
+        "transcribeMs": 80.03,
+        "rssBytes": 615710720,
+        "requestRoundTripMs": 80.753,
+        "sampledRssBytes": 615710720
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 615727104
+      }
+    },
+    {
+      "index": 1,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 22265,
+        "importMs": 8.376,
+        "modelLoadMs": 983.268,
+        "workerReadyMs": 991.825,
+        "rssBytes": 616251392,
+        "threads": 4,
+        "spawnToReadyMs": 1030.432,
+        "sampledRssBytes": 617676800
+      },
+      "first": {
+        "type": "result",
+        "requestId": "d9484322bb834eef808525ab55dc98da",
+        "ok": true,
+        "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.323,
+        "decodeMs": 83.807,
+        "transcribeMs": 87.522,
+        "rssBytes": 619593728,
+        "requestRoundTripMs": 88.531,
+        "sampledRssBytes": 619593728
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 619626496
+      }
+    },
+    {
+      "index": 2,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 22269,
+        "importMs": 8.91,
+        "modelLoadMs": 931.628,
+        "workerReadyMs": 940.715,
+        "rssBytes": 616677376,
+        "threads": 4,
+        "spawnToReadyMs": 975.02,
+        "sampledRssBytes": 618119168
+      },
+      "first": {
+        "type": "result",
+        "requestId": "c1fb6f4ac2ab4f5c9ff46d7274edfbf9",
+        "ok": true,
+        "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+        "detectedLanguage": "zh-en",
+        "readMs": 1.281,
+        "decodeMs": 75.601,
+        "transcribeMs": 80.052,
+        "rssBytes": 620462080,
+        "requestRoundTripMs": 80.917,
+        "sampledRssBytes": 620462080
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 620511232
+      }
+    }
+  ],
+  "warmSession": {
+    "ready": {
+      "type": "ready",
+      "backend": "sherpa-onnx-paraformer-int8",
+      "pid": 22272,
+      "importMs": 9.188,
+      "modelLoadMs": 975.639,
+      "workerReadyMs": 985.027,
+      "rssBytes": 607010816,
+      "threads": 4,
+      "spawnToReadyMs": 1020.196,
+      "sampledRssBytes": 608436224
+    },
+    "warmup": {
+      "type": "result",
+      "requestId": "174eac59e2624d31960b8196def263cf",
+      "ok": true,
+      "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+      "detectedLanguage": "zh-en",
+      "readMs": 0.394,
+      "decodeMs": 84.603,
+      "transcribeMs": 88.2,
+      "rssBytes": 610402304,
+      "requestRoundTripMs": 89.808,
+      "sampledRssBytes": 610402304
+    },
+    "quality": [
+      {
+        "id": "fleurs-zh-1660",
+        "category": "mandarin",
+        "reference": "浪 漫 主 义 具 有 很 强 的 文 化 决 定 论 色 彩 这 源 于 歌 德 费 希 特 和 施 莱 格 尔 等 作 家",
+        "durationMs": 9600,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "bd6bb634d1024aa192369904a5ebc775",
+          "ok": true,
+          "text": "浪漫主义具有很强的文化决定论色彩这源于歌德费希特和施莱格尔等作家",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.286,
+          "decodeMs": 133.468,
+          "transcribeMs": 141.006,
+          "rssBytes": 613089280,
+          "requestRoundTripMs": 141.436,
+          "sampledRssBytes": 613089280
+        }
+      },
+      {
+        "id": "fleurs-zh-1662",
+        "category": "mandarin",
+        "reference": "合 金 基 本 上 由 两 种 或 以 上 金 属 混 合 而 成 不 要 忘 记 一 点 元 素 周 期 表 上 有 很 多 元 素",
+        "durationMs": 7500,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "89462eac06b9451b83fb36d40bed487d",
+          "ok": true,
+          "text": "合金基本上有两种或以上金属混合而成不要忘记一点元素周期表上有很多元素",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.329,
+          "decodeMs": 169.258,
+          "transcribeMs": 178.828,
+          "rssBytes": 616120320,
+          "requestRoundTripMs": 179.577,
+          "sampledRssBytes": 616660992
+        }
+      },
+      {
+        "id": "fleurs-zh-1673",
+        "category": "mandarin",
+        "reference": "在 独 立 战 争 期 间 十 三 个 州 最 初 根 据 联 邦 条 例 组 成 了 弱 小 的 中 央 政 府 国 会 是 其 唯 一 的 组 成 部 分",
+        "durationMs": 8580,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "655e9291301641c8a07ceb8eca536664",
+          "ok": true,
+          "text": "在独立战争期间十三个州最初根据联邦条例组成了弱小的中央政府国会是其唯一的组成部分",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.648,
+          "decodeMs": 154.065,
+          "transcribeMs": 162.964,
+          "rssBytes": 617971712,
+          "requestRoundTripMs": 163.489,
+          "sampledRssBytes": 617971712
+        }
+      },
+      {
+        "id": "fleurs-zh-1675",
+        "category": "mandarin",
+        "reference": "除 去 表 示 您 的 sie 之 外 的 所 有 名 词 都 应 以 大 写 字 母 开 头 即 使 在 句 子 中 间 也 应 如 此",
+        "durationMs": 10500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "72efb5bd6b464ff7aa23c53971ce76e4",
+          "ok": true,
+          "text": "除去表示您的 s i e 之外的所有名词都应以大写字母开头即使在句子中间也应如此",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.692,
+          "decodeMs": 196.576,
+          "transcribeMs": 207.106,
+          "rssBytes": 619429888,
+          "requestRoundTripMs": 207.531,
+          "sampledRssBytes": 619429888
+        }
+      },
+      {
+        "id": "fleurs-zh-1689",
+        "category": "mandarin",
+        "reference": "欧 洲 是 片 面 积 相 对 较 小 但 有 着 许 多 独 立 国 家 的 大 陆 在 通 常 情 况 下 穿 越 多 个 国 家 旅 行 意 味 着 必 须 多 次 经 历 签 证 申 请 和 护 照 检 查",
+        "durationMs": 12360,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "916bb1777c2e41f7b1d4aae2e8d01e8a",
+          "ok": true,
+          "text": "欧洲碎片面积相对较小但有着许多国独立国家的大陆在通常情况下穿越多个国家旅行意味着必须多次经历签证申请和护照检查",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.525,
+          "decodeMs": 180.327,
+          "transcribeMs": 194.425,
+          "rssBytes": 621445120,
+          "requestRoundTripMs": 195.209,
+          "sampledRssBytes": 621445120
+        }
+      },
+      {
+        "id": "fleurs-zh-1693",
+        "category": "mandarin",
+        "reference": "但 在 队 长 输 掉 三 柱 门 后 印 度 在 结 束 这 一 局 的 比 赛 时 只 得 了 36 分 输 掉 7 个 三 柱 门",
+        "durationMs": 12580,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "088421ab19294b899a19a2532f489f02",
+          "ok": true,
+          "text": "但在队长输掉三柱门后印度在结束这一局的比赛时只得了三十六分输掉了七个三柱门",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.108,
+          "decodeMs": 181.489,
+          "transcribeMs": 191.148,
+          "rssBytes": 622379008,
+          "requestRoundTripMs": 191.519,
+          "sampledRssBytes": 622379008
+        }
+      },
+      {
+        "id": "fleurs-zh-1703",
+        "category": "mandarin",
+        "reference": "昨 天 马 尔 泰 利 在 由 9 名 成 员 组 成 的 新 临 时 选 举 委 员 会 cep 中 宣 誓 就 职",
+        "durationMs": 9360,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "901f42a7aa9d4ec1b9a4dcb5b0b8df5f",
+          "ok": true,
+          "text": "昨天马尔泰利在由九名成员组成的新临时选举会中宣誓就职",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.293,
+          "decodeMs": 105.252,
+          "transcribeMs": 110.9,
+          "rssBytes": 622788608,
+          "requestRoundTripMs": 111.726,
+          "sampledRssBytes": 622804992
+        }
+      },
+      {
+        "id": "fleurs-zh-1707",
+        "category": "mandarin",
+        "reference": "它 是 南 非 的 主 要 景 点 之 一 被 认 为 是 南 非 国 家 公 园 体 系 sanparks 的 主 打 景 点",
+        "durationMs": 7260,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f4ea5cba85f948d1a36bbc72484781fc",
+          "ok": true,
+          "text": "它是南非的主要景点之一被认为是南非国家公园体系的主打景点",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.45,
+          "decodeMs": 183.12,
+          "transcribeMs": 192.466,
+          "rssBytes": 623394816,
+          "requestRoundTripMs": 193.128,
+          "sampledRssBytes": 623394816
+        }
+      },
+      {
+        "id": "fleurs-zh-1720",
+        "category": "mandarin",
+        "reference": "热 巧 克 力 达 到 了 比 利 时 的 标 准 果 汁 价 格 昂 贵 但 品 质 很 好",
+        "durationMs": 9660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "46475c86eef34c3eb340c2da8425f98c",
+          "ok": true,
+          "text": "热巧克力达到了比利时的标准果汁价格昂贵但品质很好",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.577,
+          "decodeMs": 113.485,
+          "transcribeMs": 120.715,
+          "rssBytes": 624050176,
+          "requestRoundTripMs": 121.191,
+          "sampledRssBytes": 624050176
+        }
+      },
+      {
+        "id": "fleurs-zh-1726",
+        "category": "mandarin",
+        "reference": "实 地 考 察 是 任 何 教 学 活 动 的 重 要 组 成 部 分 通 常 老 师 会 很 乐 意 带 学 生 去 那 些 公 交 车 无 法 到 达 的 地 方",
+        "durationMs": 9000,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "5776e8dfa388455093af0fe8d3a5f7e4",
+          "ok": true,
+          "text": "实地考察是任何教学活动的重要组成部分通常老师会很乐意带学生去那些公交车无法到达的地方",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.646,
+          "decodeMs": 141.45,
+          "transcribeMs": 149.73,
+          "rssBytes": 624574464,
+          "requestRoundTripMs": 150.127,
+          "sampledRssBytes": 624574464
+        }
+      },
+      {
+        "id": "fleurs-zh-1736",
+        "category": "mandarin",
+        "reference": "罗 兰 多 门 多 萨 rolando mendoza 架 起 他 的 m16 步 枪 对 游 客 扫 射",
+        "durationMs": 8220,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "77d554c0e99048a798121f418a3b7f7c",
+          "ok": true,
+          "text": "罗兰多门多萨架起他的 m 十六步枪对游客扫射",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.09,
+          "decodeMs": 105.852,
+          "transcribeMs": 111.645,
+          "rssBytes": 625262592,
+          "requestRoundTripMs": 112.109,
+          "sampledRssBytes": 625278976
+        }
+      },
+      {
+        "id": "fleurs-zh-1745",
+        "category": "mandarin",
+        "reference": "植 物 在 自 然 环 境 中 状 态 最 好 因 此 要 抵 住 诱 惑 不 去 摘 掉 植 物 哪 怕 只 是 一 株",
+        "durationMs": 8220,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "56829a00fdac4bad814c76889ea34480",
+          "ok": true,
+          "text": "植物在自然环境中状态最好因此要抵住诱惑不要摘掉植物哪怕只是一株",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.101,
+          "decodeMs": 182.848,
+          "transcribeMs": 192.963,
+          "rssBytes": 626262016,
+          "requestRoundTripMs": 193.333,
+          "sampledRssBytes": 626262016
+        }
+      },
+      {
+        "id": "fleurs-zh-1747",
+        "category": "mandarin",
+        "reference": "其 他 摔 跤 选 手 也 纷 纷 悼 念 露 娜 luna",
+        "durationMs": 7980,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f5ee174ef5a9425c9d7c782767f05286",
+          "ok": true,
+          "text": "其他摔跤选手也纷纷悼念露娜",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.023,
+          "decodeMs": 93,
+          "transcribeMs": 98.89,
+          "rssBytes": 626556928,
+          "requestRoundTripMs": 99.237,
+          "sampledRssBytes": 626556928
+        }
+      },
+      {
+        "id": "fleurs-zh-1760",
+        "category": "mandarin",
+        "reference": "沧 龙 是 那 个 时 代 的 顶 级 掠 食 者 除 了 同 类 它 什 么 都 不 怕",
+        "durationMs": 5880,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "8cd95da1b49944859755dc69c1410961",
+          "ok": true,
+          "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.295,
+          "decodeMs": 74.849,
+          "transcribeMs": 78.183,
+          "rssBytes": 626769920,
+          "requestRoundTripMs": 78.674,
+          "sampledRssBytes": 626786304
+        }
+      },
+      {
+        "id": "fleurs-zh-1761",
+        "category": "mandarin",
+        "reference": "两 位 摄 影 师 其 后 顶 替 一 位 需 要 上 洗 手 间 的 老 妇 门 多 萨 则 被 击 毙",
+        "durationMs": 9960,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9cbc4f6655b845e38db820dc9aecd97e",
+          "ok": true,
+          "text": "两位摄影师其后顶替一位需要上洗手间的老妇门多萨则被击毙",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.707,
+          "decodeMs": 121.526,
+          "transcribeMs": 128.73,
+          "rssBytes": 627605504,
+          "requestRoundTripMs": 129.266,
+          "sampledRssBytes": 627605504
+        }
+      },
+      {
+        "id": "fleurs-zh-1772",
+        "category": "mandarin",
+        "reference": "因 此 很 可 能 这 个 符 号 只 是 作 为 一 个 标 签 添 加 的",
+        "durationMs": 11500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e4574e1d16dc4edbb89aaaa6f5c415a8",
+          "ok": true,
+          "text": "因此很可能这个符号只是作为一个标签添加的",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.463,
+          "decodeMs": 132.997,
+          "transcribeMs": 141.468,
+          "rssBytes": 628015104,
+          "requestRoundTripMs": 141.818,
+          "sampledRssBytes": 628015104
+        }
+      },
+      {
+        "id": "fleurs-zh-1774",
+        "category": "mandarin",
+        "reference": "在 外 围 岛 屿 可 能 无 法 使 用 信 用 卡 但 可 以 使 用 英 美 货 币 请 事 先 与 房 主 联 系 确 认 可 接 受 的 付 款 方 式",
+        "durationMs": 9780,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "6db7897579ef4646beefbd0007e909bc",
+          "ok": true,
+          "text": "在外围岛屿无法使用信用卡但可以使用英美货币请事先与房主联系确定可接受的付款方式",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.219,
+          "decodeMs": 112.737,
+          "transcribeMs": 120.183,
+          "rssBytes": 628637696,
+          "requestRoundTripMs": 120.525,
+          "sampledRssBytes": 628637696
+        }
+      },
+      {
+        "id": "fleurs-zh-1787",
+        "category": "mandarin",
+        "reference": "写 博 客 是 一 种 能 够 激 发 合 作 的 工 具 还 能 鼓 励 学 生 把 学 习 延 伸 到 传 统 的 学 校 授 课 之 外",
+        "durationMs": 9660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "d8dfcb5c97b443819b99e188f0311191",
+          "ok": true,
+          "text": "写博客是一种能够激发合作的工具还能鼓励学生把学习延伸到传统的学校授课之外",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.454,
+          "decodeMs": 103.272,
+          "transcribeMs": 111.504,
+          "rssBytes": 629538816,
+          "requestRoundTripMs": 117.07,
+          "sampledRssBytes": 629555200
+        }
+      },
+      {
+        "id": "fleurs-zh-1789",
+        "category": "mandarin",
+        "reference": "其 他 提 名 包 括 最 佳 影 片 最 佳 导 演 最 佳 摄 影 最 佳 服 装 设 计 最 佳 电 影 剪 辑 最 佳 原 创 配 乐 最 佳 艺 术 指 导 最 佳 音 效 剪 辑 最 佳 混 音 和 最 佳 原 创 剧 本",
+        "durationMs": 11160,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "0d0a370c41dc4d1f874b2cb63f007d86",
+          "ok": true,
+          "text": "其他提名包括最佳影片最佳导演最佳摄影最佳服装设计最佳电影剪辑最佳原创配乐最佳艺术指导最佳音像剪辑最佳婚姻和最佳原创剧本",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.442,
+          "decodeMs": 129.139,
+          "transcribeMs": 137.233,
+          "rssBytes": 630210560,
+          "requestRoundTripMs": 137.586,
+          "sampledRssBytes": 630210560
+        }
+      },
+      {
+        "id": "fleurs-zh-1800",
+        "category": "mandarin",
+        "reference": "大 桥 预 计 将 于 2017 年 9 月 全 面 投 入 使 用 届 时 巴 西 海 关 检 查 站 预 计 也 将 完 工",
+        "durationMs": 8460,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e685bac3b1c94f44aca6a8521b28b7a7",
+          "ok": true,
+          "text": "大桥预计将于二零一七年九月全面投入使用届时巴西海关检查站预计也将完工",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.51,
+          "decodeMs": 163.03,
+          "transcribeMs": 172.276,
+          "rssBytes": 630751232,
+          "requestRoundTripMs": 173.179,
+          "sampledRssBytes": 630751232
+        }
+      },
+      {
+        "id": "fleurs-zh-1804",
+        "category": "mandarin",
+        "reference": "海 地 正 义 与 民 主 研 究 所 haitian institute for justice and democracy 引 用 的 独 立 研 究 表 明 是 尼 泊 尔 的 联 合 国 维 和 部 队 在 不 知 情 的 情 况 下 将 这 种 疾 病 带 到 了 海 地",
+        "durationMs": 13920,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "6893237bf1a24d819a25e6aec9c86406",
+          "ok": true,
+          "text": "海地正义与民主研究所引用的独立研究表明是尼泊尔的联合国维和部队在不执行的情况下将这种疾病带到了海地",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.091,
+          "decodeMs": 211.723,
+          "transcribeMs": 223.488,
+          "rssBytes": 632389632,
+          "requestRoundTripMs": 223.849,
+          "sampledRssBytes": 632389632
+        }
+      },
+      {
+        "id": "fleurs-zh-1813",
+        "category": "mandarin",
+        "reference": "巴 塞 罗 那 的 官 方 语 言 为 加 泰 罗 尼 亚 语 和 西 班 牙 语 大 约 一 半 的 当 地 人 更 愿 意 说 加 泰 罗 尼 亚 语 绝 大 多 数 人 都 听 懂 加 泰 罗 尼 亚 语 至 于 西 班 牙 语 几 乎 每 个 人 都 能 听 懂",
+        "durationMs": 14340,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "57315231c6f543cdbd6443b6c392f3e9",
+          "ok": true,
+          "text": "巴塞罗那的官方语言为加泰罗尼亚语和西班牙语大约一半的当地人更愿意说加泰罗尼亚语觉得多数人都能听懂加泰罗尼亚语至于西班牙语几乎每个人都能听懂",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.259,
+          "decodeMs": 291.014,
+          "transcribeMs": 305.291,
+          "rssBytes": 639270912,
+          "requestRoundTripMs": 305.611,
+          "sampledRssBytes": 639270912
+        }
+      },
+      {
+        "id": "fleurs-zh-1818",
+        "category": "mandarin",
+        "reference": "人 们 可 能 想 不 到 旅 行 者 在 回 程 中 也 需 要 耐 心 和 理 解",
+        "durationMs": 7920,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9e52842ded814d0c8436973d3d5838a4",
+          "ok": true,
+          "text": "人们可能想不到旅行者在回程中也需要耐心和理解",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.256,
+          "decodeMs": 105.379,
+          "transcribeMs": 111.341,
+          "rssBytes": 639647744,
+          "requestRoundTripMs": 111.739,
+          "sampledRssBytes": 639647744
+        }
+      },
+      {
+        "id": "fleurs-zh-1825",
+        "category": "mandarin",
+        "reference": "如 果 想 近 距 离 观 看 演 出 你 得 早 点 到 在 靠 近 舞 台 的 地 方 占 好 营 地",
+        "durationMs": 6360,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "06d27152d9cb427f8be51129c3c84cb0",
+          "ok": true,
+          "text": "如果想近距离观看演出你得早点到在高近舞台的地方站好营地",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.406,
+          "decodeMs": 150.628,
+          "transcribeMs": 158.73,
+          "rssBytes": 640073728,
+          "requestRoundTripMs": 159.153,
+          "sampledRssBytes": 640073728
+        }
+      },
+      {
+        "id": "fleurs-zh-1831",
+        "category": "mandarin",
+        "reference": "普 利 特 维 茨 湖 国 家 公 园 森 林 茂 密 主 要 树 种 有 山 毛 榉 云 杉 和 冷 杉 并 以 高 山 和 地 中 海 植 被 混 合 为 特 色",
+        "durationMs": 14160,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "652a83c8c7f34b7e9199d52999d8bb77",
+          "ok": true,
+          "text": "普利特维茨湖国家公园森林茂盛主要树种有山毛举云山和冷山并以高山和地中海植被混合为特色",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.384,
+          "decodeMs": 195.46,
+          "transcribeMs": 204.465,
+          "rssBytes": 640614400,
+          "requestRoundTripMs": 206.299,
+          "sampledRssBytes": 640614400
+        }
+      },
+      {
+        "id": "fleurs-zh-1834",
+        "category": "mandarin",
+        "reference": "也 可 以 到 北 部 参 观 法 蒂 玛 圣 母 院 圣 地 它 是 举 世 闻 名 的 圣 母 玛 丽 亚 显 现 之 地",
+        "durationMs": 8520,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "5a266841480441a89e0a17a198070a56",
+          "ok": true,
+          "text": "也可以到北部参观法蒂玛圣母院圣地它是举世闻名的圣母玛利亚显现之地",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.337,
+          "decodeMs": 142.058,
+          "transcribeMs": 149.263,
+          "rssBytes": 641204224,
+          "requestRoundTripMs": 149.914,
+          "sampledRssBytes": 641220608
+        }
+      },
+      {
+        "id": "fleurs-zh-1847",
+        "category": "mandarin",
+        "reference": "他 受 到 了 新 加 坡 副 总 理 黄 根 成 的 欢 迎 并 与 新 加 坡 总 理 李 显 龙 探 讨 了 贸 易 和 恐 怖 主 义 问 题",
+        "durationMs": 11820,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "b400883ff6a04c84b41099d388ad01a2",
+          "ok": true,
+          "text": "他受到了新加坡副总理黄庚成的欢迎并与新加坡总理李显龙探讨了贸易和恐怖主义问题",
+          "detectedLanguage": "zh-en",
+          "readMs": 5.511,
+          "decodeMs": 407.449,
+          "transcribeMs": 421.379,
+          "rssBytes": 643203072,
+          "requestRoundTripMs": 433.867,
+          "sampledRssBytes": 643203072
+        }
+      },
+      {
+        "id": "fleurs-zh-1850",
+        "category": "mandarin",
+        "reference": "它 能 向 后 兼 容 802.11a 802.11b 和 802.11g 前 提 是 基 站 要 有 双 无 线 电",
+        "durationMs": 10020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "21f9f726c0d6405bbaa8f7199c7a7937",
+          "ok": true,
+          "text": "它能向后兼容八零二点一一 a 八零二点一一 b 和八零二点一一 g 前提是鸡单要有双无线电",
+          "detectedLanguage": "zh-en",
+          "readMs": 4.587,
+          "decodeMs": 235.164,
+          "transcribeMs": 246.111,
+          "rssBytes": 643612672,
+          "requestRoundTripMs": 247.833,
+          "sampledRssBytes": 643612672
+        }
+      },
+      {
+        "id": "fleurs-zh-1862",
+        "category": "mandarin",
+        "reference": "美 国 联 邦 航 空 局 faa 称 新 一 代 航 空 运 输 系 统 nextgen 可 以 使 飞 机 缩 短 飞 行 航 线 每 年 节 省 数 百 万 加 仑 的 燃 料 并 减 少 碳 排 放",
+        "durationMs": 12900,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "adb9c26dbb8342089e88db3e541841e0",
+          "ok": true,
+          "text": "美国联邦航空局称新一代的航空运输系统可以使飞期缩短飞行航线每年节省数百万加仑的燃料并减少碳排放",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.655,
+          "decodeMs": 193.134,
+          "transcribeMs": 202.184,
+          "rssBytes": 645677056,
+          "requestRoundTripMs": 202.494,
+          "sampledRssBytes": 645677056
+        }
+      },
+      {
+        "id": "fleurs-zh-1871",
+        "category": "mandarin",
+        "reference": "在 中 东 温 暖 的 气 候 中 房 子 并 不 是 多 重 要",
+        "durationMs": 6960,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "6d491176a7554cf4a09c56029f691d27",
+          "ok": true,
+          "text": "在中冬温暖的气候中房子并不是多重要",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.342,
+          "decodeMs": 185.922,
+          "transcribeMs": 193.944,
+          "rssBytes": 646201344,
+          "requestRoundTripMs": 195.442,
+          "sampledRssBytes": 646201344
+        }
+      },
+      {
+        "id": "fleurs-zh-1878",
+        "category": "mandarin",
+        "reference": "教 会 中 央 集 权 制 在 罗 马 存 在 了 一 千 多 年 这 种 权 力 和 金 钱 的 集 中 让 许 多 人 开 始 质 疑 他 们 是 否 遵 守 了 这 一 信 条",
+        "durationMs": 10800,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9bbfddb94c364aa8bdf0706d7003ec7e",
+          "ok": true,
+          "text": "教会中央集权制在罗马存在了一千多年这种权利和金钱的集中让许多人开始质疑他们是否遵守了这一信条",
+          "detectedLanguage": "zh-en",
+          "readMs": 3.063,
+          "decodeMs": 227.401,
+          "transcribeMs": 241.104,
+          "rssBytes": 648511488,
+          "requestRoundTripMs": 241.594,
+          "sampledRssBytes": 648511488
+        }
+      },
+      {
+        "id": "fleurs-zh-1885",
+        "category": "mandarin",
+        "reference": "山 区 夏 令 时 晚 上 10 点 到 11 点 之 间 院 子 里 的 犯 人 们 引 发 了 一 场 火 灾",
+        "durationMs": 11380,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "2a3e592c5e2e485e9ebd0281ade43b1a",
+          "ok": true,
+          "text": "山区下令时晚上十点到十一点之间院子里的犯人们引发了一场火灾",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.413,
+          "decodeMs": 188.755,
+          "transcribeMs": 197.714,
+          "rssBytes": 648953856,
+          "requestRoundTripMs": 198.72,
+          "sampledRssBytes": 648953856
+        }
+      },
+      {
+        "id": "fleurs-zh-1895",
+        "category": "mandarin",
+        "reference": "随 着 希 腊 知 识 的 衰 落 西 方 脱 离 了 其 希 腊 哲 学 和 科 学 根 源",
+        "durationMs": 6300,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "3fe1551c71654b9b98fe83f9c61cd117",
+          "ok": true,
+          "text": "随着希腊知识的衰落西方脱离了其希腊哲学和科学根源",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.069,
+          "decodeMs": 96.643,
+          "transcribeMs": 101.02,
+          "rssBytes": 649166848,
+          "requestRoundTripMs": 103.222,
+          "sampledRssBytes": 649183232
+        }
+      },
+      {
+        "id": "fleurs-zh-1901",
+        "category": "mandarin",
+        "reference": "人 工 智 能 有 很 强 的 科 幻 色 彩 但 它 其 实 是 计 算 机 科 学 非 常 重 要 的 一 个 分 支 研 究 的 是 机 器 的 行 为 学 习 和 智 能 适 应",
+        "durationMs": 11160,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "8a56606f947c4bf3892af343b07f18c7",
+          "ok": true,
+          "text": "人工智能有很强的科幻色彩但它其实是计算机科学非常重要的一个分支研究的是机器的行为学习和智能适应",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.097,
+          "decodeMs": 229.502,
+          "transcribeMs": 241.214,
+          "rssBytes": 651837440,
+          "requestRoundTripMs": 241.533,
+          "sampledRssBytes": 651837440
+        }
+      },
+      {
+        "id": "fleurs-zh-1910",
+        "category": "mandarin",
+        "reference": "巴 黎 人 是 出 了 名 的 以 自 我 中 心 粗 鲁 和 傲 慢",
+        "durationMs": 5100,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "67f0eefcb498446597bb62e0e1fc482f",
+          "ok": true,
+          "text": "巴黎人是出了名的以自我为中心粗鲁和傲慢",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.418,
+          "decodeMs": 88.242,
+          "transcribeMs": 93.26,
+          "rssBytes": 652083200,
+          "requestRoundTripMs": 94.104,
+          "sampledRssBytes": 652083200
+        }
+      },
+      {
+        "id": "fleurs-zh-1911",
+        "category": "mandarin",
+        "reference": "同 理 有 了 申 根 签 证 你 就 不 必 分 别 向 每 个 申 根 成 员 国 申 请 签 证 从 而 节 省 了 时 间 金 钱 和 手 续",
+        "durationMs": 11940,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "6c1faffece2740cdab197cc57dee653f",
+          "ok": true,
+          "text": "同理有了深耕签证你就不必分别向每个深耕成员国申请签证从而节省了时间金钱和手续",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.609,
+          "decodeMs": 153.845,
+          "transcribeMs": 161.669,
+          "rssBytes": 653344768,
+          "requestRoundTripMs": 162.168,
+          "sampledRssBytes": 653344768
+        }
+      },
+      {
+        "id": "fleurs-zh-1920",
+        "category": "mandarin",
+        "reference": "他 们 通 常 会 提 供 特 别 的 食 品 饮 料 和 娱 乐 活 动 让 客 人 保 持 愉 悦 留 在 赌 场",
+        "durationMs": 9360,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "59d831bb5a5a46ccb20d0c62853f87a3",
+          "ok": true,
+          "text": "他们通常会提供特别的食品饮料和娱乐活动让客人保持愉悦留在赌场",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.598,
+          "decodeMs": 202.047,
+          "transcribeMs": 209.966,
+          "rssBytes": 653705216,
+          "requestRoundTripMs": 210.378,
+          "sampledRssBytes": 653705216
+        }
+      },
+      {
+        "id": "fleurs-zh-1931",
+        "category": "mandarin",
+        "reference": "该 服 务 经 常 用 于 航 运 包 括 游 艇 以 及 有 远 程 数 据 和 语 音 需 求 的 探 险",
+        "durationMs": 6900,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "8699c6e6de504f6c82cd4197ac24308f",
+          "ok": true,
+          "text": "该服务经常用于航运包括游艇以及有远程数据和语音需求的探险",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.454,
+          "decodeMs": 150.663,
+          "transcribeMs": 158.1,
+          "rssBytes": 654131200,
+          "requestRoundTripMs": 158.493,
+          "sampledRssBytes": 654131200
+        }
+      },
+      {
+        "id": "fleurs-zh-1934",
+        "category": "mandarin",
+        "reference": "平 时 你 总 能 在 这 里 听 到 游 客 和 小 摊 贩 的 声 音 声 光 交 织 就 像 在 讲 述 一 个 动 人 的 故 事",
+        "durationMs": 10280,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "d0fc38d2f2e84e54912bd3bb2e07250d",
+          "ok": true,
+          "text": "平时你总能在这里听到游客和小摊贩的声音声光交织就像在讲述一个动人的故事",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.622,
+          "decodeMs": 150.603,
+          "transcribeMs": 157.99,
+          "rssBytes": 654753792,
+          "requestRoundTripMs": 158.459,
+          "sampledRssBytes": 654753792
+        }
+      },
+      {
+        "id": "fleurs-zh-1948",
+        "category": "mandarin",
+        "reference": "三 国 是 中 国 古 代 历 史 上 最 血 腥 的 时 代 之 一 成 千 上 万 的 人 为 了 争 夺 西 安 豪 华 宫 殿 最 高 的 权 力 而 死 去",
+        "durationMs": 8460,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "1559ab3648d94037b4c1e46750ab0f6e",
+          "ok": true,
+          "text": "三国是中国古代历史上最血腥的时代之一成千上万的人为了争夺西安豪华宫殿最高的权利而死去",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.435,
+          "decodeMs": 171.326,
+          "transcribeMs": 180.868,
+          "rssBytes": 656818176,
+          "requestRoundTripMs": 181.182,
+          "sampledRssBytes": 656818176
+        }
+      },
+      {
+        "id": "fleurs-zh-1953",
+        "category": "mandarin",
+        "reference": "他 随 后 被 转 送 到 剑 桥 的 阿 登 布 鲁 克 医 院",
+        "durationMs": 7800,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "3e51a1ba416f4da0b613066ba4da1573",
+          "ok": true,
+          "text": "他随后被转送到剑桥的阿登布鲁克医院",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.098,
+          "decodeMs": 109.44,
+          "transcribeMs": 114.859,
+          "rssBytes": 657342464,
+          "requestRoundTripMs": 115.38,
+          "sampledRssBytes": 657342464
+        }
+      },
+      {
+        "id": "fleurs-zh-1957",
+        "category": "mandarin",
+        "reference": "他 把 谣 言 称 为 政 治 碎 碎 念 和 愚 蠢 行 为",
+        "durationMs": 4500,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "7e02d8569836414d940f6b09decda617",
+          "ok": true,
+          "text": "他把谣言称为政治碎碎念和愚蠢行为",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.092,
+          "decodeMs": 94.774,
+          "transcribeMs": 100.164,
+          "rssBytes": 657637376,
+          "requestRoundTripMs": 100.568,
+          "sampledRssBytes": 657637376
+        }
+      },
+      {
+        "id": "fleurs-zh-1967",
+        "category": "mandarin",
+        "reference": "莱 顿 layton 在 与 首 相 会 面 期 间 要 求 修 改 保 守 党 的 环 境 法 案 他 要 求 ' 彻 底 重 写 ' 保 守 党 的 环 境 法 案",
+        "durationMs": 10320,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "5d503a86760e4fa9a9507a123f9ef074",
+          "ok": true,
+          "text": "莱顿在与首相会面期间要求修改保守党的环境方案他要求彻底重写保守党的环境法案",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.641,
+          "decodeMs": 169.342,
+          "transcribeMs": 178.459,
+          "rssBytes": 661520384,
+          "requestRoundTripMs": 178.946,
+          "sampledRssBytes": 644759552
+        }
+      },
+      {
+        "id": "fleurs-zh-1970",
+        "category": "mandarin",
+        "reference": "它 的 舌 头 有 可 能 是 分 叉 的 对 此 我 们 尚 不 确 定 它 的 食 物 包 括 海 龟 大 型 鱼 类 其 他 沧 龙 甚 至 会 吃 人",
+        "durationMs": 11400,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "05f9c0b4601441509668b3e1ef83647f",
+          "ok": true,
+          "text": "他们的舌头有可能是分叉的对此我们尚不确定它的食物包括海龟大型鱼类其他苍龙甚至会吃人",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.326,
+          "decodeMs": 144.641,
+          "transcribeMs": 152.18,
+          "rssBytes": 627671040,
+          "requestRoundTripMs": 155.845,
+          "sampledRssBytes": 627671040
+        }
+      },
+      {
+        "id": "fleurs-zh-1979",
+        "category": "mandarin",
+        "reference": "福 克 兰 群 岛 的 官 方 货 币 是 福 克 兰 英 镑 与 英 镑 等 值",
+        "durationMs": 8040,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e6fec97489a54aa5843139e678e84b90",
+          "ok": true,
+          "text": "福克兰群岛的官方货币是福克兰英镑与英镑等值",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.463,
+          "decodeMs": 217.108,
+          "transcribeMs": 225.618,
+          "rssBytes": 627752960,
+          "requestRoundTripMs": 231.343,
+          "sampledRssBytes": 627752960
+        }
+      },
+      {
+        "id": "fleurs-zh-1987",
+        "category": "mandarin",
+        "reference": "坠 机 发 生 在 高 海 拔 山 区 据 称 是 敌 方 火 力 所 致",
+        "durationMs": 4800,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "cda1fbbedf9e4d4bad011ebeab1d64a9",
+          "ok": true,
+          "text": "坠机发生在高海拔战区据说是敌方火力所致",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.407,
+          "decodeMs": 107.759,
+          "transcribeMs": 114.019,
+          "rssBytes": 627851264,
+          "requestRoundTripMs": 116.453,
+          "sampledRssBytes": 627851264
+        }
+      },
+      {
+        "id": "fleurs-zh-1994",
+        "category": "mandarin",
+        "reference": "毋 庸 置 疑 的 是 如 果 你 会 讲 一 门 罗 曼 语 那 么 学 习 葡 萄 牙 语 会 更 加 容 易",
+        "durationMs": 11620,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "707fcdd00de74fd7896e2a1125a379f4",
+          "ok": true,
+          "text": "毋庸置疑的是如果你会讲一门罗曼语那么学习葡萄牙语会更加容易",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.686,
+          "decodeMs": 123.158,
+          "transcribeMs": 129.764,
+          "rssBytes": 627867648,
+          "requestRoundTripMs": 130.162,
+          "sampledRssBytes": 627867648
+        }
+      },
+      {
+        "id": "fleurs-zh-1998",
+        "category": "mandarin",
+        "reference": "它 们 脚 上 有 鳞 片 和 爪 子 会 产 卵 还 像 霸 王 龙 一 样 用 两 条 后 腿 走 路",
+        "durationMs": 6300,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c15f446295f543d196446b8764bf9656",
+          "ok": true,
+          "text": "他们脚上有鳞片和爪子会产卵哈像霸王龙一样用两条后腿走路",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.11,
+          "decodeMs": 93.364,
+          "transcribeMs": 98.078,
+          "rssBytes": 627867648,
+          "requestRoundTripMs": 98.74,
+          "sampledRssBytes": 627867648
+        }
+      },
+      {
+        "id": "fleurs-zh-2009",
+        "category": "mandarin",
+        "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+        "durationMs": 14220,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "44875b20424441c999e49057d7d221a9",
+          "ok": true,
+          "text": "最容易获得植物性资源应该是叶子和豆科植物中的蛋白质但像我们的像我们这样的灵长类食物灵长类动物很难消化这种蛋白质除非是煮熟的",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.798,
+          "decodeMs": 169.028,
+          "transcribeMs": 178.951,
+          "rssBytes": 628015104,
+          "requestRoundTripMs": 179.249,
+          "sampledRssBytes": 628015104
+        }
+      },
+      {
+        "id": "fleurs-zh-2009",
+        "category": "mandarin",
+        "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+        "durationMs": 11760,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "5c3213d8e7f542029c2620f4436489b0",
+          "ok": true,
+          "text": "最容易获得植物性资源应该是叶子和豆科植物中的蛋白质但像我们的像我们这样的灵长类食物灵长类动物很难消化这种蛋白质除非是煮熟的",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.543,
+          "decodeMs": 154.352,
+          "transcribeMs": 162.86,
+          "rssBytes": 629817344,
+          "requestRoundTripMs": 163.286,
+          "sampledRssBytes": 629817344
+        }
+      }
+    ],
+    "performance": [
+      {
+        "type": "result",
+        "requestId": "3b859009ad134b8b8f2f4bb0b4a6591b",
+        "ok": true,
+        "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.3,
+        "decodeMs": 114.496,
+        "transcribeMs": 117.93,
+        "rssBytes": 629833728,
+        "requestRoundTripMs": 118.266,
+        "sampledRssBytes": 629833728
+      },
+      {
+        "type": "result",
+        "requestId": "4a0433698fe449e7ab69b68e14169402",
+        "ok": true,
+        "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.426,
+        "decodeMs": 73.49,
+        "transcribeMs": 77.257,
+        "rssBytes": 629833728,
+        "requestRoundTripMs": 77.74,
+        "sampledRssBytes": 629833728
+      },
+      {
+        "type": "result",
+        "requestId": "2477785df79e4cd68210b92ae5b0feaa",
+        "ok": true,
+        "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.253,
+        "decodeMs": 69.923,
+        "transcribeMs": 73.237,
+        "rssBytes": 629833728,
+        "requestRoundTripMs": 73.623,
+        "sampledRssBytes": 629833728
+      },
+      {
+        "type": "result",
+        "requestId": "e9a46a4529d446a0bd5e553653700070",
+        "ok": true,
+        "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.275,
+        "decodeMs": 69.983,
+        "transcribeMs": 73.548,
+        "rssBytes": 629833728,
+        "requestRoundTripMs": 73.885,
+        "sampledRssBytes": 629833728
+      },
+      {
+        "type": "result",
+        "requestId": "3ea83f3751df44d8b3eb4d88a47ba0d5",
+        "ok": true,
+        "text": "苍龙是那个时代的顶级掠食者从除了同类他什么都不怕",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.247,
+        "decodeMs": 68.393,
+        "transcribeMs": 71.704,
+        "rssBytes": 629833728,
+        "requestRoundTripMs": 72.064,
+        "sampledRssBytes": 629833728
+      }
+    ],
+    "shutdown": {
+      "type": "shutdown-complete",
+      "rssBytes": 629833728
+    }
+  },
+  "summaries": {
+    "spawnToReadyMs": {
+      "count": 3,
+      "min": 975.02,
+      "median": 1030.432,
+      "p95": 1253.23,
+      "max": 1277.985,
+      "mean": 1094.479
+    },
+    "firstRequestMs": {
+      "count": 3,
+      "min": 80.753,
+      "median": 80.917,
+      "p95": 87.77,
+      "max": 88.531,
+      "mean": 83.4
+    },
+    "coldEndToEndMs": {
+      "count": 3,
+      "min": 1055.937,
+      "median": 1118.963,
+      "p95": 1334.76,
+      "max": 1358.738,
+      "mean": 1177.879
+    },
+    "warmRequestMs": {
+      "count": 5,
+      "min": 72.064,
+      "median": 73.885,
+      "p95": 110.161,
+      "max": 118.266,
+      "mean": 83.116
+    },
+    "maxSampledRssBytes": 657637376
+  }
+}
