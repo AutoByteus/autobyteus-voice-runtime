@@ -11,6 +11,7 @@ import {
   shaFile,
   writeJson,
 } from "../../build/lib/files.mjs";
+import { assertIntegratedReleaseCommit } from "./main-reachability.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "qualifications",
@@ -88,11 +89,11 @@ if (tagExists)
   throw new Error(
     "Pre-tag qualification cannot begin after the release tag exists.",
   );
-await run(
-  "git",
-  ["merge-base", "--is-ancestor", args["maintained-main-commit"], sourceCommit],
-  { cwd: ROOT },
-);
+await assertIntegratedReleaseCommit({
+  repository: ROOT,
+  releaseCommit: sourceCommit,
+  maintainedMainCommit: args["maintained-main-commit"],
+});
 const corpora = [];
 for (const item of summaries) {
   if (!corpora.some((value) => value.id === item.value.corpus.id))
@@ -146,8 +147,10 @@ function project(q, qualificationSummarySha256) {
     modelId: q.modelId,
     buildReportSha256: q.buildReportSha256,
     buildInputManifestSha256: q.buildInputManifestSha256,
+    repositoryBuildLockSha256: q.repositoryBuildLockSha256,
     reproducibilityProofSha256: q.reproducibilityProofSha256,
     runtimeConformanceSha256: q.runtimeConformanceSha256,
+    performanceSamplesSha256: q.performanceSamplesSha256,
     qualificationSummarySha256,
     archiveSha256: q.archive.sha256,
     descriptorSha256: q.descriptorSha256,

@@ -6,15 +6,11 @@ import {
   regularFiles,
   shaFile,
   targetParts,
-  treeDigest,
   writeJson,
   ROOT,
 } from "../lib/files.mjs";
-import {
-  locked,
-  verifyInputManifest,
-  verifyLockedFile,
-} from "../locked-inputs.mjs";
+import { verifyInputManifest } from "../locked-inputs.mjs";
+import { materializePythonRuntime } from "../python/materialize-runtime.mjs";
 export async function prepare(args, profileDirectory) {
   const target = targetParts(args.target);
   const lock = await readJson(
@@ -24,7 +20,7 @@ export async function prepare(args, profileDirectory) {
     throw new Error("Provider lock does not authorize target.");
   const inputs = path.resolve(args.inputs),
     stage = path.resolve(args.stage);
-  await verifyInputManifest(inputs);
+  const inputManifest = await verifyInputManifest(inputs);
   try {
     await fs.lstat(stage);
     throw new Error("Stage must not exist.");
@@ -32,7 +28,7 @@ export async function prepare(args, profileDirectory) {
     if (error.code !== "ENOENT") throw error;
   }
   await fs.mkdir(stage, { recursive: true, mode: 0o700 });
-  return { target, lock, inputs, stage };
+  return { target, lock, inputs, stage, inputManifest };
 }
 export async function copyPackageNotices(context) {
   await fs.copyFile(
@@ -45,34 +41,20 @@ export async function copyPackageNotices(context) {
   );
 }
 export async function copyPythonProvider(context, adapterDirectory) {
-  const archive = path.join(context.inputs, "python-host-archive");
-  await verifyLockedFile(
-    archive,
-    locked.pythonBuildStandalone.archives[
-      `${context.target.platform}-${context.target.architecture}`
-    ],
-    "Hermetic Python archive",
-  );
-  const origin = await readJson(
-    path.join(context.inputs, "python-root-origin.json"),
-  );
-  if (
-    origin.schemaVersion !== 1 ||
-    origin.archiveSha256 !==
-      locked.pythonBuildStandalone.archives[
-        `${context.target.platform}-${context.target.architecture}`
-      ].sha256 ||
-    origin.treeSha256 !==
-      (await treeDigest(path.join(context.inputs, "python-root")))
-  )
-    throw new Error(
-      "Materialized Python root does not match its locked origin.",
-    );
+  assertInputClosure(context, [
+    "python-host-archive",
+    "python-wheelhouse/",
+    "model/",
+    "package-notices/",
+    ...(adapterDirectory === "english-mlx" ? ["python-dependencies.lock"] : []),
+  ]);
+  const materialized = await materializePythonRuntime(context);
   await verifyModel(context);
-  await copyClean(
-    path.join(context.inputs, "python-root"),
-    path.join(context.stage, "host/python"),
-  );
+  try {
+    await copyClean(materialized.root, path.join(context.stage, "host/python"));
+  } finally {
+    await materialized.dispose();
+  }
   await fs.mkdir(path.join(context.stage, "worker"), { recursive: true });
   const providerSource = path.join(
     ROOT,
@@ -126,32 +108,16 @@ export async function copyPythonProvider(context, adapterDirectory) {
   });
 }
 export async function verifyPythonRuntimePolicy(context, expected) {
-  const root = path.join(context.inputs, "python-root");
-  const files = await regularFiles(root);
-  for (const file of files)
-    if (
-      /(^|\/)(?:ensurepip|pip|setuptools|wheel)(?:\/|$)/i.test(file) ||
-      /(^|\/)(?:pip(?:3(?:\.12)?)?|python3\.12-config|ffmpeg)(?:\.exe)?$/i.test(
-        file,
-      ) ||
-      /^(?:include|lib\/pkgconfig)\//i.test(file) ||
-      /(^|\/)libpython[^/]*\.(?:a|lib)$/i.test(file)
-    )
-      throw new Error(`Build-only Python payload is forbidden: ${file}`);
-  const installed = new Map();
-  for (const file of files.filter((value) =>
-    value.endsWith(".dist-info/METADATA"),
-  )) {
-    const metadata = await fs.readFile(path.join(root, file), "utf8");
-    const name = /^Name:\s*(.+)$/im.exec(metadata)?.[1]?.trim();
-    const version = /^Version:\s*(.+)$/im.exec(metadata)?.[1]?.trim();
-    if (!name || !version)
-      throw new Error(`Invalid distribution metadata: ${file}`);
-    const key = canonicalDistribution(name);
-    if (installed.has(key))
-      throw new Error(`Duplicate Python distribution: ${key}`);
-    installed.set(key, version);
-  }
+  const tuple = `${context.target.platform}-${context.target.architecture}`;
+  const wheelLock = await readJson(
+    path.join(ROOT, `build/python-wheel-locks/${tuple}.json`),
+  );
+  const installed = new Map(
+    wheelLock.wheels.map(({ name, version }) => [
+      canonicalDistribution(name),
+      version,
+    ]),
+  );
   const approved = new Map(
     expected.map(({ name, version }) => [canonicalDistribution(name), version]),
   );
@@ -184,4 +150,17 @@ export async function writeEngineConfiguration(context, configuration) {
     path.join(context.stage, "provider/engine-configuration-v1.json"),
     { schemaVersion: 1, ...configuration },
   );
+}
+export function assertInputClosure(context, prefixes) {
+  for (const item of context.inputManifest.files)
+    if (
+      !prefixes.some((prefix) =>
+        prefix.endsWith("/")
+          ? item.path.startsWith(prefix)
+          : item.path === prefix,
+      )
+    )
+      throw new Error(
+        `Build input is not consumed by a locked owner: ${item.path}`,
+      );
 }

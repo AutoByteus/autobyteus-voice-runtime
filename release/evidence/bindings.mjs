@@ -1,6 +1,7 @@
 import Ajv2020 from "ajv/dist/2020.js";
 import path from "node:path";
 import { readJson, ROOT, sha256 } from "../../build/lib/files.mjs";
+import { repositoryBuildLockDigest } from "../../build/repository-lock-set.mjs";
 
 const validateCorpusManifest = new Ajv2020({
   allErrors: true,
@@ -75,7 +76,7 @@ export function verifyCorpusBinding(corpus, raw, summary, qualification) {
     throw new Error("Corpus consent-reference evidence mismatch.");
 }
 
-export function verifyBuildBinding(
+export async function verifyBuildBinding(
   build,
   inputManifest,
   qualification,
@@ -90,6 +91,8 @@ export function verifyBuildBinding(
     build.target.platform !== qualification.platform ||
     build.target.architecture !== qualification.architecture ||
     build.buildInputManifestSha256 !== qualification.buildInputManifestSha256 ||
+    build.repositoryBuildLockSha256 !==
+      qualification.repositoryBuildLockSha256 ||
     build.archive.sha256 !== qualification.archiveSha256
   )
     throw new Error("Build report identity mismatch.");
@@ -119,4 +122,10 @@ export function verifyBuildBinding(
     )
   )
     throw new Error("Preserved build-input manifest invalid.");
+  const target = `${qualification.platform}-${qualification.architecture}`;
+  if (
+    qualification.repositoryBuildLockSha256 !==
+    (await repositoryBuildLockDigest(qualification.profileId, target))
+  )
+    throw new Error("Repository-owned build lock binding mismatch.");
 }

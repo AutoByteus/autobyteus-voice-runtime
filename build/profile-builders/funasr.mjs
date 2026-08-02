@@ -5,8 +5,10 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { parsePairs, shaFile, ROOT } from "../lib/files.mjs";
+import { verifyGitSource } from "../native/locked-source.mjs";
 import {
   prepare,
+  assertInputClosure,
   copyPackageNotices,
   writeEngineConfiguration,
 } from "./common.mjs";
@@ -18,20 +20,23 @@ const args = parsePairs(process.argv.slice(2), [
   "cmake",
 ]);
 const context = await prepare(args, "chinese-funasr");
+assertInputClosure(context, [
+  "funasr-source/",
+  "llama-cpp-source/",
+  "utf8proc-source/",
+  "model/",
+  "package-notices/",
+]);
 for (const [directory, commit] of [
   ["funasr-source", context.lock.engine.funAsrCommit],
   ["llama-cpp-source", context.lock.engine.llamaCppCommit],
   ["utf8proc-source", context.lock.engine.utf8procCommit],
 ])
-  if (
-    (
-      await fs.readFile(
-        path.join(context.inputs, directory, "SOURCE_COMMIT"),
-        "utf8",
-      )
-    ).trim() !== commit
-  )
-    throw new Error(`${directory} revision mismatch.`);
+  await verifyGitSource(
+    path.join(context.inputs, directory),
+    commit,
+    directory,
+  );
 for (const model of context.lock.model.files) {
   const file = path.join(context.inputs, "model", model.name),
     info = await fs.stat(file);

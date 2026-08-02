@@ -1,0 +1,1 @@
+Filesystem-cold preparation is an acceptance metric only on the approved darwin-arm64 M1 Max reference target.

@@ -14,6 +14,7 @@ import {
   shaFile,
   writeJson,
 } from "./lib/files.mjs";
+import { verifyGoToolchain } from "./locked-inputs.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "archive",
@@ -22,6 +23,7 @@ const args = parsePairs(process.argv.slice(2), [
   "output",
 ]);
 const build = await readJson(args["build-report"]);
+await verifyGoToolchain(path.resolve(args.go));
 const archivePath = path.resolve(args.archive);
 if ((await shaFile(archivePath)) !== build.archive.sha256)
   throw new Error("Archive/build report mismatch.");

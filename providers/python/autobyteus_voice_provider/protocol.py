@@ -68,11 +68,13 @@ class ProtocolWorker:
             raw, detected = self.recognizer.transcribe(audio.samples)
             if not isinstance(raw, str) or detected not in ("en", "zh", "unknown"):
                 raise RuntimeError("invalid-engine-result")
+            if not raw:
+                raise RuntimeError("empty-recognizer-result")
         inference_ms = (time.monotonic_ns() - started) / 1_000_000
         normalize_started = time.monotonic_ns()
         normalized = self.normalizer.normalize(raw) if raw else ""
         normalization_ms = (time.monotonic_ns() - normalize_started) / 1_000_000
-        self.emit({"type":"transcription-result","protocolVersion":1,"requestId":request_id,"outcome":"no-speech" if not raw else "transcript","rawText":raw,"normalizedText":normalized,"detectedLanguage":detected,"metrics":{"audioDurationMs":audio.duration_ms,"inferenceMs":inference_ms,"normalizationMs":normalization_ms}})
+        self.emit({"type":"transcription-result","protocolVersion":1,"requestId":request_id,"outcome":"no-speech" if audio.no_speech else "transcript","rawText":raw,"normalizedText":normalized,"detectedLanguage":detected,"metrics":{"audioDurationMs":audio.duration_ms,"inferenceMs":inference_ms,"normalizationMs":normalization_ms}})
         self.ready()
 
     def ready(self):

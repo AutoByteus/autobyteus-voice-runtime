@@ -1,0 +1,313 @@
+{
+  "schemaVersion": 1,
+  "baselineId": "english-promoted-baseline-v1",
+  "profileId": "english",
+  "metric": "WER",
+  "corpusManifestSha256": "30c4cc0c6d952de68e881b239e07fd47b80144e06f487bc964deb89e6144b46e",
+  "configurationDigest": "3abffdab678fbc4c56c08bc9060ea022b1259581f20b2ca7b82cf841f93651b2",
+  "providerId": "autobyteus.voice.mlx-whisper-small",
+  "modelId": "whisper-small-mlx-fp16",
+  "value": 0.07007007007007007,
+  "results": [
+    {
+      "clipId": "fleurs-en-1660",
+      "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+      "errors": 2,
+      "units": 17
+    },
+    {
+      "clipId": "fleurs-en-1662",
+      "audioSha256": "e6f2e4c80e5b88af78013ce6751b186208919a27549fb9e100272208b3e78fd0",
+      "errors": 1,
+      "units": 21
+    },
+    {
+      "clipId": "fleurs-en-1673",
+      "audioSha256": "3be7d32f9f9e49016279c9e341d5333229c147a7496076071f46fec47b2a8c2b",
+      "errors": 1,
+      "units": 25
+    },
+    {
+      "clipId": "fleurs-en-1675",
+      "audioSha256": "be7624eeac3cd2b189f942f28f1951bf32a121c91669eaba0fd18da671dc4203",
+      "errors": 2,
+      "units": 21
+    },
+    {
+      "clipId": "fleurs-en-1687",
+      "audioSha256": "f9c3260247ceba373edea48b3addcff11119c34d77f1fceea1a91ce78634890e",
+      "errors": 0,
+      "units": 15
+    },
+    {
+      "clipId": "fleurs-en-1689",
+      "audioSha256": "c9f5fd5ab00cfe00a90dab73bdfd8f2825fda2930d2e3f6f7765256a83aedf50",
+      "errors": 6,
+      "units": 33
+    },
+    {
+      "clipId": "fleurs-en-1701",
+      "audioSha256": "4cd2b2341a50616cc62b1de26a5cd2a3696faa1b6fe36af380901eacd22e0fe9",
+      "errors": 1,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-en-1704",
+      "audioSha256": "2617b2e90f55139172e6c28a2ac10b8cdd6052b08443bc9ed241d9cb6ee309f2",
+      "errors": 0,
+      "units": 21
+    },
+    {
+      "clipId": "fleurs-en-1714",
+      "audioSha256": "31abd2ac9d4ffac7ce249e660ab835f4bd1d33d7f1e988ad185c9e9e58e06c77",
+      "errors": 0,
+      "units": 25
+    },
+    {
+      "clipId": "fleurs-en-1720",
+      "audioSha256": "d4d84953f0843ed491be08af8effc90178116cc25a43480b6b8766bc5701c5cf",
+      "errors": 0,
+      "units": 14
+    },
+    {
+      "clipId": "fleurs-en-1731",
+      "audioSha256": "1b56e22e38d3292f8fce41ba55318a831c291d7019c8cbdd515a061b17284be5",
+      "errors": 0,
+      "units": 12
+    },
+    {
+      "clipId": "fleurs-en-1737",
+      "audioSha256": "9fbb10d4f979df040894b47eb99ca221e76d3d2546170aad6d65a2efeb465c78",
+      "errors": 4,
+      "units": 12
+    },
+    {
+      "clipId": "fleurs-en-1745",
+      "audioSha256": "feb75243981b946a02007e428379a6e4f1374d485fd2f6f8e2b696192f79d985",
+      "errors": 1,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-en-1755",
+      "audioSha256": "446286000735ba48a738547f544417e7c85b398739e4a719e700696efd1c97fb",
+      "errors": 1,
+      "units": 8
+    },
+    {
+      "clipId": "fleurs-en-1756",
+      "audioSha256": "50171f02cee7b221842c3f85b5ae2f721db6e3805275915e1dfb9a0a4a35f87d",
+      "errors": 2,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-en-1768",
+      "audioSha256": "133ba4e910bcb61821535fe959b91383b46042f919c6f659cf26471502b51cbd",
+      "errors": 1,
+      "units": 26
+    },
+    {
+      "clipId": "fleurs-en-1772",
+      "audioSha256": "99b20596262179f1549a9b50b7aa4fcfa39eb8ee41b9aa1ff70671aea0b896f3",
+      "errors": 0,
+      "units": 13
+    },
+    {
+      "clipId": "fleurs-en-1781",
+      "audioSha256": "ef2f97eef7669fa93e8cecad4c5a4f603d137fe7cfbc4be71f3ba0aad5b86db3",
+      "errors": 3,
+      "units": 17
+    },
+    {
+      "clipId": "fleurs-en-1782",
+      "audioSha256": "59d6101a0fbee656bae14a55e145d211e5c6115bb092d6a38c80c9d9ff92a55e",
+      "errors": 2,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-en-1793",
+      "audioSha256": "7fa68e447e76b165ce1744169653103e44223ee57b5b42b472224c9bce52aa4f",
+      "errors": 0,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-en-1799",
+      "audioSha256": "b7db2bebbc3ff2cb8a5c00d537987f98052606a011f32bd3a5935a640e2e91cb",
+      "errors": 1,
+      "units": 12
+    },
+    {
+      "clipId": "fleurs-en-1802",
+      "audioSha256": "2824b44d0d15a9d22e274ce8d1abc0cf3bd9c181b3635762b520e979c547ff21",
+      "errors": 0,
+      "units": 10
+    },
+    {
+      "clipId": "fleurs-en-1813",
+      "audioSha256": "2f175c35ed2399273c9ae81595c379b3de7be79c5f8d63af2eab882f6000e5bc",
+      "errors": 0,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-en-1817",
+      "audioSha256": "d8531f1d437a30bc6390207ae761daef80fb05ce727b42ecc48dc938ea11787d",
+      "errors": 1,
+      "units": 12
+    },
+    {
+      "clipId": "fleurs-en-1828",
+      "audioSha256": "3eecfa2b9f4eb428b26d4a5074f78eeaa24393a3cbad171102ab85ee48a97ae2",
+      "errors": 2,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-en-1839",
+      "audioSha256": "d706d40c747e31b83a36cf412aa70b2ae6e4e9547358973226f32dedbc8f4e6a",
+      "errors": 1,
+      "units": 11
+    },
+    {
+      "clipId": "fleurs-en-1840",
+      "audioSha256": "62f8adb4a33f9291e8a82267125d9da428bd24a69aa6da9a7574e0c3fc57d21a",
+      "errors": 0,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-en-1851",
+      "audioSha256": "85df95265c784161550e5e6f2d559d1a9fa8525c9e27297ef21bb0c9c6ebcbcb",
+      "errors": 2,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-en-1857",
+      "audioSha256": "9b8095943bceaef944a7ee28228b71400d2647a79dcc40d24e0a541a1d109c37",
+      "errors": 0,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-en-1866",
+      "audioSha256": "c54c7ea72117b3bf2bd89dcbb76a1be3fe907492ad7de927121f9121e0d90303",
+      "errors": 1,
+      "units": 15
+    },
+    {
+      "clipId": "fleurs-en-1873",
+      "audioSha256": "dde1e5fbb092f0af4667cf352e6e4f772a957d24181fb1e6afc23a190673bf61",
+      "errors": 1,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-en-1881",
+      "audioSha256": "ffb375d3627927f847c2f4b4655cc2d8e5e064d5e078907641d24e50fad10cd0",
+      "errors": 1,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-en-1889",
+      "audioSha256": "ad3100c49ebf88d1f15d75cbecaa26cc055df7e2727563b980bbccc6af2a0a9f",
+      "errors": 1,
+      "units": 13
+    },
+    {
+      "clipId": "fleurs-en-1893",
+      "audioSha256": "3570df6f805501d94a7b7d86dd39dfd6f52f9525bf566d29a56c5a0e5231d558",
+      "errors": 3,
+      "units": 25
+    },
+    {
+      "clipId": "fleurs-en-1902",
+      "audioSha256": "de0a4aacdbc52a0a2ff48c3fb58f0e84006b7fe8c0fdcba34250646e56dacbdf",
+      "errors": 2,
+      "units": 12
+    },
+    {
+      "clipId": "fleurs-en-1909",
+      "audioSha256": "561b13caa64209f0fdded9fd60e4595b765c0746791f7ad407e153d38580a4de",
+      "errors": 3,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-en-1912",
+      "audioSha256": "70aaf10158644971ea49189ad31ef343b792fb3cbc12e53b76fbcdfc624a31e8",
+      "errors": 0,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-en-1922",
+      "audioSha256": "c38bc9f79a9bac156ed8c8c1b2162f45757c8d1276f05bb2a85aa739caff75b6",
+      "errors": 2,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-en-1938",
+      "audioSha256": "7045803950c7da4034e537393ab5d0c15829b08dd361fd9a9de35df3fd08485c",
+      "errors": 0,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-en-1939",
+      "audioSha256": "4ea5cca9f30fb9f75efc1981f7946656241db3b36250c2a87255760c465a81dd",
+      "errors": 2,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-en-1951",
+      "audioSha256": "57eaa7659f1d60861689163f45d2d5397e27498d521faa7508aec02a993aa7b8",
+      "errors": 3,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-en-1952",
+      "audioSha256": "8495a00f44057603005f64f35d45e97643e0cf25573b73de12a4f8a789709c93",
+      "errors": 2,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-en-1964",
+      "audioSha256": "35010f8669e91931066e923bcfdb3a0d7d5a95f333a2327fbf2aa94524ec440a",
+      "errors": 4,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-en-1969",
+      "audioSha256": "c45c170afabf447f4909301f8e6fb7444cc72190765158f54207a311ef7558ba",
+      "errors": 1,
+      "units": 27
+    },
+    {
+      "clipId": "fleurs-en-1977",
+      "audioSha256": "e402c9a346fec837f60bb94d4d38bc6a4f639c82acd5c0ef29bef0dd74c9e12e",
+      "errors": 5,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-en-1981",
+      "audioSha256": "e16a6a17344d1f357a295b95ea90a0674654195d5569ab0faf394255debd7602",
+      "errors": 2,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-en-1992",
+      "audioSha256": "440d1f00277cc6fcdfa38796177d27922c59097522e61ea52b3f7bab4ccb8319",
+      "errors": 2,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-en-1995",
+      "audioSha256": "aa3552dc30f62b9ae8f13f37b8c8f26e41612b30d0635122d7c01faebdf96201",
+      "errors": 1,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-en-2009",
+      "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
+      "errors": 0,
+      "units": 30
+    },
+    {
+      "clipId": "fleurs-en-2009",
+      "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
+      "errors": 0,
+      "units": 30
+    }
+  ]
+}

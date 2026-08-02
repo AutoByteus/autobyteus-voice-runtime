@@ -160,6 +160,7 @@ std::string Normalizer::apply(const std::string& raw) const {
     const auto input = characters(converted);
     std::string output;
     bool space = false;
+    bool previous_punctuation = false;
     for (size_t index = 0; index < input.size(); ++index) {
         auto token = input[index];
         if (token == " " || token == "\t" || token == "\r" || token == "\n") { space = true; continue; }
@@ -170,9 +171,10 @@ std::string Normalizer::apply(const std::string& raw) const {
         else if (token == "!") token = "！";
         else if (token == "?") token = "？";
         const bool punctuation = token == "，" || token == "。" || token == "！" || token == "？";
-        if (space && !output.empty() && !punctuation && !(han(characters(output).back()) && han(token))) output += ' ';
+        if (space && !output.empty() && !previous_punctuation && !punctuation && !(han(characters(output).back()) && han(token))) output += ' ';
         if (punctuation && !output.empty() && output.back() == ' ') output.pop_back();
         output += token;
+        previous_punctuation = punctuation;
         space = false;
     }
     return output;

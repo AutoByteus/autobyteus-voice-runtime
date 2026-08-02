@@ -1,0 +1,150 @@
+{
+  "schemaVersion": 1,
+  "target": "win32-x64",
+  "wheels": [
+    {
+      "name": "anyio",
+      "version": "4.14.2",
+      "fileName": "anyio-4.14.2-py3-none-any.whl",
+      "sha256": "9f505dda5ac9f0c8309b5e8bd445a8c2bf7246f3ce950121e45ea15bc41d1494"
+    },
+    {
+      "name": "av",
+      "version": "18.0.0",
+      "fileName": "av-18.0.0-cp311-abi3-win_amd64.whl",
+      "sha256": "aaf4d354d2beaa6651e4f92e54409a578bde64f79c0beef9a30b388d06f7c629"
+    },
+    {
+      "name": "certifi",
+      "version": "2026.7.22",
+      "fileName": "certifi-2026.7.22-py3-none-any.whl",
+      "sha256": "62f22742b58a1a33014a2b6b706588a8d7e2a88ae7bd1a6ebe8c992928483775"
+    },
+    {
+      "name": "click",
+      "version": "8.4.2",
+      "fileName": "click-8.4.2-py3-none-any.whl",
+      "sha256": "e6f9f66136c816745b9d65817da91d61d957fb16e02e4dcd0552553c5a197b76"
+    },
+    {
+      "name": "ctranslate2",
+      "version": "4.8.1",
+      "fileName": "ctranslate2-4.8.1-cp312-cp312-win_amd64.whl",
+      "sha256": "49f96e861b57301f0b76a082109bde2cac8204a6b4fedc870883008271e82251"
+    },
+    {
+      "name": "faster-whisper",
+      "version": "1.2.1",
+      "fileName": "faster_whisper-1.2.1-py3-none-any.whl",
+      "sha256": "79a66ad50688c0b794dd501dc340a736992a6342f7f95e5811be60b5224a26a7"
+    },
+    {
+      "name": "filelock",
+      "version": "3.32.2",
+      "fileName": "filelock-3.32.2-py3-none-any.whl",
+      "sha256": "87dd94cf281e586d135fa51132b8e3d9a598b316e90377a288663c9321036c82"
+    },
+    {
+      "name": "flatbuffers",
+      "version": "25.12.19",
+      "fileName": "flatbuffers-25.12.19-py2.py3-none-any.whl",
+      "sha256": "7634f50c427838bb021c2d66a3d1168e9d199b0607e6329399f04846d42e20b4"
+    },
+    {
+      "name": "fsspec",
+      "version": "2026.7.0",
+      "fileName": "fsspec-2026.7.0-py3-none-any.whl",
+      "sha256": "b57ddbafedfaef7018c1ecab32aa200a9d7ca26b77965f64e48b70061249d279"
+    },
+    {
+      "name": "h11",
+      "version": "0.16.0",
+      "fileName": "h11-0.16.0-py3-none-any.whl",
+      "sha256": "63cf8bbe7522de3bf65932fda1d9c2772064ffb3dae62d55932da54b31cb6c86"
+    },
+    {
+      "name": "hf-xet",
+      "version": "1.5.2",
+      "fileName": "hf_xet-1.5.2-cp38-abi3-win_amd64.whl",
+      "sha256": "ecf63d1cb69a9a7319910f8f83fcf9b46e7a32dfcf4b8f8eeddb55f647306e65"
+    },
+    {
+      "name": "httpcore",
+      "version": "1.0.9",
+      "fileName": "httpcore-1.0.9-py3-none-any.whl",
+      "sha256": "2d400746a40668fc9dec9810239072b40b4484b640a8c38fd654a024c7a1bf55"
+    },
+    {
+      "name": "httpx",
+      "version": "0.28.1",
+      "fileName": "httpx-0.28.1-py3-none-any.whl",
+      "sha256": "d909fcccc110f8c7faf814ca82a9a4d816bc5a6dbfea25d6591d6985b8ba59ad"
+    },
+    {
+      "name": "huggingface_hub",
+      "version": "1.26.0",
+      "fileName": "huggingface_hub-1.26.0-py3-none-any.whl",
+      "sha256": "e8cca670caa5d8dfa7e45bf45e86b466698198cd8150c021bcdb4a86b9252364"
+    },
+    {
+      "name": "idna",
+      "version": "3.18",
+      "fileName": "idna-3.18-py3-none-any.whl",
+      "sha256": "7f952cbe720b688055e3f87de14f5c3e5fdaa8bc3928985c4077ca689de849a2"
+    },
+    {
+      "name": "numpy",
+      "version": "2.5.1",
+      "fileName": "numpy-2.5.1-cp312-cp312-win_amd64.whl",
+      "sha256": "f7d60026c0bdb1380e83bfa7a0419c4577ee4b9a08880afcb6dadeb74c649fa2"
+    },
+    {
+      "name": "onnxruntime",
+      "version": "1.28.0",
+      "fileName": "onnxruntime-1.28.0-cp312-cp312-win_amd64.whl",
+      "sha256": "c35064f9b3c43c81c5d5d282091401d0f1ff22796d93ccade4ea2ece5e137ab8"
+    },
+    {
+      "name": "packaging",
+      "version": "26.2",
+      "fileName": "packaging-26.2-py3-none-any.whl",
+      "sha256": "5fc45236b9446107ff2415ce77c807cee2862cb6fac22b8a73826d0693b0980e"
+    },
+    {
+      "name": "protobuf",
+      "version": "7.35.1",
+      "fileName": "protobuf-7.35.1-cp310-abi3-win_amd64.whl",
+      "sha256": "230a75ddfc2de4806e56696ce9640c1cdfdb6543b7cfce98d42a4c0a0e7bdb87"
+    },
+    {
+      "name": "PyYAML",
+      "version": "6.0.3",
+      "fileName": "pyyaml-6.0.3-cp312-cp312-win_amd64.whl",
+      "sha256": "5fcd34e47f6e0b794d17de1b4ff496c00986e1c83f7ab2fb8fcfe9616ff7477b"
+    },
+    {
+      "name": "setuptools",
+      "version": "83.0.0",
+      "fileName": "setuptools-83.0.0-py3-none-any.whl",
+      "sha256": "29b23c360f22f414dc7336bb39178cc7bcbf6021ed2733cde173f09dba19abb3"
+    },
+    {
+      "name": "tokenizers",
+      "version": "0.23.1",
+      "fileName": "tokenizers-0.23.1-cp310-abi3-win_amd64.whl",
+      "sha256": "e7bfaf995c1bdbbd21d13539decb6650967013759318627d85daeb7881af16b7"
+    },
+    {
+      "name": "tqdm",
+      "version": "4.70.0",
+      "fileName": "tqdm-4.70.0-py3-none-any.whl",
+      "sha256": "7f585706bfddbdebf89daac705b2dfcc16890130727d3197ca62c732b4310953"
+    },
+    {
+      "name": "typing_extensions",
+      "version": "4.16.0",
+      "fileName": "typing_extensions-4.16.0-py3-none-any.whl",
+      "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+    }
+  ]
+}

@@ -7,6 +7,7 @@ import {
   shaFile,
   writeJson,
 } from "../build/lib/files.mjs";
+import { cacheProcedureFor } from "./cache-procedure.mjs";
 const args = parsePairs(process.argv.slice(2), [
   "source-commit",
   "runner-commit",
@@ -24,11 +25,10 @@ const evidenceRoot = path.resolve(args.evidence),
 const license = await readJson(licensePath),
   offline = await readJson(offlinePath);
 const powerCondition = process.env.VOICE_POWER_CONDITION,
-  backgroundLoad = process.env.VOICE_BACKGROUND_LOAD,
-  filesystemCacheProcedure = process.env.VOICE_FILESYSTEM_CACHE_PROCEDURE;
-if (!powerCondition || !backgroundLoad || !filesystemCacheProcedure)
+  backgroundLoad = process.env.VOICE_BACKGROUND_LOAD;
+if (!powerCondition || !backgroundLoad)
   throw new Error(
-    "VOICE_POWER_CONDITION, VOICE_BACKGROUND_LOAD, and VOICE_FILESYSTEM_CACHE_PROCEDURE are required.",
+    "VOICE_POWER_CONDITION and VOICE_BACKGROUND_LOAD are required.",
   );
 exact(license, [
   "schemaVersion",
@@ -73,7 +73,7 @@ await writeJson(path.resolve(args.output), {
   executionEnvironment: {
     powerCondition,
     backgroundLoad,
-    filesystemCacheProcedure,
+    filesystemCacheProcedure: await cacheProcedureFor(args.target),
   },
   licenseAudit: {
     fileName: "license-audit-v1.json",

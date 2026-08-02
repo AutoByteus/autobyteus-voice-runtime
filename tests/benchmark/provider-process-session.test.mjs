@@ -33,6 +33,7 @@ function childFactory({
   writeFailure = false,
   silent = false,
   ignoreTerm = false,
+  bytewise = false,
 } = {}) {
   const child = new EventEmitter();
   child.pid = 1234;
@@ -43,68 +44,60 @@ function childFactory({
     callback();
     if (value.type === "transcribe-file") {
       queueMicrotask(() => {
-        child.stdout.emit(
-          "data",
-          frame({
-            type: "lifecycle",
-            protocolVersion: 1,
-            state: "transcribing",
-            requestId: value.requestId,
-          }),
-        );
-        child.stdout.emit(
-          "data",
-          frame({
-            type: "transcription-result",
-            protocolVersion: 1,
-            requestId: value.requestId,
-            outcome: "transcript",
-            rawText: "請",
-            normalizedText: "请",
-            detectedLanguage: "zh",
-            metrics: {
-              audioDurationMs: 1000,
-              inferenceMs: 1,
-              normalizationMs: 1,
-            },
-          }),
-        );
-        child.stdout.emit(
-          "data",
-          frame({
-            type: "lifecycle",
-            protocolVersion: 1,
-            state: "inference-ready",
-          }),
-        );
+        child.emitFrame({
+          type: "lifecycle",
+          protocolVersion: 1,
+          state: "transcribing",
+          requestId: value.requestId,
+        });
+        child.emitFrame({
+          type: "transcription-result",
+          protocolVersion: 1,
+          requestId: value.requestId,
+          outcome: "transcript",
+          rawText: "請",
+          normalizedText: "请",
+          detectedLanguage: "zh",
+          metrics: {
+            audioDurationMs: 1000,
+            inferenceMs: 1,
+            normalizationMs: 1,
+          },
+        });
+        child.emitFrame({
+          type: "lifecycle",
+          protocolVersion: 1,
+          state: "inference-ready",
+        });
       });
     }
     if (value.type === "shutdown")
       queueMicrotask(() => {
-        child.stdout.emit(
-          "data",
-          frame({
-            type: "lifecycle",
-            protocolVersion: 1,
-            state: "shutting-down",
-          }),
-        );
-        child.stdout.emit(
-          "data",
-          frame({
-            type: "shutdown-ack",
-            protocolVersion: 1,
-            requestId: value.requestId,
-          }),
-        );
-        child.stdout.emit(
-          "data",
-          frame({ type: "lifecycle", protocolVersion: 1, state: "stopped" }),
-        );
+        child.emitFrame({
+          type: "lifecycle",
+          protocolVersion: 1,
+          state: "shutting-down",
+        });
+        child.emitFrame({
+          type: "shutdown-ack",
+          protocolVersion: 1,
+          requestId: value.requestId,
+        });
+        child.emitFrame({
+          type: "lifecycle",
+          protocolVersion: 1,
+          state: "stopped",
+        });
         child.emit("exit", 0, null);
       });
   });
   child.kills = [];
+  child.emitFrame = (value) => {
+    const encoded = frame(value);
+    if (bytewise) {
+      for (const byte of encoded) child.stdout.emit("data", Buffer.of(byte));
+    } else child.stdout.emit("data", encoded);
+  };
   child.kill = (signal) => {
     child.kills.push(signal);
     if (ignoreTerm && signal === "SIGTERM") return true;
@@ -114,37 +107,28 @@ function childFactory({
   if (!silent)
     queueMicrotask(() => {
       if (malformed) return child.stdout.emit("data", Buffer.from("{bad\n"));
-      child.stdout.emit(
-        "data",
-        frame({
-          type: "hello",
-          protocolVersion: 1,
-          sessionId: identity.sessionId,
-          packageId: "pkg",
-          providerId: "provider",
-          modelId: "model",
-          profileId: "chinese",
-          languageMode: "zh",
-          target: { platform: "darwin", architecture: "arm64" },
-          capabilityDigest: "c".repeat(64),
-        }),
-      );
-      child.stdout.emit(
-        "data",
-        frame({
-          type: "lifecycle",
-          protocolVersion: 1,
-          state: "model-preparing",
-        }),
-      );
-      child.stdout.emit(
-        "data",
-        frame({
-          type: "lifecycle",
-          protocolVersion: 1,
-          state: "inference-ready",
-        }),
-      );
+      child.emitFrame({
+        type: "hello",
+        protocolVersion: 1,
+        sessionId: identity.sessionId,
+        packageId: "pkg",
+        providerId: "provider",
+        modelId: "model",
+        profileId: "chinese",
+        languageMode: "zh",
+        target: { platform: "darwin", architecture: "arm64" },
+        capabilityDigest: "c".repeat(64),
+      });
+      child.emitFrame({
+        type: "lifecycle",
+        protocolVersion: 1,
+        state: "model-preparing",
+      });
+      child.emitFrame({
+        type: "lifecycle",
+        protocolVersion: 1,
+        state: "inference-ready",
+      });
     });
   return child;
 }
@@ -207,4 +191,24 @@ test("terminal failure escalates once when graceful termination is ignored", asy
   await assert.rejects(session.start());
   assert.equal(session.state, "failed");
   assert.deepEqual(child.kills, ["SIGTERM", "SIGKILL"]);
+});
+test("statefully decodes UTF-8 and line delimiters split at every byte", async () => {
+  const child = childFactory({ bytewise: true });
+  const session = create(child);
+  await session.start();
+  const id = "0198f0f0-7e65-7f72-9c3e-95b59eeb72b0";
+  const result = await session.transcribe("/tmp/audio.wav", id);
+  assert.equal(result.rawText, "請");
+  assert.equal(result.normalizedText, "请");
+  await session.shutdown("0198f0f0-7e65-7f72-9c3e-95b59eeb72b1");
+});
+test("truncated UTF-8 on stdout termination fails the session", async () => {
+  const child = childFactory();
+  const session = create(child);
+  await session.start();
+  child.stdout.emit("data", Buffer.from([0xe8]));
+  child.stdout.emit("end");
+  await session.terminationPromise;
+  assert.equal(session.state, "failed");
+  assert.deepEqual(child.kills, ["SIGTERM"]);
 });

@@ -6,6 +6,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
+import { verifyGoToolchain } from "../../build/locked-inputs.mjs";
 
 const execFileAsync = promisify(execFile);
 const projectRoot = path.resolve(
@@ -19,6 +20,7 @@ const locked = JSON.parse(
   await fs.readFile(path.join(projectRoot, "build/locked-inputs.json"), "utf8"),
 );
 const goBinary = path.resolve(args.go);
+const goToolchainIdentity = await verifyGoToolchain(goBinary);
 const version = (await execFileAsync(goBinary, ["version"])).stdout.trim();
 if (
   version !==
@@ -82,7 +84,7 @@ try {
   const provenance = {
     schemaVersion: 1,
     goVersion: locked.goToolchain.version,
-    goToolchainArchive: locked.goToolchain.archives[hostTuple()],
+    goToolchainArchive: goToolchainIdentity,
     goModuleSha256,
     goSumSha256,
     launcherSourceSha256,

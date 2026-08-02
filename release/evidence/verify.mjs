@@ -22,12 +22,16 @@ import {
   verifyCorpusBinding,
   verifyRuntimeConformance,
 } from "./bindings.mjs";
+import { assertIntegratedReleaseCommit } from "./main-reachability.mjs";
+import { assertTrustedBaseline } from "../../benchmark/baseline/trusted-baseline.mjs";
+import { verifyPerformanceEvidence } from "./performance.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "evidence",
   "catalog",
   "qualifications",
   "assets",
+  "maintained-main-commit",
   "output",
 ]);
 const evidence = await readJson(args.evidence),
@@ -161,24 +165,18 @@ if (
 if (
   evidence.sourceCommit !== catalog.sourceCommit ||
   evidence.mainReachability.releaseCommit !== evidence.sourceCommit ||
+  evidence.mainReachability.maintainedMainCommit !==
+    args["maintained-main-commit"] ||
   evidence.preTagQualification.qualifiedCommit !== evidence.sourceCommit ||
   !evidence.mainReachability.reachable ||
   !evidence.preTagQualification.completedBeforeTag
 )
   throw new Error("Release lineage mismatch.");
-await run("git", ["cat-file", "-e", `${evidence.sourceCommit}^{commit}`], {
-  cwd: ROOT,
+await assertIntegratedReleaseCommit({
+  repository: ROOT,
+  releaseCommit: evidence.sourceCommit,
+  maintainedMainCommit: args["maintained-main-commit"],
 });
-await run(
-  "git",
-  [
-    "merge-base",
-    "--is-ancestor",
-    evidence.mainReachability.maintainedMainCommit,
-    evidence.sourceCommit,
-  ],
-  { cwd: ROOT },
-);
 let tagExists = true;
 try {
   await run(
@@ -214,6 +212,7 @@ async function verifyRaw(summary, qualification) {
     "reproducibility-proof-v1.json",
   );
   const conformancePath = path.join(directory, "runtime-conformance-v1.json");
+  const performancePath = path.join(directory, "performance-samples-v1.json");
   if (
     (await shaFile(rawPath)) !== qualification.quality.rawResultsSha256 ||
     (await shaFile(indexPath)) !== qualification.quality.resultIndexSha256 ||
@@ -225,7 +224,9 @@ async function verifyRaw(summary, qualification) {
       qualification.buildInputManifestSha256 ||
     (await shaFile(reproducibilityPath)) !==
       qualification.reproducibilityProofSha256 ||
-    (await shaFile(conformancePath)) !== qualification.runtimeConformanceSha256
+    (await shaFile(conformancePath)) !==
+      qualification.runtimeConformanceSha256 ||
+    (await shaFile(performancePath)) !== qualification.performanceSamplesSha256
   )
     throw new Error("Raw/baseline evidence digest mismatch.");
   const raw = await readJson(rawPath),
@@ -235,8 +236,17 @@ async function verifyRaw(summary, qualification) {
     build = await readJson(buildReportPath),
     inputManifest = await readJson(inputManifestPath),
     reproducibility = await readJson(reproducibilityPath),
-    conformance = await readJson(conformancePath);
-  verifyBuildBinding(
+    conformance = await readJson(conformancePath),
+    performance = await readJson(performancePath);
+  const baselineTrust = await assertTrustedBaseline({
+    baseline,
+    baselinePath,
+    corpusManifestSha256: summary.value.corpus.manifestSha256,
+    profileId: qualification.profileId,
+    target: `${qualification.platform}-${qualification.architecture}`,
+    metric: qualification.quality.metric,
+  });
+  await verifyBuildBinding(
     build,
     inputManifest,
     qualification,
@@ -257,6 +267,7 @@ async function verifyRaw(summary, qualification) {
   )
     throw new Error("Reproducibility proof mismatch.");
   verifyRuntimeConformance(conformance);
+  await verifyPerformanceEvidence(summary.value, qualification, performance);
   verifyCorpusBinding(corpus, raw, summary.value, qualification);
   if (
     raw.packageId !== qualification.packageId ||
@@ -269,6 +280,12 @@ async function verifyRaw(summary, qualification) {
       qualification.quality.baseline.configurationDigest ||
     baseline.providerId !== qualification.quality.baseline.providerId ||
     baseline.modelId !== qualification.quality.baseline.modelId ||
+    baselineTrust.catalogSha256 !==
+      qualification.quality.baseline.trustedCatalogSha256 ||
+    baselineTrust.record.promotedResultSha256 !==
+      qualification.quality.baseline.promotedResultSha256 ||
+    baselineTrust.record.corpusManifestSha256 !==
+      qualification.quality.baseline.corpusManifestSha256 ||
     Math.abs(baseline.value - qualification.quality.baseline.value) > 1e-12
   )
     throw new Error("Raw/baseline count mismatch.");
@@ -378,6 +395,7 @@ function enforceThresholds(q) {
     q.architecture === "arm64" &&
     (q.handshake.count < 30 ||
       q.coldPreparation.count < 30 ||
+      q.warmPreparation.count < 30 ||
       q.coldResult.count < 30 ||
       q.warmRequest.count < 100)
   )
@@ -399,7 +417,6 @@ function enforceThresholds(q) {
   if (
     q.profileId === "chinese" &&
     (quality.metric !== "CER" ||
-      Math.abs(quality.baseline.value - 0.052128) > 1e-9 ||
       quality.value > 0.07 ||
       quality.value - quality.baseline.value > 0.005000000001)
   )

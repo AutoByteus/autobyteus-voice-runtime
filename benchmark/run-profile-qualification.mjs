@@ -12,6 +12,12 @@ import { validateCorpus } from "./corpus/validate-corpus.mjs";
 import { aggregateErrorRate, errorRate } from "./scoring/error-rate.mjs";
 import { normalizeTranscript } from "./scoring/normalization.mjs";
 import {
+  pairedBootstrap,
+  validateQualificationBaseline,
+} from "./baseline/qualification-baseline.mjs";
+import { executeCacheProcedure } from "./cache-procedure.mjs";
+import { verifyGoToolchain } from "../build/locked-inputs.mjs";
+import {
   parsePairs,
   readJson,
   removeWritableTree,
@@ -34,6 +40,7 @@ const args = parsePairs(process.argv.slice(2), [
 ]);
 const build = await readJson(args["build-report"]),
   conditions = await readJson(args.conditions);
+await verifyGoToolchain(path.resolve(args.go));
 const corpus = await validateCorpus(args.corpus),
   baseline = await readJson(args.baseline);
 if (
@@ -45,7 +52,12 @@ if (
   throw new Error("Corpus/profile/source mismatch.");
 await validateConditions(conditions, args.conditions);
 const normalizationFixtures = await proveNormalization();
-validateBaseline(baseline, corpus, build);
+const baselineTrust = await validateQualificationBaseline(
+  baseline,
+  args.baseline,
+  corpus,
+  build,
+);
 const coldCount = Number(args["cold-count"] ?? 30),
   warmCount = Number(args["warm-count"] ?? 100);
 if (
@@ -134,10 +146,17 @@ try {
     capabilityDigest: build.capabilityDigest,
   };
   const cold = [],
+    cacheExecutions = [],
+    warmPreparation = [],
     warm = [],
     raw = [],
     rss = [];
   for (let index = 0; index < coldCount; index++) {
+    const cacheExecution = await executeCacheProcedure(
+      conditions.executionEnvironment.filesystemCacheProcedure,
+      `${build.target.platform}-${build.target.architecture}`,
+    );
+    if (cacheExecution) cacheExecutions.push({ index, ...cacheExecution });
     const clip = corpus.manifest.clips[index % corpus.manifest.clips.length];
     const started = performance.now();
     const session = await createSession(packageRoot, expectedBase, work);
@@ -159,8 +178,14 @@ try {
     });
     await session.shutdown();
   }
-  const session = await createSession(packageRoot, expectedBase, work);
-  await measureWithRss(session.start(), () => session.child?.pid, rss);
+  let session;
+  for (let index = 0; index < coldCount; index++) {
+    const candidate = await createSession(packageRoot, expectedBase, work);
+    await measureWithRss(candidate.start(), () => candidate.child?.pid, rss);
+    warmPreparation.push({ preparationMs: candidate.timings.preparationMs });
+    if (index === coldCount - 1) session = candidate;
+    else await candidate.shutdown();
+  }
   for (
     let index = 0;
     index < Math.max(warmCount, corpus.manifest.clips.length);
@@ -227,6 +252,15 @@ try {
       units: item.units,
     })),
   });
+  const performancePath = path.join(output, "performance-samples-v1.json");
+  await writeJson(performancePath, {
+    schemaVersion: 1,
+    cacheProcedure: conditions.executionEnvironment.filesystemCacheProcedure,
+    cacheExecutions,
+    cold,
+    warmPreparation,
+    warm,
+  });
   const quality = aggregateErrorRate(raw);
   const paired = pairedBootstrap(raw, baseline.results);
   const summary = {
@@ -236,8 +270,10 @@ try {
     packageVersion: build.packageVersion,
     buildReportSha256: await shaFile(args["build-report"]),
     buildInputManifestSha256: build.buildInputManifestSha256,
+    repositoryBuildLockSha256: build.repositoryBuildLockSha256,
     reproducibilityProofSha256: await shaFile(args["reproducibility-proof"]),
     runtimeConformanceSha256: await shaFile(conformancePath),
+    performanceSamplesSha256: await shaFile(performancePath),
     packageId: build.packageId,
     providerId: build.providerId,
     modelId: build.modelId,
@@ -269,6 +305,9 @@ try {
         modelId: baseline.modelId,
         value: baseline.value,
         sampleCount: baseline.results.length,
+        trustedCatalogSha256: baselineTrust.catalogSha256,
+        promotedResultSha256: baselineTrust.record.promotedResultSha256,
+        corpusManifestSha256: baselineTrust.record.corpusManifestSha256,
       },
       pairedUncertainty: paired,
       sampleCount: raw.length,
@@ -279,12 +318,12 @@ try {
     },
     handshake: latency(cold.map((item) => item.handshakeMs)),
     coldPreparation: latency(cold.map((item) => item.preparationMs)),
-    warmPreparation: latency([session.timings.preparationMs]),
+    warmPreparation: latency(warmPreparation.map((item) => item.preparationMs)),
     coldResult: latency(cold.map((item) => item.coldResultMs)),
     warmRequest: latency(warm.map((item) => item.requestMs)),
     maxRssBytes: Math.max(...rss),
     extractedSizeBytes: build.archive.extractedSizeBytes,
-    packageRuns: coldCount + 1,
+    packageRuns: coldCount + warmPreparation.length,
     actualPlatform: true,
     normalizationFixtures,
     relocation: true,
@@ -399,64 +438,6 @@ function latency(values) {
     maxMs: sorted.at(-1) ?? 0,
   };
 }
-function validateBaseline(value, corpus, build) {
-  if (
-    value.schemaVersion !== 1 ||
-    value.profileId !== build.profileId ||
-    value.metric !== corpus.manifest.metric ||
-    value.corpusManifestSha256 !== corpus.corpusEvidence.manifestSha256 ||
-    !/^[a-f0-9]{64}$/.test(value.configurationDigest) ||
-    !Array.isArray(value.results) ||
-    value.results.length !== corpus.manifest.clips.length
-  )
-    throw new Error("Baseline identity mismatch.");
-  const aggregate = aggregateErrorRate(value.results);
-  if (Math.abs(aggregate.value - value.value) > 1e-12)
-    throw new Error("Baseline value is not reproducible.");
-  for (let index = 0; index < value.results.length; index++) {
-    const current = corpus.manifest.clips[index],
-      prior = value.results[index];
-    if (
-      prior.clipId !== current.id ||
-      prior.audioSha256 !== current.audioSha256 ||
-      !Number.isInteger(prior.errors) ||
-      !Number.isInteger(prior.units)
-    )
-      throw new Error("Baseline corpus pairing mismatch.");
-  }
-}
-function pairedBootstrap(current, baseline) {
-  const differences = [];
-  let state = 0x5eed1234;
-  for (let repetition = 0; repetition < 10000; repetition++) {
-    let currentErrors = 0,
-      currentUnits = 0,
-      baselineErrors = 0,
-      baselineUnits = 0;
-    for (let draw = 0; draw < current.length; draw++) {
-      state = (1664525 * state + 1013904223) >>> 0;
-      const index = state % current.length;
-      currentErrors += current[index].errors;
-      currentUnits += current[index].units;
-      baselineErrors += baseline[index].errors;
-      baselineUnits += baseline[index].units;
-    }
-    differences.push(
-      currentErrors / currentUnits - baselineErrors / baselineUnits,
-    );
-  }
-  differences.sort((a, b) => a - b);
-  const currentRate = aggregateErrorRate(current).value,
-    baselineRate = aggregateErrorRate(baseline).value;
-  return {
-    method: "paired-bootstrap-v1",
-    repetitions: 10000,
-    difference: currentRate - baselineRate,
-    lower95: differences[249],
-    upper95: differences[9749],
-  };
-}
-
 async function validateConditions(value, file) {
   if (
     value.schemaVersion !== 1 ||
@@ -466,7 +447,12 @@ async function validateConditions(value, file) {
     !value.operatingSystem ||
     !value.executionEnvironment?.powerCondition ||
     !value.executionEnvironment?.backgroundLoad ||
-    !value.executionEnvironment?.filesystemCacheProcedure
+    !value.executionEnvironment?.filesystemCacheProcedure?.id ||
+    typeof value.executionEnvironment.filesystemCacheProcedure.required !==
+      "boolean" ||
+    !/^[a-f0-9]{64}$/.test(
+      value.executionEnvironment.filesystemCacheProcedure.sha256,
+    )
   )
     throw new Error("Invalid qualification conditions.");
   for (const audit of [value.licenseAudit, value.offlineAudit]) {

@@ -1,5 +1,6 @@
 import { spawn as nodeSpawn } from "node:child_process";
 import { randomUUID } from "node:crypto";
+import { TextDecoder } from "node:util";
 import { decodeFrame } from "./protocol-v1.mjs";
 const LIMIT = 1024 * 1024;
 export const DEADLINES = Object.freeze({
@@ -30,7 +31,9 @@ export class ProviderProcessSession {
     this.deadlines = Object.freeze({ ...DEADLINES, ...deadlines });
     this.state = "idle";
     this.child = null;
+    this.decoder = new TextDecoder("utf-8", { fatal: true });
     this.buffer = "";
+    this.bufferBytes = 0;
     this.stderr = "";
     this.usedIds = new Set();
     this.pending = null;
@@ -65,6 +68,7 @@ export class ProviderProcessSession {
         (error) => void this.fail(error).catch(() => {}),
       );
       this.child.stdout.on("data", (chunk) => this.consume(chunk));
+      this.child.stdout.once("end", () => this.finishStdout());
       this.child.stderr.on("data", (chunk) => this.consumeStderr(chunk));
       this.state = "awaiting-hello";
       await this.waitFor("hello", this.deadlines.helloMs);
@@ -163,25 +167,39 @@ export class ProviderProcessSession {
   }
   consume(chunk) {
     if (this.state === "failed" || this.state === "stopped") return;
-    this.buffer += chunk.toString("utf8");
-    if (Buffer.byteLength(this.buffer) > LIMIT && !this.buffer.includes("\n")) {
-      void this.fail(new Error("FRAME_TOO_LARGE")).catch(() => {});
-      return;
-    }
-    let index;
-    while ((index = this.buffer.indexOf("\n")) >= 0) {
-      const line = this.buffer.slice(0, index);
-      this.buffer = this.buffer.slice(index + 1);
-      if (!line || Buffer.byteLength(line) > LIMIT) {
-        void this.fail(new Error("INVALID_FRAME")).catch(() => {});
-        return;
-      }
-      try {
+    const bytes = Buffer.from(chunk);
+    let offset = 0;
+    try {
+      while (offset < bytes.length) {
+        const newline = bytes.indexOf(0x0a, offset);
+        const end = newline < 0 ? bytes.length : newline;
+        const segment = bytes.subarray(offset, end);
+        this.bufferBytes += segment.length;
+        if (this.bufferBytes > LIMIT) throw new Error("FRAME_TOO_LARGE");
+        this.buffer += this.decoder.decode(segment, { stream: newline < 0 });
+        if (newline < 0) return;
+        const line = this.buffer;
+        this.decoder = new TextDecoder("utf-8", { fatal: true });
+        this.buffer = "";
+        this.bufferBytes = 0;
+        if (!line) throw new Error("INVALID_FRAME");
         this.transition(decodeFrame(line));
-      } catch (error) {
-        void this.fail(error).catch(() => {});
-        return;
+        offset = newline + 1;
       }
+    } catch (error) {
+      void this.fail(error).catch(() => {});
+    }
+  }
+  finishStdout() {
+    if (this.state === "failed" || this.state === "stopped") return;
+    try {
+      this.buffer += this.decoder.decode();
+      if (this.bufferBytes !== 0 || this.buffer !== "")
+        throw new Error("TRUNCATED_FRAME");
+      if (this.state !== "stopping-complete")
+        throw new Error("PROVIDER_STDOUT_CLOSED");
+    } catch (error) {
+      void this.fail(error).catch(() => {});
     }
   }
   transition(frame) {
@@ -335,6 +353,7 @@ export class ProviderProcessSession {
   detach() {
     if (!this.child) return;
     this.child.stdout?.removeAllListeners("data");
+    this.child.stdout?.removeAllListeners("end");
     this.child.stderr?.removeAllListeners("data");
     this.child.stdin?.destroy();
   }

@@ -43,6 +43,17 @@ export async function verifyInputManifest(root) {
   const actual = new Set();
   async function walk(directory) {
     for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
+      const relativeDirectory = path
+        .relative(root, directory)
+        .split(path.sep)
+        .join("/");
+      if (
+        entry.name === ".git" &&
+        /^(?:funasr-source|llama-cpp-source|utf8proc-source)$/.test(
+          relativeDirectory,
+        )
+      )
+        continue;
       const target = path.join(directory, entry.name);
       if (entry.isSymbolicLink()) throw new Error("Input symlink rejected.");
       if (entry.isDirectory()) await walk(target);
@@ -56,4 +67,14 @@ export async function verifyInputManifest(root) {
   )
     throw new Error("Input manifest does not close the input tree.");
   return manifest;
+}
+export async function verifyGoToolchain(executable) {
+  const tuple = `${process.platform}-${process.arch === "x64" ? "x64" : process.arch}`;
+  const identity = locked.goToolchain.archives[tuple];
+  if (
+    !identity ||
+    (await shaFile(path.resolve(executable))) !== identity.executableSha256
+  )
+    throw new Error("Executing Go compiler bytes are not repository-locked.");
+  return identity;
 }

@@ -16,6 +16,8 @@ import {
   treeDigest,
   writeJson,
 } from "./lib/files.mjs";
+import { verifyGoToolchain } from "./locked-inputs.mjs";
+import { repositoryBuildLockDigest } from "./repository-lock-set.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "profile",
@@ -27,6 +29,7 @@ const args = parsePairs(process.argv.slice(2), [
   "source-commit",
   "version",
 ]);
+await verifyGoToolchain(path.resolve(args.go));
 if (
   !/^[a-f0-9]{40}$/.test(args["source-commit"]) ||
   !/^[0-9]+\.[0-9]+\.[0-9]+$/.test(args.version)
@@ -290,6 +293,10 @@ try {
     packageVersion: args.version,
     buildInputManifestFileName: path.basename(preservedInputManifest),
     buildInputManifestSha256: await shaFile(inputManifestPath),
+    repositoryBuildLockSha256: await repositoryBuildLockDigest(
+      profileId,
+      args.target,
+    ),
     packageId,
     profileId,
     languageMode,

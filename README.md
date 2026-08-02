@@ -37,7 +37,12 @@ These are source/unit/contract checks only. They do not replace actual-target pa
 
 ## Package build and verification
 
-Builders are offline/fail-closed. `--inputs` must be a complete `SHA256SUMS.json`-closed tree containing the exact profile/target host, model, transitive notice inventory, and source inputs described by the provider lock.
+Builders are offline/fail-closed. `--inputs` must be a complete `SHA256SUMS.json`-closed tree containing the exact profile/target inputs described below. `.git` metadata is excluded from that manifest and independently authenticated by commit/tree state.
+
+- Python packages accept the repository-locked Python Build Standalone archive, the exact target wheelhouse in `build/python-wheel-locks/<target>.json`, model files, and notices. The builder extracts and materializes Python itself; an operator-supplied `python-root` or origin marker is not accepted.
+- Native packages require clean Git worktrees at the exact Fun-ASR, llama.cpp, and utf8proc commits in the provider lock, plus exact model files and notices. Modified, untracked, ignored, or marker-only source trees fail.
+- The executing Go compiler must match both the pinned version and the repository-owned executable digest derived from the pinned archive. A version-reporting substitute fails.
+- Every build report binds the repository lock set in addition to the closed external input manifest.
 
 ```bash
 node build/package-assembler.mjs \
@@ -63,5 +68,7 @@ node build/verify-reproducibility.mjs \
 ```
 
 `benchmark/run-profile-qualification.mjs` requires that reproducibility proof and owns exact-package corpus, timing, RSS, relocation, no-mutation, and recovery evidence. `release/catalog-builder.mjs` and `release/qualify-release.mjs` recompute the complete eight-package release matrix. The manual workflow has separate `prequalify` and `publish` operations; publication re-verifies a successful pre-tag artifact before creating a tag.
+
+Qualification uses the repository-owned baselines in `release/evidence/baselines/`. The external audio tree must carry a byte-identical copy of the applicable manifest in `release/evidence/qualification-corpora/`. On the M1 Max reference runner, every filesystem-cold trial executes the pinned `sudo -n purge` procedure before process start; the runner account must be pre-authorized for that noninteractive command. Raw cold-reset, cold-preparation, warm-preparation, and warm-request sample sets are preserved and re-verified before release.
 
 Do not tag or publish from ordinary implementation or review work.

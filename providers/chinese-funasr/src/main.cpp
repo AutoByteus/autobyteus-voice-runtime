@@ -1,6 +1,7 @@
 #include "audio.h"
 #include "funasr_engine.h"
 #include "normalization.h"
+#include "result_policy.h"
 #include "session.h"
 #include <chrono>
 #include <iostream>
@@ -90,11 +91,12 @@ int main(int argc, char** argv) {
                 try {
                     const auto inference_start = clock_type::now();
                     const std::string raw = audio.no_speech ? "" : engine->transcribe(audio.samples);
+                    const std::string outcome = classify_result(audio.no_speech, raw);
                     const double inference_ms = elapsed(inference_start);
                     const auto normalization_start = clock_type::now();
                     const std::string normalized = raw.empty() ? "" : normalizer->apply(raw);
                     const double normalization_ms = elapsed(normalization_start);
-                    emit({{"type","transcription-result"},{"protocolVersion",1},{"requestId",request_id},{"outcome",raw.empty()?"no-speech":"transcript"},{"rawText",raw},{"normalizedText",normalized},{"detectedLanguage",raw.empty()?"unknown":"zh"},{"metrics",{{"audioDurationMs",audio.duration_ms},{"inferenceMs",inference_ms},{"normalizationMs",normalization_ms}}}});
+                    emit({{"type","transcription-result"},{"protocolVersion",1},{"requestId",request_id},{"outcome",outcome},{"rawText",raw},{"normalizedText",normalized},{"detectedLanguage",audio.no_speech?"unknown":"zh"},{"metrics",{{"audioDurationMs",audio.duration_ms},{"inferenceMs",inference_ms},{"normalizationMs",normalization_ms}}}});
                 } catch (...) {
                     emit({{"type","lifecycle"},{"protocolVersion",1},{"state","failed"},{"code","INFERENCE_FAILED"}});
                     return 1;
