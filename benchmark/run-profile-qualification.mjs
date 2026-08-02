@@ -16,7 +16,11 @@ import {
   validateQualificationBaseline,
 } from "./baseline/qualification-baseline.mjs";
 import { executeCacheProcedure } from "./cache-procedure.mjs";
-import { verifyGoToolchain } from "../build/locked-inputs.mjs";
+import {
+  assertGoToolchainProvenance,
+  trustedGoEnvironment,
+  verifyGoToolchain,
+} from "../build/locked-inputs.mjs";
 import {
   parsePairs,
   readJson,
@@ -40,7 +44,8 @@ const args = parsePairs(process.argv.slice(2), [
 ]);
 const build = await readJson(args["build-report"]),
   conditions = await readJson(args.conditions);
-await verifyGoToolchain(path.resolve(args.go));
+const goToolchain = await verifyGoToolchain(path.resolve(args.go));
+assertGoToolchainProvenance(goToolchain, build);
 const corpus = await validateCorpus(args.corpus),
   baseline = await readJson(args.baseline);
 if (
@@ -132,7 +137,7 @@ try {
     work,
     build,
     path.resolve(args.archive),
-    path.resolve(args.go),
+    goToolchain,
   );
   const before = await snapshot(packageRoot);
   const expectedBase = {
@@ -271,6 +276,12 @@ try {
     buildReportSha256: await shaFile(args["build-report"]),
     buildInputManifestSha256: build.buildInputManifestSha256,
     repositoryBuildLockSha256: build.repositoryBuildLockSha256,
+    goToolchainHost: build.goToolchainHost,
+    goToolchainArchiveSha256: build.goToolchainArchiveSha256,
+    goToolchainRootManifestSha256: build.goToolchainRootManifestSha256,
+    goToolchainRootTreeSha256: build.goToolchainRootTreeSha256,
+    goToolchainRootFileCount: build.goToolchainRootFileCount,
+    goToolchainRootSizeBytes: build.goToolchainRootSizeBytes,
     reproducibilityProofSha256: await shaFile(args["reproducibility-proof"]),
     runtimeConformanceSha256: await shaFile(conformancePath),
     performanceSamplesSha256: await shaFile(performancePath),
@@ -367,7 +378,7 @@ async function createSession(root, base, work, deadlines) {
     deadlines,
   });
 }
-async function extractPackage(work, build, archive, go) {
+async function extractPackage(work, build, archive, goToolchain) {
   const expected = {
     schemaVersion: 1,
     packageId: build.packageId,
@@ -399,7 +410,7 @@ async function extractPackage(work, build, archive, go) {
     destination = path.join(work, "relocated package – voice");
   await writeJson(expectation, expected);
   await run(
-    go,
+    goToolchain.executable,
     [
       "run",
       "./packaging/cmd/provider-package-tool",
@@ -413,7 +424,7 @@ async function extractPackage(work, build, archive, go) {
       "--report",
       report,
     ],
-    { cwd: ROOT, env: { ...process.env, GOTOOLCHAIN: "local" } },
+    { cwd: ROOT, env: trustedGoEnvironment(goToolchain) },
   );
   return destination;
 }

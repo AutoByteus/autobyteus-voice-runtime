@@ -16,7 +16,7 @@ import {
   treeDigest,
   writeJson,
 } from "./lib/files.mjs";
-import { verifyGoToolchain } from "./locked-inputs.mjs";
+import { trustedGoEnvironment, verifyGoToolchain } from "./locked-inputs.mjs";
 import { repositoryBuildLockDigest } from "./repository-lock-set.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
@@ -29,7 +29,7 @@ const args = parsePairs(process.argv.slice(2), [
   "source-commit",
   "version",
 ]);
-await verifyGoToolchain(path.resolve(args.go));
+const goToolchain = await verifyGoToolchain(path.resolve(args.go));
 if (
   !/^[a-f0-9]{40}$/.test(args["source-commit"]) ||
   !/^[0-9]+\.[0-9]+\.[0-9]+$/.test(args.version)
@@ -130,7 +130,7 @@ try {
       "--planCopy",
       planPath,
       "--go",
-      path.resolve(args.go),
+      goToolchain.executable,
       "--output",
       launcherPath,
       "--provenance",
@@ -256,7 +256,7 @@ try {
   await fs.mkdir(path.dirname(path.resolve(args.output)), { recursive: true });
   const reportPath = path.join(work, "archive-report.json");
   await run(
-    path.resolve(args.go),
+    goToolchain.executable,
     [
       "run",
       "./packaging/cmd/provider-package-tool",
@@ -271,7 +271,7 @@ try {
     {
       cwd: ROOT,
       maxBuffer: 32 * 1024 * 1024,
-      env: { ...process.env, GOTOOLCHAIN: "local" },
+      env: trustedGoEnvironment(goToolchain),
     },
   );
   const archive = await readJson(reportPath);
@@ -297,6 +297,12 @@ try {
       profileId,
       args.target,
     ),
+    goToolchainHost: goToolchain.host,
+    goToolchainArchiveSha256: goToolchain.archive.sha256,
+    goToolchainRootManifestSha256: goToolchain.rootIdentity.manifestSha256,
+    goToolchainRootTreeSha256: goToolchain.rootIdentity.treeSha256,
+    goToolchainRootFileCount: goToolchain.rootIdentity.fileCount,
+    goToolchainRootSizeBytes: goToolchain.rootIdentity.totalSizeBytes,
     packageId,
     profileId,
     languageMode,

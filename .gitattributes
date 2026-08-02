@@ -1,2 +1,4 @@
 evidence/selection-study/** -whitespace
 licenses/*.txt -whitespace
+
+build/go-toolchain-manifests/*.json -diff -whitespace

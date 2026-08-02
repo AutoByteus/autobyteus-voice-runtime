@@ -65,4 +65,9 @@ test("release workflow qualifies before creating a tag and has no tag trigger", 
   const qualify = workflow.lastIndexOf("node release/qualify-release.mjs"),
     tag = workflow.lastIndexOf("git tag -a");
   assert.ok(qualify >= 0 && tag > qualify);
+  assert.match(
+    workflow,
+    /node build\/verify-go-toolchain\.mjs --go "\$VOICE_GO"/,
+  );
+  assert.doesNotMatch(workflow, /\$VOICE_GO version/);
 });

@@ -6,7 +6,10 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
-import { verifyGoToolchain } from "../../build/locked-inputs.mjs";
+import {
+  trustedGoEnvironment,
+  verifyGoToolchain,
+} from "../../build/locked-inputs.mjs";
 
 const execFileAsync = promisify(execFile);
 const projectRoot = path.resolve(
@@ -20,8 +23,12 @@ const locked = JSON.parse(
   await fs.readFile(path.join(projectRoot, "build/locked-inputs.json"), "utf8"),
 );
 const goBinary = path.resolve(args.go);
-const goToolchainIdentity = await verifyGoToolchain(goBinary);
-const version = (await execFileAsync(goBinary, ["version"])).stdout.trim();
+const goToolchain = await verifyGoToolchain(goBinary);
+const version = (
+  await execFileAsync(goBinary, ["version"], {
+    env: trustedGoEnvironment(goToolchain),
+  })
+).stdout.trim();
 if (
   version !==
   `go version go${locked.goToolchain.version} ${process.platform}/${process.arch}`
@@ -54,17 +61,10 @@ try {
   const goSumSha256 = digest(await fs.readFile(path.join(work, "go.sum")));
   const launcherSourceSha256 = await treeDigest(path.join(work, "launcher"));
   await fs.mkdir(path.dirname(args.output), { recursive: true });
-  const platform =
-    plan.target.platform === "win32" ? "windows" : plan.target.platform;
-  const arch =
-    plan.target.architecture === "x64" ? "amd64" : plan.target.architecture;
-  const environment = {
-    ...process.env,
-    CGO_ENABLED: "0",
-    GOOS: platform,
-    GOARCH: arch,
-    GOTOOLCHAIN: "local",
-  };
+  const environment = trustedGoEnvironment(goToolchain, {
+    platform: plan.target.platform,
+    architecture: plan.target.architecture,
+  });
   await execFileAsync(
     goBinary,
     [
@@ -84,7 +84,8 @@ try {
   const provenance = {
     schemaVersion: 1,
     goVersion: locked.goToolchain.version,
-    goToolchainArchive: goToolchainIdentity,
+    goToolchainArchive: goToolchain.archive,
+    goToolchainRoot: goToolchain.rootIdentity,
     goModuleSha256,
     goSumSha256,
     launcherSourceSha256,

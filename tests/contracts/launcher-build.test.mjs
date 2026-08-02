@@ -72,6 +72,10 @@ test("pinned launcher build is byte deterministic and rejects public argv", asyn
         assert.match(provenance[key], /^[a-f0-9]{64}$/);
       assert.equal(provenance.goVersion, "1.26.5");
       assert.equal(provenance.cgoEnabled, false);
+      assert.match(provenance.goToolchainRoot.manifestSha256, /^[a-f0-9]{64}$/);
+      assert.match(provenance.goToolchainRoot.treeSha256, /^[a-f0-9]{64}$/);
+      assert.ok(provenance.goToolchainRoot.fileCount > 10_000);
+      assert.ok(provenance.goToolchainRoot.totalSizeBytes > 100_000_000);
       digests.push(
         createHash("sha256")
           .update(await fs.readFile(output))

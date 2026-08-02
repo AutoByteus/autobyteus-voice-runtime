@@ -1,7 +1,8 @@
 import Ajv2020 from "ajv/dist/2020.js";
 import path from "node:path";
-import { readJson, ROOT, sha256 } from "../../build/lib/files.mjs";
+import { readJson, ROOT, sha256, shaFile } from "../../build/lib/files.mjs";
 import { repositoryBuildLockDigest } from "../../build/repository-lock-set.mjs";
+import { locked } from "../../build/locked-inputs.mjs";
 
 const validateCorpusManifest = new Ajv2020({
   allErrors: true,
@@ -93,6 +94,15 @@ export async function verifyBuildBinding(
     build.buildInputManifestSha256 !== qualification.buildInputManifestSha256 ||
     build.repositoryBuildLockSha256 !==
       qualification.repositoryBuildLockSha256 ||
+    build.goToolchainHost?.platform !== qualification.platform ||
+    build.goToolchainHost?.architecture !== qualification.architecture ||
+    build.goToolchainArchiveSha256 !== qualification.goToolchainArchiveSha256 ||
+    build.goToolchainRootManifestSha256 !==
+      qualification.goToolchainRootManifestSha256 ||
+    build.goToolchainRootTreeSha256 !==
+      qualification.goToolchainRootTreeSha256 ||
+    build.goToolchainRootFileCount !== qualification.goToolchainRootFileCount ||
+    build.goToolchainRootSizeBytes !== qualification.goToolchainRootSizeBytes ||
     build.archive.sha256 !== qualification.archiveSha256
   )
     throw new Error("Build report identity mismatch.");
@@ -122,10 +132,25 @@ export async function verifyBuildBinding(
     )
   )
     throw new Error("Preserved build-input manifest invalid.");
-  const target = `${qualification.platform}-${qualification.architecture}`;
+  const target = `${qualification.platform}-${qualification.architecture}`,
+    goToolchain = locked.goToolchain.archives[target];
   if (
+    !goToolchain ||
     qualification.repositoryBuildLockSha256 !==
-    (await repositoryBuildLockDigest(qualification.profileId, target))
+      (await repositoryBuildLockDigest(qualification.profileId, target)) ||
+    qualification.goToolchainArchiveSha256 !== goToolchain?.sha256 ||
+    qualification.goToolchainRootManifestSha256 !==
+      goToolchain?.rootManifestSha256 ||
+    qualification.goToolchainRootTreeSha256 !== goToolchain?.rootTreeSha256 ||
+    qualification.goToolchainRootFileCount !== goToolchain?.rootFileCount ||
+    qualification.goToolchainRootSizeBytes !== goToolchain?.rootSizeBytes ||
+    (await shaFile(
+      path.join(
+        ROOT,
+        "build/go-toolchain-manifests",
+        goToolchain.rootManifestFileName,
+      ),
+    )) !== goToolchain.rootManifestSha256
   )
-    throw new Error("Repository-owned build lock binding mismatch.");
+    throw new Error("Repository-owned build/toolchain lock binding mismatch.");
 }

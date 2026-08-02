@@ -14,7 +14,11 @@ import {
   shaFile,
   writeJson,
 } from "./lib/files.mjs";
-import { verifyGoToolchain } from "./locked-inputs.mjs";
+import {
+  assertGoToolchainProvenance,
+  trustedGoEnvironment,
+  verifyGoToolchain,
+} from "./locked-inputs.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "archive",
@@ -23,7 +27,8 @@ const args = parsePairs(process.argv.slice(2), [
   "output",
 ]);
 const build = await readJson(args["build-report"]);
-await verifyGoToolchain(path.resolve(args.go));
+const goToolchain = await verifyGoToolchain(path.resolve(args.go));
+assertGoToolchainProvenance(goToolchain, build);
 const archivePath = path.resolve(args.archive);
 if ((await shaFile(archivePath)) !== build.archive.sha256)
   throw new Error("Archive/build report mismatch.");
@@ -60,7 +65,7 @@ try {
     destination = path.join(work, "verified package");
   await writeJson(expectation, expected);
   await run(
-    path.resolve(args.go),
+    goToolchain.executable,
     [
       "run",
       "./packaging/cmd/provider-package-tool",
@@ -77,7 +82,7 @@ try {
     {
       cwd: ROOT,
       maxBuffer: 32 * 1024 * 1024,
-      env: { ...process.env, GOTOOLCHAIN: "local" },
+      env: trustedGoEnvironment(goToolchain),
     },
   );
   const descriptor = await readJson(

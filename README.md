@@ -27,9 +27,9 @@ Node 22.23.1 and the pinned Go 1.26.5 toolchain are required.
 
 ```bash
 npm ci --ignore-scripts
-VOICE_GO=/absolute/path/to/go npm test
+VOICE_GO=/absolute/path/to/locked/go/root/bin/go npm test
 npm run check:python
-VOICE_GO=/absolute/path/to/go PATH="$(dirname "$VOICE_GO"):$PATH" npm run check:go
+VOICE_GO=/absolute/path/to/locked/go/root/bin/go npm run check:go
 npm run check:js
 ```
 
@@ -41,7 +41,8 @@ Builders are offline/fail-closed. `--inputs` must be a complete `SHA256SUMS.json
 
 - Python packages accept the repository-locked Python Build Standalone archive, the exact target wheelhouse in `build/python-wheel-locks/<target>.json`, model files, and notices. The builder extracts and materializes Python itself; an operator-supplied `python-root` or origin marker is not accepted.
 - Native packages require clean Git worktrees at the exact Fun-ASR, llama.cpp, and utf8proc commits in the provider lock, plus exact model files and notices. Modified, untracked, ignored, or marker-only source trees fail.
-- The executing Go compiler must match both the pinned version and the repository-owned executable digest derived from the pinned archive. A version-reporting substitute fails.
+- `VOICE_GO` must identify `bin/go[.exe]` inside the complete extracted official root. Every file and directory in that root must match the target's repository-owned full-root manifest under `build/go-toolchain-manifests/`; an exact front binary with missing, added, stale, or modified compiler/linker/standard-library siblings fails.
+- All Go subprocesses derive `GOROOT` from that verified `VOICE_GO` root, disable environment configuration and automatic toolchain selection, and set the target explicitly. Inherited `GOROOT`, `GOTOOLCHAIN`, `GOTOOLDIR`, `GOENV`, `GOFLAGS`, `GOEXPERIMENT`, target, CGO, or external-tool overrides are rejected rather than trusted.
 - Every build report binds the repository lock set in addition to the closed external input manifest.
 
 ```bash
