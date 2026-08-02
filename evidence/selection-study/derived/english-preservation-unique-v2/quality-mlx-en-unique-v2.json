@@ -1,0 +1,520 @@
+{
+  "schemaVersion": 1,
+  "derivation": {
+    "derivationId": "english-preservation-stable-identity-collapse-v2",
+    "kind": "immutable-source-projection",
+    "rule": "Preserve locked source order; retain the first occurrence of each exact (id, path, audioSha256) identity; collapse a later occurrence only when projected corpus fields and normalized transcript/error facts agree; otherwise fail.",
+    "selectionUsesRecognitionQuality": false,
+    "sourceSampleCount": 50,
+    "finalUniqueSampleCount": 49,
+    "duplicateGroups": [
+      {
+        "identity": {
+          "id": "fleurs-en-2009",
+          "audioPath": "audio/fleurs-en-2009.wav",
+          "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7"
+        },
+        "retainedSourceEnglishIndex": 48,
+        "retainedSourceCombinedIndex": 98,
+        "collapsedSourceEnglishIndex": 49,
+        "collapsedSourceCombinedIndex": 99,
+        "normalizedTranscriptAndErrorFactsEqual": true
+      }
+    ],
+    "sourceQualityPath": "evidence/selection-study/results/quality-mlx.json",
+    "sourceQualitySha256": "af259491e92344c9952c2d2d8e15adf23ad5576946e6165344843613202e86c0",
+    "scorerPath": "evidence/selection-study/harness/analyze_results.py",
+    "scorerSha256": "a2c322fd9c3fbf2cb5bba4425761429e7209d39a9eb3a2323ecfe14aaf3f0176"
+  },
+  "reports": [
+    {
+      "source": "evidence/selection-study/derived/english-preservation-unique-v2/controlled-mlx-fp16-en-unique-v2.json",
+      "backend": "mlx-fp16",
+      "language": "en",
+      "metric": "WER",
+      "clipCount": 49,
+      "corpusErrorRate": 0.072239,
+      "rawScriptCorpusErrorRate": null,
+      "macroClipErrorRate": 0.075675,
+      "emptyHypotheses": 0,
+      "operational": {
+        "spawnToReadyMs": {
+          "count": 30,
+          "min": 986.656,
+          "median": 1261.153,
+          "p95": 1624.454,
+          "max": 1932.816,
+          "mean": 1275.932
+        },
+        "firstRequestMs": {
+          "count": 30,
+          "min": 396.806,
+          "median": 535.932,
+          "p95": 949.4,
+          "max": 1016.277,
+          "mean": 600.963
+        },
+        "coldEndToEndMs": {
+          "count": 30,
+          "min": 1396.612,
+          "median": 1782.784,
+          "p95": 2489.196,
+          "max": 2949.093,
+          "mean": 1876.895
+        },
+        "warmRequestMs": {
+          "count": 100,
+          "min": 192.017,
+          "median": 200.29,
+          "p95": 243.484,
+          "max": 679.931,
+          "mean": 211.56
+        },
+        "maxSampledRssBytes": 872628224
+      },
+      "perClip": [
+        {
+          "id": "fleurs-en-1660",
+          "reference": "romanticism had a large element of cultural determinism drawn from writers such as goethe fichte and schlegel",
+          "hypothesis": "Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.",
+          "normalizedReference": "romanticism had a large element of cultural determinism drawn from writers such as goethe fichte and schlegel",
+          "normalizedHypothesis": "romanticism had a large element of cultural determinism drawn from writers such as goeth fitcht and schlegel",
+          "errorRate": 0.117647,
+          "requestRoundTripMs": 250.281
+        },
+        {
+          "id": "fleurs-en-1662",
+          "reference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
+          "hypothesis": "Alloys are basically a mixture of two or more metals. Don't forget there are many elements on the periodic table.",
+          "normalizedReference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
+          "normalizedHypothesis": "alloys are basically a mixture of two or more metals don't forget there are many elements on the periodic table",
+          "errorRate": 0.047619,
+          "requestRoundTripMs": 249.221
+        },
+        {
+          "id": "fleurs-en-1673",
+          "reference": "during the revolutionary war the thirteen states first formed a weak central government-with the congress being its only component-under the articles of confederation",
+          "hypothesis": "During the Revolutionary War, the 13 states first formed a weak central government, with the Congress being its only component under the Articles of Confederation.",
+          "normalizedReference": "during the revolutionary war the thirteen states first formed a weak central government with the congress being its only component under the articles of confederation",
+          "normalizedHypothesis": "during the revolutionary war the 13 states first formed a weak central government with the congress being its only component under the articles of confederation",
+          "errorRate": 0.04,
+          "requestRoundTripMs": 285.133
+        },
+        {
+          "id": "fleurs-en-1675",
+          "reference": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+          "hypothesis": "All Nouns alongside the words C for you always begin with a capital letter even in the middle of a sentence.",
+          "normalizedReference": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+          "normalizedHypothesis": "all nouns alongside the words c for you always begin with a capital letter even in the middle of a sentence",
+          "errorRate": 0.095238,
+          "requestRoundTripMs": 244.675
+        },
+        {
+          "id": "fleurs-en-1687",
+          "reference": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+          "hypothesis": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+          "normalizedReference": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+          "normalizedHypothesis": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 247.274
+        },
+        {
+          "id": "fleurs-en-1689",
+          "reference": "europe is a continent that is relatively small but with many independent countries under normal circumstances travelling through multiple countries would mean having to go through visa applications and passport control multiple times",
+          "hypothesis": "European is the continent that is relatively small but with many independent countries and our normal circumstances traveling through multiple countries would mean having to go through visa application and passport control multiple times.",
+          "normalizedReference": "europe is a continent that is relatively small but with many independent countries under normal circumstances travelling through multiple countries would mean having to go through visa applications and passport control multiple times",
+          "normalizedHypothesis": "european is the continent that is relatively small but with many independent countries and our normal circumstances traveling through multiple countries would mean having to go through visa application and passport control multiple times",
+          "errorRate": 0.181818,
+          "requestRoundTripMs": 302.128
+        },
+        {
+          "id": "fleurs-en-1701",
+          "reference": "goats seem to have been first domesticated roughly 10,000 years ago in the zagros mountains of iran",
+          "hypothesis": "Goats seem to have been first domesticated roughly 10,000 years ago in the Zachrose Mountains of Iran.",
+          "normalizedReference": "goats seem to have been first domesticated roughly 10 000 years ago in the zagros mountains of iran",
+          "normalizedHypothesis": "goats seem to have been first domesticated roughly 10 000 years ago in the zachrose mountains of iran",
+          "errorRate": 0.055556,
+          "requestRoundTripMs": 235.493
+        },
+        {
+          "id": "fleurs-en-1704",
+          "reference": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+          "hypothesis": "In 1990, it was added to the list of World Heritage sites in danger due to the threat of desert sands.",
+          "normalizedReference": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+          "normalizedHypothesis": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 239.606
+        },
+        {
+          "id": "fleurs-en-1714",
+          "reference": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+          "hypothesis": "The satellite was sent into space by a rocket. Scientists use telescopes in space because the Earth's atmosphere distorts some of our light and view.",
+          "normalizedReference": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+          "normalizedHypothesis": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 477.831
+        },
+        {
+          "id": "fleurs-en-1720",
+          "reference": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+          "hypothesis": "The hot chocolate is up to Belgian standards. Fruit juices are pricey but excellent.",
+          "normalizedReference": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+          "normalizedHypothesis": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 235.134
+        },
+        {
+          "id": "fleurs-en-1731",
+          "reference": "in the archipelagos and lakes you do not necessarily need a yacht",
+          "hypothesis": "In the Archipelagos and lakes, you do not necessarily need a yacht.",
+          "normalizedReference": "in the archipelagos and lakes you do not necessarily need a yacht",
+          "normalizedHypothesis": "in the archipelagos and lakes you do not necessarily need a yacht",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 358.18
+        },
+        {
+          "id": "fleurs-en-1737",
+          "reference": "lions are the most social cats living in large groups called prides",
+          "hypothesis": "I enter the most social cat's living in large groups called Pride.",
+          "normalizedReference": "lions are the most social cats living in large groups called prides",
+          "normalizedHypothesis": "i enter the most social cat's living in large groups called pride",
+          "errorRate": 0.333333,
+          "requestRoundTripMs": 368.189
+        },
+        {
+          "id": "fleurs-en-1745",
+          "reference": "plants look their best when in a natural environment so resist the temptation to remove even just one specimen",
+          "hypothesis": "Planets look their best when in a natural environment, so resist the temptation to remove even just one specimen.",
+          "normalizedReference": "plants look their best when in a natural environment so resist the temptation to remove even just one specimen",
+          "normalizedHypothesis": "planets look their best when in a natural environment so resist the temptation to remove even just one specimen",
+          "errorRate": 0.052632,
+          "requestRoundTripMs": 257.617
+        },
+        {
+          "id": "fleurs-en-1755",
+          "reference": "one bomb exploded outside the governor general's office",
+          "hypothesis": "One bomb exploded outside the Governor's General's office.",
+          "normalizedReference": "one bomb exploded outside the governor general's office",
+          "normalizedHypothesis": "one bomb exploded outside the governor's general's office",
+          "errorRate": 0.125,
+          "requestRoundTripMs": 199.799
+        },
+        {
+          "id": "fleurs-en-1756",
+          "reference": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced us troops would be leaving syria",
+          "hypothesis": "Late on Sunday, the United States President Donald Trump, in a statement delivered via the press secretary, announced U.S. troops would be leaving Syria.",
+          "normalizedReference": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced us troops would be leaving syria",
+          "normalizedHypothesis": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced u s troops would be leaving syria",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 279.751
+        },
+        {
+          "id": "fleurs-en-1768",
+          "reference": "most of the buildings on the edges of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+          "hypothesis": "Most of the buildings on the edge of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared.",
+          "normalizedReference": "most of the buildings on the edges of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+          "normalizedHypothesis": "most of the buildings on the edge of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+          "errorRate": 0.038462,
+          "requestRoundTripMs": 264.855
+        },
+        {
+          "id": "fleurs-en-1772",
+          "reference": "so it is likely that the notation was added simply as a label",
+          "hypothesis": "So it is likely that the notation was added simply as a label.",
+          "normalizedReference": "so it is likely that the notation was added simply as a label",
+          "normalizedHypothesis": "so it is likely that the notation was added simply as a label",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 197.529
+        },
+        {
+          "id": "fleurs-en-1781",
+          "reference": "madagascar is by far the biggest and a continent on its own when it comes to wildlife",
+          "hypothesis": "Madden Gascar is by far the biggest and the continent on its own when it comes to wildlife.",
+          "normalizedReference": "madagascar is by far the biggest and a continent on its own when it comes to wildlife",
+          "normalizedHypothesis": "madden gascar is by far the biggest and the continent on its own when it comes to wildlife",
+          "errorRate": 0.176471,
+          "requestRoundTripMs": 243.056
+        },
+        {
+          "id": "fleurs-en-1782",
+          "reference": "also between each dynasty was an unstable age of divided provinces the best-known of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+          "hypothesis": "Also, between each dynasty was an unstable age of dividend provinces. The best sign of these periods was the Three Kingdoms epoch, taking place for 60 years between the Han and the Jin Dynasty.",
+          "normalizedReference": "also between each dynasty was an unstable age of divided provinces the best known of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+          "normalizedHypothesis": "also between each dynasty was an unstable age of dividend provinces the best sign of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+          "errorRate": 0.058824,
+          "requestRoundTripMs": 418.502
+        },
+        {
+          "id": "fleurs-en-1793",
+          "reference": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+          "hypothesis": "If you're not used to driving on country roads, keep your wits about you. Steep grades, narrow lanes, and sharp curves predominate.",
+          "normalizedReference": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+          "normalizedHypothesis": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 285.364
+        },
+        {
+          "id": "fleurs-en-1799",
+          "reference": "beyond wednesday's event carpanedo competed in two individual races at the championships",
+          "hypothesis": "Beyond Wednesday's event, Carpigneto competed in two individual races at the championships.",
+          "normalizedReference": "beyond wednesday's event carpanedo competed in two individual races at the championships",
+          "normalizedHypothesis": "beyond wednesday's event carpigneto competed in two individual races at the championships",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 226.533
+        },
+        {
+          "id": "fleurs-en-1802",
+          "reference": "the internet combines elements of both mass and interpersonal communication",
+          "hypothesis": "The internet combines elements of both mass and interpersonal communication.",
+          "normalizedReference": "the internet combines elements of both mass and interpersonal communication",
+          "normalizedHypothesis": "the internet combines elements of both mass and interpersonal communication",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 194.82
+        },
+        {
+          "id": "fleurs-en-1813",
+          "reference": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+          "hypothesis": "Barcelona's official languages are Catalan and Spanish. About a half prefer to speak Catalan, a vast majority understands it and virtually everyone knows Spanish.",
+          "normalizedReference": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+          "normalizedHypothesis": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 268.28
+        },
+        {
+          "id": "fleurs-en-1817",
+          "reference": "the schengen zone however works somewhat like one country in this respect",
+          "hypothesis": "The Sheningeng Zone however works somewhat like one country in this respect.",
+          "normalizedReference": "the schengen zone however works somewhat like one country in this respect",
+          "normalizedHypothesis": "the sheningeng zone however works somewhat like one country in this respect",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 336.898
+        },
+        {
+          "id": "fleurs-en-1828",
+          "reference": "a search of the internet for hostile environment course' will probably provide the address of a local company",
+          "hypothesis": "A search of the Internet for a hostile environment course will probably provide the address of a local company.",
+          "normalizedReference": "a search of the internet for hostile environment course' will probably provide the address of a local company",
+          "normalizedHypothesis": "a search of the internet for a hostile environment course will probably provide the address of a local company",
+          "errorRate": 0.111111,
+          "requestRoundTripMs": 243.707
+        },
+        {
+          "id": "fleurs-en-1839",
+          "reference": "think of the skiing route as of a similar hiking route",
+          "hypothesis": "Think of the scheme route as of a similar hiking route.",
+          "normalizedReference": "think of the skiing route as of a similar hiking route",
+          "normalizedHypothesis": "think of the scheme route as of a similar hiking route",
+          "errorRate": 0.090909,
+          "requestRoundTripMs": 207.476
+        },
+        {
+          "id": "fleurs-en-1840",
+          "reference": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+          "hypothesis": "In many other cities of Italy and in the rest of the world, particularly in Poland, similar setups were made which were viewed by a great number of people.",
+          "normalizedReference": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+          "normalizedHypothesis": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 285.192
+        },
+        {
+          "id": "fleurs-en-1851",
+          "reference": "rip currents are the returning flow from waves breaking off the beach often at a reef or similar",
+          "hypothesis": "Roup currents are the returning flow from waves breaking off the sea often at a reef or similar.",
+          "normalizedReference": "rip currents are the returning flow from waves breaking off the beach often at a reef or similar",
+          "normalizedHypothesis": "roup currents are the returning flow from waves breaking off the sea often at a reef or similar",
+          "errorRate": 0.111111,
+          "requestRoundTripMs": 231.226
+        },
+        {
+          "id": "fleurs-en-1857",
+          "reference": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+          "hypothesis": "He added that they should not however be asked to take on obligations that go beyond their development stage, responsibility and capabilities.",
+          "normalizedReference": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+          "normalizedHypothesis": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 254.971
+        },
+        {
+          "id": "fleurs-en-1866",
+          "reference": "first most riders wear riding boots with a heel and a smooth quite narrow sole",
+          "hypothesis": "First, most riders were riding boots with a heel and a smooth, quite narrow sole.",
+          "normalizedReference": "first most riders wear riding boots with a heel and a smooth quite narrow sole",
+          "normalizedHypothesis": "first most riders were riding boots with a heel and a smooth quite narrow sole",
+          "errorRate": 0.066667,
+          "requestRoundTripMs": 222.361
+        },
+        {
+          "id": "fleurs-en-1873",
+          "reference": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it ok!",
+          "hypothesis": "Be firm in turning down men and don't be afraid to stand your ground, cultural differences or not, it doesn't make it okay.",
+          "normalizedReference": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it ok",
+          "normalizedHypothesis": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it okay",
+          "errorRate": 0.043478,
+          "requestRoundTripMs": 319.38
+        },
+        {
+          "id": "fleurs-en-1881",
+          "reference": "sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes",
+          "hypothesis": "Sharing a field trip virtually is also a great way to reflect on a trip and share experiences with future classes.",
+          "normalizedReference": "sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes",
+          "normalizedHypothesis": "sharing a field trip virtually is also a great way to reflect on a trip and share experiences with future classes",
+          "errorRate": 0.045455,
+          "requestRoundTripMs": 303.724
+        },
+        {
+          "id": "fleurs-en-1889",
+          "reference": "it has brought us the train the car and many other transportation devices",
+          "hypothesis": "It has brought us to train the car and many other transportation devices.",
+          "normalizedReference": "it has brought us the train the car and many other transportation devices",
+          "normalizedHypothesis": "it has brought us to train the car and many other transportation devices",
+          "errorRate": 0.076923,
+          "requestRoundTripMs": 273.163
+        },
+        {
+          "id": "fleurs-en-1893",
+          "reference": "the sundarbans are the largest littoral mangrove belt in the world stretching 80 km 50 mi into the bangladeshi and indian hinterland from the coast",
+          "hypothesis": "The Sundarbans are the largest littoral mangrove bell in the world, stretching 80 kilometers, 50 miles, into the Bangladeshi and Indian hinterland from the coast.",
+          "normalizedReference": "the sundarbans are the largest littoral mangrove belt in the world stretching 80 km 50 mi into the bangladeshi and indian hinterland from the coast",
+          "normalizedHypothesis": "the sundarbans are the largest littoral mangrove bell in the world stretching 80 kilometers 50 miles into the bangladeshi and indian hinterland from the coast",
+          "errorRate": 0.12,
+          "requestRoundTripMs": 338.959
+        },
+        {
+          "id": "fleurs-en-1902",
+          "reference": "he was initially hospitalised in the james paget hospital in great yarmouth",
+          "hypothesis": "He was initially hospitalized in the James Pageant Hospital in Great Yarmouth.",
+          "normalizedReference": "he was initially hospitalised in the james paget hospital in great yarmouth",
+          "normalizedHypothesis": "he was initially hospitalized in the james pageant hospital in great yarmouth",
+          "errorRate": 0.166667,
+          "requestRoundTripMs": 226.801
+        },
+        {
+          "id": "fleurs-en-1909",
+          "reference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
+          "hypothesis": "Virtual teams are held to the same standard of excellent and conventional teams, but there are subtle differences.",
+          "normalizedReference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
+          "normalizedHypothesis": "virtual teams are held to the same standard of excellent and conventional teams but there are subtle differences",
+          "errorRate": 0.166667,
+          "requestRoundTripMs": 230.067
+        },
+        {
+          "id": "fleurs-en-1912",
+          "reference": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+          "hypothesis": "Most of the smaller islands are independent nations or associated with France and known as luxury beach resorts.",
+          "normalizedReference": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+          "normalizedHypothesis": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 234.515
+        },
+        {
+          "id": "fleurs-en-1922",
+          "reference": "there are of course christian theological explanations for this tradition but it may well be a pre-christian spring and fertility ritual",
+          "hypothesis": "There are of course Christian theological explanations for this tradition, but it may well be a pre-Christian spring infertility ritual.",
+          "normalizedReference": "there are of course christian theological explanations for this tradition but it may well be a pre christian spring and fertility ritual",
+          "normalizedHypothesis": "there are of course christian theological explanations for this tradition but it may well be a pre christian spring infertility ritual",
+          "errorRate": 0.090909,
+          "requestRoundTripMs": 262.68
+        },
+        {
+          "id": "fleurs-en-1938",
+          "reference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+          "hypothesis": "The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+          "normalizedReference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+          "normalizedHypothesis": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 257.188
+        },
+        {
+          "id": "fleurs-en-1939",
+          "reference": "also after the revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed",
+          "hypothesis": "Also, after Revolution, occupants were open to all male applicants, allowing the most ambitious and successful to succeed.",
+          "normalizedReference": "also after the revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed",
+          "normalizedHypothesis": "also after revolution occupants were open to all male applicants allowing the most ambitious and successful to succeed",
+          "errorRate": 0.105263,
+          "requestRoundTripMs": 258.734
+        },
+        {
+          "id": "fleurs-en-1951",
+          "reference": "in 2002 goma was destroyed by lava from the nyiragongo volcano which buried most of the town's streets particularly the town centre",
+          "hypothesis": "In 2002, Goma was destroyed by lava from the Nairungogo volcano which buried most of the town streets, particularly the town center.",
+          "normalizedReference": "in 2002 goma was destroyed by lava from the nyiragongo volcano which buried most of the town's streets particularly the town centre",
+          "normalizedHypothesis": "in 2002 goma was destroyed by lava from the nairungogo volcano which buried most of the town streets particularly the town center",
+          "errorRate": 0.136364,
+          "requestRoundTripMs": 268.551
+        },
+        {
+          "id": "fleurs-en-1952",
+          "reference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+          "hypothesis": "Anyone who is going to drive at high latitudes or over mountain passes should consider the possibility of snow, ice, or freezing temperatures.",
+          "normalizedReference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+          "normalizedHypothesis": "anyone who is going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+          "errorRate": 0.090909,
+          "requestRoundTripMs": 287.922
+        },
+        {
+          "id": "fleurs-en-1964",
+          "reference": "the 25 dunlap broadsides still known to exist are the oldest surviving copies of the document the original handwritten copy has not survived",
+          "hypothesis": "The 25 Dunlap broad sides, still known to exist, are the oldest surviving copies of the document. The original handwriting copying has not survived.",
+          "normalizedReference": "the 25 dunlap broadsides still known to exist are the oldest surviving copies of the document the original handwritten copy has not survived",
+          "normalizedHypothesis": "the 25 dunlap broad sides still known to exist are the oldest surviving copies of the document the original handwriting copying has not survived",
+          "errorRate": 0.173913,
+          "requestRoundTripMs": 320.819
+        },
+        {
+          "id": "fleurs-en-1969",
+          "reference": "it states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally see example",
+          "hypothesis": "It states that the most effective place for the main subject is at the intersection of lines dividing the images into thirds vertically and horizontally. See example.",
+          "normalizedReference": "it states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally see example",
+          "normalizedHypothesis": "it states that the most effective place for the main subject is at the intersection of lines dividing the images into thirds vertically and horizontally see example",
+          "errorRate": 0.037037,
+          "requestRoundTripMs": 738.584
+        },
+        {
+          "id": "fleurs-en-1977",
+          "reference": "prides are made up of one to three related adult males along with as many as thirty females and cubs",
+          "hypothesis": "Brides are made up of 1-3 related adult males, along with as many as 30 females and cubs.",
+          "normalizedReference": "prides are made up of one to three related adult males along with as many as thirty females and cubs",
+          "normalizedHypothesis": "brides are made up of 1 3 related adult males along with as many as 30 females and cubs",
+          "errorRate": 0.25,
+          "requestRoundTripMs": 240.732
+        },
+        {
+          "id": "fleurs-en-1981",
+          "reference": "if you only go ashore using shipboard excursions you will not need a separate visa as of 2009",
+          "hypothesis": "If you only go ashore using ship or excursions, you will not need a separate visa as of 2009.",
+          "normalizedReference": "if you only go ashore using shipboard excursions you will not need a separate visa as of 2009",
+          "normalizedHypothesis": "if you only go ashore using ship or excursions you will not need a separate visa as of 2009",
+          "errorRate": 0.111111,
+          "requestRoundTripMs": 237.239
+        },
+        {
+          "id": "fleurs-en-1992",
+          "reference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
+          "hypothesis": "The turn safari in popular use refers to overland travel to view the stunning African wildlife particularly on Savannah.",
+          "normalizedReference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
+          "normalizedHypothesis": "the turn safari in popular use refers to overland travel to view the stunning african wildlife particularly on savannah",
+          "errorRate": 0.105263,
+          "requestRoundTripMs": 235.807
+        },
+        {
+          "id": "fleurs-en-1995",
+          "reference": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been to challenging for the student to handle alone",
+          "hypothesis": "Virtual scaffolds are internalized in the software and are meant to question, prompt, and explain procedures that may have been too challenging for the student to handle alone.",
+          "normalizedReference": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been to challenging for the student to handle alone",
+          "normalizedHypothesis": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been too challenging for the student to handle alone",
+          "errorRate": 0.035714,
+          "requestRoundTripMs": 269.413
+        },
+        {
+          "id": "fleurs-en-2009",
+          "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "hypothesis": "The most readily accessible plant resources would have been the proteins accessible in leaves and legumes, but these are hard for primates like us to digest unless they are cooked.",
+          "normalizedReference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "normalizedHypothesis": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 383.39
+        }
+      ]
+    }
+  ]
+}

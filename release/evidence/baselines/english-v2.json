@@ -1,13 +1,13 @@
 {
   "schemaVersion": 1,
-  "baselineId": "english-promoted-baseline-v1",
+  "baselineId": "english-promoted-baseline-unique-v2",
   "profileId": "english",
   "metric": "WER",
-  "corpusManifestSha256": "30c4cc0c6d952de68e881b239e07fd47b80144e06f487bc964deb89e6144b46e",
-  "configurationDigest": "3abffdab678fbc4c56c08bc9060ea022b1259581f20b2ca7b82cf841f93651b2",
+  "corpusManifestSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+  "configurationDigest": "442f9ad4c7669a60de86b118558fe6c97e73f7874cab680f64cf1eb69c4bde87",
   "providerId": "autobyteus.voice.mlx-whisper-small",
   "modelId": "whisper-small-mlx-fp16",
-  "value": 0.07007007007007007,
+  "value": 0.07223942208462332,
   "results": [
     {
       "clipId": "fleurs-en-1660",
@@ -296,12 +296,6 @@
       "audioSha256": "aa3552dc30f62b9ae8f13f37b8c8f26e41612b30d0635122d7c01faebdf96201",
       "errors": 1,
       "units": 28
-    },
-    {
-      "clipId": "fleurs-en-2009",
-      "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
-      "errors": 0,
-      "units": 30
     },
     {
       "clipId": "fleurs-en-2009",

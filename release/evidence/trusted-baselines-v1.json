@@ -4,21 +4,21 @@
     {
       "profileId": "english",
       "targets": ["darwin-arm64", "darwin-x64", "linux-x64", "win32-x64"],
-      "baselineId": "english-promoted-baseline-v1",
-      "evidencePath": "release/evidence/baselines/english-v1.json",
-      "evidenceSha256": "4cda09c10fa50e22981397c1be80f072b450da2154a0f604db40c940249927d1",
-      "promotedResultPath": "evidence/selection-study/results/controlled-mlx-fp16-en.json",
-      "promotedResultSha256": "41130ffff80dcabb59c442116201a8ea965e01d1a64513e32a5bc6c1f012f3e3",
-      "corpusManifestPath": "release/evidence/qualification-corpora/english-v1.json",
-      "corpusManifestSha256": "30c4cc0c6d952de68e881b239e07fd47b80144e06f487bc964deb89e6144b46e",
+      "baselineId": "english-promoted-baseline-unique-v2",
+      "evidencePath": "release/evidence/baselines/english-v2.json",
+      "evidenceSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "promotedResultPath": "evidence/selection-study/derived/english-preservation-unique-v2/controlled-mlx-fp16-en-unique-v2.json",
+      "promotedResultSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "corpusManifestPath": "release/evidence/qualification-corpora/english-v2.json",
+      "corpusManifestSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
       "providerId": "autobyteus.voice.mlx-whisper-small",
       "modelId": "whisper-small-mlx-fp16",
-      "configurationDigest": "3abffdab678fbc4c56c08bc9060ea022b1259581f20b2ca7b82cf841f93651b2",
+      "configurationDigest": "442f9ad4c7669a60de86b118558fe6c97e73f7874cab680f64cf1eb69c4bde87",
       "metric": "WER",
-      "sampleCount": 50,
-      "value": 0.07007007007007007,
-      "promotedQualityPath": "evidence/selection-study/results/quality-mlx.json",
-      "promotedQualitySha256": "af259491e92344c9952c2d2d8e15adf23ad5576946e6165344843613202e86c0",
+      "sampleCount": 49,
+      "value": 0.07223942208462332,
+      "promotedQualityPath": "evidence/selection-study/derived/english-preservation-unique-v2/quality-mlx-en-unique-v2.json",
+      "promotedQualitySha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
       "configuration": {
         "providerId": "autobyteus.voice.mlx-whisper-small",
         "modelId": "whisper-small-mlx-fp16",
@@ -28,7 +28,7 @@
         "language": "en",
         "temperature": 0,
         "conditionOnPreviousText": false,
-        "promotedResultSha256": "41130ffff80dcabb59c442116201a8ea965e01d1a64513e32a5bc6c1f012f3e3"
+        "promotedResultSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10"
       }
     },
     {

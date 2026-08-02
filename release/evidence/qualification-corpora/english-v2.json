@@ -1,13 +1,15 @@
 {
   "schemaVersion": 1,
-  "corpusId": "fleurs-english-preservation-v1",
+  "corpusId": "fleurs-english-preservation-unique-v2",
   "profileId": "english",
   "metric": "WER",
   "license": "CC-BY-4.0",
-  "provenanceReference": "evidence/selection-study/corpus-manifests/fleurs-controlled-v1.json",
+  "provenanceReference": "evidence/selection-study/derived/english-preservation-unique-v2/authority.json",
   "redistributionApproved": true,
   "limitations": [
-    "FLEURS parquet does not expose speaker identity; gender labels are not speaker IDs."
+    "Derived without new inference from the immutable 50-row FLEURS control by exact operational-identity collapse; it contains 49 unique audio identities.",
+    "The initial extractor selected one duplicated FLEURS source ID and wrote both rows to one path; source duration/gender metadata for that identity is ambiguous and is not claimed by this qualification corpus.",
+    "FLEURS parquet does not expose speaker identity; gender labels are not speaker IDs, and the 49-identity projection makes no speaker or gender-balance claim."
   ],
   "clips": [
     {
@@ -15,350 +17,343 @@
       "audioPath": "audio/fleurs-en-1660.wav",
       "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
       "reference": "romanticism had a large element of cultural determinism drawn from writers such as goethe fichte and schlegel",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1662",
       "audioPath": "audio/fleurs-en-1662.wav",
       "audioSha256": "e6f2e4c80e5b88af78013ce6751b186208919a27549fb9e100272208b3e78fd0",
       "reference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1673",
       "audioPath": "audio/fleurs-en-1673.wav",
       "audioSha256": "3be7d32f9f9e49016279c9e341d5333229c147a7496076071f46fec47b2a8c2b",
       "reference": "during the revolutionary war the thirteen states first formed a weak central government-with the congress being its only component-under the articles of confederation",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1675",
       "audioPath": "audio/fleurs-en-1675.wav",
       "audioSha256": "be7624eeac3cd2b189f942f28f1951bf32a121c91669eaba0fd18da671dc4203",
       "reference": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1687",
       "audioPath": "audio/fleurs-en-1687.wav",
       "audioSha256": "f9c3260247ceba373edea48b3addcff11119c34d77f1fceea1a91ce78634890e",
       "reference": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1689",
       "audioPath": "audio/fleurs-en-1689.wav",
       "audioSha256": "c9f5fd5ab00cfe00a90dab73bdfd8f2825fda2930d2e3f6f7765256a83aedf50",
       "reference": "europe is a continent that is relatively small but with many independent countries under normal circumstances travelling through multiple countries would mean having to go through visa applications and passport control multiple times",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1701",
       "audioPath": "audio/fleurs-en-1701.wav",
       "audioSha256": "4cd2b2341a50616cc62b1de26a5cd2a3696faa1b6fe36af380901eacd22e0fe9",
       "reference": "goats seem to have been first domesticated roughly 10,000 years ago in the zagros mountains of iran",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1704",
       "audioPath": "audio/fleurs-en-1704.wav",
       "audioSha256": "2617b2e90f55139172e6c28a2ac10b8cdd6052b08443bc9ed241d9cb6ee309f2",
       "reference": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1714",
       "audioPath": "audio/fleurs-en-1714.wav",
       "audioSha256": "31abd2ac9d4ffac7ce249e660ab835f4bd1d33d7f1e988ad185c9e9e58e06c77",
       "reference": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1720",
       "audioPath": "audio/fleurs-en-1720.wav",
       "audioSha256": "d4d84953f0843ed491be08af8effc90178116cc25a43480b6b8766bc5701c5cf",
       "reference": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1731",
       "audioPath": "audio/fleurs-en-1731.wav",
       "audioSha256": "1b56e22e38d3292f8fce41ba55318a831c291d7019c8cbdd515a061b17284be5",
       "reference": "in the archipelagos and lakes you do not necessarily need a yacht",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1737",
       "audioPath": "audio/fleurs-en-1737.wav",
       "audioSha256": "9fbb10d4f979df040894b47eb99ca221e76d3d2546170aad6d65a2efeb465c78",
       "reference": "lions are the most social cats living in large groups called prides",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1745",
       "audioPath": "audio/fleurs-en-1745.wav",
       "audioSha256": "feb75243981b946a02007e428379a6e4f1374d485fd2f6f8e2b696192f79d985",
       "reference": "plants look their best when in a natural environment so resist the temptation to remove even just one specimen",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1755",
       "audioPath": "audio/fleurs-en-1755.wav",
       "audioSha256": "446286000735ba48a738547f544417e7c85b398739e4a719e700696efd1c97fb",
       "reference": "one bomb exploded outside the governor general's office",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1756",
       "audioPath": "audio/fleurs-en-1756.wav",
       "audioSha256": "50171f02cee7b221842c3f85b5ae2f721db6e3805275915e1dfb9a0a4a35f87d",
       "reference": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced us troops would be leaving syria",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1768",
       "audioPath": "audio/fleurs-en-1768.wav",
       "audioSha256": "133ba4e910bcb61821535fe959b91383b46042f919c6f659cf26471502b51cbd",
       "reference": "most of the buildings on the edges of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1772",
       "audioPath": "audio/fleurs-en-1772.wav",
       "audioSha256": "99b20596262179f1549a9b50b7aa4fcfa39eb8ee41b9aa1ff70671aea0b896f3",
       "reference": "so it is likely that the notation was added simply as a label",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1781",
       "audioPath": "audio/fleurs-en-1781.wav",
       "audioSha256": "ef2f97eef7669fa93e8cecad4c5a4f603d137fe7cfbc4be71f3ba0aad5b86db3",
       "reference": "madagascar is by far the biggest and a continent on its own when it comes to wildlife",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1782",
       "audioPath": "audio/fleurs-en-1782.wav",
       "audioSha256": "59d6101a0fbee656bae14a55e145d211e5c6115bb092d6a38c80c9d9ff92a55e",
       "reference": "also between each dynasty was an unstable age of divided provinces the best-known of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1793",
       "audioPath": "audio/fleurs-en-1793.wav",
       "audioSha256": "7fa68e447e76b165ce1744169653103e44223ee57b5b42b472224c9bce52aa4f",
       "reference": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1799",
       "audioPath": "audio/fleurs-en-1799.wav",
       "audioSha256": "b7db2bebbc3ff2cb8a5c00d537987f98052606a011f32bd3a5935a640e2e91cb",
       "reference": "beyond wednesday's event carpanedo competed in two individual races at the championships",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1802",
       "audioPath": "audio/fleurs-en-1802.wav",
       "audioSha256": "2824b44d0d15a9d22e274ce8d1abc0cf3bd9c181b3635762b520e979c547ff21",
       "reference": "the internet combines elements of both mass and interpersonal communication",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1813",
       "audioPath": "audio/fleurs-en-1813.wav",
       "audioSha256": "2f175c35ed2399273c9ae81595c379b3de7be79c5f8d63af2eab882f6000e5bc",
       "reference": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1817",
       "audioPath": "audio/fleurs-en-1817.wav",
       "audioSha256": "d8531f1d437a30bc6390207ae761daef80fb05ce727b42ecc48dc938ea11787d",
       "reference": "the schengen zone however works somewhat like one country in this respect",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1828",
       "audioPath": "audio/fleurs-en-1828.wav",
       "audioSha256": "3eecfa2b9f4eb428b26d4a5074f78eeaa24393a3cbad171102ab85ee48a97ae2",
       "reference": "a search of the internet for hostile environment course' will probably provide the address of a local company",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1839",
       "audioPath": "audio/fleurs-en-1839.wav",
       "audioSha256": "d706d40c747e31b83a36cf412aa70b2ae6e4e9547358973226f32dedbc8f4e6a",
       "reference": "think of the skiing route as of a similar hiking route",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1840",
       "audioPath": "audio/fleurs-en-1840.wav",
       "audioSha256": "62f8adb4a33f9291e8a82267125d9da428bd24a69aa6da9a7574e0c3fc57d21a",
       "reference": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1851",
       "audioPath": "audio/fleurs-en-1851.wav",
       "audioSha256": "85df95265c784161550e5e6f2d559d1a9fa8525c9e27297ef21bb0c9c6ebcbcb",
       "reference": "rip currents are the returning flow from waves breaking off the beach often at a reef or similar",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1857",
       "audioPath": "audio/fleurs-en-1857.wav",
       "audioSha256": "9b8095943bceaef944a7ee28228b71400d2647a79dcc40d24e0a541a1d109c37",
       "reference": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1866",
       "audioPath": "audio/fleurs-en-1866.wav",
       "audioSha256": "c54c7ea72117b3bf2bd89dcbb76a1be3fe907492ad7de927121f9121e0d90303",
       "reference": "first most riders wear riding boots with a heel and a smooth quite narrow sole",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1873",
       "audioPath": "audio/fleurs-en-1873.wav",
       "audioSha256": "dde1e5fbb092f0af4667cf352e6e4f772a957d24181fb1e6afc23a190673bf61",
       "reference": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it ok!",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1881",
       "audioPath": "audio/fleurs-en-1881.wav",
       "audioSha256": "ffb375d3627927f847c2f4b4655cc2d8e5e064d5e078907641d24e50fad10cd0",
       "reference": "sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1889",
       "audioPath": "audio/fleurs-en-1889.wav",
       "audioSha256": "ad3100c49ebf88d1f15d75cbecaa26cc055df7e2727563b980bbccc6af2a0a9f",
       "reference": "it has brought us the train the car and many other transportation devices",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1893",
       "audioPath": "audio/fleurs-en-1893.wav",
       "audioSha256": "3570df6f805501d94a7b7d86dd39dfd6f52f9525bf566d29a56c5a0e5231d558",
       "reference": "the sundarbans are the largest littoral mangrove belt in the world stretching 80 km 50 mi into the bangladeshi and indian hinterland from the coast",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1902",
       "audioPath": "audio/fleurs-en-1902.wav",
       "audioSha256": "de0a4aacdbc52a0a2ff48c3fb58f0e84006b7fe8c0fdcba34250646e56dacbdf",
       "reference": "he was initially hospitalised in the james paget hospital in great yarmouth",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1909",
       "audioPath": "audio/fleurs-en-1909.wav",
       "audioSha256": "561b13caa64209f0fdded9fd60e4595b765c0746791f7ad407e153d38580a4de",
       "reference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1912",
       "audioPath": "audio/fleurs-en-1912.wav",
       "audioSha256": "70aaf10158644971ea49189ad31ef343b792fb3cbc12e53b76fbcdfc624a31e8",
       "reference": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1922",
       "audioPath": "audio/fleurs-en-1922.wav",
       "audioSha256": "c38bc9f79a9bac156ed8c8c1b2162f45757c8d1276f05bb2a85aa739caff75b6",
       "reference": "there are of course christian theological explanations for this tradition but it may well be a pre-christian spring and fertility ritual",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1938",
       "audioPath": "audio/fleurs-en-1938.wav",
       "audioSha256": "7045803950c7da4034e537393ab5d0c15829b08dd361fd9a9de35df3fd08485c",
       "reference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1939",
       "audioPath": "audio/fleurs-en-1939.wav",
       "audioSha256": "4ea5cca9f30fb9f75efc1981f7946656241db3b36250c2a87255760c465a81dd",
       "reference": "also after the revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1951",
       "audioPath": "audio/fleurs-en-1951.wav",
       "audioSha256": "57eaa7659f1d60861689163f45d2d5397e27498d521faa7508aec02a993aa7b8",
       "reference": "in 2002 goma was destroyed by lava from the nyiragongo volcano which buried most of the town's streets particularly the town centre",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1952",
       "audioPath": "audio/fleurs-en-1952.wav",
       "audioSha256": "8495a00f44057603005f64f35d45e97643e0cf25573b73de12a4f8a789709c93",
       "reference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1964",
       "audioPath": "audio/fleurs-en-1964.wav",
       "audioSha256": "35010f8669e91931066e923bcfdb3a0d7d5a95f333a2327fbf2aa94524ec440a",
       "reference": "the 25 dunlap broadsides still known to exist are the oldest surviving copies of the document the original handwritten copy has not survived",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1969",
       "audioPath": "audio/fleurs-en-1969.wav",
       "audioSha256": "c45c170afabf447f4909301f8e6fb7444cc72190765158f54207a311ef7558ba",
       "reference": "it states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally see example",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1977",
       "audioPath": "audio/fleurs-en-1977.wav",
       "audioSha256": "e402c9a346fec837f60bb94d4d38bc6a4f639c82acd5c0ef29bef0dd74c9e12e",
       "reference": "prides are made up of one to three related adult males along with as many as thirty females and cubs",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1981",
       "audioPath": "audio/fleurs-en-1981.wav",
       "audioSha256": "e16a6a17344d1f357a295b95ea90a0674654195d5569ab0faf394255debd7602",
       "reference": "if you only go ashore using shipboard excursions you will not need a separate visa as of 2009",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1992",
       "audioPath": "audio/fleurs-en-1992.wav",
       "audioSha256": "440d1f00277cc6fcdfa38796177d27922c59097522e61ea52b3f7bab4ccb8319",
       "reference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-1995",
       "audioPath": "audio/fleurs-en-1995.wav",
       "audioSha256": "aa3552dc30f62b9ae8f13f37b8c8f26e41612b30d0635122d7c01faebdf96201",
       "reference": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been to challenging for the student to handle alone",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     },
     {
       "id": "fleurs-en-2009",
       "audioPath": "audio/fleurs-en-2009.wav",
       "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
       "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
-    },
-    {
-      "id": "fleurs-en-2009",
-      "audioPath": "audio/fleurs-en-2009.wav",
-      "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
-      "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
-      "consentReference": "FLEURS CC-BY-4.0 dataset record and source manifest"
+      "consentReference": "FLEURS CC-BY-4.0 dataset record and locked source manifest"
     }
   ]
 }

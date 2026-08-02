@@ -1,5 +1,6 @@
 import path from "node:path";
 import { readJson, ROOT, sha256, shaFile } from "../../build/lib/files.mjs";
+import { verifyEnglishPreservationAuthority } from "./english-preservation-authority.mjs";
 
 const TRUST_PATH = path.join(
   ROOT,
@@ -18,6 +19,7 @@ export async function loadTrustedBaseline(profileId, target) {
     (item) => item.profileId === profileId && item.targets?.includes(target),
   );
   if (!record) throw new Error("No trusted baseline is approved for target.");
+  if (profileId === "english") await verifyEnglishPreservationAuthority(record);
   await verifyRepositoryIdentity(record.evidencePath, record.evidenceSha256);
   await verifyRepositoryIdentity(
     record.promotedResultPath,
@@ -85,6 +87,18 @@ export function validateBaselineIdentity(
     baseline.results.length !== record.sampleCount
   )
     throw new Error("Baseline identity is not the promoted baseline.");
+  assertOneToOneCorpusBaseline(
+    {
+      clips: baseline.results.map((item) => ({
+        id: item.clipId,
+        audioSha256: item.audioSha256,
+        audioPath: item.clipId,
+      })),
+    },
+    baseline,
+    record.sampleCount,
+    { comparePaths: false },
+  );
   for (const result of baseline.results)
     if (
       !result ||
@@ -129,13 +143,13 @@ async function verifyPromotedDerivation(record) {
     Math.abs(report.corpusErrorRate - record.value) > 0.000001
   )
     throw new Error("Promoted baseline evidence is incomplete.");
-  const qualityById = new Map(report.perClip.map((item) => [item.id, item]));
-  const rawIds = new Set(rawResults.map((item) => item.id));
+  assertOneToOneCorpusBaseline(corpus, baseline, record.sampleCount);
   for (let index = 0; index < corpus.clips.length; index++) {
     const clip = corpus.clips[index];
-    const promoted = qualityById.get(clip.id);
+    const promoted = report.perClip[index];
+    const raw = rawResults[index];
     const result = baseline.results[index];
-    if (!promoted || !rawIds.has(clip.id))
+    if (promoted?.id !== clip.id || raw?.id !== clip.id)
       throw new Error("Promoted baseline clip identity is missing.");
     const units =
       record.metric === "WER"
@@ -149,5 +163,46 @@ async function verifyPromotedDerivation(record) {
       result.errors !== errors
     )
       throw new Error("Baseline counts do not derive from promoted evidence.");
+  }
+}
+
+export function assertOneToOneCorpusBaseline(
+  corpus,
+  baseline,
+  expectedCount,
+  { comparePaths = true } = {},
+) {
+  if (
+    !Array.isArray(corpus?.clips) ||
+    !Array.isArray(baseline?.results) ||
+    corpus.clips.length !== expectedCount ||
+    baseline.results.length !== expectedCount
+  )
+    throw new Error("Corpus/baseline cardinality is not one-to-one.");
+  const ids = new Set(),
+    paths = new Set(),
+    hashes = new Set(),
+    baselineIds = new Set(),
+    baselineHashes = new Set();
+  for (let index = 0; index < expectedCount; index++) {
+    const clip = corpus.clips[index],
+      result = baseline.results[index];
+    if (
+      !clip ||
+      !result ||
+      ids.has(clip.id) ||
+      (comparePaths && paths.has(clip.audioPath)) ||
+      hashes.has(clip.audioSha256) ||
+      baselineIds.has(result.clipId) ||
+      baselineHashes.has(result.audioSha256) ||
+      clip.id !== result.clipId ||
+      clip.audioSha256 !== result.audioSha256
+    )
+      throw new Error("Corpus/baseline identities are not unique one-to-one.");
+    ids.add(clip.id);
+    paths.add(clip.audioPath);
+    hashes.add(clip.audioSha256);
+    baselineIds.add(result.clipId);
+    baselineHashes.add(result.audioSha256);
   }
 }

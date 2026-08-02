@@ -116,10 +116,12 @@ jobs:
             --output "$CONDITIONS"
           EXTRA="--cold-count 3 --warm-count 10"
           if test "${{ matrix.target }}" = darwin-arm64; then EXTRA="--cold-count 30 --warm-count 100"; fi
+          BASELINE="release/evidence/baselines/${{ matrix.profile }}-v1.json"
+          if test "${{ matrix.profile }}" = english; then BASELINE="release/evidence/baselines/english-v2.json"; fi
           node benchmark/run-profile-qualification.mjs \
             --archive "out/assets/$ARCHIVE" --build-report "out/assets/$ARCHIVE.build.json" \
             --corpus "$VOICE_CORPUS_ROOT/${{ matrix.profile }}/corpus-v1.json" \
-            --baseline "release/evidence/baselines/${{ matrix.profile }}-v1.json" \
+            --baseline "$BASELINE" \
             --conditions "$CONDITIONS" --go "$VOICE_GO" \
             --reproducibility-proof "out/qualifications/${{ matrix.profile }}-${{ matrix.target }}/reproducibility-proof-v1.json" \
             --output "out/qualifications/${{ matrix.profile }}-${{ matrix.target }}" $EXTRA

@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "authorityId": "english-preservation-unique-v2",
+  "status": "evidence-authorized-final-corpus-and-baseline",
+  "profileId": "english",
+  "decision": "preserve-whisper-small",
+  "newInferencePerformed": false,
+  "sourceAuthority": [
+    {
+      "role": "locked-corpus",
+      "solutionPath": "evidence/backend-selection/corpus-manifests/fleurs-controlled-v1.json",
+      "runtimePath": "evidence/selection-study/corpus-manifests/fleurs-controlled-v1.json",
+      "sha256": "23fb64edbf1f307ec78e11ed0953030fa829e42a27bb1c7889dfed4a5d9b1f51"
+    },
+    {
+      "role": "locked-raw-result",
+      "solutionPath": "evidence/backend-selection/results/controlled-mlx-fp16-en.json",
+      "runtimePath": "evidence/selection-study/results/controlled-mlx-fp16-en.json",
+      "sha256": "41130ffff80dcabb59c442116201a8ea965e01d1a64513e32a5bc6c1f012f3e3"
+    },
+    {
+      "role": "locked-quality-analysis",
+      "solutionPath": "evidence/backend-selection/results/quality-mlx.json",
+      "runtimePath": "evidence/selection-study/results/quality-mlx.json",
+      "sha256": "af259491e92344c9952c2d2d8e15adf23ad5576946e6165344843613202e86c0"
+    },
+    {
+      "role": "locked-scorer",
+      "solutionPath": "evidence/backend-selection/harness/analyze_results.py",
+      "runtimePath": "evidence/selection-study/harness/analyze_results.py",
+      "sha256": "a2c322fd9c3fbf2cb5bba4425761429e7209d39a9eb3a2323ecfe14aaf3f0176"
+    }
+  ],
+  "derivation": {
+    "derivationId": "english-preservation-stable-identity-collapse-v2",
+    "kind": "immutable-source-projection",
+    "rule": "Preserve locked source order; retain the first occurrence of each exact (id, path, audioSha256) identity; collapse a later occurrence only when projected corpus fields and normalized transcript/error facts agree; otherwise fail.",
+    "selectionUsesRecognitionQuality": false,
+    "sourceSampleCount": 50,
+    "finalUniqueSampleCount": 49,
+    "duplicateGroups": [
+      {
+        "identity": {
+          "id": "fleurs-en-2009",
+          "audioPath": "audio/fleurs-en-2009.wav",
+          "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7"
+        },
+        "retainedSourceEnglishIndex": 48,
+        "retainedSourceCombinedIndex": 98,
+        "collapsedSourceEnglishIndex": 49,
+        "collapsedSourceCombinedIndex": 99,
+        "normalizedTranscriptAndErrorFactsEqual": true
+      }
+    ]
+  },
+  "measurement": {
+    "metric": "WER",
+    "sampleCount": 49,
+    "totalErrors": 70,
+    "totalUnits": 969,
+    "value": 0.07223942208462332,
+    "valuePercent": 7.223942208462332,
+    "absoluteGatePercent": 8.0,
+    "nonRegressionAllowanceAbsolutePercent": 0.5,
+    "effectivePackageGatePercent": 7.723942208462332,
+    "passesAbsoluteBaselineGate": true
+  },
+  "outputs": {
+    "corpus": {
+      "solutionFile": "english-v2.corpus.json",
+      "runtimePath": "release/evidence/qualification-corpora/english-v2.json",
+      "sha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd"
+    },
+    "promotedResult": {
+      "solutionFile": "english-v2.promoted-result.json",
+      "runtimePath": "evidence/selection-study/derived/english-preservation-unique-v2/controlled-mlx-fp16-en-unique-v2.json",
+      "sha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10"
+    },
+    "promotedQuality": {
+      "solutionFile": "english-v2.promoted-quality.json",
+      "runtimePath": "evidence/selection-study/derived/english-preservation-unique-v2/quality-mlx-en-unique-v2.json",
+      "sha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c"
+    },
+    "baseline": {
+      "solutionFile": "english-v2.baseline.json",
+      "runtimePath": "release/evidence/baselines/english-v2.json",
+      "sha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba"
+    },
+    "trustedBaselineRecord": {
+      "solutionFile": "english-v2.trusted-baseline-record.json",
+      "runtimePath": "release/evidence/trusted-baselines-v1.json#profileId=english",
+      "sha256": "f6702c7670578cce327b7a071c4bd1822d2a62792b90e4de5a9c70232118b057"
+    }
+  },
+  "derivationScript": {
+    "solutionFile": "derive_english_preservation_v2.py",
+    "runtimePath": "evidence/selection-study/derived/english-preservation-unique-v2/derive_english_preservation_v2.py",
+    "sha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49"
+  },
+  "limitations": [
+    "Derived without new inference from the immutable 50-row FLEURS control by exact operational-identity collapse; it contains 49 unique audio identities.",
+    "The initial extractor selected one duplicated FLEURS source ID and wrote both rows to one path; source duration/gender metadata for that identity is ambiguous and is not claimed by this qualification corpus.",
+    "FLEURS parquet does not expose speaker identity; gender labels are not speaker IDs, and the 49-identity projection makes no speaker or gender-balance claim."
+  ],
+  "implementationDisposition": {
+    "removeInvalidFinalAuthority": [
+      "release/evidence/qualification-corpora/english-v1.json",
+      "release/evidence/baselines/english-v1.json"
+    ],
+    "replaceEnglishTrustedBaselineRecordWith": "english-v2.trusted-baseline-record.json",
+    "preserveImmutableSourceEvidence": [
+      "evidence/selection-study/corpus-manifests/fleurs-controlled-v1.json",
+      "evidence/selection-study/results/controlled-mlx-fp16-en.json",
+      "evidence/selection-study/results/quality-mlx.json",
+      "evidence/selection-study/harness/analyze_results.py"
+    ],
+    "requiredVerification": "Re-run this derivation from checksum-locked sources, byte-compare every output, validate the 49 real audio files, and assert one-to-one unique corpus/baseline identities before inference."
+  }
+}
