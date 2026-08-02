@@ -10,6 +10,8 @@ The latest `code-review-report.md` remains authoritative. This record retains th
 | `CRR-002` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 2 / replacement `IR-002` against `SR-006` | `Fail — withdrawn-design Local Fix` | `Fail — Local Fix` | Historical `CR-F-001`–`CR-F-006`; new `CR-F-007`–`CR-F-013` |
 | `CRR-003` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 3 / `IR-003` rework | `Fail — Local Fix` | `Fail — Local Fix` | Resolved `CR-F-007`–`CR-F-010`, `CR-F-012`, `CR-F-013`; remaining `CR-F-011` |
 | `CRR-004` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 4 / `IR-004` rework | `Fail — Local Fix` | `Fail — Local Fix` | Partially resolved/remaining `CR-F-011`; new `CR-F-014` |
+| `CRR-005` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 5 / `IR-005` rework | `Fail — Local Fix` | `Pass` | Resolved `CR-F-011`, `CR-F-014` |
+| `CRR-006` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | API/E2E Failure-Origin Review / `API-REV-001`, `API-VOICE-002` | `Pass` | `Fail — Design Impact` | New `CR-F-015`; review gap in prior `CR-F-010` resolution |
 
 ## Revision Entries
 
@@ -127,3 +129,56 @@ None.
 - Material score or classification changes: score changes from `9.2/10` to `9.1/10`; result remains `Fail — Local Fix`. Full-root trust materially improves, but API/E2E readiness falls because six required target/profile jobs cannot pass their version checks.
 - Recommended recipient: `implementation_engineer`
 - Remaining risks or uncertainty: after source correction, all eight target-native packages, licensed corpus, M1 Max performance/RSS/size, notices/licenses, Windows runtime behavior, maintained-main integration, pre-tag proof, publication, and published-byte equality remain fail-closed downstream gates.
+
+### CRR-005 — Go environment and target identity close; implementation passes
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `5`
+- Triggering role, report path, and finding or scenario IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-handoff.md`; `IR-005`; recheck partial `CR-F-011` and new `CR-F-014`
+- Relevant solution revision IDs: `SR-006`
+- Relevant architecture-review revision IDs: `ARCH-REV-007`
+- Relevant implementation revision IDs: `IR-005`
+- Relevant API/E2E revision IDs: `N/A`
+- Relevant delivery revision IDs: `N/A`
+- Prior authoritative result: `CRR-004 Fail — Local Fix`
+- Current authoritative result: `Pass -> api_e2e_engineer`
+- What changed in the review result and why: `GOCACHEPROG` is now rejected before verified Go execution and explicitly empty in child environments. A single frozen target owner maps every supported internal tuple to Node/Go identities and drives root selection, trusted `GOOS`/`GOARCH`, and expected version output. Both prior source blockers are resolved without provider, threshold, protocol, release-order, or architecture changes.
+
+#### Prior Finding Resolution
+
+| Finding ID | Prior Status | Current Status | Related Revision References | Verification Evidence |
+| --- | --- | --- | --- | --- |
+| `CR-F-011` | Partially resolved; remaining / Local Fix | Resolved | `IR-005`, `CRR-005` | `GOCACHEPROG` is in the case-insensitive rejected override set and is explicitly empty in `trustedGoEnvironment()`. The normal CLI marker probe failed before invocation and left no marker. Full `npm run check` passed. |
+| `CR-F-014` | Open / Local Fix | Resolved | `IR-005`, `CRR-005` | One target map covers all four tuples and both CLI owners use `expectedGoVersionOutput()`. Exact official darwin-x64 root verification returned `go version go1.26.5 darwin/amd64`; exact x64 launcher compilation and provenance passed. |
+| `CR-F-007`–`CR-F-010`, `CR-F-012`, `CR-F-013` | Resolved | Resolved / unchanged | `IR-003`–`IR-005`, `CRR-003`–`CRR-005` | Affected source remains unchanged; full implementation checks passed with no regression. |
+
+- New or remaining finding IDs: None
+- Material score or classification changes: score improves from `9.1/10` to `9.4/10`; result changes from `Fail — Local Fix` to `Pass`. Every category meets the clean-pass target.
+- Recommended recipient: `api_e2e_engineer`
+- Remaining risks or uncertainty: all eight target-native packages, licensed corpus, M1 Max performance/RSS/size, notices/licenses, Linux/Windows runtime behavior, maintained-main integration, pre-tag proof, publication, and published-byte equality remain fail-closed downstream gates.
+
+### CRR-006 — Duplicated final English evidence blocks qualification and returns upstream
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `API/E2E Failure-Origin Review`, round `6`
+- Triggering role, report path, and finding or scenario IDs: API/E2E Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`; `API-VOICE-002`; new `CR-F-015`
+- Relevant solution revision IDs: `SR-006`
+- Relevant architecture-review revision IDs: `ARCH-REV-007`
+- Relevant implementation revision IDs: `IR-005`
+- Relevant API/E2E revision IDs: `API-REV-001`
+- Relevant delivery revision IDs: `N/A`
+- Prior authoritative result: `CRR-005 Pass -> api_e2e_engineer`
+- Current authoritative result: `Fail — Design Impact -> solution_designer`
+- What changed in the review result and why: Direct execution of the production corpus validator proved that the checked-in final English qualification corpus and trusted baseline each contain 50 rows/results but only 49 unique identities. SR-006 explicitly discloses the initial control's duplicate and requires the final corpus to be unique, yet it supplies no evidence-authorized corrected English corpus/baseline. The fail-closed validator and API/E2E harness are correct; choosing or recomputing final evidence is an upstream design/evidence-authority decision.
+
+#### Prior Finding Resolution
+
+| Finding ID | Prior Status | Current Status | Related Revision References | Verification Evidence |
+| --- | --- | --- | --- | --- |
+| `CR-F-010` | Resolved in CRR-003; unchanged through CRR-005 | Remains resolved for digest/provider/model/configuration and per-row derivation binding, but its review basis had a detection gap | `IR-003`, `CRR-003`, `CRR-005`, `API-REV-001`, `CRR-006` | `loadTrustedBaseline()` accepts the checksum-bound English artifacts, but no source-review check ran the checked-in final corpus through `validateCorpus()` or asserted unique corpus/baseline cardinality. That missed invariant is recorded separately as `CR-F-015` because the upstream authority, not the binding mechanism, is invalid. |
+| `CR-F-011`, `CR-F-014` | Resolved in CRR-005 | Resolved / unaffected | `IR-005`, `CRR-005`, `API-REV-001` | Full repository checks passed before the corpus failure; API-VOICE-002 is independent of Go toolchain isolation and target mapping. |
+
+- New or remaining finding IDs: `CR-F-015`
+- Material score or classification changes: no new full source scorecard; CRR-005's `9.4/10` remains historical. Workflow authority changes from source `Pass` to failure-origin `Fail — Design Impact` because the reachable acceptance gate now has direct contradicting evidence.
+- Recommended recipient: `solution_designer`
+- Remaining risks or uncertainty: the corrected unique English corpus and matching baseline authority are not yet defined. `API-VOICE-003`–`API-VOICE-012` remain unexecuted, not failed, and all exact-package/target/performance/license/release-aggregation gates remain required after upstream correction and re-review.
