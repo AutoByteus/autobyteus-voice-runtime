@@ -1,0 +1,420 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.com/schemas/voice-input/protocol-v1.schema.json",
+  "title": "AutoByteus Voice Input JSON-Lines Protocol V1",
+  "oneOf": [
+    {
+      "$ref": "#/$defs/hello"
+    },
+    {
+      "$ref": "#/$defs/lifecycle"
+    },
+    {
+      "$ref": "#/$defs/transcribeFile"
+    },
+    {
+      "$ref": "#/$defs/transcriptionResult"
+    },
+    {
+      "$ref": "#/$defs/requestError"
+    },
+    {
+      "$ref": "#/$defs/shutdown"
+    },
+    {
+      "$ref": "#/$defs/shutdownAck"
+    }
+  ],
+  "$defs": {
+    "requestId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "hello": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "protocolVersion",
+        "runtime",
+        "host",
+        "engine",
+        "model",
+        "configuration",
+        "capabilities"
+      ],
+      "properties": {
+        "type": {
+          "const": "hello"
+        },
+        "protocolVersion": {
+          "const": 1
+        },
+        "runtime": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "version",
+            "buildCommit"
+          ],
+          "properties": {
+            "id": {
+              "const": "voice-input"
+            },
+            "version": {
+              "type": "string"
+            },
+            "buildCommit": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{40}$"
+            }
+          }
+        },
+        "host": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "version",
+            "platform",
+            "arch"
+          ],
+          "properties": {
+            "kind": {
+              "const": "bundled-node"
+            },
+            "version": {
+              "type": "string"
+            },
+            "platform": {
+              "enum": [
+                "darwin",
+                "linux",
+                "win32"
+              ]
+            },
+            "arch": {
+              "enum": [
+                "arm64",
+                "x64"
+              ]
+            }
+          }
+        },
+        "engine": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "kind",
+            "version",
+            "gitSha1"
+          ],
+          "properties": {
+            "kind": {
+              "const": "sherpa-onnx"
+            },
+            "version": {
+              "type": "string"
+            },
+            "gitSha1": {
+              "type": "string"
+            }
+          }
+        },
+        "model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "id",
+            "version",
+            "modelType",
+            "sha256"
+          ],
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "version": {
+              "type": "string"
+            },
+            "modelType": {
+              "enum": [
+                "sense-voice",
+                "whisper"
+              ]
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha256"
+            }
+          }
+        },
+        "configuration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "languageMode"
+          ],
+          "properties": {
+            "languageMode": {
+              "enum": [
+                "auto",
+                "en",
+                "zh"
+              ]
+            }
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "languageModes",
+            "inverseTextNormalization",
+            "simplifiedChineseNormalization",
+            "maxInFlightRequests"
+          ],
+          "properties": {
+            "languageModes": {
+              "const": [
+                "auto",
+                "en",
+                "zh"
+              ]
+            },
+            "inverseTextNormalization": {
+              "const": true
+            },
+            "simplifiedChineseNormalization": {
+              "const": true
+            },
+            "maxInFlightRequests": {
+              "const": 1
+            }
+          }
+        }
+      }
+    },
+    "lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "state"
+      ],
+      "properties": {
+        "type": {
+          "const": "lifecycle"
+        },
+        "state": {
+          "enum": [
+            "model-preparing",
+            "inference-ready"
+          ]
+        }
+      }
+    },
+    "transcribeFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "protocolVersion",
+        "requestId",
+        "audioPath"
+      ],
+      "properties": {
+        "type": {
+          "const": "transcribe-file"
+        },
+        "protocolVersion": {
+          "const": 1
+        },
+        "requestId": {
+          "$ref": "#/$defs/requestId"
+        },
+        "audioPath": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "transcriptionResult": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "protocolVersion",
+        "requestId",
+        "outcome",
+        "text",
+        "detectedLanguage",
+        "metrics"
+      ],
+      "properties": {
+        "type": {
+          "const": "transcription-result"
+        },
+        "protocolVersion": {
+          "const": 1
+        },
+        "requestId": {
+          "$ref": "#/$defs/requestId"
+        },
+        "outcome": {
+          "enum": [
+            "transcript",
+            "no-speech"
+          ]
+        },
+        "text": {
+          "type": "string"
+        },
+        "detectedLanguage": {
+          "enum": [
+            "en",
+            "zh",
+            "yue",
+            "ja",
+            "ko",
+            "unknown"
+          ]
+        },
+        "metrics": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "audioDurationMs",
+            "inferenceMs"
+          ],
+          "properties": {
+            "audioDurationMs": {
+              "type": "number",
+              "minimum": 0
+            },
+            "inferenceMs": {
+              "type": "number",
+              "minimum": 0
+            }
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "no-speech"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "text": {
+                "const": ""
+              }
+            }
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "transcript"
+              }
+            }
+          },
+          "then": {
+            "properties": {
+              "text": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "requestError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "protocolVersion",
+        "requestId",
+        "code",
+        "message",
+        "retryable"
+      ],
+      "properties": {
+        "type": {
+          "const": "request-error"
+        },
+        "protocolVersion": {
+          "const": 1
+        },
+        "requestId": {
+          "$ref": "#/$defs/requestId"
+        },
+        "code": {
+          "enum": [
+            "INVALID_AUDIO",
+            "UNSUPPORTED_REQUEST",
+            "INFERENCE_FAILED",
+            "WORKER_BUSY"
+          ]
+        },
+        "message": {
+          "type": "string"
+        },
+        "retryable": {
+          "type": "boolean"
+        }
+      }
+    },
+    "shutdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "protocolVersion",
+        "requestId"
+      ],
+      "properties": {
+        "type": {
+          "const": "shutdown"
+        },
+        "protocolVersion": {
+          "const": 1
+        },
+        "requestId": {
+          "$ref": "#/$defs/requestId"
+        }
+      }
+    },
+    "shutdownAck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "protocolVersion",
+        "requestId"
+      ],
+      "properties": {
+        "type": {
+          "const": "shutdown-ack"
+        },
+        "protocolVersion": {
+          "const": 1
+        },
+        "requestId": {
+          "$ref": "#/$defs/requestId"
+        }
+      }
+    }
+  }
+}

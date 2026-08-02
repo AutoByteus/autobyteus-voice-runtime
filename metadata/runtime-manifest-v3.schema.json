@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.com/schemas/voice-input/runtime-manifest-v3.schema.json",
+  "title": "AutoByteus Voice Input Runtime Manifest V3",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "runtimeId", "runtimeVersion", "releaseCommit", "protocol", "startup", "capabilities", "selectedModel", "runtimeAssets", "modelAsset", "dependencies", "notices", "contractFixtures", "releaseEvidence"],
+  "properties": {
+    "schemaVersion": { "const": 3 },
+    "runtimeId": { "const": "voice-input" },
+    "runtimeVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "releaseCommit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "protocol": {
+      "type": "object", "additionalProperties": false, "required": ["version", "schema"],
+      "properties": { "version": { "const": 1 }, "schema": { "$ref": "#/$defs/asset" } }
+    },
+    "startup": {
+      "type": "object", "additionalProperties": false,
+      "required": ["providerSessionConfigVersion", "schema", "invocation"],
+      "properties": {
+        "providerSessionConfigVersion": { "const": 1 },
+        "schema": { "$ref": "#/$defs/asset" },
+        "invocation": { "type": "object", "additionalProperties": false, "required": ["arguments"], "properties": { "arguments": { "const": ["--session-config", "<absolute-config-path>"] } } }
+      }
+    },
+    "capabilities": { "$ref": "#/$defs/capabilities" },
+    "selectedModel": { "$ref": "#/$defs/model" },
+    "runtimeAssets": {
+      "type": "array", "minItems": 4, "maxItems": 4, "uniqueItems": true,
+      "items": { "$ref": "#/$defs/runtimeAsset" },
+      "allOf": [
+        { "contains": { "type": "object", "required": ["platform", "arch"], "properties": { "platform": { "const": "darwin" }, "arch": { "const": "arm64" } } }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "required": ["platform", "arch"], "properties": { "platform": { "const": "darwin" }, "arch": { "const": "x64" } } }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "required": ["platform", "arch"], "properties": { "platform": { "const": "linux" }, "arch": { "const": "x64" } } }, "minContains": 1, "maxContains": 1 },
+        { "contains": { "type": "object", "required": ["platform", "arch"], "properties": { "platform": { "const": "win32" }, "arch": { "const": "x64" } } }, "minContains": 1, "maxContains": 1 }
+      ]
+    },
+    "modelAsset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fileName", "url", "sha256", "size", "archiveFormat", "descriptor"],
+      "properties": {
+        "fileName": { "type": "string" }, "url": { "type": "string", "pattern": "^https://" }, "sha256": { "$ref": "#/$defs/sha256" }, "size": { "type": "integer", "minimum": 1 },
+        "archiveFormat": { "const": "tar.gz" }, "descriptor": { "$ref": "#/$defs/containedDescriptor" }
+      }
+    },
+    "dependencies": {
+      "type": "object", "additionalProperties": false, "required": ["host", "engine", "normalization"],
+      "properties": {
+        "host": { "type": "object", "additionalProperties": false, "required": ["kind", "version"], "properties": { "kind": { "const": "bundled-node" }, "version": { "type": "string" } } },
+        "engine": {
+          "type": "object", "additionalProperties": false, "required": ["kind", "wrapperPackage", "wrapperVersion", "version", "gitSha1"],
+          "properties": { "kind": { "const": "sherpa-onnx" }, "wrapperPackage": { "const": "sherpa-onnx-node" }, "wrapperVersion": { "type": "string" }, "version": { "type": "string" }, "gitSha1": { "type": "string", "pattern": "^[a-f0-9]{7,40}$" } }
+        },
+        "normalization": { "type": "object", "additionalProperties": false, "required": ["packageName", "version"], "properties": { "packageName": { "const": "opencc-js" }, "version": { "type": "string" } } }
+      }
+    },
+    "notices": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "$ref": "#/$defs/asset" } },
+    "contractFixtures": { "$ref": "#/$defs/asset" },
+    "releaseEvidence": { "$ref": "#/$defs/asset" }
+  },
+  "$defs": {
+    "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "relativePath": { "type": "string", "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[A-Za-z0-9._/-]+$" },
+    "asset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["fileName", "url", "sha256", "size"],
+      "properties": { "fileName": { "type": "string", "minLength": 1 }, "url": { "type": "string", "pattern": "^https://" }, "sha256": { "$ref": "#/$defs/sha256" }, "size": { "type": "integer", "minimum": 1 } }
+    },
+    "containedDescriptor": {
+      "type": "object", "additionalProperties": false, "required": ["path", "sha256"],
+      "properties": { "path": { "$ref": "#/$defs/relativePath" }, "sha256": { "$ref": "#/$defs/sha256" } }
+    },
+    "capabilities": {
+      "type": "object", "additionalProperties": false,
+      "required": ["languageModes", "inverseTextNormalization", "simplifiedChineseNormalization", "maxInFlightRequests"],
+      "properties": { "languageModes": { "const": ["auto", "en", "zh"] }, "inverseTextNormalization": { "const": true }, "simplifiedChineseNormalization": { "const": true }, "maxInFlightRequests": { "const": 1 } }
+    },
+    "model": {
+      "type": "object", "additionalProperties": false, "required": ["id", "version", "modelType", "sha256"],
+      "properties": { "id": { "type": "string", "minLength": 1 }, "version": { "type": "string", "minLength": 1 }, "modelType": { "enum": ["sense-voice", "whisper"] }, "sha256": { "$ref": "#/$defs/sha256" } }
+    },
+    "runtimeAsset": {
+      "type": "object", "additionalProperties": false,
+      "required": ["platform", "arch", "fileName", "url", "sha256", "size", "archiveFormat", "hostKind", "hostExecutable", "hostVersion", "hostSha256", "entrypoint", "runtimeDescriptor"],
+      "properties": {
+        "platform": { "enum": ["darwin", "linux", "win32"] }, "arch": { "enum": ["arm64", "x64"] },
+        "fileName": { "type": "string" }, "url": { "type": "string", "pattern": "^https://" }, "sha256": { "$ref": "#/$defs/sha256" }, "size": { "type": "integer", "minimum": 1 },
+        "archiveFormat": { "const": "tar.gz" }, "hostKind": { "const": "bundled-node" },
+        "hostExecutable": { "$ref": "#/$defs/relativePath" }, "hostVersion": { "type": "string" }, "hostSha256": { "$ref": "#/$defs/sha256" },
+        "entrypoint": { "const": "runtime/voice-input-worker.cjs" }, "runtimeDescriptor": { "$ref": "#/$defs/containedDescriptor" }
+      }
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "candidates": [
+    {
+      "lane": "AC-009",
+      "outputFileName": "voice-input-model-sensevoice-small-int8-2024-07-17.tar.gz",
+      "archive": {
+        "fileName": "sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2",
+        "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-sense-voice-zh-en-ja-ko-yue-int8-2024-07-17.tar.bz2",
+        "sha256": "7d1efa2138a65b0b488df37f8b89e3d91a60676e416f515b952358d83dfd347e"
+      },
+      "model": {
+        "id": "sensevoice-small-int8-2024-07-17",
+        "version": "2024-07-17",
+        "modelType": "sense-voice",
+        "sha256": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51"
+      },
+      "files": {
+        "model": { "path": "model.int8.onnx", "sha256": "c71f0ce00bec95b07744e116345e33d8cbbe08cef896382cf907bf4b51a2cd51" },
+        "tokens": { "path": "tokens.txt", "sha256": "f449eb28dc567533d7fa59be34e2abca8784f771850c78a47fb731a31429a1dc" }
+      },
+      "recognizer": { "type": "sense-voice", "sampleRate": 16000, "featureDim": 80, "numThreads": 4, "provider": "cpu", "useInverseTextNormalization": true },
+      "notices": ["FUNASR-MODEL-LICENSE.txt", "SENSEVOICE-LICENSE.txt"]
+    },
+    {
+      "lane": "AC-016",
+      "outputFileName": "voice-input-model-whisper-small-int8-sherpa-onnx.tar.gz",
+      "archive": {
+        "fileName": "sherpa-onnx-whisper-small.tar.bz2",
+        "url": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-whisper-small.tar.bz2",
+        "sha256": "486a46afbb7ba798507190ffe02fea2dd726049af212e774537efac6afb210a6"
+      },
+      "model": {
+        "id": "whisper-small-int8-sherpa-onnx",
+        "version": "sherpa-onnx-2024-07-13",
+        "modelType": "whisper",
+        "sha256": "4cbe7b22fa9026b843b60a68640c747de05bafb1a11b57edc0e66c232d9f33a9"
+      },
+      "files": {
+        "encoder": { "path": "small-encoder.int8.onnx", "sha256": "4cbe7b22fa9026b843b60a68640c747de05bafb1a11b57edc0e66c232d9f33a9" },
+        "decoder": { "path": "small-decoder.int8.onnx", "sha256": "acad50b5c782696e91b55914cc5ab4f756f1532f76e22aa6fc615f39fb69a8ee" },
+        "tokens": { "path": "small-tokens.txt", "sha256": "b34b360dbb493e781e479794586d661700670d65564001f23024971d1f2fa126" }
+      },
+      "recognizer": { "type": "whisper", "sampleRate": 16000, "featureDim": 80, "numThreads": 4, "provider": "cpu", "useInverseTextNormalization": true },
+      "notices": ["OPENAI-WHISPER-MIT.txt"]
+    }
+  ]
+}

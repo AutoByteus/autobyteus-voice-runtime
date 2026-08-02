@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.com/schemas/voice-input/benchmark-corpus-v1.schema.json",
+  "title": "AutoByteus Voice Input Licensed Real-Speech Corpus V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "corpusId", "version", "license", "clips"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "corpusId": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "minLength": 1 },
+    "license": {
+      "type": "object", "additionalProperties": false,
+      "required": ["licensedRealSpeech", "provenanceReference", "redistributionApproved"],
+      "properties": {
+        "licensedRealSpeech": { "const": true },
+        "provenanceReference": { "type": "string", "minLength": 1 },
+        "redistributionApproved": { "type": "boolean" }
+      }
+    },
+    "clips": {
+      "type": "array", "minItems": 120,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["id", "path", "sha256", "durationMs", "speakerId", "environmentId", "category", "languageMode", "reference", "requiredTerms", "consentReference"],
+        "properties": {
+          "id": { "type": "string" }, "path": { "type": "string" },
+          "sha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+          "durationMs": { "type": "integer", "minimum": 3000, "maximum": 15000 },
+          "speakerId": { "type": "string" }, "environmentId": { "type": "string" },
+          "category": { "enum": ["mandarin", "mixed", "english"] },
+          "languageMode": { "enum": ["auto", "en", "zh"] },
+          "reference": { "type": "string", "minLength": 1 },
+          "requiredTerms": { "type": "array", "items": { "type": "string" } },
+          "consentReference": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  }
+}

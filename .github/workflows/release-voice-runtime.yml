@@ -1,131 +1,214 @@
-name: Voice Runtime Release
+name: Voice Runtime Candidate and Release
 
 on:
-  push:
-    tags:
-      - "v*"
   workflow_dispatch:
     inputs:
       runtime_version:
-        description: "Voice runtime version (example: 0.1.0)"
+        description: "Voice runtime version (must match package identity)"
         required: true
+        default: "1.0.0"
         type: string
+      candidate_id:
+        description: "Benchmark candidate to construct (manual proof only)"
+        required: true
+        default: "sensevoice-small-int8-2024-07-17"
+        type: choice
+        options:
+          - "sensevoice-small-int8-2024-07-17"
+          - "whisper-small-int8-sherpa-onnx"
+  push:
+    tags:
+      - "v*"
 
 permissions:
   contents: write
 
 jobs:
-  resolve-release:
-    name: Resolve Voice Runtime Release Metadata
-    runs-on: ubuntu-latest
+  resolve:
+    runs-on: ubuntu-24.04
     outputs:
-      runtime_version: ${{ steps.resolve.outputs.runtime_version }}
-      release_tag: ${{ steps.resolve.outputs.release_tag }}
+      runtime_version: ${{ steps.metadata.outputs.runtime_version }}
+      release_tag: ${{ steps.metadata.outputs.release_tag }}
+      candidate_id: ${{ steps.metadata.outputs.candidate_id }}
     steps:
-      - name: Resolve version and tag
-        id: resolve
+      - uses: actions/checkout@v4
+      - id: metadata
         shell: bash
         run: |
           if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
             runtime_version="${{ inputs.runtime_version }}"
-            runtime_version="${runtime_version#v}"
-            release_tag="v${runtime_version}"
+            release_tag="v${runtime_version#v}"
+            candidate_id="${{ inputs.candidate_id }}"
           else
             release_tag="${GITHUB_REF_NAME}"
             runtime_version="${release_tag#v}"
+            test -f evidence/release-evidence.json
+            candidate_id="$(node -p "require('./evidence/release-evidence.json').selectedModelId")"
           fi
-          echo "runtime_version=${runtime_version}" >> "$GITHUB_OUTPUT"
-          echo "release_tag=${release_tag}" >> "$GITHUB_OUTPUT"
+          test "$runtime_version" = "1.0.0"
+          echo "runtime_version=$runtime_version" >> "$GITHUB_OUTPUT"
+          echo "release_tag=$release_tag" >> "$GITHUB_OUTPUT"
+          echo "candidate_id=$candidate_id" >> "$GITHUB_OUTPUT"
 
-  build-runtime:
-    name: Build ${{ matrix.platform }} ${{ matrix.arch }}
-    needs: resolve-release
-    runs-on: ${{ matrix.runner }}
+  unit:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.1
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run check
+      - run: node scripts/normalization-proof.mjs dist/normalization-proof.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: normalization-proof
+          path: dist/normalization-proof.json
+          if-no-files-found: error
+
+  model:
+    needs: resolve
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.1
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - name: Build exact model archive and smoke fixtures
+        shell: bash
+        run: |
+          node scripts/fetch-model-source.mjs "${{ needs.resolve.outputs.candidate_id }}" "$RUNNER_TEMP/model-source.tar.bz2"
+          AUTOBYTEUS_MODEL_SOURCE_ARCHIVE_PATH="$RUNNER_TEMP/model-source.tar.bz2" node scripts/build-model.mjs "${{ needs.resolve.outputs.candidate_id }}"
+          AUTOBYTEUS_MODEL_SOURCE_ARCHIVE_PATH="$RUNNER_TEMP/model-source.tar.bz2" AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR="$RUNNER_TEMP/model-second" node scripts/build-model.mjs "${{ needs.resolve.outputs.candidate_id }}"
+          model_archive="$(find dist -maxdepth 1 -name 'voice-input-model-*.tar.gz' -print -quit)"
+          second_model_archive="$(find "$RUNNER_TEMP/model-second" -maxdepth 1 -name 'voice-input-model-*.tar.gz' -print -quit)"
+          node scripts/verify-reproducibility.mjs \
+            "$model_archive" "$second_model_archive" \
+            model all dist/model-reproducibility.json
+          node scripts/prepare-smoke-fixtures.mjs dist/smoke-fixtures
+      - uses: actions/upload-artifact@v4
+        with:
+          name: selected-model
+          path: |
+            dist/voice-input-model-*.tar.gz
+            dist/voice-input-model-*.tar.gz.proof.json
+            dist/descriptors/model-provider.json
+            dist/model-reproducibility.json
+            dist/smoke-fixtures/*.wav
+          if-no-files-found: error
+
+  runtime:
+    needs: [resolve, unit, model]
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: darwin
-            arch: arm64
-            runner: macos-14
-          - platform: darwin
-            arch: x64
-            runner: macos-14
-          - platform: linux
-            arch: x64
-            runner: ubuntu-22.04
-          - platform: win32
-            arch: x64
-            runner: windows-2022
+          - { platform: darwin, arch: arm64, runner: macos-15 }
+          - { platform: darwin, arch: x64, runner: macos-15-intel }
+          - { platform: linux, arch: x64, runner: ubuntu-24.04 }
+          - { platform: win32, arch: x64, runner: windows-2025 }
+    runs-on: ${{ matrix.runner }}
     steps:
-      - name: Checkout runtime repository
-        uses: actions/checkout@v4
-
-      - name: Run runtime build script
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.1
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@v4
+        with:
+          name: selected-model
+          path: dist
+      - name: Build runtime twice and prove byte identity
         shell: bash
         env:
-          AUTOBYTEUS_VOICE_RUNTIME_VERSION: ${{ needs.resolve-release.outputs.runtime_version }}
+          AUTOBYTEUS_BUILD_COMMIT: ${{ github.sha }}
         run: |
-          chmod +x scripts/build-runtime.sh
-          scripts/build-runtime.sh "${{ matrix.platform }}" "${{ matrix.arch }}"
-
-      - name: Upload runtime artifacts
-        uses: actions/upload-artifact@v4
+          node scripts/build-runtime.mjs "${{ matrix.platform }}" "${{ matrix.arch }}"
+          mkdir -p first-build
+          cp "dist/voice-input-runtime-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz" first-build/runtime.tar.gz
+          AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR="$RUNNER_TEMP/second-dist" node scripts/build-runtime.mjs "${{ matrix.platform }}" "${{ matrix.arch }}"
+          node scripts/verify-reproducibility.mjs first-build/runtime.tar.gz "$RUNNER_TEMP/second-dist/voice-input-runtime-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz" "${{ matrix.platform }}" "${{ matrix.arch }}" "dist/reproducibility-${{ matrix.platform }}-${{ matrix.arch }}.json"
+      - name: Exercise exact packaged provider
+        shell: bash
+        env:
+          AUTOBYTEUS_BUILD_COMMIT: ${{ github.sha }}
+        run: |
+          mkdir -p extracted/runtime extracted/model
+          tar -xzf "dist/voice-input-runtime-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz" -C extracted/runtime
+          model_archive="$(find dist -maxdepth 1 -name 'voice-input-model-*.tar.gz' -print -quit)"
+          tar -xzf "$model_archive" -C extracted/model
+          node scripts/generate-candidate-manifest.mjs "${{ matrix.platform }}" "${{ matrix.arch }}"
+          node scripts/package-smoke.mjs \
+            --manifest "dist/candidate-manifest-${{ matrix.platform }}-${{ matrix.arch }}.json" \
+            --runtimeRoot extracted/runtime --modelRoot extracted/model \
+            --zhWav dist/smoke-fixtures/zh.wav --enWav dist/smoke-fixtures/en.wav \
+            --silenceWav dist/smoke-fixtures/silence.wav \
+            --output "dist/smoke-${{ matrix.platform }}-${{ matrix.arch }}.json"
+      - uses: actions/upload-artifact@v4
         with:
-          name: voice-runtime-${{ matrix.platform }}-${{ matrix.arch }}
+          name: runtime-${{ matrix.platform }}-${{ matrix.arch }}
           path: |
             dist/voice-input-runtime-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz
+            dist/voice-input-runtime-${{ matrix.platform }}-${{ matrix.arch }}.tar.gz.proof.json
+            dist/descriptors/runtime-provider-${{ matrix.platform }}-${{ matrix.arch }}.json
+            dist/candidate-manifest-${{ matrix.platform }}-${{ matrix.arch }}.json
+            dist/reproducibility-${{ matrix.platform }}-${{ matrix.arch }}.json
+            dist/smoke-${{ matrix.platform }}-${{ matrix.arch }}.json
           if-no-files-found: error
 
-  verify-runtime:
-    name: Verify Runtime Packaging
-    needs: resolve-release
-    runs-on: ubuntu-latest
+  release-gate:
+    if: github.event_name == 'push'
+    needs: [resolve, runtime, model]
+    runs-on: ubuntu-24.04
     steps:
-      - name: Checkout runtime repository
-        uses: actions/checkout@v4
-
-      - name: Run runtime repo tests
-        shell: bash
-        run: |
-          node --test tests/*.test.mjs
-          python3 -m unittest tests/test_voice_input_worker.py
-
-  publish-release:
-    name: Publish Voice Runtime Release
-    needs:
-      - resolve-release
-      - build-runtime
-      - verify-runtime
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout runtime repository
-        uses: actions/checkout@v4
-
-      - name: Download build artifacts
-        uses: actions/download-artifact@v4
+      - uses: actions/checkout@v4
         with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22.23.1
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: runtime-*
           path: dist
           merge-multiple: true
-
-      - name: Generate manifest
-        env:
-          AUTOBYTEUS_VOICE_RUNTIME_VERSION: ${{ needs.resolve-release.outputs.runtime_version }}
-          AUTOBYTEUS_RELEASE_REPOSITORY: ${{ github.repository }}
-          AUTOBYTEUS_RELEASE_TAG: ${{ needs.resolve-release.outputs.release_tag }}
-        run: node scripts/generate-manifest.mjs
-
-      - name: Verify release payload
+      - uses: actions/download-artifact@v4
+        with:
+          name: selected-model
+          path: dist
+      - name: Enforce maintained-main ancestry and release evidence
         shell: bash
         run: |
-          ls -lah dist
-          test -f dist/voice-input-runtime-manifest.json
-
-      - name: Publish release assets
-        uses: softprops/action-gh-release@v2
+          git fetch origin main
+          git merge-base --is-ancestor "$GITHUB_SHA" origin/main
+          test -f evidence/release-evidence.json
+      - name: Construct and verify immutable release payload
+        env:
+          AUTOBYTEUS_VOICE_RUNTIME_VERSION: ${{ needs.resolve.outputs.runtime_version }}
+          AUTOBYTEUS_RELEASE_REPOSITORY: ${{ github.repository }}
+          AUTOBYTEUS_RELEASE_TAG: ${{ needs.resolve.outputs.release_tag }}
+          AUTOBYTEUS_RELEASE_COMMIT: ${{ github.sha }}
+        run: |
+          node scripts/generate-manifest.mjs
+          node scripts/verify-release.mjs
+      - uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ needs.resolve-release.outputs.release_tag }}
+          tag_name: ${{ needs.resolve.outputs.release_tag }}
           target_commitish: ${{ github.sha }}
           generate_release_notes: true
           files: |
-            dist/*
+            dist/voice-input-runtime-*.tar.gz
+            dist/voice-input-model-*.tar.gz
+            dist/voice-input-runtime-manifest.json
+            dist/voice-input-runtime-contracts-v1.tar.gz
+            dist/voice-input-protocol-v1.schema.json
+            dist/provider-session-config-v1.schema.json
+            dist/voice-input-release-evidence.json
+            dist/THIRD_PARTY_NOTICES.md
+            dist/licenses-*
