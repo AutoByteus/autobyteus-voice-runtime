@@ -7,80 +7,88 @@
 - Design spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
 - Supplemental task artifacts:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/benchmark-protocol.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/backend-selection-study.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/aggregate-results.json`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/SHA256SUMS.txt`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/voice-runtime-contract.md`
 - Solution revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
 - Design review report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
 - Architecture review revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Triggering rework report, revision record, or evidence: `N/A — initial implementation after ARCH-REV-003 Pass`
+- Triggering historical review/evidence retained for reconciliation:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
 
 ## Current Implementation Summary
 
-The runtime worktree now implements the reviewed, runtime-only Provider Session Configuration V1 boundary as a clean replacement for the v0.3 Python/bootstrap path. Production packages contain a pinned Node host, a CommonJS protocol-v1 worker, exact sherpa/OpenCC dependencies, strict contained runtime/model descriptors, one model configuration, deterministic normalization, WAV/no-speech handling, and no alternate production command or fallback. Benchmark, reproducible build, package-smoke, evidence, manifest-schema-3, notice/license, and fail-closed release tooling are included. The workflow can construct candidate proof manually; tag publication remains gated on complete evidence and maintained-main ancestry and was not performed during implementation.
+The runtime-only worktree now contains a clean SR-006 implementation of the language-profile provider architecture authorized by `ARCH-REV-007`. The final tree replaces the withdrawn universal Node/sherpa provider with profile-specific hermetic CPython/MLX, CPython/faster-whisper, and native Fun-ASR provider packages. Every package is built around one fixed target-native Go `voice-provider[.exe]`, one embedded strict private launcher plan, Provider Archive 1 canonical ZIP construction/extraction, Catalog 3 identity, strict session/protocol/audio contracts, persistent recognizer ownership, deterministic transcript normalization, and fail-closed evidence/release qualification.
 
-- Implementation cycle: `Initial`
+The approved backend-selection evidence is promoted as an immutable checksummed repository bundle. Exact corpus/package/source/baseline/results/reproducibility identities are required by the qualification and release pipeline. Prequalification occurs before tag creation; publication consumes and re-verifies the exact prequalified assets. No tag, publication, maintained-main reconciliation, desktop source, shared runtime checkout, or active-installation state was changed.
+
+- Implementation cycle: `Rework after withdrawn design / clean replacement`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision ID: `IR-001`
-- Related solution revision IDs: `SR-001`, `SR-002`, `SR-003`
-- Related architecture-review revision IDs: `ARCH-REV-001`, `ARCH-REV-002`, `ARCH-REV-003`
-- Related code-review revision IDs: `N/A`
+- Current implementation revision ID: `IR-002`
+- Related solution revision IDs: `SR-004`, `SR-005`, `SR-006` (`SR-006` current authority; `SR-003` withdrawn)
+- Related architecture-review revision IDs: `ARCH-REV-004`, `ARCH-REV-005`, `ARCH-REV-006`, `ARCH-REV-007` (`ARCH-REV-007` current Pass)
+- Related code-review revision IDs: `CRR-001` (withdrawn-design findings used as historical defect evidence and reconciled in the replacement)
 - Related API/E2E revision IDs: `N/A`
 - Related delivery revision IDs: `N/A`
-- Triggering finding IDs: `N/A`
-- Implementation source commit: `c24c03fde5784967b8d8394ec04de4d700584d47`
+- Triggering finding IDs: resolved `AR-F-007`–`AR-F-010`; historical `CR-F-001`–`CR-F-006` reconciled
+- Implementation source commits: `ce9d4b4553947b876c8783e18a621edfcac03555`, `402525786f3f556e355e8292611720c02c634332`
 - Product iteration acceptance callback: `Not Required`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior ID | Approved Change / Preserved Outcome | Implemented Production Path / Key Files | Result / Notes |
-| --- | --- | --- | --- |
-| `BEH-002` | Process availability and inference readiness are distinct. | `runtime/voice-input-worker.cjs`, `runtime/protocolV1.cjs`, `runtime/sherpaOfflineRecognizer.cjs` | `hello`, `model-preparing`, and `inference-ready` are emitted in legal order; readiness follows recognizer construction. Desktop presentation/prewarming remains the separate future ticket. |
-| `BEH-003` | Runtime-side request/shutdown operations are bounded by clients and temporary runner artifacts are removed. | `benchmark/providerClient.mjs`, `scripts/package-smoke.mjs`, `benchmark/run-benchmark.mjs` | Exact provider clients enforce 2 s handshake, 15 s preparation, 30 s request, and 2 s + 2 s shutdown bounds with termination/cleanup. Desktop capture FLUSH and installed-runtime supervision are out of current scope. |
-| `BEH-004` | Ship a self-contained, integrity-verifiable provider without system interpreters or live bootstrap. | `scripts/build-runtime.mjs`, `scripts/build-model.mjs`, `metadata/runtime-assets.json`, `metadata/model-candidates.json`, `package-lock.json`, `host/`, `runtime/providerSessionConfigV1.cjs` | Bundled Node 22.23.1, exact native/wrapper dependencies, content-addressed model inputs, descriptors, protocol, notices, and inner assets are verified. Python, pip, shell/cmd launchers, and legacy build scripts are removed. |
-| `BEH-005` | Select via the approved improvement or preservation lane; never restore Python as fallback. | `benchmark/run-benchmark.mjs`, `benchmark/metrics.mjs`, `benchmark/adapters/v0_3BaselineAdapter.mjs`, `scripts/assemble-release-evidence.mjs`, `metadata/model-candidates.json` | SenseVoice is restricted to `AC-009`; hermetic sherpa Whisper is restricted to `AC-016`; failed gates block release. The v0.3 adapter is benchmark-only and cannot enter production packages. No corpus-based selection is claimed in this implementation handoff. |
-| `BEH-006` | Deterministic Simplified Chinese normalization with preserved English/numeric spans. | `runtime/transcriptNormalizer.cjs`, `runtime/sherpaOfflineRecognizer.cjs`, `scripts/normalization-proof.mjs` | SenseVoice tags are mapped/removed, OpenCC conversion is local, Chinese punctuation/spacing is stabilized, and Latin/numeric spans are preserved. Five deterministic fixtures pass. |
-| `BEH-007` | Publish only from reconciled maintained main while preserving historical tags. | `.github/workflows/release-voice-runtime.yml`, `scripts/generate-manifest.mjs`, `scripts/verify-release.mjs` | Tag release gate requires the release commit to be an ancestor of refreshed `origin/main`, complete release evidence, immutable checksums, and explicit assets. Refresh/reconciliation, tagging, and publication are deliberately deferred to Delivery Engineer. |
-| `BEH-008` | Produce privacy-safe lifecycle, timing, recovery, and resource evidence. | `benchmark/providerClient.mjs`, `benchmark/run-benchmark.mjs`, `scripts/package-smoke.mjs`, `scripts/assemble-release-evidence.mjs` | Evidence stores aggregate timings/outcomes/identities, caps stderr at 64 KiB, and omits transcript, audio, and absolute local paths. Safe runtime stderr categories contain no sensitive detail. |
-| `BEH-009` | One explicit current startup/protocol/release contract with strict rejection. | `startup/provider-session-config-v1.schema.json`, `protocol/voice-input-protocol-v1.schema.json`, fixtures, `runtime/providerSessionConfigV1.cjs`, `runtime/protocolV1.cjs`, `metadata/runtime-manifest-v3.schema.json` | Public invocation is only `<hostExecutable> <entrypoint> --session-config <absolute-config-path>`. Args, schema, containment, digest, actual host/entrypoint/engine/model identity, capability, and language verification all precede stdout. Protocol 0 and manifest schema 2 are rejected/removed. |
-| `BEH-010` | Resource ownership is measured and duplicate model selection is prevented on the provider side. | `runtime/voice-input-worker.cjs`, `runtime/sherpaOfflineRecognizer.cjs`, `scripts/assemble-release-evidence.mjs` | One process owns one immutable verified session and one recognizer; protocol capability fixes max in-flight requests to one. Multi-window single-flight and five-minute desktop idle teardown remain future superrepo projection only. |
-| `BEH-012` | Runtime repository independently owns and proves its provider before desktop integration. | Entire runtime/build/benchmark/release path, especially `runtime/`, `startup/`, `protocol/`, `benchmark/`, `scripts/`, `.github/workflows/release-voice-runtime.yml` | Runtime builds, runs, verifies, and gates release without Electron or desktop state. No superrepo source was changed. |
-| `BEH-001`, `BEH-011` | Preserve capture behavior and defer installation/cutover ownership. | No production implementation path in this repository. | Correctly untouched. Desktop capture, active-installation schema, schema-2 cutover, activation, and rollback require the separately reviewed future superrepo ticket. |
+| Behavior ID | Approved Change / Preserved Outcome                                                                  | Implemented Production Path / Key Files                                                                                                                   | Result / Notes                                                                                                                                                                                                                                                                                                  |
+| ----------- | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEH-001`   | Publish an independently usable runtime without changing released desktop capture/cancellation.      | Runtime-only source under this worktree; `README.md`, build/qualification/release paths.                                                                  | No `autobyteus-web`, shared runtime checkout, desktop state, or superrepo source was edited.                                                                                                                                                                                                                    |
+| `BEH-002`   | Separate process binding, model preparation, and real inference readiness; reuse one recognizer.     | `launcher/`; Python `bootstrap.py`, `protocol.py`, recognizer adapters; native `main.cpp`, `funasr_engine.cpp`; `benchmark/provider-process-session.mjs`. | `hello -> model-preparing -> inference-ready` is explicit; one prepared recognizer is reused for serialized requests until shutdown/failure.                                                                                                                                                                    |
+| `BEH-003`   | Bound startup, request, shutdown, termination, and clean-next-start behavior without replay.         | `benchmark/provider-process-session.mjs`, `runtime-conformance.mjs`; worker state machines; Go POSIX `execve` and Windows Job/process-group supervision.  | 2 s hello, 30 s preparation/request, and 2 s graceful + 2 s forced termination are centralized. Failures settle once, terminate boundedly, and never replay audio.                                                                                                                                              |
+| `BEH-004`   | Ship immutable, offline, self-contained profile packages.                                            | `build/`, `packaging/archive/`, `packaging/launcher/`, provider locks/builders, `contracts/package/`, `THIRD_PARTY_NOTICES.json`.                         | Locked contained hosts/workers/models/contracts/notices are closed by manifests and canonical archives. Live installs/downloads, system hosts, shell launchers, external decoders, and package mutation are rejected. Independent rebuild proof is mandatory.                                                   |
+| `BEH-005`   | Preserve Whisper for English, select Fun-ASR for Chinese, and omit auto unless separately qualified. | Profile locks/builders; `contracts/catalog/required-profile-matrix-v1.json`; `release/evidence/candidate-history-v1.json`; catalog/evidence builders.     | English darwin-arm64 maps to MLX; other English targets to faster-whisper; Chinese targets to Fun-ASR. Rejected candidate history is digest-bound. Auto is not buildable/advertised without a new complete qualification.                                                                                       |
+| `BEH-006`   | Produce deterministic local Simplified Chinese output while preserving Latin spans and raw evidence. | Python and C++ normalizers, canonical `twp-to-cn-v1.json`, normalization fixtures, JS scoring normalization.                                              | Runtime output and symmetric CER scoring share NFKC/T2S/punctuation/spacing semantics; raw and normalized strings remain distinct and are excluded from diagnostics.                                                                                                                                            |
+| `BEH-007`   | Qualify from refreshed maintained main before immutable tagging/publication.                         | `.github/workflows/release-voice-runtime.yml`, `release/evidence/{assemble,verify}.mjs`, `release/verify-published-assets.mjs`.                           | Manual `prequalify` produces exact evidence before any tag; `publish` downloads/re-verifies that run and only then creates the tag. Historical tags are untouched. Delivery still owns actual integration/release.                                                                                              |
+| `BEH-008`   | Record privacy-safe lifecycle/identity/timing/resource/recovery evidence.                            | `benchmark/provider-process-session.mjs`, qualification runner, conditions/audit inputs, release evidence schema/verifier.                                | Stderr and lifecycle diagnostics are bounded/redacted to stable categories and contain no audio path or transcript. Controlled raw qualification evidence separately retains required corpus references and raw/normalized recognition text; it contains no audio bytes and is digest-bound rather than logged. |
+| `BEH-009`   | Expose one strict versioned catalog/archive/launcher/session/protocol authority.                     | `contracts/catalog`, `contracts/archive`, `contracts/launcher`, `contracts/startup`, `contracts/protocol`; Go launcher; Python/C++ binding.               | Public invocation is exactly `<launcher> --session-config <absolute-config-path>`. Unknown/legacy/private override fields, target/identity mismatch, path escape, protocol 0, and illegal transitions fail closed.                                                                                              |
+| `BEH-010`   | Publish a host-neutral independently executable package identity.                                    | Catalog 3 builder/schema -> Provider Archive 1 -> fixed Go launcher -> embedded private plan -> contained provider worker.                                | Callers depend only on catalog/archive/public launcher/session/protocol. Python/C++/engine/model paths remain descriptor-owned package-private facts.                                                                                                                                                           |
+| `BEH-011`   | Accept the declared local audio boundary without an external media tool.                             | `contracts/audio/pcm-wav-v1.md`, WAV fixtures, Python `audio.py`, native `audio.cpp`.                                                                     | All providers consume bounded PCM16 mono 16 kHz WAV directly, classify no-speech/malformed input, and do not copy/upload/delete/log request audio.                                                                                                                                                              |
+| `BEH-012`   | Add no current recognition-context behavior.                                                         | Strict session/protocol schemas and invalid context fixtures; provider engine configurations.                                                             | Context/hotword fields are rejected; no hidden vocabulary, automatic extraction, fallback, or transcript rewriting is present.                                                                                                                                                                                  |
 
 ## Key Files Or Areas
 
-- `runtime/providerSessionConfigV1.cjs`, `providerAssetIntegrity.cjs`, and `providerDescriptorsV1.cjs`: sole pre-hello decoder, containment/digest/actual-identity verifier, and immutable `VerifiedProviderSession` construction.
-- `runtime/voice-input-worker.cjs`, `protocolV1.cjs`, `sherpaOfflineRecognizer.cjs`, `wavSpeechGate.cjs`, and `transcriptNormalizer.cjs`: protocol endpoint and separated inference concerns.
-- `startup/`, `protocol/`, and `metadata/runtime-manifest-v3.schema.json`: canonical strict contracts and fixtures.
-- `metadata/runtime-assets.json`, `metadata/model-candidates.json`, `package.json`, and `package-lock.json`: pinned host/dependency/model identities.
-- `benchmark/`: licensed-corpus schema, exact packaged-provider client, separate model lanes, aggregate metrics, and benchmark-only v0.3 baseline adapter.
-- `scripts/`: deterministic model/runtime archive construction, package smoke, release-evidence assembly, manifest generation, release verification, and reproducibility proof.
-- `.github/workflows/release-voice-runtime.yml`: candidate matrix and tag-only fail-closed release construction.
-- `licenses/`, `THIRD_PARTY_NOTICES.md`: bundled source/model notices for later formal license acceptance.
-- Removed legacy production files: Python worker/requirements/bootstrap, `.sh`/`.cmd` launchers, legacy build script, and obsolete tests.
+- `contracts/`: Catalog 3, Provider Archive 1, package, launcher-plan, session, Protocol 1, Audio 1, normalization, and release-evidence authorities plus valid/invalid fixtures.
+- `launcher/` and `packaging/launcher/compile-launcher.mjs`: fixed native public command, root/plan/config/control checks, minimal environment, POSIX/Windows lifecycle, pinned reproducible compilation, and build provenance.
+- `packaging/archive/`: sole canonical ZIP builder, strict record parser, safe bounded staged extraction, manifest closure, and platform mode verifier.
+- `providers/python/`, `providers/english-mlx/`, `providers/english-faster-whisper/`: common strict Python session/protocol/audio/normalization owners and profile-specific persistent recognizers.
+- `providers/chinese-funasr/`: statically built native Fun-ASR/llama.cpp worker, strict session binding, WAV/features, persistent engine, and UTF8PROC/OpenCC-based normalization.
+- `build/`: locked-input validation, profile builders, descriptor/manifest/archive assembly, extraction verification, and independent rebuild proof.
+- `benchmark/`: exact-package reference client, runtime conformance, corpus rights/identity validation, normalized WER/CER scoring, RSS/timing runner, and evidence conditions.
+- `evidence/selection-study/` and `release/evidence/candidate-history-v1.json`: complete promoted approved selection history with 191 verified checksum records.
+- `release/` and `.github/workflows/release-voice-runtime.yml`: strict eight-package matrix, raw-evidence recomputation, pre-tag proof, catalog construction, and publication-byte verification.
+- Removed production areas: withdrawn `runtime/*.cjs`, old `startup/`, `protocol/`, `metadata/`, `scripts/`, Node/sherpa/SenseVoice release inputs/notices, live bootstrap, and prior loose evidence paths.
 
 ## Important Assumptions
 
-- Node `22.23.1`, sherpa packages `1.13.4`, OpenCC `1.4.1`, and the exact content hashes in repository metadata remain the reviewed build inputs until deliberately revised.
-- A licensed AutoByteus corpus and formal redistribution approval will be supplied during downstream acceptance; synthetic/vendor samples are smoke-only.
-- Delivery Engineer, not implementation, performs the latest maintained-main refresh/reconciliation and any authorized tag/publication.
-- The future desktop consumer will materialize Provider Session Configuration V1 from a published manifest; no desktop active-installation shape is inferred here.
+- Downstream qualification supplies complete manifest-closed approved build-input trees, licensed corpora/baselines, and content-addressed license/offline audit records; the implementation does not manufacture acceptance evidence.
+- Go `1.26.5`, Python Build Standalone `20260718` / CPython `3.12.13`, the provider locks, exact source commits, model digests, and promoted wheel-resolution evidence are the reviewed immutable inputs.
+- `auto` remains omitted. Advertising it requires separately reviewed and complete English-only, Chinese-only, and sparse-switch qualification rather than reuse of explicit-profile results.
+- Delivery, not implementation, owns maintained-main refresh/reconciliation, final target qualification invocation when release is authorized, tag creation, and publication.
 
 ## Known Risks
 
-- No license-cleared 120-clip/15-minute/three-speaker/two-environment corpus was available. `AC-009`/`AC-016` selection evidence is therefore intentionally unclaimed, and the checked-in example release evidence is `blocked`.
-- Only darwin-arm64 actual bundled-host/native/model smoke was exercised locally. Darwin x64, Linux x64, and Windows x64 jobs are implemented but not executed in this implementation stage.
-- The full 30-cold/100-warm benchmark, M1 Max p95/RSS/installed-size measurements, and formal redistribution/license review remain acceptance gates.
-- GitHub Actions, maintained-main reconciliation, tagging, publication, and published-digest verification were not executed. No historical tag was changed.
-- The actual package smoke used official short sample WAVs; it proves mechanics only, not model quality or selection.
-- Windows symlink capability/policy can vary by runner; the all-target package smoke must verify the containment case on the selected Windows runner rather than assuming macOS behavior.
+- Complete MLX, faster-whisper, and Fun-ASR packages were not assembled because the approved host/model/input trees are not present in this implementation worktree. No exact-package model-quality, latency, RSS, installed-size, or no-network claim is made locally.
+- The native Fun-ASR worker compiled twice byte-identically against the exact pinned llama.cpp and UTF8PROC revisions on darwin-arm64, but inference was not run without the 1.27 GB locked model payload and licensed corpus.
+- Darwin x64, Linux x64, and Windows x64 launchers cross-compiled locally, but cross-build is not actual-target process/relocation/Job/WAV execution evidence.
+- Formal corpus redistribution/consent, selected host/model/notices licenses, all-target package construction, M1 Max 30-cold/100-warm trials, and published-byte identity remain fail-closed downstream gates.
+- Self-hosted workflow environments, Windows reparse/control-event behavior, target-native Python wheels, and non-Apple Fun-ASR performance remain material executable risks.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: `Performance` + `Bug Fix` + `Refactor`
-- Reviewed root-cause classification: `Boundary Or Ownership Issue` plus `Missing Invariant`
+- Reviewed change posture: `Performance`, `Bug Fix`, `Behavior Change`, `Refactor`, and `Release Hardening`
+- Reviewed root-cause classification: `Boundary Or Ownership Issue`, `Missing Invariant`, `Duplicated Policy Or Coordination`, `Shared Structure Looseness`, and `Legacy Or Compatibility Pressure`
 - Reviewed refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`): `Refactor Needed Now`
 - Implementation matched the reviewed assessment (`Yes`/`No`): `Yes`
-- If challenged, routed as `Design Impact` (`Yes`/`No`/`N/A`): `N/A`
-- Evidence / notes: The implementation replaced the mutable multi-entry Python/bootstrap boundary with one verified packaged-provider authority, split startup verification/protocol/inference/normalization/WAV/build/benchmark responsibilities, and removed all in-scope production legacy paths rather than wrapping them.
+- If challenged, routed as `Design Impact` (`Yes`/`No`/`N/A`): `N/A — implementation began only after the reopened evidence/design rounds reached ARCH-REV-007 Pass`
+- Evidence / notes: The implementation establishes provider package, catalog entry, native launcher, worker session, archive, reference-client, and evidence/release owners directly. It does not retain the withdrawn universal provider as a wrapper or alternate path.
 
 ## Legacy / Compatibility Removal Check
 
@@ -90,58 +98,51 @@ The runtime worktree now implements the reviewed, runtime-only Provider Session 
 - Shared structures remain tight (no one-for-all base or overlapping parallel shapes introduced): `Yes`
 - Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes`
 - Changed source implementation files stayed within proactive size-pressure guardrails (`>500` avoided; `>220` assessed/acted on): `Yes`
-- Notes: The largest changed implementation source file is 169 effective non-empty lines. SenseVoice and Whisper remain discriminated configurations. The only v0.3 code is an external-tree benchmark adapter and is never packaged or imported by production runtime code.
+- Notes: The largest implementation source is `benchmark/run-profile-qualification.mjs` at 490 effective non-empty lines. Larger greenfield owners were reviewed against their single responsibilities; archive, evidence, launcher, provider, and scoring concerns are split into dedicated files. The withdrawn source commits remain historical Git evidence only and have no production path in the final tree.
 
 ## Persisted Data Transition Check (When Applicable)
 
 - Approved decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`): `Not Affected`
-- Design-spec decision reference: `requirements.md` / `Persisted Data Outcome`; `design-spec.md` current runtime boundary
+- Design-spec decision reference: `design-spec.md` / `Persisted Data / State Transition Decision`
 - Implementation follows the approved decision without an unapproved migration or version-specific runtime fallback: `Yes`
-- Direct-use evidence or discard/rebuild result, when applicable: `N/A`
+- Direct-use evidence or discard/rebuild result, when applicable: `N/A — runtime publishes immutable artifacts and has no supported user-state reader/writer`
 - Migration implementation and focused checks, only when `Migration Required`: `N/A`
 - Deviation from the reviewed transition decision: `None`
 
 ## Environment Or Dependency Notes
 
-- Local implementation checks ran on macOS darwin-arm64 using Node `22.23.1` and npm `10.9.8`.
-- `npm ci --ignore-scripts` is the source-check install path; native runtime archives are built on their target OS/architecture and include only the selected exact native package.
-- Large host/model inputs are fetched by exact SHA-256 or may be provided through `AUTOBYTEUS_NODE_ARCHIVE_PATH` and `AUTOBYTEUS_MODEL_SOURCE_ARCHIVE_PATH`; offline overrides never waive digest checks.
-- Generated `dist/`, `node_modules/`, and logs are ignored; no build output or downloaded model was committed.
+- Local source checks used Node `22.23.1`, npm `10.9.8`, system Python `3.9.6`, pinned Go `1.26.5`, CMake `4.3.3`, Apple Clang `17.0.0`, pinned llama.cpp commit `8086439a4cea94c71a5dfb8fe4ad1546aebd640f`, and UTF8PROC commit `a1b99daa2a3393884220264c927a48ba1251a9c6`. Production Python packages remain locked to Python Build Standalone `3.12.13`; that contained host was not executed locally.
+- Native local compilation used the exact already-materialized source revisions from the approved backend study. It did not download or publish anything and did not use an actual model.
+- Package builders intentionally reject incomplete/extra build inputs, build-only Python tooling, mismatched distribution versions, target mismatch, path leakage, oversized packages, and non-byte-identical independent rebuilds.
 
 ## Local Implementation Checks Run
 
-These are implementation-scoped local checks, not API/E2E or release acceptance sign-off.
+- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: 18/18 Node source/unit/contract tests, 5/5 Python tests, Python compileall, all Go package tests, and source-size/legacy-residue guard.
+- `go test -race ./launcher/internal ./packaging/archive` with pinned Go — passed.
+- `go vet ./...` and `gofmt -l launcher packaging` — passed/clean.
+- Prettier check across authored Markdown/YAML/JS/JSON — passed; generated canonical T2S bytes and promoted third-party evidence are intentionally not reformatted.
+- Go launcher cross-build with `CGO_ENABLED=0`, trimpath, disabled VCS stamping/build ID — passed for darwin-arm64, darwin-x64, linux-x64, and win32-x64.
+- Full native Fun-ASR compilation with `-Wall -Wextra -Werror` against exact pinned llama.cpp/UTF8PROC — passed twice; both darwin-arm64 binaries were byte-identical with SHA-256 `9aa1c5df7bba3e0e2fb8d1860173f38b48df4e8b6d5571a2c0ad64ae0657c415`, contained no repository/build/home paths, and produced exact no-stdout startup rejection (`65`, `VOICE_PROVIDER_STARTUP_REJECTED`) for invalid private argv.
+- Promoted selection evidence: `shasum -a 256 -c evidence/selection-study/SHA256SUMS.txt` — 191/191 records passed.
+- `npm audit --omit=optional --audit-level=high` — 0 vulnerabilities.
+- `git diff --check`/source limit/legacy production residue review — passed for authored source; immutable promoted evidence/third-party license whitespace is excluded by `.gitattributes` without changing its checksummed bytes.
 
-- `npm run check` — passed syntax checks and 13 Node tests (startup contract, legacy absence, fail-closed evidence/manifest construction, exact-command packaged fixture, pre-hello failures, protocol v1, normalization, recognizer discrimination, WAV gate, and metrics).
-- `node scripts/normalization-proof.mjs <temporary-output>` — passed all 5 deterministic normalization fixtures.
-- Parsed every repository JSON contract/fixture/metadata file with `JSON.parse` — passed.
-- Parsed `.github/workflows/release-voice-runtime.yml` with Ruby Psych — passed syntax validation.
-- `git diff --check` — passed before the implementation source commit.
-- Source-size guard — passed; largest implementation source file has 169 effective non-empty lines.
-- Deterministic archive narrow check on darwin-arm64:
-  - runtime archive repeated byte-identically, SHA-256 `dc354fc42afb1d2739fec5b85e4b849b3c0550f15871c2232ab793c92967a4f5`;
-  - SenseVoice model archive repeated byte-identically, SHA-256 `3fdff41405766020d66d39018e839e4f5005bdaa84ef8fdd2d5ed772ff8b3837`.
-- Actual bundled Node/sherpa package smoke on darwin-arm64 with official sample WAVs:
-  - SenseVoice: safe pre-hello failures, Mandarin/English/no-speech, malformed termination, clean restart, and shutdown passed; observed handshake 252.24 ms, readiness 581.02 ms, Mandarin inference 84.53 ms, English inference 131.35 ms.
-  - Whisper preservation candidate: same mechanical checks passed; observed handshake 326.93 ms, readiness 683.03 ms, Mandarin inference 602.73 ms, English inference 859.36 ms.
-  - These single runs and vendor samples are not the required corpus, percentile, all-target, RSS, size, or selection evidence.
+These are implementation-scoped checks only. They are not API/E2E, actual-target package acceptance, model-quality, license, delivery, or release sign-off.
 
 ## Frontend Rendered-Result Check (When Applicable)
 
-`Not Applicable` — this ticket modifies only the independently executable runtime repository and has no rendered frontend or desktop interaction implementation.
+`Not Applicable` — this is a runtime/build/contract/release-tooling change and does not affect a rendered frontend or user interaction surface.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-- Independently inspect the strict exact-field decoders and verify no value from `expected` reaches `hello` or the recognizer without comparison to contained descriptors and actual files/process identity.
-- Re-run the current committed source through exact packaged-provider smoke on all four targets: darwin-arm64, darwin-x64, linux-x64, and win32-x64, including real host/native/WAV execution and every pre-hello failure category.
-- Run each model/runtime archive construction twice and verify byte identity; inspect archive traversal defenses, required contents, schema-3 manifest, notices, and explicit absence of legacy paths.
-- Execute the licensed corpus against the historical v0.3 baseline and each candidate on the same runner. Enforce only `AC-009` for SenseVoice or `AC-016` for Whisper; capture unsuccessful candidates.
-- Run 30 cold and 100 warm trials on the M1 Max reference machine; verify p95 handshake/readiness/post-stop latency, loaded RSS, installed size, recovery, shutdown, and privacy-safe evidence.
-- Exercise malformed/oversized JSONL, duplicate IDs, busy requests, request timeout, process loss, invalid WAV, escaping symlink, descriptor/inner-file digest mismatch, host/entrypoint/native/model identity mismatch, and unsupported language.
-- Verify complete notice/license content and obtain formal redistribution approval before allowing publishable evidence.
-- Confirm incomplete/blocked evidence cannot generate or verify a release manifest.
-- Do not tag or publish during source review/API-E2E. Delivery owns maintained-main refresh/reconciliation and any authorized release action after all gates pass.
+- Construct and independently rebuild all eight explicit profile/target archives from approved inputs; verify byte-identical archive/build-report proof, safe extraction, manifest closure/modes, package immutability, and catalog binding.
+- On every advertised target, exercise fixed public argv rejection, paths with spaces/non-ASCII, relocation, sanitized/empty parent environment, unavailable system interpreters/shell/media tools, exact private argv, stdio/signal/exit propagation, and no orphaned process.
+- Exercise valid, malformed, traversal/collision/duplicate/ZIP64/data-descriptor/extra-field/mode/reparse archive inputs and prove no partially trusted destination remains.
+- Run actual MLX, faster-whisper, and Fun-ASR package startup, no-speech, malformed-audio/message, request timeout, forced termination, unexpected exit, clean next start, and package before/after snapshot scenarios.
+- Validate licensed corpus uniqueness, provenance, per-clip consent, redistribution approval, baseline pairing, raw/index identities, symmetric normalization, exact English WER/Chinese CER gates, and all trial/failure/timeout counts.
+- Run M1 Max 30 process-cold / 100 persistent-worker trials per selected package plus actual-target smoke elsewhere; enforce latency, RSS, extracted size, zero excluded failure, notice, and offline gates without threshold changes.
+- Verify `prequalify` fails if the requested tag already exists, binds refreshed maintained main/source/runner/package bytes, and creates no tag; verify authorized `publish` consumes exactly that successful artifact before tag and asset publication.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-`Yes.` API/E2E Engineer must produce the required coverage investigation artifact, decide whether repository-resident durable coverage needs change, execute broader all-target/package/corpus/performance/release-gate evidence as available, and classify any environment or acceptance blockers truthfully. This handoff does not claim those gates passed.
+Yes. The API/E2E Engineer owns the coverage investigation artifact, durable broader coverage decisions, approved-input/environment setup, every-target exact-package execution, realistic licensed-corpus qualification, and executable evidence. Any repository-resident durable coverage changes made there must return through Code Reviewer before Delivery. Delivery then owns maintained-main refresh/integration evidence, durable documentation/no-impact, and any separately authorized tag/publication.
