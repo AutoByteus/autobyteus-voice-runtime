@@ -1,0 +1,195 @@
+{
+  "schemaVersion": 1,
+  "apiRevisionId": "API-REV-002",
+  "capturedAt": "2026-08-02T18:20:51.374Z",
+  "host": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "hostname": "MacBookPro",
+    "totalMemoryBytes": 68719476736,
+    "node": "v22.23.1",
+    "nodeBinary": "/Users/normy/.hermes/node/bin/node: Mach-O 64-bit executable arm64",
+    "dockerServer": "linux/arm64",
+    "dockerProbeExitCode": 0,
+    "cmake": "cmake version 4.3.3"
+  },
+  "environment": {
+    "VOICE_BUILD_INPUT_ROOT": {
+      "configured": false,
+      "value": null
+    },
+    "VOICE_CORPUS_ROOT": {
+      "configured": false,
+      "value": null
+    },
+    "VOICE_EVIDENCE_ROOT": {
+      "configured": false,
+      "value": null
+    },
+    "VOICE_GO": {
+      "configured": false,
+      "value": null
+    },
+    "VOICE_CMAKE": {
+      "configured": false,
+      "value": null
+    },
+    "VOICE_POWER_CONDITION": {
+      "configured": false,
+      "value": null
+    },
+    "VOICE_BACKGROUND_LOAD": {
+      "configured": false,
+      "value": null
+    }
+  },
+  "candidateAvailability": {
+    "arm64Go": {
+      "path": "/private/tmp/autobyteus-go1.26.5-v1/go/bin/go",
+      "exists": true
+    },
+    "x64Go": {
+      "path": "/private/tmp/autobyteus-go1.26.5-x64-v3.mz3lwE/go/bin/go",
+      "exists": true
+    },
+    "study": {
+      "path": "/private/tmp/autobyteus-voice-backend-study-20260802",
+      "exists": true
+    },
+    "mlxPbs": {
+      "path": "/private/tmp/autobyteus-voice-backend-study-20260802/assets/python-build-standalone/cpython-3.12.13+20260718-aarch64-apple-darwin-install_only.tar.gz",
+      "exists": true
+    },
+    "fasterModel": {
+      "path": "/private/tmp/autobyteus-voice-backend-study-20260802/assets/faster-whisper-small/model.bin",
+      "exists": true
+    },
+    "funasrModel": {
+      "path": "/private/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/funasr-encoder-f16.gguf",
+      "exists": true
+    },
+    "funasrSource": {
+      "path": "/private/tmp/autobyteus-voice-backend-study-20260802/upstream/Fun-ASR/.git",
+      "exists": true
+    },
+    "lockedLlamaSource": {
+      "path": "/private/tmp/autobyteus-voice-backend-study-20260802/build/funasr-llamacpp/_deps/llama-src/.git",
+      "exists": true
+    }
+  },
+  "requiredEnvironmentFacts": {
+    "githubSelfHostedRunnerCount": 0,
+    "actualDarwinArm64M1MaxHostAvailable": true,
+    "actualDarwinX64HostAvailable": false,
+    "actualLinuxX64HostAvailable": false,
+    "actualWindowsX64HostAvailable": false,
+    "currentDockerIsLinuxArm64": true,
+    "x64NodeBinaryAvailable": false,
+    "completeEightTargetClosedBuildInputTreesAvailable": false,
+    "approvedPerPackageLicenseAuditFilesAvailable": false,
+    "approvedPerTargetOfflineAuditFilesAvailable": false,
+    "noninteractivePinnedPurgeAvailable": false
+  },
+  "matrix": [
+    {
+      "scenario": "API-VOICE-003",
+      "profile": "english",
+      "target": "darwin-arm64",
+      "provider": "MLX Whisper",
+      "hostAvailable": true,
+      "completeClosedInputsAvailable": false,
+      "approvedAuditsAvailable": false,
+      "coldProcedureAvailable": false,
+      "status": "Blocked"
+    },
+    {
+      "scenario": "API-VOICE-004",
+      "profile": "chinese",
+      "target": "darwin-arm64",
+      "provider": "Fun-ASR",
+      "hostAvailable": true,
+      "completeClosedInputsAvailable": false,
+      "approvedAuditsAvailable": false,
+      "coldProcedureAvailable": false,
+      "status": "Blocked"
+    },
+    {
+      "scenario": "API-VOICE-005",
+      "profile": "english",
+      "target": "darwin-x64",
+      "provider": "faster-whisper",
+      "hostAvailable": false,
+      "completeClosedInputsAvailable": false,
+      "approvedAuditsAvailable": false,
+      "status": "Blocked"
+    },
+    {
+      "scenario": "API-VOICE-006",
+      "profile": "chinese",
+      "target": "darwin-x64",
+      "provider": "Fun-ASR",
+      "hostAvailable": false,
+      "completeClosedInputsAvailable": false,
+      "approvedAuditsAvailable": false,
+      "status": "Blocked"
+    },
+    {
+      "scenario": "API-VOICE-007",
+      "profile": "english",
+      "target": "linux-x64",
+      "provider": "faster-whisper",
+      "hostAvailable": false,
+      "completeClosedInputsAvailable": false,
+      "approvedAuditsAvailable": false,
+      "status": "Blocked"
+    },
+    {
+      "scenario": "API-VOICE-008",
+      "profile": "chinese",
+      "target": "linux-x64",
+      "provider": "Fun-ASR",
+      "hostAvailable": false,
+      "completeClosedInputsAvailable": false,
+      "approvedAuditsAvailable": false,
+      "status": "Blocked"
+    },
+    {
+      "scenario": "API-VOICE-009",
+      "profile": "english",
+      "target": "win32-x64",
+      "provider": "faster-whisper",
+      "hostAvailable": false,
+      "completeClosedInputsAvailable": false,
+      "approvedAuditsAvailable": false,
+      "status": "Blocked"
+    },
+    {
+      "scenario": "API-VOICE-010",
+      "profile": "chinese",
+      "target": "win32-x64",
+      "provider": "Fun-ASR",
+      "hostAvailable": false,
+      "completeClosedInputsAvailable": false,
+      "approvedAuditsAvailable": false,
+      "status": "Blocked"
+    }
+  ],
+  "aggregate": {
+    "scenarios": [
+      "API-VOICE-003",
+      "API-VOICE-004",
+      "API-VOICE-005",
+      "API-VOICE-006",
+      "API-VOICE-007",
+      "API-VOICE-008",
+      "API-VOICE-009",
+      "API-VOICE-010",
+      "API-VOICE-011",
+      "API-VOICE-012"
+    ],
+    "status": "Blocked",
+    "reason": "The supported workflow requires complete SHA256SUMS.json-closed per-profile/per-target input trees, approved license/offline audits, actual target hosts, and on M1 Max noninteractive sudo purge. None of the VOICE_* roots or audits are configured; GitHub has zero self-hosted runners; only darwin-arm64 is an actual local target; and sudo -n purge is unavailable. Preserved study assets are partial candidate material, not complete approved release inputs.",
+    "noSubstitution": true,
+    "releaseActionsAttempted": false
+  }
+}

@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { sha256 } from "../../build/lib/files.mjs";
 import {
   assertOneToOneCorpusBaseline,
   assertTrustedBaseline,
@@ -13,6 +14,7 @@ import {
   assertReproducedEnglishOutputs,
   verifyEnglishPreservationAuthority,
 } from "../../benchmark/baseline/english-preservation-authority.mjs";
+import { validateCorpus } from "../../benchmark/corpus/validate-corpus.mjs";
 
 const root = path.resolve(import.meta.dirname, "../..");
 
@@ -124,6 +126,50 @@ test("checked-in corpus and baseline require 49 unique one-to-one identities", a
     () => assertOneToOneCorpusBaseline(corpus, duplicateBaseline, 49),
     /not unique one-to-one/,
   );
+});
+
+test("production corpus validator covers the English-v2 manifest shape and rejects duplicate identities", async () => {
+  const source = JSON.parse(
+    await fs.readFile(
+      path.join(root, "release/evidence/qualification-corpora/english-v2.json"),
+      "utf8",
+    ),
+  );
+  const directory = await fs.mkdtemp(
+    path.join(os.tmpdir(), "voice-english-corpus-validator-"),
+  );
+  const manifestPath = path.join(directory, "corpus-v1.json");
+  try {
+    const corpus = structuredClone(source);
+    for (const clip of corpus.clips) {
+      const bytes = Buffer.from(`validator fixture for ${clip.id}\n`);
+      clip.audioSha256 = sha256(bytes);
+      const audioPath = path.join(directory, clip.audioPath);
+      await fs.mkdir(path.dirname(audioPath), { recursive: true });
+      await fs.writeFile(audioPath, bytes);
+    }
+    const writeManifest = (value) =>
+      fs.writeFile(manifestPath, `${JSON.stringify(value, null, 2)}\n`);
+
+    await writeManifest(corpus);
+    const validated = await validateCorpus(manifestPath);
+    assert.equal(validated.manifest.clips.length, 49);
+    assert.equal(validated.corpusEvidence.uniqueIds, true);
+    assert.equal(validated.corpusEvidence.uniquePaths, true);
+    assert.equal(validated.corpusEvidence.uniqueAudioHashes, true);
+
+    for (const field of ["id", "audioPath", "audioSha256"]) {
+      const duplicate = structuredClone(corpus);
+      duplicate.clips.at(-1)[field] = duplicate.clips[0][field];
+      await writeManifest(duplicate);
+      await assert.rejects(
+        validateCorpus(manifestPath),
+        /Corpus duplicate or contained-path violation/,
+      );
+    }
+  } finally {
+    await fs.rm(directory, { recursive: true, force: true });
+  }
 });
 
 test("English v2 authority rejects changed immutable source bytes", async () => {
