@@ -4,10 +4,11 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 
 ## Revision Index
 
-| Revision ID | Triggering Role / Report / Round                            | Finding IDs                                             | Classification     | Related Revision IDs                                                                                                   | Result                                            |
-| ----------- | ----------------------------------------------------------- | ------------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| `IR-001`    | Architecture Reviewer / `design-review-report.md` / round 3 | `N/A`                                                   | `Initial Baseline` | `SR-001`, `SR-002`, `SR-003`; `ARCH-REV-001`, `ARCH-REV-002`, `ARCH-REV-003`; `CRR-*` N/A; `API-REV-*` N/A; `DR-*` N/A | `Implementation Complete — Ready for Code Review` |
-| `IR-002`    | Architecture Reviewer / `design-review-report.md` / round 7 | `AR-F-007`–`AR-F-010`; historical `CR-F-001`–`CR-F-006` | `Design Impact`    | `SR-004`–`SR-006`; `ARCH-REV-004`–`ARCH-REV-007`; `CRR-001`; `API-REV-*` N/A; `DR-*` N/A                               | `Implementation Complete — Ready for Code Review` |
+| Revision ID | Triggering Role / Report / Round                            | Finding IDs                                             | Classification     | Related Revision IDs                                                                                                   | Result                                               |
+| ----------- | ----------------------------------------------------------- | ------------------------------------------------------- | ------------------ | ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| `IR-001`    | Architecture Reviewer / `design-review-report.md` / round 3 | `N/A`                                                   | `Initial Baseline` | `SR-001`, `SR-002`, `SR-003`; `ARCH-REV-001`, `ARCH-REV-002`, `ARCH-REV-003`; `CRR-*` N/A; `API-REV-*` N/A; `DR-*` N/A | `Implementation Complete — Ready for Code Review`    |
+| `IR-002`    | Architecture Reviewer / `design-review-report.md` / round 7 | `AR-F-007`–`AR-F-010`; historical `CR-F-001`–`CR-F-006` | `Design Impact`    | `SR-004`–`SR-006`; `ARCH-REV-004`–`ARCH-REV-007`; `CRR-001`; `API-REV-*` N/A; `DR-*` N/A                               | `Implementation Complete — Ready for Code Review`    |
+| `IR-003`    | Code Reviewer / `code-review-report.md` / `CRR-002`         | `CR-F-007`–`CR-F-013`                                   | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-002`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -62,3 +63,30 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: Pinned-toolchain `npm run check` passed 18/18 Node, 5/5 Python, and all Go tests with no skips; Go race/vet/gofmt passed; authored Prettier checks passed; four Go launcher targets cross-built; exact pinned native Fun-ASR source compiled twice byte-identically with Werror/path-leak/startup-rejection checks; 191/191 selection checksums passed; npm audit reported 0 vulnerabilities; diff/source-size/legacy checks passed.
 - Next recipient or routing: `code_reviewer`
 - Remaining limitations or risks: Approved build-input/model/corpus trees were unavailable for complete archive assembly or inference. All eight actual-target packages, licensed corpus and consent/redistribution proof, MLX/faster/Fun-ASR execution, M1 Max 30/100 timing/RSS/size, notices/licenses, Windows behavior, maintained-main integration, pre-tag evidence, tag/publication, and published-byte identity remain fail-closed API/E2E/Delivery gates. `auto` is omitted unless separately qualified.
+
+### IR-003 — Close runtime edge cases and qualification trust gaps
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-002`
+- Triggering finding IDs: `CR-F-007`, `CR-F-008`, `CR-F-009`, `CR-F-010`, `CR-F-011`, `CR-F-012`, `CR-F-013`
+- Classification: `Local Fix`
+- Prior authoritative result: `CRR-002` / `Fail — Local Fix` against `IR-002`
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`
+- Related solution revision IDs: `SR-006`
+- Related architecture-review revision IDs: `ARCH-REV-007`
+- Related code-review revision IDs: `CRR-002`
+- Related API/E2E revision IDs: `N/A`
+- Related delivery revision IDs: `N/A`
+- Why this implementation revision is recorded: Source review found seven bounded correctness and evidence-authentication defects in the otherwise accepted SR-006 ownership model. This round corrects those existing owners without changing providers, thresholds, supported runtime paths, or architecture.
+- Approved behavior or requirement IDs affected: `BEH-002`–`BEH-011`; `R-005`, `R-008`, `R-014`; `AC-003`, `AC-006`, `AC-008`–`AC-010`, `AC-013`, `AC-017`; `MP-CR-001`–`MP-CR-007`.
+- Implementation delta:
+  - Made reference-client stdout decoding stateful, fatal, byte-bounded, and termination-validated; added every-byte UTF-8/delimiter and truncated-stream tests.
+  - Corrected native Han/punctuation spacing and introduced a native result policy so only audio validation yields no-speech; added executable shared-fixture/result-policy coverage and matching Python outcome tests.
+  - Centralized maintained-main reachability with the release commit as the ancestor of freshly fetched maintained main and bound assembly, verification, and workflow publication to that proof.
+  - Added repository-owned exact corpus/baseline/trust records and verified external baseline bytes, provider/model/configuration, promoted result/quality identities, per-clip counts, and aggregate before comparison.
+  - Added exact Go executable locks, target wheel locks, offline Python archive/wheel materialization, clean exact-commit native worktree verification, and a repository build-lock-set digest carried through build/qualification/release evidence.
+  - Replaced free-form cache claims with a repository-owned executed darwin-arm64 cold-cache procedure, 30 cold/30 warm-preparation/100 warm-request raw samples, digest binding, and release-side recomputation/count gates.
+  - Extended the release evidence schema/bindings and workflow inputs for the new trusted identities; no threshold, fallback, alternate runtime path, tag, or publication was added.
+- Changed files or areas: `.github/workflows/release-voice-runtime.yml`, `README.md`, `benchmark/baseline/`, `benchmark/cache-procedure.mjs`, `benchmark/cache-procedures/`, `benchmark/provider-process-session.mjs`, `benchmark/run-profile-qualification.mjs`, `build/locked-inputs.*`, `build/native/`, `build/python/`, `build/python-wheel-locks/`, `build/repository-lock-set.mjs`, `contracts/release/`, `providers/chinese-funasr/`, `providers/python/`, `release/evidence/`, and focused tests under `tests/`; source commit `4c1286997e6ae33a8a86448fa04de0f56e28eb36`.
+- Local validation and result: Final pinned-toolchain `npm run check` passed 27/27 Node, 7/7 Python plus compileall, all Go tests, source-size, and legacy-residue checks. Go race/vet/gofmt checks passed. The C++20 native normalization/result-policy test compiled with `-Wall -Wextra -Werror` against UTF8PROC and all shared fixtures, then passed. `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`
+- Remaining limitations or risks: Complete locked inputs were unavailable for actual eight-package construction and inference. The exact Python materializer and darwin filesystem-cold procedure therefore remain unit/contract checked rather than accepted as real-package evidence. Licensed corpus/provenance/consent/redistribution, target-native package execution, M1 Max 30/30/100 latency/RSS/size, notices/licenses, Windows behavior, maintained-main integration, pre-tag evidence, tag/publication, and published-byte equality remain fail-closed API/E2E/Delivery gates. `auto` remains omitted.
