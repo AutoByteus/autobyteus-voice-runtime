@@ -140,16 +140,32 @@ async function reproduceAuthority(root, authority, record, python) {
       cwd: root,
       maxBuffer: 1024 * 1024,
     });
-    for (const [name, projected] of Object.entries(authority.outputs)) {
-      const generated = path.join(output, projected.solutionFile);
-      const expected =
-        name === "trustedBaselineRecord"
-          ? Buffer.from(`${JSON.stringify(record, null, 2)}\n`)
-          : await fs.readFile(repositoryPath(root, projected.runtimePath));
-      if (!Buffer.from(await fs.readFile(generated)).equals(expected))
-        throw new Error(`English preservation derivation drift: ${name}`);
-    }
+    await assertReproducedEnglishOutputs({ root, output, authority, record });
   } finally {
     await removeWritableTree(work);
+  }
+}
+
+export async function assertReproducedEnglishOutputs({
+  root = ROOT,
+  output,
+  authority,
+  record,
+}) {
+  const projections = [
+    ...Object.entries(authority.outputs),
+    [
+      "authority",
+      { solutionFile: "authority.json", runtimePath: AUTHORITY_PATH },
+    ],
+  ];
+  for (const [name, projected] of projections) {
+    const generated = path.join(output, projected.solutionFile);
+    const expected =
+      name === "trustedBaselineRecord"
+        ? Buffer.from(`${JSON.stringify(record, null, 2)}\n`)
+        : await fs.readFile(repositoryPath(root, projected.runtimePath));
+    if (!Buffer.from(await fs.readFile(generated)).equals(expected))
+      throw new Error(`English preservation derivation drift: ${name}`);
   }
 }

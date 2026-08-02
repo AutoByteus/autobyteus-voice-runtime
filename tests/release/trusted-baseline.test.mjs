@@ -9,7 +9,10 @@ import {
   loadTrustedBaseline,
   validateBaselineIdentity,
 } from "../../benchmark/baseline/trusted-baseline.mjs";
-import { verifyEnglishPreservationAuthority } from "../../benchmark/baseline/english-preservation-authority.mjs";
+import {
+  assertReproducedEnglishOutputs,
+  verifyEnglishPreservationAuthority,
+} from "../../benchmark/baseline/english-preservation-authority.mjs";
 
 const root = path.resolve(import.meta.dirname, "../..");
 
@@ -150,5 +153,38 @@ test("English v2 authority rejects changed immutable source bytes", async () => 
     );
   } finally {
     await fs.rm(directory, { recursive: true, force: true });
+  }
+});
+
+test("English v2 reproduction rejects changed generated authority when five other outputs match", async () => {
+  const { record } = await loadTrustedBaseline("english", "darwin-arm64");
+  const authorityPath = path.join(
+    root,
+    "evidence/selection-study/derived/english-preservation-unique-v2/authority.json",
+  );
+  const authority = JSON.parse(await fs.readFile(authorityPath, "utf8"));
+  const output = await fs.mkdtemp(
+    path.join(os.tmpdir(), "voice-english-reproduction-"),
+  );
+  try {
+    for (const [name, projected] of Object.entries(authority.outputs)) {
+      const bytes =
+        name === "trustedBaselineRecord"
+          ? `${JSON.stringify(record, null, 2)}\n`
+          : await fs.readFile(path.join(root, projected.runtimePath));
+      await fs.writeFile(path.join(output, projected.solutionFile), bytes);
+    }
+    const changedAuthority = structuredClone(authority);
+    changedAuthority.status = "different-generated-authority";
+    await fs.writeFile(
+      path.join(output, "authority.json"),
+      `${JSON.stringify(changedAuthority, null, 2)}\n`,
+    );
+    await assert.rejects(
+      assertReproducedEnglishOutputs({ root, output, authority, record }),
+      /derivation drift: authority/,
+    );
+  } finally {
+    await fs.rm(output, { recursive: true, force: true });
   }
 });
