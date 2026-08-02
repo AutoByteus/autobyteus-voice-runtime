@@ -9,6 +9,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-001`    | Architecture Reviewer / `design-review-report.md` / round 3 | `N/A`                                                   | `Initial Baseline` | `SR-001`, `SR-002`, `SR-003`; `ARCH-REV-001`, `ARCH-REV-002`, `ARCH-REV-003`; `CRR-*` N/A; `API-REV-*` N/A; `DR-*` N/A | `Implementation Complete — Ready for Code Review`    |
 | `IR-002`    | Architecture Reviewer / `design-review-report.md` / round 7 | `AR-F-007`–`AR-F-010`; historical `CR-F-001`–`CR-F-006` | `Design Impact`    | `SR-004`–`SR-006`; `ARCH-REV-004`–`ARCH-REV-007`; `CRR-001`; `API-REV-*` N/A; `DR-*` N/A                               | `Implementation Complete — Ready for Code Review`    |
 | `IR-003`    | Code Reviewer / `code-review-report.md` / `CRR-002`         | `CR-F-007`–`CR-F-013`                                   | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-002`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
+| `IR-004`    | Code Reviewer / `code-review-report.md` / `CRR-003`         | Remaining `CR-F-011`                                    | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-003`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -90,3 +91,28 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: Final pinned-toolchain `npm run check` passed 27/27 Node, 7/7 Python plus compileall, all Go tests, source-size, and legacy-residue checks. Go race/vet/gofmt checks passed. The C++20 native normalization/result-policy test compiled with `-Wall -Wextra -Werror` against UTF8PROC and all shared fixtures, then passed. `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`
 - Remaining limitations or risks: Complete locked inputs were unavailable for actual eight-package construction and inference. The exact Python materializer and darwin filesystem-cold procedure therefore remain unit/contract checked rather than accepted as real-package evidence. Licensed corpus/provenance/consent/redistribution, target-native package execution, M1 Max 30/30/100 latency/RSS/size, notices/licenses, Windows behavior, maintained-main integration, pre-tag evidence, tag/publication, and published-byte equality remain fail-closed API/E2E/Delivery gates. `auto` remains omitted.
+
+### IR-004 — Authenticate and isolate complete Go toolchain roots
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-003`
+- Triggering finding IDs: Remaining `CR-F-011`
+- Classification: `Local Fix`
+- Prior authoritative result: `CRR-003` / `Fail — Local Fix` against `IR-003`; six other CRR-002 findings were verified resolved
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`
+- Related solution revision IDs: `SR-006`
+- Related architecture-review revision IDs: `ARCH-REV-007`
+- Related code-review revision IDs: `CRR-003`
+- Related API/E2E revision IDs: `N/A`
+- Related delivery revision IDs: `N/A`
+- Why this implementation revision is recorded: IR-003 authenticated only the `go` front executable while compilation and archive tooling executed sibling compiler, linker, and standard-library assets and could inherit an alternate `GOROOT`. This round makes the existing Go lock owner authoritative for the complete invoked root and subprocess environment.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-007`, `BEH-010`; `R-005`, `R-014`; `AC-006`, `AC-017`; `MP-CR-005`.
+- Implementation delta:
+  - Added complete repository-owned file/directory manifests for all four supported Go 1.26.5 roots. Each manifest covers 15,026 regular files and is bound to the exact official archive digest, front executable digest, canonical tree digest, file count, and total byte count in `build/locked-inputs.json`.
+  - Tightened `verifyGoToolchain()` to derive the root only from the exact `VOICE_GO` `bin/go[.exe]` path, authenticate the repository manifest, reject root/entry symlinks and non-regular entries, and fail on missing, extra, resized, or changed root content.
+  - Added `trustedGoEnvironment()` and routed launcher compilation, archive construction/extraction, qualification, workflow environment verification, and local Go checks through it. Inherited Go/toolchain/target/CGO/external-tool overrides fail; the invoked process receives the verified `GOROOT`, fixed target, local toolchain, disabled GOENV/workspace, and deterministic feature baseline.
+  - Added the verified archive/root manifest/tree/count/size to launcher provenance, build reports, qualification summaries, release evidence schema/projection, and release-side repository lock recomputation.
+  - Added negative coverage for an exact official front binary with an empty sibling root, missing and modified sibling tools, inherited alternate `GOROOT`, all-target manifest/archive consistency, provenance fields, and workflow verification without direct untrusted Go invocation.
+- Changed files or areas: `.gitattributes`, `.github/workflows/release-voice-runtime.yml`, `README.md`, `benchmark/run-profile-qualification.mjs`, `build/go-toolchain-manifests/`, `build/locked-inputs.*`, `build/package-{assembler,verifier}.mjs`, `build/verify-go-toolchain.mjs`, `contracts/release/release-qualification-evidence-v1.schema.json`, `package.json`, `packaging/launcher/compile-launcher.mjs`, `release/evidence/{assemble,bindings}.mjs`, `tooling/check-go.mjs`, and focused build/launcher/release tests; source commit `bb28720c24dcb931dd434857632963c5c72ac207`.
+- Local validation and result: Final pinned-root `npm run check` passed 32/32 Node tests, 7/7 Python plus compileall, all Go tests through the verified-root wrapper, source-size, and legacy-residue guards. The exact current darwin-arm64 root verified all 15,026 files against its repository manifest and compiled the launcher twice byte-identically. Go race/vet/fmt and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`
+- Remaining limitations or risks: The other three complete manifests were derived from exact official archives matching the prior locked digests but were not exercised on their target operating systems during implementation. All eight target-native package builds/runs, licensed corpus/provenance/consent/redistribution, M1 Max 30/30/100 latency/RSS/size, notices/licenses, Windows behavior, maintained-main integration, pre-tag evidence, tag/publication, and published-byte equality remain fail-closed API/E2E/Delivery gates. `auto` remains omitted.

@@ -8,6 +8,7 @@ The latest `code-review-report.md` remains authoritative. This record retains th
 | --- | --- | --- | --- | --- | --- |
 | `CRR-001` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 1 / `IR-001` | `N/A` | `Fail — Local Fix` | `CR-F-001`–`CR-F-006` |
 | `CRR-002` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 2 / replacement `IR-002` against `SR-006` | `Fail — withdrawn-design Local Fix` | `Fail — Local Fix` | Historical `CR-F-001`–`CR-F-006`; new `CR-F-007`–`CR-F-013` |
+| `CRR-003` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 3 / `IR-003` rework | `Fail — Local Fix` | `Fail — Local Fix` | Resolved `CR-F-007`–`CR-F-010`, `CR-F-012`, `CR-F-013`; remaining `CR-F-011` |
 
 ## Revision Entries
 
@@ -63,3 +64,34 @@ None.
 - Material score or classification changes: replacement implementation score `8.6/10`; `Local Fix`; API/E2E readiness remains below the pass threshold.
 - Recommended recipient: `implementation_engineer`
 - Remaining risks or uncertainty: after source corrections, all eight actual packages, licensed corpus, M1 Max 30/100 performance/RSS/size, formal licenses/notices, Windows and every-target execution, maintained-main integration, pre-tag proof, and publication remain fail-closed downstream gates.
+
+### CRR-003 — Six findings resolve; complete Go toolchain authentication remains
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `3`
+- Triggering role, report path, and finding or scenario IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-handoff.md`; `IR-003`; recheck `CR-F-007`–`CR-F-013`
+- Relevant solution revision IDs: `SR-006`
+- Relevant architecture-review revision IDs: `ARCH-REV-007`
+- Relevant implementation revision IDs: `IR-003`
+- Relevant API/E2E revision IDs: `N/A`
+- Relevant delivery revision IDs: `N/A`
+- Prior authoritative result: `CRR-002 Fail — Local Fix`
+- Current authoritative result: `Fail — Local Fix -> implementation_engineer`
+- What changed in the review result and why: Stateful UTF-8 framing, native normalization, result/no-speech policy, maintained-main ancestry, promoted baseline trust, Python/native source input authentication, and raw cache/performance evidence are correctly implemented with focused coverage. `CR-F-011` remains open because Go authentication hashes only the front executable while actual launcher/archive compilation depends on unauthenticated sibling GOROOT tools and an inherited `GOROOT` environment.
+
+#### Prior Finding Resolution
+
+| Finding ID | Prior Status | Current Status | Related Revision References | Verification Evidence |
+| --- | --- | --- | --- | --- |
+| `CR-F-007` | Open / Local Fix | Resolved | `IR-003`, `CRR-003` | `ProviderProcessSession` uses one fatal streaming `TextDecoder`, original-byte frame accounting, terminal decoding, and tests that emit Chinese frames byte by byte plus truncated terminal UTF-8. |
+| `CR-F-008` | Open / Local Fix | Resolved | `IR-003`, `CRR-003` | Native normalizer suppresses post-punctuation whitespace; the C++20 contract test executes every shared Chinese fixture with warnings-as-errors. |
+| `CR-F-009` | Open / Local Fix | Resolved | `IR-003`, `CRR-003` | Central reachability owner proves release commit is ancestor/equal to maintained main; assembly, verification, and publish recheck bind it; tests reject an unmerged descendant. |
+| `CR-F-010` | Open / Local Fix | Resolved | `IR-003`, `CRR-003` | Repository-owned trusted baseline catalog/evidence/corpora bind digest, provider, model, configuration, promoted result/quality evidence, per-clip counts, and aggregate; external qualification uses exact trusted bytes. Independent loads passed for English and Chinese. |
+| `CR-F-011` | Open / Local Fix | Remaining | `IR-003`, `CRR-003` | Python archives/wheels and native Git sources are now authenticated. However, `verifyGoToolchain()` hashes only the front `go` binary and then reports the locked archive identity; exact-front-binary probe with an absent sibling root was accepted. Go build calls inherit `GOROOT`. |
+| `CR-F-012` | Open / Local Fix | Resolved | `IR-003`, `CRR-003` | Repository-owned macOS cold-cache script executes before each cold start; raw cache execution plus 30 cold / 30 warm-preparation / 100 warm-request samples are digest-bound and independently recomputed with count gates. |
+| `CR-F-013` | Open / Local Fix | Resolved | `IR-003`, `CRR-003` | Python and native workers use validator-only no-speech; speech plus empty recognizer output fails safely; focused Python/C++ coverage distinguishes outcomes. |
+
+- New or remaining finding IDs: `CR-F-011`
+- Material score or classification changes: score improves from `8.6/10` to `9.2/10`; result remains `Fail — Local Fix` because ownership, API/E2E readiness, and behavioral fidelity remain below 9.0 until the full pinned Go toolchain is authenticated.
+- Recommended recipient: `implementation_engineer`
+- Remaining risks or uncertainty: after the source correction, eight-package construction/execution, licensed corpus, M1 Max performance/RSS/size, formal licenses/notices, Windows behavior, maintained-main integration, pre-tag proof, publication, and published-byte equality remain fail-closed downstream gates.
