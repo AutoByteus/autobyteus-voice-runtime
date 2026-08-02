@@ -16,6 +16,7 @@ const goOverrideKeys = [
   "GOARCH",
   "GOARM",
   "GOARM64",
+  "GOCACHEPROG",
   "GODEBUG",
   "GOENV",
   "GOEXPERIMENT",
@@ -33,6 +34,24 @@ const goOverrideKeys = [
   "PKG_CONFIG",
 ];
 const goOverrideSet = new Set(goOverrideKeys);
+const supportedTargets = Object.freeze({
+  "darwin-arm64": Object.freeze({
+    internal: Object.freeze({ platform: "darwin", architecture: "arm64" }),
+    go: Object.freeze({ platform: "darwin", architecture: "arm64" }),
+  }),
+  "darwin-x64": Object.freeze({
+    internal: Object.freeze({ platform: "darwin", architecture: "x64" }),
+    go: Object.freeze({ platform: "darwin", architecture: "amd64" }),
+  }),
+  "linux-x64": Object.freeze({
+    internal: Object.freeze({ platform: "linux", architecture: "x64" }),
+    go: Object.freeze({ platform: "linux", architecture: "amd64" }),
+  }),
+  "win32-x64": Object.freeze({
+    internal: Object.freeze({ platform: "win32", architecture: "x64" }),
+    go: Object.freeze({ platform: "windows", architecture: "amd64" }),
+  }),
+});
 export async function verifyLockedFile(file, identity, label) {
   const info = await fs.stat(file);
   if (
@@ -99,9 +118,10 @@ export async function verifyInputManifest(root) {
 }
 export async function verifyGoToolchain(executable, options = {}) {
   rejectGoToolchainOverrides(options.environment ?? process.env);
-  const tuple =
-      options.tuple ??
-      `${process.platform}-${process.arch === "x64" ? "x64" : process.arch}`,
+  const hostTarget = options.tuple
+      ? mapTargetTuple(options.tuple)
+      : mapNodeHost(process.platform, process.arch),
+    tuple = hostTarget.tuple,
     identity = options.identity ?? locked.goToolchain.archives[tuple];
   if (!identity) throw new Error(`No locked Go toolchain for ${tuple}.`);
   const binary = path.resolve(executable),
@@ -109,7 +129,7 @@ export async function verifyGoToolchain(executable, options = {}) {
     expectedBinary = path.join(
       root,
       "bin",
-      tuple.startsWith("win32-") ? "go.exe" : "go",
+      hostTarget.internal.platform === "win32" ? "go.exe" : "go",
     );
   if (binary !== expectedBinary)
     throw new Error("VOICE_GO must identify the Go binary inside its root.");
@@ -167,8 +187,9 @@ export function trustedGoEnvironment(
   const result = { ...environment };
   for (const key of Object.keys(result))
     if (goOverrideSet.has(key.toUpperCase())) delete result[key];
-  const goPlatform = platform === "win32" ? "windows" : platform,
-    goArchitecture = architecture === "x64" ? "amd64" : architecture;
+  const target = mapInternalTarget(platform, architecture),
+    goPlatform = target.go.platform,
+    goArchitecture = target.go.architecture;
   return {
     ...result,
     AR: "",
@@ -178,6 +199,7 @@ export function trustedGoEnvironment(
     GCCGO: "",
     GO111MODULE: "on",
     GOARCH: goArchitecture,
+    GOCACHEPROG: "",
     GOENV: "off",
     GOEXPERIMENT: "",
     GOFLAGS: "",
@@ -189,6 +211,23 @@ export function trustedGoEnvironment(
     ...(goArchitecture === "amd64" ? { GOAMD64: "v1" } : {}),
     ...(goArchitecture === "arm64" ? { GOARM64: "v8.0" } : {}),
   };
+}
+
+export function expectedGoVersionOutput(toolchain) {
+  const target = mapInternalTarget(
+    toolchain.host.platform,
+    toolchain.host.architecture,
+  );
+  return `go version go${locked.goToolchain.version} ${target.go.platform}/${target.go.architecture}`;
+}
+
+export function mapInternalTarget(platform, architecture) {
+  return mapTargetTuple(`${platform}-${architecture}`);
+}
+
+export function mapNodeHost(platform, architecture) {
+  const internalArchitecture = architecture === "x64" ? "x64" : architecture;
+  return mapInternalTarget(platform, internalArchitecture);
 }
 
 export function assertGoToolchainProvenance(toolchain, record) {
@@ -332,4 +371,10 @@ function sameSet(actual, expected) {
     actual.size === expected.length &&
     expected.every((item) => actual.has(item))
   );
+}
+
+function mapTargetTuple(tuple) {
+  const target = supportedTargets[tuple];
+  if (!target) throw new Error(`Unsupported Go target tuple: ${tuple}.`);
+  return { tuple, internal: target.internal, go: target.go };
 }

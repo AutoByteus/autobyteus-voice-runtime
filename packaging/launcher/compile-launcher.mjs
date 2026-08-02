@@ -7,6 +7,7 @@ import { promisify } from "node:util";
 import { fileURLToPath } from "node:url";
 import { createHash } from "node:crypto";
 import {
+  expectedGoVersionOutput,
   trustedGoEnvironment,
   verifyGoToolchain,
 } from "../../build/locked-inputs.mjs";
@@ -29,10 +30,7 @@ const version = (
     env: trustedGoEnvironment(goToolchain),
   })
 ).stdout.trim();
-if (
-  version !==
-  `go version go${locked.goToolchain.version} ${process.platform}/${process.arch}`
-)
+if (version !== expectedGoVersionOutput(goToolchain))
   throw new Error(
     "Launcher compiler is not the repository-pinned host Go toolchain.",
   );
@@ -136,11 +134,6 @@ function validatePlan(value) {
       !/^(?!\/)(?!.*(?:^|\/)\.\.?(?:\/|$))(?!.*\\)[A-Za-z0-9._/-]+$/.test(item)
     )
       throw new Error("Invalid contained launcher path.");
-}
-function hostTuple() {
-  const platform = process.platform;
-  const arch = process.arch === "x64" ? "x64" : process.arch;
-  return `${platform}-${arch}`;
 }
 function digest(value) {
   return createHash("sha256").update(value).digest("hex");

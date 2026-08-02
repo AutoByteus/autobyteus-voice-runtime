@@ -6,13 +6,58 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { createHash } from "node:crypto";
-import { locked, verifyGoToolchain } from "../../build/locked-inputs.mjs";
+import {
+  expectedGoVersionOutput,
+  locked,
+  mapInternalTarget,
+  trustedGoEnvironment,
+  verifyGoToolchain,
+} from "../../build/locked-inputs.mjs";
 import { verifyGitSource } from "../../build/native/locked-source.mjs";
 import { verifyWheelhouse } from "../../build/python/materialize-runtime.mjs";
 import { assertInputClosure } from "../../build/profile-builders/common.mjs";
 
 const run = promisify(execFile);
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
+
+test("internal target mapping covers every supported Node and Go tuple", () => {
+  for (const [internal, go] of [
+    [
+      ["darwin", "arm64"],
+      ["darwin", "arm64"],
+    ],
+    [
+      ["darwin", "x64"],
+      ["darwin", "amd64"],
+    ],
+    [
+      ["linux", "x64"],
+      ["linux", "amd64"],
+    ],
+    [
+      ["win32", "x64"],
+      ["windows", "amd64"],
+    ],
+  ]) {
+    const target = mapInternalTarget(...internal),
+      toolchain = { root: "/trusted/go", host: target.internal };
+    assert.deepEqual(
+      [target.go.platform, target.go.architecture],
+      go,
+      target.tuple,
+    );
+    assert.equal(
+      expectedGoVersionOutput(toolchain),
+      `go version go1.26.5 ${go[0]}/${go[1]}`,
+      target.tuple,
+    );
+    const environment = trustedGoEnvironment(toolchain, {}, {});
+    assert.equal(environment.GOROOT, "/trusted/go");
+    assert.equal(environment.GOOS, go[0]);
+    assert.equal(environment.GOARCH, go[1]);
+    assert.equal(environment.GOCACHEPROG, "");
+  }
+});
 
 test("every supported Go root manifest is bound to its locked archive", async () => {
   for (const [tuple, identity] of Object.entries(locked.goToolchain.archives)) {
@@ -116,6 +161,50 @@ test("inherited alternate GOROOT is rejected before Go execution", async () => {
     );
   } finally {
     await fs.rm(fixture.directory, { recursive: true, force: true });
+  }
+});
+
+test("inherited GOCACHEPROG is rejected before verified Go invocation", async (t) => {
+  if (!process.env.VOICE_GO) return t.skip("VOICE_GO is not configured");
+  const directory = await fs.mkdtemp(
+      path.join(os.tmpdir(), "voice-go-cache-program-"),
+    ),
+    marker = path.join(directory, "executed"),
+    program = path.join(directory, "marker.mjs");
+  try {
+    await fs.writeFile(
+      program,
+      `import fs from "node:fs"; fs.writeFileSync(${JSON.stringify(marker)}, "executed");\n`,
+    );
+    await assert.rejects(
+      run(
+        process.execPath,
+        [
+          path.resolve(
+            import.meta.dirname,
+            "../../build/verify-go-toolchain.mjs",
+          ),
+          "--go",
+          process.env.VOICE_GO,
+        ],
+        {
+          env: {
+            ...process.env,
+            GOCACHEPROG: `${process.execPath} ${program}`,
+          },
+        },
+      ),
+      (error) => {
+        assert.match(
+          error.stderr,
+          /Inherited Go toolchain override rejected: GOCACHEPROG/,
+        );
+        return true;
+      },
+    );
+    await assert.rejects(fs.access(marker), { code: "ENOENT" });
+  } finally {
+    await fs.rm(directory, { recursive: true, force: true });
   }
 });
 

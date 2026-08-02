@@ -2,7 +2,7 @@
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import {
-  locked,
+  expectedGoVersionOutput,
   trustedGoEnvironment,
   verifyGoToolchain,
 } from "./locked-inputs.mjs";
@@ -16,7 +16,7 @@ const run = promisify(execFile),
       env: trustedGoEnvironment(toolchain),
     })
   ).stdout.trim(),
-  expected = `go version go${locked.goToolchain.version} ${process.platform}/${process.arch}`;
+  expected = expectedGoVersionOutput(toolchain);
 if (version !== expected)
   throw new Error("Verified Go root returned an unexpected version identity.");
 process.stdout.write(
