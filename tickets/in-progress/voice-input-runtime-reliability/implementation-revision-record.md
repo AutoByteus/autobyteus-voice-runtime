@@ -10,6 +10,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-002`    | Architecture Reviewer / `design-review-report.md` / round 7 | `AR-F-007`–`AR-F-010`; historical `CR-F-001`–`CR-F-006` | `Design Impact`    | `SR-004`–`SR-006`; `ARCH-REV-004`–`ARCH-REV-007`; `CRR-001`; `API-REV-*` N/A; `DR-*` N/A                               | `Implementation Complete — Ready for Code Review`    |
 | `IR-003`    | Code Reviewer / `code-review-report.md` / `CRR-002`         | `CR-F-007`–`CR-F-013`                                   | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-002`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
 | `IR-004`    | Code Reviewer / `code-review-report.md` / `CRR-003`         | Remaining `CR-F-011`                                    | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-003`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
+| `IR-005`    | Code Reviewer / `code-review-report.md` / `CRR-004`         | Partial `CR-F-011`; `CR-F-014`                          | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-004`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -116,3 +117,27 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: Final pinned-root `npm run check` passed 32/32 Node tests, 7/7 Python plus compileall, all Go tests through the verified-root wrapper, source-size, and legacy-residue guards. The exact current darwin-arm64 root verified all 15,026 files against its repository manifest and compiled the launcher twice byte-identically. Go race/vet/fmt and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`
 - Remaining limitations or risks: The other three complete manifests were derived from exact official archives matching the prior locked digests but were not exercised on their target operating systems during implementation. All eight target-native package builds/runs, licensed corpus/provenance/consent/redistribution, M1 Max 30/30/100 latency/RSS/size, notices/licenses, Windows behavior, maintained-main integration, pre-tag evidence, tag/publication, and published-byte equality remain fail-closed API/E2E/Delivery gates. `auto` remains omitted.
+
+### IR-005 — Close external Go cache and cross-target mapping gaps
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-004`
+- Triggering finding IDs: Partial `CR-F-011`; new `CR-F-014`
+- Classification: `Local Fix`
+- Prior authoritative result: `CRR-004` / `Fail — Local Fix` against `IR-004`; complete-root authentication was accepted and the remaining earlier findings stayed resolved
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`
+- Related solution revision IDs: `SR-006`
+- Related architecture-review revision IDs: `ARCH-REV-007`
+- Related code-review revision IDs: `CRR-004`
+- Related API/E2E revision IDs: `N/A`
+- Related delivery revision IDs: `N/A`
+- Why this implementation revision is recorded: Go 1.26.5 can execute a non-empty inherited `GOCACHEPROG`, leaving an external unrecorded cache input despite the complete-root proof. The two CLI owners also compared Go's `amd64`/`windows` output to Node's `x64`/`win32` names, blocking six required jobs. This round closes both defects inside the existing toolchain owner.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-007`, `BEH-010`; `R-005`, `R-014`; `AC-006`, `AC-017`; `MP-CR-005`.
+- Implementation delta:
+  - Added `GOCACHEPROG` to the case-insensitive rejected inherited Go override set and explicitly set it empty in every trusted subprocess environment.
+  - Added one authoritative four-target mapping for internal/Node and Go platform/architecture names. `verifyGoToolchain()`, `trustedGoEnvironment()`, `expectedGoVersionOutput()`, the workflow verifier, and launcher compiler now share it.
+  - Added all-four-tuple expectations plus a normal CLI negative test that supplies a marker `GOCACHEPROG`, asserts rejection, and proves the marker never executed.
+  - Preserved the complete-root manifests, strict provenance propagation, provider choices, package contracts, and every qualification threshold unchanged.
+- Changed files or areas: `README.md`, `build/locked-inputs.mjs`, `build/verify-go-toolchain.mjs`, `packaging/launcher/compile-launcher.mjs`, and `tests/build/locked-inputs.test.mjs`; source commit `7bd5db4201b48e75ce92eaab9bf769e7ed4035e2`.
+- Local validation and result: Final pinned-root `npm run check` passed 34/34 Node, 7/7 Python plus compileall, all Go tests through the verified-root wrapper, source-size, and legacy guards. The exact official darwin-x64 archive/root verified all 15,026 files and its x64 executable returned the accepted mapped `go version go1.26.5 darwin/amd64` identity. Go race/vet/gofmt and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`
+- Remaining limitations or risks: Linux-x64 and win32-x64 tuple behavior is deterministically covered but not actually executed on those operating systems during implementation. All eight target-native package builds/runs, licensed corpus/provenance/consent/redistribution, M1 Max 30/30/100 latency/RSS/size, notices/licenses, Windows behavior, maintained-main integration, pre-tag evidence, tag/publication, and published-byte equality remain fail-closed API/E2E/Delivery gates. `auto` remains omitted.

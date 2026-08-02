@@ -21,20 +21,27 @@
 
 ## Current Implementation Summary
 
-`IR-004` closes the remaining `CR-F-011` complete-Go-toolchain trust gap from `CRR-003` without changing the reviewed SR-006 architecture, adding an alternate provider path, or relaxing any qualification threshold. The runtime tree remains the clean profile-specific Python/MLX, Python/faster-whisper, and native Fun-ASR implementation behind the fixed Go launcher, Catalog 3, Provider Archive 1, and strict session/protocol/audio contracts delivered in `IR-002` and hardened in `IR-003`.
+`IR-005` closes the partial `CR-F-011` external-cache-program gap and `CR-F-014` cross-target version-mapping defect from `CRR-004` without changing the reviewed SR-006 architecture, adding an alternate provider path, or relaxing any qualification threshold. The runtime tree remains the clean profile-specific Python/MLX, Python/faster-whisper, and native Fun-ASR implementation behind the fixed Go launcher, Catalog 3, Provider Archive 1, and strict session/protocol/audio contracts delivered in `IR-002` and hardened in `IR-003`–`IR-004`.
 
-The current rework authenticates all 15,026 files and the complete directory set of each supported extracted Go root against a repository-owned full-root manifest derived from the exact locked official archive. Every Go invocation now derives `GOROOT` from verified `VOICE_GO`, rejects inherited toolchain/target/external-tool overrides, disables automatic toolchain/environment/workspace selection, and carries the verified archive/root identity through launcher provenance, build reports, qualification summaries, and release evidence.
+The current rework adds `GOCACHEPROG` to the rejected inherited input set and forces it empty in every trusted Go subprocess environment before invocation. It also centralizes the four supported internal/Node/Go tuples so darwin-x64 and linux-x64 correctly validate `*/amd64`, win32-x64 validates `windows/amd64`, and darwin-arm64 remains `darwin/arm64`. Complete-root authentication and evidence propagation from IR-004 remain unchanged.
 
 - Cycle: `Rework / Local Fix`
-- Current implementation revision: `IR-004`
+- Current implementation revision: `IR-005`
 - Current design authority: `SR-006` / `ARCH-REV-007`
-- Trigger: `CRR-003` / remaining `CR-F-011`
+- Trigger: `CRR-004` / partial `CR-F-011` and new `CR-F-014`
 - API/E2E and delivery revisions: `N/A`
-- Source commits: `ce9d4b4553947b876c8783e18a621edfcac03555`, `402525786f3f556e355e8292611720c02c634332`, `4c1286997e6ae33a8a86448fa04de0f56e28eb36`, `bb28720c24dcb931dd434857632963c5c72ac207`
+- Source commits: `ce9d4b4553947b876c8783e18a621edfcac03555`, `402525786f3f556e355e8292611720c02c634332`, `4c1286997e6ae33a8a86448fa04de0f56e28eb36`, `bb28720c24dcb931dd434857632963c5c72ac207`, `7bd5db4201b48e75ce92eaab9bf769e7ed4035e2`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
 No tag, publication, maintained-main reconciliation, desktop source, shared runtime checkout, or active-installation state was changed.
+
+## CRR-004 Finding Resolution
+
+| Finding            | Implementation                                                                                                                                                                                                                                                                                                                                                                                                                |
+| ------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Partial `CR-F-011` | `GOCACHEPROG` is now a forbidden inherited Go override and is explicitly empty in every `trustedGoEnvironment()`. The CLI regression supplies a marker cache program to the normal verified-toolchain entrypoint, verifies fail-closed rejection, and proves the marker was not executed.                                                                                                                                     |
+| `CR-F-014`         | `build/locked-inputs.mjs` now owns the sole mapping from the four supported internal tuples to Node host names and Go `GOOS/GOARCH` names. Root selection, trusted target environment, and expected `go version` output share that map. Durable tests cover darwin-arm64, darwin-x64, linux-x64, and win32-x64; an additional local exact darwin-x64 root execution returned and accepted `go version go1.26.5 darwin/amd64`. |
 
 ## CRR-003 Finding Resolution
 
@@ -56,20 +63,20 @@ No tag, publication, maintained-main reconciliation, desktop source, shared runt
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior  | Implemented production path and result                                                                                                                                                                                                                            |
-| --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BEH-001` | Runtime-only source/build/release changes; released desktop capture/cancellation remains untouched.                                                                                                                                                               |
-| `BEH-002` | Go launcher -> profile worker -> explicit hello/model-preparing/inference-ready lifecycle -> one persistent serialized recognizer. Qualification now proves 30 cold and 30 warm preparation samples separately.                                                   |
-| `BEH-003` | `ProviderProcessSession` owns bounded startup/request/shutdown/termination, stateful UTF-8 framing, terminal failure, no replay, and clean next start.                                                                                                            |
-| `BEH-004` | Canonical archive/package builders admit only a complete manifest-verified Go root, repository-locked Python archives/wheels, clean exact native commits, models, contracts, and notices; live installs/downloads/system hosts/alternate launchers remain absent. |
-| `BEH-005` | MLX English on darwin-arm64, faster-whisper English elsewhere, and native Fun-ASR Chinese remain the only advertised profiles. Trusted promoted baselines and unsuccessful candidate history are digest-bound; `auto` remains omitted.                            |
-| `BEH-006` | Python/C++ runtime normalization and JS scoring share NFKC/T2S/punctuation/Han-spacing semantics. Native execution of every shared fixture now guards byte equality.                                                                                              |
-| `BEH-007` | Prequalification uses repository-owned evidence, complete toolchain-root provenance, and correct source-commit -> maintained-main reachability before tag creation; publication re-verifies the exact qualified artifacts.                                        |
-| `BEH-008` | Lifecycle/identity/timing/resource/recovery evidence remains bounded and privacy-safe. Raw sample evidence, cache execution, locks, packages, baselines, and result identities are digest-bound.                                                                  |
-| `BEH-009` | Catalog/archive/launcher/session/Protocol 1 remain the only public authority. Empty model output is a safe failure, not fabricated no-speech; unknown/legacy/private overrides fail closed.                                                                       |
-| `BEH-010` | Host-neutral Catalog 3 -> Provider Archive 1 -> fixed Go launcher -> embedded plan -> contained worker path remains intact; the repository lock set and complete invoked Go root now close build inputs.                                                          |
-| `BEH-011` | Python/native PCM16 mono 16 kHz WAV validators remain the sole no-speech authority; workers do not require an external decoder.                                                                                                                                   |
-| `BEH-012` | Context/hotword fields remain rejected; no recognition-context behavior or fallback was added.                                                                                                                                                                    |
+| Behavior  | Implemented production path and result                                                                                                                                                                                                                                                                     |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEH-001` | Runtime-only source/build/release changes; released desktop capture/cancellation remains untouched.                                                                                                                                                                                                        |
+| `BEH-002` | Go launcher -> profile worker -> explicit hello/model-preparing/inference-ready lifecycle -> one persistent serialized recognizer. Qualification now proves 30 cold and 30 warm preparation samples separately.                                                                                            |
+| `BEH-003` | `ProviderProcessSession` owns bounded startup/request/shutdown/termination, stateful UTF-8 framing, terminal failure, no replay, and clean next start.                                                                                                                                                     |
+| `BEH-004` | Canonical archive/package builders admit only a complete manifest-verified Go root with no inherited external cache program, repository-locked Python archives/wheels, clean exact native commits, models, contracts, and notices; live installs/downloads/system hosts/alternate launchers remain absent. |
+| `BEH-005` | MLX English on darwin-arm64, faster-whisper English elsewhere, and native Fun-ASR Chinese remain the only advertised profiles. Trusted promoted baselines and unsuccessful candidate history are digest-bound; `auto` remains omitted.                                                                     |
+| `BEH-006` | Python/C++ runtime normalization and JS scoring share NFKC/T2S/punctuation/Han-spacing semantics. Native execution of every shared fixture now guards byte equality.                                                                                                                                       |
+| `BEH-007` | Prequalification uses repository-owned evidence, complete toolchain-root provenance, one supported target map, and correct source-commit -> maintained-main reachability before tag creation; publication re-verifies the exact qualified artifacts.                                                       |
+| `BEH-008` | Lifecycle/identity/timing/resource/recovery evidence remains bounded and privacy-safe. Raw sample evidence, cache execution, locks, packages, baselines, and result identities are digest-bound.                                                                                                           |
+| `BEH-009` | Catalog/archive/launcher/session/Protocol 1 remain the only public authority. Empty model output is a safe failure, not fabricated no-speech; unknown/legacy/private overrides fail closed.                                                                                                                |
+| `BEH-010` | Host-neutral Catalog 3 -> Provider Archive 1 -> fixed Go launcher -> embedded plan -> contained worker path remains intact; the repository lock set and complete invoked Go root now close build inputs.                                                                                                   |
+| `BEH-011` | Python/native PCM16 mono 16 kHz WAV validators remain the sole no-speech authority; workers do not require an external decoder.                                                                                                                                                                            |
+| `BEH-012` | Context/hotword fields remain rejected; no recognition-context behavior or fallback was added.                                                                                                                                                                                                             |
 
 ## Key Current Files
 
@@ -89,12 +96,13 @@ No tag, publication, maintained-main reconciliation, desktop source, shared runt
 - Authoritative boundaries: preserved; no caller bypass, dual provider path, fallback, compatibility wrapper, or legacy production path was introduced.
 - Persisted data decision: `Not Affected`; immutable runtime artifacts have no supported user-state migration.
 - Frontend rendered-result check: `Not Applicable` because this runtime/build/contract change has no rendered UI.
-- Source-size guard: all implementation files remain below 500 effective non-empty lines; the largest are `benchmark/run-profile-qualification.mjs` at 488 and `release/evidence/verify.mjs` at 459. The full-root JSON manifests are generated lock data, not implementation source.
+- Source-size guard: all implementation files remain below 500 effective non-empty lines; the largest are `benchmark/run-profile-qualification.mjs` at 488, `release/evidence/verify.mjs` at 459, and `build/locked-inputs.mjs` at 368. The full-root JSON manifests are generated lock data, not implementation source.
 
 ## Assumptions And Remaining Risks
 
 - The repository-owned target wheel locks are derived from the approved promoted resolutions; downstream must supply exactly those wheel bytes and the pinned Python archives. The materializer intentionally rejects extras, network resolution, operator-prepared runtimes, and mismatched distribution closure.
 - The four complete Go-root manifests were generated from official Go 1.26.5 archive bytes after each archive matched the pre-existing repository lock digest. The current darwin-arm64 extracted root was fully verified and used for implementation checks; the other target roots remain subject to downstream actual-target verification against their manifests.
+- The exact official darwin-x64 archive/root was additionally verified locally and its x64 Go executable ran under Rosetta with the centralized mapping, returning the expected `darwin/amd64` identity. Linux and Windows tuple behavior has deterministic unit coverage but remains actual-target downstream work.
 - The approved darwin-arm64 cold-cache procedure requires passwordless `/usr/bin/sudo -n /usr/sbin/purge`; inability to execute it is a qualification failure, not a reason to relabel warm observations.
 - Complete MLX, faster-whisper, and Fun-ASR packages were not assembled locally because all locked target archives/wheels/models/licensed corpora were not present. The new Python materialization and actual cache procedure therefore were unit/contract checked, not accepted as actual-package evidence.
 - Exact construction and actual-target execution of all eight packages, licensed corpus provenance/consent/redistribution, model quality, M1 Max 30/30/100 timing, RSS, size, offline behavior, notices/licenses, Windows behavior, maintained-main refresh, tagging, and publication remain fail-closed downstream gates.
@@ -102,7 +110,8 @@ No tag, publication, maintained-main reconciliation, desktop source, shared runt
 
 ## Local Implementation Checks
 
-- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed after the final source changes: 32/32 Node tests, 7/7 Python tests plus compileall, all Go tests through the verified-root wrapper, source-size guard, and forbidden legacy-residue guard.
+- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed after the final source changes: 34/34 Node tests, 7/7 Python tests plus compileall, all Go tests through the verified-root wrapper, source-size guard, and forbidden legacy-residue guard.
+- Exact official darwin-x64 root verification plus `go version` under the trusted environment — passed across all 15,026 files and returned the mapped `go version go1.26.5 darwin/amd64` identity.
 - `go test -race ./launcher/internal ./packaging/archive`, `go vet ./...`, and `gofmt -l launcher packaging` — passed/clean with pinned Go 1.26.5.
 - Native `normalization_and_result_policy_test.cpp` compiled with C++20, `-Wall -Wextra -Werror`, the real normalization table/fixtures, and UTF8PROC, then passed.
 - `git diff --check` — passed.
@@ -120,4 +129,4 @@ These checks are implementation-scoped only. No API/E2E, licensed-corpus, actual
 
 ## API / E2E Status
 
-Not started and not authorized from the prior failed review. Return this `IR-004` source delta to `code_reviewer`. After source review passes, `api_e2e_engineer` owns coverage investigation, approved-input/environment setup, actual-package execution, and broader evidence; `delivery_engineer` owns integrated-main refresh and any authorized tag/publication.
+Not started and not authorized from the prior failed review. Return this `IR-005` source delta to `code_reviewer`. After source review passes, `api_e2e_engineer` owns coverage investigation, approved-input/environment setup, actual-package execution, and broader evidence; `delivery_engineer` owns integrated-main refresh and any authorized tag/publication.
