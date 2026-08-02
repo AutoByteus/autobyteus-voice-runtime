@@ -12,6 +12,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-004`    | Code Reviewer / `code-review-report.md` / `CRR-003`                | Remaining `CR-F-011`                                    | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-003`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
 | `IR-005`    | Code Reviewer / `code-review-report.md` / `CRR-004`                | Partial `CR-F-011`; `CR-F-014`                          | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-004`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
 | `IR-006`    | Architecture Reviewer / `design-review-report.md` / `ARCH-REV-008` | `CR-F-015` from `CRR-006` / `API-VOICE-002`             | `Design Impact`    | `SR-007`; `ARCH-REV-008`; `CRR-006`; `API-REV-001`; `DR-*` N/A                                                         | `Implementation Complete — Ready for Code Re-review` |
+| `IR-007`    | Code Reviewer / `code-review-report.md` / `CRR-007`                | `CR-F-016`                                              | `Local Fix`        | `SR-007`; `ARCH-REV-008`; `CRR-007`; `API-REV-001`; `DR-*` N/A                                                         | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -168,3 +169,27 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: Pinned-toolchain `npm run check` passed 37/37 Node tests, 7/7 Python tests plus compileall, all Go tests, source/legacy guards, and byte-identical v2 derivation reproduction. Exact comparisons matched all reviewed target bytes; the unchanged original selection-study checksum list passed 191/191; all repository JSON parsed; focused Prettier and `git diff --check` passed. Negative tests reject duplicate corpus/baseline identity and changed immutable source bytes.
 - Next recipient or routing: `code_reviewer`
 - Remaining limitations or risks: This implementation round did not use the licensed WAV tree or run API/E2E/package inference. After source Pass, `api_e2e_engineer` must begin `API-REV-002` with `API-VOICE-002` against the exact 49 audio bytes, then run the remaining target/package/resource/license/release-aggregation scenarios. Maintained-main integration, tag, publication, and published-byte equality remain Delivery-owned fail-closed gates. `auto` remains omitted.
+
+### IR-007 — Assert the sixth English reproduction output
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-007`
+- Triggering finding IDs: `CR-F-016`
+- Classification: `Local Fix`
+- Prior authoritative result: `CRR-007` / `Fail — Local Fix` against `IR-006`; `CR-F-015` accepted as resolved in source
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`
+- Related solution revision IDs: `SR-007`
+- Related architecture-review revision IDs: `ARCH-REV-008`
+- Related code-review revision IDs: `CRR-007`
+- Related API/E2E revision IDs: `API-REV-001`; `API-REV-002` remains unopened
+- Related delivery revision IDs: `N/A`
+- Why this implementation revision is recorded: The approved derivation produced six current JSON outputs, but the reproduction loop iterated the five records inside `authority.outputs` and never compared generated `authority.json` before reporting byte-identical success. The current bytes were correct; this round completes the missing durable assertion in the existing owner.
+- Approved behavior or requirement IDs affected: `BEH-005`; `AC-007`; SR-007 source/output reproduction contract; `MP-CR-010`.
+- Implementation delta:
+  - Extracted the complete generated-output comparison into `assertReproducedEnglishOutputs()` and made `reproduceAuthority()` call it before success.
+  - Added checked-in `authority.json` as the explicit sixth comparison after corpus, promoted raw result, promoted quality, baseline, and trusted record.
+  - Added a focused negative regression that supplies exact matching bytes for the other five outputs, changes only generated `authority.json`, and requires an authority-specific derivation-drift failure.
+  - Preserved every evidence byte, derivation rule, provider/model, threshold, runtime/package/protocol path, and release ordering unchanged.
+- Changed files or areas: `benchmark/baseline/english-preservation-authority.mjs` and `tests/release/trusted-baseline.test.mjs`; source commit `983dc07abdb68309c67bea8955554ec6f9064fd2`.
+- Local validation and result: Pinned-toolchain `npm run check` passed 38/38 Node tests, 7/7 Python tests plus compileall, all Go tests, source/legacy guards, and the all-six byte-identical English derivation reproduction. The focused authority-only negative test passed; Prettier and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`
+- Remaining limitations or risks: No API/E2E or package inference was run. Only after source Pass may `api_e2e_engineer` open `API-REV-002`, rerun `API-VOICE-002` against the exact 49 WAVs, and continue the remaining target/package/resource/license/release-aggregation scenarios. Maintained-main integration, tag, publication, and published-byte equality remain Delivery-owned fail-closed gates. `auto` remains omitted.

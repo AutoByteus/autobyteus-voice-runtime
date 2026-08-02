@@ -12,6 +12,7 @@ The latest `code-review-report.md` remains authoritative. This record retains th
 | `CRR-004` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 4 / `IR-004` rework | `Fail — Local Fix` | `Fail — Local Fix` | Partially resolved/remaining `CR-F-011`; new `CR-F-014` |
 | `CRR-005` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 5 / `IR-005` rework | `Fail — Local Fix` | `Pass` | Resolved `CR-F-011`, `CR-F-014` |
 | `CRR-006` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | API/E2E Failure-Origin Review / `API-REV-001`, `API-VOICE-002` | `Pass` | `Fail — Design Impact` | New `CR-F-015`; review gap in prior `CR-F-010` resolution |
+| `CRR-007` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 7 / `IR-006` against `SR-007` | `Fail — Design Impact` | `Fail — Local Fix` | Resolved `CR-F-015`; new `CR-F-016` |
 
 ## Revision Entries
 
@@ -182,3 +183,29 @@ None.
 - Material score or classification changes: no new full source scorecard; CRR-005's `9.4/10` remains historical. Workflow authority changes from source `Pass` to failure-origin `Fail — Design Impact` because the reachable acceptance gate now has direct contradicting evidence.
 - Recommended recipient: `solution_designer`
 - Remaining risks or uncertainty: the corrected unique English corpus and matching baseline authority are not yet defined. `API-VOICE-003`–`API-VOICE-012` remain unexecuted, not failed, and all exact-package/target/performance/license/release-aggregation gates remain required after upstream correction and re-review.
+
+### CRR-007 — English v2 authority is correct; sixth reproduction assertion remains
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `7`
+- Triggering role, report path, and finding or scenario IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-handoff.md`; `IR-006`; recheck `CR-F-015` after `API-VOICE-002`
+- Relevant solution revision IDs: `SR-007`
+- Relevant architecture-review revision IDs: `ARCH-REV-008`
+- Relevant implementation revision IDs: `IR-006`
+- Relevant API/E2E revision IDs: prior failed `API-REV-001`; `API-REV-002` not opened
+- Relevant delivery revision IDs: `N/A`
+- Prior authoritative result: `CRR-006 Fail — Design Impact -> solution_designer`
+- Current authoritative result: `Fail — Local Fix -> implementation_engineer`
+- What changed in the review result and why: Exact approved English-v2 derivation/output bytes are present, invalid final v1 files are removed, only the English trust record changed, the historical 191-file study and Chinese authority are unchanged, and production trust enforces 49 ordered unique corpus/baseline identities before inference. `CR-F-015` is resolved in source. Review found a new bounded proof defect: the source reproduction loop compares five generated outputs but never compares generated `authority.json`, despite claiming all six outputs reproduced byte-identically.
+
+#### Prior Finding Resolution
+
+| Finding ID | Prior Status | Current Status | Related Revision References | Verification Evidence |
+| --- | --- | --- | --- | --- |
+| `CR-F-015` | Open / Design Impact | Resolved | `SR-007`, `ARCH-REV-008`, `IR-006`, `CRR-007` | Runtime targets match all approved v2 digests; corpus/baseline are 49/49 unique and ordered one-to-one at 70/969 WER; invalid final v1 is absent; Chinese and original 191 checksum-indexed historical files are unchanged; production baseline trust verifies approved source/output identities. Real-audio API re-execution remains downstream evidence, not source closure. |
+| `CR-F-010` | Resolved with detection-gap context in CRR-006 | Resolved / strengthened | `IR-003`, `SR-007`, `IR-006`, `CRR-007` | Trust now rejects duplicate corpus/baseline identities and requires ordered raw/quality alignment in addition to the prior provider/model/configuration/digest/derivation binding. |
+
+- New or remaining finding IDs: `CR-F-016`
+- Material score or classification changes: current full source score `9.3/10`; classification changes from upstream `Design Impact` to bounded `Local Fix`. API/E2E readiness and behavioral-proof fidelity remain below 9.0 until the sixth generated output is compared.
+- Recommended recipient: `implementation_engineer`
+- Remaining risks or uncertainty: the current generated `authority.json` independently matches approved bytes, but repository automation does not assert that fact. After the local fix and source Pass, API-REV-002 must rerun API-VOICE-002 first; API-VOICE-003–012 and all target/package/performance/license/release gates remain outstanding.

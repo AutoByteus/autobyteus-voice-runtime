@@ -39,22 +39,28 @@
 
 ## Current Implementation Summary
 
-`IR-006` implements the bounded `SR-007` / `ARCH-REV-008` correction for `CRR-006` finding `CR-F-015`. It preserves the reviewed `IR-005` runtime/package architecture and replaces only the invalid final English evidence authority and its verification path. The runtime tree remains the profile-specific hermetic Python/MLX, Python/faster-whisper, and native Fun-ASR implementation behind the fixed Go launcher, Catalog 3, Provider Archive 1, and strict session/protocol/audio contracts.
+`IR-007` closes the bounded `CRR-007` local proof omission `CR-F-016` on top of the accepted `IR-006` English-v2 correction. It preserves the reviewed `SR-007` / `ARCH-REV-008` evidence authority and the `IR-005` runtime/package architecture. The runtime tree remains the profile-specific hermetic Python/MLX, Python/faster-whisper, and native Fun-ASR implementation behind the fixed Go launcher, Catalog 3, Provider Archive 1, and strict session/protocol/audio contracts.
 
-The exact reviewed English v2 derivation, authority, projected raw/quality, final corpus, final baseline, and trusted-record bytes are now in their approved runtime paths. The duplicate-counted final `english-v1` corpus/baseline files are absent. Source/release trust byte-verifies the locked immutable sources, derivation script, authority, and every final output before English qualification, while the baseline owner enforces 49 unique one-to-one corpus/baseline/raw/quality identities. The source check independently reruns the approved derivation and byte-compares all six generated outputs. The original 50-row historical selection evidence, its 191-file checksum index, and the Chinese evidence/trusted record are unchanged.
+The exact reviewed English v2 derivation, authority, projected raw/quality, final corpus, final baseline, and trusted-record bytes remain in their approved runtime paths. The duplicate-counted final `english-v1` corpus/baseline files remain absent. Source/release trust byte-verifies the locked immutable sources, derivation script, authority, and every final output before English qualification, while the baseline owner enforces 49 unique one-to-one corpus/baseline/raw/quality identities. The source check now explicitly compares generated `authority.json` in addition to the other five derived outputs before reporting byte-identical reproduction. A focused regression changes only the generated authority and proves that the gate fails after the other five outputs match.
 
-- Implementation cycle: `Rework / Design Impact correction`
+- Implementation cycle: `Rework / Local Fix`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision: `IR-006`
+- Current implementation revision: `IR-007`
 - Current design authority: `SR-007` / `ARCH-REV-008`
-- Trigger: `CRR-006` / `CR-F-015`, originating from `API-REV-001` / `API-VOICE-002`
+- Trigger: `CRR-007` / `CR-F-016`; `CR-F-015` is accepted as resolved in source
 - Related API/E2E revision: `API-REV-001` failed and routed upstream; implementation did not resume API/E2E
 - Delivery revision: `N/A`
-- Current source commit: `5b24f1e2e94bf0d1238feee76575edadae25c0c9`
+- Current source commit: `983dc07abdb68309c67bea8955554ec6f9064fd2`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
 No provider/model/threshold/package/lifecycle/protocol behavior changed. No API/E2E execution, tag, publication, maintained-main reconciliation, desktop/shared-runtime edit, history rewrite, or active-installation work occurred.
+
+## CRR-007 Local-Fix Resolution
+
+| Finding    | Implementation                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CR-F-016` | `assertReproducedEnglishOutputs()` now owns the complete comparison set: corpus, projected raw result, projected quality, baseline, trusted record, and generated `authority.json`. `reproduceAuthority()` calls that owner before the source check can report success. The focused negative regression supplies exact bytes for the other five generated outputs, changes only generated `authority.json`, and requires `derivation drift: authority`. |
 
 ## CRR-006 / SR-007 Correction
 
@@ -109,12 +115,12 @@ No provider/model/threshold/package/lifecycle/protocol behavior changed. No API/
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: evidence correction / bug fix / release hardening.
-- Reviewed root-cause classification: missing final-evidence invariant and invalid evidence authority, resolved upstream in `SR-007`.
-- Reviewed refactor decision: bounded correction inside the existing baseline/evidence owners; no runtime/package redesign.
+- Reviewed change posture: local proof correction inside the source evidence gate.
+- Reviewed root-cause classification: local implementation proof omission in the existing reproduction owner.
+- Reviewed refactor decision: no architectural refactor; complete the missing sixth assertion in the existing English authority owner.
 - Implementation matched the reviewed assessment: `Yes`.
-- If challenged, routed as Design Impact: `Yes`; `CR-F-015` was not patched ad hoc until `SR-007` / `ARCH-REV-008` supplied exact authority.
-- Evidence: exact upstream-to-runtime byte comparisons, independent derivation rerun, unique one-to-one regression tests, unchanged historical/Chinese bytes, and the source commit above.
+- If challenged, routed as Design Impact: `N/A`; `CRR-007` classified this bounded defect as `Local Fix` after accepting `CR-F-015` source closure.
+- Evidence: all-six comparison code, authority-only negative regression, independent derivation rerun, and the source commit above.
 
 ## Legacy / Compatibility Removal Check
 
@@ -134,15 +140,15 @@ No provider/model/threshold/package/lifecycle/protocol behavior changed. No API/
 ## Environment Or Dependency Notes
 
 - Implementation checks used Node 22.23.1, system Python 3 for source tests/derivation only, and the exact repository-verified Go 1.26.5 darwin-arm64 root at `/tmp/autobyteus-go1.26.5-v1/go/bin/go`.
-- No dependency version, provider input, model input, threshold, or package host changed in `IR-006`.
+- No dependency version, evidence byte, provider input, model input, threshold, or package host changed in `IR-007`.
 
 ## Local Implementation Checks Run
 
-- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: 37/37 Node tests, 7/7 Python tests plus compileall, all Go tests, source-size/legacy guards, and byte-identical English v2 derivation reproduction.
+- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: 38/38 Node tests, 7/7 Python tests plus compileall, all Go tests, source-size/legacy guards, and byte-identical six-output English v2 derivation reproduction.
 - Exact `cmp` checks against all six reviewed v2 target outputs plus the copied script/authority — passed; approved corpus/baseline/authority/projected-result/projected-quality digests match.
 - `(cd evidence/selection-study && shasum -a 256 -c SHA256SUMS.txt)` — 191/191 original historical entries passed unchanged.
 - All repository JSON parsed; focused Prettier check and `git diff --check` passed.
-- Negative regressions reject duplicate corpus/baseline identities, wrong trusted baseline identities/digests, and changed immutable English source bytes.
+- Negative regressions reject duplicate corpus/baseline identities, wrong trusted baseline identities/digests, changed immutable English source bytes, and changed generated authority bytes after the other five outputs match.
 
 These are implementation-scoped checks only. No API/E2E, actual-package, real-audio, release, tag, or publication sign-off is claimed.
 
@@ -158,4 +164,4 @@ Not Applicable. This is a runtime/evidence/build change with no rendered fronten
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-`API-REV-001` remains the historical failed round that exposed `CR-F-015`. Do not resume it directly from this implementation handoff. Return `IR-006` to `code_reviewer`; only after source Pass may `api_e2e_engineer` open `API-REV-002`, rerun `API-VOICE-002` first, and continue the remaining package scenarios. `delivery_engineer` retains maintained-main refresh, finalization, tag, and publication ownership.
+`API-REV-001` remains the historical failed round that exposed `CR-F-015`. Do not resume it directly from this implementation handoff. Return `IR-007` to `code_reviewer`; only after source Pass may `api_e2e_engineer` open `API-REV-002`, rerun `API-VOICE-002` first, and continue the remaining package scenarios. `delivery_engineer` retains maintained-main refresh, finalization, tag, and publication ownership.
