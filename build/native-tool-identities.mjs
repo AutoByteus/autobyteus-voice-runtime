@@ -137,6 +137,7 @@ function toolEntries(record) {
     ["ld", record.tools.linker],
     ["libtool", record.tools.libtool],
     ["make", record.tools.make],
+    ["sed", record.tools.sed],
     ["sh", record.tools.shell],
     ["tar", record.tools.tar],
   ];

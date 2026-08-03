@@ -27,6 +27,7 @@
         "linker",
         "libtool",
         "make",
+        "sed",
         "shell",
         "tar",
         "sdk"
@@ -41,6 +42,7 @@
         "linker": { "$ref": "#/$defs/identity" },
         "libtool": { "$ref": "#/$defs/identity" },
         "make": { "$ref": "#/$defs/identity" },
+        "sed": { "$ref": "#/$defs/identity" },
         "shell": { "$ref": "#/$defs/identity" },
         "tar": { "$ref": "#/$defs/identity" },
         "sdk": {

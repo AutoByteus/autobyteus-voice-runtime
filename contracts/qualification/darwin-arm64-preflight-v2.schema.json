@@ -355,6 +355,7 @@
             "/usr/bin/xcrun",
             "/usr/bin/xcodebuild",
             "/usr/bin/make",
+            "/usr/bin/sed",
             "/usr/bin/tar",
             "/bin/sh"
           ],
@@ -390,6 +391,9 @@
               "$ref": "#/$defs/identity"
             },
             "/usr/bin/make": {
+              "$ref": "#/$defs/identity"
+            },
+            "/usr/bin/sed": {
               "$ref": "#/$defs/identity"
             },
             "/usr/bin/tar": {

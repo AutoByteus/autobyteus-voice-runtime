@@ -69,6 +69,7 @@ test("the production environment owner accepts the preflight CMake symlink", asy
     assert.equal(record.tools.cmake.path, await fs.realpath(tool));
     assert.match(record.tools.ranlib.invocationPath, /\/ranlib$/);
     assert.equal(record.tools.ranlib.targetPath, record.tools.libtool.path);
+    assert.equal(record.tools.sed.path, await fs.realpath("/usr/bin/sed"));
     assert.equal(record.tools.tar.path, await fs.realpath("/usr/bin/tar"));
   } finally {
     await fs.rm(temp, { recursive: true, force: true });
@@ -221,6 +222,32 @@ test("the canonical sandboxed package entry consumes outside-authorized prefligh
       }),
       /preflight identities do not recompute/,
     );
+    const missingSed = structuredClone(preflight);
+    delete missingSed.tools.commandPaths["/usr/bin/sed"];
+    await writeJson(preflightPath, missingSed);
+    await assert.rejects(
+      createTrustedNativeBuildEnvironment({
+        preflightPath,
+        cmakePath: supplied,
+        environment: {},
+      }),
+      /Passing M1 preflight required/,
+    );
+
+    await writeJson(preflightPath, preflight);
+    const unboundSed = structuredClone(record);
+    unboundSed.tools.sed = unboundSed.tools.tar;
+    await writeJson(recordPath, unboundSed);
+    await assert.rejects(
+      consumeTrustedNativeBuildEnvironment({
+        recordPath,
+        preflightPath,
+        environment: {},
+      }),
+      /does not bind the preflight/,
+    );
+
+    await writeJson(recordPath, record);
     await writeJson(preflightPath, preflight);
     await fs.writeFile(tool, "changed\n", { mode: 0o755 });
     await assert.rejects(
@@ -273,7 +300,7 @@ test("the trusted PATH is closed and rechecks every selected tool", async () => 
       /tool directory is not closed/,
     );
     await fs.rm(path.join(tools, "unbound-tool"));
-    await fs.writeFile(record.tools.tar.path, "changed\n", { mode: 0o755 });
+    await fs.writeFile(record.tools.sed.path, "changed\n", { mode: 0o755 });
     await assert.rejects(
       verifyTrustedToolDirectory(record, tools),
       /Trusted executable identity mismatch/,
@@ -441,6 +468,7 @@ function fixtureRecord(rootPath) {
       linker: tool("ld"),
       libtool,
       make: tool("make"),
+      sed: tool("sed"),
       shell: tool("sh"),
       tar: tool("tar"),
       sdk: {

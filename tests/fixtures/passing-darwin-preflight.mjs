@@ -35,6 +35,7 @@ export async function passingDarwinPreflightFixture(rootPath, toolPath) {
       "/usr/bin/xcrun",
       "/usr/bin/xcodebuild",
       "/usr/bin/make",
+      "/usr/bin/sed",
       "/usr/bin/tar",
       "/bin/sh",
     ];

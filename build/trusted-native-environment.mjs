@@ -155,6 +155,7 @@ export async function verifyTrustedNativeBuildEnvironment(record) {
     "linker",
     "libtool",
     "make",
+    "sed",
     "shell",
     "tar",
   ])
@@ -217,6 +218,7 @@ function toolsFromPreflight(preflight) {
     linker: preflight.tools.appleLinkerExecutable,
     libtool: preflight.tools.appleLibtoolExecutable,
     make: identity("/usr/bin/make", commands),
+    sed: identity("/usr/bin/sed", commands),
     shell: identity("/bin/sh", commands),
     tar: identity("/usr/bin/tar", commands),
     sdk: {
