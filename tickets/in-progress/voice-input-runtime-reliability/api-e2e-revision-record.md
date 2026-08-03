@@ -8,6 +8,7 @@
 | `API-REV-002` | Code Reviewer / `code-review-report.md` / `CRR-008` | `SR-007`, `ARCH-REV-008`, `IR-007`, `CRR-008` | `Fail / 65%` | `Blocked / 78%` |
 | `API-REV-003` | Code Reviewer / `code-review-report.md` / `CRR-011` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-010`, `CRR-011` | `Blocked / 78%` | `Fail / 79%` |
 | `API-REV-004` | Code Reviewer / `code-review-report.md` / `CRR-013` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-011`, `CRR-013` | `Fail / 79%` | `Blocked / 82%` |
+| `API-REV-005` | Code Reviewer / `code-review-report.md` / `CRR-015` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-013`, `CRR-015` | `Blocked / 82%` | `Fail / 87%` |
 
 ## Revision Entries
 
@@ -118,3 +119,39 @@ None.
 - Recommended recipient: user request only; no teammate routing while Blocked.
 - Exact blocker: final samples `73.94, 71.42, 69.93, 66.30, 67.73, 68.51`, computed average `69.638%`, required >=80%. Observed major consumers included Docker Desktop's virtualization VM/renderer, WindowServer, WeChat media, and AutoByteus renderers.
 - Resume: user quits Docker Desktop/VM and other CPU-heavy apps while keeping AC connected; API/E2E opens the next revision and reruns production preflight before package materialization. No package, model, QSet/projection, tag, publication, or release action ran.
+
+### API-REV-005 — Functional preflight and exact inputs pass; canonical Seatbelt package entry cannot execute
+
+- Trigger: Code Reviewer `CRR-015`; API/E2E round 5; reviewed source `628bef9d9b1f40f263cb1f41e711649b8ca7dfe6` (`IR-013`) against `SR-010`/`SR-011` and `ARCH-REV-012`.
+- Scenarios: prior loaded-host blocker resolution; reusable `API-VOICE-002`/`013`; current-matrix `API-VOICE-003`, `004`, `011`, and `012`.
+- Why recorded: Functional Preflight 2 correctly passed at `75.17166666666667%` average idle as non-blocking `loaded-host`. Both exact closed input trees and both exact 49/200 corpora passed. The first required English package build then failed at the canonical reviewed Seatbelt command before archive construction because the package assembler live-spawns `/usr/bin/sudo -V` inside Seatbelt and macOS rejects that setuid spawn with `EPERM`.
+- Durable coverage changes: none. `API-VOICE-002` and durable `API-VOICE-013` were reused only after exact unchanged-byte proof. Run-specific package/input/corpus evidence remains temporary execution evidence.
+- Execution delta: focused 10/10; full 66/66 Node and 7/7 Python plus compileall with all Go/source/schema/evidence checks; actual M1 Functional Preflight 2 Pass; 35 exact cache objects and pinned clean Git checkouts; English/Chinese materialization Pass; exact 49/200 production corpus validation Pass; first network-denied package build Fail.
+
+#### Prior Failure Resolution
+
+| Prior Failure | Previous Classification | Current Resolution | Evidence |
+| --- | --- | --- | --- |
+| API-REV-004 sub-80% CPU-idle functional blocker | Environment Blocked under the superseded v1 gate | Resolved by approved Functional Preflight 2; no idle minimum blocks functionality | `api-rev-005/environment/darwin-arm64-preflight-v2.json`: Pass, `loaded-host`, `75.17166666666667%`; execution continued into inputs/build |
+| `API-F-001` thermal parser | Resolved in API-REV-004 | Remains resolved | same preflight: `thermalNormal=true` |
+| AC power and exact noninteractive purge capability | Previously resolved prerequisites | Reconfirmed Pass | same preflight: `acConnected=true`, `purge.nonInteractivePass=true` |
+
+#### New Failure
+
+- ID: `API-F-002`.
+- Scenario / criteria: `API-VOICE-003`; `AC-006`, `AC-017`.
+- Expected: the canonical Seatbelt network-denied workflow command consumes the passing Functional Preflight 2 record and constructs the first exact English archive.
+- Observed: `package-assembler.mjs` -> `createTrustedNativeBuildEnvironment()` -> `assertPassingDarwinArm64Preflight()` -> `verifyPinnedSudoIdentity()` -> `/usr/bin/sudo -V` throws `spawn EPERM`; no archive is produced.
+- Focused reproduction: `/usr/bin/sudo -V` exits `0` outside Seatbelt with the recorded preflight digests; under the pinned profile it exits `71` with `Operation not permitted`; Node child spawn under the same profile throws `EPERM`.
+- Preliminary classification: `Local Fix / implementation defect` in the actual workflow/build-entry integration, not user readiness, purge permission, provider/model, or the former 80% rule.
+- Stop/reroute: fail-closed. No unsandboxed build, skipped identity verification, fallback, threshold change, or release action. Route cumulative evidence to `code_reviewer` for focused failure-origin review.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/`
+- Prior result/confidence: `Blocked / 82%`.
+- Current result/confidence: `Fail / 87%`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review.
+- Remaining proof after reviewed correction: both package builds/reproducibility, real 49/200 inference/quality, lifecycle/recovery/offline/read-only/no-mutation, exact 30/30/100 resource/performance observations, compliance/privacy, Qualification Set 2, Branch Catalog Projection 2, and independent verification.

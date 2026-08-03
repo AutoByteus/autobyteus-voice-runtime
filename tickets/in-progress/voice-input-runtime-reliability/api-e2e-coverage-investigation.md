@@ -23,12 +23,11 @@
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
 - Delivery Revision Record: `N/A`
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-004`
-- Current Investigation Round: `4`
-- Trigger: `CRR-013` Pass for `IR-011` at reviewed source commit `23d766873fa1be357c657fab8203913fec09e65b` against `SR-008` / `SR-009` and `ARCH-REV-010`.
-- Prior Investigation Reviewed: `API-REV-003 — Fail / 79%` at `API-F-001`; repository and unchanged authority coverage passed, but the actual M1 thermal parser rejected healthy `pmset` output before package construction.
-- Latest Authoritative Investigation: `API-REV-004 — Blocked / 82%`. `API-F-001` is directly resolved and AC/purge readiness passes, but the production preflight did not reach the required six-sample `>=80%` average CPU-idle condition within 15 minutes.
-- Post-round requirement impact: `API-RI-002` records the user's subsequent direction that functional current-platform proof is primary and performance should be observed despite sub-80% idle. This is pending Solution/Architecture revision and does not retroactively change API-REV-004.
+- Current API/E2E Revision ID: `API-REV-005`
+- Current Investigation Round: `5`
+- Trigger: `CRR-015` Pass for `IR-013` at reviewed source commit `628bef9d9b1f40f263cb1f41e711649b8ca7dfe6` against `SR-010` / `SR-011` and `ARCH-REV-012`.
+- Prior Investigation Reviewed: `API-REV-004 — Blocked / 82%`; `API-F-001` was directly resolved, AC/purge passed, and only the former CPU-idle functional blocker stopped package work.
+- Latest Authoritative Investigation: `API-REV-005 — Fail / 87%`. Functional Preflight 2 passed as `loaded-host`, both closed input trees and exact 49/200 corpora passed, then the canonical Seatbelt-wrapped English package build failed before archive construction at `API-F-002`: package assembly live-spawns `/usr/bin/sudo -V` while already inside Seatbelt, and macOS rejects that setuid spawn with `EPERM`.
 
 ## Current Requirement And Design Basis
 
@@ -36,9 +35,9 @@ The current release and API/E2E acceptance scope is exactly two packages on the 
 
 Both packages must be materialized from repository recipes and SHA-addressed cache objects/exact clean Git checkouts, built twice under the reviewed network-denied path, verified byte-identical, relocated, run from read-only state without package mutation, and exercised through their public launcher/session/Protocol 1 boundaries. The run must retain all started attempts, execute real English 49-clip and Chinese 200-clip inference, prove quality/non-regression and Simplified Chinese normalization, cover lifecycle/recovery/termination/no-orphan cases including one injected retained failure, and generate privacy-safe evidence.
 
-The actual M1 preflight is a critical gate. It must authenticate exact Node, Go, CMake, Apple clang/Xcode/SDK, Seatbelt, system-tool, and cache-procedure identities; establish AC power/low-power/thermal/memory/quiescence requirements; and successfully execute `/usr/bin/sudo -n /usr/sbin/purge`. Each package then requires exactly 30 filesystem-cold trials, 30 warm-preparation trials, and 100 persistent-worker warm requests, with all started trials counted and the approved latency/RSS/size thresholds unchanged.
+Functional Preflight 2 is a critical gate. It authenticates exact Node, Go, CMake, Apple clang/Xcode/SDK, Seatbelt, system-tool, and cache-procedure identities; requires AC power, low-power-off, normal thermal/memory state, owned `caffeinate`, sandbox canaries, and exact `/usr/bin/sudo -n /usr/sbin/purge`; and captures six idle samples once. CPU idle now classifies evidence as `controlled` or `loaded-host` and cannot block functional execution. Each package still requires exactly 30 filesystem-cold trials, 30 warm-preparation trials, and 100 persistent-worker warm requests with every attempt retained. Hard deadlines, exact counts, quality/non-regression, RSS/size, package/runtime/lifecycle/compliance/privacy gates remain functional blockers. Reference p95 comparisons are independently reported by Performance Assessment 1 and cannot change functional Pass.
 
-After both profiles pass, API/E2E must create Qualification Set 1, then deterministically create Branch Catalog Projection 1 with exactly two local archive entries/assets and independently verify it. API/E2E must not generate Catalog 3, tag, publish, claim maintained-main reachability, or perform release actions. Delivery alone owns integration refresh, integrated rerun, final release proof, tagging, publication, and published-byte verification.
+After both profiles pass, API/E2E must create Qualification Set 2, then deterministically create Branch Catalog Projection 2 with exactly two local archive entries/assets and independently verify it. Summary 2 owns the functional decision; Performance Assessment 1 owns `controlled-pass|controlled-miss|loaded-host-observation`; QSet 2 binds both without reverse authority. API/E2E must not generate Catalog 3, tag, publish, claim maintained-main reachability, or perform release actions. Delivery alone owns integration refresh, integrated rerun, final release proof, tagging, publication, and published-byte verification.
 
 Persisted user/desktop data is `Not Affected`. This runtime-only work must not touch `~/.autobyteus`, desktop installation state, shared product state, or `autobyteus-web`.
 
@@ -52,10 +51,12 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | Filesystem-cold evidence | Changed | `current-platform-qualification.md`; `AC-020` | Exact successful `sudo -n purge` is mandatory before and during 30 counted cold trials; no warm proxy. |
 | Failure evidence retention | Added | `IR-008`; `IR-009`; `CRR-011` | Inject one contract-defined failure and prove atomic partial/raw/index/performance/summary artifacts retain every started attempt without retry. |
 | Compliance/offline evidence | Changed | repository license policy/generator, Seatbelt owner | Generate exact-package compliance and network-denial evidence; reject unknown/missing/non-redistributable inputs. |
-| Branch-only aggregation | Added | `current-platform-qualification.md`; Branch Catalog Projection 1 contracts | Produce QSet 1 and independently verified two-entry branch projection without release identity/publication. |
+| Branch-only aggregation | Changed | `SR-010`/`SR-011`; Branch Catalog Projection 2 contracts | Produce QSet 2 and independently verified two-entry projection 2 without release identity/publication; bind functional summaries and independent assessments one-way. |
 | English-v2 authority | Preserved | `SR-007`; `API-REV-002`; `CRR-011` | Reuse `API-VOICE-002` only because the exact authority/corpus/baseline/validator bytes are unchanged. |
 | Durable production-validator coverage | Preserved | `API-VOICE-013`; accepted by `CRR-011` | Reuse the accepted durable regression only because its test and production-owner bytes are unchanged. |
 | Actual M1 thermal-state parsing | Changed | `IR-011`; `CRR-013`; `CR-F-020` | Re-run the production preflight first. The reviewed parser accepts only the captured exact healthy three-line state, classifies explicit warnings, and fails closed on unknown input. |
+| Functional/performance separation | Changed | `SR-010`/`SR-011`; `ARCH-REV-012`; `IR-012`/`IR-013`; `CRR-015` | Execute Functional Preflight 2 on the loaded host; preserve all 30/30/100 observations; require functional gates while classifying performance independently. |
+| Terminal evidence consistency | Changed | `IR-013`; `CR-F-021`; `CRR-015` | Verify real profile/QSet terminal decisions, ledger/Summary consistency, retained non-pass behavior if any gate fails, and one-way Summary -> Assessment -> QSet identity. |
 | v0.3/bootstrap/protocol-0 and withdrawn provider paths | Removed | clean-cut design and removal guards | Do not restore compatibility tests, wrappers, or fallback providers. |
 
 ## Changed Surface And Boundary Classification
@@ -77,7 +78,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 ## Project Execution Discovery
 
 - Assigned worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime`
-- Reviewed source commit: `23d766873fa1be357c657fab8203913fec09e65b`; current worktree documentation HEAD may be later, so package execution will use an owned clean checkout at the reviewed source commit while ticket evidence remains in the assigned worktree.
+- Reviewed source commit: `628bef9d9b1f40f263cb1f41e711649b8ca7dfe6`; current worktree documentation HEAD may be later, so package execution will use an owned clean checkout at the reviewed source commit while ticket evidence remains in the assigned worktree.
 - Stack: Node.js 22.23.1 orchestration, Python packaged providers and source checks, pinned official Go 1.26.5 launcher/archive tooling, CMake/C++20 native Fun-ASR, canonical ZIP packages.
 - No repository `AGENTS.md` exists. `README.md`, `package.json`, input recipes, benchmark protocol, and workflow agree on the exact command sequence.
 - Required secrets: `N/A`. Required local capabilities/assets are exact tool roots, cache objects/checkouts, corpora, and noninteractive purge permission; no secret values will be recorded.
@@ -87,19 +88,19 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | `README.md`, `package.json` | local and package command authority | `npm ci --ignore-scripts`, `npm run check`, preflight, materialize, build/verify/repro, profile qualification, QSet/projection; no publish. |
 | `build/input-recipes/*-darwin-arm64-v1.json` | closed input authority | every object/check-out/source/license byte is recipe-owned and verified before materialization. |
 | `build/materialize-release-inputs.mjs` | deterministic materializer | consumes only SHA cache objects and exact clean checkouts; emits `SHA256SUMS.json` and `input-provenance-v1.json`. |
-| `benchmark/darwin-arm64-runner-preflight.mjs` | current-host gate | exact host/tool/power/quiescence and `/usr/bin/sudo -n /usr/sbin/purge` capability. |
+| `benchmark/darwin-arm64-runner-preflight.mjs` | Functional Preflight 2 | exact host/tool/power/thermal/memory/sandbox/purge gates plus non-gating CPU-load classification. |
 | `benchmark/run-profile-qualification.mjs` | full executable profile harness | public archive/package, real corpus, quality, lifecycle, relocation/offline/read-only/no-mutation, 30/30/100 and failure retention. |
 | `release/evidence/qualification-set.mjs` and branch projection owners | branch aggregation authority | exact two-entry QSet/projection generation and independent verification; no release identity. |
 | `.github/workflows/release-voice-runtime.yml` | canonical command ordering | preflight -> materialize -> two sandboxed builds -> verify/repro -> compliance -> conditions -> profile qualification -> branch evidence. |
 
 | Component / Dependency | Working Directory | Setup / Execution | Readiness Check | Cleanup Method |
 | --- | --- | --- | --- | --- |
-| Repository checks | assigned worktree | `npm ci --ignore-scripts`; exact `VOICE_GO=... npm run check` | all 57 Node, 7 Python, Go/source/schema/evidence checks | suite-owned temps |
-| Clean reviewed-source checkout | owned API/E2E temp root | checkout exact `23d7668...`; `npm ci --ignore-scripts` | clean tree and exact commit | repository safe removal owner after evidence retention |
-| M1 preflight | actual MacBookPro18,4 host | owned `caffeinate`; exact Go and CMake paths; preflight CLI | passing preflight JSON, including purge capability and six quiescence samples | stop only owned `caffeinate` |
+| Repository checks | assigned worktree | `npm ci --ignore-scripts`; exact `VOICE_GO=... npm run check` | all 66 Node, 7 Python, Go/source/schema/evidence checks | suite-owned temps |
+| Clean reviewed-source checkout | owned API/E2E temp root | checkout exact `628bef9...`; `npm ci --ignore-scripts` | clean tree and exact commit | repository safe removal owner after evidence retention |
+| M1 preflight | actual MacBookPro18,4 host | owned `caffeinate`; exact Go and CMake paths; preflight CLI | passing v2 JSON, including purge capability, six CPU-idle samples, and `controlled|loaded-host` classification | stop only owned `caffeinate` |
 | Closed inputs | owned cache/materialized roots | fill recipe-declared cache objects/checkouts; materializer CLI | exact sizes/digests/clean revisions and generated closure/provenance | remove only owned materialized/cache copies |
 | Exact corpora | owned corpus root | byte-copy repository manifests and exact 49/200 referenced WAVs | validator/digest/uniqueness/baseline binding | remove owned corpus copy; never mutate preserved study data |
-| Package/qualification | owned output roots | Seatbelt network-denied double builds, verifiers, compliance, conditions, profile runner | exact archives, real results, complete attempt counts, Pass evidence | kill only owned child trees; retain evidence |
+| Package/qualification | owned output roots | Seatbelt network-denied double builds, verifiers, compliance, conditions, profile runner | exact archives, real results, complete attempt counts, Pass evidence | first English build failed at the reviewed production entry; no archive or provider process was created; retain evidence and stop |
 
 ## Persisted Data Transition Coverage Basis
 
@@ -123,7 +124,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | current QSet/branch projection tests | reject incomplete, non-pass, drifted, or release-bearing branch evidence | current-platform contract | Still Valid | accepted full source review | Retain; execute real two-package aggregation. |
 | removed v0.3/bootstrap/protocol-0 tests | obsolete system-Python/bootstrap/schema-2 behavior | clean-cut removal | Stale / Remove | current source guards reject legacy paths | Keep removed; do not replace for compatibility. |
 
-Exact reuse evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/repository/API-VOICE-002-013-authority-reuse.json`. It records an empty `b7342bc..23d7668` diff over the relevant authority/validator/test set, matching working-tree/source SHA-256 values, and no API/E2E-owned durable coverage change in this round.
+Exact reuse evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/repository/API-VOICE-002-013-authority-reuse.json`. It records an empty `23d7668..628bef9` diff over the relevant authority/validator/test set, matching working-tree/source SHA-256 values, and no API/E2E-owned durable coverage change in this round.
 
 ## Stale Or Obsolete Coverage Decisions
 
@@ -137,7 +138,7 @@ None. Run-specific package/corpus/performance/qualification evidence is intentio
 
 ## Durable Coverage To Update
 
-None. `API-VOICE-013` is unchanged and was accepted by `CRR-011`; IR-011's new thermal parser coverage is upstream implementation coverage accepted by `CRR-013`, not an API/E2E-owned durable change.
+None. `API-VOICE-013` is unchanged and was accepted by `CRR-011`; current functional/performance and retention coverage is upstream implementation coverage accepted by `CRR-015`, not an API/E2E-owned durable change.
 
 ## Durable Coverage To Remove
 
@@ -147,46 +148,46 @@ None.
 
 | Order | Command / Action | Configuration | Boundary / Scenario | Result | Evidence |
 | --- | --- | --- | --- | --- | --- |
-| 0 | exact authority/test byte comparison | `b7342bc...23d7668` plus working-tree SHA-256 | `API-VOICE-002`/`013` reuse validity | Pass | `api-e2e-evidence/api-rev-004/repository/API-VOICE-002-013-authority-reuse.json` |
-| 1 | `npm ci --ignore-scripts` | assigned worktree, Node 22.23.1 | dependency closure | Pass | `api-e2e-evidence/api-rev-004/repository/npm-ci.log` |
-| 2 | focused thermal/trusted-baseline tests, then exact-Go `npm run check` | official verified darwin-arm64 Go 1.26.5 root | `API-VOICE-001`, `API-F-001` resolution, reusable `013`, full regression | Pass | focused 9/9; full 60/60 Node, 7/7 Python plus compileall, all Go/source/schema/evidence checks in API-REV-004 repository logs |
-| 3 | actual M1 production preflight with owned `caffeinate` | AC connected; exact purge exits 0; exact Go/CMake/system identities | mandatory prerequisite and direct `API-F-001` resolution | Blocked | thermalNormal=true directly resolves API-F-001; six final idle samples were 73.94, 71.42, 69.93, 66.30, 67.73, 68.51 (computed average 69.638%, required >=80%). See `environment/API-VOICE-003-004-quiescence-block.json`. |
-| 4 | recipe cache verification and deterministic materialization | exact clean reviewed-source checkout | closed English/Chinese inputs | Not executed after Blocked | fail-closed preflight gate |
-| 5 | two Seatbelt builds per profile plus package/repro verifier | network denied | byte-identical exact packages | Not executed after Blocked | fail-closed preflight gate |
-| 6 | compliance + conditions + full English profile | exact 49 WAV; 30/30/100 | `API-VOICE-003`, part of `011` | Not executed after Blocked | fail-closed preflight gate |
-| 7 | compliance + conditions + full Chinese profile | exact 200 WAV; 30/30/100 | `API-VOICE-004`, part of `011` | Not executed after Blocked | fail-closed preflight gate |
-| 8 | contract-defined injected retained failure | no retry | failure-evidence integrity | Not executed after Blocked | fail-closed preflight gate |
-| 9 | QSet 1 -> Branch Catalog Projection 1 -> independent verification | exactly two local archives | `API-VOICE-012` | Not executed after Blocked | no passing profile inputs |
+| 0 | exact authority/test byte comparison | `23d7668...628bef9` plus working-tree SHA-256 | `API-VOICE-002`/`013` reuse validity | Pass | `api-e2e-evidence/api-rev-005/repository/API-VOICE-002-013-authority-reuse.json` |
+| 1 | `npm ci --ignore-scripts` | assigned worktree, Node 22.23.1 | dependency closure | Pass | `api-e2e-evidence/api-rev-005/repository/npm-ci.log` |
+| 2 | focused functional/preflight/retention/authority checks, then exact-Go `npm run check` | official verified darwin-arm64 Go 1.26.5 root | `API-VOICE-001`, current evidence chain, reusable `013` | Pass | focused 10/10; full 66/66 Node, 7/7 Python plus compileall, all Go/source/schema/evidence checks |
+| 3 | Functional Preflight 2 with owned `caffeinate` | exact actual M1, Go/CMake/system identities, AC/thermal/memory/sandbox/purge; loaded host permitted | functional readiness and load classification | Pass | v2 record: all functional prerequisites pass; `loaded-host`, six samples average `75.17166666666667%` |
+| 4 | recipe cache verification and deterministic materialization; exact corpus staging/validation | owned clean exact `628bef9` checkout | closed English/Chinese inputs and 49/200 WAV identity | Pass | 35 exact cache objects; clean pinned Git checkouts; both provenance records; English 49 and Chinese 200 exact unique WAVs pass production validation |
+| 5 | first canonical English Seatbelt build | network-denied workflow command | start exact package construction | **Fail — `API-F-002`** | `spawn EPERM` from `verifyPinnedSudoIdentity()` -> `/usr/bin/sudo -V`; no archive produced |
+| 6 | second English build, package/repro verifier, compliance, conditions, and full profile | exact 49 WAV; exact 30/30/100 | remaining `API-VOICE-003`, part of `011` | Not Tested after Fail | mandatory first build absent |
+| 7 | both Chinese builds and full profile | exact 200 WAV; exact 30/30/100 | `API-VOICE-004`, part of `011` | Not Tested after Fail | stopped fail-closed at shared canonical build defect |
+| 8 | completed-attempt terminal evidence | no profile attempt started | CR-F-021 runtime disposition | Not Applicable in this run | failure precedes profile-runner attempt ownership |
+| 9 | Qualification Set 2 -> Branch Catalog Projection 2 -> independent verification | exactly two local archives; loaded-host classification preserved | `API-VOICE-012` | Not Tested after Fail | no profile/package Pass subjects |
+
+`API-F-002` focused reproduction is direct and host-specific: `/usr/bin/sudo -V` succeeds outside Seatbelt with the exact preflight probe digests; the same command exits `71` under the pinned profile with `Operation not permitted`; Node `execFile()` under that profile throws `spawn EPERM`. The workflow itself wraps `package-assembler.mjs` in that profile, while package assembly calls `createTrustedNativeBuildEnvironment()` -> `assertPassingDarwinArm64Preflight()` -> `verifyPinnedSudoIdentity()` and attempts the forbidden spawn. No sandbox removal, identity relaxation, build relocation, or other workaround was used.
 
 ## Post-Repository Confidence Scorecard (Mandatory)
 
 | Confidence Category | Score | What Supports The Score | Remaining Uncertainty | Additional Validation |
 | --- | --- | --- | --- | --- |
-| Confidence Category | Score | What Supports The Score | Remaining Uncertainty | Additional Validation |
-| --- | --- | --- | --- | --- |
-| Requirement and acceptance-criteria proof | 82% | current matrix/source/authority/thermal/compliance/evidence owners pass current repository coverage | critical actual-package criteria remain unexecuted | passing preflight and full matrix |
-| Changed-boundary execution directness | 82% | real production authority and current thermal owner execute; actual readiness probes pass | no final package/model process executes | production preflight and packages |
-| Cross-boundary integration realism and mock gap | 75% | launcher/archive/provider boundaries have durable coverage | native private host/model/package integration remains absent | full qualification |
-| Environment, configuration, identity, and fixture fidelity | 85% | exact Node/official Go; actual M1 now on AC; exact noninteractive purge exits 0 | complete production preflight and input closure still pending | preflight/materialization |
-| Failure, edge-case, lifecycle, and recovery evidence | 75% | durable lifecycle/failure-retention suites pass | real package lifecycle/injected failure absent | full qualification |
-| User-surface, browser, and desktop-shell confidence | N/A | runtime-only; no UI/desktop boundary | none in scope | none |
-| Durable regression coverage quality and relevance | 95% | focused 9/9; full 60/60 Node, 7/7 Python, all Go/source/schema/evidence | run-specific native evidence cannot be durable | retain current coverage |
+| Requirement and acceptance-criteria proof | 85% | current functional/performance authority, matrix, evidence, package and compliance owners pass | exact packages/real corpora/resources unexecuted | full two-package proof |
+| Changed-boundary execution directness | 85% | production authority and current v2 evidence owners execute in focused/full suites | no final package/model process yet | actual preflight/packages |
+| Cross-boundary integration realism and mock gap | 75% | launcher/archive/provider boundaries have durable coverage | native private host/model/package integration absent | full qualification |
+| Environment, configuration, identity, and fixture fidelity | 85% | actual M1, exact Node/Go/CMake, AC and purge available | v2 preflight and closed inputs pending | preflight/materialization |
+| Failure, edge-case, lifecycle, and recovery evidence | 78% | durable lifecycle/failure retention and post-attempt gate tests pass | real package lifecycle/recovery absent | full qualification |
+| User-surface, browser, and desktop-shell confidence | N/A | runtime-only | none | none |
+| Durable regression coverage quality and relevance | 95% | focused 10/10; full 66/66 Node, 7/7 Python, all Go/source/schema/evidence | run-specific native evidence is not durable | retain current coverage |
 
-- Overall post-repository confidence: `82%` (simple average of six applicable categories, rounded).
+- Overall post-repository confidence: `84%` (simple average of six applicable categories, rounded).
 - Every critical acceptance criterion directly proven: `No`.
 - Any applicable category below `90%`: `Yes` — every applicable category except durable regression coverage.
 - Default clean-confidence target met: `No`.
-- Material residual risks: production preflight, native builds, real inference/quality/lifecycle, exact samples/resources, compliance, and aggregate evidence.
+- Material residual risks: Functional Preflight 2, exact closed inputs/builds, real inference/quality/lifecycle, exact 30/30/100/resources, compliance, terminal evidence consistency, QSet 2, and projection 2.
 
 ## Broader Validation Decision (Mandatory)
 
-- Decision: `Blocked` after the required actual-host mode executed its full 15-minute quiescence window.
+- Decision: `Required / Executed / Fail`; Functional Preflight 2 passed and full loaded-host-capable package qualification was selected, but the first canonical package build failed at `API-F-002` before an archive existed.
 - Selected execution mode: actual-host `CLI`, `Lifecycle`, `Worker`, and native package qualification.
 - Confidence gap addressed: repository coverage cannot prove real model construction/inference, package relocation/offline/read-only behavior, M1 performance/RSS/size, exact corpus quality, or aggregate byte integrity.
 - Why this materially improves confidence: it executes the public release subject on the only current supported platform with the exact providers, models, corpora, thresholds, and trial counts.
-- Expected confidence after validation: at least `95%`, with no applicable category below `90%`, only if every current critical gate passes.
+- Expected confidence after a successful rerun: at least `95%`, with no applicable category below `90%`, only if every current critical gate passes. Current final confidence is `87%` because `AC-006`/`AC-017` package construction failed.
 - Browser decision: `N/A`; no browser or desktop UI is in scope.
-- Exact unavailable condition: sustained host quiescence. AC power, low-power-off, corrected thermal parsing, normal memory pressure, owned `caffeinate`, and exact purge capability all passed. The final six samples averaged 69.638% idle instead of the required >=80%. Major observed consumers included Docker Desktop's virtualization VM, Docker renderer, WindowServer, WeChat media, and AutoByteus renderers. API/E2E does not own or stop those processes. Resume after the user quits Docker/VM and other CPU-heavy applications.
+- Loaded-host rule: sub-80% CPU idle is not a functional blocker. It must be recorded as `loaded-host-observation` and cannot be called controlled performance. AC/thermal/memory/tool/sandbox/purge blockers remain exact.
 
 ## Desktop Application Validation Decision
 
@@ -198,7 +199,7 @@ None.
 ## Live Environment And Fixture Plan
 
 - Startup order: create owned clean checkout/cache/corpus/output roots -> repository checks -> start owned `caffeinate` -> actual preflight -> materialize inputs -> double build/verify/repro -> generate compliance/conditions -> English qualification -> Chinese qualification -> injected failure -> QSet/projection/independent verification.
-- Environment: actual MacBookPro18,4 M1 Max / 64 GB, exact Node/Go/CMake/Xcode/SDK and system identities, AC power, low-power off, passing thermal/memory/quiescence conditions, Seatbelt network denial, noninteractive exact purge permission.
+- Environment: actual MacBookPro18,4 M1 Max / 64 GB, exact Node/Go/CMake/Xcode/SDK and system identities, AC power, low-power off, passing thermal/memory conditions, Seatbelt network denial, noninteractive exact purge permission. CPU load is observed/classified, not functionally gated.
 - Fixtures: repository byte-identical English-v2 and Chinese-v1 manifests, exact 49/200 referenced WAVs, locked baselines, recipe materialized models/runtime/tool sources.
 - Sessions: fresh package/session roots and request IDs; no product auth or user HOME dependency.
 - Evidence: commands/statuses, preflight, input closure/provenance, archives/build/repro, protocol/raw/quality/performance/attempts, snapshots, compliance/privacy/offline, QSet/projection/verification.
@@ -213,7 +214,7 @@ None.
 | `API-VOICE-003` | English double build/full M1 qualification | exact English package | large generated native evidence |
 | `API-VOICE-004` | Chinese double build/full M1 qualification | exact Chinese package | large generated native evidence |
 | `API-VOICE-011` | exact package compliance/privacy/offline audit | current two-package legal/evidence completeness | archive-instance-specific |
-| `API-VOICE-012` | QSet/projection/independent verification | exact current matrix aggregation | branch/archive-instance-specific |
+| `API-VOICE-012` | QSet 2/projection 2/independent verification | exact current matrix aggregation | branch/archive-instance-specific |
 | `API-VOICE-013` | accepted unchanged durable test | production validator regression | already durable; no new change |
 
 ## Not Tested / Infeasible / Deferred
@@ -232,14 +233,15 @@ None.
 | mandatory current package fails provider/model/quality/resource/license gate | Design Impact unless bounded implementation defect | exact failed command/artifact; no fallback or threshold relaxation allowed | `code_reviewer` for failure-origin review |
 | harness/fixture/environment owner defects despite approved behavior | Local Fix candidate | focused reproduction and diff | `code_reviewer` |
 | required host capability or exact external byte unavailable | Blocked dependency | readiness/preflight/materializer failure evidence | user, per Blocked workflow |
-| user no longer wants the >=80% CPU-idle condition to block functional acceptance | Requirement Gap / Design Impact | explicit post-API-REV-004 user direction; `api-e2e-requirement-impact.md` API-RI-002 | `solution_designer` before any preflight/package workaround |
+| functional Summary/ledger/QSet decisions diverge, or loaded-host observations are relabeled controlled | Local Fix or Design Impact | exact retained v2 evidence | `code_reviewer` for failure origin |
 
 ## Investigation Decision
 
-- Proceed To API/E2E Execution: `No further execution in this round`; the production preflight completed as Blocked.
+- Proceed To API/E2E Execution: `No further execution in this revision after direct Fail`.
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No`.
-- Post-repository confidence: `82%`.
-- Broader validation decision: `Blocked`.
-- Reroute Required Before Validation Execution: `Yes` prospectively — API-RI-002 changes the functional/performance acceptance boundary and the current source hard-blocks all package execution on quiescence.
-- Recommended Recipient: `solution_designer` for Requirement Gap / Design Impact resolution.
-- Notes: API-REV-004 remains historical Blocked under the approved contract. `API-F-001` is directly resolved (`thermalNormal=true`), and AC/purge pass. API/E2E will not fabricate a passing preflight or bypass package entry; it resumes after a reviewed functional-first execution path exists.
+- Post-repository confidence: `84%`.
+- Broader validation decision: `Required`.
+- Final confidence after broader execution stopped: `87%`; a critical criterion failed, so confidence cannot produce Pass.
+- Reroute Required: `Yes — Fail`.
+- Recommended Recipient: `code_reviewer` for focused failure-origin review; preliminary classification is `Local Fix / implementation defect` at the actual reviewed workflow boundary.
+- Notes: API-REV-004 remains historical Blocked. API-RI-002 is resolved: the host load was truthfully recorded as non-blocking `loaded-host`. The new blocker is unrelated to the former 80% rule and unrelated to the user's purge provisioning. No release action was authorized or performed.

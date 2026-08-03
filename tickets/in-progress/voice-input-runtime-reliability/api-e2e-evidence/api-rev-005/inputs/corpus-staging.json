@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "628bef9d9b1f40f263cb1f41e711649b8ca7dfe6",
+  "profiles": {
+    "english": {
+      "repositoryManifest": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/release/evidence/qualification-corpora/english-v2.json",
+      "stagedManifest": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/corpora/english/corpus-v1.json",
+      "manifestSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "clipCount": 49,
+      "uniqueIds": true,
+      "uniquePaths": true,
+      "uniqueAudioHashes": true,
+      "totalAudioBytes": 13920622,
+      "audioSource": "/private/tmp/autobyteus-voice-backend-study-20260802/corpus/fleurs-controlled-v1",
+      "allAudioHashesMatch": true,
+      "manifestByteIdentical": true
+    },
+    "chinese": {
+      "repositoryManifest": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/release/evidence/qualification-corpora/chinese-v1.json",
+      "stagedManifest": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/corpora/chinese/corpus-v1.json",
+      "manifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+      "clipCount": 200,
+      "uniqueIds": true,
+      "uniquePaths": true,
+      "uniqueAudioHashes": true,
+      "totalAudioBytes": 60221040,
+      "audioSource": "/private/tmp/autobyteus-voice-backend-study-20260802/corpus/fleurs-zh-profile-v2",
+      "allAudioHashesMatch": true,
+      "manifestByteIdentical": true
+    }
+  }
+}

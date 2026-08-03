@@ -1,0 +1,125 @@
+=== host identity ===
+Darwin MacBookPro 25.5.0 Darwin Kernel Version 25.5.0: Tue Jun  9 22:18:58 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T6000 arm64
+ProductName:		macOS
+ProductVersion:		26.5.2
+BuildVersion:		25F84
+=== preflight result ===
+{
+  "status": "pass",
+  "host": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "cpuModel": "Apple M1 Max",
+    "totalMemoryBytes": 68719476736
+  },
+  "power": {
+    "acConnected": true,
+    "lowPowerModeOff": true,
+    "caffeinateActive": true,
+    "thermalNormal": true,
+    "memoryPressureNormal": true
+  },
+  "performanceEnvironment": {
+    "classification": "loaded-host",
+    "cpuIdleSamples": [
+      79.6,
+      80.4,
+      77.59,
+      74.14,
+      74.5,
+      64.8
+    ],
+    "averageIdlePercent": 75.17166666666667,
+    "taskOwnedCompetingProcesses": {
+      "detected": false,
+      "processNames": []
+    },
+    "topConsumerProcessNames": [
+      "AudioComponentRe",
+      "KonaSynthesizer",
+      "MacinTalkAUSP",
+      "MauiAUSP",
+      "SiriAUSP",
+      "WardaSynthesizer",
+      "amsondevicestora",
+      "axassetsd",
+      "intelligentrouti",
+      "voicebankingd"
+    ]
+  },
+  "purge": {
+    "command": "/usr/bin/sudo -n /usr/sbin/purge",
+    "nonInteractivePass": true,
+    "sudoExecutableIdentitySha256": "7dc34a43d0637fcb2d0b97feb483ba6c32f15594b2a7b1758c43561b65a5818a"
+  }
+}
+=== outside sandbox /usr/bin/sudo -V ===
+exit=0
+6d0e9e583743268ef44261a4a9db95d4b4f27109c0a5f1182de74aaa553a3c1d  /private/tmp/autobyteus-voice-api-e2e-r5-20260803/probes-sudo-host-out.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  /private/tmp/autobyteus-voice-api-e2e-r5-20260803/probes-sudo-host-err.txt
+     167 /private/tmp/autobyteus-voice-api-e2e-r5-20260803/probes-sudo-host-out.txt
+       0 /private/tmp/autobyteus-voice-api-e2e-r5-20260803/probes-sudo-host-err.txt
+     167 total
+=== inside pinned sandbox direct sudo -V ===
+exit=71
+sandbox-exec: execvp() of '/usr/bin/sudo' failed: Operation not permitted
+=== inside pinned sandbox node execFile sudo -V ===
+sandbox-exec: execvp() of '/opt/homebrew/Cellar/node@22/22.23.1/bin/node' failed: No such file or directory
+exit=71
+=== production build log ===
+[2026-08-03T13:48:09Z] english primary build begin
+node:internal/child_process:420
+    throw new ErrnoException(err, 'spawn');
+          ^
+
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:787:9)
+    at execFile (node:child_process:349:17)
+    at execFile (node:child_process:245:21)
+    at executeProbe (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:76:10)
+    at captureExecuteOnlySystemCommandIdentity (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:27:26)
+    at async capturePinnedSudoIdentity (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:49:20)
+    at async verifyPinnedSudoIdentity (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:65:18)
+    at async assertPassingDarwinArm64Preflight (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/darwin-arm64-preflight-contract.mjs:55:3)
+    at async createTrustedNativeBuildEnvironment (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/build/trusted-native-environment.mjs:90:3) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawn'
+}
+
+Node.js v22.23.1
+=== relevant source ===
+/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/darwin-arm64-preflight-contract.mjs:8:  verifyPinnedSudoIdentity,
+/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/darwin-arm64-preflight-contract.mjs:21:export async function assertPassingDarwinArm64Preflight(value) {
+/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/darwin-arm64-preflight-contract.mjs:55:  await verifyPinnedSudoIdentity(value.tools.sudoExecutable);
+/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:48:export async function capturePinnedSudoIdentity(options = {}) {
+/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:64:export async function verifyPinnedSudoIdentity(expected, options = {}) {
+/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:65:  const actual = await capturePinnedSudoIdentity(options);
+/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/build/trusted-native-environment.mjs:4:import { assertPassingDarwinArm64Preflight } from "../benchmark/darwin-arm64-preflight-contract.mjs";
+/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/build/trusted-native-environment.mjs:90:  await assertPassingDarwinArm64Preflight(preflight);
+=== workflow command location ===
+97:            /usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb \
+98:              node build/package-assembler.mjs \
+=== corrected inside pinned sandbox node execFile sudo -V (exact current Node) ===
+node:internal/child_process:420
+    throw new ErrnoException(err, 'spawn');
+          ^
+
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:787:9)
+    at execFile (node:child_process:349:17)
+    at file:///Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/[eval1]:2:1
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:282:26)
+    at async ModuleLoader.executeModuleJob (node:internal/modules/esm/loader:278:20)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawn'
+}
+
+Node.js v22.23.1
+exit=1

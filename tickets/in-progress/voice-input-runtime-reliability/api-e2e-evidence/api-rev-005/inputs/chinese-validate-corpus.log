@@ -1,0 +1,20 @@
+{
+  "corpusId": "fleurs-simplified-mandarin-profile-v2",
+  "profileId": "chinese",
+  "clipCount": 200,
+  "root": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/corpora/chinese",
+  "corpusEvidence": {
+    "id": "fleurs-simplified-mandarin-profile-v2",
+    "manifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+    "provenanceReference": "evidence/selection-study/corpus-manifests/fleurs-simplified-mandarin-profile-v2.json",
+    "license": "CC-BY-4.0",
+    "redistributionApproved": true,
+    "consentReferenceDigest": "cf8ba68335e454c9e991233ce5bc7123a4ab7c87f82d9b6158bbe745985b7e70",
+    "uniqueIds": true,
+    "uniquePaths": true,
+    "uniqueAudioHashes": true,
+    "limitations": [
+      "FLEURS parquet does not expose speaker identity; gender labels are not speaker IDs."
+    ]
+  }
+}
