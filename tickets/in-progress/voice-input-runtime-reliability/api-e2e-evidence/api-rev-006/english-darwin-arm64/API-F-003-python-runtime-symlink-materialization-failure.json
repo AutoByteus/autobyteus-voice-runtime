@@ -1,0 +1,125 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-003",
+  "scenarioId": "API-VOICE-003",
+  "acceptanceCriteria": [
+    "AC-006",
+    "AC-017"
+  ],
+  "result": "fail",
+  "classification": "preliminary-local-fix-implementation-defect",
+  "sourceCommit": "fda4a3bc482c2452b6842644d62dfb062ad8339c",
+  "observedAt": "2026-08-03T14:24:23Z",
+  "priorFailureResolution": {
+    "findingId": "API-F-002",
+    "status": "resolved-at-runtime-boundary",
+    "evidence": "Outside-Seatbelt native environment creation passed, the exact Seatbelt package entry consumed it without sudo EPERM, and execution advanced into MLX Python runtime materialization."
+  },
+  "expected": "The exact authenticated Python Build Standalone archive materializes into the symlink-free hermetic English package tree and the first verified archive is produced.",
+  "observed": {
+    "command": "exact corrected workflow: create-native-build-environment outside Seatbelt, then sandbox-exec package-assembler --profile english --target darwin-arm64 --build-environment ...",
+    "exitCode": 1,
+    "error": "Symbolic links are forbidden.",
+    "callPath": [
+      "package-assembler.mjs",
+      "profile-builders/mlx.mjs",
+      "copyPythonProvider()",
+      "materializePythonRuntime()",
+      "prune()",
+      "regularFiles()"
+    ],
+    "archiveProduced": false
+  },
+  "authenticatedInput": {
+    "path": "/private/tmp/autobyteus-voice-api-e2e-r6-20260803/output/inputs/english-darwin-arm64/python-host-archive",
+    "sha256": "62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b",
+    "sizeBytes": 25153180,
+    "recipeUpstream": "https://github.com/astral-sh/python-build-standalone/releases/download/20260718/cpython-3.12.13%2B20260718-aarch64-apple-darwin-install_only.tar.gz",
+    "symlinkEntryCount": 9,
+    "symlinkEntries": [
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/2to3 -> 2to3-3.12",
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/idle3 -> idle3.12",
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/pydoc3 -> pydoc3.12",
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/python -> python3.12",
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/python3 -> python3.12",
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/python3-config -> python3.12-config",
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/lib/pkgconfig/python3-embed.pc -> python-3.12-embed.pc",
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/lib/pkgconfig/python3.pc -> python-3.12.pc",
+      "lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/share/man/man1/python3.1 -> python3.12.1"
+    ]
+  },
+  "mechanism": "The locked upstream archive legitimately contains nine relative symlinks. materializePythonRuntime extracts it and successfully follows bin/python3 for pip installation, then prune() calls the global symlink-rejecting regularFiles() before the runtime tree has normalized or removed those archive links. The exact authenticated input therefore cannot reach package assembly.",
+  "prerequisites": {
+    "functionalPreflight2": {
+      "status": "pass",
+      "sha256": "a7ae12285c158028259a57a3fb5d957b265de88b212641e046404e24bc188f8d",
+      "performanceEnvironment": {
+        "classification": "controlled",
+        "cpuIdleSamples": [
+          85.35,
+          84.76,
+          78.81,
+          75.1,
+          83.77,
+          83.77
+        ],
+        "averageIdlePercent": 81.92666666666666,
+        "taskOwnedCompetingProcesses": {
+          "detected": false,
+          "processNames": []
+        },
+        "topConsumerProcessNames": [
+          "AudioComponentRe",
+          "Google",
+          "KonaSynthesizer",
+          "MacinTalkAUSP",
+          "MauiAUSP",
+          "SiriAUSP",
+          "WardaSynthesizer",
+          "voicebankingd"
+        ]
+      }
+    },
+    "nativeBuildEnvironment": {
+      "status": "pass",
+      "sha256": "f99c12fc156cb9b185d3139d8a1943622f73273c5c6c0589508c70afc18c1b03"
+    },
+    "closedInputMaterialization": {
+      "english": {
+        "status": "pass",
+        "provenanceSha256": "e9db3672147f45633015cbfabfcd0aa79e9177ae37aa4d35c5904fd60e054638"
+      },
+      "chinese": {
+        "status": "pass",
+        "provenanceSha256": "a3f626719cff05c9a914ba970e9525f6960bb44818d3629c289140d4b68e2b19"
+      }
+    },
+    "corpora": {
+      "english": {
+        "status": "pass",
+        "clipCount": 49
+      },
+      "chinese": {
+        "status": "pass",
+        "clipCount": 200
+      }
+    }
+  },
+  "downstreamDisposition": {
+    "stoppedFailClosed": true,
+    "englishArchive": "not-produced",
+    "englishRebuildAndQualification": "not-tested-after-fail",
+    "chineseBuildAndQualification": "not-tested-after-fail",
+    "performance30100": "not-tested-after-fail",
+    "complianceQualificationSetProjection": "not-tested-after-fail"
+  },
+  "workaroundUsed": false,
+  "releaseActionUsed": false,
+  "evidence": {
+    "productionBuildLog": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/english-darwin-arm64/build-primary.log",
+    "focusedProbeLog": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/english-darwin-arm64/API-VOICE-003-python-runtime-symlink-probe.log",
+    "preflight": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/environment/darwin-arm64-preflight-v2.json",
+    "materializationLog": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/inputs/materialization.log",
+    "corpusValidationLog": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/inputs/corpus-validation.log"
+  }
+}

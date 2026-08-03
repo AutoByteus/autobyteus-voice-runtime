@@ -9,6 +9,7 @@
 | `API-REV-003` | Code Reviewer / `code-review-report.md` / `CRR-011` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-010`, `CRR-011` | `Blocked / 78%` | `Fail / 79%` |
 | `API-REV-004` | Code Reviewer / `code-review-report.md` / `CRR-013` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-011`, `CRR-013` | `Fail / 79%` | `Blocked / 82%` |
 | `API-REV-005` | Code Reviewer / `code-review-report.md` / `CRR-015` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-013`, `CRR-015` | `Blocked / 82%` | `Fail / 87%` |
+| `API-REV-006` | Code Reviewer / `code-review-report.md` / `CRR-017` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-014`, `CRR-017` | `Fail / 87%` | `Fail / 89%` |
 
 ## Revision Entries
 
@@ -155,3 +156,37 @@ None.
 - Current result/confidence: `Fail / 87%`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review.
 - Remaining proof after reviewed correction: both package builds/reproducibility, real 49/200 inference/quality, lifecycle/recovery/offline/read-only/no-mutation, exact 30/30/100 resource/performance observations, compliance/privacy, Qualification Set 2, Branch Catalog Projection 2, and independent verification.
+
+### API-REV-006 — Corrected Seatbelt entry passes; exact Python runtime materialization rejects its locked archive
+
+- Trigger: Code Reviewer `CRR-017`; API/E2E round 6; reviewed source `fda4a3bc482c2452b6842644d62dfb062ad8339c` (`IR-014`) against `SR-010`/`SR-011` and `ARCH-REV-012`.
+- Scenarios: direct `API-F-002` resolution; reusable `API-VOICE-002`/`013`; current-matrix `API-VOICE-003`, `004`, `011`, and `012`.
+- Why recorded: the exact corrected workflow directly resolves `API-F-002`, but the first English archive still cannot be created. The locked Python Build Standalone archive contains nine relative symlinks; after extraction and successful use of `bin/python3`, production `prune()` calls the globally symlink-rejecting `regularFiles()` and fails `Symbolic links are forbidden.`
+- Durable coverage changes: none. Authority/test reuse bytes remain unchanged. Run-specific input/archive/build evidence is temporary executable evidence.
+- Execution delta: focused 15/15; full 67/67 Node and 7/7 Python plus compileall with all Go/source/schema/evidence checks; fresh actual M1 Functional Preflight 2 controlled Pass at `81.92666666666666%`; exact source-bound English/Chinese materialization Pass; exact 49/200 production corpus validation Pass; outside-Seatbelt authorization Pass; first English network-denied construction Fail.
+
+#### Prior Failure Resolution
+
+| Prior Failure | Previous Classification | Current Resolution | Evidence |
+| --- | --- | --- | --- |
+| `API-F-002` / `CR-F-022` setuid sudo spawned inside Seatbelt | Local Fix / implementation defect | Resolved / Pass at the exact production boundary | `api-rev-006/english-darwin-arm64/create-native-build-environment.log` plus `build-primary.log`: outside authorization passes, sandbox consumer advances without `sudo` `EPERM` into MLX Python materialization |
+| API-REV-004 sub-80% CPU-idle blocker | Historical Blocked under superseded v1 gate | Reconfirmed non-issue; current preflight is controlled but no minimum is needed for functional continuation | fresh API-REV-006 preflight Pass |
+
+#### New Failure
+
+- ID: `API-F-003`.
+- Scenario / criteria: `API-VOICE-003`; `AC-006`, `AC-017`.
+- Expected: the exact authenticated Python Build Standalone archive materializes into a symlink-free hermetic English runtime, allowing the first archive to be created and verified.
+- Observed: exact archive SHA-256 `62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b` contains nine relative links, including `python/bin/python3 -> python3.12`; `materializePythonRuntime()` extracts and uses it, then `prune()` -> `regularFiles()` rejects the links before output archive creation.
+- Preliminary classification: `Local Fix / implementation defect` in locked Python runtime materialization, not a user permission, host readiness, provider/model, corpus, or threshold issue.
+- Stop/reroute: fail-closed. No link/input mutation, alternate Python archive, unsandboxed build, fallback, threshold change, or release action. Route cumulative evidence to `code_reviewer` for focused failure-origin review.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/`
+- Prior result/confidence: `Fail / 87%`.
+- Current result/confidence: `Fail / 89%`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review.
+- Remaining proof after reviewed correction: both package builds/reproducibility, real 49/200 inference/quality, lifecycle/recovery/offline/read-only/no-mutation, exact 30/30/100 resource/performance evidence, compliance/privacy, Qualification Set 2, Branch Catalog Projection 2, and independent verification.

@@ -1,0 +1,42 @@
+{
+  "corpusId": "fleurs-english-preservation-unique-v2",
+  "profileId": "english",
+  "clipCount": 49,
+  "root": "/private/tmp/autobyteus-voice-api-e2e-r6-20260803/corpora/english",
+  "corpusEvidence": {
+    "id": "fleurs-english-preservation-unique-v2",
+    "manifestSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+    "provenanceReference": "evidence/selection-study/derived/english-preservation-unique-v2/authority.json",
+    "license": "CC-BY-4.0",
+    "redistributionApproved": true,
+    "consentReferenceDigest": "60dfd1ec4a39d47a04edb1e7b27d194dd37b3856b310f45a848b92c6a212f0ee",
+    "uniqueIds": true,
+    "uniquePaths": true,
+    "uniqueAudioHashes": true,
+    "limitations": [
+      "Derived without new inference from the immutable 50-row FLEURS control by exact operational-identity collapse; it contains 49 unique audio identities.",
+      "The initial extractor selected one duplicated FLEURS source ID and wrote both rows to one path; source duration/gender metadata for that identity is ambiguous and is not claimed by this qualification corpus.",
+      "FLEURS parquet does not expose speaker identity; gender labels are not speaker IDs, and the 49-identity projection makes no speaker or gender-balance claim."
+    ]
+  }
+}
+{
+  "corpusId": "fleurs-simplified-mandarin-profile-v2",
+  "profileId": "chinese",
+  "clipCount": 200,
+  "root": "/private/tmp/autobyteus-voice-api-e2e-r6-20260803/corpora/chinese",
+  "corpusEvidence": {
+    "id": "fleurs-simplified-mandarin-profile-v2",
+    "manifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+    "provenanceReference": "evidence/selection-study/corpus-manifests/fleurs-simplified-mandarin-profile-v2.json",
+    "license": "CC-BY-4.0",
+    "redistributionApproved": true,
+    "consentReferenceDigest": "cf8ba68335e454c9e991233ce5bc7123a4ab7c87f82d9b6158bbe745985b7e70",
+    "uniqueIds": true,
+    "uniquePaths": true,
+    "uniqueAudioHashes": true,
+    "limitations": [
+      "FLEURS parquet does not expose speaker identity; gender labels are not speaker IDs."
+    ]
+  }
+}

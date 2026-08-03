@@ -23,11 +23,11 @@
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
 - Delivery Revision Record: `N/A`
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-005`
-- Current Investigation Round: `5`
-- Trigger: `CRR-015` Pass for `IR-013` at reviewed source commit `628bef9d9b1f40f263cb1f41e711649b8ca7dfe6` against `SR-010` / `SR-011` and `ARCH-REV-012`.
-- Prior Investigation Reviewed: `API-REV-004 — Blocked / 82%`; `API-F-001` was directly resolved, AC/purge passed, and only the former CPU-idle functional blocker stopped package work.
-- Latest Authoritative Investigation: `API-REV-005 — Fail / 87%`. Functional Preflight 2 passed as `loaded-host`, both closed input trees and exact 49/200 corpora passed, then the canonical Seatbelt-wrapped English package build failed before archive construction at `API-F-002`: package assembly live-spawns `/usr/bin/sudo -V` while already inside Seatbelt, and macOS rejects that setuid spawn with `EPERM`.
+- Current API/E2E Revision ID: `API-REV-006`
+- Current Investigation Round: `6`
+- Trigger: `CRR-017` Pass for `IR-014` at reviewed source commit `fda4a3bc482c2452b6842644d62dfb062ad8339c` against `SR-010` / `SR-011` and `ARCH-REV-012`.
+- Prior Investigation Reviewed: `API-REV-005 — Fail / 87%` at `API-F-002`; actual preflight, both closed input trees, and exact 49/200 corpora passed, but the first canonical Seatbelt build could not spawn the transitive `/usr/bin/sudo -V` identity probe.
+- Latest Authoritative Investigation: `API-REV-006 — Fail / 89%`. `API-F-002` is directly resolved: outside-Seatbelt authorization passed and the exact Seatbelt build advanced without launching sudo. The first archive still was not created because `API-F-003` exposed a separate Python-runtime materialization defect: the exact authenticated upstream archive contains nine relative symlinks, while `prune()` calls the globally symlink-rejecting `regularFiles()` immediately after extraction.
 
 ## Current Requirement And Design Basis
 
@@ -57,6 +57,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | Actual M1 thermal-state parsing | Changed | `IR-011`; `CRR-013`; `CR-F-020` | Re-run the production preflight first. The reviewed parser accepts only the captured exact healthy three-line state, classifies explicit warnings, and fails closed on unknown input. |
 | Functional/performance separation | Changed | `SR-010`/`SR-011`; `ARCH-REV-012`; `IR-012`/`IR-013`; `CRR-015` | Execute Functional Preflight 2 on the loaded host; preserve all 30/30/100 observations; require functional gates while classifying performance independently. |
 | Terminal evidence consistency | Changed | `IR-013`; `CR-F-021`; `CRR-015` | Verify real profile/QSet terminal decisions, ledger/Summary consistency, retained non-pass behavior if any gate fails, and one-way Summary -> Assessment -> QSet identity. |
+| Seatbelt package-entry composition | Changed | `IR-014`; `CR-F-022`; `CRR-017`; `API-F-002` | Recheck the exact English production construction first: full authorization outside Seatbelt, then both complete builds inside the unchanged profile with sandbox-safe consumption and no transitive sudo launch. |
 | v0.3/bootstrap/protocol-0 and withdrawn provider paths | Removed | clean-cut design and removal guards | Do not restore compatibility tests, wrappers, or fallback providers. |
 
 ## Changed Surface And Boundary Classification
@@ -78,7 +79,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 ## Project Execution Discovery
 
 - Assigned worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime`
-- Reviewed source commit: `628bef9d9b1f40f263cb1f41e711649b8ca7dfe6`; current worktree documentation HEAD may be later, so package execution will use an owned clean checkout at the reviewed source commit while ticket evidence remains in the assigned worktree.
+- Reviewed source commit: `fda4a3bc482c2452b6842644d62dfb062ad8339c`; current worktree documentation HEAD is later, so package execution will use an owned clean checkout at the reviewed source commit while ticket evidence remains in the assigned worktree.
 - Stack: Node.js 22.23.1 orchestration, Python packaged providers and source checks, pinned official Go 1.26.5 launcher/archive tooling, CMake/C++20 native Fun-ASR, canonical ZIP packages.
 - No repository `AGENTS.md` exists. `README.md`, `package.json`, input recipes, benchmark protocol, and workflow agree on the exact command sequence.
 - Required secrets: `N/A`. Required local capabilities/assets are exact tool roots, cache objects/checkouts, corpora, and noninteractive purge permission; no secret values will be recorded.
@@ -96,7 +97,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | Component / Dependency | Working Directory | Setup / Execution | Readiness Check | Cleanup Method |
 | --- | --- | --- | --- | --- |
 | Repository checks | assigned worktree | `npm ci --ignore-scripts`; exact `VOICE_GO=... npm run check` | all 66 Node, 7 Python, Go/source/schema/evidence checks | suite-owned temps |
-| Clean reviewed-source checkout | owned API/E2E temp root | checkout exact `628bef9...`; `npm ci --ignore-scripts` | clean tree and exact commit | repository safe removal owner after evidence retention |
+| Clean reviewed-source checkout | owned API/E2E temp root | checkout exact `fda4a3b...`; `npm ci --ignore-scripts` | clean tree and exact commit | repository safe removal owner after evidence retention |
 | M1 preflight | actual MacBookPro18,4 host | owned `caffeinate`; exact Go and CMake paths; preflight CLI | passing v2 JSON, including purge capability, six CPU-idle samples, and `controlled|loaded-host` classification | stop only owned `caffeinate` |
 | Closed inputs | owned cache/materialized roots | fill recipe-declared cache objects/checkouts; materializer CLI | exact sizes/digests/clean revisions and generated closure/provenance | remove only owned materialized/cache copies |
 | Exact corpora | owned corpus root | byte-copy repository manifests and exact 49/200 referenced WAVs | validator/digest/uniqueness/baseline binding | remove owned corpus copy; never mutate preserved study data |
@@ -124,7 +125,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | current QSet/branch projection tests | reject incomplete, non-pass, drifted, or release-bearing branch evidence | current-platform contract | Still Valid | accepted full source review | Retain; execute real two-package aggregation. |
 | removed v0.3/bootstrap/protocol-0 tests | obsolete system-Python/bootstrap/schema-2 behavior | clean-cut removal | Stale / Remove | current source guards reject legacy paths | Keep removed; do not replace for compatibility. |
 
-Exact reuse evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/repository/API-VOICE-002-013-authority-reuse.json`. It records an empty `23d7668..628bef9` diff over the relevant authority/validator/test set, matching working-tree/source SHA-256 values, and no API/E2E-owned durable coverage change in this round.
+Round-6 reuse evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/repository/API-VOICE-002-013-authority-reuse.json`. The exact `API-VOICE-002`/`API-VOICE-013` authority, validator, and durable-test bytes are unchanged through `fda4a3b`, match the clean execution checkout, and are reusable. No API/E2E-owned durable coverage changed.
 
 ## Stale Or Obsolete Coverage Decisions
 
@@ -148,18 +149,17 @@ None.
 
 | Order | Command / Action | Configuration | Boundary / Scenario | Result | Evidence |
 | --- | --- | --- | --- | --- | --- |
-| 0 | exact authority/test byte comparison | `23d7668...628bef9` plus working-tree SHA-256 | `API-VOICE-002`/`013` reuse validity | Pass | `api-e2e-evidence/api-rev-005/repository/API-VOICE-002-013-authority-reuse.json` |
-| 1 | `npm ci --ignore-scripts` | assigned worktree, Node 22.23.1 | dependency closure | Pass | `api-e2e-evidence/api-rev-005/repository/npm-ci.log` |
-| 2 | focused functional/preflight/retention/authority checks, then exact-Go `npm run check` | official verified darwin-arm64 Go 1.26.5 root | `API-VOICE-001`, current evidence chain, reusable `013` | Pass | focused 10/10; full 66/66 Node, 7/7 Python plus compileall, all Go/source/schema/evidence checks |
-| 3 | Functional Preflight 2 with owned `caffeinate` | exact actual M1, Go/CMake/system identities, AC/thermal/memory/sandbox/purge; loaded host permitted | functional readiness and load classification | Pass | v2 record: all functional prerequisites pass; `loaded-host`, six samples average `75.17166666666667%` |
-| 4 | recipe cache verification and deterministic materialization; exact corpus staging/validation | owned clean exact `628bef9` checkout | closed English/Chinese inputs and 49/200 WAV identity | Pass | 35 exact cache objects; clean pinned Git checkouts; both provenance records; English 49 and Chinese 200 exact unique WAVs pass production validation |
-| 5 | first canonical English Seatbelt build | network-denied workflow command | start exact package construction | **Fail — `API-F-002`** | `spawn EPERM` from `verifyPinnedSudoIdentity()` -> `/usr/bin/sudo -V`; no archive produced |
-| 6 | second English build, package/repro verifier, compliance, conditions, and full profile | exact 49 WAV; exact 30/30/100 | remaining `API-VOICE-003`, part of `011` | Not Tested after Fail | mandatory first build absent |
-| 7 | both Chinese builds and full profile | exact 200 WAV; exact 30/30/100 | `API-VOICE-004`, part of `011` | Not Tested after Fail | stopped fail-closed at shared canonical build defect |
-| 8 | completed-attempt terminal evidence | no profile attempt started | CR-F-021 runtime disposition | Not Applicable in this run | failure precedes profile-runner attempt ownership |
-| 9 | Qualification Set 2 -> Branch Catalog Projection 2 -> independent verification | exactly two local archives; loaded-host classification preserved | `API-VOICE-012` | Not Tested after Fail | no profile/package Pass subjects |
+| 0 | exact authority/test byte comparison | `628bef9...fda4a3b` plus working-tree/source SHA-256 | `API-VOICE-002`/`013` reuse validity | Pass | all relevant source/worktree bytes unchanged; no durable coverage change |
+| 1 | dependency install, focused IR-014/build-entry tests, then exact-Go `npm run check` | Node 22.23.1; official verified darwin-arm64 Go 1.26.5 root | `API-VOICE-001`, `API-F-002`, reusable `013` | Pass | focused 15/15; full 67/67 Node, 7/7 Python plus compileall, all Go/source/schema/evidence checks |
+| 2 | Functional Preflight 2 with owned `caffeinate` | exact actual M1, Go/CMake/system identities, AC/thermal/memory/sandbox/purge | functional readiness and load classification | Pass | fresh controlled record; six samples average `81.92666666666666%`; all functional prerequisites pass |
+| 3 | deterministic rematerialization and exact corpus revalidation | owned clean exact `fda4a3b` checkout; retained exact cache/checkouts/WAV sources | closed English/Chinese inputs and 49/200 identities | Pass | both source-bound provenance records created; exact 49/200 production corpus validation passes |
+| 4 | corrected outside-Seatbelt authorization -> first English Seatbelt build -> package verifier | exact current workflow sequence | `API-F-002` resolution / first `API-VOICE-003` archive | **Fail after prior-failure resolution — `API-F-003`** | authorization Pass and no sudo `EPERM`; Python runtime `prune()` rejects nine symlinks in the exact authenticated archive before an output archive exists |
+| 5 | second English build and reproducibility verifier; compliance/conditions/full profile | exact 49 WAV; exact 30/30/100 | remaining `API-VOICE-003`, part of `011` | Not Tested after Fail | first mandatory archive absent |
+| 6 | both Chinese builds, verification/reproducibility, compliance/conditions/full profile | exact 200 WAV; exact 30/30/100 | `API-VOICE-004`, part of `011` | Not Tested after Fail | serial matrix stopped at English construction |
+| 7 | completed-attempt terminal evidence | no profile attempt started | CR-F-021 runtime disposition | Not Applicable in this run | failure precedes profile-runner attempt ownership |
+| 8 | Qualification Set 2 -> Branch Catalog Projection 2 -> independent verification | exactly two local archives; actual load classification preserved | `API-VOICE-012` | Not Tested after Fail | no profile/package Pass subjects |
 
-`API-F-002` focused reproduction is direct and host-specific: `/usr/bin/sudo -V` succeeds outside Seatbelt with the exact preflight probe digests; the same command exits `71` under the pinned profile with `Operation not permitted`; Node `execFile()` under that profile throws `spawn EPERM`. The workflow itself wraps `package-assembler.mjs` in that profile, while package assembly calls `createTrustedNativeBuildEnvironment()` -> `assertPassingDarwinArm64Preflight()` -> `verifyPinnedSudoIdentity()` and attempts the forbidden spawn. No sandbox removal, identity relaxation, build relocation, or other workaround was used.
+`API-F-003` is a direct locked-input/runtime compatibility failure. The recipe-authenticated Python Build Standalone archive at SHA-256 `62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b` contains nine ordinary relative symlinks, including `python/bin/python3 -> python3.12`. The production materializer extracts and uses that executable successfully, then `prune()` immediately calls `regularFiles()`, whose global policy throws on any symlink. No archive is emitted. No link relaxation, archive substitution, input mutation, or unsandboxed workaround was used.
 
 ## Post-Repository Confidence Scorecard (Mandatory)
 
@@ -181,11 +181,11 @@ None.
 
 ## Broader Validation Decision (Mandatory)
 
-- Decision: `Required / Executed / Fail`; Functional Preflight 2 passed and full loaded-host-capable package qualification was selected, but the first canonical package build failed at `API-F-002` before an archive existed.
+- Decision: `Required / Executed / Fail`; Functional Preflight 2 and the corrected canonical English construction executed, but `API-F-003` stopped the matrix before the first archive.
 - Selected execution mode: actual-host `CLI`, `Lifecycle`, `Worker`, and native package qualification.
 - Confidence gap addressed: repository coverage cannot prove real model construction/inference, package relocation/offline/read-only behavior, M1 performance/RSS/size, exact corpus quality, or aggregate byte integrity.
 - Why this materially improves confidence: it executes the public release subject on the only current supported platform with the exact providers, models, corpora, thresholds, and trial counts.
-- Expected confidence after a successful rerun: at least `95%`, with no applicable category below `90%`, only if every current critical gate passes. Current final confidence is `87%` because `AC-006`/`AC-017` package construction failed.
+- Expected confidence after a successful reviewed rerun: at least `95%`, with no applicable category below `90%`, only if every current critical gate passes. Current final confidence is `89%`; it cannot produce Pass because `AC-006`/`AC-017` package construction still fails.
 - Browser decision: `N/A`; no browser or desktop UI is in scope.
 - Loaded-host rule: sub-80% CPU idle is not a functional blocker. It must be recorded as `loaded-host-observation` and cannot be called controlled performance. AC/thermal/memory/tool/sandbox/purge blockers remain exact.
 
@@ -241,7 +241,7 @@ None.
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No`.
 - Post-repository confidence: `84%`.
 - Broader validation decision: `Required`.
-- Final confidence after broader execution stopped: `87%`; a critical criterion failed, so confidence cannot produce Pass.
+- Final confidence: `89%`; a critical criterion failed, so confidence cannot produce Pass.
 - Reroute Required: `Yes — Fail`.
-- Recommended Recipient: `code_reviewer` for focused failure-origin review; preliminary classification is `Local Fix / implementation defect` at the actual reviewed workflow boundary.
-- Notes: API-REV-004 remains historical Blocked. API-RI-002 is resolved: the host load was truthfully recorded as non-blocking `loaded-host`. The new blocker is unrelated to the former 80% rule and unrelated to the user's purge provisioning. No release action was authorized or performed.
+- Recommended Recipient: `code_reviewer` for focused failure-origin review; preliminary classification is `Local Fix / implementation defect` in exact Python runtime materialization.
+- Notes: API-REV-005 remains truthful failed history, and `API-F-002` is directly resolved. The new failure is unrelated to sudo, host load, or user readiness. No release action was authorized or performed.
