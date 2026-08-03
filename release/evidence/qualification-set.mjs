@@ -406,6 +406,14 @@ export function qualificationSetPerformanceAssessment(profiles) {
       : "controlled-pass";
 }
 
+export function assertPassingQualificationSet(result) {
+  if (result?.functionalDecision !== "pass")
+    throw new Error(
+      `Qualification Set decision: ${result?.functionalDecision}`,
+    );
+  return result;
+}
+
 async function validate(value) {
   const schema = await readJson(
       path.join(ROOT, "contracts/release/qualification-set-v2.schema.json"),
@@ -454,6 +462,5 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     testCommit: args["test-commit"],
     output: args.output,
   });
-  if (result.functionalDecision !== "pass")
-    throw new Error(`Qualification Set decision: ${result.functionalDecision}`);
+  assertPassingQualificationSet(result);
 }

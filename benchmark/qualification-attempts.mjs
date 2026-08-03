@@ -77,11 +77,20 @@ export class QualificationAttemptRecorder {
   async finalize(decision, failureCategory = null) {
     if (!["pass", "fail", "blocked"].includes(decision))
       throw new Error("Qualification decision invalid.");
+    if (
+      (decision === "pass" && failureCategory !== null) ||
+      (decision !== "pass" && !/^[a-z0-9-]+$/.test(failureCategory ?? ""))
+    )
+      throw new Error("Qualification decision/category mismatch.");
     if (this.record.attempts.some((attempt) => attempt.status === "started"))
       throw new Error("A started qualification attempt has no outcome.");
     this.record.decision = decision;
     this.record.failureCategory = failureCategory;
     await this.write();
+    return structuredClone(this.record);
+  }
+
+  snapshot() {
     return structuredClone(this.record);
   }
 

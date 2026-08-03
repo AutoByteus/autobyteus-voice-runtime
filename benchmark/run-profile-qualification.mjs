@@ -21,7 +21,10 @@ import {
   classifyQualificationFailure,
   qualificationDecisionForFailure,
 } from "./qualification-attempts.mjs";
-import { writeProfileQualificationEvidence } from "./profile-qualification-evidence.mjs";
+import {
+  assertPassingProfileQualification,
+  writeProfileQualificationEvidence,
+} from "./profile-qualification-evidence.mjs";
 import {
   extractQualifiedPackage,
   snapshotPackage,
@@ -152,8 +155,9 @@ try {
   if (JSON.stringify(before) !== JSON.stringify(after))
     throw new Error("Provider mutated package bytes.");
   context.noPackageMutation = true;
-  await writeEvidence(context, "pass", null);
+  const evidence = await writeEvidence(context, "pass", null);
   evidenceWritten = true;
+  assertPassingProfileQualification(evidence);
 } catch (error) {
   if (context && !evidenceWritten) {
     await terminateQuietly(context.activeSession, error);

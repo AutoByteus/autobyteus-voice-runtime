@@ -73,7 +73,7 @@ export async function writeProfileQualificationEvidence({
     warmPreparation,
     warm,
   });
-  const attempts = await recorder.finalize(decision, failureCategory),
+  const pendingAttempts = recorder.snapshot(),
     counts = recorder.counts(),
     quality = aggregateErrorRate(raw),
     completeQuality = raw.length === baseline.results.length,
@@ -83,7 +83,7 @@ export async function writeProfileQualificationEvidence({
       failureCategory,
       build,
       baseline,
-      attempts,
+      attempts: pendingAttempts,
       counts,
       cacheExecutions,
       cold,
@@ -98,7 +98,11 @@ export async function writeProfileQualificationEvidence({
       noPackageMutation,
       recovery,
       offline: conditions.executionEnvironment.sandbox.networkDenied === true,
-    });
+    }),
+    attempts = await recorder.finalize(
+      functional.decision,
+      functional.failureCategory,
+    );
   const summary = {
     schemaVersion: 2,
     artifactKind: "profile-qualification-summary",
@@ -212,6 +216,14 @@ export async function writeProfileQualificationEvidence({
     qualificationAttemptsPath: attemptPath,
   });
   return { summary, assessment };
+}
+
+export function assertPassingProfileQualification(evidence) {
+  const decision = evidence?.summary?.functionalDecision,
+    category = evidence?.summary?.failureCategory;
+  if (decision !== "pass")
+    throw new Error(`Profile qualification decision: ${decision}/${category}`);
+  return evidence;
 }
 
 function functionalOutcome({
