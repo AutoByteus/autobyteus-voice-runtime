@@ -5,6 +5,7 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { readJson, regularFiles, ROOT, shaFile } from "../lib/files.mjs";
 import { locked, verifyLockedFile } from "../locked-inputs.mjs";
+import { trustedNativeBuildEnvironment } from "../trusted-native-environment.mjs";
 
 const run = promisify(execFile);
 const BUILD_ONLY = new Set(["pip", "setuptools", "wheel"]);
@@ -35,9 +36,19 @@ export async function materializePythonRuntime(context) {
     path.join(os.tmpdir(), "voice-python-materialize-"),
   );
   try {
-    await run("tar", ["-xf", archive, "-C", materialization], {
-      maxBuffer: 16 * 1024 * 1024,
-    });
+    const environment = trustedNativeBuildEnvironment(
+      context.buildEnvironment,
+      materialization,
+      context.trustedTools,
+    );
+    await run(
+      context.buildEnvironment.tools.tar.path,
+      ["-xf", archive, "-C", materialization],
+      {
+        env: environment,
+        maxBuffer: 16 * 1024 * 1024,
+      },
+    );
     const root = path.join(materialization, "python");
     const executable = path.join(
       root,
@@ -62,15 +73,7 @@ export async function materializePythonRuntime(context) {
         ...wheelPaths,
       ],
       {
-        env: {
-          HOME: materialization,
-          TMPDIR: materialization,
-          TEMP: materialization,
-          TMP: materialization,
-          PYTHONDONTWRITEBYTECODE: "1",
-          SystemRoot: process.env.SystemRoot ?? "",
-          WINDIR: process.env.WINDIR ?? "",
-        },
+        env: environment,
         maxBuffer: 32 * 1024 * 1024,
       },
     );

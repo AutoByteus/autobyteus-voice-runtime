@@ -14,34 +14,60 @@
     "decision"
   ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "artifactKind": { "const": "qualification-set" },
-    "sourceCommit": { "$ref": "#/$defs/commit" },
-    "runnerCommit": { "$ref": "#/$defs/commit" },
-    "testCommit": { "$ref": "#/$defs/commit" },
+    "schemaVersion": {
+      "const": 1
+    },
+    "artifactKind": {
+      "const": "qualification-set"
+    },
+    "sourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "runnerCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "testCommit": {
+      "$ref": "#/$defs/commit"
+    },
     "packageVersion": {
       "type": "string",
       "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
     },
-    "releaseMatrix": { "$ref": "#/$defs/matrix" },
+    "releaseMatrix": {
+      "$ref": "#/$defs/matrix"
+    },
     "profiles": {
       "type": "array",
       "minItems": 2,
       "maxItems": 2,
-      "items": { "$ref": "#/$defs/profile" }
+      "items": {
+        "$ref": "#/$defs/profile"
+      }
     },
-    "decision": { "const": "pass" }
+    "decision": {
+      "enum": ["pass", "fail", "blocked"]
+    }
   },
   "$defs": {
-    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "commit": { "type": "string", "pattern": "^(?!0{40}$)[a-f0-9]{40}$" },
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40}$)[a-f0-9]{40}$"
+    },
     "matrix": {
       "type": "object",
       "additionalProperties": false,
       "required": ["matrixId", "sha256"],
       "properties": {
-        "matrixId": { "const": "voice-runtime-darwin-arm64-v1" },
-        "sha256": { "$ref": "#/$defs/sha" }
+        "matrixId": {
+          "const": "voice-runtime-darwin-arm64-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
       }
     },
     "archive": {
@@ -55,11 +81,25 @@
         "entryCount"
       ],
       "properties": {
-        "fileName": { "type": "string", "pattern": "^[A-Za-z0-9._-]+\\.zip$" },
-        "sizeBytes": { "type": "integer", "minimum": 1 },
-        "sha256": { "$ref": "#/$defs/sha" },
-        "extractedSizeBytes": { "type": "integer", "minimum": 1 },
-        "entryCount": { "type": "integer", "minimum": 1 }
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "extractedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "entryCount": {
+          "type": "integer",
+          "minimum": 1
+        }
       }
     },
     "performance": {
@@ -74,15 +114,65 @@
         "samplesSha256"
       ],
       "properties": {
-        "coldCount": { "const": 30 },
-        "warmPreparationCount": { "const": 30 },
-        "warmRequestCount": { "const": 100 },
-        "failures": { "const": 0 },
-        "timeouts": { "const": 0 },
-        "samplesSha256": { "$ref": "#/$defs/sha" }
+        "coldCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warmPreparationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warmRequestCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeouts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "samplesSha256": {
+          "$ref": "#/$defs/sha"
+        }
       }
     },
     "profile": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/passingProfile"
+        },
+        {
+          "$ref": "#/$defs/nonPassingProfile"
+        }
+      ]
+    },
+    "attemptCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["started", "completed", "failed", "timeouts"],
+      "properties": {
+        "started": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeouts": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "passingProfile": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -96,6 +186,9 @@
         "candidateDecision",
         "recipeSha256",
         "provenanceSha256",
+        "nativeBuildEnvironmentSha256",
+        "qualificationAttemptsSha256",
+        "attempts",
         "repositoryBuildLockSha256",
         "goToolchainRootTreeSha256",
         "buildReportSha256",
@@ -128,44 +221,123 @@
         "decision"
       ],
       "properties": {
-        "profileId": { "enum": ["english", "chinese"] },
-        "languageMode": { "enum": ["en", "zh"] },
-        "platform": { "const": "darwin" },
-        "architecture": { "const": "arm64" },
-        "packageId": { "type": "string" },
-        "providerId": { "type": "string" },
-        "modelId": { "type": "string" },
-        "candidateDecision": { "enum": ["preserve", "select"] },
-        "recipeSha256": { "$ref": "#/$defs/sha" },
-        "provenanceSha256": { "$ref": "#/$defs/sha" },
-        "repositoryBuildLockSha256": { "$ref": "#/$defs/sha" },
-        "goToolchainRootTreeSha256": { "$ref": "#/$defs/sha" },
-        "buildReportSha256": { "$ref": "#/$defs/sha" },
-        "reproducibilityProofSha256": { "$ref": "#/$defs/sha" },
-        "archive": { "$ref": "#/$defs/archive" },
-        "descriptorSha256": { "$ref": "#/$defs/sha" },
-        "fileManifestSha256": { "$ref": "#/$defs/sha" },
-        "launcherSha256": { "$ref": "#/$defs/sha" },
-        "launcherPlanSha256": { "$ref": "#/$defs/sha" },
-        "hostSha256": { "$ref": "#/$defs/sha" },
-        "engineConfigurationSha256": { "$ref": "#/$defs/sha" },
-        "modelSha256": { "$ref": "#/$defs/sha" },
-        "normalizerSha256": { "$ref": "#/$defs/sha" },
-        "protocolSha256": { "$ref": "#/$defs/sha" },
-        "capabilityDigest": { "$ref": "#/$defs/sha" },
-        "noticeInventorySha256": { "$ref": "#/$defs/sha" },
-        "generatedComplianceSha256": { "$ref": "#/$defs/sha" },
-        "preflightSha256": { "$ref": "#/$defs/sha" },
-        "sandboxProfileSha256": { "$ref": "#/$defs/sha" },
-        "corpusManifestSha256": { "$ref": "#/$defs/sha" },
-        "baselineSha256": { "$ref": "#/$defs/sha" },
-        "rawResultsSha256": { "$ref": "#/$defs/sha" },
-        "resultIndexSha256": { "$ref": "#/$defs/sha" },
-        "qualificationSummarySha256": { "$ref": "#/$defs/sha" },
-        "runtimeConformanceSha256": { "$ref": "#/$defs/sha" },
-        "performance": { "$ref": "#/$defs/performance" },
-        "quality": { "type": "object" },
-        "limitations": { "type": "array", "items": { "type": "string" } },
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "languageMode": {
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "packageId": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "modelId": {
+          "type": "string"
+        },
+        "candidateDecision": {
+          "enum": ["preserve", "select"]
+        },
+        "recipeSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "provenanceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "repositoryBuildLockSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "goToolchainRootTreeSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "buildReportSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "reproducibilityProofSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "archive": {
+          "$ref": "#/$defs/archive"
+        },
+        "descriptorSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "fileManifestSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "launcherSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "launcherPlanSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "hostSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "engineConfigurationSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "modelSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "normalizerSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "protocolSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "capabilityDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "noticeInventorySha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "generatedComplianceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "preflightSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "sandboxProfileSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "corpusManifestSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "baselineSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "rawResultsSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "resultIndexSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "qualificationSummarySha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "runtimeConformanceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "performance": {
+          "$ref": "#/$defs/performance"
+        },
+        "quality": {
+          "type": "object"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
         "outcomes": {
           "type": "object",
           "additionalProperties": false,
@@ -179,16 +351,134 @@
             "licenseApproved"
           ],
           "properties": {
-            "actualPlatform": { "const": true },
-            "normalizationFixtures": { "const": true },
-            "relocation": { "const": true },
-            "offline": { "const": true },
-            "noPackageMutation": { "const": true },
-            "recovery": { "const": true },
-            "licenseApproved": { "const": true }
+            "actualPlatform": {
+              "const": true
+            },
+            "normalizationFixtures": {
+              "const": true
+            },
+            "relocation": {
+              "const": true
+            },
+            "offline": {
+              "const": true
+            },
+            "noPackageMutation": {
+              "const": true
+            },
+            "recovery": {
+              "const": true
+            },
+            "licenseApproved": {
+              "const": true
+            }
           }
         },
-        "decision": { "const": "pass" }
+        "decision": {
+          "const": "pass"
+        },
+        "nativeBuildEnvironmentSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "qualificationAttemptsSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "attempts": {
+          "$ref": "#/$defs/attemptCounts"
+        }
+      }
+    },
+    "nonPassingProfile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "languageMode",
+        "platform",
+        "architecture",
+        "packageId",
+        "providerId",
+        "modelId",
+        "candidateDecision",
+        "buildReportSha256",
+        "nativeBuildEnvironmentSha256",
+        "preflightSha256",
+        "archive",
+        "qualificationSummarySha256",
+        "qualificationAttemptsSha256",
+        "performanceSamplesSha256",
+        "rawResultsSha256",
+        "resultIndexSha256",
+        "attempts",
+        "performance",
+        "failureCategory",
+        "decision"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "languageMode": {
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "packageId": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "modelId": {
+          "type": "string"
+        },
+        "candidateDecision": {
+          "enum": ["preserve", "select"]
+        },
+        "buildReportSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "nativeBuildEnvironmentSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "preflightSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "archive": {
+          "$ref": "#/$defs/archive"
+        },
+        "qualificationSummarySha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "qualificationAttemptsSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "performanceSamplesSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "rawResultsSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "resultIndexSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "attempts": {
+          "$ref": "#/$defs/attemptCounts"
+        },
+        "performance": {
+          "$ref": "#/$defs/performance"
+        },
+        "failureCategory": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        },
+        "decision": {
+          "enum": ["fail", "blocked"]
+        }
       }
     }
   }

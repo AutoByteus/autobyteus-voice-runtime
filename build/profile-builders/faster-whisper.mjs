@@ -8,7 +8,13 @@ import {
   verifyPythonRuntimePolicy,
   writeEngineConfiguration,
 } from "./common.mjs";
-const args = parsePairs(process.argv.slice(2), ["target", "inputs", "stage"]);
+const args = parsePairs(process.argv.slice(2), [
+  "target",
+  "inputs",
+  "stage",
+  "build-environment",
+  "trusted-tools",
+]);
 const context = await prepare(args, "english-faster-whisper");
 const resolution = await readJson(
   path.join(ROOT, context.lock.wheelResolutionEvidence, `${args.target}.json`),

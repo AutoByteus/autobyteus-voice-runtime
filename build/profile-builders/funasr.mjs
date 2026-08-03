@@ -11,12 +11,18 @@ import {
   copyPackageNotices,
   writeEngineConfiguration,
 } from "./common.mjs";
+import {
+  cmakeConfigureArguments,
+  trustedNativeBuildEnvironment,
+  verifyResolvedCmakeConfiguration,
+} from "../trusted-native-environment.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "target",
   "inputs",
   "stage",
-  "cmake",
+  "build-environment",
+  "trusted-tools",
 ]);
 const context = await prepare(args, "chinese-funasr");
 assertInputClosure(context, [
@@ -44,21 +50,28 @@ for (const model of context.lock.model.files) {
     throw new Error(`Fun-ASR model identity mismatch: ${model.name}`);
 }
 const build = path.join(path.dirname(context.stage), "native-build");
+await fs.mkdir(build, { recursive: false, mode: 0o700 });
+const nativeEnvironment = trustedNativeBuildEnvironment(
+  context.buildEnvironment,
+  build,
+  context.trustedTools,
+);
 await run(
-  path.resolve(args.cmake),
+  context.buildEnvironment.tools.cmake.path,
   [
     "-S",
     path.join(context.inputs, "runtime-source/providers/chinese-funasr"),
     "-B",
     build,
+    ...cmakeConfigureArguments(context.buildEnvironment),
     `-DLLAMA_CPP_SOURCE_DIR=${path.join(context.inputs, "llama-cpp-source")}`,
     `-DUTF8PROC_SOURCE_DIR=${path.join(context.inputs, "utf8proc-source")}`,
-    "-DCMAKE_BUILD_TYPE=Release",
   ],
-  { maxBuffer: 16 * 1024 * 1024 },
+  { env: nativeEnvironment, maxBuffer: 16 * 1024 * 1024 },
 );
+await verifyResolvedCmakeConfiguration(context.buildEnvironment, build);
 await run(
-  path.resolve(args.cmake),
+  context.buildEnvironment.tools.cmake.path,
   [
     "--build",
     build,
@@ -66,8 +79,10 @@ await run(
     "Release",
     "--target",
     "voice-provider-worker",
+    "--parallel",
+    String(context.buildEnvironment.configuration.parallelism),
   ],
-  { maxBuffer: 16 * 1024 * 1024 },
+  { env: nativeEnvironment, maxBuffer: 16 * 1024 * 1024 },
 );
 const executable =
   context.target.platform === "win32"

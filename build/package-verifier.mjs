@@ -19,6 +19,7 @@ import {
   trustedGoEnvironment,
   verifyGoToolchain,
 } from "./locked-inputs.mjs";
+import { verifyTrustedNativeBuildEnvironment } from "./trusted-native-environment.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "archive",
@@ -34,10 +35,27 @@ const provenancePath = path.join(
   path.dirname(path.resolve(args["build-report"])),
   path.basename(build.buildInputProvenanceFileName),
 );
+const nativeBuildEnvironmentPath = path.join(
+  path.dirname(path.resolve(args["build-report"])),
+  path.basename(build.nativeBuildEnvironmentFileName),
+);
+if (
+  build.nativeBuildEnvironmentFileName !==
+  path.basename(build.nativeBuildEnvironmentFileName)
+)
+  throw new Error("Native build environment file name invalid.");
 if ((await shaFile(archivePath)) !== build.archive.sha256)
   throw new Error("Archive/build report mismatch.");
 if ((await shaFile(provenancePath)) !== build.buildInputProvenanceSha256)
   throw new Error("Build input provenance/report mismatch.");
+if (
+  (await shaFile(nativeBuildEnvironmentPath)) !==
+  build.nativeBuildEnvironmentSha256
+)
+  throw new Error("Native build environment/report mismatch.");
+await verifyTrustedNativeBuildEnvironment(
+  await readJson(nativeBuildEnvironmentPath),
+);
 const work = await fs.mkdtemp(path.join(os.tmpdir(), "voice-package-verify-"));
 try {
   const expected = {

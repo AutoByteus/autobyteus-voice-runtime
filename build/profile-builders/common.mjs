@@ -12,6 +12,10 @@ import {
 } from "../lib/files.mjs";
 import { verifyInputManifest } from "../locked-inputs.mjs";
 import { materializePythonRuntime } from "../python/materialize-runtime.mjs";
+import {
+  verifyTrustedNativeBuildEnvironment,
+  verifyTrustedToolDirectory,
+} from "../trusted-native-environment.mjs";
 export async function prepare(args, profileDirectory) {
   const target = targetParts(args.target);
   const lock = await readJson(
@@ -22,6 +26,12 @@ export async function prepare(args, profileDirectory) {
   const inputs = path.resolve(args.inputs),
     stage = path.resolve(args.stage);
   const inputManifest = await verifyInputManifest(inputs);
+  const buildEnvironment = await readJson(
+    path.resolve(args["build-environment"]),
+  );
+  await verifyTrustedNativeBuildEnvironment(buildEnvironment);
+  const trustedTools = path.resolve(args["trusted-tools"]);
+  await verifyTrustedToolDirectory(buildEnvironment, trustedTools);
   const inputProvenance = await readJson(
     path.join(inputs, "input-provenance-v1.json"),
   );
@@ -68,6 +78,8 @@ export async function prepare(args, profileDirectory) {
     inputManifest,
     inputProvenance,
     inputRecipe,
+    buildEnvironment,
+    trustedTools,
   };
 }
 export async function copyPackageNotices(context) {

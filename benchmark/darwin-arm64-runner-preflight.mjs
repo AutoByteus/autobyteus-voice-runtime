@@ -36,8 +36,13 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       clang,
       clangPath,
       clangCxxPath,
+      arPath,
+      ranlibPath,
+      linkerPath,
+      libtoolPath,
       xcode,
       sdk,
+      sdkPath,
     ] = await Promise.all([
       command("/usr/sbin/sysctl", ["-n", "machdep.cpu.brand_string"]),
       command("/usr/sbin/sysctl", ["-n", "hw.memsize"]),
@@ -49,8 +54,13 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       command("/usr/bin/xcrun", ["clang", "--version"]),
       command("/usr/bin/xcrun", ["--find", "clang"]),
       command("/usr/bin/xcrun", ["--find", "clang++"]),
+      command("/usr/bin/xcrun", ["--find", "ar"]),
+      command("/usr/bin/xcrun", ["--find", "ranlib"]),
+      command("/usr/bin/xcrun", ["--find", "ld"]),
+      command("/usr/bin/xcrun", ["--find", "libtool"]),
       command("/usr/bin/xcodebuild", ["-version"]),
       command("/usr/bin/xcrun", ["--sdk", "macosx", "--show-sdk-version"]),
+      command("/usr/bin/xcrun", ["--sdk", "macosx", "--show-sdk-path"]),
     ]);
     record.host = {
       platform: process.platform,
@@ -94,8 +104,14 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       appleClang: clang.split("\n")[0],
       appleClangExecutable: await executableIdentity(clangPath),
       appleClangCxxExecutable: await executableIdentity(clangCxxPath),
+      appleArExecutable: await executableIdentity(arPath),
+      appleRanlibExecutable: await executableIdentity(ranlibPath),
+      appleLinkerExecutable: await executableIdentity(linkerPath),
+      appleLibtoolExecutable: await executableIdentity(libtoolPath),
       xcode,
       sdk,
+      sdkPath: await directoryIdentity(sdkPath),
+      sdkSettingsSha256: await shaFile(path.join(sdkPath, "SDKSettings.json")),
       commandPaths: await requiredCommandIdentities(),
     };
     if (
@@ -234,6 +250,8 @@ async function requiredCommandIdentities() {
     "/usr/bin/xcrun",
     "/usr/bin/xcodebuild",
     "/usr/bin/make",
+    "/usr/bin/tar",
+    "/bin/sh",
   ]) {
     const info = await fs.lstat(commandPath);
     if (!info.isFile()) throw blocked("required-command-missing");
@@ -248,6 +266,14 @@ async function executableIdentity(executable) {
   if (!info.isFile() || info.isSymbolicLink())
     throw blocked("toolchain-command-identity");
   return { path: resolved, sha256: await shaFile(resolved) };
+}
+
+async function directoryIdentity(directory) {
+  const resolved = await fs.realpath(directory),
+    info = await fs.lstat(resolved);
+  if (!info.isDirectory() || info.isSymbolicLink())
+    throw blocked("toolchain-directory-identity");
+  return resolved;
 }
 
 async function command(executable, args, allowFailure = false) {

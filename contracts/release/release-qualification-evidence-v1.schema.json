@@ -142,6 +142,9 @@
         "candidateDecision",
         "recipeSha256",
         "provenanceSha256",
+        "nativeBuildEnvironmentSha256",
+        "qualificationAttemptsSha256",
+        "attempts",
         "repositoryBuildLockSha256",
         "goToolchainRootTreeSha256",
         "buildReportSha256",
@@ -329,6 +332,15 @@
         },
         "decision": {
           "const": "pass"
+        },
+        "nativeBuildEnvironmentSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "qualificationAttemptsSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "attempts": {
+          "$ref": "#/$defs/attemptCounts"
         }
       }
     },
@@ -456,6 +468,27 @@
         },
         "samplesSha256": {
           "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "attemptCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["started", "completed", "failed", "timeouts"],
+      "properties": {
+        "started": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "completed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "const": 0
+        },
+        "timeouts": {
+          "const": 0
         }
       }
     }

@@ -99,6 +99,7 @@ jobs:
               --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
               --inputs "$GITHUB_WORKSPACE/out/inputs/${{ matrix.profile }}-${{ matrix.target }}" \
               --output "$OUTPUT" --go "$VOICE_GO" --cmake "$VOICE_CMAKE" \
+              --preflight "$RUNNER_TEMP/darwin-arm64-preflight-v1.json" \
               --source-commit "$GITHUB_SHA" --version "$VOICE_RUNTIME_VERSION_INPUT"
           done
           node build/package-verifier.mjs --archive "out/assets/$ARCHIVE" \
@@ -131,6 +132,7 @@ jobs:
             --conditions "$DIR/conditions-input.json" --compliance "$DIR/package-compliance-input-v1.json" \
             --go "$VOICE_GO" --reproducibility-proof "$DIR/reproducibility-proof-v1.json" --output "$DIR"
       - uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: qualified-${{ matrix.profile }}-${{ matrix.target }}
           path: out/
@@ -145,7 +147,7 @@ jobs:
             kill "$(cat "$RUNNER_TEMP/voice-caffeinate.pid")" 2>/dev/null || true
           fi
   aggregate-pretag:
-    if: inputs.operation == 'prequalify'
+    if: always() && inputs.operation == 'prequalify'
     needs: build-and-qualify
     runs-on: [self-hosted, macOS, ARM64, voice-m1-max]
     steps:
@@ -187,6 +189,15 @@ jobs:
           path: bundle/
           if-no-files-found: error
           retention-days: 7
+          compression-level: 0
+      - name: Retain qualification audit on pass, fail, or block
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qualification-audit-${{ inputs.release_tag }}
+          path: bundle/
+          if-no-files-found: error
+          retention-days: 30
           compression-level: 0
   publish-qualified:
     if: inputs.operation == 'publish'

@@ -411,6 +411,15 @@ test("workflow derives two current jobs and preserves post-publication separatio
     /fromJSON\(needs\.current-release-matrix\.outputs\.build\)/,
   );
   assert.match(workflow, /max-parallel: 1/);
+  assert.match(
+    workflow,
+    /uses: actions\/upload-artifact@v4\n\s+if: always\(\)[\s\S]*?name: qualified-\$\{\{ matrix\.profile \}\}-\$\{\{ matrix\.target \}\}/,
+  );
+  assert.match(
+    workflow,
+    /aggregate-pretag:[\s\S]*?if: always\(\) && inputs\.operation == 'prequalify'/,
+  );
+  assert.match(workflow, /Retain qualification audit on pass, fail, or block/);
   assert.doesNotMatch(workflow, /darwin-x64|linux-x64|win32-x64/);
   assert.match(workflow, /pretag-release-manifest-v1\.json/);
   assert.match(workflow, /Always record published-byte verification/);
@@ -494,6 +503,7 @@ function profile(entry, archive, digest) {
   const hashes = [
     "recipeSha256",
     "provenanceSha256",
+    "nativeBuildEnvironmentSha256",
     "repositoryBuildLockSha256",
     "goToolchainRootTreeSha256",
     "buildReportSha256",
@@ -518,6 +528,7 @@ function profile(entry, archive, digest) {
     "resultIndexSha256",
     "qualificationSummarySha256",
     "runtimeConformanceSha256",
+    "qualificationAttemptsSha256",
   ];
   return {
     profileId: entry.profileId,
@@ -530,6 +541,12 @@ function profile(entry, archive, digest) {
     candidateDecision: entry.decision,
     ...Object.fromEntries(hashes.map((key) => [key, digest])),
     archive: { ...archive, extractedSizeBytes: 100, entryCount: 2 },
+    attempts: {
+      started: entry.profileId === "english" ? 160 : 260,
+      completed: entry.profileId === "english" ? 160 : 260,
+      failed: 0,
+      timeouts: 0,
+    },
     performance: {
       coldCount: 30,
       warmPreparationCount: 30,

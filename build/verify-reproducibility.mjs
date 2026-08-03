@@ -19,6 +19,7 @@ if (
   !/^[a-f0-9]{64}$/.test(first.buildInputProvenanceSha256) ||
   !/^[a-f0-9]{64}$/.test(first.buildInputRecipeSha256) ||
   !/^[a-f0-9]{64}$/.test(first.releaseMatrixSha256) ||
+  !/^[a-f0-9]{64}$/.test(first.nativeBuildEnvironmentSha256) ||
   firstArchiveSha256 !== secondArchiveSha256 ||
   firstBuildReportSha256 !== secondBuildReportSha256 ||
   firstArchiveSha256 !== first.archive?.sha256 ||
@@ -28,7 +29,8 @@ if (
   first.buildInputManifestSha256 !== second.buildInputManifestSha256 ||
   first.buildInputProvenanceSha256 !== second.buildInputProvenanceSha256 ||
   first.buildInputRecipeSha256 !== second.buildInputRecipeSha256 ||
-  first.releaseMatrixSha256 !== second.releaseMatrixSha256
+  first.releaseMatrixSha256 !== second.releaseMatrixSha256 ||
+  first.nativeBuildEnvironmentSha256 !== second.nativeBuildEnvironmentSha256
 )
   throw new Error("Locked-input rebuild is not byte-identical.");
 await writeJson(path.resolve(args.output), {
@@ -40,6 +42,7 @@ await writeJson(path.resolve(args.output), {
   buildInputProvenanceSha256: first.buildInputProvenanceSha256,
   buildInputRecipeSha256: first.buildInputRecipeSha256,
   releaseMatrixSha256: first.releaseMatrixSha256,
+  nativeBuildEnvironmentSha256: first.nativeBuildEnvironmentSha256,
   archiveSha256: firstArchiveSha256,
   firstBuildReportSha256,
   secondBuildReportSha256,

@@ -16,6 +16,7 @@ import {
   assertPassingDarwinArm64Preflight,
   assertPreflightConditionBinding,
 } from "../../benchmark/darwin-arm64-preflight-contract.mjs";
+import { verifyTrustedNativeBuildEnvironment } from "../../build/trusted-native-environment.mjs";
 
 export async function verifyProfileQualificationEvidence(summary, directory) {
   const file = (name) => path.join(directory, name),
@@ -23,9 +24,11 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
       build: file("build-report.json"),
       manifest: file("build-input-manifest.json"),
       provenance: file("input-provenance-v1.json"),
+      nativeEnvironment: file("native-build-environment-v1.json"),
       reproducibility: file("reproducibility-proof-v1.json"),
       conformance: file("runtime-conformance-v1.json"),
       performance: file("performance-samples-v1.json"),
+      attempts: file("qualification-attempts-v1.json"),
       raw: file("raw-results.json"),
       index: file("result-index.json"),
       baseline: file("baseline-evidence.json"),
@@ -46,9 +49,11 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
     ["build", summary.buildReportSha256],
     ["manifest", summary.buildInputManifestSha256],
     ["provenance", summary.buildInputProvenanceSha256],
+    ["nativeEnvironment", summary.nativeBuildEnvironmentSha256],
     ["reproducibility", summary.reproducibilityProofSha256],
     ["conformance", summary.runtimeConformanceSha256],
     ["performance", summary.performanceSamplesSha256],
+    ["attempts", summary.qualificationAttemptsSha256],
     ["raw", summary.quality.rawResultsSha256],
     ["index", summary.quality.resultIndexSha256],
     ["baseline", summary.quality.baseline.evidenceSha256],
@@ -64,13 +69,21 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
     qualification,
     summary.sourceCommit,
   );
+  await verifyTrustedNativeBuildEnvironment(values.nativeEnvironment);
   if (
+    summary.decision !== "pass" ||
+    summary.failureCategory !== null ||
+    values.attempts.decision !== "pass" ||
+    values.attempts.failureCategory !== null ||
+    values.nativeEnvironment.preflightSha256 !== summary.preflightSha256 ||
     values.provenance.repository.sourceCommit !== summary.sourceCommit ||
     values.provenance.recipe.sha256 !== summary.buildInputRecipeSha256 ||
     values.reproducibility.passed !== true ||
     values.reproducibility.archiveSha256 !== summary.archive.sha256 ||
     values.reproducibility.buildInputProvenanceSha256 !==
       summary.buildInputProvenanceSha256 ||
+    values.reproducibility.nativeBuildEnvironmentSha256 !==
+      summary.nativeBuildEnvironmentSha256 ||
     values.compliance.decision !== "pass" ||
     values.preflight.status !== "pass"
   )
@@ -78,7 +91,12 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
   await assertPassingDarwinArm64Preflight(values.preflight);
   assertPreflightConditionBinding(summary.conditions, values.preflight);
   verifyRuntimeConformance(values.conformance);
-  await verifyPerformanceEvidence(summary, qualification, values.performance);
+  await verifyPerformanceEvidence(
+    summary,
+    qualification,
+    values.performance,
+    values.attempts,
+  );
   verifyCorpusBinding(values.corpus, values.raw, summary, qualification);
   const trust = await assertTrustedBaseline({
     baseline: values.baseline,

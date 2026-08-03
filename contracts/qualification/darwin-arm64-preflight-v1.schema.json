@@ -130,8 +130,14 @@
         "appleClang",
         "appleClangExecutable",
         "appleClangCxxExecutable",
+        "appleArExecutable",
+        "appleRanlibExecutable",
+        "appleLinkerExecutable",
+        "appleLibtoolExecutable",
         "xcode",
         "sdk",
+        "sdkPath",
+        "sdkSettingsSha256",
         "commandPaths"
       ],
       "properties": {
@@ -146,8 +152,14 @@
         },
         "appleClangExecutable": { "$ref": "#/$defs/identity" },
         "appleClangCxxExecutable": { "$ref": "#/$defs/identity" },
+        "appleArExecutable": { "$ref": "#/$defs/identity" },
+        "appleRanlibExecutable": { "$ref": "#/$defs/identity" },
+        "appleLinkerExecutable": { "$ref": "#/$defs/identity" },
+        "appleLibtoolExecutable": { "$ref": "#/$defs/identity" },
         "xcode": { "const": "Xcode 26.1.1\nBuild version 17B100" },
         "sdk": { "const": "26.1" },
+        "sdkPath": { "type": "string", "pattern": "^/" },
+        "sdkSettingsSha256": { "$ref": "#/$defs/sha" },
         "commandPaths": {
           "type": "object",
           "additionalProperties": false,
@@ -163,7 +175,9 @@
             "/usr/bin/pgrep",
             "/usr/bin/xcrun",
             "/usr/bin/xcodebuild",
-            "/usr/bin/make"
+            "/usr/bin/make",
+            "/usr/bin/tar",
+            "/bin/sh"
           ],
           "properties": {
             "/usr/bin/sandbox-exec": { "$ref": "#/$defs/sha" },
@@ -177,7 +191,9 @@
             "/usr/bin/pgrep": { "$ref": "#/$defs/sha" },
             "/usr/bin/xcrun": { "$ref": "#/$defs/sha" },
             "/usr/bin/xcodebuild": { "$ref": "#/$defs/sha" },
-            "/usr/bin/make": { "$ref": "#/$defs/sha" }
+            "/usr/bin/make": { "$ref": "#/$defs/sha" },
+            "/usr/bin/tar": { "$ref": "#/$defs/sha" },
+            "/bin/sh": { "$ref": "#/$defs/sha" }
           }
         }
       }

@@ -35,13 +35,13 @@ export async function assembleQualificationSet({
     ),
     summaries = await Promise.all(
       files.map(async (file) => ({ file, value: await readJson(file) })),
-    );
-  const rows = summaries.map(({ value }) => ({
-    ...value,
-    platform: value.target.platform,
-    architecture: value.target.architecture,
-    decision: value.profileId === "english" ? "preserve" : "select",
-  }));
+    ),
+    rows = summaries.map(({ value }) => ({
+      ...value,
+      platform: value.target.platform,
+      architecture: value.target.architecture,
+      decision: value.profileId === "english" ? "preserve" : "select",
+    }));
   assertExactMatrixRows(matrix.value, rows);
   const packageVersions = new Set(rows.map((item) => item.packageVersion));
   if (packageVersions.size !== 1)
@@ -66,6 +66,7 @@ export async function assembleQualificationSet({
     assets,
     profiles.map((profile) => profile.archive),
   );
+  const decision = qualificationSetDecision(profiles);
   const result = {
     schemaVersion: 1,
     artifactKind: "qualification-set",
@@ -78,7 +79,7 @@ export async function assembleQualificationSet({
       sha256: matrix.sha256,
     },
     profiles,
-    decision: "pass",
+    decision,
   };
   await validate(result);
   await writeJson(path.resolve(output), result);
@@ -106,25 +107,103 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
     q.buildReportSha256 !== (await shaFile(file("build-report.json"))) ||
     q.buildInputProvenanceSha256 !==
       (await shaFile(file("input-provenance-v1.json"))) ||
+    q.nativeBuildEnvironmentSha256 !==
+      (await shaFile(file("native-build-environment-v1.json"))) ||
     q.generatedComplianceSha256 !==
       (await shaFile(file("package-compliance-v1.json"))) ||
     q.performanceSamplesSha256 !==
       (await shaFile(file("performance-samples-v1.json"))) ||
+    q.qualificationAttemptsSha256 !==
+      (await shaFile(file("qualification-attempts-v1.json"))) ||
     q.preflightSha256 !==
       (await shaFile(file("darwin-arm64-preflight-v1.json"))) ||
     provenance.repository.sourceCommit !== sourceCommit ||
     compliance.decision !== "pass" ||
-    preflight.status !== "pass"
+    preflight.status !== "pass" ||
+    build.nativeBuildEnvironmentSha256 !== q.nativeBuildEnvironmentSha256
   )
     throw new Error(
       `Qualification identity/evidence mismatch: ${entry.profileId}`,
     );
-  await verifyProfileQualificationEvidence(q, directory);
-  enforceThresholds(q, performance);
-  const archivePath = path.join(assets, q.archive.fileName),
-    archiveStat = await fs.stat(archivePath);
-  if ((await shaFile(archivePath)) !== q.archive.sha256)
-    throw new Error(`Qualified archive mismatch: ${entry.profileId}`);
+  if (q.decision !== "pass")
+    return verifyReportedNonPass({
+      entry,
+      item,
+      assets,
+      performance,
+      sourceCommit,
+      runnerCommit,
+    });
+  try {
+    await verifyProfileQualificationEvidence(q, directory);
+    enforceThresholds(q, performance);
+    return passingProfile(entry, item, assets, performance);
+  } catch {
+    return nonPassingProfile({
+      entry,
+      item,
+      assets,
+      performance,
+      decision: "fail",
+      failureCategory: "qualification-verification-failed",
+    });
+  }
+}
+
+async function verifyReportedNonPass({
+  entry,
+  item,
+  assets,
+  performance,
+  sourceCommit,
+  runnerCommit,
+}) {
+  const q = item.value,
+    directory = path.dirname(item.file),
+    attemptsPath = path.join(directory, "qualification-attempts-v1.json"),
+    rawPath = path.join(directory, "raw-results.json"),
+    indexPath = path.join(directory, "result-index.json"),
+    performancePath = path.join(directory, "performance-samples-v1.json"),
+    attempts = await readJson(attemptsPath),
+    counts = {
+      started: attempts.attempts.length,
+      completed: attempts.attempts.filter(
+        (attempt) => attempt.status === "succeeded",
+      ).length,
+      failed: attempts.attempts.filter((attempt) => attempt.status === "failed")
+        .length,
+      timeouts: attempts.attempts.filter((attempt) => attempt.timeout).length,
+    };
+  if (
+    q.sourceCommit !== sourceCommit ||
+    q.runnerCommit !== runnerCommit ||
+    !["fail", "blocked"].includes(q.decision) ||
+    !/^[a-z0-9-]+$/.test(q.failureCategory) ||
+    attempts.decision !== q.decision ||
+    attempts.failureCategory !== q.failureCategory ||
+    attempts.attempts.some((attempt) => attempt.status === "started") ||
+    JSON.stringify(counts) !== JSON.stringify(q.attempts) ||
+    q.qualificationAttemptsSha256 !== (await shaFile(attemptsPath)) ||
+    q.performanceSamplesSha256 !== (await shaFile(performancePath)) ||
+    q.quality.rawResultsSha256 !== (await shaFile(rawPath)) ||
+    q.quality.resultIndexSha256 !== (await shaFile(indexPath))
+  )
+    throw new Error(
+      `Non-pass qualification evidence invalid: ${entry.profileId}`,
+    );
+  return nonPassingProfile({
+    entry,
+    item,
+    assets,
+    performance,
+    decision: q.decision,
+    failureCategory: q.failureCategory,
+  });
+}
+
+async function passingProfile(entry, item, assets, performance) {
+  const q = item.value,
+    archive = await archiveIdentity(assets, q, entry.profileId);
   return {
     profileId: entry.profileId,
     languageMode: entry.languageMode,
@@ -136,17 +215,12 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
     candidateDecision: entry.decision,
     recipeSha256: q.buildInputRecipeSha256,
     provenanceSha256: q.buildInputProvenanceSha256,
+    nativeBuildEnvironmentSha256: q.nativeBuildEnvironmentSha256,
     repositoryBuildLockSha256: q.repositoryBuildLockSha256,
     goToolchainRootTreeSha256: q.goToolchainRootTreeSha256,
     buildReportSha256: q.buildReportSha256,
     reproducibilityProofSha256: q.reproducibilityProofSha256,
-    archive: {
-      fileName: q.archive.fileName,
-      sizeBytes: archiveStat.size,
-      sha256: q.archive.sha256,
-      extractedSizeBytes: q.archive.extractedSizeBytes,
-      entryCount: q.archive.entryCount,
-    },
+    archive,
     descriptorSha256: q.descriptorSha256,
     fileManifestSha256: q.fileManifestSha256,
     launcherSha256: q.launcherSha256,
@@ -167,14 +241,9 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
     resultIndexSha256: q.quality.resultIndexSha256,
     qualificationSummarySha256: await shaFile(item.file),
     runtimeConformanceSha256: q.runtimeConformanceSha256,
-    performance: {
-      coldCount: performance.cold.length,
-      warmPreparationCount: performance.warmPreparation.length,
-      warmRequestCount: performance.warm.length,
-      failures: 0,
-      timeouts: 0,
-      samplesSha256: q.performanceSamplesSha256,
-    },
+    qualificationAttemptsSha256: q.qualificationAttemptsSha256,
+    attempts: q.attempts,
+    performance: performanceView(q, performance),
     quality: q.quality,
     limitations: q.corpus.limitations,
     outcomes: {
@@ -187,6 +256,65 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
       licenseApproved: q.licenseApproved,
     },
     decision: "pass",
+  };
+}
+
+async function nonPassingProfile({
+  entry,
+  item,
+  assets,
+  performance,
+  decision,
+  failureCategory,
+}) {
+  const q = item.value;
+  return {
+    profileId: entry.profileId,
+    languageMode: entry.languageMode,
+    platform: entry.platform,
+    architecture: entry.architecture,
+    packageId: entry.packageId,
+    providerId: entry.providerId,
+    modelId: entry.modelId,
+    candidateDecision: entry.decision,
+    buildReportSha256: q.buildReportSha256,
+    nativeBuildEnvironmentSha256: q.nativeBuildEnvironmentSha256,
+    preflightSha256: q.preflightSha256,
+    archive: await archiveIdentity(assets, q, entry.profileId),
+    qualificationSummarySha256: await shaFile(item.file),
+    qualificationAttemptsSha256: q.qualificationAttemptsSha256,
+    performanceSamplesSha256: q.performanceSamplesSha256,
+    rawResultsSha256: q.quality.rawResultsSha256,
+    resultIndexSha256: q.quality.resultIndexSha256,
+    attempts: q.attempts,
+    performance: performanceView(q, performance),
+    failureCategory,
+    decision,
+  };
+}
+
+async function archiveIdentity(assets, q, profileId) {
+  const archivePath = path.join(assets, q.archive.fileName),
+    archiveStat = await fs.stat(archivePath);
+  if ((await shaFile(archivePath)) !== q.archive.sha256)
+    throw new Error(`Qualified archive mismatch: ${profileId}`);
+  return {
+    fileName: q.archive.fileName,
+    sizeBytes: archiveStat.size,
+    sha256: q.archive.sha256,
+    extractedSizeBytes: q.archive.extractedSizeBytes,
+    entryCount: q.archive.entryCount,
+  };
+}
+
+function performanceView(q, performance) {
+  return {
+    coldCount: performance.cold.length,
+    warmPreparationCount: performance.warmPreparation.length,
+    warmRequestCount: performance.warm.length,
+    failures: q.attempts.failed,
+    timeouts: q.attempts.timeouts,
+    samplesSha256: q.performanceSamplesSha256,
   };
 }
 
@@ -235,15 +363,26 @@ export function enforceThresholds(q, performance) {
     throw new Error("Qualification quality/non-regression gate failed.");
 }
 
+export function qualificationSetDecision(profiles) {
+  return profiles.some((profile) => profile.decision === "fail")
+    ? "fail"
+    : profiles.some((profile) => profile.decision === "blocked")
+      ? "blocked"
+      : "pass";
+}
+
 async function validate(value) {
   const schema = await readJson(
-    path.join(ROOT, "contracts/release/qualification-set-v1.schema.json"),
-  );
-  const check = new Ajv2020({ allErrors: true, strict: true }).compile(schema);
+      path.join(ROOT, "contracts/release/qualification-set-v1.schema.json"),
+    ),
+    check = new Ajv2020({ allErrors: true, strict: true }).compile(schema);
   if (!check(value))
     throw new Error(
       `Qualification Set invalid: ${JSON.stringify(check.errors)}`,
     );
+  const expected = qualificationSetDecision(value.profiles);
+  if (value.decision !== expected)
+    throw new Error("Qualification Set decision does not match profiles.");
 }
 
 async function find(root, name) {
@@ -265,7 +404,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     "test-commit",
     "output",
   ]);
-  await assembleQualificationSet({
+  const result = await assembleQualificationSet({
     qualifications: args.qualifications,
     assets: args.assets,
     sourceCommit: args["source-commit"],
@@ -273,4 +412,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     testCommit: args["test-commit"],
     output: args.output,
   });
+  if (result.decision !== "pass")
+    throw new Error(`Qualification Set decision: ${result.decision}`);
 }

@@ -92,6 +92,8 @@ export async function verifyBuildBinding(
     build.target.platform !== qualification.platform ||
     build.target.architecture !== qualification.architecture ||
     build.buildInputManifestSha256 !== qualification.buildInputManifestSha256 ||
+    build.nativeBuildEnvironmentSha256 !==
+      qualification.nativeBuildEnvironmentSha256 ||
     build.repositoryBuildLockSha256 !==
       qualification.repositoryBuildLockSha256 ||
     build.goToolchainHost?.platform !== qualification.platform ||

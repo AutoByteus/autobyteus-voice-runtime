@@ -40,6 +40,8 @@ const latency = (values) => {
   };
 };
 const qualification = {
+  packageId: "fixture.package",
+  profileId: "english",
   platform: "darwin",
   architecture: "arm64",
   handshake: latency(cold.map((x) => x.handshakeMs)),
@@ -50,10 +52,28 @@ const qualification = {
 };
 const summary = {
   conditions: { executionEnvironment: { filesystemCacheProcedure: procedure } },
+  attempts: { started: 160, completed: 160, failed: 0, timeouts: 0 },
+};
+const attempts = {
+  schemaVersion: 1,
+  packageId: qualification.packageId,
+  profileId: qualification.profileId,
+  target: "darwin-arm64",
+  decision: "pass",
+  failureCategory: null,
+  attempts: [
+    ...Array.from({ length: 30 }, (_, index) => attempt("cold", index)),
+    ...Array.from({ length: 30 }, (_, index) =>
+      attempt("warm-preparation", index),
+    ),
+    ...Array.from({ length: 100 }, (_, index) =>
+      attempt("warm-request", index),
+    ),
+  ],
 };
 
 test("performance evidence requires executed cold resets and meaningful warm samples", async () => {
-  await verifyPerformanceEvidence(summary, qualification, samples);
+  await verifyPerformanceEvidence(summary, qualification, samples, attempts);
   for (const changed of [
     { ...samples, cacheProcedure: null },
     { ...samples, cacheExecutions: [] },
@@ -67,7 +87,17 @@ test("performance evidence requires executed cold resets and meaningful warm sam
     { ...samples, warmPreparation: warmPreparation.slice(0, 1) },
   ])
     await assert.rejects(
-      verifyPerformanceEvidence(summary, qualification, changed),
+      verifyPerformanceEvidence(summary, qualification, changed, attempts),
       /Raw performance evidence is incomplete|procedure execution evidence is incomplete|samples are insufficient/,
     );
 });
+
+function attempt(phase, index) {
+  return {
+    phase,
+    index,
+    performanceCounted: true,
+    status: "succeeded",
+    timeout: false,
+  };
+}

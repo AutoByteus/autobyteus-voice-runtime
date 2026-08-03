@@ -19,6 +19,12 @@ import {
 import { trustedGoEnvironment, verifyGoToolchain } from "./locked-inputs.mjs";
 import { repositoryBuildLockDigest } from "./repository-lock-set.mjs";
 import {
+  assertNoUntrustedNativeBuildOverrides,
+  createTrustedNativeBuildEnvironment,
+  materializeTrustedToolDirectory,
+  trustedNativeBuildEnvironment,
+} from "./trusted-native-environment.mjs";
+import {
   loadCurrentReleaseMatrix,
   matrixEntryKey,
 } from "../release/current-release-matrix.mjs";
@@ -30,10 +36,16 @@ const args = parsePairs(process.argv.slice(2), [
   "output",
   "go",
   "cmake",
+  "preflight",
   "source-commit",
   "version",
 ]);
+assertNoUntrustedNativeBuildOverrides();
 const goToolchain = await verifyGoToolchain(path.resolve(args.go));
+const nativeBuildEnvironment = await createTrustedNativeBuildEnvironment({
+  preflightPath: args.preflight,
+  cmakePath: args.cmake,
+});
 if (
   !/^[a-f0-9]{40}$/.test(args["source-commit"]) ||
   !/^[0-9]+\.[0-9]+\.[0-9]+$/.test(args.version)
@@ -105,6 +117,15 @@ const work = await fs.mkdtemp(
   path.join(os.tmpdir(), "voice-provider-package-"),
 );
 const stage = path.join(work, "package");
+const trustedTools = await materializeTrustedToolDirectory(
+  nativeBuildEnvironment,
+  work,
+);
+const nativeBuildEnvironmentInput = path.join(
+  work,
+  "native-build-environment-v1.json",
+);
+await writeJson(nativeBuildEnvironmentInput, nativeBuildEnvironment);
 const builder = path.join(
   ROOT,
   "build/profile-builders",
@@ -122,12 +143,19 @@ try {
     path.resolve(args.inputs),
     "--stage",
     stage,
+    "--build-environment",
+    nativeBuildEnvironmentInput,
+    "--trusted-tools",
+    trustedTools,
   ];
-  if (providerDirectory === "chinese-funasr")
-    builderArgs.push("--cmake", path.resolve(args.cmake));
   await run(process.execPath, [builder, ...builderArgs], {
     cwd: ROOT,
     maxBuffer: 32 * 1024 * 1024,
+    env: trustedNativeBuildEnvironment(
+      nativeBuildEnvironment,
+      work,
+      trustedTools,
+    ),
   });
   await fs.mkdir(path.join(stage, "provider"), { recursive: true });
   await fs.mkdir(path.join(stage, "bin"), { recursive: true });
@@ -189,7 +217,15 @@ try {
       "--target",
       args.target,
     ],
-    { cwd: ROOT, maxBuffer: 32 * 1024 * 1024 },
+    {
+      cwd: ROOT,
+      maxBuffer: 32 * 1024 * 1024,
+      env: trustedNativeBuildEnvironment(
+        nativeBuildEnvironment,
+        work,
+        trustedTools,
+      ),
+    },
   );
   const modelDescriptor = await readJson(
     path.join(stage, "model/model-descriptor-v1.json"),
@@ -334,6 +370,8 @@ try {
   await fs.copyFile(inputManifestPath, preservedInputManifest);
   const preservedInputProvenance = `${path.resolve(args.output)}.provenance.json`;
   await fs.copyFile(inputProvenancePath, preservedInputProvenance);
+  const preservedNativeBuildEnvironment = `${path.resolve(args.output)}.build-environment.json`;
+  await writeJson(preservedNativeBuildEnvironment, nativeBuildEnvironment);
   const normalizerSha256 =
     providerDirectory === "chinese-funasr"
       ? await treeDigest(path.join(stage, "normalizer"))
@@ -349,6 +387,12 @@ try {
     buildInputProvenanceFileName: path.basename(preservedInputProvenance),
     buildInputProvenanceSha256: await shaFile(inputProvenancePath),
     buildInputRecipeSha256: inputProvenance.recipe.sha256,
+    nativeBuildEnvironmentFileName: path.basename(
+      preservedNativeBuildEnvironment,
+    ),
+    nativeBuildEnvironmentSha256: await shaFile(
+      preservedNativeBuildEnvironment,
+    ),
     releaseMatrixId: currentMatrix.value.matrixId,
     releaseMatrixSha256: currentMatrix.sha256,
     repositoryBuildLockSha256: repositoryLockSha256,

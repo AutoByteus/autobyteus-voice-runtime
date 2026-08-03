@@ -9,7 +9,13 @@ import {
   verifyPythonRuntimePolicy,
   writeEngineConfiguration,
 } from "./common.mjs";
-const args = parsePairs(process.argv.slice(2), ["target", "inputs", "stage"]);
+const args = parsePairs(process.argv.slice(2), [
+  "target",
+  "inputs",
+  "stage",
+  "build-environment",
+  "trusted-tools",
+]);
 const context = await prepare(args, "english-mlx");
 if (args.target !== "darwin-arm64")
   throw new Error("MLX is authorized only for darwin-arm64.");
