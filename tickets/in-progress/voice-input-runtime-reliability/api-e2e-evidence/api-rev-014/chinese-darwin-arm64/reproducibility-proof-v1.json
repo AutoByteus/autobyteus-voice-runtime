@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "sourceCommit": "57efa584b34f2b9a5eaba012c01f7e05228dffed",
+  "packageId": "voice.chinese.fun-asr-nano-0.6b-gguf-q8.darwin-arm64",
+  "buildInputManifestSha256": "1ff750b49bf89521e5d9b3e77e58aa3c3fe1f1bb644e73d20f1d0faedcb142e4",
+  "buildInputProvenanceSha256": "7156a756254e6604cf80f139090b3d4725a97644475bfdecbc1422254b0f45af",
+  "buildInputRecipeSha256": "bdac349ab81dc0bdc8b9a43c7dc57f16ea550f1d7facf0b36f666db0f204371d",
+  "releaseMatrixSha256": "c52b409cfe1cdcd8f104f4894b40134c6f78236198cb3aa1792fb5f97e6aa7f6",
+  "nativeBuildEnvironmentSha256": "f2ef8118aa25d43f3f517f1cd37dc0927f89e2ae6c9294aa025d25c1d001c995",
+  "archiveSha256": "aa785afb487b6a13cc22f2f14096b4c85c3c4c78f35e5e83b30631e11d398327",
+  "firstBuildReportSha256": "48cc89460f91185bd617c03e3b606c5c76cf9a53c8ced7b6525d154fe13133d7",
+  "secondBuildReportSha256": "48cc89460f91185bd617c03e3b606c5c76cf9a53c8ced7b6525d154fe13133d7"
+}

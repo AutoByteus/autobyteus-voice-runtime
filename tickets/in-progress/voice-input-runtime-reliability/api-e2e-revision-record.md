@@ -17,6 +17,7 @@
 | `API-REV-011` | Code Reviewer / `code-review-report.md` / `CRR-025`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-018`, `CRR-024`, `CRR-025` | `Fail / 97%`              | `Fail / 98%`                |
 | `API-REV-012` | Code Reviewer / `code-review-report.md` / `CRR-027`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-019`, `CRR-026`, `CRR-027` | `Fail / 98%`              | `Fail / 98%`                |
 | `API-REV-013` | Code Reviewer / `code-review-report.md` / `CRR-029`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-020`, `CRR-028`, `CRR-029` | `Fail / 98%`              | `Fail / 98%`                |
+| `API-REV-014` | Code Reviewer / `code-review-report.md` / `CRR-031`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-021`, `CRR-030`, `CRR-031` | `Fail / 98%`              | `Fail / 99%`                |
 
 ## Revision Entries
 
@@ -447,3 +448,43 @@ None.
 - New failure: `API-F-010`; prior `API-F-009` is directly resolved.
 - Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
 - Remaining proof after reviewed correction: exact Chinese double construction/reproducibility/package verification, 200-WAV inference/quality/normalization, exact 30/30/100/lifecycle/resource/compliance evidence; current-source English double build/full qualification; Qualification Set 2 and independently verified Branch Catalog Projection 2.
+
+### API-REV-014 — Chinese package and runtime function pass; quality authority and RSS gates fail
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-031`; API/E2E round 14.
+- Triggering scenarios: direct `API-F-010` recheck in `API-VOICE-004`, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-004`, `003`, `011`, and `012` while fail-closed gates pass.
+- Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-021`, `CRR-030`, `CRR-031`; delivery `N/A`.
+- Why recorded: the corrected strict C++ identity directly passes the actual resolved CMake/link/archive boundary, producing two byte-identical verified Chinese packages. The complete packaged runtime then succeeds on all 260 attempts, including all 200 WAVs, with full lifecycle/recovery/offline/relocation/no-mutation/compliance evidence. Functional Summary 2 nevertheless fails the approved quality-non-regression and process-tree RSS gates.
+- Coverage/durable test changes: none. English-v2 authority and API-VOICE-013 remain reusable after exact changed-byte validation; current-source English and aggregate evidence were not started after Chinese Fail.
+- Execution delta: focused strict native identity 11/11; full 80 top-level / 87 TAP Node and 7/7 Python plus compileall and all Go/source/schema/evidence checks; actual M1 Functional Preflight 2 Pass / loaded-host; exact inputs and 49/200 corpora Pass; Chinese double construction/verification/reproducibility/compliance Pass; complete Chinese 30 cold / 30 warm-preparation / 200 warm-quality run completed.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                                                     | Previous Classification           | Current Resolution                           | Evidence                                                                                                                      |
+| ------------------------------------------------------------------------------------------------- | --------------------------------- | -------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `API-F-010` / `CR-F-030` Xcode `clang++ -> clang` invocation semantics lost before final C++ link | Local Fix / implementation defect | Resolved / Pass at exact production boundary | both network-denied builds complete final C++ link and produce byte-identical verified archives at SHA-256 `aa785afb...98327` |
+| `API-F-009`, `API-F-008`, `API-F-007`                                                             | Resolved in prior rounds          | Reconfirmed / Pass                           | authenticated sed/ranlib and exact 3,149-record inputs complete the full native build                                         |
+
+#### New Findings
+
+- `API-F-011`; scenario/criteria: `API-VOICE-004`; `AC-007`, `AC-009`, `AC-017`, `AC-023`.
+  - Expected: complete 200-WAV inference passes absolute CER and `<=0.5`-point non-regression against the exact promoted baseline using one canonical scoring contract.
+  - Observed: current CER is `6.3468%` and passes the absolute 7% ceiling, but differs from baseline `5.2128%` by `+1.1340` points. Focused analysis shows 196/200 raw transcripts are byte-identical to promoted output; those identical transcripts gain 76 errors because the promoted baseline used NFKC + OpenCC `t2s` plus Han/ASCII-alphanumeric retention, while current qualification uses production `twp-to-cn` and a narrower punctuation-removal rule.
+  - Preliminary classification: `Design Impact / evidence-authority and scoring-contract mismatch`; no threshold, baseline, scorer, transcript, provider, or model was changed.
+- `API-F-012`; scenario/criteria: `API-VOICE-004`; `AC-003`, `AC-017`, `AC-023`.
+  - Expected: provider process-tree RSS `<=2,684,354,560` bytes (2.5 GiB).
+  - Observed: exact persistent packaged provider peaks at `3,949,543,424` bytes (3.678 GiB), `1,265,188,864` bytes above the gate, while completing `260/260` attempts with zero failure/timeout/deadline violations on the 64-GiB M1.
+  - Preliminary classification: `Design Impact or runtime resource implementation issue`; the user explicitly accepts this observation and prioritizes functionality, but API/E2E cannot silently revise the approved blocking contract.
+
+- Functional runtime facts: two byte-identical packages; package verification/reproducibility/compliance Pass; 260 started / 260 succeeded / 0 failed / 0 timed out / 0 excluded; all 200 WAVs transcribed; runtime conformance, relocation, offline, no mutation, recovery, license/privacy Pass; extracted size Pass.
+- Performance classification: `loaded-host-observation`; warm-preparation p95 `10.326 s` misses the `10 s` reference, while all other p95 references pass. This performance miss is non-blocking and independent of the functional fail.
+- Stop/reroute: fail closed after durable Chinese Summary/Assessment/attempt evidence. No retry, threshold change, baseline/scorer rewrite, provider/model substitution, current-source English run, QSet/projection, tag, release, or publication.
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/`
+- Prior result/confidence: `Fail / 98%`.
+- Current result/confidence: `Fail / 99%`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review. Likely reset owner is Solution Designer unless review identifies a bounded scorer or runtime-resource implementation defect.
+- Remaining proof after reviewed resolution: current-source English full package/profile qualification, then Qualification Set 2 and independently verified Branch Catalog Projection 2. Delivery-owned integrated-main/release work remains later.

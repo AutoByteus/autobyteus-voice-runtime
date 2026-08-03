@@ -1,0 +1,372 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-011",
+  "apiRevisionId": "API-REV-014",
+  "scenarioId": "API-VOICE-004",
+  "reviewedSourceCommit": "57efa584b34f2b9a5eaba012c01f7e05228dffed",
+  "current": {
+    "cer": 0.06346796234436684,
+    "errors": 418,
+    "units": 6586,
+    "sampleCount": 200,
+    "emptyCount": 0,
+    "failedCount": 0
+  },
+  "baseline": {
+    "cer": 0.052127659574468084,
+    "errors": 343,
+    "units": 6580,
+    "sampleCount": 200,
+    "id": "chinese-promoted-baseline-v1",
+    "promotedResultSha256": "84568c53e908e1538ab55b5aa046804e2e7444386225b791de11a148239f8b48"
+  },
+  "pairedUncertainty": {
+    "method": "paired-bootstrap-v1",
+    "repetitions": 10000,
+    "difference": 0.01134030276989876,
+    "lower95": 0.00702610491288521,
+    "upper95": 0.016451892628326817
+  },
+  "comparison": {
+    "worsenedClipCount": 40,
+    "improvedClipCount": 1,
+    "equalClipCount": 159,
+    "rawTextChangedCount": 4,
+    "netAdditionalErrors": 75,
+    "topRegressions": [
+      {
+        "clipId": "fleurs-zh-1789-r538",
+        "audioSha256": "e15558014ecd6969d59f7934a74b3fdf4d632a4952c4acf6c05fc32c4246e106",
+        "baselineErrors": 0,
+        "currentErrors": 10,
+        "deltaErrors": 10,
+        "baselineText": "其他提名包括最佳影片、最佳导演、最佳摄影、最佳服装设计、最佳电影剪辑、最佳原创配乐、最佳艺术指导、最佳音效剪辑、最佳混音和最佳原创剧本。",
+        "currentRawText": "其他提名包括最佳影片、最佳导演、最佳摄影、最佳服装设计、最佳电影剪辑、最佳原创配乐、最佳艺术指导、最佳音效剪辑、最佳混音和最佳原创剧本。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1832-r542",
+        "audioSha256": "dfe8b33f02f12cec542e8fe55e47cbc9c95c8237af68713796a691731f5e3a00",
+        "baselineErrors": 0,
+        "currentErrors": 9,
+        "deltaErrors": 9,
+        "baselineText": "流行的运动项目包括足球、篮球、排球、水球、击剑、橄榄球、自行车、冰球、轮滑、曲棍球和一级方程式赛车。",
+        "currentRawText": "流行的运动项目包括足球、篮球、排球、水球、击剑、橄榄球、自行车、冰球、轮滑、曲棍球和一级方程式赛车。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1732-r480",
+        "audioSha256": "25d8ec0d192060931dbce01e0a9af4c7810233136c3b2fa9e4f1561e0f22bdce",
+        "baselineErrors": 10,
+        "currentErrors": 15,
+        "deltaErrors": 5,
+        "baselineText": "事件发生的时代通常被称为欧洲史的中世纪盛世——吉德十一、十二和十三世纪时期（公元 1000 到 1300 年）。",
+        "currentRawText": "事件发生的时代通常被称为欧洲史的中世纪盛世——吉德十一、十二和十三世纪时期（公元 1000 到 1300 年）。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1794-r378",
+        "audioSha256": "c306263a7a445c0303a454965a27ff3d62ed5de4f3a5965b870eb3da9196d21b",
+        "baselineErrors": 2,
+        "currentErrors": 6,
+        "deltaErrors": 4,
+        "baselineText": "文明是一种由共同生活、工作、合作、工作的人群、社会所共享的单一文化。",
+        "currentRawText": "文明是一种由共同生活、工作、合作、工作的人群、社会所共享的单一文化。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1695-r137",
+        "audioSha256": "583920906662c58dd281e51b92c60eb624120f7be6478e0d0502c1cabe1b78c7",
+        "baselineErrors": 5,
+        "currentErrors": 7,
+        "deltaErrors": 2,
+        "baselineText": "palm oil是一种在夏天尤为流行的简单晚餐，面包搭配橄榄油、番茄，手上任何佐料都可加入，比如奶酪、金枪鱼等。",
+        "currentRawText": "palm oil是一种在夏天尤为流行的简单晚餐，面包搭配橄榄油、番茄，手上任何佐料都可加入，比如奶酪、金枪鱼等。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1705-r706",
+        "audioSha256": "65b069d69ecf6e4b80c54064d28cdbddb6b8e093a10c71cd18909de851f88dc9",
+        "baselineErrors": 2,
+        "currentErrors": 4,
+        "deltaErrors": 2,
+        "baselineText": "1940年8月15日，盟军攻入法国南部，这次行动被称为“龙骑兵行动”。",
+        "currentRawText": "1940年8月15日，盟军攻入法国南部，这次行动被称为“龙骑兵行动”。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1708-r110",
+        "audioSha256": "a85700ee19a901fc89635ac9df010990f805cf7acc1485421f4a31623ff204c6",
+        "baselineErrors": 20,
+        "currentErrors": 22,
+        "deltaErrors": 2,
+        "baselineText": "胡纳已经辞职，他在内阁中的位置将由国会议员艾德·戴维接替，预计国会议员诺曼·拉姆将接替艾维空出的商务部长一职。",
+        "currentRawText": "胡纳已经辞职，他在内阁中的位置将由国会议员艾德·戴维接替，预计国会议员诺曼·拉姆将接替艾维空出的商务部长一职。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1723-r47",
+        "audioSha256": "c2ba48e500a781518c0b9d43d0bbb0bfd5395f22deea771bb67a035a3685cec6",
+        "baselineErrors": 0,
+        "currentErrors": 2,
+        "deltaErrors": 2,
+        "baselineText": "该海湾曾在 1889 年发生过一场臭名昭著的海军对峙，当时来自德国、美国和英国的七艘舰船拒绝驶离这个海湾。",
+        "currentRawText": "该海湾曾在 1889 年发生过一场臭名昭著的海军对峙，当时来自德国、美国和英国的七艘舰船拒绝驶离这个海湾。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1780-r179",
+        "audioSha256": "a22c24fd440e0d7edc8ae8559498a1c38b6e8ed7272d657c449e596943b159a5",
+        "baselineErrors": 0,
+        "currentErrors": 2,
+        "deltaErrors": 2,
+        "baselineText": "在昆达里尼瑜伽中，昆达里尼能量启迪能量，通过瑜伽姿势、呼吸练习、念语和视觉形象被唤醒。",
+        "currentRawText": "在昆达里尼瑜伽中，昆达里尼能量启迪能量，通过瑜伽姿势、呼吸练习、念语和视觉形象被唤醒。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1783-r844",
+        "audioSha256": "58a8bba9b192a46830f666cecd9e01e4876df31d9b095c5fcea7c63e56e6b90a",
+        "baselineErrors": 1,
+        "currentErrors": 3,
+        "deltaErrors": 2,
+        "baselineText": "区域性和季节性的恶劣天气现象包括暴风雪、雪暴、沙暴和沙尘暴等。",
+        "currentRawText": "区域性和季节性的恶劣天气现象包括暴风雪、雪暴、沙暴和沙尘暴等。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1785-r578",
+        "audioSha256": "2c909cde3f8571972b7e9b13a3c87b39d0309ae8d61cad1410c342b773f535c4",
+        "baselineErrors": 0,
+        "currentErrors": 2,
+        "deltaErrors": 2,
+        "baselineText": "支架式教学不是一种学习方法，而是一种辅助刚学习使用新电脑程序或启动新项目的人的手段。",
+        "currentRawText": "支架式教学不是一种学习方法，而是一种辅助刚学习使用新电脑程序或启动新项目的人的手段。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1856-r309",
+        "audioSha256": "c6fe6a6a06c2c71cf819186b8fe3e063cd4de747f9c43b9e1b786b28cd7d1c69",
+        "baselineErrors": 1,
+        "currentErrors": 3,
+        "deltaErrors": 2,
+        "baselineText": "芬兰是绝佳的帆船运动胜地，素有“千湖之乡”的美誉，在其湖泊和沿海群岛范围内也含有数千座岛屿。",
+        "currentRawText": "芬兰是绝佳的帆船运动胜地，素有“千湖之乡”的美誉，在其湖泊和沿海群岛范围内也含有数千座岛屿。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1918-r557",
+        "audioSha256": "32086bde2f8c1374745fe9546b62f0461ed1257011fffc33712a489acbec31c4",
+        "baselineErrors": 10,
+        "currentErrors": 12,
+        "deltaErrors": 2,
+        "baselineText": "孙德尔本斯已经被联合国教科文组织宣布为世界遗产。印度境内的这部分森林被称为“孙德尔本斯国家公园”。",
+        "currentRawText": "孙德尔本斯已经被联合国教科文组织宣布为世界遗产。印度境内的这部分森林被称为“孙德尔本斯国家公园”。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1925-r589",
+        "audioSha256": "df8b9460715d8ff8d2780ac6bf752bd3c1eca680dec08cbab382d20bbe5314f7",
+        "baselineErrors": 0,
+        "currentErrors": 2,
+        "deltaErrors": 2,
+        "baselineText": "完成的工作大多是理论性的，但编写程序的目的是为了模拟对人马座星系的观测。",
+        "currentRawText": "完成的工作大多是理论性的，但编写程序的目的是为了模拟对人马座星系的观测。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1969-r878",
+        "audioSha256": "499911a9715c3a239ac1593c53f6a867dea16a8b91658e94775a5c4c9fe1d716",
+        "baselineErrors": 2,
+        "currentErrors": 4,
+        "deltaErrors": 2,
+        "baselineText": "它指出，对主体来说最有效的位置是将图像垂直和水平分成三部分的线的交叉点——见实例。",
+        "currentRawText": "它指出，对主体来说最有效的位置是将图像垂直和水平分成三部分的线的交叉点——见实例。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1970-r174",
+        "audioSha256": "54af8bdd2fdc6866173f4e48be1c3c38b5561f996c33f7be9f00cefc9782a872",
+        "baselineErrors": 0,
+        "currentErrors": 2,
+        "deltaErrors": 2,
+        "baselineText": "它的舌头有可能是分叉的，对此我们尚不确定。它的食物包括海龟、大型鱼类、其他沧龙，甚至会吃人。",
+        "currentRawText": "它的舌头有可能是分叉的，对此我们尚不确定。它的食物包括海龟、大型鱼类、其他沧龙，甚至会吃人。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1660-r235",
+        "audioSha256": "f24a03299a08b700c7096fdb5f9c9debaf35cad48f04d343126dcc84c9e7f865",
+        "baselineErrors": 1,
+        "currentErrors": 2,
+        "deltaErrors": 1,
+        "baselineText": "浪漫主义具有很强的文化决定论色彩，这源于歌德、费希特和施莱德格尔等作家。",
+        "currentRawText": "浪漫主义具有很强的文化决定论色彩，这源于歌德、费希特和施莱德格尔等作家。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1669-r209",
+        "audioSha256": "a02535bfccb92518cd7fb99eed110cba27f88700abedf1567a56ddc26eaacd52",
+        "baselineErrors": 0,
+        "currentErrors": 1,
+        "deltaErrors": 1,
+        "baselineText": "警察局长钱德拉·谢卡尔索兰基说，被告人出庭时都蒙住了脸。",
+        "currentRawText": "警察局长钱德拉·谢卡尔索兰基说，被告人出庭时都蒙住了脸。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1674-r822",
+        "audioSha256": "6535cc4d543d436bcfd77ffd4258f8122110a353bc1b5fab7727afab2a8a9ee6",
+        "baselineErrors": 0,
+        "currentErrors": 1,
+        "deltaErrors": 1,
+        "baselineText": "在某些地区，水煮一分钟就足够了；在其他地区，则需要几分钟的时间。",
+        "currentRawText": "在某些地区，水煮一分钟就足够了；在其他地区，则需要几分钟的时间。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1694-r101",
+        "audioSha256": "6aa400b32df56b1bf2e4a5e0da55e1b7e6591899b296def1b7a63406027b0c4f",
+        "baselineErrors": 1,
+        "currentErrors": 2,
+        "deltaErrors": 1,
+        "baselineText": "孩子们因为各种原因被寄养，原因有被忽视、被虐待，甚至被勒索。",
+        "currentRawText": "孩子们因为各种原因被寄养，原因有被忽视、被虐待，甚至被勒索。",
+        "rawTextChanged": false
+      }
+    ],
+    "topImprovements": [
+      {
+        "clipId": "fleurs-zh-1712-r31",
+        "audioSha256": "9022a7a6e4207a6e2712e11c490247b1d86bea00b73a746d62cfb25e9f09ca9f",
+        "baselineErrors": 4,
+        "currentErrors": 3,
+        "deltaErrors": -1,
+        "baselineText": "自 1966 年以来，孙德尔本斯一直是野生动物保护区。据估计，目前该区生活着 400 只皇家孟加拉虎和大约 3 0000 只梅花鹿。",
+        "currentRawText": "自 1966 年以来，孙德尔本斯一直是野生动物保护区。据估计，目前该区生活着 400 只皇家孟加拉虎和大约 3 0 0 0 只梅花鹿。",
+        "rawTextChanged": true
+      },
+      {
+        "clipId": "fleurs-zh-1662-r188",
+        "audioSha256": "c57cd9818f7dcdf0de80e37150c13be5e5b0b8c20ff817cf2ea3181a74752a1a",
+        "baselineErrors": 0,
+        "currentErrors": 0,
+        "deltaErrors": 0,
+        "baselineText": "合金基本上由两种或以上金属混合而成，不要忘记一点，元素周期表上有很多元素。",
+        "currentRawText": "合金基本上由两种或以上金属混合而成，不要忘记一点，元素周期表上有很多元素。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1662-r318",
+        "audioSha256": "9eac0d4cab9c610abc5a0fa94e8332f84d20fb46103489615c33da7a5792f0d8",
+        "baselineErrors": 0,
+        "currentErrors": 0,
+        "deltaErrors": 0,
+        "baselineText": "合金基本上由两种或以上金属混合而成，不要忘记一点元素周期表上有很多元素。",
+        "currentRawText": "合金基本上由两种或以上金属混合而成，不要忘记一点元素周期表上有很多元素。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1664-r683",
+        "audioSha256": "d286ef47a4c97aa6f27d0e2dd94ef31d183390005ff446e621c91fcb566fda7d",
+        "baselineErrors": 0,
+        "currentErrors": 0,
+        "deltaErrors": 0,
+        "baselineText": "搅动两种干粉使其混合，然后用干净的湿手把它们揉成一个球。",
+        "currentRawText": "搅动两种干粉使其混合，然后用干净的湿手把它们揉成一个球。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1666-r790",
+        "audioSha256": "42ade59209eac28fab40913dc92f7ea11be6327b03749300a9f9a2a75f54e178",
+        "baselineErrors": 1,
+        "currentErrors": 1,
+        "deltaErrors": 0,
+        "baselineText": "你也可以咨询除贵国以外其他政府的建议，但是他们的建议是为他们的公民而制定的。",
+        "currentRawText": "你也可以咨询除贵国以外其他政府的建议，但是他们的建议是为他们的公民而制定的。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1667-r491",
+        "audioSha256": "06d9bb4fb8ca1313b78721744a8ea1e26e5ceb9e50734302c71367b8a9f17076",
+        "baselineErrors": 1,
+        "currentErrors": 1,
+        "deltaErrors": 0,
+        "baselineText": "一般来说，当管理者开始领导过去的同时时，会出现两种行为。一种情况是他们会努力与团队成员保持亲密关系。",
+        "currentRawText": "一般来说，当管理者开始领导过去的同时时，会出现两种行为。一种情况是他们会努力与团队成员保持亲密关系。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1671-r707",
+        "audioSha256": "61db21f5d4e61e5b110a032f209d092d451e21a1fbb96f27b903c8c3b19a26c6",
+        "baselineErrors": 1,
+        "currentErrors": 1,
+        "deltaErrors": 0,
+        "baselineText": "国会从 2005 年开始资助该扫黄倡议，并规定联邦调查局 FBI 必须指派 10 名探员专门打击成人色情。",
+        "currentRawText": "国会从 2005 年开始资助该扫黄倡议，并规定联邦调查局 FBI 必须指派 10 名探员专门打击成人色情。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1673-r776",
+        "audioSha256": "f2b6236e64ae75602643d7e2732f4b9b17fd4ce641d60e11da6cd6e1996228bb",
+        "baselineErrors": 2,
+        "currentErrors": 2,
+        "deltaErrors": 0,
+        "baselineText": "在独立战争期间，十三个州根据联邦条例组成了弱小的中央政府，国会是其唯一的组成部分。",
+        "currentRawText": "在独立战争期间，十三个州根据联邦条例组成了弱小的中央政府，国会是其唯一的组成部分。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1676-r434",
+        "audioSha256": "94e22533c409aa587ace6019bc858f4385674897ed1e90a8f5a7cb4b8b3712d0",
+        "baselineErrors": 1,
+        "currentErrors": 1,
+        "deltaErrors": 0,
+        "baselineText": "和所有南非国家公园一样，该公园每天都收取养护费和门票费。",
+        "currentRawText": "和所有南非国家公园一样，该公园每天都收取养护费和门票费。",
+        "rawTextChanged": false
+      },
+      {
+        "clipId": "fleurs-zh-1679-r333",
+        "audioSha256": "751173590f690519010a63648586c791249673552ee98e8941157e95db021e1e",
+        "baselineErrors": 0,
+        "currentErrors": 0,
+        "deltaErrors": 0,
+        "baselineText": "空中铁匠乐队已经取消了他们巡回演唱会的剩余场次。",
+        "currentRawText": "空中铁匠乐队已经取消了他们巡回演唱会的剩余场次。",
+        "rawTextChanged": false
+      }
+    ],
+    "sameRawTranscriptCount": 196,
+    "changedRawTranscriptCount": 4,
+    "sameTranscriptErrorDelta": {
+      "baselineErrors": 334,
+      "currentErrors": 410,
+      "netAdditionalErrors": 76
+    },
+    "changedTranscriptErrorDelta": {
+      "baselineErrors": 9,
+      "currentErrors": 8,
+      "netAdditionalErrors": -1
+    }
+  },
+  "functionalBoundary": {
+    "attemptsStarted": 260,
+    "attemptsSucceeded": 260,
+    "deadlineViolations": 0,
+    "runtimeConformancePass": true,
+    "relocation": true,
+    "offline": true,
+    "noPackageMutation": true,
+    "recovery": true,
+    "licenseApproved": true
+  },
+  "performance": {
+    "classification": "loaded-host-observation",
+    "warmPreparationP95Ms": 10326.481207999983,
+    "warmPreparationReferenceMet": false
+  },
+  "preliminaryClassification": "Design Impact / quality evidence-authority and scoring-contract mismatch; focused failure-origin review required",
+  "stopPolicy": "Fail closed after completed retained Chinese qualification; no retry, threshold relaxation, alternate provider/model, transcript mutation, baseline rewrite, English/QSet/projection, or release action.",
+  "preliminaryOrigin": "The promoted Chinese baseline was scored with OpenCC t2s plus all-punctuation removal, while current qualification uses production twp-to-cn phrase conversion and removes only a narrow punctuation set. 196/200 raw transcripts are byte-identical to the promoted result but gain 76 errors under the mismatched current scoring contract."
+}

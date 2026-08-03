@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-012",
+  "apiRevisionId": "API-REV-014",
+  "scenarioId": "API-VOICE-004",
+  "acceptanceCriteria": ["AC-003", "AC-017", "AC-023"],
+  "reviewedSourceCommit": "57efa584b34f2b9a5eaba012c01f7e05228dffed",
+  "expected": {
+    "processTreeRssLimitBytes": 2684354560,
+    "processTreeRssLimitGiB": 2.5,
+    "blockingUnderCurrentRequirements": true
+  },
+  "observed": {
+    "maxProcessTreeRssBytes": 3949543424,
+    "maxProcessTreeRssGiB": 3.6782989501953125,
+    "excessBytes": 1265188864,
+    "limitRatio": 1.471319580078125,
+    "fractionOf64GiBHostMemory": 0.05747342109680176,
+    "attemptsStarted": 260,
+    "attemptsSucceeded": 260,
+    "attemptsFailed": 0,
+    "attemptsTimedOut": 0,
+    "hardDeadlineViolations": 0
+  },
+  "package": {
+    "archiveSha256": "aa785afb487b6a13cc22f2f14096b4c85c3c4c78f35e5e83b30631e11d398327",
+    "compressedSizeBytes": 1068524718,
+    "extractedSizeBytes": 1285163526,
+    "extractedSizeLimitBytes": 1342177280,
+    "sizeGatePassed": true
+  },
+  "performanceEnvironment": "loaded-host-observation",
+  "functionalBoundary": {
+    "allRuntimeAttemptsSucceeded": true,
+    "full200WavCorpusCompleted": true,
+    "runtimeConformancePassed": true,
+    "relocationPassed": true,
+    "offlinePassed": true,
+    "noPackageMutationPassed": true,
+    "recoveryPassed": true,
+    "licenseApproved": true
+  },
+  "preliminaryClassification": "Design Impact or runtime resource implementation issue; focused failure-origin review required",
+  "preliminaryOrigin": "The approved 2.5-GiB blocking budget was derived from approximately 2.08-GB isolated Fun-ASR observations, but the exact persistent packaged process measured 3.678 GiB while successfully completing all 260 attempts. The current 64-GiB host has capacity, and the user explicitly prioritizes functionality and accepts this observation, but API/E2E cannot unilaterally change the approved blocking requirement.",
+  "stopPolicy": "Fail closed under the current requirement; no threshold change, measurement omission, provider/model substitution, retry, English/QSet/projection, or release action."
+}

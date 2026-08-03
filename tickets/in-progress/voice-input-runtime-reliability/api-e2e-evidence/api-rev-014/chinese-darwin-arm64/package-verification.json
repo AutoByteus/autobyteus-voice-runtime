@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "packageId": "voice.chinese.fun-asr-nano-0.6b-gguf-q8.darwin-arm64",
+  "archiveSha256": "aa785afb487b6a13cc22f2f14096b4c85c3c4c78f35e5e83b30631e11d398327",
+  "descriptorSha256": "29d27d0fd91f3dfce6ea1b41fb2a5646325d71cc74b408d08626334978efcdb3",
+  "fileManifestSha256": "e6b85a181e7be067ed54cb6d4d3b991000e7b2943fa52fa83b137383da78095e",
+  "extractedSizeBytes": 1285163526,
+  "entryCount": 21,
+  "modesVerified": true,
+  "descriptorSchemaValid": true,
+  "packageReadOnly": true
+}
