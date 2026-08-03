@@ -1,0 +1,8 @@
+checkedAt=2026-08-03T15:08:13Z
+owned caffeinate PID:
+32278
+caffeinateStillPresent=false
+actual power:
+Now drawing from 'Battery Power'
+ -InternalBattery-0 (id=21692515)	100%; discharging; 4:09 remaining present: true
+task-owned process scan:

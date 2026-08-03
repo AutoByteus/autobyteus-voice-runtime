@@ -1,0 +1,114 @@
+{
+  "schema": "api-voice-authority-reuse-v1",
+  "apiRevision": "API-REV-007",
+  "priorRevision": "API-REV-006",
+  "priorReviewedSourceCommit": "fda4a3bc482c2452b6842644d62dfb062ad8339c",
+  "reviewedSourceCommit": "24a994a51256f0eef5840ecdc977febec71ea491",
+  "gitDiffNameStatus": [],
+  "allRelevantPathsUnchanged": true,
+  "workingTreeMatchesReviewedSource": true,
+  "apiVoice002ReuseDecision": "reusable only for exact English-v2 authority/corpus/baseline proof",
+  "apiVoice013ReuseDecision": "reusable; durable production-validator test and owner bytes unchanged",
+  "durableCoverageChangeThisRound": false,
+  "files": [
+    {
+      "path": "benchmark/baseline/english-preservation-authority.mjs",
+      "size": 6214,
+      "workingTreeSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "previousSourceSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "reviewedSourceSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "benchmark/baseline/trusted-baseline.mjs",
+      "size": 7196,
+      "workingTreeSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "previousSourceSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "reviewedSourceSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "benchmark/corpus/validate-corpus.mjs",
+      "size": 1921,
+      "workingTreeSha256": "d8700e103e8295eb970d24299c8d1f5df671089071fb21d1847c867d3cd3557c",
+      "previousSourceSha256": "d8700e103e8295eb970d24299c8d1f5df671089071fb21d1847c867d3cd3557c",
+      "reviewedSourceSha256": "d8700e103e8295eb970d24299c8d1f5df671089071fb21d1847c867d3cd3557c",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/authority.json",
+      "size": 5791,
+      "workingTreeSha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8",
+      "previousSourceSha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8",
+      "reviewedSourceSha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/controlled-mlx-fp16-en-unique-v2.json",
+      "size": 104292,
+      "workingTreeSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "previousSourceSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "reviewedSourceSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/derive_english_preservation_v2.py",
+      "size": 19544,
+      "workingTreeSha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49",
+      "previousSourceSha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49",
+      "reviewedSourceSha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/quality-mlx-en-unique-v2.json",
+      "size": 38132,
+      "workingTreeSha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "previousSourceSha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "reviewedSourceSha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "release/evidence/baselines/english-v2.json",
+      "size": 8932,
+      "workingTreeSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "previousSourceSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "reviewedSourceSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "release/evidence/qualification-corpora/english-v2.json",
+      "size": 20750,
+      "workingTreeSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "previousSourceSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "reviewedSourceSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "tests/release/trusted-baseline.test.mjs",
+      "size": 8237,
+      "workingTreeSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "previousSourceSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "reviewedSourceSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    },
+    {
+      "path": "tooling/verify-english-preservation.mjs",
+      "size": 549,
+      "workingTreeSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "previousSourceSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "reviewedSourceSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "unchangedPreviousToReviewed": true,
+      "workingTreeMatchesReviewedSource": true
+    }
+  ]
+}

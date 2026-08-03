@@ -10,6 +10,7 @@
 | `API-REV-004` | Code Reviewer / `code-review-report.md` / `CRR-013` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-011`, `CRR-013` | `Fail / 79%` | `Blocked / 82%` |
 | `API-REV-005` | Code Reviewer / `code-review-report.md` / `CRR-015` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-013`, `CRR-015` | `Blocked / 82%` | `Fail / 87%` |
 | `API-REV-006` | Code Reviewer / `code-review-report.md` / `CRR-017` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-014`, `CRR-017` | `Fail / 87%` | `Fail / 89%` |
+| `API-REV-007` | Code Reviewer / `code-review-report.md` / `CRR-019` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019` | `Fail / 89%` | `Blocked / 86%` |
 
 ## Revision Entries
 
@@ -190,3 +191,30 @@ None.
 - Current result/confidence: `Fail / 89%`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review.
 - Remaining proof after reviewed correction: both package builds/reproducibility, real 49/200 inference/quality, lifecycle/recovery/offline/read-only/no-mutation, exact 30/30/100 resource/performance evidence, compliance/privacy, Qualification Set 2, Branch Catalog Projection 2, and independent verification.
+
+### API-REV-007 — Corrected Python source passes; actual M1 is not connected to AC
+
+- Trigger: Code Reviewer `CRR-019`; API/E2E round 7; reviewed source `24a994a51256f0eef5840ecdc977febec71ea491` (`IR-015`) against `SR-010`/`SR-011` and `ARCH-REV-012`.
+- Scenarios: repository validation and reusable `API-VOICE-002`/`013`, then shared actual-host preflight for `API-VOICE-003`/`004` before `API-F-003` package recheck.
+- Why recorded: exact authority and current source coverage passed, but production Functional Preflight 2 observed `acConnected=false` and stopped fail-closed. Independent `pmset` evidence says the Mac is drawing from Battery Power at 100% and discharging. No package work started.
+- Durable coverage changes: none.
+- Execution delta: focused 24/24 TAP; full 69 top-level / 76 TAP Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; actual M1 preflight Blocked before tool/sandbox/purge/load capture.
+
+#### Prior Failure Resolution
+
+| Prior Failure | Previous Classification | Current Resolution | Evidence |
+| --- | --- | --- | --- |
+| `API-F-003` / `CR-F-023` Python archive links rejected | Local Fix / implementation defect | Source-reviewed resolved, but runtime recheck not executed after environmental block | CRR-019 and current repository suites only; no API package claim |
+| `API-F-002` / `CR-F-022` sudo inside Seatbelt | Resolved in API-REV-006 | Not re-executed this blocked round; source remains unchanged in relevant boundary except the reviewed Python fix | current source review |
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/`
+- Prior result/confidence: `Fail / 89%`.
+- Current result/confidence: `Blocked / 86%`.
+- New failure IDs: none.
+- Exact blocker: designated M1 reports Battery Power, `acConnected=false`.
+- Recommended recipient: user request only; no teammate handoff while Blocked.
+- Resume: connect the M1 Mac to AC power, keep it connected, confirm readiness, and open the next API revision with production Functional Preflight 2 before package construction.

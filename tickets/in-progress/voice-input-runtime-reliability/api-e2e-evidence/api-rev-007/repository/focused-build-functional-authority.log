@@ -1,0 +1,155 @@
+TAP version 13
+# Subtest: the exact locked topology becomes a closed relocatable reproducible tree
+ok 1 - the exact locked topology becomes a closed relocatable reproducible tree
+  ---
+  duration_ms: 83.353083
+  type: 'test'
+  ...
+# Subtest: unsafe, incomplete, and unexpected archive entries fail closed
+    # Subtest: absolute link
+    ok 1 - absolute link
+      ---
+      duration_ms: 10.196166
+      type: 'test'
+      ...
+    # Subtest: escaping link
+    ok 2 - escaping link
+      ---
+      duration_ms: 10.430334
+      type: 'test'
+      ...
+    # Subtest: dangling link
+    ok 3 - dangling link
+      ---
+      duration_ms: 10.01675
+      type: 'test'
+      ...
+    # Subtest: cyclic link
+    ok 4 - cyclic link
+      ---
+      duration_ms: 38.377625
+      type: 'test'
+      ...
+    # Subtest: unexpected link
+    ok 5 - unexpected link
+      ---
+      duration_ms: 86.688833
+      type: 'test'
+      ...
+    # Subtest: missing approved link
+    ok 6 - missing approved link
+      ---
+      duration_ms: 11.958125
+      type: 'test'
+      ...
+    # Subtest: special entry
+    ok 7 - special entry
+      ---
+      duration_ms: 14.323209
+      type: 'test'
+      ...
+    1..7
+ok 2 - unsafe, incomplete, and unexpected archive entries fail closed
+  ---
+  duration_ms: 183.916333
+  type: 'test'
+  ...
+# Subtest: native build overrides are rejected case-insensitively before use
+ok 3 - native build overrides are rejected case-insensitively before use
+  ---
+  duration_ms: 0.950458
+  type: 'test'
+  ...
+# Subtest: the production environment owner accepts the preflight CMake symlink
+ok 4 - the production environment owner accepts the preflight CMake symlink
+  ---
+  duration_ms: 301.600167
+  type: 'test'
+  ...
+# Subtest: the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn
+ok 5 - the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn
+  ---
+  duration_ms: 621.996959
+  type: 'test'
+  ...
+# Subtest: the trusted PATH is closed and rechecks every selected tool
+ok 6 - the trusted PATH is closed and rechecks every selected tool
+  ---
+  duration_ms: 13.02675
+  type: 'test'
+  ...
+# Subtest: trusted executable bytes and explicit CMake configuration are bound
+ok 7 - trusted executable bytes and explicit CMake configuration are bound
+  ---
+  duration_ms: 1.913958
+  type: 'test'
+  ...
+# Subtest: resolved CMake selection must match the bound environment
+ok 8 - resolved CMake selection must match the bound environment
+  ---
+  duration_ms: 1.524333
+  type: 'test'
+  ...
+# Subtest: every current package builder consumes the trusted owner
+ok 9 - every current package builder consumes the trusted owner
+  ---
+  duration_ms: 1.0175
+  type: 'test'
+  ...
+# Subtest: a post-attempt functional breach controls ledger, profile exit, and retained QSet
+ok 10 - a post-attempt functional breach controls ledger, profile exit, and retained QSet
+  ---
+  duration_ms: 645.477084
+  type: 'test'
+  ...
+# Subtest: the non-root preflight identifies execute-only sudo without reading it
+ok 11 - the non-root preflight identifies execute-only sudo without reading it
+  ---
+  duration_ms: 32.879292
+  type: 'test'
+  ...
+# Subtest: repository-owned baseline rejects wrong digest and semantic identities
+ok 12 - repository-owned baseline rejects wrong digest and semantic identities
+  ---
+  duration_ms: 26.958958
+  type: 'test'
+  ...
+# Subtest: English v2 authority replaces invalid final v1 files without changing the trust boundary
+ok 13 - English v2 authority replaces invalid final v1 files without changing the trust boundary
+  ---
+  duration_ms: 9.958042
+  type: 'test'
+  ...
+# Subtest: checked-in corpus and baseline require 49 unique one-to-one identities
+ok 14 - checked-in corpus and baseline require 49 unique one-to-one identities
+  ---
+  duration_ms: 1.5845
+  type: 'test'
+  ...
+# Subtest: production corpus validator covers the English-v2 manifest shape and rejects duplicate identities
+ok 15 - production corpus validator covers the English-v2 manifest shape and rejects duplicate identities
+  ---
+  duration_ms: 251.888542
+  type: 'test'
+  ...
+# Subtest: English v2 authority rejects changed immutable source bytes
+ok 16 - English v2 authority rejects changed immutable source bytes
+  ---
+  duration_ms: 23.390625
+  type: 'test'
+  ...
+# Subtest: English v2 reproduction rejects changed generated authority when five other outputs match
+ok 17 - English v2 reproduction rejects changed generated authority when five other outputs match
+  ---
+  duration_ms: 10.82925
+  type: 'test'
+  ...
+1..17
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1119.248

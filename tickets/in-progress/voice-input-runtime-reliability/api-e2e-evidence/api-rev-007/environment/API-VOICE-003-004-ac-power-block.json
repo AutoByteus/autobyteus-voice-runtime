@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "apiRevision": "API-REV-007",
+  "scenarioIds": [
+    "API-VOICE-003",
+    "API-VOICE-004"
+  ],
+  "acceptanceCriteria": [
+    "AC-020"
+  ],
+  "result": "blocked",
+  "classification": "environment-dependency",
+  "sourceCommit": "24a994a51256f0eef5840ecdc977febec71ea491",
+  "observedAt": "2026-08-03T15:07:52.030Z",
+  "expected": "Functional Preflight 2 observes AC power before package construction.",
+  "observed": {
+    "failureCategory": "runner-power-or-pressure",
+    "acConnected": false,
+    "pmsetBattery": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=21692515)\t100%; discharging; 4:09 remaining present: true",
+    "preflightSha256": "491bad8d2c718ebcbe3dad68300e2bf031aad922635e60e82706099a55639748"
+  },
+  "priorFailureRecheck": {
+    "API-F-003": "not-executed-after-preflight-block",
+    "API-F-002": "source-reviewed-resolved-but-not-reexecuted-this-round"
+  },
+  "downstreamDisposition": {
+    "inputs": "not-materialized-in-api-rev-007",
+    "englishBuild": "not-tested-after-blocked",
+    "chineseBuild": "not-tested-after-blocked",
+    "inferenceAndPerformance": "not-tested-after-blocked",
+    "aggregate": "not-tested-after-blocked"
+  },
+  "workaroundUsed": false,
+  "releaseActionUsed": false,
+  "resumeAction": "Connect the designated MacBookPro18,4 M1 Max to AC power, keep it connected, and confirm readiness; rerun production Functional Preflight 2 first."
+}
