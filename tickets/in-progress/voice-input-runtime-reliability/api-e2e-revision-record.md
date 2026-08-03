@@ -6,6 +6,7 @@
 | --- | --- | --- | --- | --- |
 | `API-REV-001` | Code Reviewer / `code-review-report.md` / `CRR-005` | `SR-006`, `ARCH-REV-007`, `IR-005`, `CRR-005` | `N/A` | `Fail / 65%` |
 | `API-REV-002` | Code Reviewer / `code-review-report.md` / `CRR-008` | `SR-007`, `ARCH-REV-008`, `IR-007`, `CRR-008` | `Fail / 65%` | `Blocked / 78%` |
+| `API-REV-003` | Code Reviewer / `code-review-report.md` / `CRR-011` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-010`, `CRR-011` | `Blocked / 78%` | `Fail / 79%` |
 
 ## Revision Entries
 
@@ -61,3 +62,31 @@ None.
 - New or remaining failure IDs: None. `API-VOICE-003`–`API-VOICE-012` remain Blocked execution dependencies.
 - Recommended recipient: User request. No teammate routing while Blocked.
 - Remaining risks, blocked evidence, or untested scope: complete eight-package reproducibility and actual-target qualification; real MLX/faster-whisper/Fun-ASR inference/lifecycle/recovery; M1 30 cold / 30 warm-preparation / 100 warm-request latency, RSS, and size; actual Linux/Windows behavior; authoritative notice/license/offline/privacy audits; aggregate release-evidence recomputation.
+
+### API-REV-003 — Actual M1 preflight rejects healthy no-warning output
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-011`; API/E2E round 3.
+- Triggering scenarios: reusable `API-VOICE-002`/`013`, then complete current-matrix `API-VOICE-003`, `004`, `011`, and `012`.
+- Related upstream revisions: `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-008`–`IR-010`, `CRR-009`–`CRR-011`.
+- Why this revision was recorded: the user-approved matrix is now exactly two darwin-arm64 packages. Current source/authority coverage passed, but the mandatory actual M1 production preflight exposed `API-F-001`: its thermal regex matches the word `warning` inside normal “No ... warning ... recorded” output and marks a healthy output shape abnormal. Downstream package work stopped fail-closed.
+- Coverage/durable test changes: none. `API-VOICE-002` and accepted durable `API-VOICE-013` were reused only after an empty exact relevant-byte diff and working-tree/source digest match.
+- Scenario delta: `API-VOICE-001`, `002`, and `013` Pass; the shared preflight for `003`/`004` Fail; package portions of `003`/`004` and `011`/`012` are Not Tested after Fail; `005`–`010` are Deferred / Outside Current Release Matrix.
+- Execution delta: Node 22.23.1; official Go 1.26.5 darwin/arm64; focused 6/6; full 57/57 Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; actual MacBookPro18,4 M1 Max / 64 GiB production preflight with owned `caffeinate`; focused actual `pmset` and purge probes.
+
+#### Prior Failure Resolution
+
+| Prior Scenario / Failure Reference | Previous Classification | Current Resolution | Evidence |
+| --- | --- | --- | --- |
+| `API-REV-002` eight-target environment blocker | Blocked | Scope superseded prospectively, not retroactively: six non-arm64 rows are now Deferred / Outside Current Release Matrix; current pass requires only the two M1 packages | approved `current-platform-qualification.md` |
+| `API-VOICE-002` / `API-VOICE-013` reuse authority | Passed boundary, reuse conditional on unchanged bytes | Confirmed unchanged and reusable | `api-e2e-evidence/api-rev-003/repository/API-VOICE-002-013-authority-reuse.json` |
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/`
+- Prior result/confidence: `Blocked / 78%`.
+- Current result/confidence: `Fail / 79%`.
+- New failure: `API-F-001` — actual healthy `pmset -g therm` output is misparsed by production preflight.
+- Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary `Local Fix` candidate for Implementation Engineer.
+- Remaining risks/prerequisites: after reviewed source correction, the host must be connected to AC and must pass exact noninteractive `/usr/bin/sudo -n /usr/sbin/purge`; then the full two-package build/inference/lifecycle/30/30/100/compliance/QSet/projection matrix must run. No package, model, tag, publication, or release action ran in this revision.

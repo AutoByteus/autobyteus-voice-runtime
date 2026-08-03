@@ -11,6 +11,7 @@
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/english-preservation-correction.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/current-platform-qualification.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/voice-runtime-contract.md`
 - Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
 - Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
@@ -19,205 +20,180 @@
 - Implementation Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md`
 - Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
-- Delivery Revision Record: `N/A`
 - Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-002`
-- Current Execution Round: `2`
-- Trigger: `CRR-008` Pass for `IR-007` against `SR-007` / `ARCH-REV-008`.
-- Prior Round Reviewed: `API-REV-001 — Fail / 65% at API-VOICE-002`
-- Latest Authoritative Round: `API-REV-002 — Blocked / 78% after API-VOICE-002 and API-VOICE-013 Pass`
+- Current API/E2E Revision ID: `API-REV-003`
+- Current Execution Round: `3`
+- Trigger: `CRR-011` Pass for `IR-010` at source commit `b7342bc8e06d587bfe640faa4209c62ac2f4bae9` against `SR-008` / `SR-009` and `ARCH-REV-010`.
+- Prior Round Reviewed: `API-REV-002 — Blocked / 78%`.
+- Latest Authoritative Round: `API-REV-003 — Fail / 79%` at the mandatory actual M1 preflight.
 
 ## Investigation And Execution Basis
 
-- Coverage investigation artifact: canonical path above.
-- Investigation completed before durable coverage changes or final execution: `Yes`
-- Investigation plan followed: `Yes`. The prior failing scenario was rechecked first. Durable coverage changed only after it passed. Exact-package construction did not start once the supported preflight proved required closed inputs, approvals, hosts, and cold-cache permission were unavailable.
-- Existing coverage decisions revised during execution: `Yes`. English-v2 corpus/baseline changed from pending recheck to `Still Valid`; `tests/release/trusted-baseline.test.mjs` remains valid and now includes the production corpus-validator regression requested by `API-VOICE-013`.
-- Reroute required before or during execution: `No product/source reroute`. The remaining outcome is an execution dependency Blocked state, which requires a user request rather than teammate routing.
-- Notes: `API-REV-001` remains failed history. No prior package scenario is inferred to have passed.
+- Investigation completed before final execution: `Yes`.
+- Investigation plan followed: `Yes`. Unchanged `API-VOICE-002`/`013` authority was confirmed first, repository checks ran, and the realistic M1 path began with the mandatory preflight. Downstream construction stopped after that critical gate failed.
+- Existing coverage decisions revised during execution: `No`. The exact authority/test bytes remain unchanged and reusable; no durable coverage changed.
+- Reroute required during execution: `Yes` — `API-F-001` is a directly reproduced production preflight defect.
+- Material deviation: package materialization, builds, inference, performance, compliance, QSet, and branch projection were not executed because the approved workflow is fail-closed after a non-pass preflight.
 
 ## Compatibility / Legacy Scope Check
 
-- Reviewed requirements/design introduce backward compatibility in scope: `No`
-- Compatibility-only or legacy-retention behavior observed: `No`
-- Approved persisted-data transition followed without unnecessary migration or fallback: `N/A — persisted user/application data is not affected`
-- Durable coverage added only for compatibility behavior: `No`
-- Invalid final English-v1 files remain absent; immutable historical 50-row study evidence is not a runtime fallback.
+- Backward compatibility introduced or tolerated: `No`.
+- Compatibility-only behavior observed: `No`.
+- Approved persisted-data transition followed: `Yes — Not Affected`.
+- Compatibility-only durable coverage added/retained: `No`.
+- Legacy bootstrap/protocol-0/provider fallbacks remain absent.
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario ID | Behavior / Requirement / Acceptance-Criteria IDs | Changed Boundary | Execution Surface / Mode | Evidence Type | Result | Evidence / Artifact |
-| --- | --- | --- | --- | --- | --- | --- |
-| `API-VOICE-001` | `BEH-002`–`BEH-012`; source/contract criteria | Current source, unit, contract, launcher, evidence owners | Node/Python/Go repository checks | Durable | Pass | Round-2 `npm-run-check.log`: 39/39 Node, 7/7 Python, all Go/source/evidence checks |
-| `API-VOICE-002` | `BEH-005`; `R-006`; `AC-007`, `AC-009`, `AC-017` | Corrected English-v2 authority, exact audio, trust binding | Production corpus validator plus exact 49 WAVs, baseline owner, checksum and reproduction paths | Temporary/direct | Pass | `API-VOICE-002-corpus-identity-resolution.json`: approved digests, 49/49 unique IDs/paths/audio hashes, 70/969, one-to-one trusted baseline; six outputs byte-identical |
-| `API-VOICE-003` | English `darwin-arm64`; `AC-003`, `AC-006`, `AC-009`, `AC-017` | Exact MLX package, M1 30/30/100 qualification | Supported package workflow | Live | Blocked | No complete closed input tree/approved audits; `sudo -n purge` unavailable |
-| `API-VOICE-004` | Chinese `darwin-arm64`; same criteria | Exact Fun-ASR package, M1 30/30/100 and 200 clips | Supported package workflow | Live | Blocked | Same; preserved source/model bytes are partial candidate assets, not approved closed inputs |
-| `API-VOICE-005` | English `darwin-x64` | Exact faster-whisper package/target | Actual target | Live | Blocked | No actual darwin-x64 runner or complete input/audit set |
-| `API-VOICE-006` | Chinese `darwin-x64` | Exact Fun-ASR package/target | Actual target | Live | Blocked | Same |
-| `API-VOICE-007` | English `linux-x64` | Exact faster-whisper package/target | Actual target | Live | Blocked | Docker server is linux-arm64; no linux-x64 runner or complete inputs/audits |
-| `API-VOICE-008` | Chinese `linux-x64` | Exact Fun-ASR package/target | Actual target | Live | Blocked | Same |
-| `API-VOICE-009` | English `win32-x64` | Exact faster-whisper package/Windows launcher and Job behavior | Actual target | Live | Blocked | No Windows x64 runner or complete inputs/audits |
-| `API-VOICE-010` | Chinese `win32-x64` | Exact Fun-ASR package/Windows launcher and Job behavior | Actual target | Live | Blocked | Same |
-| `API-VOICE-011` | `AC-007`, `AC-008`, `AC-011`, `AC-017` | Notices/licenses/privacy over exact package bytes | Audit | Temporary/live | Blocked | No approved license/offline audit records bound to exact package inventories |
-| `API-VOICE-012` | `AC-006`, `AC-007`, `AC-010`, `AC-017` | Eight-package catalog/evidence/reproducibility recomputation | Aggregate CLI without publication | Temporary/live | Blocked | No complete qualification matrix exists; no release action attempted |
-| `API-VOICE-013` | `AC-007`, `AC-009`, `AC-017`; SR-007 item 7 | Durable production corpus-validator boundary | Node test with deterministic 49-file English-v2-shaped fixture | Durable | Pass | Focused 6/6 and full 39/39 Node; rejects duplicate ID, path, and audio hash |
+| Scenario ID | Behavior / Boundary | Surface / Mode | Evidence | Result | Artifact |
+| --- | --- | --- | --- | --- | --- |
+| `API-VOICE-001` | current source/unit/contract/evidence baseline | durable repository checks | exact Node/Go/Python execution | Pass | `api-e2e-evidence/api-rev-003/repository/npm-run-check.log`: 57/57 Node, 7/7 Python plus compileall, all Go/source/schema/evidence checks |
+| `API-VOICE-002` | exact English-v2 49-WAV authority/trust/derivation | unchanged direct authority from API-REV-002 | base-to-source and working-tree digest comparison | Pass / Reused | `repository/API-VOICE-002-013-authority-reuse.json`; actual package inference still required under `003` |
+| `API-VOICE-003` | English darwin-arm64 complete package qualification | actual M1 preflight | production CLI with owned `caffeinate` | Fail at shared prerequisite | `environment/API-VOICE-003-004-actual-preflight-failure.json` |
+| `API-VOICE-004` | Chinese darwin-arm64 complete package qualification | actual M1 preflight | same mandatory production CLI | Fail at shared prerequisite | same |
+| `API-VOICE-005`–`010` | non-arm64 targets | current scope authority | no execution | Deferred / Outside Current Release Matrix | `current-platform-qualification.md` |
+| `API-VOICE-011` | exact-package compliance/privacy/offline | aggregate over packages | not reached | Not Tested after Fail | no qualified package exists |
+| `API-VOICE-012` | QSet 1 and independently verified Branch Catalog Projection 1 | aggregate CLI | not reached | Not Tested after Fail | no passing profiles exist |
+| `API-VOICE-013` | production corpus-validator regression | unchanged durable test | focused 6/6 and full suite | Pass / Reused | focused and full repository logs; accepted by `CRR-011` |
 
 ## Additional Repository Coverage Execution
 
-| Order | Command | Working Directory / Configuration | Boundary Or Scenario Proven | Result | Evidence / Output Path |
+No checks were added after the coverage investigation's planned repository run. Commands executed there:
+
+| Order | Command | Configuration | Result | Evidence |
+| --- | --- | --- | --- | --- |
+| 1 | `npm ci --ignore-scripts` | Node 22.23.1 | Pass | `repository/npm-ci.log` |
+| 2 | `node --test tests/release/trusted-baseline.test.mjs` | assigned worktree | Pass 6/6 | `repository/focused-trusted-baseline.log` |
+| 3 | `VOICE_GO=/private/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` | official Go 1.26.5 darwin/arm64 root | Pass | `repository/npm-run-check.log` |
+
+## Validation Confidence Scorecard
+
+| Confidence Category | Post-Repository | Final | Change | Final Evidence | Residual Uncertainty |
 | --- | --- | --- | --- | --- | --- |
-| 1 | Production `validateCorpus()` + `loadTrustedBaseline()` + one-to-one assertions over exact staged English-v2 bytes/WAVs | Assigned worktree; owned `/private/tmp/autobyteus-voice-api-e2e-r2-20260802` | `API-VOICE-002` prior-failure resolution | Pass | `api-e2e-evidence/api-rev-002/repository/API-VOICE-002-corpus-identity-resolution.json` and exact validation log |
-| 2 | `npm run check:evidence`; original and English-v2 checksum lists; six output byte comparison | Assigned worktree plus reviewed solution evidence | SR-007 reproduction/source/output authority | Pass | Round-2 reproduction/checksum/identity logs |
-| 3 | `node --test tests/release/trusted-baseline.test.mjs`; Prettier | Assigned worktree | `API-VOICE-013` | Pass | 6/6; formatting Pass |
-| 4 | `npm ci --ignore-scripts` | Assigned worktree; Node 22.23.1 | Locked JS environment | Pass | Round-2 `npm-ci.log` |
-| 5 | `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` | Exact authenticated Go 1.26.5 darwin-arm64 root | Full current regression baseline | Pass | 39/39 Node, 7/7 Python, all Go/source/evidence checks |
-| 6 | Go root verification, runner query, `VOICE_*`/host/input/audit/cold-procedure readiness probes | Local M1 Max, GitHub, preserved study assets | Exact package-matrix readiness | Blocked | `api-e2e-evidence/api-rev-002/environment/` |
+| Requirement and acceptance-criteria proof | 80% | 70% | -10 | repository authority passes, but mandatory actual preflight fails | both packages and all downstream criteria unproven |
+| Changed-boundary execution directness | 80% | 85% | +5 | production preflight executed on the exact M1 and reproduced the source predicate failure | final packages not executed |
+| Cross-boundary integration realism and mock gap | 75% | 75% | 0 | actual host boundary reached | model/package integration not reached |
+| Environment, configuration, identity, and fixture fidelity | 80% | 75% | -5 | exact host/Node/Go/CMake and actual system outputs captured | host was on battery; purge permission absent; preflight stops before full identities |
+| Failure, edge-case, lifecycle, and recovery evidence | 75% | 75% | 0 | fail-closed preflight and durable failure owners work | real package lifecycle/injected failure not reached |
+| User-surface, browser, and desktop-shell confidence | N/A | N/A | N/A | runtime-only | none in scope |
+| Durable regression coverage quality and relevance | 95% | 95% | 0 | all 57 Node/7 Python/Go/source/schema/evidence and focused authority pass | native run evidence is instance-specific |
 
-## Validation Confidence Scorecard (Mandatory)
-
-| Confidence Category | Post-Repository Score | Final Score | Change | New / Final Supporting Evidence | Residual Uncertainty |
-| --- | ---: | ---: | ---: | --- | --- |
-| Requirement and acceptance-criteria proof | 75% | 75% | 0 | Prior English acceptance failure resolved directly | Exact packages, quality, resource, target, audit, and aggregate criteria remain blocked |
-| Changed-boundary execution directness | 75% | 75% | 0 | Exact 49-WAV production validation and current repository owners executed | No exact final package/private recognizer executed |
-| Cross-boundary integration realism and mock gap | 75% | 75% | 0 | Real audio/trust/evidence/Go boundaries executed | Launcher/private host/model/actual-target integration remains blocked |
-| Environment, configuration, identity, and fixture fidelity | 75% | 75% | 0 | Exact M1 Max, Node, authenticated Darwin Go roots, reviewed evidence bytes, and exact English audio used | Complete inputs/audits and three actual target classes are unavailable; M1 cold procedure unavailable |
-| Failure, edge-case, lifecycle, and recovery evidence | 75% | 75% | 0 | All current durable failure/lifecycle checks pass | Real package lifecycle and recovery remain blocked |
-| User-surface, browser, and desktop-shell confidence | N/A | N/A | N/A | Runtime-only; no UI/desktop ticket boundary | None in scope |
-| Durable regression coverage quality and relevance | 95% | 95% | 0 | API-VOICE-013 plus exact authority/duplicate/reproduction guards pass | Run-specific target evidence cannot reasonably be durable |
-
-- Overall post-repository confidence: `78%`
-- Overall final confidence: `78%`
-- Calculation method: simple average of the six applicable category scores, rounded to the nearest whole percentage.
-- Confidence change produced by broader validation: `0`; readiness evidence made the blocker exact but did not execute packages.
-- Every critical acceptance criterion directly proven: `No`
-- Any final applicable category below `90%`: `Yes` — requirement proof, directness, integration realism, environment fidelity, and lifecycle/recovery.
-- Default final confidence target of `95%` met: `No`
-- Confidence-limiting residual risks: exact eight-package construction/reproducibility, actual MLX/faster-whisper/Fun-ASR inference, M1 30/30/100 performance/RSS/size, Linux/Windows behavior, notices/licenses/privacy, and aggregate release-evidence verification.
+- Overall post-repository confidence: `81%`.
+- Overall final confidence: `79%`.
+- Calculation: simple average of six applicable categories, rounded.
+- Every critical acceptance criterion directly proven: `No`.
+- Applicable categories below 90%: `Yes` — all except durable regression coverage.
+- Default 95% confidence target met: `No`.
+- Limiting risks: production thermal-state parser defect, absent AC/purge prerequisites, and all package/inference/resource/compliance/aggregate proof downstream of preflight.
 
 ## Broader Validation Decision And Execution
 
-- Decision and selected mode: `Blocked`; required CLI/lifecycle/worker/actual-target package qualification.
-- Material deviation: package construction did not start because the supported preflight proved mandatory inputs and approvals were absent. Partial study assets were not promoted ad hoc.
-- Confidence gap addressed: resolved the prior exact English corpus uncertainty and identified the precise environment dependency package.
-- Exact unavailable dependencies:
-  1. complete `SHA256SUMS.json`-closed `VOICE_BUILD_INPUT_ROOT/<profile>/<target>` trees for all eight packages;
-  2. authoritative per-package `license-audit-v1.json` and per-target `offline-environment-v1.json` under `VOICE_EVIDENCE_ROOT`;
-  3. actual darwin-x64, linux-x64, and win32-x64 runners with exact target Go roots (GitHub currently reports zero self-hosted runners);
-  4. noninteractive permission for pinned `sudo -n purge` on the M1 Max reference runner;
-  5. configured corpus/evidence/power/background-load roots/conditions.
-- Attempted alternatives: exact local corpus/audio validation, full repository checks, inspection of preserved study models/sources/Python archive, authentication of both available Darwin Go roots, Docker target check, and current GitHub runner query. Docker is linux-arm64 and cannot substitute for linux-x64; partial study assets and self-authored approvals cannot substitute for approved release inputs.
-- Startup/readiness: no package process or release action started because preconditions failed closed.
-- Environment: MacBookPro18,4 M1 Max, 64 GB, macOS kernel 25.5.0, arm64; Node 22.23.1; CMake 4.3.3; Docker linux/arm64.
-- Fixture state: exact 49 English WAVs were staged only in the owned temporary root and removed after validation.
+- Decision/mode: `Required`; actual-host CLI/lifecycle/package qualification.
+- Startup: created retained evidence directories -> dependency/source checks -> started owned `/usr/bin/caffeinate -dimsu` -> invoked production `darwin-arm64-runner-preflight.mjs` with exact Go/CMake -> retained failure record/log -> stopped owned `caffeinate`.
+- Exact host: `darwin/arm64`, MacBookPro18,4, Apple M1 Max, 64 GiB, Node v22.23.1, official Go 1.26.5 darwin/arm64, CMake 4.3.3.
+- Observed production result: schema-valid `status: blocked`, `failureCategory: runner-power-or-pressure`, with `acConnected: false`, `thermalNormal: false`, `memoryPressureNormal: true`, and active `caffeinate`.
+- Focused source reproduction: actual `/usr/bin/pmset -g therm` reported “No thermal warning level has been recorded” and “No performance warning level has been recorded”; the production regex `/(warning|performance warning|CPU_Speed_Limit...)/i` matches the bare word `warning`, making `thermalNormal=false` for this healthy output. This is `API-F-001`.
+- Separate environment prerequisites: the host was drawing from Battery Power, and `/usr/bin/sudo -n /usr/sbin/purge` returned exit 1 with `sudo: a password is required`.
+- No alternative was substituted. Warm cache was not labeled cold, no provider/threshold changed, and no package/release action ran.
 
-| Scenario / Journey Step | Expected Observable Result | Actual Observable Result | Evidence | Result |
+| Journey | Expected | Actual | Evidence | Result |
 | --- | --- | --- | --- | --- |
-| Corrected English prerequisite | 49 exact unique audio identities bind one-to-one to trusted baseline | 49/49 unique; every digest matches; 70/969; approved digests and six outputs match | Round-2 API-VOICE-002 JSON/logs | Pass |
-| Package-matrix readiness | All exact inputs, audits, target runners, and M1 cold permission are present | Required roots unset; audits absent; zero runners; only local arm64 target; purge denied | Readiness JSON and runner/Go logs | Blocked |
-| Eight package builds/qualifications | Exact actual-target package proof | Not started after fail-closed readiness result | Same | Blocked |
-| Audit and aggregate proof | Approved exact inventories and complete matrix recompute | No authoritative audits or complete matrix | Same | Blocked |
+| repository baseline | all current owners pass | 57/57 Node, 7/7 Python, Go/source/schema/evidence pass | repository logs | Pass |
+| actual M1 preflight | healthy host text parses correctly; required conditions then gate exactly | production misclassifies normal no-warning output; host also lacks AC and purge permission | preflight JSON/log, raw pmset/probe logs | Fail |
+| English/Chinese packages | only start after passing preflight | not started | fail-closed gate | Not Tested |
+| QSet/projection | only aggregate two Pass profiles | not started | prerequisite absent | Not Tested |
 
 ## Desktop Application Validation
 
-- Validation approach: `N/A — runtime-only`
-- Browser-tested behavior: None.
-- Shell-specific behavior: repository Go/contract checks passed; actual package shell/process behavior remains blocked.
-- Effect on running desktop application: `None`
-- Desktop confidence consequence: None; desktop is outside this ticket.
+- `N/A`; runtime-only CLI/package ticket.
+- No desktop application was started or changed.
 
 ## Platform / Runtime Targets
 
-- Executed host: darwin-arm64 M1 Max only.
-- Runtime versions: Node 22.23.1; Python 3.9.6 for local checks; authenticated Go 1.26.5; CMake 4.3.3.
-- Additional available compiler root: darwin-x64 Go 1.26.5 authenticated as availability evidence only; no x64 Node/actual Intel target qualification.
-- Missing actual targets: darwin-x64, linux-x64, win32-x64.
+- Executed: actual `darwin-arm64` MacBookPro18,4 M1 Max / 64 GiB host, through preflight only.
+- Runtime/tool versions: Node v22.23.1; Go 1.26.5 darwin/arm64; CMake 4.3.3.
+- Deferred: darwin-x64, linux-x64, win32-x64 for both profiles; explicitly outside the current matrix.
 
-## Lifecycle / Upgrade / Restart / Persisted-Data Checks
+## Lifecycle / Restart / Persisted-Data Checks
 
-- Approved persisted-data decision: `Not Affected`
-- Representative existing data exercised: None required; no user-state reader/writer exists in this runtime repository.
-- Version-specific branch, dual read/write, or compatibility fallback observed: `No`
-- Residual persisted-data risk: None in scope. Real package lifecycle/recovery risk remains blocked and is scored separately.
+- Approved persisted-data decision: `Not Affected`.
+- User data exercised: none; no supported state reader/writer exists.
+- Compatibility/fallback observed: `No`.
+- Package lifecycle not directly proven because the prerequisite failed.
 
-## Tests Implemented Or Updated
+## Tests Implemented, Updated, Or Removed
 
-| Path / Scenario | Change | Requirement / Boundary | Execution Result | Notes |
-| --- | --- | --- | --- | --- |
-| `tests/release/trusted-baseline.test.mjs` / `API-VOICE-013` | Updated | `AC-007`, `AC-009`, `AC-017`; production corpus-validator uniqueness boundary | Pass | Deterministic 49-file fixture derived from English-v2 manifest shape; production validator accepts unique input and rejects duplicate ID/path/hash |
-
-## Tests Removed As Stale Or Obsolete
-
-None.
+None in API-REV-003.
 
 ## Durable Coverage Changed In The Codebase
 
-- Repository-resident durable coverage changed: `Yes`
-- Paths added or updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tests/release/trusted-baseline.test.mjs`
-- Paths removed: None.
-- Attached for proportional test-code review: `Not yet — Blocked outcomes are not handed to a teammate; attach on resumed completed Pass/Fail routing.`
+- Repository-resident durable coverage added, updated, or removed this round: `No`.
+- Proportional test-code review: `Not Applicable` for this round. Unchanged `API-VOICE-013` was already accepted in full source review `CRR-011`.
 
 ## Other Execution Artifacts
 
-| Artifact Path | Type / Purpose | Retained Or Temporary | Notes |
-| --- | --- | --- | --- |
-| `tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/repository/` | Exact corpus, authority, source-check, and durable-test evidence | Retained | Round-specific; prior failure evidence untouched |
-| `tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/environment/API-VOICE-003-012-readiness.json` | Structured blocker/readiness evidence | Retained | Authoritative missing-dependency inventory |
-| `tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/environment/github-runners.json` | GitHub runner query | Retained | `total_count: 0` |
-| `tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/environment/go-root-verification.log` | Exact Darwin Go-root authentication | Retained | arm64 host proof; x64 availability only |
-| `tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/environment/cleanup.log` | Owned-root cleanup evidence | Retained | Temp corpus root absent after cleanup |
+| Artifact | Purpose | Retention |
+| --- | --- | --- |
+| `api-e2e-evidence/api-rev-003/repository/API-VOICE-002-013-authority-reuse.json` | exact reuse basis | retained |
+| `api-e2e-evidence/api-rev-003/repository/npm-ci.log` | dependency evidence | retained |
+| `api-e2e-evidence/api-rev-003/repository/focused-trusted-baseline.log` | focused authority regression | retained |
+| `api-e2e-evidence/api-rev-003/repository/npm-run-check.log` | full repository execution | retained |
+| `api-e2e-evidence/api-rev-003/environment/darwin-arm64-preflight-v1.json` | production preflight result | retained |
+| `api-e2e-evidence/api-rev-003/environment/darwin-arm64-preflight.log` | command/failure log | retained |
+| `api-e2e-evidence/api-rev-003/environment/pmset-*.actual.txt` and focused probe log | exact host/source reproduction | retained |
+| `api-e2e-evidence/api-rev-003/environment/API-VOICE-003-004-actual-preflight-failure.json` | structured failure/routing evidence | retained |
 
 ## Temporary Execution Methods / Scaffolding
 
-| Path / Method | Why Needed | Result / Evidence | Cleanup Result |
+| Method | Why | Result | Cleanup |
 | --- | --- | --- | --- |
-| `/private/tmp/autobyteus-voice-api-e2e-r2-20260802` | Stage byte-identical English-v2 manifest and exact referenced 49 WAVs | API-VOICE-002 Pass | Removed with repository `removeWritableTree`; absence verified |
-| Inline Node probes | Exercise production validators/owners and record environment facts without adding tooling | Pass/Blocked as recorded | Process-local only; no script retained |
+| owned `caffeinate` process | meet required sleep-prevention precondition | active during preflight | killed and reaped; PID absent |
+| process-local regex/purge probe | separate source defect from environmental prerequisites | defect reproduced; purge exit 1 | process-local only; logs retained |
 
 ## Dependencies Mocked Or Emulated
 
-- No dependency was mocked for API-VOICE-002.
-- API-VOICE-013 uses deterministic temporary audio bytes to durably exercise validator mechanics; exact licensed WAV integrity is separately proven by API-VOICE-002.
-- Docker linux-arm64 was inspected only and was not treated as linux-x64 evidence.
+None. The failing evidence is from the actual host and production preflight. No platform/provider/package behavior was imputed from mocks.
 
 ## Result Summary
 
-| Result | Scenario IDs | Summary / Reason |
+| Result | Scenarios | Summary |
 | --- | --- | --- |
-| Pass | `API-VOICE-001`, `API-VOICE-002`, `API-VOICE-013` | Current repository checks pass; the prior English corpus defect is directly resolved; durable validator coverage passes. |
-| Blocked | `API-VOICE-003`–`API-VOICE-012` | Exact closed inputs, approved audits, required target runners, and M1 cold-cache permission are unavailable. |
-| Out Of Scope | Desktop integration; tag/publication | Runtime-only ticket; release/finalization remains Delivery-owned. |
+| Pass | `API-VOICE-001`, reusable `002`, reusable `013` | current repository and unchanged English authority boundaries pass |
+| Fail | shared prerequisite for `API-VOICE-003`/`004` | `API-F-001`: normal actual `pmset` no-warning text is misparsed as a warning |
+| Not Tested after Fail | package portions of `003`/`004`, `011`, `012` | approved fail-closed ordering stopped downstream work |
+| Deferred / Outside Matrix | `005`–`010` | current release is darwin-arm64 only |
 
 ## Cleanup Performed
 
-| Resource / Process / Data | Ownership | Cleanup Action | Result |
+| Resource | Ownership | Action | Result |
 | --- | --- | --- | --- |
-| `/private/tmp/autobyteus-voice-api-e2e-r2-20260802` | API/E2E-owned | Repository `removeWritableTree` | Pass; root absent |
-| Package processes/containers/releases | None created | No action | No target package or release action started |
-| Preserved backend-study assets | Upstream/shared evidence | Untouched | Retained |
+| `caffeinate` PID 75084 | API/E2E | killed and waited | Pass; no process remains |
+| package/model/build/session roots | none created | no action | no package process or state exists |
+| preserved study/upstream evidence | shared/upstream | untouched | retained |
+| code-review artifacts | upstream modified/untracked | untouched | preserved |
 
 ## Preliminary Classification
 
-- Classification: `Blocked — exact execution dependency`
-- This is not evidence of a source, test, design, quality, or package failure. It is also not a Pass.
-- Do not relax thresholds, substitute a provider/host, invent a legal approval, use linux-arm64 as linux-x64, or bypass the pinned M1 cold procedure.
+- `API-F-001`: `Local Fix` candidate owned by Implementation Engineer. Production `benchmark/darwin-arm64-runner-preflight.mjs` uses a thermal regex that rejects the actual healthy `pmset` output shape.
+- Code Reviewer must confirm the failure origin. The correction must parse affirmative warning state without weakening fail-closed thermal checks and should include the captured actual-output regression.
+- Separate rerun prerequisites, not the source finding: connect the Mac to AC power and provision least-privilege noninteractive permission for exactly `/usr/sbin/purge`.
 
 ## Recommended Recipient
 
-- `User request`; no teammate routing while Blocked.
-- Open the next API/E2E revision at `API-VOICE-003` after the exact dependency package is available. Re-run API-VOICE-002 only if its authoritative bytes or referenced audio change.
+`code_reviewer` for focused failure-origin review.
 
 ## Evidence / Notes
 
-The user's offered manual audio validation is compatible with deferring difficult live inference, but it cannot be recorded as team-executed package acceptance. If the user wants to remove those gates rather than provision them, the approved requirements/design scope must be revised upstream; this report will not silently convert untested audio/package behavior into Pass.
+The user required complete current-platform qualification. That qualification is **not finished** and no audio/package inference has yet run in API-REV-003. The failure happened earlier at the real M1 preflight. This round does not claim current-platform acceptance, does not defer audio silently, and does not perform release actions.
 
 ## Latest Authoritative Result
 
-- Result: `Blocked`
-- Final validation confidence: `78%`
-- Default `95%` confidence target met: `No`
-- Any final applicable confidence category below `90%`: `Yes` — requirement proof, directness, integration realism, environment fidelity, lifecycle/recovery.
-- Broader validation decision: `Blocked`
-- Critical criteria lacking direct proof: exact `AC-003`, `AC-006`, `AC-009`, `AC-011`, and `AC-017` package/target/resource/audit/aggregate gates.
-- Required next recipient: `User request`
-- Notes: API-VOICE-002 and API-VOICE-013 Pass. API-VOICE-003–API-VOICE-012 remain Blocked, not failed or passed. No tag, publication, or release mutation occurred.
+- Result: `Fail`.
+- Final validation confidence: `79%`.
+- Default 95% target met: `No`.
+- Categories below 90%: `Yes` — requirement proof, directness, integration realism, environment fidelity, lifecycle/recovery.
+- Broader validation: `Required; attempted; Fail at mandatory actual-host preflight`.
+- Critical criteria lacking direct proof: complete `API-VOICE-003`, `004`, `011`, and `012`, including real English 49/Chinese 200 inference and exact 30/30/100 measurements.
+- Required next recipient: `code_reviewer` for focused failure-origin review.
+- Resume condition: reviewed source fix for `API-F-001`, AC power, and passing exact `/usr/bin/sudo -n /usr/sbin/purge`; then rerun preflight before any materialization/build.

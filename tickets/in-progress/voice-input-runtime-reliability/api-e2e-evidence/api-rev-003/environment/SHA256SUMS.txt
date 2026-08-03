@@ -1,0 +1,10 @@
+d62e94aefc892f0a346351381e213248efa4b9d773572afcd80b9241d3bb6a23  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/API-VOICE-003-004-actual-preflight-failure.json
+2d3c6e564d880a998d93145ee15c4d8467ba08080e01ab33491762e091ee166a  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/actual-host-preflight-focused-probes.log
+272766df8af4316d011a74a14eb82e7167947a654b95c6d01df5767e89f4e923  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/darwin-arm64-preflight-v1.json
+c7d4fa7ab9eed347b9044c8d3f0a5a797884729d6f9c9e5f0412c1ece69a85eb  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/darwin-arm64-preflight.log
+397f93e945ae8490ffa585d49e44fbd77f5f9c4796d453a3927d973fc76b1a61  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/memory-pressure.actual.txt
+fd6661e344900476bc45dda012955c368e05ebe2e5e2abe1a59d58093c472ef6  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/pmset-batt.actual.txt
+be3abd7b032c413ad49cb8bee2c1a4c5db081738a84444ce65211a02f44f88ed  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/pmset-custom.actual.txt
+96de6076213225f787270bff80efd2011e0ad142953c37697dc547f77d302892  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/pmset-therm.actual.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/voice-caffeinate.log
+948f6d4e589fc01e03b223890de98a3f8f0b8f90b15cb2024558dbe49ea88892  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/environment/voice-caffeinate.pid
