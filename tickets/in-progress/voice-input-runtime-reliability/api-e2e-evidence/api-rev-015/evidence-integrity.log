@@ -1,0 +1,13 @@
+json_parse_count=27
+json_parse=pass
+terminal_decision_join=pass
+summary_assessment_digest_join=pass
+archive_identity_join=pass
+reproducibility=pass
+compliance=pass
+chinese_hard_resource_policy=pass
+chinese_optimization_observation=miss_non_blocking
+english_evidence_files_absent_after_fail_closed=pass
+aggregate_evidence_files_absent_after_fail_closed=pass
+exact_source_head=af008705488a029b95007e25c7c00484387d3ffe
+exact_source_clean=pass

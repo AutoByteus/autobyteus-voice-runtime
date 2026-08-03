@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "profile-qualification-summary",
+  "functionalDecision": "fail",
+  "failureCategory": "timeout",
+  "sourceCommit": "af008705488a029b95007e25c7c00484387d3ffe",
+  "runnerCommit": "af008705488a029b95007e25c7c00484387d3ffe",
+  "packageVersion": "1.0.0",
+  "buildReportSha256": "7b76a65c056273eeda989b003b13d2bcba416edbe0b1117ae964b5a45f6ed075",
+  "buildInputManifestSha256": "f57c43af870cd21dc39a3d5900b544fc6ba6b9df1861c5991a5f223b7bfc7456",
+  "buildInputProvenanceSha256": "8d3c35448d5256a6e1a1dd7f92e6ba64aed26ae22cf166b3961e7c4179e87b39",
+  "buildInputRecipeSha256": "aa9f9b437f3155f1767431107acf61b11eab843ccf03369b456de8fd04a0ba70",
+  "nativeBuildEnvironmentSha256": "b24fb9c5334039717c39b07be2e005012fe7b90d839d75c44a1aa7784ee96f21",
+  "releaseMatrixId": "voice-runtime-darwin-arm64-v1",
+  "releaseMatrixSha256": "f3f57336d2598bc7c78ba0d8a10e6ad4da77c16b10274533986f29571d6de76d",
+  "resourcePolicy": {
+    "policyId": "voice-runtime-profile-resource-policy-v1",
+    "sha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+    "row": {
+      "profileId": "chinese",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "hardProcessTreeRssCeilingBytes": 4294967296,
+      "assessmentOptimizationTargetBytes": 2684354560
+    },
+    "observedPeakProcessTreeRssBytes": 3944415232,
+    "hardCeilingMet": true
+  },
+  "repositoryBuildLockSha256": "742618f8859bb5c7c4300f2e5fec54a80afa0fe31a1392230eb24480a078680f",
+  "goToolchainHost": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "goToolchainArchiveSha256": "efb87ff28af9a188d0536ef5d42e63dd52ba8263cd7344a993cc48dd11dedb6a",
+  "goToolchainRootManifestSha256": "675d0ddbda6f6994975a17821aae5d6628aca94ca5fb6210ef1d00a850a6bce9",
+  "goToolchainRootTreeSha256": "27fd7f0918282550923f1820c890432b262feb7e574cb6bfd3c9f4962cdbb9ee",
+  "goToolchainRootFileCount": 15026,
+  "goToolchainRootSizeBytes": 228637077,
+  "reproducibilityProofSha256": "f571607926dd0e64ae032a7177fc6503816047e28013c49a3221a190df82b75f",
+  "runtimeConformanceSha256": null,
+  "preflight": {
+    "fileName": "darwin-arm64-preflight-v2.json",
+    "sha256": "64548fa7df89140f45ab3abcd6251d3cea211f5fbb7038cbefe041d183509ad3"
+  },
+  "rawEvidence": {
+    "performanceSamples": {
+      "fileName": "performance-samples-v1.json",
+      "sha256": "cf0366747fe367f25a233560d425185dfb42d54342c79d72ea315441a15b8ff8"
+    },
+    "qualificationAttempts": {
+      "fileName": "qualification-attempts-v1.json",
+      "sha256": "32830f3e9f179c5cc6cec15dea9d260988723e36f5990cd34f9bab3cec24c489"
+    },
+    "rawResults": {
+      "fileName": "raw-results.json",
+      "sha256": "932046a1a1c4c3c93b9f33f671bfaad2d4d9a1eaadcd00ac5a21fa6c48f3fc3a"
+    },
+    "resultIndex": {
+      "fileName": "result-index.json",
+      "sha256": "cd16ccb880061771331ea43f7e6ea5ed47f73e684df5b7bd053f7128c535014f"
+    }
+  },
+  "attempts": {
+    "started": 22,
+    "succeeded": 21,
+    "failed": 1,
+    "timedOut": 1,
+    "excluded": 0
+  },
+  "hardDeadlines": {
+    "helloMs": 2000,
+    "preparationMs": 30000,
+    "requestMs": 30000,
+    "gracefulShutdownMs": 2000,
+    "forcedShutdownMs": 2000,
+    "violations": 1
+  },
+  "packageId": "voice.chinese.fun-asr-nano-0.6b-gguf-q8.darwin-arm64",
+  "providerId": "autobyteus.voice.funasr-nano-q8",
+  "modelId": "fun-asr-nano-gguf-q8",
+  "profileId": "chinese",
+  "languageMode": "zh",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "archive": {
+    "fileName": "voice-chinese-darwin-arm64-1.0.0.zip",
+    "sha256": "e867796b0b362f27e3800f593ffac1201e710d3f2b87af883cd1437660ad66c0",
+    "compressedSizeBytes": 1068524833,
+    "extractedSizeBytes": 1285163754,
+    "entryCount": 21
+  },
+  "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+  "descriptorSha256": "fdd5575345cb5f19692d3889b42bc235704e218321dbf908103ce2a736cec480",
+  "fileManifestSha256": "4c4bf1d6cb0d6aad363f166ac93609e4f1fe598692ed0f441a6afb1d5e95d73b",
+  "launcherSha256": "8e00c10bad094d90271800f36a2e592cd5200235a744627d2e588c98df110008",
+  "launcherPlanSha256": "9bb2559dfec737855d141307a155d4402fa061da3c446a5901e6375b2387b62b",
+  "hostSha256": "a55737d7b758f72c375f0cb7ae92889681b76610f47406e456c8c58c362e3fc0",
+  "engineConfigurationSha256": "ad42cf319e1970e62594c1fe10b12ace2dcd8917755b8f38883ffedcc3c781ef",
+  "modelSha256": "2d0eb9783bacb9603719f22db5bdedc9d124447025c30bb87c38a3c5c9edfa9c",
+  "normalizerSha256": "ccf955183f8569c0dc3eda6e47df2a8dbc76f6eae354618643b6238874b9e7ec",
+  "protocolSha256": "8ad5b79320f01bc2b01821b2a592b337f8b62521929adf0f4ad281b34cbb7b27",
+  "noticeInventorySha256": "1d794497c64ba28c1158b51d215159651657cf660e2910cfaaa276dfe1ab2a1a",
+  "generatedComplianceSha256": "12a37347c7ea98bce7ae0cc17ba460437492f7a41441d9106b05b4c96a5adc8c",
+  "sandboxProfileSha256": "5c358b8d847211333e7ba22df82d84f796b5f30a41a2682209a949d783adbd08",
+  "conditions": {
+    "schemaVersion": 1,
+    "sourceCommit": "af008705488a029b95007e25c7c00484387d3ffe",
+    "runnerCommit": "af008705488a029b95007e25c7c00484387d3ffe",
+    "profileId": "chinese",
+    "target": "darwin-arm64",
+    "preflight": {
+      "fileName": "darwin-arm64-preflight-v2.json",
+      "sha256": "64548fa7df89140f45ab3abcd6251d3cea211f5fbb7038cbefe041d183509ad3",
+      "status": "pass"
+    },
+    "hardware": {
+      "platform": "darwin",
+      "architecture": "arm64",
+      "cpuModel": "Apple M1 Max",
+      "totalMemoryBytes": 68719476736
+    },
+    "operatingEnvironment": {
+      "power": {
+        "acConnected": true,
+        "lowPowerModeOff": true,
+        "caffeinateActive": true,
+        "thermalNormal": true,
+        "memoryPressureNormal": true
+      },
+      "performanceEnvironment": {
+        "classification": "controlled",
+        "cpuIdleSamples": [
+          72.31,
+          79.23,
+          82.38,
+          85.29,
+          84.1,
+          82.88
+        ],
+        "averageIdlePercent": 81.03166666666668,
+        "taskOwnedCompetingProcesses": {
+          "detected": false,
+          "processNames": []
+        },
+        "topConsumerProcessNames": [
+          "AudioComponentRe",
+          "Google",
+          "KonaSynthesizer",
+          "MacinTalkAUSP",
+          "MauiAUSP",
+          "SiriAUSP",
+          "WardaSynthesizer",
+          "node_repl",
+          "voicebankingd"
+        ]
+      },
+      "tools": {
+        "node": "v22.23.1",
+        "nodeExecutable": {
+          "path": "/Users/normy/.hermes/node/bin/node",
+          "sha256": "2e3f1286a7eb3736346ed1803e458a0ff909e2b2d5bc746144dcb76970e9b99d"
+        },
+        "goArchiveSha256": "efb87ff28af9a188d0536ef5d42e63dd52ba8263cd7344a993cc48dd11dedb6a",
+        "goRootTreeSha256": "27fd7f0918282550923f1820c890432b262feb7e574cb6bfd3c9f4962cdbb9ee",
+        "cmake": "cmake version 4.3.3",
+        "cmakeExecutable": {
+          "path": "/opt/homebrew/Cellar/cmake/4.3.3/bin/cmake",
+          "sha256": "21cc7838296a3b72bea03d332b3fe39d189807d641b16ef46975d0f9f688f769"
+        },
+        "appleClang": "Apple clang version 17.0.0 (clang-1700.4.4.1)",
+        "appleClangExecutable": {
+          "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+          "sha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+        },
+        "appleClangCxxExecutable": {
+          "invocationPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+          "linkTarget": "clang",
+          "targetPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+          "targetSha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+        },
+        "appleArExecutable": {
+          "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar",
+          "sha256": "03925f16d09748c4406abd797d77979fa84e14001f660672a3b23105445e6a6e"
+        },
+        "appleRanlibExecutable": {
+          "invocationPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib",
+          "linkTarget": "libtool",
+          "targetPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+          "targetSha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6"
+        },
+        "appleLinkerExecutable": {
+          "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld",
+          "sha256": "2f8ee9a6fb55f61d9a4ea7abd9d4bfd5e1e0017bdd5248cd45839018c5fc4ca1"
+        },
+        "appleLibtoolExecutable": {
+          "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+          "sha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6"
+        },
+        "xcode": "Xcode 26.1.1\nBuild version 17B100",
+        "sdk": "26.1",
+        "sdkPath": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+        "sdkSettingsSha256": "5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff",
+        "sudoExecutable": {
+          "path": "/usr/bin/sudo",
+          "deviceId": "16777229",
+          "inode": "1152921500312572874",
+          "ownerUid": 0,
+          "ownerGid": 0,
+          "mode": "4511",
+          "sizeBytes": 1580368,
+          "modifiedNanoseconds": "1782354543000000000",
+          "changedNanoseconds": "1782354543000000000",
+          "probe": {
+            "args": [
+              "-V"
+            ],
+            "stdoutSha256": "6d0e9e583743268ef44261a4a9db95d4b4f27109c0a5f1182de74aaa553a3c1d",
+            "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "commandPaths": {
+          "/usr/bin/sandbox-exec": {
+            "path": "/usr/bin/sandbox-exec",
+            "sha256": "8290e4be7387a0df83cd1559e86afd880464f269450573d012795761fe298f16"
+          },
+          "/usr/bin/pmset": {
+            "path": "/usr/bin/pmset",
+            "sha256": "2dd5e133b9631808080dfa9c39d4b07a5885438e5268c8667229b4a03661ad78"
+          },
+          "/usr/bin/top": {
+            "path": "/usr/bin/top",
+            "sha256": "76c9ff40f02934c897111a5fe5f3450f55e51427f7b898c2f49a4a54e35fe655"
+          },
+          "/usr/sbin/sysctl": {
+            "path": "/usr/sbin/sysctl",
+            "sha256": "7cf2165d121db5e22e0516acc26981a526402b3a8cd682ed5e35b337d8162707"
+          },
+          "/usr/bin/memory_pressure": {
+            "path": "/usr/bin/memory_pressure",
+            "sha256": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56"
+          },
+          "/usr/bin/caffeinate": {
+            "path": "/usr/bin/caffeinate",
+            "sha256": "ef2d405c25a7335ccedf2c1ac7667a3f4a5226dcc1f59668259d43aae59bfbb7"
+          },
+          "/usr/sbin/purge": {
+            "path": "/usr/sbin/purge",
+            "sha256": "c2bc972d30ffc5204d26a2dff74d5013d6c4a19d627cae6113b62875d5e1dee3"
+          },
+          "/usr/bin/pgrep": {
+            "path": "/usr/bin/pgrep",
+            "sha256": "f36511d0be7033fc8df4c622d29df4fd36bbc64e239050a8cd7531b38587131d"
+          },
+          "/usr/bin/xcrun": {
+            "path": "/usr/bin/xcrun",
+            "sha256": "a439970aea2b4e435eac6518ff62c97fd1c57d8c731974027ad211b515c7a7b8"
+          },
+          "/usr/bin/xcodebuild": {
+            "path": "/usr/bin/xcodebuild",
+            "sha256": "065de0d338384b483be271b9cc8ef83b019788ec786c985d9dab07d5913ecdbb"
+          },
+          "/usr/bin/make": {
+            "path": "/usr/bin/make",
+            "sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818"
+          },
+          "/usr/bin/sed": {
+            "path": "/usr/bin/sed",
+            "sha256": "abd2eb945442a8ab1d210e58edb153f34870ee6d7c359f0f6d8385b1f7fc50fc"
+          },
+          "/usr/bin/tar": {
+            "path": "/usr/bin/bsdtar",
+            "sha256": "9ab7f0793033dc9dc4809d83d695118801bd687cbacda59a0cbbf151ba25dc2b"
+          },
+          "/bin/sh": {
+            "path": "/bin/sh",
+            "sha256": "ad5c194b05f83bc5e793c1cd67b148a4b680467b5a5730ab1a31fe4e6460ee9f"
+          }
+        }
+      }
+    },
+    "executionEnvironment": {
+      "sandbox": {
+        "profile": "benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+        "profileSha256": "5c358b8d847211333e7ba22df82d84f796b5f30a41a2682209a949d783adbd08",
+        "networkDenied": true,
+        "localOperationsAllowed": true
+      },
+      "filesystemCacheProcedure": {
+        "id": "darwin-arm64-filesystem-cold-v1",
+        "sha256": "e846389de7f367ec34499716888be3f3b1a8c8863876b7818efd306cb951b8ae",
+        "required": true
+      }
+    }
+  },
+  "corpus": {
+    "id": "fleurs-simplified-mandarin-profile-v2",
+    "manifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+    "provenanceReference": "evidence/selection-study/corpus-manifests/fleurs-simplified-mandarin-profile-v2.json",
+    "license": "CC-BY-4.0",
+    "redistributionApproved": true,
+    "consentReferenceDigest": "cf8ba68335e454c9e991233ce5bc7123a4ab7c87f82d9b6158bbe745985b7e70",
+    "uniqueIds": true,
+    "uniquePaths": true,
+    "uniqueAudioHashes": true,
+    "limitations": [
+      "FLEURS parquet does not expose speaker identity; gender labels are not speaker IDs."
+    ]
+  },
+  "quality": {
+    "metric": "CER",
+    "value": 0,
+    "baseline": {
+      "id": "chinese-promoted-baseline-v2",
+      "evidenceSha256": "6172f4407c4930152c781dc5e6d4498d53b9af18e7e2f413b76fcdca86763f58",
+      "configurationDigest": "7b2ed57eca281a71bfdeb134b31bbf5e8a17384dcb975daa3eb8627aa0afb688",
+      "providerId": "autobyteus.voice.funasr-nano-q8",
+      "modelId": "fun-asr-nano-gguf-q8",
+      "value": 0.052127659574468084,
+      "sampleCount": 200,
+      "trustedCatalogSha256": "45160c35936da250e323c67bb54fedb120f27e6fbfaa0ab9aff60bdcbda98577",
+      "promotedResultSha256": "84568c53e908e1538ab55b5aa046804e2e7444386225b791de11a148239f8b48",
+      "corpusManifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+      "errors": 343,
+      "units": 6580
+    },
+    "scoring": {
+      "id": "autobyteus-chinese-cer-selection-comparable-v1",
+      "fileName": "chinese-cer-selection-comparable-v1.json",
+      "sha256": "7ca1743cad4e209d9c04068c334ab4fa2e9e5932d093f7b82f888f7a67207af5",
+      "mappingFileName": "opencc-t2s-scoring-map-v1.json",
+      "mappingSha256": "f4b8969d9f7d1814e1fa3aee13e7c65d526ddc52c79efb14f265a9cf76b0f369"
+    },
+    "pairedUncertainty": null,
+    "sampleCount": 0,
+    "emptyCount": 0,
+    "failedCount": 0
+  },
+  "maxRssBytes": 3944415232,
+  "extractedSizeBytes": 1285163754,
+  "packageRuns": 22,
+  "actualPlatform": true,
+  "normalizationFixtures": true,
+  "relocation": true,
+  "offline": true,
+  "noPackageMutation": false,
+  "recovery": false,
+  "licenseApproved": true
+}

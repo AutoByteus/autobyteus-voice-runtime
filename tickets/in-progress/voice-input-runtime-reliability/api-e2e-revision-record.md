@@ -18,6 +18,7 @@
 | `API-REV-012` | Code Reviewer / `code-review-report.md` / `CRR-027`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-019`, `CRR-026`, `CRR-027` | `Fail / 98%`              | `Fail / 98%`                |
 | `API-REV-013` | Code Reviewer / `code-review-report.md` / `CRR-029`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-020`, `CRR-028`, `CRR-029` | `Fail / 98%`              | `Fail / 98%`                |
 | `API-REV-014` | Code Reviewer / `code-review-report.md` / `CRR-031`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-021`, `CRR-030`, `CRR-031` | `Fail / 98%`              | `Fail / 99%`                |
+| `API-REV-015` | Code Reviewer / `code-review-report.md` / `CRR-033`            | `SR-012`, `ARCH-REV-013`, `IR-022`, `CRR-032`, `CRR-033`           | `Fail / 99%`              | `Fail / 99%`                |
 
 ## Revision Entries
 
@@ -488,3 +489,42 @@ None.
 - Current result/confidence: `Fail / 99%`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review. Likely reset owner is Solution Designer unless review identifies a bounded scorer or runtime-resource implementation defect.
 - Remaining proof after reviewed resolution: current-source English full package/profile qualification, then Qualification Set 2 and independently verified Branch Catalog Projection 2. Delivery-owned integrated-main/release work remains later.
+
+### API-REV-015 — Corrected resource policy passes; controlled Chinese cold start times out
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-033`; API/E2E round 15.
+- Triggering scenarios: direct `API-F-011` / `API-F-012` recheck in `API-VOICE-004`, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-004`, `003`, `011`, and `012` while fail-closed gates pass.
+- Related upstream revisions: `SR-012`, `ARCH-REV-013`, `IR-022`, `CRR-032`, `CRR-033`; delivery `N/A`.
+- Why recorded: the corrected Chinese scorer/map/baseline and exact profile resource policy passed source/focused/full checks and propagated into current package evidence. Two current-source Chinese builds were byte-identical and passed verification, reproducibility, and compliance. The controlled actual-M1 full profile then failed a hard cold-start readiness deadline before the warm/quality phase.
+- Coverage/durable test changes: none. English-v2 authority and `API-VOICE-013` remain reusable after exact changed-byte validation; all run-specific host/package/failure artifacts are temporary executable evidence.
+- Execution delta: exact source `af008705488a029b95007e25c7c00484387d3ffe`; focused 29/29 and full 95/95 Node plus 7/7 Python and all Go/source/schema/evidence checks; controlled actual-M1 preflight at `81.03166666666668%` idle; exact 49/200 corpus validation; Chinese double construction/verification/reproducibility/compliance Pass; 22 cold attempts started before Fail.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                        | Previous Classification            | Current Resolution                                                        | Evidence                                                                                                                                                  |
+| ---------------------------------------------------- | ---------------------------------- | ------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `API-F-012` / Chinese global 2.5-GiB hard RSS gate   | Design Impact                      | Resolved / direct Pass                                                    | Summary applies Chinese 4-GiB hard row; `3,944,415,232 <= 4,294,967,296` B; Assessment retains 2.5-GiB optimization miss without changing the hard result |
+| `API-F-011` / incomparable Chinese quality authority | Design Impact                      | Source/identity correction present; executable quality recheck incomplete | current Summary binds v2 raw/raw scorer, frozen map, and v2 baseline, but the new hard timeout stopped before the 200-WAV quality phase                   |
+| `API-F-010` and earlier construction defects         | Local Fix / implementation defects | Reconfirmed / Pass                                                        | two exact network-denied builds complete and reproduce archive SHA-256 `e867796b0b362f27e3800f593ffac1201e710d3f2b87af883cd1437660ad66c0`                 |
+
+#### New Failure
+
+- ID: `API-F-013`.
+- Scenario / criteria: `API-VOICE-004`; `AC-003`, `AC-008`, `AC-011`, `AC-017`, `AC-020`, `AC-023`.
+- Expected: all 30 exact filesystem-cold public-package processes emit `inference-ready` within the hard 30,000-ms preparation deadline, with zero failure, timeout, retry, or exclusion.
+- Observed: cold attempts 1–21 succeeded. The final five successful preparation times increased through `21,018`, `21,070`, `23,316`, `26,989`, and `29,460` ms. Attempt 22 emitted a valid hello in `943.551` ms but failed `READY_TIMEOUT` before `inference-ready`; its total cold-attempt wall time was `34,884.236` ms.
+- Terminal evidence: the attempt ledger and Summary both finalize `fail / timeout` with `22 started / 21 succeeded / 1 failed / 1 timed out / 0 excluded`; Assessment binds the Summary as `controlled-miss`; runner exit is `1`.
+- Environment: Functional Preflight 2 was controlled on the actual M1 Max/64-GiB host, AC connected, no task-owned competing process. Post-failure observation recorded no thermal/performance warning, 93% memory free, and 81.8% CPU idle.
+- Preliminary classification: `Unclear` between bounded packaged-provider/runtime reliability and design-level cold-start deadline/stability behavior. Focused failure-origin review is required before selecting Implementation Engineer or Solution Designer.
+- Stop/reroute: fail closed. No retry, timeout/policy/threshold relaxation, warm proxy, provider/model substitution, English run, QSet/projection, tag, release, or publication.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-015/`
+- Prior result/confidence: `Fail / 99%`.
+- Current result/confidence: `Fail / 99%`.
+- New failure: `API-F-013`; `API-F-012` is directly resolved; `API-F-011` execution recheck remains incomplete.
+- Recommended recipient: `code_reviewer` for focused failure-origin review.
+- Remaining proof after reviewed resolution: complete current-source Chinese profile, current-source English full package/profile qualification, Qualification Set 2, and independently verified Branch Catalog Projection 2. Delivery-owned integrated-main/release work remains later.

@@ -1,0 +1,73 @@
+captured_utc=2026-08-03T23:33:01Z
+--- pmset therm ---
+Note: No thermal warning level has been recorded
+Note: No performance warning level has been recorded
+Note: No CPU power status has been recorded
+exit=0
+--- pmset batt ---
+Now drawing from 'AC Power'
+ -InternalBattery-0 (id=21692515)	100%; charged; 0:00 remaining present: true
+exit=0
+--- memory_pressure summary ---
+The system has 68719476736 (4194304 pages with a page size of 16384).
+
+Stats:
+Pages free: 405238
+Pages purgeable: 35963
+Pages purged: 50437129
+
+Swap I/O:
+Swapins: 4291645
+Swapouts: 7215895
+
+Page Q counts:
+Pages active: 1553222
+Pages inactive: 1815097
+Pages speculative: 85062
+Pages throttled: 0
+Pages wired down: 201233
+
+Compressor Stats:
+Pages used by compressor: 79391
+Pages decompressed: 335247209
+Pages compressed: 394127902
+
+File I/O:
+Pageins: 198578613
+Pageouts: 1329390
+
+System-wide memory free percentage: 93%
+exit=0
+--- uptime ---
+ 1:33  up 14 days, 17:13, 7 users, load averages: 3.65 5.40 5.04
+exit=0
+--- top snapshot ---
+Processes: 805 total, 4 running, 801 sleeping, 5368 threads
+2026/08/04 01:33:02
+Load Avg: 3.65, 5.40, 5.04
+CPU usage: 6.95% user, 11.24% sys, 81.80% idle
+SharedLibs: 336M resident, 47M data, 76M linkedit.
+MemRegions: 884010 total, 19G resident, 734M private, 21G shared.
+PhysMem: 56G used (3118M wired, 1240M compressor), 7656M unused.
+VM: 400T vsize, 6144M framework vsize, 4291645(0) swapins, 7215895(0) swapouts.
+Networks: packets: 189815688/245G in, 97884805/114G out.
+Disks: 707388909/6420G read, 415466281/6308G written.
+
+PID    COMMAND          %CPU MEM   TIME
+99922  Google Chrome He 0.0  176M  00:13.67
+99608  Google Chrome He 0.0  192M  05:17.52
+99531  node_repl        0.0  6193K 00:00.11
+98280  WardaSynthesizer 0.0  7345K 00:00.04
+98277  SiriAUSP         0.0  8209K 00:00.06
+98274  KonaSynthesizer  0.0  9121K 00:00.06
+98273  MauiAUSP         0.0  5056K 00:00.04
+98272  MacinTalkAUSP    0.0  8225K 00:00.09
+98267  voicebankingd    0.0  6400K 00:00.31
+98266  AudioComponentRe 0.0  3744K 00:00.27
+98265  axassetsd        0.0  10M   00:21.39
+97459  MTLCompilerServi 0.0  10M   00:00.17
+exit=0
+--- hw.model ---
+MacBookPro18,4
+--- hw.memsize ---
+68719476736
