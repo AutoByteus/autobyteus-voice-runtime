@@ -71,3 +71,42 @@ API/E2E must not invent audit approval, bypass cold-reset evidence, substitute a
 ## Downstream Re-entry
 
 After a new solution revision and architecture-review Pass, implementation/source review must align any matrix or release-contract changes. API/E2E should then open the next revision, reuse `API-VOICE-002`/`API-VOICE-013` when their bytes are unchanged, and execute complete `darwin-arm64` qualification for English and Chinese as the new pass gate.
+
+---
+
+## API-RI-002 — Functional Qualification Becomes The Primary Acceptance Gate
+
+### Record
+
+- Recorded: `2026-08-03`
+- Origin: explicit user direction after `API-REV-004`
+- Historical result preserved: `API-REV-004 — Blocked / 82%` under the then-approved >=80% CPU-idle performance precondition
+- Classification: `Requirement Gap / Design Impact`
+- Required owner: `solution_designer`
+
+### Explicit User Direction
+
+The user directed API/E2E to test performance despite the host being below the existing 80% CPU-idle precondition and stated that the major acceptance goal is whether the current-platform functionality works. The user explicitly said not to treat the 80% value as a concern.
+
+This prospectively changes the acceptance basis. It does not retroactively convert API-REV-004 to Pass and does not authorize API/E2E to bypass the current production preflight or edit evidence. The reviewed source currently fails closed before package construction when the quiescence gate is not met.
+
+### Required Revised Acceptance Contract
+
+The recommended revised contract should separate two truths:
+
+1. **Functional current-platform qualification** is the blocking pass gate. It should still require exact closed inputs, byte-identical builds, package/archive/launcher verification, real English 49 and Chinese 200 inference, quality/non-regression, protocol/lifecycle/recovery, relocation, network denial, read-only/no-mutation, compliance/privacy, Qualification Set 1, and independently verified Branch Catalog Projection 1.
+2. **Performance observation under the actual available host load** is recorded truthfully but is not a blocker merely because pre-run CPU idle is below 80%. The evidence must record the observed load and must not call an uncontrolled run a controlled reference benchmark.
+
+The revised solution must explicitly decide whether exact 30 cold / 30 warm-preparation / 100 warm-request counts and latency/RSS thresholds remain blocking, become informational, or split into a later controlled-performance qualification. API/E2E should not infer that all performance criteria were removed solely from removal of the 80% quiescence concern.
+
+### Design And Implementation Impact
+
+- Separate package/build/functional readiness from controlled-performance-environment readiness. The current single production preflight hard-blocks all package work on quiescence.
+- Preserve actual AC, thermal, memory-pressure, tool-identity, sandbox, and exact purge evidence unless the revised design explicitly changes them.
+- Emit an explicit evidence classification such as `functional-qualification` versus `controlled-performance-qualification`; never present loaded-host observations as controlled reference numbers.
+- Preserve fail-closed provider/model/corpus/quality/compliance/package and release-evidence gates. No provider, target, quality threshold, or release action is implicitly relaxed.
+- Update requirements, current-platform qualification, benchmark protocol, schemas, qualification runner, aggregation rules, and workflow consistently before API/E2E resumes.
+
+### Downstream Re-entry
+
+Solution Designer should record the user's functional-first acceptance in a new solution revision and route it through Architecture Review. Implementation and Code Review must then provide a supported non-workaround execution path. API/E2E will open the next revision only after that path passes source review; it will not patch the preflight, manufacture a passing record, reduce the threshold ad hoc, or invoke package builders outside the reviewed contract.

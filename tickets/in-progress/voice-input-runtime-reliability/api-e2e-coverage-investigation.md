@@ -28,6 +28,7 @@
 - Trigger: `CRR-013` Pass for `IR-011` at reviewed source commit `23d766873fa1be357c657fab8203913fec09e65b` against `SR-008` / `SR-009` and `ARCH-REV-010`.
 - Prior Investigation Reviewed: `API-REV-003 — Fail / 79%` at `API-F-001`; repository and unchanged authority coverage passed, but the actual M1 thermal parser rejected healthy `pmset` output before package construction.
 - Latest Authoritative Investigation: `API-REV-004 — Blocked / 82%`. `API-F-001` is directly resolved and AC/purge readiness passes, but the production preflight did not reach the required six-sample `>=80%` average CPU-idle condition within 15 minutes.
+- Post-round requirement impact: `API-RI-002` records the user's subsequent direction that functional current-platform proof is primary and performance should be observed despite sub-80% idle. This is pending Solution/Architecture revision and does not retroactively change API-REV-004.
 
 ## Current Requirement And Design Basis
 
@@ -231,6 +232,7 @@ None.
 | mandatory current package fails provider/model/quality/resource/license gate | Design Impact unless bounded implementation defect | exact failed command/artifact; no fallback or threshold relaxation allowed | `code_reviewer` for failure-origin review |
 | harness/fixture/environment owner defects despite approved behavior | Local Fix candidate | focused reproduction and diff | `code_reviewer` |
 | required host capability or exact external byte unavailable | Blocked dependency | readiness/preflight/materializer failure evidence | user, per Blocked workflow |
+| user no longer wants the >=80% CPU-idle condition to block functional acceptance | Requirement Gap / Design Impact | explicit post-API-REV-004 user direction; `api-e2e-requirement-impact.md` API-RI-002 | `solution_designer` before any preflight/package workaround |
 
 ## Investigation Decision
 
@@ -238,6 +240,6 @@ None.
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No`.
 - Post-repository confidence: `82%`.
 - Broader validation decision: `Blocked`.
-- Reroute Required Before Validation Execution: `No teammate reroute`; user action is required to quiet user-owned applications.
-- Recommended Recipient: `User request`, per Blocked workflow.
-- Notes: `API-F-001` is directly resolved (`thermalNormal=true`). AC and purge pass. `API-VOICE-002` and `API-VOICE-013` remain reusable only for their unchanged boundary. Six non-arm64 scenarios remain deferred/outside matrix. No package or release action ran.
+- Reroute Required Before Validation Execution: `Yes` prospectively — API-RI-002 changes the functional/performance acceptance boundary and the current source hard-blocks all package execution on quiescence.
+- Recommended Recipient: `solution_designer` for Requirement Gap / Design Impact resolution.
+- Notes: API-REV-004 remains historical Blocked under the approved contract. `API-F-001` is directly resolved (`thermalNormal=true`), and AC/purge pass. API/E2E will not fabricate a passing preflight or bypass package entry; it resumes after a reviewed functional-first execution path exists.
