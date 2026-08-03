@@ -1,7 +1,21 @@
 import path from "node:path";
+import Ajv2020 from "ajv/dist/2020.js";
 import { aggregateErrorRate } from "./scoring/error-rate.mjs";
 import { pairedBootstrap } from "./baseline/qualification-baseline.mjs";
-import { shaFile, writeJson } from "../build/lib/files.mjs";
+import { DEADLINES } from "./provider-process-session.mjs";
+import { writePerformanceAssessment } from "./performance-assessment.mjs";
+import { assertCompletePerformanceSamples } from "./performance-observation.mjs";
+import { readJson, ROOT, shaFile, writeJson } from "../build/lib/files.mjs";
+
+const summarySchema = await readJson(
+    path.join(
+      ROOT,
+      "contracts/qualification/profile-qualification-summary-v2.schema.json",
+    ),
+  ),
+  validateSummary = new Ajv2020({ allErrors: true, strict: true }).compile(
+    summarySchema,
+  );
 
 export async function writeProfileQualificationEvidence({
   output,
@@ -31,7 +45,11 @@ export async function writeProfileQualificationEvidence({
 }) {
   const rawPath = path.join(output, "raw-results.json"),
     indexPath = path.join(output, "result-index.json"),
-    performancePath = path.join(output, "performance-samples-v1.json");
+    performancePath = path.join(output, "performance-samples-v1.json"),
+    attemptPath = path.join(output, "qualification-attempts-v1.json"),
+    preflightPath = path.join(output, "darwin-arm64-preflight-v2.json"),
+    summaryPath = path.join(output, "qualification-summary-v2.json"),
+    assessmentPath = path.join(output, "performance-assessment-v1.json");
   await writeJson(rawPath, {
     schemaVersion: 1,
     packageId: build.packageId,
@@ -56,15 +74,36 @@ export async function writeProfileQualificationEvidence({
     warm,
   });
   const attempts = await recorder.finalize(decision, failureCategory),
-    attemptPath = path.join(output, "qualification-attempts-v1.json"),
     counts = recorder.counts(),
     quality = aggregateErrorRate(raw),
     completeQuality = raw.length === baseline.results.length,
-    paired = completeQuality ? pairedBootstrap(raw, baseline.results) : null;
+    paired = completeQuality ? pairedBootstrap(raw, baseline.results) : null,
+    functional = functionalOutcome({
+      requestedDecision: decision,
+      failureCategory,
+      build,
+      baseline,
+      attempts,
+      counts,
+      cacheExecutions,
+      cold,
+      warmPreparation,
+      warm,
+      raw,
+      rss,
+      quality,
+      corpusMetric: corpus.manifest.metric,
+      maxRssBytes: Math.max(0, ...rss),
+      normalizationFixtures,
+      noPackageMutation,
+      recovery,
+      offline: conditions.executionEnvironment.sandbox.networkDenied === true,
+    });
   const summary = {
-    schemaVersion: 1,
-    decision,
-    failureCategory,
+    schemaVersion: 2,
+    artifactKind: "profile-qualification-summary",
+    functionalDecision: functional.decision,
+    failureCategory: functional.failureCategory,
     sourceCommit: build.sourceCommit,
     runnerCommit: conditions.runnerCommit,
     packageVersion: build.packageVersion,
@@ -86,14 +125,24 @@ export async function writeProfileQualificationEvidence({
     runtimeConformanceSha256: conformancePath
       ? await shaFile(conformancePath)
       : null,
-    performanceSamplesSha256: await shaFile(performancePath),
-    qualificationAttemptsSha256: await shaFile(attemptPath),
+    preflight: {
+      fileName: path.basename(preflightPath),
+      sha256: await shaFile(preflightPath),
+    },
+    rawEvidence: {
+      performanceSamples: await fileIdentity(performancePath),
+      qualificationAttempts: await fileIdentity(attemptPath),
+      rawResults: await fileIdentity(rawPath),
+      resultIndex: await fileIdentity(indexPath),
+    },
     attempts: {
       started: counts.started,
-      completed: counts.completed,
+      succeeded: counts.completed,
       failed: counts.failed,
-      timeouts: counts.timeouts,
+      timedOut: counts.timeouts,
+      excluded: 0,
     },
+    hardDeadlines: { ...DEADLINES, violations: counts.timeouts },
     packageId: build.packageId,
     providerId: build.providerId,
     modelId: build.modelId,
@@ -113,7 +162,6 @@ export async function writeProfileQualificationEvidence({
     protocolSha256: build.protocolSha256,
     noticeInventorySha256: build.noticeInventorySha256,
     generatedComplianceSha256: await shaFile(compliancePath),
-    preflightSha256: conditions.preflight.sha256,
     sandboxProfileSha256: conditions.executionEnvironment.sandbox.profileSha256,
     conditions,
     corpus: corpus.corpusEvidence,
@@ -140,29 +188,7 @@ export async function writeProfileQualificationEvidence({
       failedCount: attempts.attempts.filter(
         (item) => item.qualityCounted && item.status === "failed",
       ).length,
-      rawResultsSha256: await shaFile(rawPath),
-      resultIndexSha256: await shaFile(indexPath),
     },
-    handshake: latency(
-      cold.map((item) => item.handshakeMs),
-      failures(recorder, "cold", "handshakeMs"),
-    ),
-    coldPreparation: latency(
-      cold.map((item) => item.preparationMs),
-      failures(recorder, "cold", "preparationMs"),
-    ),
-    warmPreparation: latency(
-      warmPreparation.map((item) => item.preparationMs),
-      failures(recorder, "warm-preparation"),
-    ),
-    coldResult: latency(
-      cold.map((item) => item.coldResultMs),
-      failures(recorder, "cold"),
-    ),
-    warmRequest: latency(
-      warm.map((item) => item.requestMs),
-      failures(recorder, "warm-request"),
-    ),
     maxRssBytes: Math.max(0, ...rss),
     extractedSizeBytes: build.archive.extractedSizeBytes,
     packageRuns: attempts.attempts.filter(
@@ -176,29 +202,92 @@ export async function writeProfileQualificationEvidence({
     recovery,
     licenseApproved: true,
   };
-  await writeJson(path.join(output, "qualification-summary.json"), summary);
-  return summary;
+  assertValidSummary(summary);
+  await writeJson(summaryPath, summary);
+  const assessment = await writePerformanceAssessment({
+    output: assessmentPath,
+    summaryPath,
+    preflightPath,
+    performanceSamplesPath: performancePath,
+    qualificationAttemptsPath: attemptPath,
+  });
+  return { summary, assessment };
 }
 
-function failures(recorder, phase, missingTiming = null) {
-  return recorder
-    .failuresFor(phase)
-    .filter(
-      (attempt) =>
-        !missingTiming || attempt.timings[missingTiming] === undefined,
+function functionalOutcome({
+  requestedDecision,
+  failureCategory,
+  build,
+  baseline,
+  attempts,
+  counts,
+  cacheExecutions,
+  cold,
+  warmPreparation,
+  warm,
+  raw,
+  rss,
+  quality,
+  corpusMetric,
+  maxRssBytes,
+  normalizationFixtures,
+  noPackageMutation,
+  recovery,
+  offline,
+}) {
+  if (requestedDecision !== "pass")
+    return { decision: requestedDecision, failureCategory };
+  const qualityLimit = build.profileId === "english" ? 0.08 : 0.07,
+    expectedAttemptCount = 60 + Math.max(100, baseline.results.length),
+    expectedMetric = build.profileId === "english" ? "WER" : "CER";
+  if (
+    counts.failed !== 0 ||
+    counts.timeouts !== 0 ||
+    counts.started !== expectedAttemptCount ||
+    counts.completed !== expectedAttemptCount ||
+    attempts.attempts.some((item) => item.status !== "succeeded") ||
+    cacheExecutions.length !== 30 ||
+    cacheExecutions.some(
+      (item, index) => item.index !== index || item.completed !== true,
+    ) ||
+    cold.length !== 30 ||
+    warmPreparation.length !== 30 ||
+    warm.length !== 100 ||
+    raw.length !== baseline.results.length ||
+    raw.some((item) => item.outcome === "no-speech") ||
+    quality.value > qualityLimit ||
+    quality.value - baseline.value > 0.005000000001 ||
+    maxRssBytes > 2684354560 ||
+    build.archive.extractedSizeBytes > 1342177280 ||
+    !normalizationFixtures ||
+    !noPackageMutation ||
+    !recovery ||
+    !offline ||
+    !hasCompletePerformanceSamples({ cold, warmPreparation, warm }) ||
+    rss.length === 0 ||
+    rss.some((value) => !Number.isFinite(value) || value <= 0) ||
+    corpusMetric !== expectedMetric
+  )
+    return { decision: "fail", failureCategory: "functional-gate-failed" };
+  return { decision: "pass", failureCategory: null };
+}
+
+function hasCompletePerformanceSamples(samples) {
+  try {
+    assertCompletePerformanceSamples(samples);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+async function fileIdentity(file) {
+  return { fileName: path.basename(file), sha256: await shaFile(file) };
+}
+
+function assertValidSummary(summary) {
+  if (!validateSummary(summary))
+    throw new Error(
+      `Qualification Summary invalid: ${JSON.stringify(validateSummary.errors)}`,
     );
-}
-
-function latency(values, failed) {
-  const sorted = [...values].sort((left, right) => left - right),
-    pick = (quantile) =>
-      sorted[Math.max(0, Math.ceil(quantile * sorted.length) - 1)] ?? 0;
-  return {
-    count: sorted.length,
-    failures: failed.length,
-    timeouts: failed.filter((item) => item.timeout).length,
-    p50Ms: pick(0.5),
-    p95Ms: pick(0.95),
-    maxMs: sorted.at(-1) ?? 0,
-  };
 }

@@ -10,14 +10,14 @@ test("release schema rejects declarative pass records without raw identities and
     await fs.readFile(
       path.join(
         root,
-        "contracts/release/release-qualification-evidence-v1.schema.json",
+        "contracts/release/release-qualification-evidence-v2.schema.json",
       ),
     ),
   );
   const validate = new Ajv2020({ strict: true }).compile(schema);
   assert.equal(
     validate({
-      schemaVersion: 1,
+      schemaVersion: 2,
       passed: true,
       sourceCommit: "1".repeat(40),
       runnerCommit: "0".repeat(40),

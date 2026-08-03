@@ -16,7 +16,7 @@ export async function composeCatalogEntryIdentity(matrixEntry, profile) {
       throw new Error(`Catalog entry matrix mismatch: ${key}`);
   if (
     matrixEntry.decision !== profile.candidateDecision ||
-    profile.decision !== "pass"
+    profile.functionalDecision !== "pass"
   )
     throw new Error("Catalog entry qualification decision mismatch.");
   const value = {
@@ -54,7 +54,7 @@ export async function composeCatalogEntryIdentity(matrixEntry, profile) {
     capabilityDigest: profile.capabilityDigest,
     noticeInventoryDigest: profile.noticeInventorySha256,
     generatedComplianceDigest: profile.generatedComplianceSha256,
-    qualificationResultDigest: profile.qualificationSummarySha256,
+    qualificationResultDigest: profile.qualificationSummary.sha256,
   };
   if (!/^[a-f0-9]{64}$/.test(value.capabilityDigest ?? ""))
     throw new Error(

@@ -20,6 +20,12 @@ import {
   systemCommandIdentityDigest,
 } from "./system-command-identity.mjs";
 import { parseDarwinThermalState } from "./darwin-thermal-state.mjs";
+import {
+  classifyPerformanceEnvironment,
+  parseCpuIdleSample,
+  parseTaskOwnedProcessNames,
+  parseTopConsumerProcessNames,
+} from "./darwin-performance-environment.mjs";
 
 const run = promisify(execFile);
 const PROFILE = path.join(
@@ -95,8 +101,7 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
     };
     if (Object.values(record.power).some((value) => value !== true))
       throw blocked("runner-power-or-pressure");
-    record.quiescence = await waitForQuiescence();
-    if (!record.quiescence.passed) throw blocked("runner-not-quiescent");
+    record.performanceEnvironment = await capturePerformanceEnvironment();
     const sudoExecutable = await capturePinnedSudoIdentity();
     record.tools = {
       node: process.version,
@@ -156,13 +161,13 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
 
 function emptyRecord() {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     target: "darwin-arm64",
     status: "blocked",
     checkedAt: new Date().toISOString(),
     host: {},
     power: {},
-    quiescence: {},
+    performanceEnvironment: {},
     tools: {},
     sandbox: {},
     purge: {},
@@ -176,51 +181,37 @@ function blocked(failureCategory) {
   return error;
 }
 
-async function waitForQuiescence() {
-  const deadline = Date.now() + 15 * 60 * 1000;
-  let samples = [];
-  while (Date.now() <= deadline) {
-    const competing = await command(
+async function capturePerformanceEnvironment() {
+  const taskOutput = await command(
       "/usr/bin/pgrep",
       [
-        "-afil",
+        "-fl",
         "voice-provider|run-profile-qualification|package-assembler|cmake --build",
       ],
       true,
+    ),
+    cpuIdleSamples = [];
+  for (let index = 0; index < 6; index++)
+    cpuIdleSamples.push(
+      parseCpuIdleSample(
+        await command("/usr/bin/top", ["-l", "2", "-s", "10", "-n", "0"]),
+      ),
     );
-    samples = [];
-    for (let index = 0; index < 6; index++) {
-      const output = await command("/usr/bin/top", [
-        "-l",
-        "2",
-        "-s",
-        "10",
-        "-n",
-        "0",
-      ]);
-      const values = [...output.matchAll(/CPU usage:.*?([0-9.]+)% idle/g)].map(
-        (item) => Number(item[1]),
-      );
-      samples.push(values.at(-1) ?? 0);
-    }
-    const averageIdlePercent =
-      samples.reduce((sum, item) => sum + item, 0) / samples.length;
-    if (!competing && averageIdlePercent >= 80)
-      return {
-        passed: true,
-        samples,
-        averageIdlePercent,
-        competingProcesses: [],
-      };
-    if (Date.now() <= deadline)
-      await new Promise((resolve) => setTimeout(resolve, 10000));
-  }
-  return {
-    passed: false,
-    samples,
-    averageIdlePercent: 0,
-    competingProcesses: ["detected"],
-  };
+  const consumerOutput = await command("/usr/bin/top", [
+    "-l",
+    "1",
+    "-o",
+    "cpu",
+    "-n",
+    "10",
+    "-stats",
+    "command",
+  ]);
+  return classifyPerformanceEnvironment({
+    cpuIdleSamples,
+    taskOwnedCompetingProcessNames: parseTaskOwnedProcessNames(taskOutput),
+    topConsumerProcessNames: parseTopConsumerProcessNames(consumerOutput),
+  });
 }
 
 async function proveSandbox() {
@@ -298,7 +289,7 @@ async function validateAndWrite(record, output) {
   const schema = await readJson(
     path.join(
       ROOT,
-      "contracts/qualification/darwin-arm64-preflight-v1.schema.json",
+      "contracts/qualification/darwin-arm64-preflight-v2.schema.json",
     ),
   );
   const ajv = new Ajv2020({ allErrors: true, strict: true });

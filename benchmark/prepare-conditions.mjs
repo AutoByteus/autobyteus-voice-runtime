@@ -43,7 +43,7 @@ await writeJson(path.resolve(args.output), {
   hardware: preflight.host,
   operatingEnvironment: {
     power: preflight.power,
-    quiescence: preflight.quiescence,
+    performanceEnvironment: preflight.performanceEnvironment,
     tools: preflight.tools,
   },
   executionEnvironment: {

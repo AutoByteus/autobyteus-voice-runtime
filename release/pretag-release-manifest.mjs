@@ -28,12 +28,12 @@ export async function assemblePreTagReleaseManifest({
     catalog = await readJson(catalogPath);
   await validate(
     qset,
-    "contracts/release/qualification-set-v1.schema.json",
+    "contracts/release/qualification-set-v2.schema.json",
     "Qualification Set",
   );
   await validate(
     evidence,
-    "contracts/release/release-qualification-evidence-v1.schema.json",
+    "contracts/release/release-qualification-evidence-v2.schema.json",
     "Release Evidence",
   );
   await validate(
@@ -63,7 +63,7 @@ export async function assemblePreTagReleaseManifest({
       compareFileName,
     );
   const manifest = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     intendedRelease: {
       runtimeVersion: catalog.runtimeVersion,
       releaseTag: catalog.releaseTag,
@@ -72,11 +72,11 @@ export async function assemblePreTagReleaseManifest({
     releaseMatrix: qset.releaseMatrix,
     qualificationSet: {
       ...qsetIdentity,
-      fileName: "qualification-set-v1.json",
+      fileName: "qualification-set-v2.json",
     },
     releaseEvidence: {
       ...evidenceIdentity,
-      fileName: "release-qualification-evidence-v1.json",
+      fileName: "release-qualification-evidence-v2.json",
     },
     catalog: { ...catalogIdentity, fileName: "voice-runtime-catalog-v3.json" },
     providerArchives: {
@@ -87,7 +87,7 @@ export async function assemblePreTagReleaseManifest({
   };
   await validate(
     manifest,
-    "contracts/release/pretag-release-manifest-v1.schema.json",
+    "contracts/release/pretag-release-manifest-v2.schema.json",
     "Pre-Tag Manifest",
   );
   await writeJson(path.resolve(output), manifest);

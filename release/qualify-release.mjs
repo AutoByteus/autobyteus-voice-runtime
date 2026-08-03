@@ -44,10 +44,10 @@ export async function qualifyRelease({
   try {
     const expectedEvidence = path.join(
         work,
-        "release-qualification-evidence-v1.json",
+        "release-qualification-evidence-v2.json",
       ),
       expectedCatalog = path.join(work, "voice-runtime-catalog-v3.json"),
-      expected = path.join(work, "pretag-release-manifest-v1.json"),
+      expected = path.join(work, "pretag-release-manifest-v2.json"),
       catalog = await readJson(catalogPath),
       firstEntry = catalog.entries?.[0],
       suffix = `/${catalog.releaseTag}/${firstEntry?.archive?.fileName}`;

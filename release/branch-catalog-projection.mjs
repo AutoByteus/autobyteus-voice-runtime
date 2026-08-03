@@ -28,11 +28,11 @@ export async function composeBranchCatalogProjection({
     qset = await readJson(qualificationSetPath);
   await validate(
     qset,
-    "contracts/release/qualification-set-v1.schema.json",
+    "contracts/release/qualification-set-v2.schema.json",
     "Qualification Set",
   );
   if (
-    qset.decision !== "pass" ||
+    qset.functionalDecision !== "pass" ||
     qset.releaseMatrix.matrixId !== matrix.value.matrixId ||
     qset.releaseMatrix.sha256 !== matrix.sha256
   )
@@ -50,21 +50,27 @@ export async function composeBranchCatalogProjection({
     qset.profiles.map((profile) => profile.archive),
   );
   const result = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     artifactKind: "branch-catalog-projection",
     sourceCommit: qset.sourceCommit,
     packageVersion: qset.packageVersion,
     releaseMatrix: qset.releaseMatrix,
     qualificationSet: {
-      fileName: "qualification-set-v1.json",
+      fileName: "qualification-set-v2.json",
       sha256: await shaFile(qualificationSetPath),
     },
+    performanceAssessments: qset.profiles.map(
+      ({ profileId, performanceAssessment }) => ({
+        profileId,
+        ...performanceAssessment,
+      }),
+    ),
     entries,
     assetSet: { sha256: providerArchiveSetDigest(items), items },
   };
   await validate(
     result,
-    "contracts/catalog/branch-catalog-projection-v1.schema.json",
+    "contracts/catalog/branch-catalog-projection-v2.schema.json",
     "Branch Catalog Projection",
   );
   await writeJson(path.resolve(output), result);

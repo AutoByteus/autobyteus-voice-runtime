@@ -53,7 +53,7 @@ the materializer or package builder.
 - `VOICE_GO` must identify `bin/go[.exe]` inside the complete extracted official root. Every file and directory in that root must match the target's repository-owned full-root manifest under `build/go-toolchain-manifests/`; an exact front binary with missing, added, stale, or modified compiler/linker/standard-library siblings fails.
 - All Go subprocesses derive `GOROOT` from that verified `VOICE_GO` root, disable environment configuration, external cache programs, and automatic toolchain selection, and set the target through one internal/Node/Go tuple map. Inherited `GOROOT`, `GOTOOLCHAIN`, `GOTOOLDIR`, `GOCACHEPROG`, `GOENV`, `GOFLAGS`, `GOEXPERIMENT`, target, CGO, or external-tool overrides are rejected rather than trusted.
 - Every build report binds the repository lock set in addition to the closed external input manifest.
-- Package assembly consumes a passing `darwin-arm64-preflight-v1.json` and creates one `native-build-environment-v1.json` owner. It rejects inherited compiler/linker/CMake/SDK selectors and flags before builder invocation; pins the exact preflight-authenticated Node, CMake, Apple compiler/linker/archive tools, Make, shell, tar, and SDK settings; supplies explicit CMake configuration; and records that environment digest in both build reports and the reproducibility proof.
+- Package assembly consumes a passing `darwin-arm64-preflight-v2.json` and creates one `native-build-environment-v1.json` owner. It rejects inherited compiler/linker/CMake/SDK selectors and flags before builder invocation; pins the exact preflight-authenticated Node, CMake, Apple compiler/linker/archive tools, Make, shell, tar, and SDK settings; supplies explicit CMake configuration; and records that environment digest in both build reports and the reproducibility proof.
 - Configured executable aliases such as the standard Homebrew CMake and macOS tar symlinks are canonicalized once and retain their exact target-byte identity end to end. Preflight identifies execute-only `/usr/bin/sudo` without opening it by binding its root-owned mode/device/inode/size/timestamps and a successful `sudo -V` execution probe, then separately proves the exact noninteractive `/usr/sbin/purge` capability; either identity or capability drift blocks qualification.
 
 ```bash
@@ -62,7 +62,7 @@ node build/package-assembler.mjs \
   --inputs /approved/inputs/english/darwin-arm64 \
   --output dist/voice-english-darwin-arm64-1.0.0.zip \
   --go /approved/go/bin/go --cmake /approved/cmake \
-  --preflight /approved/darwin-arm64-preflight-v1.json \
+  --preflight /approved/darwin-arm64-preflight-v2.json \
   --source-commit "$(git rev-parse HEAD)" --version 1.0.0
 
 node build/package-verifier.mjs \
@@ -81,25 +81,27 @@ node build/verify-reproducibility.mjs \
 ```
 
 `benchmark/darwin-arm64-runner-preflight.mjs` fail-closes objective M1 Max,
-power, pressure, quiescence, toolchain, Seatbelt, and noninteractive purge
-eligibility before counted work. `benchmark/run-profile-qualification.mjs`
+power, pressure, toolchain, Seatbelt, and noninteractive purge
+prerequisites before counted work. It captures six CPU-idle samples once and
+classifies them as `controlled` or `loaded-host` without blocking functional work. `benchmark/run-profile-qualification.mjs`
 then owns the exact 30 filesystem-cold, 30 warm-preparation, and 100 warm-request
 sets plus complete corpus, timing, RSS, relocation, no-mutation, and recovery
-evidence. Qualification produces a branch-only Qualification Set followed by
-the required independently verified Branch Catalog Projection, with no release
+evidence. Qualification writes immutable functional Summary 2 first, then a non-gating
+Performance Assessment 1 that content-binds that Summary. Qualification Set 2
+binds both before the independently verified Branch Catalog Projection 2, with no release
 tag, URL, maintained-main, or public status.
 
 Every trial is written to `qualification-attempts-v1.json` before provider
 work starts and is atomically updated with its outcome. A timeout, process
 loss, malformed frame, write failure, or other qualification failure retains
 all prior and current attempts, partial raw/performance evidence, and a
-non-pass `qualification-summary.json`/Qualification Set result. Workflow
+non-pass `qualification-summary-v2.json`/Qualification Set 2 result. Workflow
 uploads for each profile and the aggregate qualification audit run under
 `always()`; no failed trial is retried, excluded, or relabeled as passing.
 
 Delivery independently repeats qualification after integrating maintained
-`main`, then builds the acyclic chain: Qualification Set -> Release
-Qualification Evidence -> Catalog 3 -> Pre-Tag Release Manifest. Publication
+`main`, then builds the acyclic chain: Qualification Set 2 -> Release
+Qualification Evidence 2 -> Catalog 3 -> Pre-Tag Release Manifest 2. Publication
 uploads exactly the two archives, evidence, catalog, and manifest. Published
 byte verification is a separate always-recorded result; a failed result may
 delete only the GitHub Release object/assets while preserving the tag.

@@ -1,0 +1,549 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "functionalDecision",
+    "failureCategory",
+    "sourceCommit",
+    "runnerCommit",
+    "packageVersion",
+    "buildReportSha256",
+    "buildInputManifestSha256",
+    "buildInputProvenanceSha256",
+    "buildInputRecipeSha256",
+    "nativeBuildEnvironmentSha256",
+    "releaseMatrixId",
+    "releaseMatrixSha256",
+    "repositoryBuildLockSha256",
+    "goToolchainHost",
+    "goToolchainArchiveSha256",
+    "goToolchainRootManifestSha256",
+    "goToolchainRootTreeSha256",
+    "goToolchainRootFileCount",
+    "goToolchainRootSizeBytes",
+    "reproducibilityProofSha256",
+    "runtimeConformanceSha256",
+    "preflight",
+    "rawEvidence",
+    "attempts",
+    "hardDeadlines",
+    "packageId",
+    "providerId",
+    "modelId",
+    "profileId",
+    "languageMode",
+    "target",
+    "archive",
+    "capabilityDigest",
+    "descriptorSha256",
+    "fileManifestSha256",
+    "launcherSha256",
+    "launcherPlanSha256",
+    "hostSha256",
+    "engineConfigurationSha256",
+    "modelSha256",
+    "normalizerSha256",
+    "protocolSha256",
+    "noticeInventorySha256",
+    "generatedComplianceSha256",
+    "sandboxProfileSha256",
+    "conditions",
+    "corpus",
+    "quality",
+    "maxRssBytes",
+    "extractedSizeBytes",
+    "packageRuns",
+    "actualPlatform",
+    "normalizationFixtures",
+    "relocation",
+    "offline",
+    "noPackageMutation",
+    "recovery",
+    "licenseApproved"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "artifactKind": {
+      "const": "profile-qualification-summary"
+    },
+    "functionalDecision": {
+      "enum": ["pass", "fail", "blocked"]
+    },
+    "failureCategory": {
+      "type": ["string", "null"]
+    },
+    "sourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "runnerCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "packageVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "buildReportSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "buildInputManifestSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "buildInputProvenanceSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "buildInputRecipeSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "nativeBuildEnvironmentSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "releaseMatrixId": {
+      "const": "voice-runtime-darwin-arm64-v1"
+    },
+    "releaseMatrixSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "repositoryBuildLockSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "goToolchainHost": {
+      "type": "object"
+    },
+    "goToolchainArchiveSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "goToolchainRootManifestSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "goToolchainRootTreeSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "goToolchainRootFileCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "goToolchainRootSizeBytes": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "reproducibilityProofSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "runtimeConformanceSha256": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/sha"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "preflight": {
+      "$ref": "#/$defs/preflightIdentity"
+    },
+    "rawEvidence": {
+      "$ref": "#/$defs/rawEvidence"
+    },
+    "attempts": {
+      "$ref": "#/$defs/attemptCounts"
+    },
+    "hardDeadlines": {
+      "$ref": "#/$defs/hardDeadlines"
+    },
+    "packageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "providerId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "modelId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profileId": {
+      "enum": ["english", "chinese"]
+    },
+    "languageMode": {
+      "enum": ["en", "zh"]
+    },
+    "target": {
+      "$ref": "#/$defs/target"
+    },
+    "archive": {
+      "$ref": "#/$defs/archive"
+    },
+    "capabilityDigest": {
+      "$ref": "#/$defs/sha"
+    },
+    "descriptorSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "fileManifestSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "launcherSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "launcherPlanSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "hostSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "engineConfigurationSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "modelSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "normalizerSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "protocolSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "noticeInventorySha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "generatedComplianceSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "sandboxProfileSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "conditions": {
+      "type": "object"
+    },
+    "corpus": {
+      "type": "object"
+    },
+    "quality": {
+      "$ref": "#/$defs/quality"
+    },
+    "maxRssBytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "extractedSizeBytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "packageRuns": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "actualPlatform": {
+      "type": "boolean"
+    },
+    "normalizationFixtures": {
+      "type": "boolean"
+    },
+    "relocation": {
+      "type": "boolean"
+    },
+    "offline": {
+      "type": "boolean"
+    },
+    "noPackageMutation": {
+      "type": "boolean"
+    },
+    "recovery": {
+      "type": "boolean"
+    },
+    "licenseApproved": {
+      "type": "boolean"
+    }
+  },
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40}$)[a-f0-9]{40}$"
+    },
+    "fileIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "preflightIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "darwin-arm64-preflight-v2.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "rawEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "performanceSamples",
+        "qualificationAttempts",
+        "rawResults",
+        "resultIndex"
+      ],
+      "properties": {
+        "performanceSamples": {
+          "$ref": "#/$defs/performanceSamplesIdentity"
+        },
+        "qualificationAttempts": {
+          "$ref": "#/$defs/qualificationAttemptsIdentity"
+        },
+        "rawResults": {
+          "$ref": "#/$defs/rawResultsIdentity"
+        },
+        "resultIndex": {
+          "$ref": "#/$defs/resultIndexIdentity"
+        }
+      }
+    },
+    "attemptCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["started", "succeeded", "failed", "timedOut", "excluded"],
+      "properties": {
+        "started": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "succeeded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timedOut": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excluded": {
+          "const": 0
+        }
+      }
+    },
+    "hardDeadlines": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "helloMs",
+        "preparationMs",
+        "requestMs",
+        "gracefulShutdownMs",
+        "forcedShutdownMs",
+        "violations"
+      ],
+      "properties": {
+        "helloMs": {
+          "const": 2000
+        },
+        "preparationMs": {
+          "const": 30000
+        },
+        "requestMs": {
+          "const": 30000
+        },
+        "gracefulShutdownMs": {
+          "const": 2000
+        },
+        "forcedShutdownMs": {
+          "const": 2000
+        },
+        "violations": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "architecture"],
+      "properties": {
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        }
+      }
+    },
+    "archive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileName",
+        "sha256",
+        "compressedSizeBytes",
+        "extractedSizeBytes",
+        "entryCount"
+      ],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "compressedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "extractedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "entryCount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "metric",
+        "value",
+        "baseline",
+        "pairedUncertainty",
+        "sampleCount",
+        "emptyCount",
+        "failedCount"
+      ],
+      "properties": {
+        "metric": {
+          "enum": ["WER", "CER"]
+        },
+        "value": {
+          "type": "number",
+          "minimum": 0
+        },
+        "baseline": {
+          "type": "object"
+        },
+        "pairedUncertainty": {
+          "type": ["object", "null"]
+        },
+        "sampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "emptyCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failedCount": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "performanceSamplesIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "performance-samples-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "qualificationAttemptsIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "qualification-attempts-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "rawResultsIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "raw-results.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "resultIndexIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "result-index.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "functionalDecision": {
+            "const": "pass"
+          }
+        },
+        "required": ["functionalDecision"]
+      },
+      "then": {
+        "properties": {
+          "failureCategory": {
+            "const": null
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "failureCategory": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          }
+        }
+      }
+    }
+  ]
+}

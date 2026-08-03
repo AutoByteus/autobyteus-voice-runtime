@@ -49,7 +49,7 @@
       "required": ["fileName", "sha256"],
       "properties": {
         "fileName": {
-          "const": "release-qualification-evidence-v1.json"
+          "const": "release-qualification-evidence-v2.json"
         },
         "sha256": {
           "$ref": "#/$defs/sha"

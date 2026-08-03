@@ -11,11 +11,12 @@
     "packageVersion",
     "releaseMatrix",
     "profiles",
-    "decision"
+    "functionalDecision",
+    "performanceAssessment"
   ],
   "properties": {
     "schemaVersion": {
-      "const": 1
+      "const": 2
     },
     "artifactKind": {
       "const": "qualification-set"
@@ -44,8 +45,11 @@
         "$ref": "#/$defs/profile"
       }
     },
-    "decision": {
+    "functionalDecision": {
       "enum": ["pass", "fail", "blocked"]
+    },
+    "performanceAssessment": {
+      "enum": ["controlled-pass", "controlled-miss", "loaded-host-observation"]
     }
   },
   "$defs": {
@@ -152,13 +156,13 @@
     "attemptCounts": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["started", "completed", "failed", "timeouts"],
+      "required": ["started", "succeeded", "failed", "timedOut", "excluded"],
       "properties": {
         "started": {
           "type": "integer",
           "minimum": 0
         },
-        "completed": {
+        "succeeded": {
           "type": "integer",
           "minimum": 0
         },
@@ -166,9 +170,12 @@
           "type": "integer",
           "minimum": 0
         },
-        "timeouts": {
+        "timedOut": {
           "type": "integer",
           "minimum": 0
+        },
+        "excluded": {
+          "const": 0
         }
       }
     },
@@ -212,13 +219,14 @@
         "baselineSha256",
         "rawResultsSha256",
         "resultIndexSha256",
-        "qualificationSummarySha256",
         "runtimeConformanceSha256",
         "performance",
         "quality",
         "limitations",
         "outcomes",
-        "decision"
+        "qualificationSummary",
+        "performanceAssessment",
+        "functionalDecision"
       ],
       "properties": {
         "profileId": {
@@ -320,9 +328,6 @@
         "resultIndexSha256": {
           "$ref": "#/$defs/sha"
         },
-        "qualificationSummarySha256": {
-          "$ref": "#/$defs/sha"
-        },
         "runtimeConformanceSha256": {
           "$ref": "#/$defs/sha"
         },
@@ -374,9 +379,6 @@
             }
           }
         },
-        "decision": {
-          "const": "pass"
-        },
         "nativeBuildEnvironmentSha256": {
           "$ref": "#/$defs/sha"
         },
@@ -385,6 +387,42 @@
         },
         "attempts": {
           "$ref": "#/$defs/attemptCounts"
+        },
+        "qualificationSummary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fileName", "sha256"],
+          "properties": {
+            "fileName": {
+              "const": "qualification-summary-v2.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            }
+          }
+        },
+        "performanceAssessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fileName", "sha256", "classification"],
+          "properties": {
+            "fileName": {
+              "const": "performance-assessment-v1.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            },
+            "classification": {
+              "enum": [
+                "controlled-pass",
+                "controlled-miss",
+                "loaded-host-observation"
+              ]
+            }
+          }
+        },
+        "functionalDecision": {
+          "const": "pass"
         }
       }
     },
@@ -404,7 +442,6 @@
         "nativeBuildEnvironmentSha256",
         "preflightSha256",
         "archive",
-        "qualificationSummarySha256",
         "qualificationAttemptsSha256",
         "performanceSamplesSha256",
         "rawResultsSha256",
@@ -412,7 +449,9 @@
         "attempts",
         "performance",
         "failureCategory",
-        "decision"
+        "qualificationSummary",
+        "performanceAssessment",
+        "functionalDecision"
       ],
       "properties": {
         "profileId": {
@@ -451,9 +490,6 @@
         "archive": {
           "$ref": "#/$defs/archive"
         },
-        "qualificationSummarySha256": {
-          "$ref": "#/$defs/sha"
-        },
         "qualificationAttemptsSha256": {
           "$ref": "#/$defs/sha"
         },
@@ -476,7 +512,40 @@
           "type": "string",
           "pattern": "^[a-z0-9-]+$"
         },
-        "decision": {
+        "qualificationSummary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fileName", "sha256"],
+          "properties": {
+            "fileName": {
+              "const": "qualification-summary-v2.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            }
+          }
+        },
+        "performanceAssessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fileName", "sha256", "classification"],
+          "properties": {
+            "fileName": {
+              "const": "performance-assessment-v1.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            },
+            "classification": {
+              "enum": [
+                "controlled-pass",
+                "controlled-miss",
+                "loaded-host-observation"
+              ]
+            }
+          }
+        },
+        "functionalDecision": {
           "enum": ["fail", "blocked"]
         }
       }

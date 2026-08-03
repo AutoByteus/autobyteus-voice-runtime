@@ -16,6 +16,8 @@ import {
 } from "../current-release-matrix.mjs";
 import { verifyProfileQualificationEvidence } from "./profile-qualification-verifier.mjs";
 import { verifyExactProviderArchiveSet } from "../provider-archive-set.mjs";
+import { verifyPerformanceAssessment } from "../../benchmark/performance-assessment.mjs";
+import { assertCompletePerformanceSamples } from "../../benchmark/performance-observation.mjs";
 
 export async function assembleQualificationSet({
   qualifications,
@@ -31,7 +33,7 @@ export async function assembleQualificationSet({
   const matrix = await loadCurrentReleaseMatrix(),
     files = await find(
       path.resolve(qualifications),
-      "qualification-summary.json",
+      "qualification-summary-v2.json",
     ),
     summaries = await Promise.all(
       files.map(async (file) => ({ file, value: await readJson(file) })),
@@ -66,9 +68,10 @@ export async function assembleQualificationSet({
     assets,
     profiles.map((profile) => profile.archive),
   );
-  const decision = qualificationSetDecision(profiles);
+  const functionalDecision = qualificationSetDecision(profiles),
+    performanceAssessment = qualificationSetPerformanceAssessment(profiles);
   const result = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     artifactKind: "qualification-set",
     sourceCommit,
     runnerCommit,
@@ -79,7 +82,8 @@ export async function assembleQualificationSet({
       sha256: matrix.sha256,
     },
     profiles,
-    decision,
+    functionalDecision,
+    performanceAssessment,
   };
   await validate(result);
   await writeJson(path.resolve(output), result);
@@ -95,7 +99,8 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
     provenance = await readJson(file("input-provenance-v1.json")),
     compliance = await readJson(file("package-compliance-v1.json")),
     performance = await readJson(file("performance-samples-v1.json")),
-    preflight = await readJson(file("darwin-arm64-preflight-v1.json"));
+    preflight = await readJson(file("darwin-arm64-preflight-v2.json")),
+    assessment = await readJson(file("performance-assessment-v1.json"));
   if (
     q.sourceCommit !== sourceCommit ||
     q.runnerCommit !== runnerCommit ||
@@ -111,12 +116,12 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
       (await shaFile(file("native-build-environment-v1.json"))) ||
     q.generatedComplianceSha256 !==
       (await shaFile(file("package-compliance-v1.json"))) ||
-    q.performanceSamplesSha256 !==
+    q.rawEvidence.performanceSamples.sha256 !==
       (await shaFile(file("performance-samples-v1.json"))) ||
-    q.qualificationAttemptsSha256 !==
+    q.rawEvidence.qualificationAttempts.sha256 !==
       (await shaFile(file("qualification-attempts-v1.json"))) ||
-    q.preflightSha256 !==
-      (await shaFile(file("darwin-arm64-preflight-v1.json"))) ||
+    q.preflight.sha256 !==
+      (await shaFile(file("darwin-arm64-preflight-v2.json"))) ||
     provenance.repository.sourceCommit !== sourceCommit ||
     compliance.decision !== "pass" ||
     preflight.status !== "pass" ||
@@ -125,7 +130,14 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
     throw new Error(
       `Qualification identity/evidence mismatch: ${entry.profileId}`,
     );
-  if (q.decision !== "pass")
+  await verifyPerformanceAssessment({
+    summaryPath: item.file,
+    assessmentPath: file("performance-assessment-v1.json"),
+    preflightPath: file("darwin-arm64-preflight-v2.json"),
+    performanceSamplesPath: file("performance-samples-v1.json"),
+    qualificationAttemptsPath: file("qualification-attempts-v1.json"),
+  });
+  if (q.functionalDecision !== "pass")
     return verifyReportedNonPass({
       entry,
       item,
@@ -133,11 +145,12 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
       performance,
       sourceCommit,
       runnerCommit,
+      assessment,
     });
   try {
     await verifyProfileQualificationEvidence(q, directory);
-    enforceThresholds(q, performance);
-    return passingProfile(entry, item, assets, performance);
+    enforceFunctionalGates(q, performance);
+    return passingProfile(entry, item, assets, performance, assessment);
   } catch {
     return nonPassingProfile({
       entry,
@@ -146,6 +159,7 @@ async function verifyProfile(entry, item, assets, sourceCommit, runnerCommit) {
       performance,
       decision: "fail",
       failureCategory: "qualification-verification-failed",
+      assessment,
     });
   }
 }
@@ -157,6 +171,7 @@ async function verifyReportedNonPass({
   performance,
   sourceCommit,
   runnerCommit,
+  assessment,
 }) {
   const q = item.value,
     directory = path.dirname(item.file),
@@ -167,26 +182,29 @@ async function verifyReportedNonPass({
     attempts = await readJson(attemptsPath),
     counts = {
       started: attempts.attempts.length,
-      completed: attempts.attempts.filter(
+      succeeded: attempts.attempts.filter(
         (attempt) => attempt.status === "succeeded",
       ).length,
       failed: attempts.attempts.filter((attempt) => attempt.status === "failed")
         .length,
-      timeouts: attempts.attempts.filter((attempt) => attempt.timeout).length,
+      timedOut: attempts.attempts.filter((attempt) => attempt.timeout).length,
+      excluded: 0,
     };
   if (
     q.sourceCommit !== sourceCommit ||
     q.runnerCommit !== runnerCommit ||
-    !["fail", "blocked"].includes(q.decision) ||
+    !["fail", "blocked"].includes(q.functionalDecision) ||
     !/^[a-z0-9-]+$/.test(q.failureCategory) ||
-    attempts.decision !== q.decision ||
+    attempts.decision !== q.functionalDecision ||
     attempts.failureCategory !== q.failureCategory ||
     attempts.attempts.some((attempt) => attempt.status === "started") ||
     JSON.stringify(counts) !== JSON.stringify(q.attempts) ||
-    q.qualificationAttemptsSha256 !== (await shaFile(attemptsPath)) ||
-    q.performanceSamplesSha256 !== (await shaFile(performancePath)) ||
-    q.quality.rawResultsSha256 !== (await shaFile(rawPath)) ||
-    q.quality.resultIndexSha256 !== (await shaFile(indexPath))
+    q.rawEvidence.qualificationAttempts.sha256 !==
+      (await shaFile(attemptsPath)) ||
+    q.rawEvidence.performanceSamples.sha256 !==
+      (await shaFile(performancePath)) ||
+    q.rawEvidence.rawResults.sha256 !== (await shaFile(rawPath)) ||
+    q.rawEvidence.resultIndex.sha256 !== (await shaFile(indexPath))
   )
     throw new Error(
       `Non-pass qualification evidence invalid: ${entry.profileId}`,
@@ -196,12 +214,13 @@ async function verifyReportedNonPass({
     item,
     assets,
     performance,
-    decision: q.decision,
+    decision: q.functionalDecision,
     failureCategory: q.failureCategory,
+    assessment,
   });
 }
 
-async function passingProfile(entry, item, assets, performance) {
+async function passingProfile(entry, item, assets, performance, assessment) {
   const q = item.value,
     archive = await archiveIdentity(assets, q, entry.profileId);
   return {
@@ -233,15 +252,19 @@ async function passingProfile(entry, item, assets, performance) {
     capabilityDigest: q.capabilityDigest,
     noticeInventorySha256: q.noticeInventorySha256,
     generatedComplianceSha256: q.generatedComplianceSha256,
-    preflightSha256: q.preflightSha256,
+    preflightSha256: q.preflight.sha256,
     sandboxProfileSha256: q.sandboxProfileSha256,
     corpusManifestSha256: q.corpus.manifestSha256,
     baselineSha256: q.quality.baseline.evidenceSha256,
-    rawResultsSha256: q.quality.rawResultsSha256,
-    resultIndexSha256: q.quality.resultIndexSha256,
-    qualificationSummarySha256: await shaFile(item.file),
+    rawResultsSha256: q.rawEvidence.rawResults.sha256,
+    resultIndexSha256: q.rawEvidence.resultIndex.sha256,
+    qualificationSummary: {
+      fileName: "qualification-summary-v2.json",
+      sha256: await shaFile(item.file),
+    },
+    performanceAssessment: await assessmentIdentity(item, assessment),
     runtimeConformanceSha256: q.runtimeConformanceSha256,
-    qualificationAttemptsSha256: q.qualificationAttemptsSha256,
+    qualificationAttemptsSha256: q.rawEvidence.qualificationAttempts.sha256,
     attempts: q.attempts,
     performance: performanceView(q, performance),
     quality: q.quality,
@@ -255,7 +278,7 @@ async function passingProfile(entry, item, assets, performance) {
       recovery: q.recovery,
       licenseApproved: q.licenseApproved,
     },
-    decision: "pass",
+    functionalDecision: "pass",
   };
 }
 
@@ -266,6 +289,7 @@ async function nonPassingProfile({
   performance,
   decision,
   failureCategory,
+  assessment,
 }) {
   const q = item.value;
   return {
@@ -279,17 +303,21 @@ async function nonPassingProfile({
     candidateDecision: entry.decision,
     buildReportSha256: q.buildReportSha256,
     nativeBuildEnvironmentSha256: q.nativeBuildEnvironmentSha256,
-    preflightSha256: q.preflightSha256,
+    preflightSha256: q.preflight.sha256,
     archive: await archiveIdentity(assets, q, entry.profileId),
-    qualificationSummarySha256: await shaFile(item.file),
-    qualificationAttemptsSha256: q.qualificationAttemptsSha256,
-    performanceSamplesSha256: q.performanceSamplesSha256,
-    rawResultsSha256: q.quality.rawResultsSha256,
-    resultIndexSha256: q.quality.resultIndexSha256,
+    qualificationSummary: {
+      fileName: "qualification-summary-v2.json",
+      sha256: await shaFile(item.file),
+    },
+    performanceAssessment: await assessmentIdentity(item, assessment),
+    qualificationAttemptsSha256: q.rawEvidence.qualificationAttempts.sha256,
+    performanceSamplesSha256: q.rawEvidence.performanceSamples.sha256,
+    rawResultsSha256: q.rawEvidence.rawResults.sha256,
+    resultIndexSha256: q.rawEvidence.resultIndex.sha256,
     attempts: q.attempts,
     performance: performanceView(q, performance),
     failureCategory,
-    decision,
+    functionalDecision: decision,
   };
 }
 
@@ -313,12 +341,22 @@ function performanceView(q, performance) {
     warmPreparationCount: performance.warmPreparation.length,
     warmRequestCount: performance.warm.length,
     failures: q.attempts.failed,
-    timeouts: q.attempts.timeouts,
-    samplesSha256: q.performanceSamplesSha256,
+    timeouts: q.attempts.timedOut,
+    samplesSha256: q.rawEvidence.performanceSamples.sha256,
   };
 }
 
-export function enforceThresholds(q, performance) {
+async function assessmentIdentity(item, assessment) {
+  return {
+    fileName: "performance-assessment-v1.json",
+    sha256: await shaFile(
+      path.join(path.dirname(item.file), "performance-assessment-v1.json"),
+    ),
+    classification: assessment.assessment,
+  };
+}
+
+export function enforceFunctionalGates(q, performance) {
   if (
     performance.cacheExecutions.length !== 30 ||
     performance.cold.length !== 30 ||
@@ -326,26 +364,12 @@ export function enforceThresholds(q, performance) {
     performance.warm.length !== 100
   )
     throw new Error("Qualification must contain exact 30/30/100 trials.");
-  for (const metric of [
-    q.handshake,
-    q.coldPreparation,
-    q.warmPreparation,
-    q.coldResult,
-    q.warmRequest,
-  ])
-    if (metric.failures || metric.timeouts)
-      throw new Error("Qualification contains failed or excluded trials.");
+  assertCompletePerformanceSamples(performance);
   if (
-    q.handshake.count !== 30 ||
-    q.coldPreparation.count !== 30 ||
-    q.warmPreparation.count !== 30 ||
-    q.coldResult.count !== 30 ||
-    q.warmRequest.count !== 100 ||
-    q.handshake.p95Ms > 1000 ||
-    q.coldPreparation.p95Ms > 20000 ||
-    q.warmPreparation.p95Ms > 10000 ||
-    q.coldResult.p95Ms > 25000 ||
-    q.warmRequest.p95Ms > 10000 ||
+    q.attempts.failed ||
+    q.attempts.timedOut ||
+    q.attempts.excluded ||
+    q.maxRssBytes <= 0 ||
     q.maxRssBytes > 2684354560 ||
     q.extractedSizeBytes > 1342177280 ||
     q.quality.failedCount ||
@@ -364,16 +388,27 @@ export function enforceThresholds(q, performance) {
 }
 
 export function qualificationSetDecision(profiles) {
-  return profiles.some((profile) => profile.decision === "fail")
+  return profiles.some((profile) => profile.functionalDecision === "fail")
     ? "fail"
-    : profiles.some((profile) => profile.decision === "blocked")
+    : profiles.some((profile) => profile.functionalDecision === "blocked")
       ? "blocked"
       : "pass";
 }
 
+export function qualificationSetPerformanceAssessment(profiles) {
+  const classifications = profiles.map(
+    (profile) => profile.performanceAssessment.classification,
+  );
+  return classifications.includes("loaded-host-observation")
+    ? "loaded-host-observation"
+    : classifications.includes("controlled-miss")
+      ? "controlled-miss"
+      : "controlled-pass";
+}
+
 async function validate(value) {
   const schema = await readJson(
-      path.join(ROOT, "contracts/release/qualification-set-v1.schema.json"),
+      path.join(ROOT, "contracts/release/qualification-set-v2.schema.json"),
     ),
     check = new Ajv2020({ allErrors: true, strict: true }).compile(schema);
   if (!check(value))
@@ -381,8 +416,15 @@ async function validate(value) {
       `Qualification Set invalid: ${JSON.stringify(check.errors)}`,
     );
   const expected = qualificationSetDecision(value.profiles);
-  if (value.decision !== expected)
+  if (value.functionalDecision !== expected)
     throw new Error("Qualification Set decision does not match profiles.");
+  if (
+    value.performanceAssessment !==
+    qualificationSetPerformanceAssessment(value.profiles)
+  )
+    throw new Error(
+      "Qualification Set performance assessment does not match profiles.",
+    );
 }
 
 async function find(root, name) {
@@ -412,6 +454,6 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     testCommit: args["test-commit"],
     output: args.output,
   });
-  if (result.decision !== "pass")
-    throw new Error(`Qualification Set decision: ${result.decision}`);
+  if (result.functionalDecision !== "pass")
+    throw new Error(`Qualification Set decision: ${result.functionalDecision}`);
 }

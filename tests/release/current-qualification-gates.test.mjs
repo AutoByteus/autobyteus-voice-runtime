@@ -10,7 +10,7 @@ import {
   writeJson,
 } from "../../build/lib/files.mjs";
 import { generatePackageCompliance } from "../../release/compliance/generate-package-compliance.mjs";
-import { enforceThresholds } from "../../release/evidence/qualification-set.mjs";
+import { enforceFunctionalGates } from "../../release/evidence/qualification-set.mjs";
 import { assertPassingDarwinArm64Preflight } from "../../benchmark/darwin-arm64-preflight-contract.mjs";
 
 const root = path.resolve(import.meta.dirname, "../..");
@@ -130,7 +130,7 @@ test("qualification contract fixes Seatbelt and exact 30/30/100 trial sets", asy
       checkedAt: "2026-01-01T00:00:00.000Z",
       host: {},
       power: {},
-      quiescence: {},
+      performanceEnvironment: {},
       tools: {},
       sandbox: {},
       purge: {},
@@ -140,11 +140,13 @@ test("qualification contract fixes Seatbelt and exact 30/30/100 trial sets", asy
   );
   const q = {
       profileId: "english",
-      handshake: latency(30, 900),
-      coldPreparation: latency(30, 19000),
-      warmPreparation: latency(30, 9000),
-      coldResult: latency(30, 24000),
-      warmRequest: latency(100, 9000),
+      attempts: {
+        started: 160,
+        succeeded: 160,
+        failed: 0,
+        timedOut: 0,
+        excluded: 0,
+      },
       maxRssBytes: 1024,
       extractedSizeBytes: 1024,
       quality: {
@@ -158,13 +160,23 @@ test("qualification contract fixes Seatbelt and exact 30/30/100 trial sets", asy
     },
     performance = {
       cacheExecutions: Array.from({ length: 30 }),
-      cold: Array.from({ length: 30 }),
-      warmPreparation: Array.from({ length: 30 }),
-      warm: Array.from({ length: 100 }),
+      cold: Array.from({ length: 30 }, () => ({
+        handshakeMs: 1,
+        preparationMs: 1,
+        coldResultMs: 1,
+        requestMs: 1,
+      })),
+      warmPreparation: Array.from({ length: 30 }, () => ({
+        preparationMs: 1,
+      })),
+      warm: Array.from({ length: 100 }, () => ({ requestMs: 1 })),
     };
-  assert.doesNotThrow(() => enforceThresholds(q, performance));
+  assert.doesNotThrow(() => enforceFunctionalGates(q, performance));
   performance.warmPreparation.pop();
-  assert.throws(() => enforceThresholds(q, performance), /exact 30\/30\/100/);
+  assert.throws(
+    () => enforceFunctionalGates(q, performance),
+    /exact 30\/30\/100/,
+  );
 });
 
 test("every current recipe repository-file byte still matches its reviewed digest", async () => {
@@ -182,14 +194,3 @@ test("every current recipe repository-file byte still matches its reviewed diges
     }
   }
 });
-
-function latency(count, p95Ms) {
-  return {
-    count,
-    failures: 0,
-    timeouts: 0,
-    p50Ms: p95Ms / 2,
-    p95Ms,
-    maxMs: p95Ms,
-  };
-}

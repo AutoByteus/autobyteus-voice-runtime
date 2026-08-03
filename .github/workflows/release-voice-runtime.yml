@@ -76,7 +76,7 @@ jobs:
           echo "$!" > "$RUNNER_TEMP/voice-caffeinate.pid"
           node benchmark/darwin-arm64-runner-preflight.mjs \
             --go "$VOICE_GO" --cmake "$VOICE_CMAKE" \
-            --output "$RUNNER_TEMP/darwin-arm64-preflight-v1.json"
+            --output "$RUNNER_TEMP/darwin-arm64-preflight-v2.json"
       - name: Materialize exact closed inputs
         shell: bash
         run: |
@@ -85,8 +85,8 @@ jobs:
             --cache "$VOICE_INPUT_CACHE_ROOT" --repository "$GITHUB_WORKSPACE" \
             --destination out/inputs/${{ matrix.profile }}-${{ matrix.target }} \
             --source-commit "$GITHUB_SHA"
-          cp "$RUNNER_TEMP/darwin-arm64-preflight-v1.json" \
-            out/qualifications/${{ matrix.profile }}-${{ matrix.target }}/darwin-arm64-preflight-v1.json
+          cp "$RUNNER_TEMP/darwin-arm64-preflight-v2.json" \
+            out/qualifications/${{ matrix.profile }}-${{ matrix.target }}/darwin-arm64-preflight-v2.json
       - name: Build twice under network denial
         shell: bash
         run: |
@@ -99,7 +99,7 @@ jobs:
               --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
               --inputs "$GITHUB_WORKSPACE/out/inputs/${{ matrix.profile }}-${{ matrix.target }}" \
               --output "$OUTPUT" --go "$VOICE_GO" --cmake "$VOICE_CMAKE" \
-              --preflight "$RUNNER_TEMP/darwin-arm64-preflight-v1.json" \
+              --preflight "$RUNNER_TEMP/darwin-arm64-preflight-v2.json" \
               --source-commit "$GITHUB_SHA" --version "$VOICE_RUNTIME_VERSION_INPUT"
           done
           node build/package-verifier.mjs --archive "out/assets/$ARCHIVE" \
@@ -123,7 +123,7 @@ jobs:
           node benchmark/prepare-conditions.mjs \
             --source-commit "$GITHUB_SHA" --runner-commit "$GITHUB_SHA" \
             --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
-            --preflight "$DIR/darwin-arm64-preflight-v1.json" --output "$DIR/conditions-input.json"
+            --preflight "$DIR/darwin-arm64-preflight-v2.json" --output "$DIR/conditions-input.json"
           BASELINE=release/evidence/baselines/${{ matrix.profile }}-v1.json
           test "${{ matrix.profile }}" != english || BASELINE=release/evidence/baselines/english-v2.json
           node benchmark/run-profile-qualification.mjs \
@@ -164,23 +164,23 @@ jobs:
           MAIN=$(git rev-parse origin/main)
           node release/evidence/qualification-set.mjs --qualifications bundle/qualifications \
             --assets bundle/assets --source-commit "$GITHUB_SHA" --runner-commit "$GITHUB_SHA" \
-            --test-commit "$GITHUB_SHA" --output bundle/qualification-set-v1.json
-          node release/evidence/assemble.mjs --qualification-set bundle/qualification-set-v1.json \
+            --test-commit "$GITHUB_SHA" --output bundle/qualification-set-v2.json
+          node release/evidence/assemble.mjs --qualification-set bundle/qualification-set-v2.json \
             --assets bundle/assets --runtime-version "$VOICE_RUNTIME_VERSION_INPUT" \
             --release-tag "$VOICE_RELEASE_TAG_INPUT" --maintained-main-commit "$MAIN" \
-            --output bundle/release-qualification-evidence-v1.json
-          node release/catalog-builder.mjs --qualification-set bundle/qualification-set-v1.json \
-            --release-evidence bundle/release-qualification-evidence-v1.json \
+            --output bundle/release-qualification-evidence-v2.json
+          node release/catalog-builder.mjs --qualification-set bundle/qualification-set-v2.json \
+            --release-evidence bundle/release-qualification-evidence-v2.json \
             --release-tag "$VOICE_RELEASE_TAG_INPUT" \
             --base-url "https://github.com/${GITHUB_REPOSITORY}/releases/download" \
             --output bundle/voice-runtime-catalog-v3.json
-          node release/pretag-release-manifest.mjs --qualification-set bundle/qualification-set-v1.json \
-            --release-evidence bundle/release-qualification-evidence-v1.json \
+          node release/pretag-release-manifest.mjs --qualification-set bundle/qualification-set-v2.json \
+            --release-evidence bundle/release-qualification-evidence-v2.json \
             --catalog bundle/voice-runtime-catalog-v3.json --assets bundle/assets \
-            --output bundle/pretag-release-manifest-v1.json
-          node release/qualify-release.mjs --manifest bundle/pretag-release-manifest-v1.json \
-            --qualification-set bundle/qualification-set-v1.json \
-            --release-evidence bundle/release-qualification-evidence-v1.json \
+            --output bundle/pretag-release-manifest-v2.json
+          node release/qualify-release.mjs --manifest bundle/pretag-release-manifest-v2.json \
+            --qualification-set bundle/qualification-set-v2.json \
+            --release-evidence bundle/release-qualification-evidence-v2.json \
             --catalog bundle/voice-runtime-catalog-v3.json --assets bundle/assets \
             --maintained-main-commit "$MAIN" --output bundle/pretag-qualification-proof-v1.json
       - uses: actions/upload-artifact@v4
@@ -223,20 +223,20 @@ jobs:
         shell: bash
         run: |
           npm ci --ignore-scripts
-          node -e 'const x=require("./bundle/pretag-release-manifest-v1.json").intendedRelease;if(x.runtimeVersion!==process.argv[1]||x.releaseTag!==process.argv[2])process.exit(1)' \
+          node -e 'const x=require("./bundle/pretag-release-manifest-v2.json").intendedRelease;if(x.runtimeVersion!==process.argv[1]||x.releaseTag!==process.argv[2])process.exit(1)' \
             "$VOICE_RUNTIME_VERSION_INPUT" "$VOICE_RELEASE_TAG_INPUT"
           git fetch origin main --tags
           MAIN=$(git rev-parse origin/main)
-          node release/qualify-release.mjs --manifest bundle/pretag-release-manifest-v1.json \
-            --qualification-set bundle/qualification-set-v1.json \
-            --release-evidence bundle/release-qualification-evidence-v1.json \
+          node release/qualify-release.mjs --manifest bundle/pretag-release-manifest-v2.json \
+            --qualification-set bundle/qualification-set-v2.json \
+            --release-evidence bundle/release-qualification-evidence-v2.json \
             --catalog bundle/voice-runtime-catalog-v3.json --assets bundle/assets \
             --maintained-main-commit "$MAIN" --output bundle/publication-recheck.json
           git tag -a "$VOICE_RELEASE_TAG_INPUT" "$GITHUB_SHA" -m "Voice runtime $VOICE_RELEASE_TAG_INPUT"
           git push origin "refs/tags/$VOICE_RELEASE_TAG_INPUT"
           gh release create "$VOICE_RELEASE_TAG_INPUT" bundle/assets/*.zip \
-            bundle/voice-runtime-catalog-v3.json bundle/release-qualification-evidence-v1.json \
-            bundle/pretag-release-manifest-v1.json --verify-tag \
+            bundle/voice-runtime-catalog-v3.json bundle/release-qualification-evidence-v2.json \
+            bundle/pretag-release-manifest-v2.json --verify-tag \
             --title "Voice runtime $VOICE_RELEASE_TAG_INPUT — macOS Apple Silicon only" \
             --notes "Provider Archive 1 packages for macOS Apple Silicon only."
       - name: Download every published byte
@@ -253,7 +253,7 @@ jobs:
         continue-on-error: true
         shell: bash
         run: |
-          node release/verify-published-assets.mjs --manifest bundle/pretag-release-manifest-v1.json \
+          node release/verify-published-assets.mjs --manifest bundle/pretag-release-manifest-v2.json \
             --downloads published --repository "$GITHUB_REPOSITORY" --release-tag "$VOICE_RELEASE_TAG_INPUT" \
             --output bundle/published-asset-verification-v1.json
       - name: Quarantine failed publication without changing its tag

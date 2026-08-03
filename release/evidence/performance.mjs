@@ -1,4 +1,5 @@
 import { cacheProcedureFor } from "../../benchmark/cache-procedure.mjs";
+import { assertCompletePerformanceSamples } from "../../benchmark/performance-observation.mjs";
 
 export async function verifyPerformanceEvidence(
   summary,
@@ -27,12 +28,14 @@ export async function verifyPerformanceEvidence(
     !Array.isArray(attempts.attempts)
   )
     throw new Error("Raw performance evidence is incomplete.");
+  assertCompletePerformanceSamples(samples);
   const counts = {
     started: attempts.attempts.length,
-    completed: attempts.attempts.filter((item) => item.status === "succeeded")
+    succeeded: attempts.attempts.filter((item) => item.status === "succeeded")
       .length,
     failed: attempts.attempts.filter((item) => item.status === "failed").length,
-    timeouts: attempts.attempts.filter((item) => item.timeout).length,
+    timedOut: attempts.attempts.filter((item) => item.timeout).length,
+    excluded: 0,
   };
   if (JSON.stringify(counts) !== JSON.stringify(summary.attempts))
     throw new Error("Started-attempt counts do not match raw evidence.");
@@ -56,28 +59,11 @@ export async function verifyPerformanceEvidence(
     );
   if (
     referenceTarget &&
-    (samples.cold.length < 30 ||
-      samples.warmPreparation.length < 30 ||
-      samples.warm.length < 100)
+    (samples.cold.length !== 30 ||
+      samples.warmPreparation.length !== 30 ||
+      samples.warm.length !== 100)
   )
     throw new Error("Reference-target performance samples are insufficient.");
-  for (const [metric, values] of [
-    ["handshake", samples.cold.map((item) => item.handshakeMs)],
-    ["coldPreparation", samples.cold.map((item) => item.preparationMs)],
-    [
-      "warmPreparation",
-      samples.warmPreparation.map((item) => item.preparationMs),
-    ],
-    ["coldResult", samples.cold.map((item) => item.coldResultMs)],
-    ["warmRequest", samples.warm.map((item) => item.requestMs)],
-  ])
-    if (
-      JSON.stringify(summarize(values)) !==
-      JSON.stringify(qualification[metric])
-    )
-      throw new Error(
-        `Performance metric does not match raw samples: ${metric}`,
-      );
   if (
     attempts.decision !== "pass" ||
     attempts.failureCategory !== null ||
@@ -93,22 +79,4 @@ export async function verifyPerformanceEvidence(
     ).length !== 100
   )
     throw new Error("Passing qualification attempt evidence is incomplete.");
-}
-
-function summarize(values) {
-  if (
-    !values.length ||
-    values.some((value) => !Number.isFinite(value) || value < 0)
-  )
-    throw new Error("Performance sample values are invalid.");
-  const sorted = [...values].sort((a, b) => a - b);
-  const pick = (q) => sorted[Math.ceil(q * sorted.length) - 1];
-  return {
-    count: sorted.length,
-    failures: 0,
-    timeouts: 0,
-    p50Ms: pick(0.5),
-    p95Ms: pick(0.95),
-    maxMs: sorted.at(-1),
-  };
 }

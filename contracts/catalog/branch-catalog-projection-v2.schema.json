@@ -9,12 +9,13 @@
     "packageVersion",
     "releaseMatrix",
     "qualificationSet",
+    "performanceAssessments",
     "entries",
     "assetSet"
   ],
   "properties": {
     "schemaVersion": {
-      "const": 1
+      "const": 2
     },
     "artifactKind": {
       "const": "branch-catalog-projection"
@@ -43,6 +44,15 @@
     },
     "assetSet": {
       "$ref": "#/$defs/assetSet"
+    },
+    "performanceAssessments": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/performanceAssessment"
+      }
     }
   },
   "$defs": {
@@ -69,7 +79,7 @@
       "required": ["fileName", "sha256"],
       "properties": {
         "fileName": {
-          "const": "qualification-set-v1.json"
+          "const": "qualification-set-v2.json"
         },
         "sha256": {
           "$ref": "#/$defs/sha"
@@ -251,6 +261,29 @@
         },
         "sha256": {
           "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "performanceAssessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "fileName", "sha256", "classification"],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "fileName": {
+          "const": "performance-assessment-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "classification": {
+          "enum": [
+            "controlled-pass",
+            "controlled-miss",
+            "loaded-host-observation"
+          ]
         }
       }
     }

@@ -17,6 +17,7 @@ import {
   assertPreflightConditionBinding,
 } from "../../benchmark/darwin-arm64-preflight-contract.mjs";
 import { verifyTrustedNativeBuildEnvironment } from "../../build/trusted-native-environment.mjs";
+import { verifyPerformanceAssessment } from "../../benchmark/performance-assessment.mjs";
 
 export async function verifyProfileQualificationEvidence(summary, directory) {
   const file = (name) => path.join(directory, name),
@@ -34,7 +35,9 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
       baseline: file("baseline-evidence.json"),
       corpus: file("corpus-manifest.json"),
       compliance: file("package-compliance-v1.json"),
-      preflight: file("darwin-arm64-preflight-v1.json"),
+      preflight: file("darwin-arm64-preflight-v2.json"),
+      summary: file("qualification-summary-v2.json"),
+      assessment: file("performance-assessment-v1.json"),
     },
     values = Object.fromEntries(
       await Promise.all(
@@ -52,14 +55,14 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
     ["nativeEnvironment", summary.nativeBuildEnvironmentSha256],
     ["reproducibility", summary.reproducibilityProofSha256],
     ["conformance", summary.runtimeConformanceSha256],
-    ["performance", summary.performanceSamplesSha256],
-    ["attempts", summary.qualificationAttemptsSha256],
-    ["raw", summary.quality.rawResultsSha256],
-    ["index", summary.quality.resultIndexSha256],
+    ["performance", summary.rawEvidence.performanceSamples.sha256],
+    ["attempts", summary.rawEvidence.qualificationAttempts.sha256],
+    ["raw", summary.rawEvidence.rawResults.sha256],
+    ["index", summary.rawEvidence.resultIndex.sha256],
     ["baseline", summary.quality.baseline.evidenceSha256],
     ["corpus", summary.corpus.manifestSha256],
     ["compliance", summary.generatedComplianceSha256],
-    ["preflight", summary.preflightSha256],
+    ["preflight", summary.preflight.sha256],
   ])
     if ((await shaFile(paths[pathKey])) !== expected)
       throw new Error(`Profile qualification digest mismatch: ${pathKey}`);
@@ -71,11 +74,11 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
   );
   await verifyTrustedNativeBuildEnvironment(values.nativeEnvironment);
   if (
-    summary.decision !== "pass" ||
+    summary.functionalDecision !== "pass" ||
     summary.failureCategory !== null ||
     values.attempts.decision !== "pass" ||
     values.attempts.failureCategory !== null ||
-    values.nativeEnvironment.preflightSha256 !== summary.preflightSha256 ||
+    values.nativeEnvironment.preflightSha256 !== summary.preflight.sha256 ||
     values.provenance.repository.sourceCommit !== summary.sourceCommit ||
     values.provenance.recipe.sha256 !== summary.buildInputRecipeSha256 ||
     values.reproducibility.passed !== true ||
@@ -97,6 +100,13 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
     values.performance,
     values.attempts,
   );
+  const performanceAssessment = await verifyPerformanceAssessment({
+    summaryPath: paths.summary,
+    assessmentPath: paths.assessment,
+    preflightPath: paths.preflight,
+    performanceSamplesPath: paths.performance,
+    qualificationAttemptsPath: paths.attempts,
+  });
   verifyCorpusBinding(values.corpus, values.raw, summary, qualification);
   const trust = await assertTrustedBaseline({
     baseline: values.baseline,
@@ -141,7 +151,7 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
     )
   )
     throw new Error("Profile quality evidence is not reproducible.");
-  return values;
+  return { ...values, performanceAssessment };
 }
 
 function qualificationView(q) {

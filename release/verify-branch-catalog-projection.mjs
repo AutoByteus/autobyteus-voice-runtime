@@ -28,7 +28,7 @@ export async function verifyBranchCatalogProjection({
   output,
 }) {
   const result = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     decision: "fail",
     failureCategory: null,
     releaseMatrixSha256: null,
@@ -47,16 +47,16 @@ export async function verifyBranchCatalogProjection({
     result.assetSetSha256 = projection.assetSet?.sha256 ?? null;
     await validateArtifact(
       qset,
-      "contracts/release/qualification-set-v1.schema.json",
+      "contracts/release/qualification-set-v2.schema.json",
       "Qualification Set",
     );
     await validateArtifact(
       projection,
-      "contracts/catalog/branch-catalog-projection-v1.schema.json",
+      "contracts/catalog/branch-catalog-projection-v2.schema.json",
       "Branch Catalog Projection",
     );
     if (
-      qset.decision !== "pass" ||
+      qset.functionalDecision !== "pass" ||
       qset.releaseMatrix.matrixId !== matrix.value.matrixId ||
       qset.releaseMatrix.sha256 !== matrix.sha256
     )
@@ -74,15 +74,21 @@ export async function verifyBranchCatalogProjection({
       entries.push(await composeCatalogEntryIdentity(matrixEntry, profile));
     }
     const expectedProjection = {
-      schemaVersion: 1,
+      schemaVersion: 2,
       artifactKind: "branch-catalog-projection",
       sourceCommit: qset.sourceCommit,
       packageVersion: qset.packageVersion,
       releaseMatrix: qset.releaseMatrix,
       qualificationSet: {
-        fileName: "qualification-set-v1.json",
+        fileName: "qualification-set-v2.json",
         sha256: result.qualificationSetSha256,
       },
+      performanceAssessments: qset.profiles.map(
+        ({ profileId, performanceAssessment }) => ({
+          profileId,
+          ...performanceAssessment,
+        }),
+      ),
       entries,
       assetSet: { sha256: providerArchiveSetDigest(items), items },
     };
@@ -104,7 +110,7 @@ export async function verifyBranchCatalogProjection({
   const schema = await readJson(
     path.join(
       ROOT,
-      "contracts/catalog/branch-catalog-projection-verification-v1.schema.json",
+      "contracts/catalog/branch-catalog-projection-verification-v2.schema.json",
     ),
   );
   const validate = new Ajv2020({ allErrors: true, strict: true }).compile(

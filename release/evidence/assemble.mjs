@@ -40,11 +40,11 @@ export async function assembleReleaseEvidence({
   const qset = await readJson(qualificationSetPath),
     matrix = await loadCurrentReleaseMatrix(),
     qsetSchema = await readJson(
-      path.join(ROOT, "contracts/release/qualification-set-v1.schema.json"),
+      path.join(ROOT, "contracts/release/qualification-set-v2.schema.json"),
     );
   validate(qsetSchema, qset, "Qualification Set");
   if (
-    qset.decision !== "pass" ||
+    qset.functionalDecision !== "pass" ||
     qset.packageVersion !== runtimeVersion ||
     qset.releaseMatrix.sha256 !== matrix.sha256
   )
@@ -74,7 +74,7 @@ export async function assembleReleaseEvidence({
   );
   const qsetInfo = await fs.stat(qualificationSetPath);
   const evidence = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     artifactKind: "release-qualification-evidence",
     intendedRelease: { runtimeVersion, releaseTag },
     sourceCommit: qset.sourceCommit,
@@ -82,7 +82,7 @@ export async function assembleReleaseEvidence({
     testCommit: qset.testCommit,
     releaseMatrix: qset.releaseMatrix,
     qualificationSet: {
-      fileName: "qualification-set-v1.json",
+      fileName: "qualification-set-v2.json",
       sizeBytes: qsetInfo.size,
       sha256: await shaFile(qualificationSetPath),
     },
@@ -108,12 +108,13 @@ export async function assembleReleaseEvidence({
     limitations: [
       ...new Set(qset.profiles.flatMap((item) => item.limitations)),
     ],
-    decision: "pass",
+    functionalDecision: "pass",
+    performanceAssessment: qset.performanceAssessment,
   };
   const schema = await readJson(
     path.join(
       ROOT,
-      "contracts/release/release-qualification-evidence-v1.schema.json",
+      "contracts/release/release-qualification-evidence-v2.schema.json",
     ),
   );
   validate(schema, evidence, "Release Qualification Evidence");

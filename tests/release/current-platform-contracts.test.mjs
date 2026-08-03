@@ -195,6 +195,16 @@ test("branch projection is release-neutral, exact, and independently byte-recomp
     const projection = await readJson(fixture.projectionPath);
     assert.equal(projection.entries.length, 2);
     assert.deepEqual(
+      projection.performanceAssessments.map((item) => [
+        item.profileId,
+        item.classification,
+      ]),
+      [
+        ["english", "controlled-pass"],
+        ["chinese", "controlled-pass"],
+      ],
+    );
+    assert.deepEqual(
       projection.assetSet.items.map((item) => item.fileName),
       [
         "voice-chinese-darwin-arm64-99.99.99.zip",
@@ -217,6 +227,20 @@ test("branch projection is release-neutral, exact, and independently byte-recomp
       output: fixture.projectionResult,
     });
     assert.equal((await readJson(fixture.projectionResult)).decision, "pass");
+    const qset = await readJson(fixture.qsetPath),
+      assessment = qset.profiles[0].performanceAssessment;
+    delete qset.profiles[0].performanceAssessment;
+    await writeJson(fixture.qsetPath, qset);
+    await assert.rejects(
+      composeBranchCatalogProjection({
+        qualificationSetPath: fixture.qsetPath,
+        assets: fixture.assets,
+        output: fixture.projectionPath,
+      }),
+      /Qualification Set invalid/,
+    );
+    qset.profiles[0].performanceAssessment = assessment;
+    await writeJson(fixture.qsetPath, qset);
     const extraArchive = path.join(fixture.assets, "voice-extra.zip");
     await fs.writeFile(extraArchive, "not approved\n");
     await assert.rejects(
@@ -301,7 +325,7 @@ test("release chain is acyclic and published verification is a separate always-w
     assert.ok(failed.observations.every((item) => item.status === "missing"));
     await fs.copyFile(
       fixture.manifestPath,
-      path.join(fixture.downloads, "pretag-release-manifest-v1.json"),
+      path.join(fixture.downloads, "pretag-release-manifest-v2.json"),
     );
     await fs.copyFile(
       fixture.catalogPath,
@@ -421,7 +445,8 @@ test("workflow derives two current jobs and preserves post-publication separatio
   );
   assert.match(workflow, /Retain qualification audit on pass, fail, or block/);
   assert.doesNotMatch(workflow, /darwin-x64|linux-x64|win32-x64/);
-  assert.match(workflow, /pretag-release-manifest-v1\.json/);
+  assert.match(workflow, /pretag-release-manifest-v2\.json/);
+  assert.doesNotMatch(workflow, /pretag-release-manifest-v1\.json/);
   assert.match(workflow, /Always record published-byte verification/);
   assert.match(
     workflow,
@@ -456,7 +481,7 @@ async function lifecycleFixture() {
     profile(entry, files.get(entry.profileId), String(index + 1).repeat(64)),
   );
   const qset = {
-    schemaVersion: 1,
+    schemaVersion: 2,
     artifactKind: "qualification-set",
     sourceCommit: commit,
     runnerCommit: commit,
@@ -464,13 +489,14 @@ async function lifecycleFixture() {
     packageVersion: "99.99.99",
     releaseMatrix: { matrixId: matrix.value.matrixId, sha256: matrix.sha256 },
     profiles,
-    decision: "pass",
+    functionalDecision: "pass",
+    performanceAssessment: "controlled-pass",
   };
-  const qsetPath = path.join(temp, "qualification-set-v1.json");
+  const qsetPath = path.join(temp, "qualification-set-v2.json");
   await writeJson(qsetPath, qset);
   const evidencePath = path.join(
     temp,
-    "release-qualification-evidence-v1.json",
+    "release-qualification-evidence-v2.json",
   );
   await assembleReleaseEvidence({
     qualificationSetPath: qsetPath,
@@ -486,13 +512,13 @@ async function lifecycleFixture() {
     downloads,
     qsetPath,
     evidencePath,
-    projectionPath: path.join(temp, "branch-catalog-projection-v1.json"),
+    projectionPath: path.join(temp, "branch-catalog-projection-v2.json"),
     projectionResult: path.join(
       temp,
-      "branch-catalog-projection-verification-v1.json",
+      "branch-catalog-projection-verification-v2.json",
     ),
     catalogPath: path.join(temp, "voice-runtime-catalog-v3.json"),
-    manifestPath: path.join(temp, "pretag-release-manifest-v1.json"),
+    manifestPath: path.join(temp, "pretag-release-manifest-v2.json"),
     pretagProof: path.join(temp, "pretag-proof.json"),
     publishedResult: path.join(temp, "published-result.json"),
     quarantineResult: path.join(temp, "quarantine-result.json"),
@@ -526,7 +552,6 @@ function profile(entry, archive, digest) {
     "baselineSha256",
     "rawResultsSha256",
     "resultIndexSha256",
-    "qualificationSummarySha256",
     "runtimeConformanceSha256",
     "qualificationAttemptsSha256",
   ];
@@ -543,9 +568,10 @@ function profile(entry, archive, digest) {
     archive: { ...archive, extractedSizeBytes: 100, entryCount: 2 },
     attempts: {
       started: entry.profileId === "english" ? 160 : 260,
-      completed: entry.profileId === "english" ? 160 : 260,
+      succeeded: entry.profileId === "english" ? 160 : 260,
       failed: 0,
-      timeouts: 0,
+      timedOut: 0,
+      excluded: 0,
     },
     performance: {
       coldCount: 30,
@@ -566,7 +592,16 @@ function profile(entry, archive, digest) {
       recovery: true,
       licenseApproved: true,
     },
-    decision: "pass",
+    qualificationSummary: {
+      fileName: "qualification-summary-v2.json",
+      sha256: digest,
+    },
+    performanceAssessment: {
+      fileName: "performance-assessment-v1.json",
+      sha256: digest,
+      classification: "controlled-pass",
+    },
+    functionalDecision: "pass",
   };
 }
 

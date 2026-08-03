@@ -230,7 +230,7 @@ async function preserveQualificationInputs(destination) {
         path.dirname(path.resolve(args.conditions)),
         conditions.preflight.fileName,
       ),
-      "darwin-arm64-preflight-v1.json",
+      "darwin-arm64-preflight-v2.json",
     ],
   ])
     await fs.copyFile(source, path.join(destination, name));

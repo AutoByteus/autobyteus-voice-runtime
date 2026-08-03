@@ -11,7 +11,7 @@ import {
 const schema = await readJson(
     path.join(
       ROOT,
-      "contracts/qualification/darwin-arm64-preflight-v1.schema.json",
+      "contracts/qualification/darwin-arm64-preflight-v2.schema.json",
     ),
   ),
   ajv = new Ajv2020({ allErrors: true, strict: true });
@@ -24,15 +24,27 @@ export async function assertPassingDarwinArm64Preflight(value) {
       `Passing M1 preflight required: ${JSON.stringify(validate.errors)}`,
     );
   const average =
-      value.quiescence.samples.reduce((sum, item) => sum + item, 0) /
-      value.quiescence.samples.length,
+      value.performanceEnvironment.cpuIdleSamples.reduce(
+        (sum, item) => sum + item,
+        0,
+      ) / value.performanceEnvironment.cpuIdleSamples.length,
     go = locked.goToolchain.archives["darwin-arm64"],
     sandbox = path.join(
       ROOT,
       "benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
     );
   if (
-    Math.abs(average - value.quiescence.averageIdlePercent) > 1e-12 ||
+    Math.abs(average - value.performanceEnvironment.averageIdlePercent) >
+      1e-12 ||
+    value.performanceEnvironment.taskOwnedCompetingProcesses.detected !==
+      value.performanceEnvironment.taskOwnedCompetingProcesses.processNames
+        .length >
+        0 ||
+    value.performanceEnvironment.classification !==
+      (average >= 80 &&
+      !value.performanceEnvironment.taskOwnedCompetingProcesses.detected
+        ? "controlled"
+        : "loaded-host") ||
     value.tools.goArchiveSha256 !== go.sha256 ||
     value.tools.goRootTreeSha256 !== go.rootTreeSha256 ||
     value.sandbox.profileSha256 !== (await shaFile(sandbox)) ||
@@ -50,8 +62,8 @@ export function assertPreflightConditionBinding(conditions, preflight) {
     JSON.stringify(conditions.hardware) !== JSON.stringify(preflight.host) ||
     JSON.stringify(conditions.operatingEnvironment?.power) !==
       JSON.stringify(preflight.power) ||
-    JSON.stringify(conditions.operatingEnvironment?.quiescence) !==
-      JSON.stringify(preflight.quiescence) ||
+    JSON.stringify(conditions.operatingEnvironment?.performanceEnvironment) !==
+      JSON.stringify(preflight.performanceEnvironment) ||
     JSON.stringify(conditions.operatingEnvironment?.tools) !==
       JSON.stringify(preflight.tools) ||
     JSON.stringify(conditions.executionEnvironment?.sandbox) !==

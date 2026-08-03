@@ -8,6 +8,7 @@ const cold = Array.from({ length: 30 }, (_, index) => ({
   handshakeMs: index + 1,
   preparationMs: index + 2,
   coldResultMs: index + 3,
+  requestMs: index + 1,
 }));
 const warmPreparation = Array.from({ length: 30 }, (_, index) => ({
   preparationMs: index + 1,
@@ -52,7 +53,13 @@ const qualification = {
 };
 const summary = {
   conditions: { executionEnvironment: { filesystemCacheProcedure: procedure } },
-  attempts: { started: 160, completed: 160, failed: 0, timeouts: 0 },
+  attempts: {
+    started: 160,
+    succeeded: 160,
+    failed: 0,
+    timedOut: 0,
+    excluded: 0,
+  },
 };
 const attempts = {
   schemaVersion: 1,
@@ -88,7 +95,7 @@ test("performance evidence requires executed cold resets and meaningful warm sam
   ])
     await assert.rejects(
       verifyPerformanceEvidence(summary, qualification, changed, attempts),
-      /Raw performance evidence is incomplete|procedure execution evidence is incomplete|samples are insufficient/,
+      /Raw performance evidence is incomplete|procedure execution evidence is incomplete|samples are insufficient|observations are incomplete/,
     );
 });
 

@@ -8,8 +8,10 @@ import {
   classifyQualificationFailure,
 } from "../../benchmark/qualification-attempts.mjs";
 import { writeProfileQualificationEvidence } from "../../benchmark/profile-qualification-evidence.mjs";
+import { verifyPerformanceAssessment } from "../../benchmark/performance-assessment.mjs";
 import { qualificationSetDecision } from "../../release/evidence/qualification-set.mjs";
-import { readJson, writeJson } from "../../build/lib/files.mjs";
+import { readJson, shaFile, writeJson } from "../../build/lib/files.mjs";
+import { passingDarwinPreflightFixture } from "../fixtures/passing-darwin-preflight.mjs";
 
 test("a started timeout is durable before and after failure", async () => {
   const temp = await fs.mkdtemp(path.join(os.tmpdir(), "voice-attempt-test-"));
@@ -68,6 +70,13 @@ test("failure finalization writes partial raw, performance, summary, and non-pas
       files[name] = path.join(temp, name);
       await writeJson(files[name], { fixture: name });
     }
+    const tool = path.join(temp, "tool");
+    await fs.writeFile(tool, "fixture tool\n", { mode: 0o755 });
+    await writeJson(
+      path.join(temp, "darwin-arm64-preflight-v2.json"),
+      await passingDarwinPreflightFixture(temp, tool),
+    );
+    await fs.writeFile(path.join(temp, "fixture.zip"), "fixture archive\n");
     const recorder = await new QualificationAttemptRecorder({
         output: path.join(temp, "qualification-attempts-v1.json"),
         packageId: "voice.english.fixture.darwin-arm64",
@@ -82,7 +91,7 @@ test("failure finalization writes partial raw, performance, summary, and non-pas
         audioSha256: "a".repeat(64),
       });
     await recorder.fail(sequence, new Error("HELLO_TIMEOUT"));
-    const summary = await writeProfileQualificationEvidence({
+    const { summary, assessment } = await writeProfileQualificationEvidence({
       output: temp,
       build: buildFixture(),
       conditions: conditionsFixture(),
@@ -128,21 +137,60 @@ test("failure finalization writes partial raw, performance, summary, and non-pas
       decision: "fail",
       failureCategory: "timeout",
     });
-    assert.equal(summary.decision, "fail");
+    assert.equal(summary.functionalDecision, "fail");
     assert.equal(summary.attempts.started, 1);
-    assert.equal(summary.handshake.failures, 1);
-    assert.equal(summary.handshake.timeouts, 1);
+    assert.equal(summary.attempts.failed, 1);
+    assert.equal(summary.attempts.timedOut, 1);
+    assert.equal(assessment.attempts.timedOut, 1);
+    assert.equal(assessment.assessment, "controlled-miss");
+    assert.equal(
+      assessment.qualificationSummary.sha256,
+      await shaFile(path.join(temp, "qualification-summary-v2.json")),
+    );
+    assert.equal(Object.hasOwn(summary, "performanceAssessment"), false);
+    await verifyPerformanceAssessment({
+      summaryPath: path.join(temp, "qualification-summary-v2.json"),
+      assessmentPath: path.join(temp, "performance-assessment-v1.json"),
+      preflightPath: path.join(temp, "darwin-arm64-preflight-v2.json"),
+      performanceSamplesPath: path.join(temp, "performance-samples-v1.json"),
+      qualificationAttemptsPath: path.join(
+        temp,
+        "qualification-attempts-v1.json",
+      ),
+    });
+    const changedSummary = { ...summary, maxRssBytes: 1 };
+    await writeJson(
+      path.join(temp, "qualification-summary-v2.json"),
+      changedSummary,
+    );
+    await assert.rejects(
+      verifyPerformanceAssessment({
+        summaryPath: path.join(temp, "qualification-summary-v2.json"),
+        assessmentPath: path.join(temp, "performance-assessment-v1.json"),
+        preflightPath: path.join(temp, "darwin-arm64-preflight-v2.json"),
+        performanceSamplesPath: path.join(temp, "performance-samples-v1.json"),
+        qualificationAttemptsPath: path.join(
+          temp,
+          "qualification-attempts-v1.json",
+        ),
+      }),
+      /does not recompute|Summary raw\/preflight identities|Performance Assessment/,
+    );
     assert.equal(summary.quality.failedCount, 0);
     for (const name of [
       "raw-results.json",
       "result-index.json",
       "performance-samples-v1.json",
       "qualification-attempts-v1.json",
-      "qualification-summary.json",
+      "qualification-summary-v2.json",
+      "performance-assessment-v1.json",
     ])
       await fs.access(path.join(temp, name));
     assert.equal(
-      qualificationSetDecision([{ decision: "pass" }, { decision: "fail" }]),
+      qualificationSetDecision([
+        { functionalDecision: "pass" },
+        { functionalDecision: "fail" },
+      ]),
       "fail",
     );
   } finally {

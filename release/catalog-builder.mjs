@@ -32,17 +32,20 @@ export async function buildReleaseCatalog({
     matrix = await loadCurrentReleaseMatrix();
   await validate(
     qset,
-    "contracts/release/qualification-set-v1.schema.json",
+    "contracts/release/qualification-set-v2.schema.json",
     "Qualification Set",
   );
   await validate(
     evidence,
-    "contracts/release/release-qualification-evidence-v1.schema.json",
+    "contracts/release/release-qualification-evidence-v2.schema.json",
     "Release Evidence",
   );
   if (
     qset.artifactKind !== "qualification-set" ||
     evidence.artifactKind !== "release-qualification-evidence" ||
+    qset.functionalDecision !== "pass" ||
+    evidence.functionalDecision !== "pass" ||
+    evidence.performanceAssessment !== qset.performanceAssessment ||
     evidence.qualificationSet.sha256 !==
       (await shaFile(qualificationSetPath)) ||
     evidence.intendedRelease.releaseTag !== releaseTag ||
@@ -91,7 +94,7 @@ export async function buildReleaseCatalog({
     releaseTag,
     releaseMatrix: qset.releaseMatrix,
     releaseEvidence: {
-      fileName: "release-qualification-evidence-v1.json",
+      fileName: "release-qualification-evidence-v2.json",
       sha256: await shaFile(releaseEvidencePath),
     },
     entries,

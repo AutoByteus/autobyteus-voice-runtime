@@ -21,7 +21,7 @@ export async function verifyPublishedAssets({
   const manifest = await readJson(manifestPath);
   await validate(
     manifest,
-    "contracts/release/pretag-release-manifest-v1.schema.json",
+    "contracts/release/pretag-release-manifest-v2.schema.json",
     false,
   );
   if (
@@ -32,7 +32,7 @@ export async function verifyPublishedAssets({
   const expectedManifestSha256 = await shaFile(manifestPath),
     publishedManifest = path.join(
       path.resolve(downloads),
-      "pretag-release-manifest-v1.json",
+      "pretag-release-manifest-v2.json",
     ),
     manifestObservation = await observeFile(
       publishedManifest,
@@ -48,7 +48,7 @@ export async function verifyPublishedAssets({
       })),
     ],
     expectedFileNames = [
-      "pretag-release-manifest-v1.json",
+      "pretag-release-manifest-v2.json",
       ...expected.map((item) => item.fileName),
     ].sort(compareName),
     actualFileNames = await publishedNames(path.resolve(downloads)),
