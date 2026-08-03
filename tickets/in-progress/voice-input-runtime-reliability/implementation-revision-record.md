@@ -13,6 +13,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-005`    | Code Reviewer / `code-review-report.md` / `CRR-004`                | Partial `CR-F-011`; `CR-F-014`                          | `Local Fix`        | `SR-006`; `ARCH-REV-007`; `CRR-004`; `API-REV-*` N/A; `DR-*` N/A                                                       | `Implementation Complete — Ready for Code Re-review` |
 | `IR-006`    | Architecture Reviewer / `design-review-report.md` / `ARCH-REV-008` | `CR-F-015` from `CRR-006` / `API-VOICE-002`             | `Design Impact`    | `SR-007`; `ARCH-REV-008`; `CRR-006`; `API-REV-001`; `DR-*` N/A                                                         | `Implementation Complete — Ready for Code Re-review` |
 | `IR-007`    | Code Reviewer / `code-review-report.md` / `CRR-007`                | `CR-F-016`                                              | `Local Fix`        | `SR-007`; `ARCH-REV-008`; `CRR-007`; `API-REV-001`; `DR-*` N/A                                                         | `Implementation Complete — Ready for Code Re-review` |
+| `IR-008`    | Architecture Reviewer / `design-review-report.md` / round 10       | `API-RI-001`; resolved `AR-F-011`, `AR-F-012`           | `Design Impact`    | `SR-008`, `SR-009`; `ARCH-REV-009`, `ARCH-REV-010`; `CRR-008`; `API-REV-002`; `DR-*` N/A                               | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -193,3 +194,29 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: Pinned-toolchain `npm run check` passed 38/38 Node tests, 7/7 Python tests plus compileall, all Go tests, source/legacy guards, and the all-six byte-identical English derivation reproduction. The focused authority-only negative test passed; Prettier and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`
 - Remaining limitations or risks: No API/E2E or package inference was run. Only after source Pass may `api_e2e_engineer` open `API-REV-002`, rerun `API-VOICE-002` against the exact 49 WAVs, and continue the remaining target/package/resource/license/release-aggregation scenarios. Maintained-main integration, tag, publication, and published-byte equality remain Delivery-owned fail-closed gates. `auto` remains omitted.
+
+### IR-008 — Implement the exact current-platform qualification and release lifecycle
+
+- Triggering role, report path, and round: Architecture Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`; round 10 / `ARCH-REV-010`, following API/E2E `API-RI-001` and Solution Designer `SR-008`/`SR-009`
+- Triggering finding IDs: `API-RI-001`; resolved architecture findings `AR-F-011`, `AR-F-012`
+- Classification: `Design Impact`
+- Prior authoritative result: `CRR-008` passed `IR-007`; `API-REV-002` then exposed a current-platform requirement/design impact, and `ARCH-REV-009` failed the first design revision until the branch-catalog and release-evidence lifecycle contradictions were corrected
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`
+- Related solution revision IDs: `SR-008`, `SR-009`
+- Related architecture-review revision IDs: `ARCH-REV-009`, `ARCH-REV-010`
+- Related code-review revision IDs: `CRR-008`
+- Related API/E2E revision IDs: `API-REV-002`, `API-RI-001`
+- Related delivery revision IDs: `N/A`
+- Why this implementation revision is recorded: The approved current release changed from an unexecutable eight-package gate to a complete two-package darwin-arm64 matrix, then required explicit branch-only catalog proof and an acyclic expected/observed/action release lifecycle. This round implements that cumulative reviewed design without reconstructing the accepted runtime source or weakening any package, quality, lifecycle, or evidence invariant.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-005`, `BEH-007`–`BEH-010`; `R-005`, `R-008`, `R-011`, `R-014`, `R-017`–`R-019`; `AC-006`, `AC-007`, `AC-010`, `AC-013`, `AC-017`, `AC-019`–`AC-022`.
+- Implementation delta:
+  - Added the sole exact two-entry Current Release Matrix and removed the obsolete current eight-target matrix/verifier path while preserving generic deferred-target source outside current authority.
+  - Added reviewed English/Chinese input recipes, fresh immutable materialization, exact cache/Git/repository provenance, complete input manifest/mode closure, and package/reproducibility bindings.
+  - Added repository-owned license policy/notices and generated exact compliance; added strict Apple M1 Max power/quiescence/toolchain/Seatbelt/purge preflight and exact 30 cold / 30 warm-preparation / 100 warm qualification construction and raw recomputation.
+  - Added Qualification Set 1, shared release-neutral Catalog Entry Identity, exact two-archive set validation, branch projection, and a separate independently implemented projection verifier that always records pass/fail.
+  - Replaced the release evidence/catalog path with the one-way integrated QSet -> expected Release Evidence -> Catalog 3 -> Pre-Tag Manifest chain; added separate always-recorded published-byte verification and fail-only quarantine that deletes only the GitHub Release object/assets and proves the tag unchanged.
+  - Updated the current-only serialized workflow, documentation, source contracts, and focused regressions. Preserved durable API-VOICE-013 coverage and every accepted provider/runtime/evidence behavior.
+- Changed files or areas: `.github/workflows/release-voice-runtime.yml`, `README.md`, `benchmark/` preflight/sandbox/qualification owners, `build/` recipes/materializer/build bindings, `contracts/{build,catalog,compliance,qualification,release}/`, `licenses/`, `release/` matrix/compliance/QSet/projection/pre-tag/post-publication owners, and focused `tests/release/`; source commits `c3b6153e69710aa12f8b512d33ca4e9116665f06` and `d1aed4b0a69d517f881b1f2c3c86be1be93b7580`.
+- Local validation and result: Verified-root `npm run check` passed 48/48 Node, 7/7 Python plus compileall, all Go, strict schemas/source guards, and six-output English reproduction. Go race/vet/gofmt passed; 191/191 selection checksums passed; 202 repository JSON files parsed; focused authored Prettier and `git diff --check` passed. No downstream environment or package-execution result is claimed.
+- Next recipient or routing: `code_reviewer`
+- Remaining limitations or risks: Actual closed-cache materialization, two byte-identical packages, M1 preflight/purge, real English 49 and Chinese 200 inference, exact 30/30/100 latency/RSS/size/lifecycle/offline/no-mutation/compliance proof, Qualification Set/branch projection evidence, and API classification remain API/E2E-owned. Maintained-main refresh/integration, complete repeated qualification, explicit finalization, tag/publication, published verification, quarantine, and evidence retention remain Delivery-owned. x64/`auto` remain deferred and unsupported.

@@ -2,166 +2,149 @@
 
 ## Upstream Artifact Package
 
-- Requirements: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
-- Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
-- Design: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Supplemental authorities/evidence:
+- Requirements doc: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
+- Investigation notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
+- Design spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
+- Supplemental task artifacts:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/benchmark-protocol.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/backend-selection-study.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/aggregate-results.json`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/SHA256SUMS.txt`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/english-preservation-correction.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/derive_english_preservation_v2.py`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/english-v2.corpus.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/english-v2.promoted-result.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/english-v2.promoted-quality.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/english-v2.baseline.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/english-v2.trusted-baseline-record.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/authority.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/validation.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/current-platform-qualification.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/voice-runtime-contract.md`
-- Solution history: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
-- Architecture result/history:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Triggering review/API evidence:
+- Solution revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
+- Design review report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
+- Architecture review revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
+- Triggering downstream/rework artifacts:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/repository/API-VOICE-002-corpus-identity-failure.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/repository/npm-ci.log`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/repository/npm-run-check.log`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/repository/selection-study-checksums.log`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/repository/corpus-validation.log`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/repository/API-VOICE-002-corpus-identity-resolution.json`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/environment/API-VOICE-003-012-readiness.json`
 
 ## Current Implementation Summary
 
-`IR-007` closes the bounded `CRR-007` local proof omission `CR-F-016` on top of the accepted `IR-006` English-v2 correction. It preserves the reviewed `SR-007` / `ARCH-REV-008` evidence authority and the `IR-005` runtime/package architecture. The runtime tree remains the profile-specific hermetic Python/MLX, Python/faster-whisper, and native Fun-ASR implementation behind the fixed Go launcher, Catalog 3, Provider Archive 1, and strict session/protocol/audio contracts.
+`IR-008` implements the cumulative `SR-008` / `SR-009` current-platform design on top of the preserved runtime architecture. The sole current release authority now contains exactly English MLX Whisper Small FP16 and Chinese Fun-ASR-Nano GGUF Q8 for `darwin-arm64`. It owns deterministic recipe materialization, generated compliance, strict M1 preflight and exact qualification-set construction, release-neutral branch catalog projection with separate recomputation, and the acyclic integrated pre-tag and post-publication lifecycle.
 
-The exact reviewed English v2 derivation, authority, projected raw/quality, final corpus, final baseline, and trusted-record bytes remain in their approved runtime paths. The duplicate-counted final `english-v1` corpus/baseline files remain absent. Source/release trust byte-verifies the locked immutable sources, derivation script, authority, and every final output before English qualification, while the baseline owner enforces 49 unique one-to-one corpus/baseline/raw/quality identities. The source check now explicitly compares generated `authority.json` in addition to the other five derived outputs before reporting byte-identical reproduction. A focused regression changes only the generated authority and proves that the gate fails after the other five outputs match.
+The implementation preserves the reviewed provider, package, launcher, session, protocol, normalization, English-v2/Chinese evidence, thresholds, and runtime behavior. Generic x64-capable source remains deferred implementation only and is absent from current matrix, assets, workflow, denominator, and support claims. No desktop/shared-runtime source, API/E2E environment, maintained-main integration, tag, release, or user state was changed.
 
-- Implementation cycle: `Rework / Local Fix`
+- Implementation cycle: `Rework / Design Impact`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision: `IR-007`
-- Current design authority: `SR-007` / `ARCH-REV-008`
-- Trigger: `CRR-007` / `CR-F-016`; `CR-F-015` is accepted as resolved in source
-- Related API/E2E revision: `API-REV-001` failed and routed upstream; implementation did not resume API/E2E
-- Delivery revision: `N/A`
-- Current source commit: `983dc07abdb68309c67bea8955554ec6f9064fd2`
+- Current implementation revision ID: `IR-008`
+- Related solution revision IDs: `SR-008`, `SR-009`
+- Related architecture-review revision IDs: `ARCH-REV-009`, `ARCH-REV-010`
+- Related code-review revision IDs: `CRR-008` (accepted prior source baseline); current re-review pending
+- Related API/E2E revision IDs: `API-REV-002` / `API-RI-001`
+- Related delivery revision IDs: `N/A`
+- Triggering finding IDs: `API-RI-001`; resolved design findings `AR-F-011`, `AR-F-012`
+- Source commits: `c3b6153e69710aa12f8b512d33ca4e9116665f06`, `d1aed4b0a69d517f881b1f2c3c86be1be93b7580`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
-No provider/model/threshold/package/lifecycle/protocol behavior changed. No API/E2E execution, tag, publication, maintained-main reconciliation, desktop/shared-runtime edit, history rewrite, or active-installation work occurred.
-
-## CRR-007 Local-Fix Resolution
-
-| Finding    | Implementation                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CR-F-016` | `assertReproducedEnglishOutputs()` now owns the complete comparison set: corpus, projected raw result, projected quality, baseline, trusted record, and generated `authority.json`. `reproduceAuthority()` calls that owner before the source check can report success. The focused negative regression supplies exact bytes for the other five generated outputs, changes only generated `authority.json`, and requires `derivation drift: authority`. |
-
-## CRR-006 / SR-007 Correction
-
-| Concern                      | Implementation                                                                                                                                                                                                                                                                                                                                                                                          |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Exact authorized bytes       | Added the approved authority/script/projected raw/projected quality under `evidence/selection-study/derived/english-preservation-unique-v2/`; added exact final `english-v2` corpus SHA-256 `03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd` and baseline SHA-256 `c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba`; replaced only the English trusted record.       |
-| Invalid authority removal    | Removed final `release/evidence/qualification-corpora/english-v1.json` and `release/evidence/baselines/english-v1.json`; the release workflow now selects `english-v2.json` for English while Chinese remains on its unchanged v1 authority.                                                                                                                                                            |
-| Source/output authority      | `benchmark/baseline/english-preservation-authority.mjs` anchors the approved authority and trusted-record digests, verifies four immutable historical inputs, the exact derivation script, and every projected/final output, and binds the catalog record to those paths/digests.                                                                                                                       |
-| Byte-reproducible derivation | `tooling/verify-english-preservation.mjs`, now part of `npm run check`, stages the four locked sources, reruns the exact approved Python derivation, and byte-compares corpus, projected raw, projected quality, baseline, trusted record, and authority outputs.                                                                                                                                       |
-| One-to-one gate              | `assertOneToOneCorpusBaseline()` rejects missing/extra/duplicate IDs, paths, or audio hashes and requires ordered corpus/baseline identity equality. `verifyPromotedDerivation()` additionally requires raw and quality rows to match the same 49 ordered identities. The qualification runner still invokes the real `validateCorpus()` before baseline trust and before package extraction/inference. |
-| Preserved evidence           | All original selection-study files continue to pass the unchanged 191-entry `SHA256SUMS.txt`; exact historical source bytes and the complete Chinese final/trusted authority compare equal to `IR-005`.                                                                                                                                                                                                 |
-
 ## Reviewed Behavior Implementation Trace
 
-| Behavior  | Implemented production path and result                                                                                                                                                                                                                                                |
-| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BEH-001` | Runtime-only source/build/release changes; desktop capture, integration, and active-installation state remain untouched.                                                                                                                                                              |
-| `BEH-002` | Fixed Go launcher -> bound profile worker -> explicit hello/model-preparing/inference-ready -> one persistent serialized recognizer.                                                                                                                                                  |
-| `BEH-003` | `ProviderProcessSession` owns bounded startup/request/shutdown/termination, stateful UTF-8 framing, terminal failure, no replay, and clean next start.                                                                                                                                |
-| `BEH-004` | Canonical builders admit only repository-locked Python/native/model/complete-Go-root inputs with isolated environments; live installs/downloads/system hosts/alternate launchers remain absent.                                                                                       |
-| `BEH-005` | The authorized 49-identity English v2 derivation and one-to-one 70/969 baseline now precede exact-package qualification. MLX English on darwin-arm64, faster-whisper English elsewhere, native Fun-ASR Chinese, unchanged gates, and omitted unqualified `auto` remain authoritative. |
-| `BEH-006` | Python/C++ runtime normalization and JS scoring preserve NFKC/T2S/punctuation/Han-spacing semantics and raw/normalized separation.                                                                                                                                                    |
-| `BEH-007` | Prequalification uses repository-owned evidence and correct source-commit -> maintained-main reachability before any tag; publication re-verifies exact qualified artifacts.                                                                                                          |
-| `BEH-008` | Lifecycle/identity/timing/resource/recovery evidence remains bounded and privacy-safe; new English authority adds only source/output identity.                                                                                                                                        |
-| `BEH-009` | Catalog/archive/launcher/session/Protocol 1 remain the only public authority; legacy/private overrides fail closed.                                                                                                                                                                   |
-| `BEH-010` | Catalog 3 -> Provider Archive 1 -> fixed Go launcher -> embedded plan -> contained worker remains unchanged.                                                                                                                                                                          |
-| `BEH-011` | Python/native PCM16 mono 16 kHz WAV validators remain the sole no-speech authority and require no external decoder.                                                                                                                                                                   |
-| `BEH-012` | Context/hotword fields remain rejected; no recognition-context behavior or fallback was added.                                                                                                                                                                                        |
+| Behavior ID | Approved Change / Preserved Outcome                                                                                                      | Implemented Production Path / Key Files                                                                                                                                               | Result / Notes                                                                                                    |
+| ----------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `BEH-001`   | Runtime-only delivery; desktop capture, installation, active-installation, and UI remain future work.                                    | Repository boundary and unchanged desktop exclusion; runtime source only.                                                                                                             | Preserved; no desktop/superrepo edit.                                                                             |
+| `BEH-002`   | Persistent profile recognizer and fixed public launcher behavior remain authoritative.                                                   | Existing `launcher/`, `providers/`, package plans, and session binding.                                                                                                               | Preserved unchanged.                                                                                              |
+| `BEH-003`   | Bounded client/worker lifecycle, one in-flight request, terminal failure, and clean restart remain.                                      | `benchmark/provider-process-session.mjs`, existing worker lifecycle/conformance owners.                                                                                               | Preserved; command-prefix support permits Seatbelt without a second runtime path.                                 |
+| `BEH-004`   | Current packages consume complete recipe-owned closed inputs and build offline.                                                          | `contracts/build/`, `build/input-recipes/`, `build/materialize-release-inputs.mjs`, immutable `SHA256SUMS.json`, provenance validation, selected builders, workflow Seatbelt wrapper. | Implemented; hand-built or writable trees, dirty Git sources, extra/missing bytes, and provenance drift fail.     |
+| `BEH-005`   | Current selection is exactly English preserve plus Chinese select on darwin-arm64; English-v2 and Chinese evidence remain authoritative. | `contracts/catalog/current-release-matrix-v1.json`, `release/current-release-matrix.mjs`, current recipes, existing trusted baselines and candidate history.                          | Implemented; x64 and `auto` are outside current authority.                                                        |
+| `BEH-006`   | Deterministic English/Chinese normalization and raw/normalized separation remain.                                                        | Existing Python/C++ runtime normalization and JS symmetric scorer/fixtures.                                                                                                           | Preserved unchanged.                                                                                              |
+| `BEH-007`   | API closes at QSet plus branch projection; Delivery independently repeats and owns the acyclic release/post-publication chain.           | `release/evidence/qualification-set.mjs`, branch projector/verifier, release evidence/catalog/pre-tag owners, published verifier, quarantine owner, release workflow.                 | Implemented with separate expected, observed, and action artifacts.                                               |
+| `BEH-008`   | Evidence remains exact, privacy-safe, count-complete, and fail-closed.                                                                   | Strict preflight contract, raw 30/30/100 verifier, corpus/baseline/raw/index recomputation, compliance/provenance digests.                                                            | Implemented source contract; real execution remains downstream.                                                   |
+| `BEH-009`   | One release-neutral entry identity serves branch proof and Catalog 3 without branch release claims.                                      | `contracts/catalog/catalog-entry-identity-v1.schema.json`, `release/catalog-entry-identity.mjs`, branch projection schemas, `release/catalog-builder.mjs`.                            | Implemented; projection forbids tag, runtime release claim, URL, maintained-main, publication, and public status. |
+| `BEH-010`   | Provider Archive 1, fixed Go launcher, embedded plan, and contained private worker remain the runtime package path.                      | Existing archive/launcher/package owners; current package assembler binds matrix/recipe/provenance/toolchain.                                                                         | Preserved and tightened; no alternate content/runtime path.                                                       |
+| `BEH-011`   | PCM WAV validators remain the only no-speech authority.                                                                                  | Existing Python/native audio/result policy and conformance tests.                                                                                                                     | Preserved unchanged.                                                                                              |
+| `BEH-012`   | Context/hotword fields remain rejected; no fallback or hidden context behavior is added.                                                 | Existing strict session/protocol/engine configuration owners.                                                                                                                         | Preserved unchanged.                                                                                              |
 
 ## Key Files Or Areas
 
-- English authority verification: `benchmark/baseline/english-preservation-authority.mjs`, `tooling/verify-english-preservation.mjs`
-- One-to-one baseline trust: `benchmark/baseline/trusted-baseline.mjs`, `benchmark/baseline/qualification-baseline.mjs`
-- Approved derived evidence: `evidence/selection-study/derived/english-preservation-unique-v2/`
-- Final evidence: `release/evidence/qualification-corpora/english-v2.json`, `release/evidence/baselines/english-v2.json`, `release/evidence/trusted-baselines-v1.json`
-- Pre-inference real-audio owner: `benchmark/corpus/validate-corpus.mjs`, `benchmark/run-profile-qualification.mjs`
-- Release selection: `.github/workflows/release-voice-runtime.yml`
-- Focused regression coverage: `tests/release/trusted-baseline.test.mjs`
-- Preserved package/runtime owners: `launcher/`, `packaging/`, `providers/`, `build/`, `contracts/`, and the remaining `benchmark/`/`release/` code from `IR-005`
+- Current support authority: `contracts/catalog/current-release-matrix-v1.json`, `release/current-release-matrix.mjs`
+- Closed inputs: `contracts/build/`, `build/input-recipes/`, `build/materialize-release-inputs.mjs`, `build/profile-builders/`
+- Compliance: `contracts/compliance/`, `release/compliance/`, `licenses/`
+- M1 conditions and qualification: `benchmark/darwin-arm64-runner-preflight.mjs`, `benchmark/darwin-arm64-preflight-contract.mjs`, `benchmark/sandbox/`, `benchmark/run-profile-qualification.mjs`, `contracts/qualification/`
+- Qualification Set: `contracts/release/qualification-set-v1.schema.json`, `release/evidence/qualification-set.mjs`, `release/evidence/profile-qualification-verifier.mjs`
+- Branch catalog proof: `release/catalog-entry-identity.mjs`, `release/branch-catalog-projection.mjs`, `release/verify-branch-catalog-projection.mjs`, `release/provider-archive-set.mjs`
+- Integrated release lifecycle: `release/evidence/assemble.mjs`, `release/catalog-builder.mjs`, `release/pretag-release-manifest.mjs`, `release/qualify-release.mjs`
+- Post-publication observation/action: `release/verify-published-assets.mjs`, `release/quarantine-published-release.mjs`
+- Workflow/docs: `.github/workflows/release-voice-runtime.yml`, `README.md`
+- Focused source coverage: `tests/release/current-platform-contracts.test.mjs`, `tests/release/current-qualification-gates.test.mjs`; preserved API-VOICE-013 coverage in `tests/release/trusted-baseline.test.mjs`
 
 ## Important Assumptions
 
-- Repository qualification manifests intentionally do not include redistributable WAV bytes. The workflow-provided English corpus copy must be byte-identical to the checked-in v2 manifest and pair with all 49 exact WAV files; `validateCorpus()` checks those real audio digests before inference.
-- Source verification uses the repository's existing `python3` development prerequisite to rerun the stdlib-only approved derivation. Production provider packages remain hermetic and do not acquire a system-Python dependency.
-- The selected providers, model identities, English 8.0%/+0.5-point thresholds, Chinese gates, package contracts, and release order are unchanged.
+- `VOICE_INPUT_CACHE_ROOT` is provisioned separately with the exact SHA-addressed objects and exact clean Git checkouts named by the recipes. Materialization never acquires or resolves content.
+- The dedicated current M1 runner is the reviewed Apple M1 Max / 64 GiB host with exact Node/Go/CMake/Xcode/SDK identities, persistent job-owned `caffeinate`, and least-privilege `sudo -n /usr/sbin/purge` permission.
+- The external English and Chinese corpus roots contain the licensed WAV bytes matching the checked-in manifests and consent/provenance records. No corpus audio was added or synthesized here.
+- Publication commands are delivery tooling only. Source presence is not authorization to integrate, tag, publish, promote a catalog, or mutate user/shared state.
 
 ## Known Risks
 
-- `API-VOICE-002` must be rerun first against the exact 49 WAV files. Implementation checks prove source/output authority and structural one-to-one identity but do not claim real-audio API/E2E acceptance.
-- All eight exact target-native package builds/runs, licensed corpus provenance/consent/redistribution, English/Chinese package quality, M1 Max 30 cold / 30 warm-preparation / 100 warm-request timing, RSS/size/offline behavior, notices/licenses, Windows behavior, release aggregation, maintained-main integration, tagging, publication, and published-byte equality remain fail-closed downstream gates.
-- `auto` remains omitted unless independently qualified under its separately reviewed complete lane.
+- Actual input-cache completeness, two byte-identical current packages, native/MLX inference, licensed 49/200 corpus execution, exact 30 cold / 30 warm-preparation / 100 warm-request measurements, RSS/size, relocation, no-mutation, offline child-tree execution, and generated compliance against built archives remain fail-closed API/E2E gates.
+- M1 host quiescence and `sudo -n purge` are known downstream environment prerequisites. This implementation deliberately did not provision or execute that environment.
+- x64 and `auto` are deferred and unsupported by the current matrix. Generic source retention is not current release evidence.
+- Delivery must refresh/integrate maintained `main`, repeat the complete two-package qualification, obtain explicit finalization authorization, and retain the separate published-verification/quarantine records. A published mismatch may expose bytes briefly; quarantine cannot undo an external download and the version/tag may not be reused.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: local proof correction inside the source evidence gate.
-- Reviewed root-cause classification: local implementation proof omission in the existing reproduction owner.
-- Reviewed refactor decision: no architectural refactor; complete the missing sixth assertion in the existing English authority owner.
+- Reviewed change posture: Current-platform requirement/design correction after `API-RI-001`, followed by release-lifecycle design closure.
+- Reviewed root-cause classification: Current support/completeness policy and catalog/evidence ownership were cross-cutting design issues, not local test omissions.
+- Reviewed refactor decision: `Refactor Needed Now` for the current matrix, input/compliance/preflight owners, QSet/branch projection, and acyclic release lifecycle.
 - Implementation matched the reviewed assessment: `Yes`.
-- If challenged, routed as Design Impact: `N/A`; `CRR-007` classified this bounded defect as `Local Fix` after accepting `CR-F-015` source closure.
-- Evidence: all-six comparison code, authority-only negative regression, independent derivation rerun, and the source commit above.
+- If challenged, routed as `Design Impact`: `N/A`; no new requirement/design contradiction was found during implementation.
+- Evidence / notes: one matrix drives all current consumers; branch and final catalog paths share only the release-neutral entry owner; expected facts, remote observation, and quarantine action remain separate owners and artifacts.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`.
-- Legacy old behavior retained in scope: `No`; invalid final English v1 files are absent. The original 50-row files remain only as required immutable historical evidence.
-- Dead/obsolete paths removed in scope: `Yes` for the two invalid final-authority files; no historical evidence was removed.
-- Shared structures remain tight: `Yes`; the English-specific authority is isolated beside the generic baseline owner.
-- Canonical shared design guidance reapplied: `Yes`.
-- Changed source files stayed within guardrails: `Yes`; the new production authority owner is 155 physical lines. The exact reviewed derivation script is 459 physical lines and was explicitly preserved unsplit because its approved byte digest is part of the evidence authority; it remains below 500 lines, and splitting it would invalidate the reviewed derivation rather than improve the owner.
+- Legacy old-behavior retained in scope: `No`; x64/`auto` remain target-capable future source only, not a compatibility/current path.
+- Dead/obsolete paths removed in scope: `Yes`; removed `contracts/catalog/required-profile-matrix-v1.json` and obsolete eight-target `release/evidence/verify.mjs`; no literal-eight/static current publication owner remains.
+- Shared structures remain tight: `Yes`; release-neutral entry identity, exact archive-set identity, QSet, pre-tag expected facts, published observations, and quarantine actions are separate coherent shapes.
+- Canonical shared design guidance was reapplied: `Yes`.
+- Changed source implementation files stayed within proactive size-pressure guardrails: `Yes`; every changed implementation source remains under 500 effective lines. The >220-line materializer, preflight, and QSet owners were assessed as cohesive boundaries rather than mixed coordination files; tests/schemas are outside the hard implementation-source threshold.
 
 ## Persisted Data Transition Check
 
 - Approved decision: `Not Affected`.
-- Implementation follows the reviewed decision without migration or version-specific runtime fallback: `Yes`.
-- Deviation: `None`; repository-owned immutable evidence is replaced cleanly rather than migrated at runtime.
+- Design-spec decision reference: `SR-008` / `SR-009` persisted-data and compatibility decision.
+- Implementation follows the approved decision without unapproved migration or runtime fallback: `Yes`.
+- Deviation: `None`; repository contracts/evidence are clean-cut build/release artifacts, not user/application persisted state.
 
 ## Environment Or Dependency Notes
 
-- Implementation checks used Node 22.23.1, system Python 3 for source tests/derivation only, and the exact repository-verified Go 1.26.5 darwin-arm64 root at `/tmp/autobyteus-go1.26.5-v1/go/bin/go`.
-- No dependency version, evidence byte, provider input, model input, threshold, or package host changed in `IR-007`.
+- Local checks used Node 22.23.1, system Python only for source tests/approved derivation, and the complete repository-verified Go 1.26.5 darwin-arm64 root at `/tmp/autobyteus-go1.26.5-v1/go/bin/go`.
+- Current recipes pin the Python host/wheel/model bytes, native Git trees/model bytes, notices/licenses, repository lock, Node/Go/CMake/Xcode/SDK identities, and the exact two-entry matrix digest.
+- No dependency version, provider/model selection, threshold, public runtime ABI, or evidence authority was changed outside the reviewed SR-008/SR-009 scope.
 
 ## Local Implementation Checks Run
 
-- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: 38/38 Node tests, 7/7 Python tests plus compileall, all Go tests, source-size/legacy guards, and byte-identical six-output English v2 derivation reproduction.
-- Exact `cmp` checks against all six reviewed v2 target outputs plus the copied script/authority — passed; approved corpus/baseline/authority/projected-result/projected-quality digests match.
-- `(cd evidence/selection-study && shasum -a 256 -c SHA256SUMS.txt)` — 191/191 original historical entries passed unchanged.
-- All repository JSON parsed; focused Prettier check and `git diff --check` passed.
-- Negative regressions reject duplicate corpus/baseline identities, wrong trusted baseline identities/digests, changed immutable English source bytes, and changed generated authority bytes after the other five outputs match.
+- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: 48/48 Node tests, 7/7 Python tests plus compileall, all Go tests, strict public-schema compilation, source/legacy guards, and byte-identical six-output English-v2 reproduction.
+- Verified-root Go `test -race ./...`, `vet ./...`, and `gofmt -l` — passed.
+- Original backend selection study `SHA256SUMS.txt` — 191/191 passed unchanged.
+- Repository JSON parse sweep — 202 files parsed.
+- Focused Prettier check across authored changed MJS/JSON/YAML/Markdown (excluding exact license text bytes) — passed.
+- `git diff --check` — passed after marking exact license-text paths whitespace-neutral.
+- Source/unit negatives cover dirty/materialized-input drift, writable/extra input bytes, unknown/extra compliance components, incomplete preflight facts, wrong 30/30/100 counts, extra/missing archives, projection tampering/recomputation, forbidden branch release fields, pre-tag cycles, missing/mismatched/extra published files, quarantine preconditions, and Git-tag preservation.
 
-These are implementation-scoped checks only. No API/E2E, actual-package, real-audio, release, tag, or publication sign-off is claimed.
+These are implementation-scoped checks only. No API/E2E, actual M1 package qualification, corpus inference, release, tag, publication, or deployment result is claimed.
 
 ## Frontend Rendered-Result Check
 
-Not Applicable. This is a runtime/evidence/build change with no rendered frontend or user-interaction surface.
+Not Applicable. This is a runtime/build/evidence/release-contract change with no rendered frontend or user-interaction surface.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-- Begin `API-REV-002` with `API-VOICE-002`: stage the exact approved 49 English WAV identities, copy the checked-in v2 manifest byte-identically, and execute the real `validateCorpus()` path plus trusted baseline load before inference.
-- Then construct/rebuild and run all eight exact profile/target archives from approved locked inputs; verify package identity, lifecycle, quality/non-regression, canonical bytes, safe extraction, relocation, environment isolation, rights/notices, resources, and catalog/release binding.
-- Preserve the failure ordering: any changed derivation source/output, external corpus digest, duplicate identity, missing audio, or baseline mismatch must stop before provider inference.
+- Resume only after Code Review Pass. Open the next API revision and rerun `API-VOICE-002` first, retaining the existing API-VOICE-013 source/evidence prerequisite only if its authority bytes remain unchanged.
+- Materialize both exact recipes into fresh immutable trees; reject any cache/check-out/source/mode/provenance drift before package construction.
+- On the reserved M1, prove strict preflight, build each package twice under Seatbelt, execute real English 49 / Chinese 200 corpora, lifecycle/relocation/offline/no-mutation/privacy/compliance gates, and exact 30/30/100 resource trials.
+- Assemble Qualification Set 1, then Branch Catalog Projection 1, then independently verify the projection and exact two local archives. Retain both as API evidence; do not generate Catalog 3 or release identity in API/E2E.
+- Keep deferred x64/`auto` scenarios outside the current pass denominator rather than marking them passed, failed, or skipped current targets.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-`API-REV-001` remains the historical failed round that exposed `CR-F-015`. Do not resume it directly from this implementation handoff. Return `IR-007` to `code_reviewer`; only after source Pass may `api_e2e_engineer` open `API-REV-002`, rerun `API-VOICE-002` first, and continue the remaining package scenarios. `delivery_engineer` retains maintained-main refresh, finalization, tag, and publication ownership.
+Code Reviewer must review `IR-008` and the already-present durable API-VOICE-013 coverage before API/E2E resumes. Implementation did not open or execute another API revision. After source Pass, `api_e2e_engineer` owns the current two-package M1 environment, execution, Qualification Set, branch projection, independent projection result, durable evidence, and truthful pass/block classification. Delivery alone owns maintained-main refresh/integration, the repeated integrated QSet and pre-tag chain, explicit finalization, tag/publication, published-byte verification, optional quarantine, and durable delivery evidence.
