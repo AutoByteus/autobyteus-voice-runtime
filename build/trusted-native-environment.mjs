@@ -1,7 +1,10 @@
 import path from "node:path";
 import Ajv2020 from "ajv/dist/2020.js";
 import { readJson, ROOT, shaFile } from "./lib/files.mjs";
-import { assertPassingDarwinArm64Preflight } from "../benchmark/darwin-arm64-preflight-contract.mjs";
+import {
+  assertPassingDarwinArm64Preflight,
+  assertSandboxedBuildDarwinArm64Preflight,
+} from "../benchmark/darwin-arm64-preflight-contract.mjs";
 import {
   assertTrustedExecutableIdentity,
   canonicalExecutablePath,
@@ -88,25 +91,7 @@ export async function createTrustedNativeBuildEnvironment({
   const resolvedPreflight = path.resolve(preflightPath),
     preflight = await readJson(resolvedPreflight);
   await assertPassingDarwinArm64Preflight(preflight);
-  const commands = preflight.tools.commandPaths,
-    tools = {
-      node: preflight.tools.nodeExecutable,
-      cmake: preflight.tools.cmakeExecutable,
-      cCompiler: preflight.tools.appleClangExecutable,
-      cxxCompiler: preflight.tools.appleClangCxxExecutable,
-      archiver: preflight.tools.appleArExecutable,
-      ranlib: preflight.tools.appleRanlibExecutable,
-      linker: preflight.tools.appleLinkerExecutable,
-      libtool: preflight.tools.appleLibtoolExecutable,
-      make: identity("/usr/bin/make", commands),
-      shell: identity("/bin/sh", commands),
-      tar: identity("/usr/bin/tar", commands),
-      sdk: {
-        path: preflight.tools.sdkPath,
-        version: preflight.tools.sdk,
-        settingsSha256: preflight.tools.sdkSettingsSha256,
-      },
-    };
+  const tools = toolsFromPreflight(preflight);
   if ((await canonicalExecutablePath(cmakePath)) !== tools.cmake.path)
     throw new Error("CMake path does not match the passing preflight.");
   const record = {
@@ -127,6 +112,29 @@ export async function createTrustedNativeBuildEnvironment({
     },
   };
   await verifyTrustedNativeBuildEnvironment(record);
+  return record;
+}
+
+export async function consumeTrustedNativeBuildEnvironment({
+  recordPath,
+  preflightPath,
+  environment = process.env,
+}) {
+  assertNoUntrustedNativeBuildOverrides(environment);
+  const resolvedRecord = path.resolve(recordPath),
+    resolvedPreflight = path.resolve(preflightPath),
+    record = await readJson(resolvedRecord),
+    preflight = await readJson(resolvedPreflight);
+  await assertSandboxedBuildDarwinArm64Preflight(preflight);
+  await verifyTrustedNativeBuildEnvironment(record);
+  if (
+    record.preflightSha256 !== (await shaFile(resolvedPreflight)) ||
+    JSON.stringify(record.tools) !==
+      JSON.stringify(toolsFromPreflight(preflight))
+  )
+    throw new Error(
+      "Trusted native build environment does not bind the preflight.",
+    );
   return record;
 }
 
@@ -192,4 +200,26 @@ function identity(commandPath, commands) {
   if (!value)
     throw new Error(`Preflight command identity missing: ${commandPath}`);
   return value;
+}
+
+function toolsFromPreflight(preflight) {
+  const commands = preflight.tools.commandPaths;
+  return {
+    node: preflight.tools.nodeExecutable,
+    cmake: preflight.tools.cmakeExecutable,
+    cCompiler: preflight.tools.appleClangExecutable,
+    cxxCompiler: preflight.tools.appleClangCxxExecutable,
+    archiver: preflight.tools.appleArExecutable,
+    ranlib: preflight.tools.appleRanlibExecutable,
+    linker: preflight.tools.appleLinkerExecutable,
+    libtool: preflight.tools.appleLibtoolExecutable,
+    make: identity("/usr/bin/make", commands),
+    shell: identity("/bin/sh", commands),
+    tar: identity("/usr/bin/tar", commands),
+    sdk: {
+      path: preflight.tools.sdkPath,
+      version: preflight.tools.sdk,
+      settingsSha256: preflight.tools.sdkSettingsSha256,
+    },
+  };
 }

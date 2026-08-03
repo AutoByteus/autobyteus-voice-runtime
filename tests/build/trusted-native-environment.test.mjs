@@ -3,10 +3,14 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { execFile } from "node:child_process";
+import { pathToFileURL } from "node:url";
+import { promisify } from "node:util";
 import {
   assertNoUntrustedNativeBuildOverrides,
   assertTrustedExecutableIdentity,
   cmakeConfigureArguments,
+  consumeTrustedNativeBuildEnvironment,
   createTrustedNativeBuildEnvironment,
   materializeTrustedToolDirectory,
   trustedNativeBuildEnvironment,
@@ -14,9 +18,11 @@ import {
   verifyTrustedToolDirectory,
 } from "../../build/trusted-native-environment.mjs";
 import { shaFile, writeJson } from "../../build/lib/files.mjs";
+import { systemCommandIdentityDigest } from "../../benchmark/system-command-identity.mjs";
 import { passingDarwinPreflightFixture } from "../fixtures/passing-darwin-preflight.mjs";
 
-const root = path.resolve(import.meta.dirname, "../..");
+const root = path.resolve(import.meta.dirname, "../.."),
+  run = promisify(execFile);
 
 test("native build overrides are rejected case-insensitively before use", () => {
   for (const name of [
@@ -60,6 +66,113 @@ test("the production environment owner accepts the preflight CMake symlink", asy
       environment: {},
     });
     assert.equal(record.tools.cmake.path, await fs.realpath(tool));
+  } finally {
+    await fs.rm(temp, { recursive: true, force: true });
+  }
+});
+
+test("the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn", async () => {
+  const temp = await fs.mkdtemp(
+    path.join(os.tmpdir(), "voice-native-sandbox-entry-test-"),
+  );
+  try {
+    const tool = path.join(temp, "cmake-real"),
+      supplied = path.join(temp, "cmake"),
+      preflightPath = path.join(temp, "preflight.json"),
+      recordPath = path.join(temp, "native-build-environment-v1.json"),
+      profile = path.join(
+        root,
+        "benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+      );
+    await fs.writeFile(tool, "fixture\n", { mode: 0o755 });
+    await fs.symlink(path.basename(tool), supplied);
+    const preflight = await passingDarwinPreflightFixture(temp, tool);
+    await writeJson(preflightPath, preflight);
+    const record = await createTrustedNativeBuildEnvironment({
+      preflightPath,
+      cmakePath: supplied,
+      environment: {},
+    });
+    await writeJson(recordPath, record);
+
+    const module = pathToFileURL(
+        path.join(root, "build/trusted-native-environment.mjs"),
+      ).href,
+      script = `import {consumeTrustedNativeBuildEnvironment as consume} from ${JSON.stringify(module)};await consume({recordPath:${JSON.stringify(recordPath)},preflightPath:${JSON.stringify(preflightPath)},environment:{}});`;
+    await run(
+      "/usr/bin/sandbox-exec",
+      [
+        "-f",
+        profile,
+        process.execPath,
+        "--input-type=module",
+        "--eval",
+        script,
+      ],
+      { timeout: 30000, maxBuffer: 4 * 1024 * 1024 },
+    );
+
+    const probeDrift = structuredClone(preflight);
+    probeDrift.tools.sudoExecutable.probe.stdoutSha256 = "0".repeat(64);
+    probeDrift.purge.sudoExecutableIdentitySha256 = systemCommandIdentityDigest(
+      probeDrift.tools.sudoExecutable,
+    );
+    await writeJson(preflightPath, probeDrift);
+    await assert.rejects(
+      consumeTrustedNativeBuildEnvironment({
+        recordPath,
+        preflightPath,
+        environment: {},
+      }),
+      /does not bind the preflight/,
+    );
+    const capabilityDrift = structuredClone(preflight);
+    capabilityDrift.purge.nonInteractivePass = false;
+    await writeJson(preflightPath, capabilityDrift);
+    await assert.rejects(
+      consumeTrustedNativeBuildEnvironment({
+        recordPath,
+        preflightPath,
+        environment: {},
+      }),
+      /Passing M1 preflight required/,
+    );
+    const identityDrift = structuredClone(preflight);
+    identityDrift.tools.sudoExecutable.inode = `${
+      BigInt(identityDrift.tools.sudoExecutable.inode) + 1n
+    }`;
+    identityDrift.purge.sudoExecutableIdentitySha256 =
+      systemCommandIdentityDigest(identityDrift.tools.sudoExecutable);
+    await writeJson(preflightPath, identityDrift);
+    await assert.rejects(
+      consumeTrustedNativeBuildEnvironment({
+        recordPath,
+        preflightPath,
+        environment: {},
+      }),
+      /sudo metadata identity changed/,
+    );
+    const sandboxDrift = structuredClone(preflight);
+    sandboxDrift.sandbox.profileSha256 = "0".repeat(64);
+    await writeJson(preflightPath, sandboxDrift);
+    await assert.rejects(
+      consumeTrustedNativeBuildEnvironment({
+        recordPath,
+        preflightPath,
+        environment: {},
+      }),
+      /preflight identities do not recompute/,
+    );
+    await writeJson(preflightPath, preflight);
+    await fs.writeFile(tool, "changed\n", { mode: 0o755 });
+    await assert.rejects(
+      consumeTrustedNativeBuildEnvironment({
+        recordPath,
+        preflightPath,
+        environment: {},
+      }),
+      /Trusted executable identity mismatch/,
+    );
   } finally {
     await fs.rm(temp, { recursive: true, force: true });
   }
@@ -196,14 +309,24 @@ test("every current package builder consumes the trusted owner", async () => {
     python = await fs.readFile(
       path.join(root, "build/python/materialize-runtime.mjs"),
       "utf8",
+    ),
+    workflow = await fs.readFile(
+      path.join(root, ".github/workflows/release-voice-runtime.yml"),
+      "utf8",
     );
   assert.match(assembler, /assertNoUntrustedNativeBuildOverrides\(\)/);
+  assert.match(assembler, /consumeTrustedNativeBuildEnvironment/);
+  assert.doesNotMatch(assembler, /createTrustedNativeBuildEnvironment/);
   assert.match(assembler, /--build-environment/);
   assert.match(assembler, /materializeTrustedToolDirectory/);
   assert.match(native, /cmakeConfigureArguments\(context\.buildEnvironment\)/);
   assert.match(native, /env: nativeEnvironment/);
   assert.match(python, /context\.buildEnvironment\.tools\.tar\.path/);
   assert.doesNotMatch(python, /run\("tar"/);
+  assert.match(
+    workflow,
+    /node build\/create-native-build-environment\.mjs[\s\S]*?for OUTPUT[\s\S]*?sandbox-exec[\s\S]*?--build-environment "\$BUILD_ENVIRONMENT"/,
+  );
 });
 
 function fixtureRecord(rootPath) {

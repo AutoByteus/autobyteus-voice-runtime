@@ -6,6 +6,7 @@ import { readJson, ROOT, shaFile } from "../build/lib/files.mjs";
 import {
   systemCommandIdentityDigest,
   verifyPinnedSudoIdentity,
+  verifyPinnedSudoMetadataIdentity,
 } from "./system-command-identity.mjs";
 
 const schema = await readJson(
@@ -19,6 +20,18 @@ addFormats(ajv);
 const validate = ajv.compile(schema);
 
 export async function assertPassingDarwinArm64Preflight(value) {
+  await assertPassingPreflightRecord(value);
+  await verifyPinnedSudoIdentity(value.tools.sudoExecutable);
+  return value;
+}
+
+export async function assertSandboxedBuildDarwinArm64Preflight(value) {
+  await assertPassingPreflightRecord(value);
+  await verifyPinnedSudoMetadataIdentity(value.tools.sudoExecutable);
+  return value;
+}
+
+async function assertPassingPreflightRecord(value) {
   if (!validate(value) || value.status !== "pass")
     throw new Error(
       `Passing M1 preflight required: ${JSON.stringify(validate.errors)}`,
@@ -52,7 +65,6 @@ export async function assertPassingDarwinArm64Preflight(value) {
       systemCommandIdentityDigest(value.tools.sudoExecutable)
   )
     throw new Error("M1 preflight identities do not recompute.");
-  await verifyPinnedSudoIdentity(value.tools.sudoExecutable);
   return value;
 }
 

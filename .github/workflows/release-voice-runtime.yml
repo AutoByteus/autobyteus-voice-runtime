@@ -92,14 +92,19 @@ jobs:
         run: |
           ARCHIVE=voice-${{ matrix.profile }}-${{ matrix.target }}-$VOICE_RUNTIME_VERSION_INPUT.zip
           REBUILD="$RUNNER_TEMP/voice-rebuild-${{ matrix.profile }}-${{ matrix.target }}"
+          BUILD_ENVIRONMENT="$RUNNER_TEMP/native-build-environment-${{ matrix.profile }}-${{ matrix.target }}.json"
           mkdir "$REBUILD"
+          node build/create-native-build-environment.mjs \
+            --preflight "$RUNNER_TEMP/darwin-arm64-preflight-v2.json" \
+            --cmake "$VOICE_CMAKE" --output "$BUILD_ENVIRONMENT"
           for OUTPUT in "$GITHUB_WORKSPACE/out/assets/$ARCHIVE" "$REBUILD/$ARCHIVE"; do
             /usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb \
               node build/package-assembler.mjs \
               --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
               --inputs "$GITHUB_WORKSPACE/out/inputs/${{ matrix.profile }}-${{ matrix.target }}" \
-              --output "$OUTPUT" --go "$VOICE_GO" --cmake "$VOICE_CMAKE" \
+              --output "$OUTPUT" --go "$VOICE_GO" \
               --preflight "$RUNNER_TEMP/darwin-arm64-preflight-v2.json" \
+              --build-environment "$BUILD_ENVIRONMENT" \
               --source-commit "$GITHUB_SHA" --version "$VOICE_RUNTIME_VERSION_INPUT"
           done
           node build/package-verifier.mjs --archive "out/assets/$ARCHIVE" \

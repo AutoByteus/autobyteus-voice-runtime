@@ -4,6 +4,7 @@ import fs from "node:fs/promises";
 import {
   capturePinnedSudoIdentity,
   verifyPinnedSudoIdentity,
+  verifyPinnedSudoMetadataIdentity,
 } from "../../benchmark/system-command-identity.mjs";
 
 test("the non-root preflight identifies execute-only sudo without reading it", async () => {
@@ -18,10 +19,15 @@ test("the non-root preflight identifies execute-only sudo without reading it", a
   assert.equal(identity.ownerGid, 0);
   assert.equal(identity.mode, "4511");
   await verifyPinnedSudoIdentity(identity);
+  await verifyPinnedSudoMetadataIdentity(identity);
 
   const changed = { ...identity, inode: `${BigInt(identity.inode) + 1n}` };
   await assert.rejects(
     verifyPinnedSudoIdentity(changed),
     /sudo executable identity changed/,
+  );
+  await assert.rejects(
+    verifyPinnedSudoMetadataIdentity(changed),
+    /sudo metadata identity changed/,
   );
 });

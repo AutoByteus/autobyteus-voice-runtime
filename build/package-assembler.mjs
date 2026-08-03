@@ -20,7 +20,7 @@ import { trustedGoEnvironment, verifyGoToolchain } from "./locked-inputs.mjs";
 import { repositoryBuildLockDigest } from "./repository-lock-set.mjs";
 import {
   assertNoUntrustedNativeBuildOverrides,
-  createTrustedNativeBuildEnvironment,
+  consumeTrustedNativeBuildEnvironment,
   materializeTrustedToolDirectory,
   trustedNativeBuildEnvironment,
 } from "./trusted-native-environment.mjs";
@@ -35,16 +35,16 @@ const args = parsePairs(process.argv.slice(2), [
   "inputs",
   "output",
   "go",
-  "cmake",
   "preflight",
+  "build-environment",
   "source-commit",
   "version",
 ]);
 assertNoUntrustedNativeBuildOverrides();
 const goToolchain = await verifyGoToolchain(path.resolve(args.go));
-const nativeBuildEnvironment = await createTrustedNativeBuildEnvironment({
+const nativeBuildEnvironment = await consumeTrustedNativeBuildEnvironment({
+  recordPath: args["build-environment"],
   preflightPath: args.preflight,
-  cmakePath: args.cmake,
 });
 if (
   !/^[a-f0-9]{40}$/.test(args["source-commit"]) ||
