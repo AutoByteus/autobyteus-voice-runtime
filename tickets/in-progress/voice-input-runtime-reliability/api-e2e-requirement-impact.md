@@ -9,6 +9,17 @@
 - Classification: `Requirement Gap / Design Impact`
 - Required owner: `solution_designer`
 
+## User Confirmation — 2026-08-03
+
+The user subsequently confirmed the intended split without ambiguity:
+
+- the current task must qualify the two macOS Apple Silicon packages on the currently available M1 host;
+- passing that complete current-platform qualification is sufficient for this task's qualification Pass;
+- other platforms do not block this task;
+- Linux and other platform qualification/support will be handled as separate later-stage tasks on the corresponding actual hosts.
+
+Therefore the new solution should treat darwin-arm64 as the sole current-task qualification target. Existing source for later targets may be preserved if still coherent, but non-darwin-arm64 packages must not be claimed as executed, qualified, or released by this task.
+
 ## User Direction
 
 The user requires complete qualification on the currently available primary platform, macOS Apple Silicon / M-chip, and accepts that unavailable platforms cannot be fully tested now. The user states that complete current-platform testing should be sufficient for pass qualification because approximately 80% of product users are on Mac M-chip systems.
