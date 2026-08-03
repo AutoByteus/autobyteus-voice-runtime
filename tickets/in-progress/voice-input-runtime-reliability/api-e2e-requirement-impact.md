@@ -1,0 +1,62 @@
+# API/E2E Requirement Impact — Current-Platform Qualification
+
+## Record
+
+- Impact ID: `API-RI-001`
+- Recorded: `2026-08-03`
+- Origin: explicit user direction after `API-REV-002`
+- Current API/E2E result preserved as history: `API-REV-002 — Blocked / 78%`
+- Classification: `Requirement Gap / Design Impact`
+- Required owner: `solution_designer`
+
+## User Direction
+
+The user requires complete qualification on the currently available primary platform, macOS Apple Silicon / M-chip, and accepts that unavailable platforms cannot be fully tested now. The user states that complete current-platform testing should be sufficient for pass qualification because approximately 80% of product users are on Mac M-chip systems.
+
+This changes the accepted release gate. `SR-007` / `ARCH-REV-008` currently require a fail-closed eight-package matrix across four targets before API/E2E Pass. API/E2E cannot silently reinterpret that requirement.
+
+## Required Current-Platform Scope
+
+The new minimum qualifying matrix is the two `darwin-arm64` packages on the actual MacBookPro18,4 M1 Max / 64 GB host:
+
+1. English: MLX Whisper Small FP16.
+2. Chinese: Fun-ASR-Nano GGUF Q8.
+
+“Completely tested” must retain the material current-platform gates unless the revised solution explicitly changes them:
+
+- complete `SHA256SUMS.json`-closed inputs and byte-identical double builds;
+- package/archive/launcher verification and provenance;
+- real English and Chinese inference against the approved 49- and 200-clip corpora;
+- quality and non-regression thresholds with no fallback or provider substitution;
+- real lifecycle, recovery, malformed input/protocol, cancellation/termination, recognizer reuse, and no-orphan behavior;
+- relocation, offline operation, read-only/no-mutation behavior, and contained audio decoding;
+- 30 filesystem-cold trials, 30 warm-preparation trials, and 100 warm requests on the M1 Max with zero excluded failures;
+- latency, RSS, extracted-size, notice/license, privacy, and reproducibility evidence.
+
+`API-VOICE-002` and durable `API-VOICE-013` already pass and remain reusable unless their authoritative bytes change.
+
+## Design Decision Required
+
+The revised solution must explicitly decide the disposition of the other six package/target combinations:
+
+- **Recommended:** restrict the presently qualified/releasable catalog and release evidence to the two `darwin-arm64` packages, and defer darwin-x64, linux-x64, and win32-x64 packages to later independently qualified work; or
+- define another truthful non-release status that does not advertise unqualified packages as supported or qualified.
+
+Leaving all eight packages advertised while allowing six to bypass qualification would contradict the immutable-package and fail-closed release contract.
+
+The solution must update requirements, benchmark/release matrix, acceptance criteria, design, and supplemental contracts consistently. It must also state whether Delivery may release a darwin-arm64-only catalog or whether this is a current-platform validation pass without publication.
+
+## Remaining Execution Dependencies On Current Host
+
+The actual M1 Max host, Node 22.23.1, CMake 4.3.3, exact English/Chinese audio, preserved model/source assets, and authenticated Go 1.26.5 darwin-arm64 root are available. Complete current-platform execution still needs:
+
+1. complete closed build-input trees for English/darwin-arm64 and Chinese/darwin-arm64;
+2. authoritative license and offline audit records bound to exact package inventories;
+3. configured power/background-load conditions; and
+4. noninteractive permission for the pinned `sudo -n purge` cold-cache procedure, or a user-approved revised cold procedure in the new design.
+
+API/E2E must not invent audit approval, bypass cold-reset evidence, substitute a provider, or relax thresholds.
+
+## Downstream Re-entry
+
+After a new solution revision and architecture-review Pass, implementation/source review must align any matrix or release-contract changes. API/E2E should then open the next revision, reuse `API-VOICE-002`/`API-VOICE-013` when their bytes are unchanged, and execute complete `darwin-arm64` qualification for English and Chinese as the new pass gate.
