@@ -16,6 +16,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-008`    | Architecture Reviewer / `design-review-report.md` / round 10       | `API-RI-001`; resolved `AR-F-011`, `AR-F-012`           | `Design Impact`    | `SR-008`, `SR-009`; `ARCH-REV-009`, `ARCH-REV-010`; `CRR-008`; `API-REV-002`; `DR-*` N/A                               | `Implementation Complete — Ready for Code Re-review` |
 | `IR-009`    | Code Reviewer / `code-review-report.md` / `CRR-009`                | `CR-F-017`, `CR-F-018`                                  | `Local Fix`        | `SR-008`, `SR-009`; `ARCH-REV-010`; `CRR-009`; `API-REV-002`; `DR-*` N/A                                               | `Implementation Complete — Ready for Code Re-review` |
 | `IR-010`    | Code Reviewer / `code-review-report.md` / `CRR-010`                | Remaining `CR-F-018`; `CR-F-019`                        | `Local Fix`        | `SR-008`, `SR-009`; `ARCH-REV-010`; `CRR-010`; `API-REV-002`; `DR-*` N/A                                               | `Implementation Complete — Ready for Code Re-review` |
+| `IR-011`    | Code Reviewer / `code-review-report.md` / `CRR-012`                | `CR-F-020` / `API-F-001`                                | `Local Fix`        | `SR-008`, `SR-009`; `ARCH-REV-010`; `CRR-011`, `CRR-012`; `API-REV-003`; `DR-*` N/A                                    | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -272,3 +273,27 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: final pinned-root `npm run check` passed 57/57 Node tests, 7/7 Python plus compileall, all Go/source/schema/evidence checks. The new tests exercised the production CMake owner with a real symlink and actual non-root execute-only `/usr/bin/sudo` permissions/probe. Verified-root Go race/vet/gofmt passed; 191/191 selection checksums passed; 204 JSON files parsed; Prettier and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`
 - Remaining limitations or risks: the runner account still lacks approved noninteractive purge permission and the host was not reserved/quiescent, so implementation did not run the complete M1 preflight, materialize/build packages, execute licensed corpus inference, or collect 30/30/100/RSS/size evidence. After source Pass, API/E2E must exercise those fail-closed gates. Maintained-main integration, repeated qualification, tag/publication, published-byte verification, and quarantine remain Delivery-owned. x64/`auto` remain deferred and unsupported.
+
+### IR-011 — Parse the actual M1 thermal state fail closed
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; focused failure-origin round `CRR-012`, with origin evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-012-api-f-001-origin.md`
+- Triggering finding IDs: `CR-F-020`, mapped from `API-REV-003` / `API-F-001`; earlier `CR-F-017`–`CR-F-019` remain resolved
+- Classification: `Local Fix`
+- Prior authoritative result: `CRR-011 Pass` against `IR-010` was withdrawn after valid actual-host execution exposed the preflight defect; `CRR-012` / `Fail — Local Fix` is the current source authority
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`
+- Related solution revision IDs: `SR-008`, `SR-009`
+- Related architecture-review revision IDs: `ARCH-REV-010`
+- Related code-review revision IDs: `CRR-011` historical/withdrawn Pass, `CRR-012` current Local Fix
+- Related API/E2E revision IDs: `API-REV-003`, `API-F-001`; prior `API-REV-002`, `API-RI-001`
+- Related delivery revision IDs: `N/A`
+- Why this implementation revision is recorded: The production M1 preflight searched the bare word `warning`, so the actual healthy `pmset -g therm` phrases “No thermal warning...” and “No performance warning...” were interpreted as an affirmative warning and blocked both current packages. The existing preflight boundary and reviewed gates remain correct; only thermal-state interpretation required correction.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-007`, `BEH-008`; `AC-020`; `DS-010`; `MP-CR-014`.
+- Implementation delta:
+  - Added one focused Darwin thermal-state parser that accepts only the established exact three-line no-warning output as `normal`, recognizes explicit thermal/performance/CPU-limit warning shapes as `warning`, and returns `unrecognized` for all other or malformed input.
+  - Replaced the inline bare-word regex with the parser; production sets `thermalNormal=true` only for `normal`, so both `warning` and `unrecognized` retain the reviewed fail-closed `runner-power-or-pressure` behavior.
+  - Copied the API-REV-003 actual healthy output byte-identically into a durable fixture and added focused production-parser coverage for healthy, multiple affirmative-warning, and empty/vague/partial/non-string negative cases.
+  - Preserved AC, low-power, caffeinate, memory-pressure, quiescence, exact tool/command identity, Seatbelt, sudo/purge, package, trial, provider/model, threshold, matrix, catalog, and release-order gates unchanged. Did not add a source workaround for Battery Power or missing noninteractive purge permission.
+- Changed files or areas: `benchmark/darwin-arm64-runner-preflight.mjs`, new `benchmark/darwin-thermal-state.mjs`, `tests/fixtures/pmset-therm/healthy.txt`, and `tests/release/darwin-thermal-state.test.mjs`; source commit `23d766873fa1be357c657fab8203913fec09e65b`.
+- Local validation and result: pinned verified-root `npm run check` passed 60/60 Node tests, 7/7 Python tests plus compileall, all Go/source/schema/evidence checks, and six-output English-v2 reproduction. Focused parser coverage passed 3/3; durable fixture and API-REV-003 capture are byte-identical at SHA-256 `96de6076213225f787270bff80efd2011e0ad142953c37697dc547f77d302892`. Verified-root Go race/vet/gofmt passed; 191/191 selection checksums passed; 207/207 repository JSON files parsed; Prettier and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`
+- Remaining limitations or risks: Implementation did not run API/E2E or repeat the actual M1 preflight. After source Pass, the API runner still requires AC connection and exact least-privilege noninteractive purge permission before the preflight can pass. Both package builds, licensed 49/200-corpus inference, exact 30/30/100 resources, lifecycle/offline/no-mutation/privacy/compliance, QSet, and branch projection remain API/E2E work. Maintained-main integration, repeated qualification, tag/publication, published verification, and quarantine remain Delivery-owned; x64/`auto` remain deferred.
