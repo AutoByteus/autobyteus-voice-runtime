@@ -1,0 +1,58 @@
+TAP version 13
+# Subtest: native build overrides are rejected case-insensitively before use
+ok 1 - native build overrides are rejected case-insensitively before use
+  ---
+  duration_ms: 0.824875
+  type: 'test'
+  ...
+# Subtest: the production environment owner accepts the preflight CMake symlink
+ok 2 - the production environment owner accepts the preflight CMake symlink
+  ---
+  duration_ms: 209.490166
+  type: 'test'
+  ...
+# Subtest: the Xcode ranlib alias retains invocation semantics and authenticated topology
+ok 3 - the Xcode ranlib alias retains invocation semantics and authenticated topology
+  ---
+  duration_ms: 247.095416
+  type: 'test'
+  ...
+# Subtest: the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn
+ok 4 - the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn
+  ---
+  duration_ms: 533.92675
+  type: 'test'
+  ...
+# Subtest: the trusted PATH is closed and rechecks every selected tool
+ok 5 - the trusted PATH is closed and rechecks every selected tool
+  ---
+  duration_ms: 15.663959
+  type: 'test'
+  ...
+# Subtest: trusted executable bytes and explicit CMake configuration are bound
+ok 6 - trusted executable bytes and explicit CMake configuration are bound
+  ---
+  duration_ms: 2.636334
+  type: 'test'
+  ...
+# Subtest: resolved CMake selection must match the bound environment
+ok 7 - resolved CMake selection must match the bound environment
+  ---
+  duration_ms: 2.873041
+  type: 'test'
+  ...
+# Subtest: every current package builder consumes the trusted owner
+ok 8 - every current package builder consumes the trusted owner
+  ---
+  duration_ms: 0.733333
+  type: 'test'
+  ...
+1..8
+# tests 8
+# suites 0
+# pass 8
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1150.958625

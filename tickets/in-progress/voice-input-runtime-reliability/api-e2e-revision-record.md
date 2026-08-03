@@ -15,6 +15,7 @@
 | `API-REV-009` | Code Reviewer / `code-review-report.md` / `CRR-021`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-016`, `CRR-020`, `CRR-021` | `Fail / 93%`              | `Fail / 95%`                |
 | `API-REV-010` | Code Reviewer / `code-review-report.md` / `CRR-023`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-017`, `CRR-022`, `CRR-023` | `Fail / 95%`              | `Fail / 97%`                |
 | `API-REV-011` | Code Reviewer / `code-review-report.md` / `CRR-025`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-018`, `CRR-024`, `CRR-025` | `Fail / 97%`              | `Fail / 98%`                |
+| `API-REV-012` | Code Reviewer / `code-review-report.md` / `CRR-027`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-019`, `CRR-026`, `CRR-027` | `Fail / 98%`              | `Fail / 98%`                |
 
 ## Revision Entries
 
@@ -371,3 +372,40 @@ None.
 - New failure: `API-F-008`; prior `API-F-007` is resolved.
 - Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
 - Remaining proof after reviewed correction: exact Chinese double construction/reproducibility, 200-WAV inference/quality/normalization, exact 30/30/100/lifecycle/resource/compliance evidence; current-source English double build/full qualification; then Qualification Set 2 and independently verified Branch Catalog Projection 2.
+
+### API-REV-012 — Ranlib passes; closed native tool set omits required sed
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-027`; API/E2E round 12.
+- Triggering scenarios: direct `API-F-008` recheck in `API-VOICE-004`, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-004`, `003`, `011`, and `012` while fail-closed gates pass.
+- Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-019`, `CRR-026`, `CRR-027`; delivery `N/A`.
+- Why recorded: the reviewed ranlib correction directly passes the exact package boundary and builds `libggml-base.a`. The same canonical Chinese construction then exposes `API-F-009`: the locked llama.cpp Metal step invokes bare `sed`, but the authenticated preflight/native-environment/closed trusted PATH omit `/usr/bin/sed`, so construction stops before an archive exists.
+- Coverage/durable test changes: none. English-v2 authority and API-VOICE-013 bytes remain unchanged/reusable; run-specific preflight/materialization/build/failure evidence is temporary executable evidence.
+- Execution delta: focused trusted-native-environment 8/8; full 77 top-level / 84 TAP Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; actual M1 Functional Preflight 2 Pass at loaded-host `68.22833333333332%`; exact source-bound English/Chinese materialization and 49/200 corpus validation Pass; first Chinese network-denied construction passes ranlib then fails at 6% Metal embedding.
+
+#### Prior Failure Resolution
+
+| Prior Failure | Previous Classification | Current Resolution | Evidence |
+| --- | --- | --- | --- |
+| `API-F-008` / `CR-F-028` authenticated ranlib alias canonicalized to libtool | Local Fix / implementation defect | Resolved / Pass at the exact production package boundary | current trusted environment records `ranlib -> libtool`; canonical build links `libggml-base.a` and emits `Built target ggml-base` |
+| `API-F-007` / `CR-F-027` Chinese input paths rejected | Resolved in API-REV-011 | Reconfirmed / Pass | current materialization and production package verifier accept all 3,149 records and advance through native compilation |
+
+#### New Failure
+
+- ID: `API-F-009`.
+- Scenario / criteria: `API-VOICE-004`; `AC-006`, `AC-017`, `AC-019`.
+- Expected: the exact authenticated closed native tool directory contains every build-time command consumed by the locked Chinese source, allowing construction to produce two reproducible archives.
+- Observed: after ranlib passed, locked llama.cpp `ggml/src/ggml-metal/CMakeLists.txt` invoked bare `sed` at Metal embedding. Production PATH contained only `node`, `cmake`, `cc`, `c++`, `ar`, `ranlib`, `ld`, `libtool`, `make`, `sh`, and `tar`; preflight contained no `/usr/bin/sed`. `/bin/sh` reported `sed: command not found`, make exited 127, package assembly exited 1, and no archive was created.
+- Host identity evidence: `/usr/bin/sed` exists as a root-owned executable at SHA-256 `abd2eb945442a8ab1d210e58edb153f34870ee6d7c359f0f6d8385b1f7fc50fc`, but API/E2E did not inject or use it outside the production owner.
+- Preliminary classification: `Local Fix / implementation defect` in preflight/native-environment/tool-schema/live-verification/closed-PATH completeness, not a host, permission, input, corpus, provider/model, quality, resource, or performance failure.
+- Stop/reroute: fail-closed. No PATH injection, sed override, source edit, retry, unsandboxed build, fallback, provider/model/threshold substitution, QSet/projection, tag, release, or publication.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/`
+- Prior result/confidence: `Fail / 98%`.
+- Current result/confidence: `Fail / 98%`.
+- New failure: `API-F-009`; prior `API-F-008` is directly resolved.
+- Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
+- Remaining proof after reviewed correction: exact Chinese double construction/reproducibility/package verification, 200-WAV inference/quality/normalization, exact 30/30/100/lifecycle/resource/compliance evidence; current-source English double build/full qualification; Qualification Set 2 and independently verified Branch Catalog Projection 2.
