@@ -19,6 +19,7 @@ import {
   capturePinnedSudoIdentity,
   systemCommandIdentityDigest,
 } from "./system-command-identity.mjs";
+import { parseDarwinThermalState } from "./darwin-thermal-state.mjs";
 
 const run = promisify(execFile);
 const PROFILE = path.join(
@@ -86,10 +87,7 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       caffeinateActive:
         (await command("/usr/bin/pgrep", ["-x", "caffeinate"], true)).length >
         0,
-      thermalNormal:
-        !/(warning|performance warning|CPU_Speed_Limit\s+[0-9](?!00))/i.test(
-          thermal,
-        ),
+      thermalNormal: parseDarwinThermalState(thermal) === "normal",
       memoryPressureNormal:
         /System-wide memory free percentage:\s*(?:[3-9][0-9]|100)%/i.test(
           pressure,
