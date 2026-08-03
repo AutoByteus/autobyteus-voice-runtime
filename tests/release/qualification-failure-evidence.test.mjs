@@ -7,7 +7,10 @@ import {
   QualificationAttemptRecorder,
   classifyQualificationFailure,
 } from "../../benchmark/qualification-attempts.mjs";
-import { writeProfileQualificationEvidence } from "../../benchmark/profile-qualification-evidence.mjs";
+import {
+  assertPassingProfileQualification,
+  writeProfileQualificationEvidence,
+} from "../../benchmark/profile-qualification-evidence.mjs";
 import { verifyPerformanceAssessment } from "../../benchmark/performance-assessment.mjs";
 import { qualificationSetDecision } from "../../release/evidence/qualification-set.mjs";
 import { readJson, shaFile, writeJson } from "../../build/lib/files.mjs";
@@ -54,7 +57,7 @@ test("a started timeout is durable before and after failure", async () => {
   }
 });
 
-test("failure finalization writes partial raw, performance, summary, and non-pass decision", async () => {
+test("production-shaped process loss retains ledger, Summary, and Assessment before terminal failure", async () => {
   const temp = await fs.mkdtemp(
     path.join(os.tmpdir(), "voice-failure-evidence-"),
   );
@@ -90,7 +93,7 @@ test("failure finalization writes partial raw, performance, summary, and non-pas
         qualityCounted: false,
         audioSha256: "a".repeat(64),
       });
-    await recorder.fail(sequence, new Error("HELLO_TIMEOUT"));
+    await recorder.fail(sequence, new Error("PROVIDER_STDOUT_CLOSED"));
     const { summary, assessment } = await writeProfileQualificationEvidence({
       output: temp,
       build: buildFixture(),
@@ -135,19 +138,39 @@ test("failure finalization writes partial raw, performance, summary, and non-pas
       raw: [],
       rss: [],
       decision: "fail",
-      failureCategory: "timeout",
+      failureCategory: "process-loss",
     });
+    const ledger = await readJson(
+      path.join(temp, "qualification-attempts-v1.json"),
+    );
+    assert.equal(ledger.decision, "fail");
+    assert.equal(ledger.failureCategory, "process-loss");
+    assert.equal(ledger.attempts[0].failureCategory, "process-loss");
     assert.equal(summary.functionalDecision, "fail");
+    assert.equal(summary.failureCategory, "process-loss");
     assert.equal(summary.attempts.started, 1);
     assert.equal(summary.attempts.failed, 1);
-    assert.equal(summary.attempts.timedOut, 1);
-    assert.equal(assessment.attempts.timedOut, 1);
+    assert.equal(summary.attempts.timedOut, 0);
+    assert.equal(assessment.attempts.failed, 1);
+    assert.equal(assessment.attempts.timedOut, 0);
     assert.equal(assessment.assessment, "controlled-miss");
+    assert.deepEqual(summary.archive, {
+      fileName: "fixture.zip",
+      sha256: "a".repeat(64),
+      compressedSizeBytes: 1,
+      extractedSizeBytes: 1,
+      entryCount: 1,
+    });
+    assert.equal(Object.hasOwn(summary.archive, "schemaVersion"), false);
     assert.equal(
       assessment.qualificationSummary.sha256,
       await shaFile(path.join(temp, "qualification-summary-v2.json")),
     );
     assert.equal(Object.hasOwn(summary, "performanceAssessment"), false);
+    assert.throws(
+      () => assertPassingProfileQualification({ summary, assessment }),
+      /Profile qualification decision: fail\/process-loss/,
+    );
     await verifyPerformanceAssessment({
       summaryPath: path.join(temp, "qualification-summary-v2.json"),
       assessmentPath: path.join(temp, "performance-assessment-v1.json"),
@@ -223,6 +246,7 @@ function buildFixture() {
     languageMode: "en",
     target: { platform: "darwin", architecture: "arm64" },
     archive: {
+      schemaVersion: 1,
       sha256: sha,
       compressedSizeBytes: 1,
       extractedSizeBytes: 1,

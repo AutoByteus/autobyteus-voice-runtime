@@ -8,10 +8,11 @@ import (
 )
 
 const (
-	usageExit    = 64
-	configExit   = 65
-	packageExit  = 66
-	internalExit = 70
+	usageExit             = 64
+	configExit            = 65
+	packageExit           = 66
+	internalExit          = 70
+	pythonWorkerBootstrap = "import runpy,sys;root=sys.argv.pop(1);worker=sys.argv.pop(1);sys.path.insert(0,root);runpy.run_path(worker,run_name='__main__')"
 )
 
 func Run(args []string) int {
@@ -47,7 +48,7 @@ func Run(args []string) int {
 	}
 	childArgs := []string{executable}
 	if plan.Invocation.Kind == "python-worker" {
-		childArgs = append(childArgs, "-I", "-B", "-X", "utf8", worker)
+		childArgs = append(childArgs, "-I", "-B", "-X", "utf8", "-c", pythonWorkerBootstrap, filepath.Dir(worker), worker)
 	}
 	childArgs = append(childArgs, "--private-package-root", root, "--session-config", args[2])
 	code, started := executePrivate(executable, childArgs, environment, scratch)

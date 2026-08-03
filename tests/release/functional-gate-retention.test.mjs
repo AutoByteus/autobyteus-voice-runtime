@@ -235,6 +235,7 @@ async function buildFixture({
     languageMode: entry.languageMode,
     target: { platform: entry.platform, architecture: entry.architecture },
     archive: {
+      schemaVersion: 1,
       sha256: await shaFile(archivePath),
       compressedSizeBytes: archive.size,
       extractedSizeBytes: 1,
