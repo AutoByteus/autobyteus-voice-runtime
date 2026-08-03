@@ -6,6 +6,7 @@ import { promisify } from "node:util";
 import { readJson, regularFiles, ROOT, shaFile } from "../lib/files.mjs";
 import { locked, verifyLockedFile } from "../locked-inputs.mjs";
 import { trustedNativeBuildEnvironment } from "../trusted-native-environment.mjs";
+import { normalizeLockedPythonArchiveLinks } from "./archive-link-normalization.mjs";
 
 const run = promisify(execFile);
 const BUILD_ONLY = new Set(["pip", "setuptools", "wheel"]);
@@ -13,11 +14,8 @@ const BUILD_ONLY = new Set(["pip", "setuptools", "wheel"]);
 export async function materializePythonRuntime(context) {
   const tuple = `${context.target.platform}-${context.target.architecture}`;
   const archive = path.join(context.inputs, "python-host-archive");
-  await verifyLockedFile(
-    archive,
-    locked.pythonBuildStandalone.archives[tuple],
-    "Hermetic Python archive",
-  );
+  const archiveIdentity = locked.pythonBuildStandalone.archives[tuple];
+  await verifyLockedFile(archive, archiveIdentity, "Hermetic Python archive");
   const wheelLockPath = path.join(
     ROOT,
     `build/python-wheel-locks/${tuple}.json`,
@@ -50,11 +48,16 @@ export async function materializePythonRuntime(context) {
       },
     );
     const root = path.join(materialization, "python");
+    await normalizeLockedPythonArchiveLinks(root, {
+      target: tuple,
+      archiveSha256: archiveIdentity.sha256,
+    });
+    await regularFiles(root);
     const executable = path.join(
       root,
       context.target.platform === "win32" ? "python.exe" : "bin/python3",
     );
-    if (!(await fs.stat(executable)).isFile())
+    if (!(await fs.lstat(executable)).isFile())
       throw new Error("Locked Python archive has no expected executable.");
     const wheelPaths = wheelLock.wheels.map((wheel) =>
       path.join(wheelhouse, wheel.fileName),
@@ -77,8 +80,9 @@ export async function materializePythonRuntime(context) {
         maxBuffer: 32 * 1024 * 1024,
       },
     );
-    await prune(root);
+    await prunePythonRuntime(root);
     await verifyRuntimeTree(root, wheelLock.wheels);
+    await assertRelocatableRuntimeTree(root);
     return {
       root,
       wheelLock,
@@ -105,7 +109,7 @@ export async function verifyWheelhouse(wheelhouse, wheelLock) {
       throw new Error(`Locked wheel identity mismatch: ${wheel.fileName}`);
 }
 
-async function prune(root) {
+export async function prunePythonRuntime(root) {
   for (const relative of await regularFiles(root)) {
     if (/\.pyc$/i.test(relative) || /(^|\/)__pycache__\//.test(relative))
       await fs.rm(path.join(root, relative), { force: true });
@@ -126,12 +130,21 @@ async function prune(root) {
     await fs.rm(path.join(root, relative), { recursive: true, force: true });
   for (const relative of await regularFiles(root))
     if (
-      /(^|\/)(?:pip(?:3(?:\.12)?)?|python3\.12-config)(?:\.exe)?$/i.test(
-        relative,
-      ) ||
+      (relative.startsWith("bin/") && relative !== "bin/python3") ||
+      relative.toLowerCase().startsWith("scripts/") ||
+      relative.endsWith(".dist-info/RECORD") ||
       /(^|\/)libpython[^/]*\.(?:a|lib)$/i.test(relative)
     )
       await fs.rm(path.join(root, relative), { force: true });
+}
+
+async function assertRelocatableRuntimeTree(root) {
+  const forbidden = Buffer.from(path.resolve(root));
+  for (const relative of await regularFiles(root))
+    if ((await fs.readFile(path.join(root, relative))).includes(forbidden))
+      throw new Error(
+        `Materialized Python runtime contains its build path: ${relative}`,
+      );
 }
 
 async function verifyRuntimeTree(root, wheels) {
