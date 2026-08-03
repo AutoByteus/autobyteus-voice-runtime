@@ -11,7 +11,7 @@ import {
 } from "../../build/python/archive-link-normalization.mjs";
 import { regularFiles, ROOT, treeDigest } from "../../build/lib/files.mjs";
 import { locked } from "../../build/locked-inputs.mjs";
-import { prunePythonRuntime } from "../../build/python/materialize-runtime.mjs";
+import { prunePythonRuntime } from "../../build/python/runtime-closure.mjs";
 
 const run = promisify(execFile);
 const REAL_LINK_TOPOLOGY = Object.freeze([

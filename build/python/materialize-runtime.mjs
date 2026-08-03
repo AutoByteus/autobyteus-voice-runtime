@@ -7,9 +7,12 @@ import { readJson, regularFiles, ROOT, shaFile } from "../lib/files.mjs";
 import { locked, verifyLockedFile } from "../locked-inputs.mjs";
 import { trustedNativeBuildEnvironment } from "../trusted-native-environment.mjs";
 import { normalizeLockedPythonArchiveLinks } from "./archive-link-normalization.mjs";
+import {
+  isBuildOnlyPythonDistribution,
+  prunePythonRuntime,
+} from "./runtime-closure.mjs";
 
 const run = promisify(execFile);
-const BUILD_ONLY = new Set(["pip", "setuptools", "wheel"]);
 
 export async function materializePythonRuntime(context) {
   const tuple = `${context.target.platform}-${context.target.architecture}`;
@@ -109,35 +112,6 @@ export async function verifyWheelhouse(wheelhouse, wheelLock) {
       throw new Error(`Locked wheel identity mismatch: ${wheel.fileName}`);
 }
 
-export async function prunePythonRuntime(root) {
-  for (const relative of await regularFiles(root)) {
-    if (/\.pyc$/i.test(relative) || /(^|\/)__pycache__\//.test(relative))
-      await fs.rm(path.join(root, relative), { force: true });
-  }
-  for (const directory of await directories(root)) {
-    const name = path.basename(directory).toLowerCase();
-    if (
-      name === "ensurepip" ||
-      [...BUILD_ONLY].some(
-        (item) =>
-          name === item ||
-          (name.startsWith(`${item}-`) && name.endsWith(".dist-info")),
-      )
-    )
-      await fs.rm(directory, { recursive: true, force: true });
-  }
-  for (const relative of ["include", "lib/pkgconfig", "libs"])
-    await fs.rm(path.join(root, relative), { recursive: true, force: true });
-  for (const relative of await regularFiles(root))
-    if (
-      (relative.startsWith("bin/") && relative !== "bin/python3") ||
-      relative.toLowerCase().startsWith("scripts/") ||
-      relative.endsWith(".dist-info/RECORD") ||
-      /(^|\/)libpython[^/]*\.(?:a|lib)$/i.test(relative)
-    )
-      await fs.rm(path.join(root, relative), { force: true });
-}
-
 async function assertRelocatableRuntimeTree(root) {
   const forbidden = Buffer.from(path.resolve(root));
   for (const relative of await regularFiles(root))
@@ -150,7 +124,7 @@ async function assertRelocatableRuntimeTree(root) {
 async function verifyRuntimeTree(root, wheels) {
   const expected = new Map(
     wheels
-      .filter((wheel) => !BUILD_ONLY.has(canonical(wheel.name)))
+      .filter((wheel) => !isBuildOnlyPythonDistribution(wheel.name))
       .map((wheel) => [canonical(wheel.name), wheel.version]),
   );
   const installed = new Map();
@@ -171,20 +145,6 @@ async function verifyRuntimeTree(root, wheels) {
     throw new Error(
       "Materialized Python distributions differ from locked wheels.",
     );
-}
-
-async function directories(root) {
-  const result = [];
-  async function walk(directory) {
-    for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
-      if (!entry.isDirectory()) continue;
-      const target = path.join(directory, entry.name);
-      result.push(target);
-      await walk(target);
-    }
-  }
-  await walk(root);
-  return result.sort((a, b) => b.length - a.length);
 }
 
 function canonical(value) {
