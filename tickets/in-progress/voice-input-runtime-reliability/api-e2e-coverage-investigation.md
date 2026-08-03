@@ -23,11 +23,11 @@
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
 - Delivery Revision Record: `N/A`
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-009`
-- Current Investigation Round: `9`
-- Trigger: `CRR-021` Pass for `IR-016` at reviewed source commit `1d712683c70c338d8bf5074f27c8b0c9da47a8cb` against `SR-010` / `SR-011`, `ARCH-REV-012`, and focused failure-origin review `CRR-020`.
-- Prior Investigation Reviewed: `API-REV-008 — Fail / 93%`; AC/preflight/inputs/corpora passed, but exact English construction failed `API-F-004` because two retained dependency paths violated the unchanged archive path policy.
-- Latest Authoritative Investigation: `API-REV-009 — Fail / 95%`. API-F-004 is directly resolved: exact English double construction, verification, and reproducibility passed. The first actual cold package trial then failed process-loss because the public launcher starts the Python worker in isolated mode and the worker cannot import its adjacent `autobyteus_voice_provider` package (`API-F-005`). Terminal failure evidence also fails schema validation because Summary 2 receives archive `schemaVersion` as an unexpected property (`API-F-006`).
+- Current API/E2E Revision ID: `API-REV-010`
+- Current Investigation Round: `10`
+- Trigger: `CRR-023` Pass for `IR-017` at reviewed source commit `e133c4a7a73a5531c726ecb04461acb641461667` against `SR-010` / `SR-011`, `ARCH-REV-012`, and focused failure-origin review `CRR-022`.
+- Prior Investigation Reviewed: `API-REV-009 — Fail / 95%`; exact English construction/reproducibility passed, but public Python-worker startup failed `API-F-005` and terminal Summary evidence failed `API-F-006`.
+- Latest Authoritative Investigation: `API-REV-010 — Fail / 97%`. Exact source/repository checks, Functional Preflight 2, source-bound inputs/corpora, two English builds, package verification/reproducibility, and the complete real English qualification passed. `API-F-005` and `API-F-006` are directly resolved. The first canonical Chinese construction then failed `API-F-007` because the generated closed-input manifest contains ten exact llama.cpp UI paths outside the production input-record allowlist. The stop was fail-closed before native Chinese build/archive creation.
 
 ## Current Requirement And Design Basis
 
@@ -60,8 +60,9 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | Seatbelt package-entry composition                     | Changed                 | `IR-014`; `CR-F-022`; `CRR-017`; `API-F-002`                                         | Recheck the exact English production construction first: full authorization outside Seatbelt, then both complete builds inside the unchanged profile with sandbox-safe consumption and no transitive sudo launch.                                           |
 | Locked Python archive normalization                    | Changed                 | `IR-015`; `CR-F-023`; `CRR-019`; `API-F-003`                                         | Recheck the exact archive through complete package construction, launcher/runtime relocation, and reproducibility after safe nine-link normalization and console-wrapper/RECORD removal.                                                                    |
 | Python runtime closure before package path policy      | Changed                 | `IR-016`; `CR-F-024`; `CRR-020`; `CRR-021`; `API-F-004`                              | Recheck the exact full package boundary. The new structural closure removes installed dependency test/test suites and package-local development include trees while retaining required public runtime APIs; the canonical Go path policy remains unchanged. |
-| Public launcher to contained Python worker             | Newly failed at runtime | `API-REV-009`; `API-F-005`; `AC-002`, `AC-006`, `AC-013`, `AC-017`                   | Exact public launcher under the qualification Seatbelt exits before hello/model load: launcher Python isolation excludes the adjacent worker package from import resolution. No provider/model fallback is permitted.                                       |
-| Terminal profile evidence archive projection           | Newly failed at runtime | `API-REV-009`; `API-F-006`; `AC-003`, `AC-007`, `AC-011`, `AC-017`, `AC-023`         | Failure retention writes the attempt ledger, but Summary 2 schema validation rejects forwarded archive `schemaVersion`; the original process-loss is masked and no Summary/Assessment chain is created.                                                     |
+| Public launcher to contained Python worker             | Changed                 | `IR-017`; `CR-F-025`; `CRR-022`; `CRR-023`; `API-F-005`                              | Recheck the exact compiled, relocated public launcher under Seatbelt. The reviewed bootstrap supplies one validated package-owned import root while retaining `-I -B -X utf8`, closed environment, no PYTHONPATH/CWD/system fallback, and one launcher.     |
+| Terminal profile evidence archive projection           | Changed                 | `IR-017`; `CR-F-026`; `CRR-022`; `CRR-023`; `API-F-006`                              | Recheck production-shaped terminal evidence. Summary 2 now projects exactly five archive fields; a failed attempt must retain matching ledger/Summary plus verified Assessment before pass-only rejection.                                                  |
+| Chinese closed-input manifest record paths             | Newly failed at runtime | `API-REV-010`; `API-F-007`; `AC-006`, `AC-017`, `AC-019`                             | Exact materialization closes the tree but emits ten clean llama.cpp UI paths outside the downstream record allowlist; the first canonical Chinese build fails before native compilation/archive creation.                                                   |
 | v0.3/bootstrap/protocol-0 and withdrawn provider paths | Removed                 | clean-cut design and removal guards                                                  | Do not restore compatibility tests, wrappers, or fallback providers.                                                                                                                                                                                        |
 
 ## Changed Surface And Boundary Classification
@@ -83,7 +84,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 ## Project Execution Discovery
 
 - Assigned worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime`
-- Reviewed source commit: `1d712683c70c338d8bf5074f27c8b0c9da47a8cb`; current worktree documentation HEAD is later, so package execution will use an owned clean checkout at the reviewed source commit while ticket evidence remains in the assigned worktree.
+- Reviewed source commit: `e133c4a7a73a5531c726ecb04461acb641461667`; current worktree documentation HEAD is later, so package execution will use an owned clean checkout at the reviewed source commit while ticket evidence remains in the assigned worktree.
 - Stack: Node.js 22.23.1 orchestration, Python packaged providers and source checks, pinned official Go 1.26.5 launcher/archive tooling, CMake/C++20 native Fun-ASR, canonical ZIP packages.
 - No repository `AGENTS.md` exists. `README.md`, `package.json`, input recipes, benchmark protocol, and workflow agree on the exact command sequence.
 - Required secrets: `N/A`. Required local capabilities/assets are exact tool roots, cache objects/checkouts, corpora, and noninteractive purge permission; no secret values will be recorded.
@@ -98,20 +99,20 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | `release/evidence/qualification-set.mjs` and branch projection owners | branch aggregation authority        | exact two-entry QSet/projection generation and independent verification; no release identity.                                               |
 | `.github/workflows/release-voice-runtime.yml`                         | canonical command ordering          | preflight -> materialize -> two sandboxed builds -> verify/repro -> compliance -> conditions -> profile qualification -> branch evidence.   |
 
-| Component / Dependency         | Working Directory              | Setup / Execution                                                                        | Readiness Check                                                                    | Cleanup Method                                                                                                                    |
-| ------------------------------ | ------------------------------ | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| Repository checks              | assigned worktree              | `npm ci --ignore-scripts`; exact `VOICE_GO=... npm run check`                            | all 66 Node, 7 Python, Go/source/schema/evidence checks                            | suite-owned temps                                                                                                                 |
-| Clean reviewed-source checkout | owned API/E2E temp root        | checkout exact `1d712683...`; `npm ci --ignore-scripts`                                  | clean tree and exact commit                                                        | repository safe removal owner after evidence retention                                                                            |
-| M1 preflight                   | actual MacBookPro18,4 host     | owned `caffeinate`; exact Go and CMake paths; preflight CLI                              | passing v2 JSON, including purge capability, six CPU-idle samples, and `controlled | loaded-host` classification                                                                                                       | stop only owned `caffeinate` |
-| Closed inputs                  | owned cache/materialized roots | fill recipe-declared cache objects/checkouts; materializer CLI                           | exact sizes/digests/clean revisions and generated closure/provenance               | remove only owned materialized/cache copies                                                                                       |
-| Exact corpora                  | owned corpus root              | byte-copy repository manifests and exact 49/200 referenced WAVs                          | validator/digest/uniqueness/baseline binding                                       | remove owned corpus copy; never mutate preserved study data                                                                       |
-| Package/qualification          | owned output roots             | Seatbelt network-denied double builds, verifiers, compliance, conditions, profile runner | exact archives, real results, complete attempt counts, Pass evidence               | first English build failed at the reviewed production entry; no archive or provider process was created; retain evidence and stop |
+| Component / Dependency         | Working Directory              | Setup / Execution                                                                        | Readiness Check                                                                      | Cleanup Method                                                                                             |
+| ------------------------------ | ------------------------------ | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------- |
+| Repository checks              | assigned worktree              | `npm ci --ignore-scripts`; exact `VOICE_GO=... npm run check`                            | 72 top-level / 79 TAP Node, 7 Python, all Go/source/schema/evidence checks           | suite-owned temps                                                                                          |
+| Clean reviewed-source checkout | owned API/E2E temp root        | checkout exact `e133c4a7...`; `npm ci --ignore-scripts`                                  | clean tree and exact commit                                                          | retain owned root for correction rerun                                                                     |
+| M1 preflight                   | actual MacBookPro18,4 host     | owned `caffeinate`; exact Go and CMake paths; preflight CLI                              | passing v2 JSON, purge capability, six CPU-idle samples, `controlled` classification | stop only owned `caffeinate`                                                                               |
+| Closed inputs                  | owned cache/materialized roots | fill recipe-declared cache objects/checkouts; materializer CLI                           | exact sizes/digests/clean revisions and generated closure/provenance                 | retain owned materialized/cache copies for correction rerun                                                |
+| Exact corpora                  | owned corpus root              | byte-copy repository manifests and exact 49/200 referenced WAVs                          | validator/digest/uniqueness/baseline binding                                         | retain owned corpus copy; never mutate preserved study data                                                |
+| Package/qualification          | owned output roots             | Seatbelt network-denied double builds, verifiers, compliance, conditions, profile runner | exact archives, real results, complete attempt counts, Pass evidence                 | English complete Pass; first Chinese construction failed before archive creation; retain evidence and stop |
 
 ## Persisted Data Transition Coverage Basis
 
 - Approved decision: `Not Affected`.
 - Evidence: implementation handoff `Persisted Data Transition Check` and design transition section state no supported user-data reader/writer exists in this repository.
-- Planned proof: run from owned paths with controlled HOME/session roots; compare that `~/.autobyteus` and desktop/shared state are not used or mutated; package snapshot checks prove package immutability.
+- Executed proof: all qualification/checkouts/inputs/corpora/output/session roots were API/E2E-owned; English pre/post package snapshots prove no mutation; no command targeted `~/.autobyteus`; cleanup evidence confirms the unrelated installed user worker remained untouched.
 - Migration scenarios: `N/A`.
 - Upstream ambiguity: none.
 
@@ -129,7 +130,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | current QSet/branch projection tests                                                  | reject incomplete, non-pass, drifted, or release-bearing branch evidence                          | current-platform contract                        | Still Valid            | accepted full source review                                                                  | Retain; execute real two-package aggregation.           |
 | removed v0.3/bootstrap/protocol-0 tests                                               | obsolete system-Python/bootstrap/schema-2 behavior                                                | clean-cut removal                                | Stale / Remove         | current source guards reject legacy paths                                                    | Keep removed; do not replace for compatibility.         |
 
-Round-8 reuse decision: recheck the exact source and `API-VOICE-002`/`API-VOICE-013` bytes against the unchanged reviewed commit before reuse. No API/E2E-owned durable coverage change is planned.
+Round-10 reuse decision: exact source and `API-VOICE-002`/`API-VOICE-013` authority/test bytes remained unchanged at the reviewed source commit and were reused. No API/E2E-owned durable coverage changed.
 
 ## Stale Or Obsolete Coverage Decisions
 
@@ -151,16 +152,16 @@ None.
 
 ## Repository Coverage Execution Plan And Results
 
-| Order | Command / Action                                                                     | Configuration                                                                | Boundary / Scenario                                                 | Result                                                                                                                                                            | Evidence                                                 |
-| ----- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| 0     | exact source/authority/test byte comparison and current repository checks            | reviewed `1d712683`                                                          | `API-VOICE-001`/`002`/`013`, runtime closure, and prior corrections | Pass — focused 11/11; full 71 top-level / 78 TAP Node, 7/7 Python plus all Go/source/schema/evidence checks                                                       | `api-e2e-evidence/api-rev-009/repository/`               |
-| 1     | Functional Preflight 2 with owned `caffeinate`                                       | exact actual M1, Go/CMake/system identities, AC/thermal/memory/sandbox/purge | host readiness and load classification                              | Pass — all functional gates; loaded-host at 78.21% average idle                                                                                                   | `api-rev-009/environment/darwin-arm64-preflight-v2.json` |
-| 2     | deterministic rematerialization and exact corpus revalidation                        | owned clean exact `1d712683` checkout                                        | source-bound closed inputs and 49/200 identities                    | Pass — recipe-bound inputs; exact unique 49 English / 200 Chinese WAVs                                                                                            | `api-rev-009/inputs/`                                    |
-| 3     | outside authorization -> two English Seatbelt builds -> verification/reproducibility | exact current workflow                                                       | direct `API-F-004` resolution and complete first package            | Pass — both 616 MiB archives byte-identical at SHA-256 `057c011a...`; package verification/reproducibility Pass                                                   | `api-rev-009/english-darwin-arm64/`                      |
-| 4     | compliance/conditions/full English profile                                           | exact 49 WAV; exact 30/30/100                                                | remaining `API-VOICE-003`, part of `011`                            | **Fail — compliance/conditions pass; first cold purge completes, then public launcher process-loss (`API-F-005`); terminal Summary schema failure (`API-F-006`)** | `api-rev-009/english-darwin-arm64/`                      |
-| 5     | Chinese package/reproducibility and full profile                                     | exact 200 WAV; exact 30/30/100                                               | `API-VOICE-004`, part of `011`                                      | Not Tested after Fail                                                                                                                                             | fail-closed serial ordering                              |
-| 6     | verify retained terminal evidence after first cold process-loss                      | no retry/rewrite                                                             | terminal evidence consistency                                       | **Fail — attempt ledger records fail/process-loss, but Summary 2 rejects unexpected archive `schemaVersion`; no Assessment**                                      | `API-F-006-terminal-summary-archive-schema-failure.json` |
-| 7     | Qualification Set 2 -> Branch Catalog Projection 2 -> independent verification       | exactly two local archives                                                   | `API-VOICE-012`                                                     | Not Tested after Fail                                                                                                                                             | no passing profile subjects                              |
+| Order | Command / Action                                                                     | Configuration                                                                | Boundary / Scenario                                                         | Result                                                         | Evidence                                                 |
+| ----- | ------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------- |
+| 0     | exact source/authority/test byte comparison and current repository checks            | reviewed `e133c4a7`                                                          | `API-VOICE-001`/`002`/`013`, launcher/evidence fixes, and prior corrections | Pass: focused 4/4; full 72 top-level / 79 TAP and 7 Python     | `api-e2e-evidence/api-rev-010/repository/`               |
+| 1     | Functional Preflight 2 with owned `caffeinate`                                       | exact actual M1, Go/CMake/system identities, AC/thermal/memory/sandbox/purge | host readiness and load classification                                      | Pass; `controlled`, average idle `80.63166666666666%`          | fresh preflight v2 JSON/log                              |
+| 2     | deterministic rematerialization and exact corpus revalidation                        | owned clean exact `e133c4a7` checkout                                        | source-bound closed inputs and 49/200 identities                            | Pass for materialization and both corpus validators            | `api-rev-010/inputs/`                                    |
+| 3     | outside authorization -> two English Seatbelt builds -> verification/reproducibility | exact current workflow                                                       | current package and prior API-F-004 continuity                              | Pass; two byte-identical archives and verifier Pass            | English package/repro evidence                           |
+| 4     | compliance/conditions/full English profile                                           | exact 49 WAV; exact 30/30/100                                                | direct API-F-005/API-F-006 resolution; remaining API-VOICE-003/011          | Pass; 160/160 attempts, 49/49 quality, lifecycle and resources | Summary 2, Assessment 1, raw/lifecycle/resource evidence |
+| 5     | Chinese package/reproducibility and full profile                                     | exact 200 WAV; exact 30/30/100                                               | API-VOICE-004/011                                                           | **Fail at first construction: `API-F-007`**                    | Chinese build log and focused manifest analysis          |
+| 6     | verify retained terminal evidence if any profile gate fails                          | no retry/rewrite                                                             | terminal evidence consistency                                               | Not applicable; failure preceded profile-attempt creation      | structured pre-profile package failure                   |
+| 7     | Qualification Set 2 -> Branch Catalog Projection 2 -> independent verification       | exactly two local archives                                                   | API-VOICE-012                                                               | Not Tested after required Chinese package failed               | no complete two-profile subject                          |
 
 ## Post-Repository Confidence Scorecard (Mandatory)
 
@@ -172,7 +173,7 @@ None.
 | Environment, configuration, identity, and fixture fidelity | 85%   | actual M1, exact Node/Go/CMake, AC and purge available                                         | v2 preflight and closed inputs pending               | preflight/materialization |
 | Failure, edge-case, lifecycle, and recovery evidence       | 78%   | durable lifecycle/failure retention and post-attempt gate tests pass                           | real package lifecycle/recovery absent               | full qualification        |
 | User-surface, browser, and desktop-shell confidence        | N/A   | runtime-only                                                                                   | none                                                 | none                      |
-| Durable regression coverage quality and relevance          | 95%   | focused 10/10; full 66/66 Node, 7/7 Python, all Go/source/schema/evidence                      | run-specific native evidence is not durable          | retain current coverage   |
+| Durable regression coverage quality and relevance          | 95%   | focused 4/4; full 72 top-level / 79 TAP Node, 7/7 Python, all Go/source/schema/evidence        | run-specific native evidence is not durable          | retain current coverage   |
 
 - Overall post-repository confidence: `84%` (simple average of six applicable categories, rounded).
 - Every critical acceptance criterion directly proven: `No`.
@@ -180,30 +181,13 @@ None.
 - Default clean-confidence target met: `No`.
 - Material residual risks: Functional Preflight 2, exact closed inputs/builds, real inference/quality/lifecycle, exact 30/30/100/resources, compliance, terminal evidence consistency, QSet 2, and projection 2.
 
-## Post-Broader-Validation Confidence Scorecard
-
-| Confidence Category                                        | Final Score | Evidence / Remaining Limitation                                                                                                       |
-| ---------------------------------------------------------- | ----------: | ------------------------------------------------------------------------------------------------------------------------------------- |
-| Requirement and acceptance-criteria proof                  |         90% | exact construction/repro passed and critical public-launcher/evidence criteria directly fail; downstream inference remains unexecuted |
-| Changed-boundary execution directness                      |         98% | actual preflight, closed inputs, double packages, verifier, first cold purge/trial, and exact public launcher executed                |
-| Cross-boundary integration realism and mock gap            |         95% | real archive extraction and public launcher-to-private-Python boundary directly failed; model load/inference did not begin            |
-| Environment, configuration, identity, and fixture fidelity |         99% | actual M1 on AC, exact tools/purge/Seatbelt, source-bound inputs, exact 49/200 corpora                                                |
-| Failure, edge-case, lifecycle, and recovery evidence       |         88% | direct process-loss and evidence-retention defect captured; recovery, shutdown, and complete counts remain absent                     |
-| User-surface, browser, and desktop-shell confidence        |         N/A | runtime-only                                                                                                                          |
-| Durable regression coverage quality and relevance          |         99% | focused 11/11 and full 71/78 TAP source suites pass; no API/E2E durable coverage changed                                              |
-
-- Overall final confidence: `95%` (simple average of six applicable categories, rounded).
-- Critical acceptance criteria fully proven: `No`; `AC-002`/`006`/`013`/`017` fail at public launcher startup, and `AC-003`/`007`/`011`/`023` fail at terminal evidence retention.
-- Default clean Pass target met: `No`; one category is below 90% and critical criteria fail.
-- Final applicable category below 90%: failure/lifecycle/recovery.
-
 ## Broader Validation Decision (Mandatory)
 
-- Decision: `Required / Executed until critical public-launcher and terminal-evidence Fail` (`API-F-005`, `API-F-006`).
+- Decision: `Required / Executed until the critical first Chinese construction failure`.
 - Selected execution mode: actual-host `CLI`, `Lifecycle`, `Worker`, and native package qualification.
 - Confidence gap addressed: repository coverage cannot prove real model construction/inference, package relocation/offline/read-only behavior, M1 performance/RSS/size, exact corpus quality, or aggregate byte integrity.
 - Why this materially improves confidence: it executes the public release subject on the only current supported platform with the exact providers, models, corpora, thresholds, and trial counts.
-- Expected confidence after a successful reviewed rerun: at least `95%`, with no applicable category below `90%`, only if every current critical gate passes. Prior Blocked confidence remains historical.
+- Evidence gain: actual M1 English is now directly qualified end to end with controlled performance; the exact Chinese production entry directly exposes a deterministic closed-input/path-policy mismatch.
 - Browser decision: `N/A`; no browser or desktop UI is in scope.
 - Loaded-host rule: sub-80% CPU idle is not a functional blocker. It must be recorded as `loaded-host-observation` and cannot be called controlled performance. AC/thermal/memory/tool/sandbox/purge blockers remain exact.
 
@@ -216,24 +200,24 @@ None.
 
 ## Live Environment And Fixture Plan
 
-- Startup order: create owned clean checkout/cache/corpus/output roots -> repository checks -> start owned `caffeinate` -> actual preflight -> materialize inputs -> double build/verify/repro -> generate compliance/conditions -> English qualification -> Chinese qualification -> injected failure -> QSet/projection/independent verification.
+- Executed order: owned clean checkout/cache/corpus/output roots -> repository checks -> owned `caffeinate` -> actual preflight -> input materialization/corpus validation -> English double build/verify/repro -> compliance/conditions -> complete English qualification -> first Chinese construction -> fail-closed stop.
 - Environment: actual MacBookPro18,4 M1 Max / 64 GB, exact Node/Go/CMake/Xcode/SDK and system identities, AC power, low-power off, passing thermal/memory conditions, Seatbelt network denial, noninteractive exact purge permission. CPU load is observed/classified, not functionally gated.
 - Fixtures: repository byte-identical English-v2 and Chinese-v1 manifests, exact 49/200 referenced WAVs, locked baselines, recipe materialized models/runtime/tool sources.
 - Sessions: fresh package/session roots and request IDs; no product auth or user HOME dependency.
-- Evidence: commands/statuses, preflight, input closure/provenance, archives/build/repro, protocol/raw/quality/performance/attempts, snapshots, compliance/privacy/offline, QSet/projection/verification.
-- Cleanup: stop only owned processes; remove only API/E2E-created checkouts/caches/corpus/extract/session/build roots through safe repository cleanup owners; retain canonical evidence. Preserved study assets and upstream worktree changes remain untouched.
+- Evidence: commands/statuses, preflight, input closure/provenance, English archive/build/repro/protocol/raw/quality/performance/attempts/snapshots/compliance/offline records, and exact Chinese failure/manifest analysis. QSet/projection evidence was not produced after the two-profile subject failed.
+- Cleanup: owned `caffeinate` was interrupted and reaped; no task-owned qualification/provider process remains. The owned exact-source/input/output roots are retained for the correction rerun. Preserved study assets, unrelated user voice worker, user product state, tags, releases, and upstream worktree changes remain untouched.
 
 ## Temporary Executable Validation Plan
 
-| Scenario        | Probe / Runtime Setup                                               | Behavior Proven                                       | Why Not Durable Test Code                         |
-| --------------- | ------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------- |
-| `API-VOICE-001` | exact full repository check                                         | source/contract regression                            | durable suites already own it                     |
-| `API-VOICE-002` | unchanged-authority digest/reproduction reuse plus real 49-clip run | English authority continuity and real package quality | licensed run bytes/evidence are instance-specific |
-| `API-VOICE-003` | English double build/full M1 qualification                          | exact English package                                 | large generated native evidence                   |
-| `API-VOICE-004` | Chinese double build/full M1 qualification                          | exact Chinese package                                 | large generated native evidence                   |
-| `API-VOICE-011` | exact package compliance/privacy/offline audit                      | current two-package legal/evidence completeness       | archive-instance-specific                         |
-| `API-VOICE-012` | QSet 2/projection 2/independent verification                        | exact current matrix aggregation                      | branch/archive-instance-specific                  |
-| `API-VOICE-013` | accepted unchanged durable test                                     | production validator regression                       | already durable; no new change                    |
+| Scenario        | Probe / Runtime Setup                                               | Behavior Proven                                          | Why Not Durable Test Code                         |
+| --------------- | ------------------------------------------------------------------- | -------------------------------------------------------- | ------------------------------------------------- |
+| `API-VOICE-001` | exact full repository check                                         | source/contract regression                               | durable suites already own it                     |
+| `API-VOICE-002` | unchanged-authority digest/reproduction reuse plus real 49-clip run | English authority continuity and real package quality    | licensed run bytes/evidence are instance-specific |
+| `API-VOICE-003` | English double build/full M1 qualification                          | exact English package                                    | large generated native evidence                   |
+| `API-VOICE-004` | first Chinese production build plus manifest audit                  | exact closed-input construction failure                  | large generated input/build evidence              |
+| `API-VOICE-011` | exact package compliance/privacy/offline audit                      | English Pass; Chinese incomplete after construction Fail | archive-instance-specific                         |
+| `API-VOICE-012` | QSet 2/projection 2/independent verification                        | Not Tested after incomplete two-package matrix           | branch/archive-instance-specific                  |
+| `API-VOICE-013` | accepted unchanged durable test                                     | production validator regression                          | already durable; no new change                    |
 
 ## Not Tested / Infeasible / Deferred
 
@@ -255,11 +239,11 @@ None.
 
 ## Investigation Decision
 
-- Proceed To API/E2E Execution: `No — round completed Fail at API-F-005/API-F-006; focused failure-origin review required before rerun`.
+- Proceed To API/E2E Execution: `Completed for this round; stopped fail-closed at API-F-007`.
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No`.
 - Post-repository confidence: `84%`.
 - Broader validation decision: `Required`.
-- Prior completed result: `API-REV-008 — Fail / 93%`; current result: `API-REV-009 — Fail / 95%`.
-- Reroute Required Before Further Execution: `Yes`; public launcher/Python worker composition and terminal Summary archive projection both fail at the actual package boundary.
-- Recommended Recipient: `code_reviewer` for focused failure-origin review; preliminary owner is Implementation Engineer.
-- Notes: API-F-004 is resolved by exact double construction/reproducibility. API-F-005 prevents hello/model loading/inference, and API-F-006 prevents valid retained terminal evidence. No fallback, isolation relaxation without review, provider/model change, retry, threshold change, or release action is authorized.
+- Prior completed result: `API-REV-009 — Fail / 95%`.
+- Reroute Required Before Further Execution: `Yes`; the Chinese closed-input manifest and production record-path policy are inconsistent at the exact package boundary.
+- Recommended Recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
+- Notes: `API-F-005` and `API-F-006` are directly resolved by the complete English Pass. `API-F-007` is deterministic and not a host, user permission, corpus, provider/model, threshold, or performance failure. No manifest edit, path-policy relaxation, source-tree mutation, fallback, retry, or release action was used.

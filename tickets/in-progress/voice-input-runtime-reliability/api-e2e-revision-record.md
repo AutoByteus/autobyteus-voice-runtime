@@ -13,6 +13,7 @@
 | `API-REV-007` | Code Reviewer / `code-review-report.md` / `CRR-019`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019`            | `Fail / 89%`              | `Blocked / 86%`             |
 | `API-REV-008` | User AC-readiness confirmation after Code Reviewer / `CRR-019` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019`            | `Blocked / 86%`           | `Fail / 93%`                |
 | `API-REV-009` | Code Reviewer / `code-review-report.md` / `CRR-021`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-016`, `CRR-020`, `CRR-021` | `Fail / 93%`              | `Fail / 95%`                |
+| `API-REV-010` | Code Reviewer / `code-review-report.md` / `CRR-023`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-017`, `CRR-022`, `CRR-023` | `Fail / 95%`              | `Fail / 97%`                |
 
 ## Revision Entries
 
@@ -296,3 +297,40 @@ None.
 - New failures: `API-F-005`, `API-F-006`; prior `API-F-004` is resolved.
 - Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary owner is Implementation Engineer.
 - Remaining proof after reviewed correction: complete English 49-WAV inference/quality/lifecycle/recovery/exact 30/30/100/resource evidence; then Chinese double package/full 200-WAV equivalent, compliance/privacy, Qualification Set 2, Branch Catalog Projection 2, and independent verification.
+
+### API-REV-010 — English fully qualifies; Chinese closed-input manifest fails its production path policy
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-023`; API/E2E round 10.
+- Triggering scenarios: direct `API-F-005` / `API-F-006` resolution, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-003`, `API-VOICE-004`, `API-VOICE-011`, and `API-VOICE-012`.
+- Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-017`, `CRR-022`, `CRR-023`; delivery `N/A`.
+- Why recorded: the reviewed launcher/evidence corrections pass the exact packaged MLX boundary and complete every English functional/performance gate. The first exact Chinese construction then finds `API-F-007`: deterministic materialization emits ten exact llama.cpp UI source paths that the mandatory production input-manifest validator rejects, so no Chinese archive can be constructed.
+- Coverage/durable test changes: none. `API-VOICE-002` / `API-VOICE-013` remained exact-byte reusable; run-specific package, corpus, performance, and manifest analysis are temporary executable evidence.
+- Execution delta: focused launcher/evidence 4/4; full 72 top-level / 79 TAP Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; actual M1 Functional Preflight 2 controlled Pass at `80.63166666666666%`; exact source-bound English/Chinese materialization and 49/200 corpus validation Pass; English double package/verifier/reproducibility Pass; complete English 160/160/49-WAV/lifecycle/resource/compliance qualification Pass; first Chinese network-denied construction Fail.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                                       | Previous Classification           | Current Resolution                                                                                                                                                                                                               | Evidence                                                                          |
+| ----------------------------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `API-F-005` / `CR-F-025` public launcher cannot import contained Python application | Local Fix / implementation defect | Resolved / Pass at the exact public-package boundary. The compiled relocated launcher starts the contained MLX worker/model, completes real inference, and passes 160/160 attempts plus conformance with no ambient Python path. | English Summary 2, attempt ledger, raw results, runtime conformance, Assessment 1 |
+| `API-F-006` / `CR-F-026` Summary archive projection prevents terminal evidence      | Local Fix / implementation defect | Resolved / Pass. The real wider build report projects into schema-valid Summary 2 and a digest-bound Assessment 1 after complete qualification; focused production-shaped process-loss coverage also passes.                     | English Summary 2 / Assessment 1 and repository focused-launcher-evidence log     |
+| `API-F-004` / `CR-F-024` retained Python paths violate archive policy               | Resolved in API-REV-009           | Reconfirmed / Pass. Two byte-identical English archives verify/reproduce at SHA-256 `08ecb07a195bbe78901ca21a4a4775d8067ac42e75049861f78f7b647626581d`.                                                                          | English package verification and reproducibility proof                            |
+
+#### New Failure
+
+- ID: `API-F-007`.
+- Scenario / criteria: `API-VOICE-004`; `AC-006`, `AC-017`, `AC-019`.
+- Expected: exact recipe materialization produces a complete Chinese `SHA256SUMS.json`-closed tree accepted by `verifyInputManifest()`, enabling two byte-identical Fun-ASR archives and full 200-WAV qualification.
+- Observed: the first network-denied Chinese construction exits `1` with `Error: Invalid input manifest record.` The generated manifest SHA-256 is `45ebe9bfe4885fb3207c8c613ac76a5bbc439343ff6b93f0345082718e99515e`. Independent audit proves all 3,149 record bytes/sizes/modes and tree closure match, but ten clean exact llama.cpp UI paths contain parentheses, brackets, or plus signs outside the production `^[A-Za-z0-9._/-]+$` record-path allowlist.
+- Preliminary classification: `Local Fix / implementation defect` in Chinese closed-input materialization/production-verifier integration, not a host, user permission, corpus, provider/model, threshold, resource, or performance issue.
+- Stop/reroute: fail-closed. No manifest edit, policy relaxation, source-tree mutation, retry, fallback, provider/model/threshold substitution, unsandboxed build, QSet/projection, tag, release, or publication.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-010/`
+- Prior result/confidence: `Fail / 95%`.
+- Current result/confidence: `Fail / 97%`.
+- New failure: `API-F-007`; prior `API-F-005` / `API-F-006` are resolved.
+- Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
+- Remaining proof after reviewed correction: exact Chinese double construction/reproducibility, 200-WAV inference/quality/normalization, exact 30/30/100/lifecycle/resource/compliance evidence, then Qualification Set 2 and independently verified Branch Catalog Projection 2.

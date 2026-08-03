@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "profileId": "english",
+  "packageId": "voice.english.whisper-small-fp16.darwin-arm64",
+  "providerId": "autobyteus.voice.mlx-whisper-small",
+  "modelId": "whisper-small-mlx-fp16",
+  "recipeSha256": "8cae5d57e8a3718c395f878cb80b3211570c8a6f0a5156067e4cc428469af2e4",
+  "provenanceSha256": "28572e212f9fd6eb793e4dc2795545d8789357c974336dca9b2a0941864f33ae",
+  "descriptorSha256": "c0d64df0f7074b7258ce10e7675dbfa15386e5025765392aa185b7e293aad980",
+  "archiveSha256": "08ecb07a195bbe78901ca21a4a4775d8067ac42e75049861f78f7b647626581d",
+  "noticeInventorySha256": "64479e2833d755dfa4ad25d9c614d2bbe6f503647e1a199af8a1e1261606b8eb",
+  "policySha256": "3993ac49c02c8685b4a55834fddad8698068b0c2b8296ac5ec3bdbe6b613febe",
+  "components": [
+    {
+      "componentId": "go",
+      "versionOrRevision": "Go 1.26.5",
+      "licenseIdentity": "BSD-3-Clause",
+      "licenseTextSha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://go.dev/LICENSE"
+    },
+    {
+      "componentId": "mlx-wheelhouse",
+      "versionOrRevision": "darwin-arm64 lock v1",
+      "licenseIdentity": "mixed; see exact package metadata index",
+      "licenseTextSha256": "f74b10b7f84070747cf605e24a18755a4c298aebcab46c400bc45b0a97e93142",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://pypi.org/"
+    },
+    {
+      "componentId": "python-build-standalone",
+      "versionOrRevision": "CPython 3.12.13 release 20260718",
+      "licenseIdentity": "MPL-2.0 plus bundled notices",
+      "licenseTextSha256": "1f256ecad192880510e84ad60474eab7589218784b9a50bc7ceee34c2b91f1d5",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://github.com/astral-sh/python-build-standalone"
+    },
+    {
+      "componentId": "whisper-small-mlx",
+      "versionOrRevision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+      "licenseIdentity": "MIT",
+      "licenseTextSha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://huggingface.co/mlx-community/whisper-small-mlx"
+    }
+  ],
+  "decision": "pass"
+}

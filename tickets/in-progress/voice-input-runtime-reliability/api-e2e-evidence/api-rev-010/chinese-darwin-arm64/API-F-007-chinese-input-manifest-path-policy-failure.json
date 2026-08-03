@@ -1,0 +1,58 @@
+{
+  "schemaVersion": 1,
+  "revisionId": "API-REV-010",
+  "findingId": "API-F-007",
+  "scenarioId": "API-VOICE-004",
+  "acceptanceCriteria": ["AC-006", "AC-017", "AC-019"],
+  "decision": "fail",
+  "sourceCommit": "e133c4a7a73a5531c726ecb04461acb641461667",
+  "host": {
+    "modelIdentifier": "MacBookPro18,4",
+    "cpuModel": "Apple M1 Max",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "preconditions": {
+    "functionalPreflight": "pass",
+    "performanceEnvironment": "controlled",
+    "englishProfileQualification": "pass"
+  },
+  "execution": {
+    "mode": "first canonical Chinese darwin-arm64 package construction wholly inside pinned deny-network Seatbelt",
+    "exitCode": 1,
+    "logFile": "build-primary.log",
+    "commandOwner": "build/package-assembler.mjs -> build/profile-builders/funasr.mjs -> verifyInputManifest()"
+  },
+  "expected": "The exact recipe-materialized Chinese input tree is SHA256SUMS.json-closed and accepted by the production locked-input verifier so two byte-identical archives and full package qualification can run.",
+  "observed": "The production verifier rejected the first Chinese package before native build/archive creation with Invalid input manifest record. Ten exact llama.cpp UI source paths contain parentheses, brackets, or plus signs outside the verifier allowlist, although their bytes, sizes, modes, uniqueness, and tree closure independently match the generated manifest.",
+  "productionError": "Error: Invalid input manifest record.",
+  "analysisFile": "API-F-007-chinese-input-manifest-analysis.json",
+  "invalidRecordCount": 10,
+  "firstInvalidRecord": {
+    "index": 3007,
+    "reasons": ["path-not-in-production-allowlist"],
+    "path": "llama-cpp-source/tools/ui/src/routes/(chat)/+layout.svelte",
+    "sizeBytes": 260,
+    "sha256": "4c90f7e440844c602bba3d0db0e3e6ca7a1be08e19963afbac710edf0a12f137",
+    "mode": "read-only"
+  },
+  "preliminaryClassification": "Local Fix / implementation defect in Chinese closed-input materialization/production-verifier integration.",
+  "stoppedFailClosed": true,
+  "notExecutedAfterFailure": [
+    "second Chinese construction",
+    "Chinese package verification/reproducibility",
+    "Chinese 200-WAV inference",
+    "Chinese exact 30/30/100/resource/lifecycle/compliance gates",
+    "Qualification Set 2",
+    "Branch Catalog Projection 2"
+  ],
+  "forbiddenSubstitutionsNotUsed": [
+    "manifest edit",
+    "path-policy relaxation",
+    "source-tree mutation",
+    "provider/model substitution",
+    "threshold relaxation",
+    "unsandboxed build",
+    "release action"
+  ]
+}

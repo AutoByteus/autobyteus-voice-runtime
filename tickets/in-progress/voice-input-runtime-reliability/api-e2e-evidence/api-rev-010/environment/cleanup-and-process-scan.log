@@ -1,0 +1,9 @@
+API-REV-010 cleanup
+UTC 2026-08-03T17:18:40Z
+ownedCaffeinate=reaped
+taskOwnedProcessScan:
+unrelatedExistingVoiceWorkerPreserved:
+13922  5445 02:24:53 /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/Contents/MacOS/Python /Users/normy/.autobyteus/extensions/voice-input/runtime/voice_input_worker.py serve --backend mlx --model-path /Users/normy/.autobyteus/extensions/voice-input/models/whisper-small-mlx
+userProductState=untouched
+tagsReleasesPublication=untouched
+ownedTempRoot=retained-for-correction-rerun

@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "revisionId": "API-REV-010",
+  "scenarioId": "API-VOICE-004",
+  "findingId": "API-F-007",
+  "sourceCommit": "e133c4a7a73a5531c726ecb04461acb641461667",
+  "inputManifest": {
+    "fileName": "API-VOICE-004-chinese-input-SHA256SUMS.json",
+    "sha256": "45ebe9bfe4885fb3207c8c613ac76a5bbc439343ff6b93f0345082718e99515e",
+    "recordCount": 3149
+  },
+  "productionRecordPathAllowlist": "^[A-Za-z0-9._/-]+$",
+  "invalidRecordCount": 10,
+  "invalidRecords": [
+    {
+      "index": 3007,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/(chat)/+layout.svelte",
+      "sizeBytes": 260,
+      "sha256": "4c90f7e440844c602bba3d0db0e3e6ca7a1be08e19963afbac710edf0a12f137",
+      "mode": "read-only"
+    },
+    {
+      "index": 3008,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/(chat)/+page.svelte",
+      "sizeBytes": 2511,
+      "sha256": "7b6b81870b9f730393cca0bf46ee86d2138236478234359b735aae731ec699ff",
+      "mode": "read-only"
+    },
+    {
+      "index": 3009,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/(chat)/+page.ts",
+      "sizeBytes": 174,
+      "sha256": "9ae582d2a2a35772440fa2c5a735a2f86a3db23f596f3a51a9049cd8126ee279",
+      "mode": "read-only"
+    },
+    {
+      "index": 3010,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/(chat)/chat/[id]/+page.svelte",
+      "sizeBytes": 3924,
+      "sha256": "aea158d01c4764daf85d1c97bb9556d542d686a9416ae45f6822979aef8908a8",
+      "mode": "read-only"
+    },
+    {
+      "index": 3011,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/(chat)/chat/[id]/+page.ts",
+      "sizeBytes": 174,
+      "sha256": "9ae582d2a2a35772440fa2c5a735a2f86a3db23f596f3a51a9049cd8126ee279",
+      "mode": "read-only"
+    },
+    {
+      "index": 3012,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/+error.svelte",
+      "sizeBytes": 2087,
+      "sha256": "6911f21fdcf053a393725013859ac99067f973685cc5d1df225ed5cc63090c22",
+      "mode": "read-only"
+    },
+    {
+      "index": 3013,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/+layout.svelte",
+      "sizeBytes": 10132,
+      "sha256": "73423354e78841f18e09d143049f2f3909fb4a91d70bd63f5ff055e683dbf145",
+      "mode": "read-only"
+    },
+    {
+      "index": 3014,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/mcp-servers/+page.svelte",
+      "sizeBytes": 163,
+      "sha256": "8f7ea3813ebeb457b4195c9c92d34b49888e154797217fb7e690a5274522530c",
+      "mode": "read-only"
+    },
+    {
+      "index": 3015,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/settings/+layout.svelte",
+      "sizeBytes": 956,
+      "sha256": "9c64f7f07105fa27320ca2f64f7b460a6865e32770c0c44e0a20c89e1f159704",
+      "mode": "read-only"
+    },
+    {
+      "index": 3016,
+      "reasons": ["path-not-in-production-allowlist"],
+      "path": "llama-cpp-source/tools/ui/src/routes/settings/[[section]]/+page.svelte",
+      "sizeBytes": 546,
+      "sha256": "8b5f7a432d96124463da1493d02d85c6996fd8419518e6696c4cd81758776cdb",
+      "mode": "read-only"
+    }
+  ],
+  "independentClosureProbe": {
+    "allRecordBytesSizesAndModesMatch": true,
+    "recordMismatchCount": 0,
+    "recordMismatches": [],
+    "expectedPathCount": 3150,
+    "actualPathCount": 3150,
+    "treeClosed": true,
+    "missingPaths": [],
+    "extraPaths": []
+  },
+  "result": "fail",
+  "failureCategory": "input-manifest-path-policy-mismatch",
+  "preliminaryClassification": "Local Fix / implementation defect in Chinese closed-input materialization versus production input-manifest validation; exact clean llama.cpp source contains build-irrelevant UI paths outside the locked-input allowlist.",
+  "noWorkaroundApplied": true
+}

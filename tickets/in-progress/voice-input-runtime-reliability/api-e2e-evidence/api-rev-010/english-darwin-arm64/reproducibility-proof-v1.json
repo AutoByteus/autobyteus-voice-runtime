@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "passed": true,
+  "sourceCommit": "e133c4a7a73a5531c726ecb04461acb641461667",
+  "packageId": "voice.english.whisper-small-fp16.darwin-arm64",
+  "buildInputManifestSha256": "bdeb46b3d44f8aa5dd0888947293c123547c5c2807d2c01706e0dd8f26f1422e",
+  "buildInputProvenanceSha256": "28572e212f9fd6eb793e4dc2795545d8789357c974336dca9b2a0941864f33ae",
+  "buildInputRecipeSha256": "8cae5d57e8a3718c395f878cb80b3211570c8a6f0a5156067e4cc428469af2e4",
+  "releaseMatrixSha256": "c52b409cfe1cdcd8f104f4894b40134c6f78236198cb3aa1792fb5f97e6aa7f6",
+  "nativeBuildEnvironmentSha256": "77b498bb5f028cafed160739b8063372934bc312e60efe04dfc128c1b32544eb",
+  "archiveSha256": "08ecb07a195bbe78901ca21a4a4775d8067ac42e75049861f78f7b647626581d",
+  "firstBuildReportSha256": "3496ae84230740c1a34bf5f9b2e6cf540d4cdb995c9f43f6a24128d5006c4ccb",
+  "secondBuildReportSha256": "3496ae84230740c1a34bf5f9b2e6cf540d4cdb995c9f43f6a24128d5006c4ccb"
+}

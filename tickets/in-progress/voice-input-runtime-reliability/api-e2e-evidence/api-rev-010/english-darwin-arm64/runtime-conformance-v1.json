@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "noSpeech": true,
+  "malformedAudio": true,
+  "malformedMessage": true,
+  "requestTimeout": true,
+  "unexpectedExit": true,
+  "forcedTermination": true,
+  "cleanNextStart": true,
+  "noAutomaticReplay": true
+}

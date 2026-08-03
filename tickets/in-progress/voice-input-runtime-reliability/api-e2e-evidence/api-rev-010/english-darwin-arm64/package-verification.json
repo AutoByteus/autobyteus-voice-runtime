@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "packageId": "voice.english.whisper-small-fp16.darwin-arm64",
+  "archiveSha256": "08ecb07a195bbe78901ca21a4a4775d8067ac42e75049861f78f7b647626581d",
+  "descriptorSha256": "c0d64df0f7074b7258ce10e7675dbfa15386e5025765392aa185b7e293aad980",
+  "fileManifestSha256": "c73fda1f4384d7e6d322ae3b25f02bb336e640fa07c503901b4c1ab3a0ccbdf3",
+  "extractedSizeBytes": 1195561049,
+  "entryCount": 6502,
+  "modesVerified": true,
+  "descriptorSchemaValid": true,
+  "packageReadOnly": true
+}
