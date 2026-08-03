@@ -1,0 +1,16 @@
+15660edd642d27c01dcb7e3c457f68c69ce4e06d1a9863232d960eaad5e3ca26  ./english-darwin-arm64/API-F-004-focused-manifest-analysis.json
+79fd71d60440c20ba68e05f734991775139af7e079b52a4529369f23cdc0cd40  ./english-darwin-arm64/API-F-004-focused-manifest-probe.log
+67e13d3f0c58ce68b6ce54473107a8c2d3aa3c6dd4e60020872f578afbae74cc  ./english-darwin-arm64/API-F-004-package-manifest-path-policy-failure.json
+f386c37cea8a8e639affc306279bebf44d1a259ee086cce1ed3129f7e76c3905  ./english-darwin-arm64/API-F-004-probe-package-files-v1.json
+b5f8b3a723dde3d59fdc534be621e87f5f9b6b8d477f0e9edb25ace5982349ba  ./english-darwin-arm64/build-primary.log
+79561c0a3ae52b761a0803032b0d73ada72c09225e9d477a162f00f92cb5c86e  ./english-darwin-arm64/create-native-build-environment.log
+eba477b28067a4afd9d2098237d24e47ede523c7560ce95197b74025294a3cc0  ./environment/cleanup-and-process-scan.log
+5eadd78f465e1257915a4d1a6c7cc2b252aac25dc08e2b544f2a361bb6f9350b  ./environment/darwin-arm64-preflight-v2.json
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./environment/functional-preflight-v2.log
+c96dc8e6d51323557869b4c68d1ca132f5c48dd18d096347e1fd325e2df6ffb7  ./environment/voice-caffeinate.pid
+8b53b5ea973156b8eb148823deefdf5e61753ad2fea1379be1d127127a8f1155  ./inputs/corpus-validation.log
+95caf0362683a49934a99e19666791d37162136319d98ea44188927c04807d05  ./inputs/materialization.log
+300f6e88f1f2b8151620fa434c81f17b6472bf97fea9f4cc4e86c7f7bde40f1c  ./repository/API-VOICE-001-002-013-source-reuse.json
+8e6d411fbbdb19018a08ba95aba9c15344e7ceed62f280d4ed436acdb9cbdb18  ./repository/focused-build-functional-authority.log
+374cf33652fcb9d7d096f8668bd40b2be3a47a06da34f88ccddd95dd220e5bf9  ./repository/npm-ci.log
+325933cb0ce29e5ac405f9c45dfe92e6756adb2ec68b3200ffca66ed37a0793d  ./repository/npm-run-check.log

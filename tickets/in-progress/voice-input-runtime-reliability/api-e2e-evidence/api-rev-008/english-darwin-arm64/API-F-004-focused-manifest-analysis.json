@@ -1,0 +1,19 @@
+{
+  "scenarioId": "API-VOICE-003",
+  "findingId": "API-F-004",
+  "probeType": "temporary observer instrumentation in isolated exact-source checkout; canonical source restored immediately",
+  "packageAssemblerOriginalSha256": "c96a17296cbd8e0229c9e7798e30d72995a99f3591db39a6f13c8cb09150b764",
+  "packageAssemblerRestoredSha256": "c96a17296cbd8e0229c9e7798e30d72995a99f3591db39a6f13c8cb09150b764",
+  "packageAssemblerRestoredExact": true,
+  "probeExitCode": 1,
+  "manifestRecordCount": 19003,
+  "invalidPathCount": 2,
+  "invalidPaths": [
+    "host/python/lib/python3.12/site-packages/scipy/io/tests/data/Transparent Busy.ani",
+    "host/python/lib/python3.12/site-packages/torch/include/c10/util/C++17.h"
+  ],
+  "caseCollisionCount": 0,
+  "caseCollisions": [],
+  "lexicographicInversionCount": 0,
+  "lexicographicInversions": []
+}

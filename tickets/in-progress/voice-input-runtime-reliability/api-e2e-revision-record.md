@@ -2,15 +2,16 @@
 
 ## Revision Index
 
-| Revision ID | Triggering Role / Report / Round | Related Upstream Revision IDs | Prior Result / Confidence | Current Result / Confidence |
-| --- | --- | --- | --- | --- |
-| `API-REV-001` | Code Reviewer / `code-review-report.md` / `CRR-005` | `SR-006`, `ARCH-REV-007`, `IR-005`, `CRR-005` | `N/A` | `Fail / 65%` |
-| `API-REV-002` | Code Reviewer / `code-review-report.md` / `CRR-008` | `SR-007`, `ARCH-REV-008`, `IR-007`, `CRR-008` | `Fail / 65%` | `Blocked / 78%` |
-| `API-REV-003` | Code Reviewer / `code-review-report.md` / `CRR-011` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-010`, `CRR-011` | `Blocked / 78%` | `Fail / 79%` |
-| `API-REV-004` | Code Reviewer / `code-review-report.md` / `CRR-013` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-011`, `CRR-013` | `Fail / 79%` | `Blocked / 82%` |
-| `API-REV-005` | Code Reviewer / `code-review-report.md` / `CRR-015` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-013`, `CRR-015` | `Blocked / 82%` | `Fail / 87%` |
-| `API-REV-006` | Code Reviewer / `code-review-report.md` / `CRR-017` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-014`, `CRR-017` | `Fail / 87%` | `Fail / 89%` |
-| `API-REV-007` | Code Reviewer / `code-review-report.md` / `CRR-019` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019` | `Fail / 89%` | `Blocked / 86%` |
+| Revision ID   | Triggering Role / Report / Round                               | Related Upstream Revision IDs                           | Prior Result / Confidence | Current Result / Confidence |
+| ------------- | -------------------------------------------------------------- | ------------------------------------------------------- | ------------------------- | --------------------------- |
+| `API-REV-001` | Code Reviewer / `code-review-report.md` / `CRR-005`            | `SR-006`, `ARCH-REV-007`, `IR-005`, `CRR-005`           | `N/A`                     | `Fail / 65%`                |
+| `API-REV-002` | Code Reviewer / `code-review-report.md` / `CRR-008`            | `SR-007`, `ARCH-REV-008`, `IR-007`, `CRR-008`           | `Fail / 65%`              | `Blocked / 78%`             |
+| `API-REV-003` | Code Reviewer / `code-review-report.md` / `CRR-011`            | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-010`, `CRR-011` | `Blocked / 78%`           | `Fail / 79%`                |
+| `API-REV-004` | Code Reviewer / `code-review-report.md` / `CRR-013`            | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-011`, `CRR-013` | `Fail / 79%`              | `Blocked / 82%`             |
+| `API-REV-005` | Code Reviewer / `code-review-report.md` / `CRR-015`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-013`, `CRR-015` | `Blocked / 82%`           | `Fail / 87%`                |
+| `API-REV-006` | Code Reviewer / `code-review-report.md` / `CRR-017`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-014`, `CRR-017` | `Fail / 87%`              | `Fail / 89%`                |
+| `API-REV-007` | Code Reviewer / `code-review-report.md` / `CRR-019`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019` | `Fail / 89%`              | `Blocked / 86%`             |
+| `API-REV-008` | User AC-readiness confirmation after Code Reviewer / `CRR-019` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019` | `Blocked / 86%`           | `Fail / 93%`                |
 
 ## Revision Entries
 
@@ -51,9 +52,9 @@ None.
 
 #### Prior Failure Resolution
 
-| Prior Scenario / Failure Reference | Previous Classification | Current Resolution | Evidence |
-| --- | --- | --- | --- |
-| `API-VOICE-002` / API-REV-001 English final corpus repeated one operational identity | `Design Impact`; resolved upstream through `SR-007` | `Resolved / Pass` | `api-e2e-evidence/api-rev-002/repository/API-VOICE-002-corpus-identity-resolution.json`: 49/49 exact unique WAV identities, approved corpus/baseline digests, one-to-one trust, 70/969; supported reproduction and all six output comparisons pass |
+| Prior Scenario / Failure Reference                                                   | Previous Classification                             | Current Resolution | Evidence                                                                                                                                                                                                                                           |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `API-VOICE-002` / API-REV-001 English final corpus repeated one operational identity | `Design Impact`; resolved upstream through `SR-007` | `Resolved / Pass`  | `api-e2e-evidence/api-rev-002/repository/API-VOICE-002-corpus-identity-resolution.json`: 49/49 exact unique WAV identities, approved corpus/baseline digests, one-to-one trust, 70/969; supported reproduction and all six output comparisons pass |
 
 - Canonical artifacts and sections updated:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
@@ -79,10 +80,10 @@ None.
 
 #### Prior Failure Resolution
 
-| Prior Scenario / Failure Reference | Previous Classification | Current Resolution | Evidence |
-| --- | --- | --- | --- |
-| `API-REV-002` eight-target environment blocker | Blocked | Scope superseded prospectively, not retroactively: six non-arm64 rows are now Deferred / Outside Current Release Matrix; current pass requires only the two M1 packages | approved `current-platform-qualification.md` |
-| `API-VOICE-002` / `API-VOICE-013` reuse authority | Passed boundary, reuse conditional on unchanged bytes | Confirmed unchanged and reusable | `api-e2e-evidence/api-rev-003/repository/API-VOICE-002-013-authority-reuse.json` |
+| Prior Scenario / Failure Reference                | Previous Classification                               | Current Resolution                                                                                                                                                      | Evidence                                                                         |
+| ------------------------------------------------- | ----------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| `API-REV-002` eight-target environment blocker    | Blocked                                               | Scope superseded prospectively, not retroactively: six non-arm64 rows are now Deferred / Outside Current Release Matrix; current pass requires only the two M1 packages | approved `current-platform-qualification.md`                                     |
+| `API-VOICE-002` / `API-VOICE-013` reuse authority | Passed boundary, reuse conditional on unchanged bytes | Confirmed unchanged and reusable                                                                                                                                        | `api-e2e-evidence/api-rev-003/repository/API-VOICE-002-013-authority-reuse.json` |
 
 - Canonical artifacts updated:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
@@ -105,10 +106,10 @@ None.
 
 #### Prior Failure Resolution
 
-| Prior Failure | Previous Classification | Current Resolution | Evidence |
-| --- | --- | --- | --- |
+| Prior Failure                                                    | Previous Classification           | Current Resolution                               | Evidence                                                                                              |
+| ---------------------------------------------------------------- | --------------------------------- | ------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
 | `API-F-001` / API-REV-003 actual healthy thermal output rejected | Local Fix / implementation defect | Resolved / Pass at the exact production boundary | `api-rev-004/environment/darwin-arm64-preflight-v1.json`: `thermalNormal=true`; CRR-013 source review |
-| AC power and noninteractive purge absent | Environment prerequisites | Resolved | preflight `acConnected=true`; independent exact `/usr/bin/sudo -n /usr/sbin/purge` exit 0 |
+| AC power and noninteractive purge absent                         | Environment prerequisites         | Resolved                                         | preflight `acConnected=true`; independent exact `/usr/bin/sudo -n /usr/sbin/purge` exit 0             |
 
 - Canonical artifacts updated:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
@@ -132,11 +133,11 @@ None.
 
 #### Prior Failure Resolution
 
-| Prior Failure | Previous Classification | Current Resolution | Evidence |
-| --- | --- | --- | --- |
-| API-REV-004 sub-80% CPU-idle functional blocker | Environment Blocked under the superseded v1 gate | Resolved by approved Functional Preflight 2; no idle minimum blocks functionality | `api-rev-005/environment/darwin-arm64-preflight-v2.json`: Pass, `loaded-host`, `75.17166666666667%`; execution continued into inputs/build |
-| `API-F-001` thermal parser | Resolved in API-REV-004 | Remains resolved | same preflight: `thermalNormal=true` |
-| AC power and exact noninteractive purge capability | Previously resolved prerequisites | Reconfirmed Pass | same preflight: `acConnected=true`, `purge.nonInteractivePass=true` |
+| Prior Failure                                      | Previous Classification                          | Current Resolution                                                                | Evidence                                                                                                                                   |
+| -------------------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------ |
+| API-REV-004 sub-80% CPU-idle functional blocker    | Environment Blocked under the superseded v1 gate | Resolved by approved Functional Preflight 2; no idle minimum blocks functionality | `api-rev-005/environment/darwin-arm64-preflight-v2.json`: Pass, `loaded-host`, `75.17166666666667%`; execution continued into inputs/build |
+| `API-F-001` thermal parser                         | Resolved in API-REV-004                          | Remains resolved                                                                  | same preflight: `thermalNormal=true`                                                                                                       |
+| AC power and exact noninteractive purge capability | Previously resolved prerequisites                | Reconfirmed Pass                                                                  | same preflight: `acConnected=true`, `purge.nonInteractivePass=true`                                                                        |
 
 #### New Failure
 
@@ -168,10 +169,10 @@ None.
 
 #### Prior Failure Resolution
 
-| Prior Failure | Previous Classification | Current Resolution | Evidence |
-| --- | --- | --- | --- |
-| `API-F-002` / `CR-F-022` setuid sudo spawned inside Seatbelt | Local Fix / implementation defect | Resolved / Pass at the exact production boundary | `api-rev-006/english-darwin-arm64/create-native-build-environment.log` plus `build-primary.log`: outside authorization passes, sandbox consumer advances without `sudo` `EPERM` into MLX Python materialization |
-| API-REV-004 sub-80% CPU-idle blocker | Historical Blocked under superseded v1 gate | Reconfirmed non-issue; current preflight is controlled but no minimum is needed for functional continuation | fresh API-REV-006 preflight Pass |
+| Prior Failure                                                | Previous Classification                     | Current Resolution                                                                                          | Evidence                                                                                                                                                                                                        |
+| ------------------------------------------------------------ | ------------------------------------------- | ----------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `API-F-002` / `CR-F-022` setuid sudo spawned inside Seatbelt | Local Fix / implementation defect           | Resolved / Pass at the exact production boundary                                                            | `api-rev-006/english-darwin-arm64/create-native-build-environment.log` plus `build-primary.log`: outside authorization passes, sandbox consumer advances without `sudo` `EPERM` into MLX Python materialization |
+| API-REV-004 sub-80% CPU-idle blocker                         | Historical Blocked under superseded v1 gate | Reconfirmed non-issue; current preflight is controlled but no minimum is needed for functional continuation | fresh API-REV-006 preflight Pass                                                                                                                                                                                |
 
 #### New Failure
 
@@ -202,10 +203,10 @@ None.
 
 #### Prior Failure Resolution
 
-| Prior Failure | Previous Classification | Current Resolution | Evidence |
-| --- | --- | --- | --- |
-| `API-F-003` / `CR-F-023` Python archive links rejected | Local Fix / implementation defect | Source-reviewed resolved, but runtime recheck not executed after environmental block | CRR-019 and current repository suites only; no API package claim |
-| `API-F-002` / `CR-F-022` sudo inside Seatbelt | Resolved in API-REV-006 | Not re-executed this blocked round; source remains unchanged in relevant boundary except the reviewed Python fix | current source review |
+| Prior Failure                                          | Previous Classification           | Current Resolution                                                                                               | Evidence                                                         |
+| ------------------------------------------------------ | --------------------------------- | ---------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `API-F-003` / `CR-F-023` Python archive links rejected | Local Fix / implementation defect | Source-reviewed resolved, but runtime recheck not executed after environmental block                             | CRR-019 and current repository suites only; no API package claim |
+| `API-F-002` / `CR-F-022` sudo inside Seatbelt          | Resolved in API-REV-006           | Not re-executed this blocked round; source remains unchanged in relevant boundary except the reviewed Python fix | current source review                                            |
 
 - Canonical artifacts updated:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
@@ -218,3 +219,40 @@ None.
 - Exact blocker: designated M1 reports Battery Power, `acConnected=false`.
 - Recommended recipient: user request only; no teammate handoff while Blocked.
 - Resume: connect the M1 Mac to AC power, keep it connected, confirm readiness, and open the next API revision with production Functional Preflight 2 before package construction.
+
+### API-REV-008 — AC and Python normalization pass; exact package manifest violates archive path policy
+
+- Triggering role, report path, and round: user supplied the API-REV-007 AC dependency after Code Reviewer `CRR-019`; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; API/E2E round 8.
+- Triggering scenarios: prior AC blocker and `API-F-003` recheck; reusable `API-VOICE-002`/`013`; current-matrix `API-VOICE-003`, `004`, `011`, and `012`.
+- Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019`; delivery `N/A`.
+- Why recorded: actual M1 Functional Preflight 2 passed on AC, exact sources/inputs/corpora passed, and the corrected Python archive advanced through normalization into final package staging. The first canonical English build then failed `API-F-004`: its generated 19,003-record manifest retained two files whose paths violate the package archive ASCII path policy, so the Go archive owner rejected the manifest and produced no archive.
+- Coverage/durable test changes: none. `API-VOICE-002` and durable `API-VOICE-013` remained reusable after exact byte checks. The manifest observer was temporary execution instrumentation in the isolated checkout and was fully restored.
+- Execution delta: focused 24/24 TAP; full 69 top-level / 76 TAP Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; actual M1 preflight Pass on AC at loaded-host `69.83666666666667%`; exact English/Chinese inputs and 49/200 corpora Pass; trusted environment creation outside Seatbelt Pass; primary English network-denied construction Fail.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                                 | Previous Classification           | Current Resolution                                                                                                                       | Evidence                                                                                                     |
+| ----------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| API-REV-007 designated M1 on Battery Power                                    | Environment Blocked               | Resolved / Pass                                                                                                                          | API-REV-008 preflight `status=pass`; cleanup-time `pmset` still reports AC Power                             |
+| `API-F-003` / `CR-F-023` Python runtime archive links rejected before pruning | Local Fix / implementation defect | Resolved at the direct production path; normalization/pruning completed and assembly advanced to final 19,003-record manifest validation | `english-darwin-arm64/build-primary.log`; new failure occurs in Go manifest validation, not symlink handling |
+| `API-F-002` / `CR-F-022` sudo spawned inside Seatbelt                         | Resolved in API-REV-006           | Remains resolved                                                                                                                         | trusted native environment created outside Seatbelt; primary sandbox build advanced without sudo `EPERM`     |
+
+#### New Failure
+
+- ID: `API-F-004`.
+- Scenario / criteria: `API-VOICE-003`; `AC-006`, `AC-017`.
+- Expected: the exact authenticated English staging tree satisfies package closure/path policy and produces the first canonical archive, enabling the second build/reproducibility verifier and full profile qualification.
+- Observed: production Go validation exits `1` with `manifest paths invalid or unsorted`; no archive is created. Focused analysis proves zero ordering inversions and zero case collisions, but exactly two invalid retained paths: `scipy/io/tests/data/Transparent Busy.ani` contains a space and `torch/include/c10/util/C++17.h` contains plus signs.
+- Preliminary classification: `Local Fix / implementation defect` in package assembly closure/path-policy integration. The archive policy correctly fails closed; no policy relaxation, dependency mutation, provider/model substitution, threshold change, or unsandboxed build is acceptable.
+- Stop/reroute: repeat construction, package verification/reproducibility, 49/200 inference, exact 30/30/100, lifecycle/compliance, Qualification Set 2, and Branch Catalog Projection 2 were not run after the first required archive failed. Route to `code_reviewer` for focused failure-origin review.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/`
+- Prior result/confidence: `Blocked / 86%`.
+- Current result/confidence: `Fail / 93%`.
+- New failure: `API-F-004`; prior `API-F-002`/`003` are resolved on the executed path.
+- Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
+- Remaining proof after reviewed correction: both complete package constructions and reproducibility, real 49/200 inference/quality, lifecycle/recovery/offline/read-only/no-mutation, exact 30/30/100 resource/performance observations, compliance/privacy, Qualification Set 2, Branch Catalog Projection 2, and independent verification.

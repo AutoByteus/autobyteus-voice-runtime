@@ -1,0 +1,110 @@
+{
+  "schema": "api-voice-source-reuse-v1",
+  "apiRevision": "API-REV-008",
+  "priorRevision": "API-REV-007",
+  "reviewedSourceCommit": "24a994a51256f0eef5840ecdc977febec71ea491",
+  "workingTreeCommit": "24a994a51256f0eef5840ecdc977febec71ea491",
+  "workingTreeClean": true,
+  "allRelevantPathsMatch": true,
+  "durableCoverageChangeThisRound": false,
+  "files": [
+    {
+      "path": "benchmark/baseline/english-preservation-authority.mjs",
+      "size": 6214,
+      "sourceSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "workingTreeSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "match": true
+    },
+    {
+      "path": "benchmark/baseline/trusted-baseline.mjs",
+      "size": 7196,
+      "sourceSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "workingTreeSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "match": true
+    },
+    {
+      "path": "benchmark/corpus/validate-corpus.mjs",
+      "size": 1921,
+      "sourceSha256": "d8700e103e8295eb970d24299c8d1f5df671089071fb21d1847c867d3cd3557c",
+      "workingTreeSha256": "d8700e103e8295eb970d24299c8d1f5df671089071fb21d1847c867d3cd3557c",
+      "match": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/authority.json",
+      "size": 5791,
+      "sourceSha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8",
+      "workingTreeSha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8",
+      "match": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/controlled-mlx-fp16-en-unique-v2.json",
+      "size": 104292,
+      "sourceSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "workingTreeSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "match": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/derive_english_preservation_v2.py",
+      "size": 19544,
+      "sourceSha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49",
+      "workingTreeSha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49",
+      "match": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/quality-mlx-en-unique-v2.json",
+      "size": 38132,
+      "sourceSha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "workingTreeSha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "match": true
+    },
+    {
+      "path": "release/evidence/baselines/english-v2.json",
+      "size": 8932,
+      "sourceSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "workingTreeSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "match": true
+    },
+    {
+      "path": "release/evidence/qualification-corpora/english-v2.json",
+      "size": 20750,
+      "sourceSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "workingTreeSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "match": true
+    },
+    {
+      "path": "tests/release/trusted-baseline.test.mjs",
+      "size": 8237,
+      "sourceSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "workingTreeSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "match": true
+    },
+    {
+      "path": "tooling/verify-english-preservation.mjs",
+      "size": 549,
+      "sourceSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "workingTreeSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "match": true
+    },
+    {
+      "path": "build/python/archive-link-normalization.mjs",
+      "size": 5935,
+      "sourceSha256": "447638bdf2dfb9a5d5367611de7289eeb0c06678771335d9ce003bc969904ead",
+      "workingTreeSha256": "447638bdf2dfb9a5d5367611de7289eeb0c06678771335d9ce003bc969904ead",
+      "match": true
+    },
+    {
+      "path": "build/python/materialize-runtime.mjs",
+      "size": 6778,
+      "sourceSha256": "6c0b52c19826784bc3eaa11dde21f8365e8082f05620a9869794678a5dfe031f",
+      "workingTreeSha256": "6c0b52c19826784bc3eaa11dde21f8365e8082f05620a9869794678a5dfe031f",
+      "match": true
+    },
+    {
+      "path": "tests/build/python-archive-link-normalization.test.mjs",
+      "size": 7134,
+      "sourceSha256": "190ddc9c5a5b061ce7e972b97573aa560a2d9141cbd67e679179a96309386c5f",
+      "workingTreeSha256": "190ddc9c5a5b061ce7e972b97573aa560a2d9141cbd67e679179a96309386c5f",
+      "match": true
+    }
+  ]
+}
