@@ -14,6 +14,7 @@
 | `API-REV-008` | User AC-readiness confirmation after Code Reviewer / `CRR-019` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019`            | `Blocked / 86%`           | `Fail / 93%`                |
 | `API-REV-009` | Code Reviewer / `code-review-report.md` / `CRR-021`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-016`, `CRR-020`, `CRR-021` | `Fail / 93%`              | `Fail / 95%`                |
 | `API-REV-010` | Code Reviewer / `code-review-report.md` / `CRR-023`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-017`, `CRR-022`, `CRR-023` | `Fail / 95%`              | `Fail / 97%`                |
+| `API-REV-011` | Code Reviewer / `code-review-report.md` / `CRR-025`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-018`, `CRR-024`, `CRR-025` | `Fail / 97%`              | `Fail / 98%`                |
 
 ## Revision Entries
 
@@ -334,3 +335,39 @@ None.
 - New failure: `API-F-007`; prior `API-F-005` / `API-F-006` are resolved.
 - Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
 - Remaining proof after reviewed correction: exact Chinese double construction/reproducibility, 200-WAV inference/quality/normalization, exact 30/30/100/lifecycle/resource/compliance evidence, then Qualification Set 2 and independently verified Branch Catalog Projection 2.
+
+### API-REV-011 — Build Input paths pass; canonicalized ranlib loses required alias semantics
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-025`; API/E2E round 11.
+- Triggering scenarios: shared Build Input Path / English reuse impact, direct `API-F-007` resolution, then current-matrix `API-VOICE-004`, `API-VOICE-003`, `API-VOICE-011`, and `API-VOICE-012`.
+- Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-018`, `CRR-024`, `CRR-025`; delivery `N/A`.
+- Why recorded: the shared Build Input correction directly passes both retained input trees and current-source materialization. The first exact Chinese build advances through all 3,149 records and native compilation, resolving `API-F-007`, but fails `API-F-008` when trusted-tool canonicalization supplies `libtool` as `CMAKE_RANLIB` and loses the authenticated `ranlib` alias behavior required by Apple static linking.
+- Coverage/durable test changes: none. API-REV-010 English remains valid historical direct behavior evidence, but current QSet source/runner/provenance identity requires a full current-source English rerun after Chinese construction succeeds.
+- Execution delta: focused Build Input Path 4/4; full 76 top-level / 83 TAP Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; both retained API-REV-010 manifests passed the new production verifier; fresh actual M1 Functional Preflight 2 Pass at loaded-host `67.71166666666667%`; exact current-source English/Chinese materialization and 49/200 corpus validation Pass; first Chinese network-denied construction advanced to 5% native link and Fail.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                                         | Previous Classification           | Current Resolution                                                                                                                                                                             | Evidence                                                                                    |
+| ------------------------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| `API-F-007` / `CR-F-027` ten Chinese routing paths rejected by duplicated input regex | Local Fix / implementation defect | Resolved / Pass at the exact production boundary. The new verifier accepts all 3,149 exact records, including the ten routing paths, and package construction advances into C/C++ compilation. | retained-tree verifier log, current-source materialization, and Chinese `build-primary.log` |
+| API-REV-010 English complete qualification                                            | Historical direct evidence        | Still valid as historical behavior evidence; not reusable as current QSet authority because Summary/runner/provenance bind `e133c4a7` rather than current reviewed source `8680c6a9`           | `API-VOICE-003-004-shared-contract-impact.json`                                             |
+
+#### New Failure
+
+- ID: `API-F-008`.
+- Scenario / criteria: `API-VOICE-004`; `AC-006`, `AC-017`, `AC-019`.
+- Expected: after exact input verification, the authenticated Apple toolchain compiles and links the Chinese worker, enabling two byte-identical archives and full profile qualification.
+- Observed: at 5%, CMake links `libggml-base.a` with `CMAKE_RANLIB=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool`; canonical `libtool` rejects ranlib-style argv with `no output file specified`, so no archive is created. The exact Xcode `ranlib` alias points to identical target bytes (SHA-256 `d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6`) but alias invocation exits `0` while canonical target invocation exits `1`.
+- Preliminary classification: `Local Fix / implementation defect` in trusted native tool identity alias preservation and resolved CMake composition, not an input, host, user permission, provider/model, corpus, threshold, resource, or performance issue.
+- Stop/reroute: fail-closed. No CMake/tool override, PATH substitution, retry, unsandboxed build, provider/model/threshold substitution, QSet/projection, tag, release, or publication.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-011/`
+- Prior result/confidence: `Fail / 97%`.
+- Current result/confidence: `Fail / 98%`.
+- New failure: `API-F-008`; prior `API-F-007` is resolved.
+- Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
+- Remaining proof after reviewed correction: exact Chinese double construction/reproducibility, 200-WAV inference/quality/normalization, exact 30/30/100/lifecycle/resource/compliance evidence; current-source English double build/full qualification; then Qualification Set 2 and independently verified Branch Catalog Projection 2.

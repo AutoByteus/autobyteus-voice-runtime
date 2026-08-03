@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 2,
+  "target": "darwin-arm64",
+  "status": "pass",
+  "checkedAt": "2026-08-03T17:50:01.947Z",
+  "host": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "cpuModel": "Apple M1 Max",
+    "totalMemoryBytes": 68719476736
+  },
+  "power": {
+    "acConnected": true,
+    "lowPowerModeOff": true,
+    "caffeinateActive": true,
+    "thermalNormal": true,
+    "memoryPressureNormal": true
+  },
+  "performanceEnvironment": {
+    "classification": "loaded-host",
+    "cpuIdleSamples": [
+      76.72,
+      59.63,
+      62.33,
+      68.87,
+      69.23,
+      69.49
+    ],
+    "averageIdlePercent": 67.71166666666667,
+    "taskOwnedCompetingProcesses": {
+      "detected": false,
+      "processNames": []
+    },
+    "topConsumerProcessNames": [
+      "AudioComponentRe",
+      "Google",
+      "KonaSynthesizer",
+      "MacinTalkAUSP",
+      "MauiAUSP",
+      "SiriAUSP",
+      "WardaSynthesizer",
+      "axassetsd",
+      "voicebankingd"
+    ]
+  },
+  "tools": {
+    "node": "v22.23.1",
+    "nodeExecutable": {
+      "path": "/Users/normy/.hermes/node/bin/node",
+      "sha256": "2e3f1286a7eb3736346ed1803e458a0ff909e2b2d5bc746144dcb76970e9b99d"
+    },
+    "goArchiveSha256": "efb87ff28af9a188d0536ef5d42e63dd52ba8263cd7344a993cc48dd11dedb6a",
+    "goRootTreeSha256": "27fd7f0918282550923f1820c890432b262feb7e574cb6bfd3c9f4962cdbb9ee",
+    "cmake": "cmake version 4.3.3",
+    "cmakeExecutable": {
+      "path": "/opt/homebrew/Cellar/cmake/4.3.3/bin/cmake",
+      "sha256": "21cc7838296a3b72bea03d332b3fe39d189807d641b16ef46975d0f9f688f769"
+    },
+    "appleClang": "Apple clang version 17.0.0 (clang-1700.4.4.1)",
+    "appleClangExecutable": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+      "sha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+    },
+    "appleClangCxxExecutable": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+      "sha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+    },
+    "appleArExecutable": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar",
+      "sha256": "03925f16d09748c4406abd797d77979fa84e14001f660672a3b23105445e6a6e"
+    },
+    "appleRanlibExecutable": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+      "sha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6"
+    },
+    "appleLinkerExecutable": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld",
+      "sha256": "2f8ee9a6fb55f61d9a4ea7abd9d4bfd5e1e0017bdd5248cd45839018c5fc4ca1"
+    },
+    "appleLibtoolExecutable": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+      "sha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6"
+    },
+    "xcode": "Xcode 26.1.1\nBuild version 17B100",
+    "sdk": "26.1",
+    "sdkPath": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+    "sdkSettingsSha256": "5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff",
+    "sudoExecutable": {
+      "path": "/usr/bin/sudo",
+      "deviceId": "16777229",
+      "inode": "1152921500312572874",
+      "ownerUid": 0,
+      "ownerGid": 0,
+      "mode": "4511",
+      "sizeBytes": 1580368,
+      "modifiedNanoseconds": "1782354543000000000",
+      "changedNanoseconds": "1782354543000000000",
+      "probe": {
+        "args": [
+          "-V"
+        ],
+        "stdoutSha256": "6d0e9e583743268ef44261a4a9db95d4b4f27109c0a5f1182de74aaa553a3c1d",
+        "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    "commandPaths": {
+      "/usr/bin/sandbox-exec": {
+        "path": "/usr/bin/sandbox-exec",
+        "sha256": "8290e4be7387a0df83cd1559e86afd880464f269450573d012795761fe298f16"
+      },
+      "/usr/bin/pmset": {
+        "path": "/usr/bin/pmset",
+        "sha256": "2dd5e133b9631808080dfa9c39d4b07a5885438e5268c8667229b4a03661ad78"
+      },
+      "/usr/bin/top": {
+        "path": "/usr/bin/top",
+        "sha256": "76c9ff40f02934c897111a5fe5f3450f55e51427f7b898c2f49a4a54e35fe655"
+      },
+      "/usr/sbin/sysctl": {
+        "path": "/usr/sbin/sysctl",
+        "sha256": "7cf2165d121db5e22e0516acc26981a526402b3a8cd682ed5e35b337d8162707"
+      },
+      "/usr/bin/memory_pressure": {
+        "path": "/usr/bin/memory_pressure",
+        "sha256": "a1668e28505400a9e09ab9b2bd2558f04d038152dfdb05826576a0a0aa27fe56"
+      },
+      "/usr/bin/caffeinate": {
+        "path": "/usr/bin/caffeinate",
+        "sha256": "ef2d405c25a7335ccedf2c1ac7667a3f4a5226dcc1f59668259d43aae59bfbb7"
+      },
+      "/usr/sbin/purge": {
+        "path": "/usr/sbin/purge",
+        "sha256": "c2bc972d30ffc5204d26a2dff74d5013d6c4a19d627cae6113b62875d5e1dee3"
+      },
+      "/usr/bin/pgrep": {
+        "path": "/usr/bin/pgrep",
+        "sha256": "f36511d0be7033fc8df4c622d29df4fd36bbc64e239050a8cd7531b38587131d"
+      },
+      "/usr/bin/xcrun": {
+        "path": "/usr/bin/xcrun",
+        "sha256": "a439970aea2b4e435eac6518ff62c97fd1c57d8c731974027ad211b515c7a7b8"
+      },
+      "/usr/bin/xcodebuild": {
+        "path": "/usr/bin/xcodebuild",
+        "sha256": "065de0d338384b483be271b9cc8ef83b019788ec786c985d9dab07d5913ecdbb"
+      },
+      "/usr/bin/make": {
+        "path": "/usr/bin/make",
+        "sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818"
+      },
+      "/usr/bin/tar": {
+        "path": "/usr/bin/bsdtar",
+        "sha256": "9ab7f0793033dc9dc4809d83d695118801bd687cbacda59a0cbbf151ba25dc2b"
+      },
+      "/bin/sh": {
+        "path": "/bin/sh",
+        "sha256": "ad5c194b05f83bc5e793c1cd67b148a4b680467b5a5730ab1a31fe4e6460ee9f"
+      }
+    }
+  },
+  "sandbox": {
+    "profile": "benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+    "profileSha256": "5c358b8d847211333e7ba22df82d84f796b5f30a41a2682209a949d783adbd08",
+    "networkDenied": true,
+    "localOperationsAllowed": true
+  },
+  "purge": {
+    "command": "/usr/bin/sudo -n /usr/sbin/purge",
+    "nonInteractivePass": true,
+    "sudoExecutableIdentitySha256": "7dc34a43d0637fcb2d0b97feb483ba6c32f15594b2a7b1758c43561b65a5818a"
+  },
+  "failureCategory": null
+}
