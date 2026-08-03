@@ -6,7 +6,10 @@ import {
   capturePinnedSudoIdentity,
   systemCommandIdentityDigest,
 } from "../../benchmark/system-command-identity.mjs";
-import { captureXcodeRanlibIdentity } from "../../build/native-tool-identities.mjs";
+import {
+  captureXcodeClangCxxIdentity,
+  captureXcodeRanlibIdentity,
+} from "../../build/native-tool-identities.mjs";
 
 const root = path.resolve(import.meta.dirname, "../..");
 
@@ -19,6 +22,8 @@ export async function passingDarwinPreflightFixture(rootPath, toolPath) {
       rootPath,
       "FixtureXcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
     ),
+    clangPath = path.join(xcodeBin, "clang"),
+    clangCxxPath = path.join(xcodeBin, "clang++"),
     libtoolPath = path.join(xcodeBin, "libtool"),
     ranlibPath = path.join(xcodeBin, "ranlib"),
     sdkPath = path.join(rootPath, "sdk"),
@@ -40,11 +45,23 @@ export async function passingDarwinPreflightFixture(rootPath, toolPath) {
       "/bin/sh",
     ];
   await fs.mkdir(xcodeBin, { recursive: true });
+  await fs.writeFile(clangPath, '#!/bin/sh\n[ "${0##*/}" = clang++ ]\n', {
+    mode: 0o755,
+  });
+  await fs.symlink("clang", clangCxxPath);
   await fs.writeFile(libtoolPath, '#!/bin/sh\n[ "${0##*/}" = ranlib ]\n', {
     mode: 0o755,
   });
   await fs.symlink("libtool", ranlibPath);
-  const libtoolIdentity = {
+  const clangIdentity = {
+      path: await fs.realpath(clangPath),
+      sha256: await shaFile(clangPath),
+    },
+    clangCxxIdentity = await captureXcodeClangCxxIdentity(
+      clangCxxPath,
+      clangIdentity,
+    ),
+    libtoolIdentity = {
       path: await fs.realpath(libtoolPath),
       sha256: await shaFile(libtoolPath),
     },
@@ -101,8 +118,8 @@ export async function passingDarwinPreflightFixture(rootPath, toolPath) {
       cmake: "cmake version 4.3.3",
       cmakeExecutable: tool,
       appleClang: "Apple clang version 17.0.0 (clang-1700.4.4.1)",
-      appleClangExecutable: tool,
-      appleClangCxxExecutable: tool,
+      appleClangExecutable: clangIdentity,
+      appleClangCxxExecutable: clangCxxIdentity,
       appleArExecutable: tool,
       appleRanlibExecutable: ranlibIdentity,
       appleLinkerExecutable: tool,

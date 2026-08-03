@@ -25,29 +25,89 @@ export async function captureXcodeRanlibIdentity(
   invocationPath,
   libtoolIdentity,
 ) {
-  await assertTrustedExecutableIdentity(libtoolIdentity);
-  const supplied = path.resolve(invocationPath),
-    alias = path.join(
-      await fs.realpath(path.dirname(supplied)),
-      path.basename(supplied),
-    ),
-    info = await fs.lstat(alias),
-    linkTarget = await fs.readlink(alias),
-    identityValue = {
-      invocationPath: alias,
-      linkTarget,
-      targetPath: await fs.realpath(alias),
-      targetSha256: await shaFile(await fs.realpath(alias)),
-    };
-  if (!info.isSymbolicLink())
-    throw new Error("Xcode ranlib invocation must be a symbolic alias.");
-  await assertXcodeRanlibIdentity(identityValue, libtoolIdentity);
-  return identityValue;
+  return captureXcodeInvocationAliasIdentity(
+    invocationPath,
+    libtoolIdentity,
+    "ranlib",
+    "libtool",
+  );
 }
 
 export async function assertXcodeRanlibIdentity(
   identityValue,
   libtoolIdentity,
+) {
+  await assertXcodeInvocationAliasIdentity(
+    identityValue,
+    libtoolIdentity,
+    "ranlib",
+    "libtool",
+  );
+}
+
+export async function captureXcodeClangCxxIdentity(
+  invocationPath,
+  cCompilerIdentity,
+) {
+  return captureXcodeInvocationAliasIdentity(
+    invocationPath,
+    cCompilerIdentity,
+    "clang++",
+    "clang",
+  );
+}
+
+export async function assertXcodeClangCxxIdentity(
+  identityValue,
+  cCompilerIdentity,
+) {
+  await assertXcodeInvocationAliasIdentity(
+    identityValue,
+    cCompilerIdentity,
+    "clang++",
+    "clang",
+  );
+}
+
+async function captureXcodeInvocationAliasIdentity(
+  invocationPath,
+  targetIdentity,
+  invocationName,
+  targetName,
+) {
+  await assertTrustedExecutableIdentity(targetIdentity);
+  const supplied = path.resolve(invocationPath),
+    alias = path.join(
+      await fs.realpath(path.dirname(supplied)),
+      path.basename(supplied),
+    ),
+    info = await fs.lstat(alias);
+  if (!info.isSymbolicLink())
+    throw new Error(
+      `Xcode ${invocationName} invocation must be a symbolic alias.`,
+    );
+  const linkTarget = await fs.readlink(alias),
+    targetPath = await fs.realpath(alias),
+    identityValue = {
+      invocationPath: alias,
+      linkTarget,
+      targetPath,
+      targetSha256: await shaFile(targetPath),
+    };
+  await assertXcodeInvocationAliasIdentity(
+    identityValue,
+    targetIdentity,
+    invocationName,
+    targetName,
+  );
+  return identityValue;
+}
+
+async function assertXcodeInvocationAliasIdentity(
+  identityValue,
+  targetIdentity,
+  invocationName,
+  targetName,
 ) {
   const invocation = path.resolve(identityValue.invocationPath),
     canonicalInvocation = path.join(
@@ -70,18 +130,18 @@ export async function assertXcodeRanlibIdentity(
     info = await fs.lstat(invocation);
   if (
     canonicalInvocation !== identityValue.invocationPath ||
-    path.basename(invocation) !== "ranlib" ||
+    path.basename(invocation) !== invocationName ||
     !bundleRoot.endsWith(".app") ||
     !info.isSymbolicLink() ||
-    identityValue.linkTarget !== "libtool" ||
+    identityValue.linkTarget !== targetName ||
     (await fs.readlink(invocation)) !== identityValue.linkTarget ||
     path.join(directory, identityValue.linkTarget) !==
       identityValue.targetPath ||
     (await fs.realpath(invocation)) !== identityValue.targetPath ||
-    identityValue.targetPath !== libtoolIdentity.path ||
-    identityValue.targetSha256 !== libtoolIdentity.sha256
+    identityValue.targetPath !== targetIdentity.path ||
+    identityValue.targetSha256 !== targetIdentity.sha256
   )
-    throw new Error("Xcode ranlib alias identity mismatch.");
+    throw new Error(`Xcode ${invocationName} alias identity mismatch.`);
   await assertTrustedExecutableIdentity({
     path: identityValue.targetPath,
     sha256: identityValue.targetSha256,
@@ -118,12 +178,16 @@ export async function verifyTrustedToolDirectory(record, directory) {
       throw new Error(`Trusted native tool link mismatch: ${name}`);
     if (name === "ranlib")
       await assertXcodeRanlibIdentity(identityValue, record.tools.libtool);
+    else if (name === "c++")
+      await assertXcodeClangCxxIdentity(identityValue, record.tools.cCompiler);
     else await assertTrustedExecutableIdentity(identityValue);
   }
 }
 
 function invocationPath(name, identityValue) {
-  return name === "ranlib" ? identityValue.invocationPath : identityValue.path;
+  return name === "ranlib" || name === "c++"
+    ? identityValue.invocationPath
+    : identityValue.path;
 }
 
 function toolEntries(record) {

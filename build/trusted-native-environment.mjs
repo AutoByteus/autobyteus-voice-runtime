@@ -7,13 +7,16 @@ import {
 } from "../benchmark/darwin-arm64-preflight-contract.mjs";
 import {
   assertTrustedExecutableIdentity,
+  assertXcodeClangCxxIdentity,
   assertXcodeRanlibIdentity,
   canonicalExecutablePath,
 } from "./native-tool-identities.mjs";
 export {
   assertTrustedExecutableIdentity,
+  assertXcodeClangCxxIdentity,
   assertXcodeRanlibIdentity,
   canonicalExecutablePath,
+  captureXcodeClangCxxIdentity,
   captureXcodeRanlibIdentity,
   materializeTrustedToolDirectory,
   verifyTrustedToolDirectory,
@@ -150,7 +153,6 @@ export async function verifyTrustedNativeBuildEnvironment(record) {
     "node",
     "cmake",
     "cCompiler",
-    "cxxCompiler",
     "archiver",
     "linker",
     "libtool",
@@ -160,6 +162,10 @@ export async function verifyTrustedNativeBuildEnvironment(record) {
     "tar",
   ])
     await assertTrustedExecutableIdentity(record.tools[tool]);
+  await assertXcodeClangCxxIdentity(
+    record.tools.cxxCompiler,
+    record.tools.cCompiler,
+  );
   await assertXcodeRanlibIdentity(record.tools.ranlib, record.tools.libtool);
   const settings = path.join(record.tools.sdk.path, "SDKSettings.json");
   if ((await shaFile(settings)) !== record.tools.sdk.settingsSha256)

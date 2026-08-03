@@ -67,6 +67,11 @@ test("the production environment owner accepts the preflight CMake symlink", asy
       environment: {},
     });
     assert.equal(record.tools.cmake.path, await fs.realpath(tool));
+    assert.match(record.tools.cxxCompiler.invocationPath, /\/clang\+\+$/);
+    assert.equal(
+      record.tools.cxxCompiler.targetPath,
+      record.tools.cCompiler.path,
+    );
     assert.match(record.tools.ranlib.invocationPath, /\/ranlib$/);
     assert.equal(record.tools.ranlib.targetPath, record.tools.libtool.path);
     assert.equal(record.tools.sed.path, await fs.realpath("/usr/bin/sed"));
@@ -279,6 +284,16 @@ test("the trusted PATH is closed and rechecks every selected tool", async () => 
       identity.path = await fs.realpath(identity.path);
       identity.sha256 = await shaFile(identity.path);
     }
+    record.tools.cxxCompiler.invocationPath = path.join(
+      path.dirname(record.tools.cCompiler.path),
+      "clang++",
+    );
+    record.tools.cxxCompiler.targetPath = record.tools.cCompiler.path;
+    record.tools.cxxCompiler.targetSha256 = record.tools.cCompiler.sha256;
+    await fs.symlink(
+      record.tools.cxxCompiler.linkTarget,
+      record.tools.cxxCompiler.invocationPath,
+    );
     record.tools.ranlib.invocationPath = path.join(
       path.dirname(record.tools.libtool.path),
       "ranlib",
@@ -300,6 +315,17 @@ test("the trusted PATH is closed and rechecks every selected tool", async () => 
       /tool directory is not closed/,
     );
     await fs.rm(path.join(tools, "unbound-tool"));
+
+    const cxxLink = path.join(tools, "c++");
+    await fs.rm(cxxLink);
+    await fs.symlink(record.tools.cxxCompiler.targetPath, cxxLink);
+    await assert.rejects(
+      verifyTrustedToolDirectory(record, tools),
+      /Trusted native tool link mismatch: c\+\+/,
+    );
+    await fs.rm(cxxLink);
+    await fs.symlink(record.tools.cxxCompiler.invocationPath, cxxLink);
+
     await fs.writeFile(record.tools.sed.path, "changed\n", { mode: 0o755 });
     await assert.rejects(
       verifyTrustedToolDirectory(record, tools),
@@ -334,7 +360,7 @@ test("trusted executable bytes and explicit CMake configuration are bound", asyn
       "-DCMAKE_BUILD_TYPE=Release",
       `-DCMAKE_MAKE_PROGRAM=${record.tools.make.path}`,
       `-DCMAKE_C_COMPILER=${record.tools.cCompiler.path}`,
-      `-DCMAKE_CXX_COMPILER=${record.tools.cxxCompiler.path}`,
+      `-DCMAKE_CXX_COMPILER=${record.tools.cxxCompiler.invocationPath}`,
       `-DCMAKE_AR=${record.tools.archiver.path}`,
       `-DCMAKE_RANLIB=${record.tools.ranlib.invocationPath}`,
       `-DCMAKE_LINKER=${record.tools.linker.path}`,
@@ -363,6 +389,7 @@ test("resolved CMake selection must match the bound environment", async () => {
     const record = fixtureRecord(temp),
       cache = ({
         cxxFlags = "",
+        cxxCompiler = record.tools.cxxCompiler.invocationPath,
         ranlib = record.tools.ranlib.invocationPath,
       } = {}) =>
         `${Object.entries({
@@ -370,7 +397,7 @@ test("resolved CMake selection must match the bound environment", async () => {
           CMAKE_BUILD_TYPE: record.configuration.buildType,
           CMAKE_MAKE_PROGRAM: record.tools.make.path,
           CMAKE_C_COMPILER: record.tools.cCompiler.path,
-          CMAKE_CXX_COMPILER: record.tools.cxxCompiler.path,
+          CMAKE_CXX_COMPILER: cxxCompiler,
           CMAKE_AR: record.tools.archiver.path,
           CMAKE_RANLIB: ranlib,
           CMAKE_LINKER: record.tools.linker.path,
@@ -401,6 +428,14 @@ test("resolved CMake selection must match the bound environment", async () => {
     await assert.rejects(
       verifyResolvedCmakeConfiguration(record, temp),
       /Resolved CMake configuration mismatch: CMAKE_RANLIB/,
+    );
+    await fs.writeFile(
+      path.join(temp, "CMakeCache.txt"),
+      cache({ cxxCompiler: record.tools.cxxCompiler.targetPath }),
+    );
+    await assert.rejects(
+      verifyResolvedCmakeConfiguration(record, temp),
+      /Resolved CMake configuration mismatch: CMAKE_CXX_COMPILER/,
     );
   } finally {
     await fs.rm(temp, { recursive: true, force: true });
@@ -448,6 +483,7 @@ function fixtureRecord(rootPath) {
       rootPath,
       "FixtureXcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
     ),
+    clang = tool(path.join(xcodeBin, "clang")),
     libtool = tool(path.join(xcodeBin, "libtool"));
   return {
     schemaVersion: 1,
@@ -456,8 +492,13 @@ function fixtureRecord(rootPath) {
     tools: {
       node: tool("node"),
       cmake: tool("cmake"),
-      cCompiler: tool("clang"),
-      cxxCompiler: tool("clang++"),
+      cCompiler: clang,
+      cxxCompiler: {
+        invocationPath: path.join(xcodeBin, "clang++"),
+        linkTarget: "clang",
+        targetPath: clang.path,
+        targetSha256: clang.sha256,
+      },
       archiver: tool("ar"),
       ranlib: {
         invocationPath: path.join(xcodeBin, "ranlib"),

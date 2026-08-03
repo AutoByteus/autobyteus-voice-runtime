@@ -16,6 +16,7 @@ import {
 import { verifyGoToolchain } from "../build/locked-inputs.mjs";
 import {
   canonicalExecutablePath,
+  captureXcodeClangCxxIdentity,
   captureXcodeRanlibIdentity,
 } from "../build/native-tool-identities.mjs";
 import {
@@ -106,6 +107,7 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       throw blocked("runner-power-or-pressure");
     record.performanceEnvironment = await capturePerformanceEnvironment();
     const sudoExecutable = await capturePinnedSudoIdentity(),
+      appleClangExecutable = await executableIdentity(clangPath),
       appleLibtoolExecutable = await executableIdentity(libtoolPath);
     record.tools = {
       node: process.version,
@@ -115,8 +117,11 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       cmake: cmakeVersion.split("\n")[0],
       cmakeExecutable: await executableIdentity(path.resolve(cmake)),
       appleClang: clang.split("\n")[0],
-      appleClangExecutable: await executableIdentity(clangPath),
-      appleClangCxxExecutable: await executableIdentity(clangCxxPath),
+      appleClangExecutable,
+      appleClangCxxExecutable: await xcodeClangCxxIdentity(
+        clangCxxPath,
+        appleClangExecutable,
+      ),
       appleArExecutable: await executableIdentity(arPath),
       appleRanlibExecutable: await xcodeRanlibIdentity(
         ranlibPath,
@@ -274,6 +279,14 @@ async function executableIdentity(executable) {
 async function xcodeRanlibIdentity(executable, libtoolIdentity) {
   try {
     return await captureXcodeRanlibIdentity(executable, libtoolIdentity);
+  } catch {
+    throw blocked("toolchain-command-identity");
+  }
+}
+
+async function xcodeClangCxxIdentity(executable, cCompilerIdentity) {
+  try {
+    return await captureXcodeClangCxxIdentity(executable, cCompilerIdentity);
   } catch {
     throw blocked("toolchain-command-identity");
   }
