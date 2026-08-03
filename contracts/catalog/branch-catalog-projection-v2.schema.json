@@ -8,6 +8,7 @@
     "sourceCommit",
     "packageVersion",
     "releaseMatrix",
+    "profileResourcePolicy",
     "qualificationSet",
     "performanceAssessments",
     "entries",
@@ -53,6 +54,9 @@
       "items": {
         "$ref": "#/$defs/performanceAssessment"
       }
+    },
+    "profileResourcePolicy": {
+      "$ref": "#/$defs/policyIdentity"
     }
   },
   "$defs": {
@@ -267,7 +271,13 @@
     "performanceAssessment": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["profileId", "fileName", "sha256", "classification"],
+      "required": [
+        "profileId",
+        "fileName",
+        "sha256",
+        "classification",
+        "resourcePolicySha256"
+      ],
       "properties": {
         "profileId": {
           "enum": ["english", "chinese"]
@@ -284,6 +294,25 @@
             "controlled-miss",
             "loaded-host-observation"
           ]
+        },
+        "resourcePolicySha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "policyIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "fileName", "sha256"],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-profile-resource-policy-v1"
+        },
+        "fileName": {
+          "const": "profile-resource-policy-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
         }
       }
     }

@@ -1,13 +1,34 @@
 {
-  "schemaVersion": 1,
-  "baselineId": "chinese-promoted-baseline-v1",
+  "schemaVersion": 2,
+  "baselineId": "chinese-promoted-baseline-v2",
   "profileId": "chinese",
-  "metric": "CER",
-  "corpusManifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
-  "configurationDigest": "7b2ed57eca281a71bfdeb134b31bbf5e8a17384dcb975daa3eb8627aa0afb688",
   "providerId": "autobyteus.voice.funasr-nano-q8",
   "modelId": "fun-asr-nano-gguf-q8",
+  "configurationDigest": "7b2ed57eca281a71bfdeb134b31bbf5e8a17384dcb975daa3eb8627aa0afb688",
+  "metric": "CER",
+  "scoringContract": {
+    "id": "autobyteus-chinese-cer-selection-comparable-v1",
+    "fileName": "chinese-cer-scoring-contract-v1.json",
+    "sha256": "7ca1743cad4e209d9c04068c334ab4fa2e9e5932d093f7b82f888f7a67207af5"
+  },
+  "corpus": {
+    "id": "fleurs-simplified-mandarin-profile-v2",
+    "manifestPath": "evidence/chinese-qualification-v2/chinese-v2.corpus.json",
+    "manifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+    "sampleCount": 200
+  },
+  "source": {
+    "rawResultPath": "evidence/backend-selection/results/profile-v2-funasr-nano-q8-zh.json",
+    "rawResultSha256": "84568c53e908e1538ab55b5aa046804e2e7444386225b791de11a148239f8b48",
+    "promotedQualityPath": "evidence/backend-selection/results/quality-profile-v2-funasr-nano-q8-zh.json",
+    "promotedQualitySha256": "c7229574bad3ee199d43e1ee146c61e65514fa2c2ba514d7358ff40134f64089",
+    "derivationPath": "evidence/chinese-qualification-v2/derive_chinese_qualification_v2.mjs",
+    "derivationSha256": "ad31e98adac60147163359a6b24758a72a767d7deefcedc6aca69c2aa53e91fe"
+  },
+  "errors": 343,
+  "units": 6580,
   "value": 0.052127659574468084,
+  "sampleCount": 200,
   "results": [
     {
       "clipId": "fleurs-zh-1660-r235",

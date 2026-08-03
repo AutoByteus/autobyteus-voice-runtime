@@ -129,8 +129,7 @@ jobs:
             --source-commit "$GITHUB_SHA" --runner-commit "$GITHUB_SHA" \
             --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
             --preflight "$DIR/darwin-arm64-preflight-v2.json" --output "$DIR/conditions-input.json"
-          BASELINE=release/evidence/baselines/${{ matrix.profile }}-v1.json
-          test "${{ matrix.profile }}" != english || BASELINE=release/evidence/baselines/english-v2.json
+          BASELINE=release/evidence/baselines/${{ matrix.profile }}-v2.json
           node benchmark/run-profile-qualification.mjs \
             --archive "out/assets/$ARCHIVE" --build-report "out/assets/$ARCHIVE.build.json" \
             --corpus "$VOICE_CORPUS_ROOT/${{ matrix.profile }}/corpus-v1.json" --baseline "$BASELINE" \

@@ -46,7 +46,9 @@ export async function assembleReleaseEvidence({
   if (
     qset.functionalDecision !== "pass" ||
     qset.packageVersion !== runtimeVersion ||
-    qset.releaseMatrix.sha256 !== matrix.sha256
+    qset.releaseMatrix.sha256 !== matrix.sha256 ||
+    JSON.stringify(qset.profileResourcePolicy) !==
+      JSON.stringify(matrix.value.profileResourcePolicy)
   )
     throw new Error("Integrated Qualification Set release binding mismatch.");
   assertExactMatrixRows(matrix.value, qset.profiles);
@@ -81,6 +83,7 @@ export async function assembleReleaseEvidence({
     runnerCommit: qset.runnerCommit,
     testCommit: qset.testCommit,
     releaseMatrix: qset.releaseMatrix,
+    profileResourcePolicy: qset.profileResourcePolicy,
     qualificationSet: {
       fileName: "qualification-set-v2.json",
       sizeBytes: qsetInfo.size,

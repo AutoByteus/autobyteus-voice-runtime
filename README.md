@@ -91,6 +91,20 @@ Performance Assessment 1 that content-binds that Summary. Qualification Set 2
 binds both before the independently verified Branch Catalog Projection 2, with no release
 tag, URL, maintained-main, or public status.
 
+Product-facing Chinese `normalizedText` remains governed by
+`autobyteus-simplified-zh-v1`. Quality comparison instead consumes retained raw
+reference and raw hypothesis through the frozen, checksum-bound
+`autobyteus-chinese-cer-selection-comparable-v1` scorer. Active Chinese v2 trust
+recomputes all 200 historical rows to the unchanged 343/6580 baseline before any
+candidate comparison; the unbound v1 baseline is not an active input.
+
+The Current Release Matrix binds one exact Profile Resource Policy. English has
+a 2.5 GiB hard process-tree RSS ceiling. Chinese has a 4.0 GiB hard ceiling and
+a separate 2.5 GiB Assessment-only optimization target. Summary 2 owns the hard
+result; Performance Assessment 1 records optimization status without changing a
+passing functional decision. QSet, branch projection, and release evidence carry
+the same policy digest instead of restating a global RSS literal.
+
 Every trial is written to `qualification-attempts-v1.json` before provider
 work starts and is atomically updated with its outcome. A timeout, process
 loss, malformed frame, write failure, or other qualification failure retains
@@ -106,7 +120,8 @@ uploads exactly the two archives, evidence, catalog, and manifest. Published
 byte verification is a separate always-recorded result; a failed result may
 delete only the GitHub Release object/assets while preserving the tag.
 
-Qualification uses the repository-owned English-v2 and Chinese baselines. The
+Qualification uses the repository-owned English-v2 and scoring-bound Chinese-v2
+baselines. The
 external audio tree must carry a byte-identical copy of the applicable manifest
 in `release/evidence/qualification-corpora/`. On the M1 Max reference runner,
 every filesystem-cold trial executes the pinned `sudo -n purge` procedure before

@@ -18,6 +18,7 @@ import { verifyProfileQualificationEvidence } from "./profile-qualification-veri
 import { verifyExactProviderArchiveSet } from "../provider-archive-set.mjs";
 import { verifyPerformanceAssessment } from "../../benchmark/performance-assessment.mjs";
 import { assertCompletePerformanceSamples } from "../../benchmark/performance-observation.mjs";
+import { loadProfileResourcePolicy } from "../../benchmark/profile-resource-policy.mjs";
 
 export async function assembleQualificationSet({
   qualifications,
@@ -31,6 +32,7 @@ export async function assembleQualificationSet({
     if (!/^(?!0{40})[a-f0-9]{40}$/.test(value))
       throw new Error("Qualification Set commit identity invalid.");
   const matrix = await loadCurrentReleaseMatrix(),
+    policy = await loadProfileResourcePolicy(),
     files = await find(
       path.resolve(qualifications),
       "qualification-summary-v2.json",
@@ -64,6 +66,25 @@ export async function assembleQualificationSet({
       ),
     );
   }
+  for (const profile of profiles) {
+    const assessment = profile.performanceAssessment;
+    const expectedRow = policy.value.rows.find(
+      (row) => matrixEntryKey(row) === matrixEntryKey(profile),
+    );
+    if (
+      profile.resourcePolicy.policyId !==
+        matrix.value.profileResourcePolicy.policyId ||
+      profile.resourcePolicy.sha256 !==
+        matrix.value.profileResourcePolicy.sha256 ||
+      profile.resourcePolicy.row.profileId !== profile.profileId ||
+      profile.resourcePolicy.row.platform !== profile.platform ||
+      profile.resourcePolicy.row.architecture !== profile.architecture ||
+      JSON.stringify(profile.resourcePolicy.row) !==
+        JSON.stringify(expectedRow) ||
+      assessment.resourcePolicySha256 !== profile.resourcePolicy.sha256
+    )
+      throw new Error("Qualification Set resource-policy binding mismatch.");
+  }
   await verifyExactProviderArchiveSet(
     assets,
     profiles.map((profile) => profile.archive),
@@ -81,6 +102,7 @@ export async function assembleQualificationSet({
       matrixId: matrix.value.matrixId,
       sha256: matrix.sha256,
     },
+    profileResourcePolicy: matrix.value.profileResourcePolicy,
     profiles,
     functionalDecision,
     performanceAssessment,
@@ -263,6 +285,7 @@ async function passingProfile(entry, item, assets, performance, assessment) {
       sha256: await shaFile(item.file),
     },
     performanceAssessment: await assessmentIdentity(item, assessment),
+    resourcePolicy: q.resourcePolicy,
     runtimeConformanceSha256: q.runtimeConformanceSha256,
     qualificationAttemptsSha256: q.rawEvidence.qualificationAttempts.sha256,
     attempts: q.attempts,
@@ -310,6 +333,7 @@ async function nonPassingProfile({
       sha256: await shaFile(item.file),
     },
     performanceAssessment: await assessmentIdentity(item, assessment),
+    resourcePolicy: q.resourcePolicy,
     qualificationAttemptsSha256: q.rawEvidence.qualificationAttempts.sha256,
     performanceSamplesSha256: q.rawEvidence.performanceSamples.sha256,
     rawResultsSha256: q.rawEvidence.rawResults.sha256,
@@ -353,6 +377,7 @@ async function assessmentIdentity(item, assessment) {
       path.join(path.dirname(item.file), "performance-assessment-v1.json"),
     ),
     classification: assessment.assessment,
+    resourcePolicySha256: assessment.resourcePolicy.sha256,
   };
 }
 
@@ -370,7 +395,9 @@ export function enforceFunctionalGates(q, performance) {
     q.attempts.timedOut ||
     q.attempts.excluded ||
     q.maxRssBytes <= 0 ||
-    q.maxRssBytes > 2684354560 ||
+    q.resourcePolicy.observedPeakProcessTreeRssBytes !== q.maxRssBytes ||
+    q.resourcePolicy.hardCeilingMet !== true ||
+    q.maxRssBytes > q.resourcePolicy.row.hardProcessTreeRssCeilingBytes ||
     q.extractedSizeBytes > 1342177280 ||
     q.quality.failedCount ||
     q.quality.emptyCount ||

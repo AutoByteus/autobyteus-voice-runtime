@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "policyId", "matrixId", "rows"],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "policyId": {
+      "const": "voice-runtime-profile-resource-policy-v1"
+    },
+    "matrixId": {
+      "const": "voice-runtime-darwin-arm64-v1"
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/english"
+        },
+        {
+          "$ref": "#/$defs/chinese"
+        }
+      ],
+      "items": false
+    }
+  },
+  "$defs": {
+    "core": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "platform",
+        "architecture",
+        "hardProcessTreeRssCeilingBytes",
+        "assessmentOptimizationTargetBytes"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "hardProcessTreeRssCeilingBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "assessmentOptimizationTargetBytes": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "english": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/core"
+        },
+        {
+          "properties": {
+            "profileId": {
+              "const": "english"
+            },
+            "hardProcessTreeRssCeilingBytes": {
+              "const": 2684354560
+            },
+            "assessmentOptimizationTargetBytes": {
+              "const": 2684354560
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "chinese": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/core"
+        },
+        {
+          "properties": {
+            "profileId": {
+              "const": "chinese"
+            },
+            "hardProcessTreeRssCeilingBytes": {
+              "const": 4294967296
+            },
+            "assessmentOptimizationTargetBytes": {
+              "const": 2684354560
+            }
+          },
+          "type": "object"
+        }
+      ]
+    }
+  }
+}

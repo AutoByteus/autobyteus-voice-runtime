@@ -58,7 +58,9 @@ export async function verifyBranchCatalogProjection({
     if (
       qset.functionalDecision !== "pass" ||
       qset.releaseMatrix.matrixId !== matrix.value.matrixId ||
-      qset.releaseMatrix.sha256 !== matrix.sha256
+      qset.releaseMatrix.sha256 !== matrix.sha256 ||
+      JSON.stringify(qset.profileResourcePolicy) !==
+        JSON.stringify(matrix.value.profileResourcePolicy)
     )
       throw categorized("qualification-set-mismatch");
     assertExactMatrixRows(matrix.value, qset.profiles);
@@ -79,6 +81,7 @@ export async function verifyBranchCatalogProjection({
       sourceCommit: qset.sourceCommit,
       packageVersion: qset.packageVersion,
       releaseMatrix: qset.releaseMatrix,
+      profileResourcePolicy: qset.profileResourcePolicy,
       qualificationSet: {
         fileName: "qualification-set-v2.json",
         sha256: result.qualificationSetSha256,

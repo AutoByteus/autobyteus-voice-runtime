@@ -10,6 +10,7 @@
     "testCommit",
     "packageVersion",
     "releaseMatrix",
+    "profileResourcePolicy",
     "profiles",
     "functionalDecision",
     "performanceAssessment"
@@ -50,6 +51,9 @@
     },
     "performanceAssessment": {
       "enum": ["controlled-pass", "controlled-miss", "loaded-host-observation"]
+    },
+    "profileResourcePolicy": {
+      "$ref": "#/$defs/policyIdentity"
     }
   },
   "$defs": {
@@ -226,6 +230,7 @@
         "outcomes",
         "qualificationSummary",
         "performanceAssessment",
+        "resourcePolicy",
         "functionalDecision"
       ],
       "properties": {
@@ -404,7 +409,12 @@
         "performanceAssessment": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["fileName", "sha256", "classification"],
+          "required": [
+            "fileName",
+            "sha256",
+            "classification",
+            "resourcePolicySha256"
+          ],
           "properties": {
             "fileName": {
               "const": "performance-assessment-v1.json"
@@ -418,11 +428,17 @@
                 "controlled-miss",
                 "loaded-host-observation"
               ]
+            },
+            "resourcePolicySha256": {
+              "$ref": "#/$defs/sha"
             }
           }
         },
         "functionalDecision": {
           "const": "pass"
+        },
+        "resourcePolicy": {
+          "$ref": "#/$defs/resourcePolicy"
         }
       }
     },
@@ -451,6 +467,7 @@
         "failureCategory",
         "qualificationSummary",
         "performanceAssessment",
+        "resourcePolicy",
         "functionalDecision"
       ],
       "properties": {
@@ -528,7 +545,12 @@
         "performanceAssessment": {
           "type": "object",
           "additionalProperties": false,
-          "required": ["fileName", "sha256", "classification"],
+          "required": [
+            "fileName",
+            "sha256",
+            "classification",
+            "resourcePolicySha256"
+          ],
           "properties": {
             "fileName": {
               "const": "performance-assessment-v1.json"
@@ -542,11 +564,89 @@
                 "controlled-miss",
                 "loaded-host-observation"
               ]
+            },
+            "resourcePolicySha256": {
+              "$ref": "#/$defs/sha"
             }
           }
         },
         "functionalDecision": {
           "enum": ["fail", "blocked"]
+        },
+        "resourcePolicy": {
+          "$ref": "#/$defs/resourcePolicy"
+        }
+      }
+    },
+    "policyIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "fileName", "sha256"],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-profile-resource-policy-v1"
+        },
+        "fileName": {
+          "const": "profile-resource-policy-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "resourcePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyId",
+        "sha256",
+        "row",
+        "observedPeakProcessTreeRssBytes",
+        "hardCeilingMet"
+      ],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-profile-resource-policy-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "row": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "profileId",
+            "platform",
+            "architecture",
+            "hardProcessTreeRssCeilingBytes",
+            "assessmentOptimizationTargetBytes"
+          ],
+          "properties": {
+            "profileId": {
+              "enum": ["english", "chinese"]
+            },
+            "platform": {
+              "const": "darwin"
+            },
+            "architecture": {
+              "const": "arm64"
+            },
+            "hardProcessTreeRssCeilingBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "assessmentOptimizationTargetBytes": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "observedPeakProcessTreeRssBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hardCeilingMet": {
+          "type": "boolean"
         }
       }
     }

@@ -34,7 +34,9 @@ export async function composeBranchCatalogProjection({
   if (
     qset.functionalDecision !== "pass" ||
     qset.releaseMatrix.matrixId !== matrix.value.matrixId ||
-    qset.releaseMatrix.sha256 !== matrix.sha256
+    qset.releaseMatrix.sha256 !== matrix.sha256 ||
+    JSON.stringify(qset.profileResourcePolicy) !==
+      JSON.stringify(matrix.value.profileResourcePolicy)
   )
     throw new Error("Branch projection Qualification Set binding mismatch.");
   assertExactMatrixRows(matrix.value, qset.profiles);
@@ -55,6 +57,7 @@ export async function composeBranchCatalogProjection({
     sourceCommit: qset.sourceCommit,
     packageVersion: qset.packageVersion,
     releaseMatrix: qset.releaseMatrix,
+    profileResourcePolicy: qset.profileResourcePolicy,
     qualificationSet: {
       fileName: "qualification-set-v2.json",
       sha256: await shaFile(qualificationSetPath),

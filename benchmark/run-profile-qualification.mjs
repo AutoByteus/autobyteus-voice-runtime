@@ -7,8 +7,12 @@ import { ProviderProcessSession } from "./provider-process-session.mjs";
 import { measureWithRss } from "./rss-sampler.mjs";
 import { proveRuntimeConformance } from "./runtime-conformance.mjs";
 import { validateCorpus } from "./corpus/validate-corpus.mjs";
-import { errorRate } from "./scoring/error-rate.mjs";
-import { normalizeTranscript } from "./scoring/normalization.mjs";
+import {
+  qualificationScoringAuthority,
+  scoreQualificationResult,
+} from "./scoring/qualification-scoring.mjs";
+import { resolveProfileResourcePolicy } from "./profile-resource-policy.mjs";
+import { proveProductNormalization } from "./product-normalization-proof.mjs";
 import { validateQualificationBaseline } from "./baseline/qualification-baseline.mjs";
 import { executeCacheProcedure } from "./cache-procedure.mjs";
 import {
@@ -37,7 +41,6 @@ import {
   parsePairs,
   readJson,
   removeWritableTree,
-  ROOT,
   shaFile,
   writeJson,
 } from "../build/lib/files.mjs";
@@ -67,12 +70,16 @@ if (
 )
   throw new Error("Corpus/profile/source mismatch.");
 await validateQualificationConditions(conditions, args.conditions, build);
-const normalizationFixtures = await proveNormalization(),
+const normalizationFixtures = await proveProductNormalization(),
   baselineTrust = await validateQualificationBaseline(
     baseline,
     args.baseline,
     corpus,
     build,
+  ),
+  resourcePolicy = await resolveProfileResourcePolicy(
+    build.profileId,
+    `${build.target.platform}-${build.target.architecture}`,
   ),
   actual = {
     platform: process.platform,
@@ -371,9 +378,11 @@ async function runWarmAndQualityTrials(state) {
           outcome: result.outcome,
         });
       if (index < corpus.manifest.clips.length) {
-        const scored = errorRate(clip.reference, result.normalizedText, {
-          metric: corpus.manifest.metric,
+        const scored = scoreQualificationResult({
           profileId: build.profileId,
+          metric: corpus.manifest.metric,
+          rawReference: clip.reference,
+          rawHypothesis: result.rawText,
         });
         state.raw.push({
           clipId: clip.id,
@@ -445,6 +454,8 @@ async function writeEvidence(state, decision, failureCategory) {
     corpus,
     baseline,
     baselineTrust,
+    scoringAuthority: qualificationScoringAuthority(build.profileId),
+    resourcePolicy,
     compliancePath: state.compliancePath,
     archivePath: path.resolve(args.archive),
     buildReportPath: state.buildReportPath,
@@ -497,16 +508,4 @@ async function createSession(root, base, temporary, deadlines) {
     commandPrefix: qualificationCommandPrefix(conditions),
     deadlines,
   });
-}
-
-async function proveNormalization() {
-  const fixtures = await readJson(
-    path.join(ROOT, "contracts/normalization/fixtures-v1.json"),
-  );
-  for (const fixture of fixtures.fixtures)
-    if (
-      normalizeTranscript(fixture.raw, fixture.profileId) !== fixture.normalized
-    )
-      throw new Error(`Normalization fixture failed: ${fixture.id}`);
-  return true;
 }

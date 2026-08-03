@@ -132,7 +132,11 @@ async function buildPerformanceAssessment({
     assertCompletePerformanceSamples(samples);
   const metrics = buildPerformanceMetrics(samples),
     performanceEnvironment = preflight.performanceEnvironment.classification,
-    assessment = classifyPerformanceAssessment(performanceEnvironment, metrics);
+    assessment = classifyPerformanceAssessment(performanceEnvironment, metrics),
+    resourceOptimization = buildResourceOptimization(
+      summary.resourcePolicy,
+      summary.maxRssBytes,
+    );
   return {
     schemaVersion: 1,
     artifactKind: "performance-assessment",
@@ -149,10 +153,28 @@ async function buildPerformanceAssessment({
     performanceEnvironment,
     attempts: attemptCounts,
     hardDeadlines: summary.hardDeadlines,
+    resourcePolicy: summary.resourcePolicy,
+    resourceOptimization,
     metrics,
     peakProcessTreeRssBytes: summary.maxRssBytes,
     extractedSizeBytes: summary.extractedSizeBytes,
     assessment,
+  };
+}
+
+export function buildResourceOptimization(resourcePolicy, observedBytes) {
+  const targetBytes = resourcePolicy?.row?.assessmentOptimizationTargetBytes;
+  if (
+    !Number.isSafeInteger(targetBytes) ||
+    targetBytes <= 0 ||
+    !Number.isSafeInteger(observedBytes) ||
+    observedBytes < 0
+  )
+    throw new Error("Resource optimization observation is invalid.");
+  return {
+    targetBytes,
+    observedPeakProcessTreeRssBytes: observedBytes,
+    targetMet: observedBytes > 0 && observedBytes <= targetBytes,
   };
 }
 

@@ -3,7 +3,7 @@
   "recipeId": "voice-english-darwin-arm64-v1",
   "releaseMatrix": {
     "matrixId": "voice-runtime-darwin-arm64-v1",
-    "sha256": "c52b409cfe1cdcd8f104f4894b40134c6f78236198cb3aa1792fb5f97e6aa7f6"
+    "sha256": "f3f57336d2598bc7c78ba0d8a10e6ad4da77c16b10274533986f29571d6de76d"
   },
   "package": {
     "profileId": "english",
@@ -449,6 +449,6 @@
     "appleClang": "17.0.0 (clang-1700.4.4.1)",
     "xcode": "26.1.1 (17B100)",
     "sdk": "macOS 26.1",
-    "repositoryLockSha256": "b0b0d3732cc25daa0e43fbe0840145fdfada400508f0d8b3072fe204321c46f8"
+    "repositoryLockSha256": "ef02d71f9646719dded7b2d3df3629e75ba16a72d392450746121f6bd14bfbc9"
   }
 }

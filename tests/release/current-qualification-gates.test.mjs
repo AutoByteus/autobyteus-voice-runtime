@@ -148,6 +148,11 @@ test("qualification contract fixes Seatbelt and exact 30/30/100 trial sets", asy
         excluded: 0,
       },
       maxRssBytes: 1024,
+      resourcePolicy: {
+        observedPeakProcessTreeRssBytes: 1024,
+        hardCeilingMet: true,
+        row: { hardProcessTreeRssCeilingBytes: 2684354560 },
+      },
       extractedSizeBytes: 1024,
       quality: {
         metric: "WER",

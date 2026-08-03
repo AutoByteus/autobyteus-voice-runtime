@@ -22,7 +22,13 @@ export async function loadCurrentReleaseMatrix(file = CURRENT_MATRIX_PATH) {
 }
 
 function assertMatrixShape(value) {
-  const topKeys = ["entries", "matrixId", "schemaVersion", "supportStatement"],
+  const topKeys = [
+      "entries",
+      "matrixId",
+      "profileResourcePolicy",
+      "schemaVersion",
+      "supportStatement",
+    ],
     entryKeys = [
       "architecture",
       "decision",
@@ -40,6 +46,14 @@ function assertMatrixShape(value) {
     value.schemaVersion !== 1 ||
     value.matrixId !== "voice-runtime-darwin-arm64-v1" ||
     value.supportStatement !== "macOS Apple Silicon only" ||
+    Object.keys(value.profileResourcePolicy ?? {})
+      .sort()
+      .join(",") !== "fileName,policyId,sha256" ||
+    value.profileResourcePolicy.policyId !==
+      "voice-runtime-profile-resource-policy-v1" ||
+    value.profileResourcePolicy.fileName !==
+      "profile-resource-policy-v1.json" ||
+    !/^[a-f0-9]{64}$/.test(value.profileResourcePolicy.sha256) ||
     !Array.isArray(value.entries) ||
     value.entries.length !== 2
   )

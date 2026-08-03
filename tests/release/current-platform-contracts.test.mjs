@@ -54,6 +54,19 @@ test("Current Release Matrix is the sole exact two-entry current authority", asy
       ],
     ],
   );
+  assert.equal(
+    matrix.value.profileResourcePolicy.policyId,
+    "voice-runtime-profile-resource-policy-v1",
+  );
+  assert.equal(
+    matrix.value.profileResourcePolicy.sha256,
+    await shaFile(
+      path.join(
+        root,
+        "contracts/qualification/profile-resource-policy-v1.json",
+      ),
+    ),
+  );
   await assert.rejects(
     fs.access(
       path.join(root, "contracts/catalog/required-profile-matrix-v1.json"),
@@ -446,6 +459,8 @@ test("workflow derives two current jobs and preserves post-publication separatio
   assert.match(workflow, /Retain qualification audit on pass, fail, or block/);
   assert.doesNotMatch(workflow, /darwin-x64|linux-x64|win32-x64/);
   assert.match(workflow, /pretag-release-manifest-v2\.json/);
+  assert.match(workflow, /baselines\/\$\{\{ matrix\.profile \}\}-v2\.json/);
+  assert.doesNotMatch(workflow, /chinese-v1/);
   assert.doesNotMatch(workflow, /pretag-release-manifest-v1\.json/);
   assert.match(workflow, /Always record published-byte verification/);
   assert.match(
@@ -478,7 +493,12 @@ async function lifecycleFixture() {
     });
   }
   const profiles = matrix.value.entries.map((entry, index) =>
-    profile(entry, files.get(entry.profileId), String(index + 1).repeat(64)),
+    profile(
+      entry,
+      files.get(entry.profileId),
+      String(index + 1).repeat(64),
+      matrix.value.profileResourcePolicy,
+    ),
   );
   const qset = {
     schemaVersion: 2,
@@ -488,6 +508,7 @@ async function lifecycleFixture() {
     testCommit: commit,
     packageVersion: "99.99.99",
     releaseMatrix: { matrixId: matrix.value.matrixId, sha256: matrix.sha256 },
+    profileResourcePolicy: matrix.value.profileResourcePolicy,
     profiles,
     functionalDecision: "pass",
     performanceAssessment: "controlled-pass",
@@ -525,7 +546,7 @@ async function lifecycleFixture() {
   };
 }
 
-function profile(entry, archive, digest) {
+function profile(entry, archive, digest, policy) {
   const hashes = [
     "recipeSha256",
     "provenanceSha256",
@@ -600,8 +621,27 @@ function profile(entry, archive, digest) {
       fileName: "performance-assessment-v1.json",
       sha256: digest,
       classification: "controlled-pass",
+      resourcePolicySha256: policy.sha256,
     },
+    resourcePolicy: resourcePolicyFixture(entry, policy.sha256),
     functionalDecision: "pass",
+  };
+}
+
+function resourcePolicyFixture(entry, policySha256) {
+  const hard = entry.profileId === "chinese" ? 4294967296 : 2684354560;
+  return {
+    policyId: "voice-runtime-profile-resource-policy-v1",
+    sha256: policySha256,
+    row: {
+      profileId: entry.profileId,
+      platform: entry.platform,
+      architecture: entry.architecture,
+      hardProcessTreeRssCeilingBytes: hard,
+      assessmentOptimizationTargetBytes: 2684354560,
+    },
+    observedPeakProcessTreeRssBytes: 100,
+    hardCeilingMet: true,
   };
 }
 

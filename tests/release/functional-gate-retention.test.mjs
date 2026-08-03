@@ -13,6 +13,8 @@ import {
   assertPassingQualificationSet,
 } from "../../release/evidence/qualification-set.mjs";
 import { loadCurrentReleaseMatrix } from "../../release/current-release-matrix.mjs";
+import { resolveProfileResourcePolicy } from "../../benchmark/profile-resource-policy.mjs";
+import { CHINESE_SCORING_AUTHORITY } from "../../benchmark/scoring/chinese-qualification.mjs";
 import { readJson, shaFile, writeJson } from "../../build/lib/files.mjs";
 import { passingDarwinPreflightFixture } from "../fixtures/passing-darwin-preflight.mjs";
 
@@ -133,6 +135,8 @@ async function writeQualityFailureFixture({
       providerId: entry.providerId,
       modelId: entry.modelId,
       value: 0,
+      errors: entry.profileId === "chinese" ? 0 : undefined,
+      units: entry.profileId === "chinese" ? sampleCount * 10 : undefined,
       results: baselineResults,
     };
   await writeJson(baselinePath, baseline);
@@ -180,6 +184,12 @@ async function writeQualityFailureFixture({
           corpusManifestSha256: "3".repeat(64),
         },
       },
+      resourcePolicy: await resolveProfileResourcePolicy(
+        entry.profileId,
+        "darwin-arm64",
+      ),
+      scoringAuthority:
+        entry.profileId === "chinese" ? CHINESE_SCORING_AUTHORITY : null,
       compliancePath,
       archivePath,
       buildReportPath,

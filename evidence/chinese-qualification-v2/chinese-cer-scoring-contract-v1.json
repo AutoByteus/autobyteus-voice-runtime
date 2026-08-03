@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "contractId": "autobyteus-chinese-cer-selection-comparable-v1",
+  "metric": "CER",
+  "authorityRole": "qualification-comparison-only",
+  "runtimeOutputContractId": "autobyteus-simplified-zh-v1",
+  "separationRule": "Runtime normalizedText is product output and is tested by its own fixtures; quality scoring consumes raw reference and raw hypothesis only and never uses runtime normalizedText.",
+  "normalization": [
+    "Apply Unicode NFKC independently to the raw reference and raw hypothesis.",
+    "Apply the frozen OpenCC t2s mapping independently to each side.",
+    "Apply Unicode lowercase independently to each side.",
+    "Retain only code points in U+4E00..U+9FFF and ASCII A-Z, a-z, or 0-9; discard every other code point, including whitespace and punctuation."
+  ],
+  "unitAndDistance": {
+    "unit": "Unicode code point after normalization",
+    "distance": "Levenshtein edit distance",
+    "aggregation": "Compute errors and reference units independently per clip, then sum errors and units across the exact ordered corpus."
+  },
+  "symmetry": "The identical normalization and unit function applies to reference and hypothesis.",
+  "mapping": {
+    "fileName": "opencc-t2s-scoring-map-v1.json",
+    "sha256": "f4b8969d9f7d1814e1fa3aee13e7c65d526ddc52c79efb14f265a9cf76b0f369",
+    "sourcePackage": "opencc-js",
+    "sourceVersion": "1.4.1",
+    "sourceConfiguration": "t2cn",
+    "sourceNpmIntegrity": "sha512-2lPLcrg7cnh1ATSduOxhnk/jq6KlR6w+5Ihl4wF7Z5e5Rva4vxTyugV5rZ7EiUCOZl+EDOLetIix+BhgYDCC+A=="
+  },
+  "historicalEquivalenceGate": {
+    "sourceQualitySha256": "c7229574bad3ee199d43e1ee146c61e65514fa2c2ba514d7358ff40134f64089",
+    "requiredExactReferenceRows": 200,
+    "requiredExactHypothesisRows": 200,
+    "lockedErrors": 343,
+    "lockedUnits": 6580,
+    "lockedValue": 0.052127659574468084
+  },
+  "prohibitions": [
+    "Do not mutate a raw transcript before retaining it as evidence.",
+    "Do not score the product-facing twp-to-cn normalizedText.",
+    "Do not use different normalization for the baseline and current package.",
+    "Do not change the scoring contract, map, baseline, or threshold inside implementation or API/E2E."
+  ]
+}

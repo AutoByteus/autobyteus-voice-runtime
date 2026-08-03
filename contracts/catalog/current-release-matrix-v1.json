@@ -25,5 +25,10 @@
       "decision": "select",
       "recipeFileName": "chinese-darwin-arm64-v1.json"
     }
-  ]
+  ],
+  "profileResourcePolicy": {
+    "policyId": "voice-runtime-profile-resource-policy-v1",
+    "fileName": "profile-resource-policy-v1.json",
+    "sha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744"
+  }
 }

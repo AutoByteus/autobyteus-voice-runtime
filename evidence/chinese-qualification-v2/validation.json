@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "status": "pass",
+  "scoringContractId": "autobyteus-chinese-cer-selection-comparable-v1",
+  "scoringContractSha256": "7ca1743cad4e209d9c04068c334ab4fa2e9e5932d093f7b82f888f7a67207af5",
+  "mappingSha256": "f4b8969d9f7d1814e1fa3aee13e7c65d526ddc52c79efb14f265a9cf76b0f369",
+  "sourceDigestsVerified": true,
+  "corpusIdentityCount": 200,
+  "rawResultCount": 200,
+  "promotedQualityCount": 200,
+  "exactHistoricalNormalizationReproductions": 200,
+  "baseline": {
+    "errors": 343,
+    "units": 6580,
+    "value": 0.052127659574468084,
+    "sha256": "6172f4407c4930152c781dc5e6d4498d53b9af18e7e2f413b76fcdca86763f58"
+  },
+  "invariants": {
+    "symmetricReferenceAndHypothesisScoring": true,
+    "productionNormalizedTextIsNotScoringInput": true,
+    "rawTranscriptBytesAreNotModified": true,
+    "historicalSourceBytesAreNotModified": true
+  }
+}

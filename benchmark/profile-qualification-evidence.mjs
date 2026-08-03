@@ -5,6 +5,7 @@ import { pairedBootstrap } from "./baseline/qualification-baseline.mjs";
 import { DEADLINES } from "./provider-process-session.mjs";
 import { writePerformanceAssessment } from "./performance-assessment.mjs";
 import { assertCompletePerformanceSamples } from "./performance-observation.mjs";
+import { assertResourcePolicyObservation } from "./profile-resource-policy.mjs";
 import { readJson, ROOT, shaFile, writeJson } from "../build/lib/files.mjs";
 
 const summarySchema = await readJson(
@@ -24,6 +25,8 @@ export async function writeProfileQualificationEvidence({
   corpus,
   baseline,
   baselineTrust,
+  scoringAuthority = null,
+  resourcePolicy,
   compliancePath,
   archivePath,
   buildReportPath,
@@ -78,6 +81,10 @@ export async function writeProfileQualificationEvidence({
     quality = aggregateErrorRate(raw),
     completeQuality = raw.length === baseline.results.length,
     paired = completeQuality ? pairedBootstrap(raw, baseline.results) : null,
+    resourceObservation = assertResourcePolicyObservation(
+      resourcePolicy,
+      Math.max(0, ...rss),
+    ),
     functional = functionalOutcome({
       requestedDecision: decision,
       failureCategory,
@@ -93,7 +100,7 @@ export async function writeProfileQualificationEvidence({
       rss,
       quality,
       corpusMetric: corpus.manifest.metric,
-      maxRssBytes: Math.max(0, ...rss),
+      resourceObservation,
       normalizationFixtures,
       noPackageMutation,
       recovery,
@@ -118,6 +125,7 @@ export async function writeProfileQualificationEvidence({
     nativeBuildEnvironmentSha256: await shaFile(nativeBuildEnvironmentPath),
     releaseMatrixId: build.releaseMatrixId,
     releaseMatrixSha256: build.releaseMatrixSha256,
+    resourcePolicy: resourceObservation,
     repositoryBuildLockSha256: build.repositoryBuildLockSha256,
     goToolchainHost: build.goToolchainHost,
     goToolchainArchiveSha256: build.goToolchainArchiveSha256,
@@ -191,7 +199,10 @@ export async function writeProfileQualificationEvidence({
         trustedCatalogSha256: baselineTrust.catalogSha256,
         promotedResultSha256: baselineTrust.record.promotedResultSha256,
         corpusManifestSha256: baselineTrust.record.corpusManifestSha256,
+        errors: scoringAuthority ? baseline.errors : null,
+        units: scoringAuthority ? baseline.units : null,
       },
+      scoring: scoringAuthority,
       pairedUncertainty: paired,
       sampleCount: raw.length,
       emptyCount: raw.filter((item) => item.outcome === "no-speech").length,
@@ -247,7 +258,7 @@ function functionalOutcome({
   rss,
   quality,
   corpusMetric,
-  maxRssBytes,
+  resourceObservation,
   normalizationFixtures,
   noPackageMutation,
   recovery,
@@ -275,7 +286,7 @@ function functionalOutcome({
     raw.some((item) => item.outcome === "no-speech") ||
     quality.value > qualityLimit ||
     quality.value - baseline.value > 0.005000000001 ||
-    maxRssBytes > 2684354560 ||
+    !resourceObservation.hardCeilingMet ||
     build.archive.extractedSizeBytes > 1342177280 ||
     !normalizationFixtures ||
     !noPackageMutation ||

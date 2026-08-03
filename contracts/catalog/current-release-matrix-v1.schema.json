@@ -2,16 +2,47 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "matrixId", "supportStatement", "entries"],
+  "required": [
+    "schemaVersion",
+    "matrixId",
+    "supportStatement",
+    "profileResourcePolicy",
+    "entries"
+  ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "matrixId": { "const": "voice-runtime-darwin-arm64-v1" },
-    "supportStatement": { "const": "macOS Apple Silicon only" },
+    "schemaVersion": {
+      "const": 1
+    },
+    "matrixId": {
+      "const": "voice-runtime-darwin-arm64-v1"
+    },
+    "supportStatement": {
+      "const": "macOS Apple Silicon only"
+    },
     "entries": {
       "type": "array",
       "minItems": 2,
       "maxItems": 2,
-      "items": { "$ref": "#/$defs/entry" }
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "profileResourcePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "fileName", "sha256"],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-profile-resource-policy-v1"
+        },
+        "fileName": {
+          "const": "profile-resource-policy-v1.json"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
     }
   },
   "$defs": {
@@ -30,14 +61,33 @@
         "recipeFileName"
       ],
       "properties": {
-        "profileId": { "enum": ["english", "chinese"] },
-        "languageMode": { "enum": ["en", "zh"] },
-        "platform": { "const": "darwin" },
-        "architecture": { "const": "arm64" },
-        "packageId": { "type": "string", "minLength": 1 },
-        "providerId": { "type": "string", "minLength": 1 },
-        "modelId": { "type": "string", "minLength": 1 },
-        "decision": { "enum": ["preserve", "select"] },
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "languageMode": {
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "packageId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "decision": {
+          "enum": ["preserve", "select"]
+        },
         "recipeFileName": {
           "type": "string",
           "pattern": "^(english|chinese)-darwin-arm64-v1\\.json$"

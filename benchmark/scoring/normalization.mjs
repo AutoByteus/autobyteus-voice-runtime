@@ -133,14 +133,10 @@ export function normalizeTranscript(raw, profileId) {
   return value;
 }
 
-export function scoringUnits(value, metric, profileId) {
-  const normalized = normalizeTranscript(value, profileId).toLowerCase();
-  if (metric === "WER")
-    return normalized
-      .replace(/[^\p{L}\p{N}' ]/gu, " ")
-      .split(/\s+/)
-      .filter(Boolean);
-  if (metric === "CER")
-    return [...normalized.replace(/[\s，。！？,.!?]/gu, "")];
-  throw new Error("Unsupported metric.");
+export function englishWerUnits(value) {
+  return normalizeTranscript(value, "english")
+    .toLowerCase()
+    .replace(/[^\p{L}\p{N}' ]/gu, " ")
+    .split(/\s+/)
+    .filter(Boolean);
 }

@@ -15,6 +15,7 @@ import { verifyPerformanceAssessment } from "../../benchmark/performance-assessm
 import { qualificationSetDecision } from "../../release/evidence/qualification-set.mjs";
 import { readJson, shaFile, writeJson } from "../../build/lib/files.mjs";
 import { passingDarwinPreflightFixture } from "../fixtures/passing-darwin-preflight.mjs";
+import { resolveProfileResourcePolicy } from "../../benchmark/profile-resource-policy.mjs";
 
 test("a started timeout is durable before and after failure", async () => {
   const temp = await fs.mkdtemp(path.join(os.tmpdir(), "voice-attempt-test-"));
@@ -124,6 +125,10 @@ test("production-shaped process loss retains ledger, Summary, and Assessment bef
           corpusManifestSha256: "3".repeat(64),
         },
       },
+      resourcePolicy: await resolveProfileResourcePolicy(
+        "english",
+        "darwin-arm64",
+      ),
       compliancePath: files["package-compliance-v1.json"],
       archivePath: path.join(temp, "fixture.zip"),
       buildReportPath: files["build-report.json"],

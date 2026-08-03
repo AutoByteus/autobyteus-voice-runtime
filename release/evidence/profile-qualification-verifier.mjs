@@ -3,6 +3,14 @@ import {
   aggregateErrorRate,
   errorRate,
 } from "../../benchmark/scoring/error-rate.mjs";
+import {
+  CHINESE_SCORING_AUTHORITY,
+  scoreChineseQualification,
+} from "../../benchmark/scoring/chinese-qualification.mjs";
+import {
+  assertResourcePolicyObservation,
+  resolveProfileResourcePolicy,
+} from "../../benchmark/profile-resource-policy.mjs";
 import { assertTrustedBaseline } from "../../benchmark/baseline/trusted-baseline.mjs";
 import { pairedBootstrap } from "../../benchmark/baseline/qualification-baseline.mjs";
 import { readJson, shaFile } from "../../build/lib/files.mjs";
@@ -109,15 +117,25 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
   });
   verifyCorpusBinding(values.corpus, values.raw, summary, qualification);
   const trust = await assertTrustedBaseline({
-    baseline: values.baseline,
-    baselinePath: paths.baseline,
-    corpusManifestSha256: summary.corpus.manifestSha256,
-    profileId: summary.profileId,
-    target: "darwin-arm64",
-    metric: summary.quality.metric,
-  });
+      baseline: values.baseline,
+      baselinePath: paths.baseline,
+      corpusManifestSha256: summary.corpus.manifestSha256,
+      profileId: summary.profileId,
+      target: "darwin-arm64",
+      metric: summary.quality.metric,
+    }),
+    resourcePolicy = await resolveProfileResourcePolicy(
+      summary.profileId,
+      "darwin-arm64",
+    ),
+    resourceObservation = assertResourcePolicyObservation(
+      resourcePolicy,
+      summary.maxRssBytes,
+    );
   if (
     trust.catalogSha256 !== summary.quality.baseline.trustedCatalogSha256 ||
+    JSON.stringify(resourceObservation) !==
+      JSON.stringify(summary.resourcePolicy) ||
     values.raw.results.length !== summary.quality.sampleCount ||
     values.baseline.results.length !== summary.quality.baseline.sampleCount ||
     values.raw.results.length !== (summary.profileId === "english" ? 49 : 200)
@@ -125,10 +143,15 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
     throw new Error("Profile corpus/baseline cardinality mismatch.");
   const recomputed = values.raw.results.map((item) => ({
     ...item,
-    ...errorRate(item.reference, item.normalizedText, {
-      metric: summary.quality.metric,
-      profileId: summary.profileId,
-    }),
+    ...(summary.profileId === "chinese"
+      ? scoreChineseQualification({
+          rawReference: item.reference,
+          rawHypothesis: item.rawText,
+        })
+      : errorRate(item.reference, item.rawText, {
+          metric: summary.quality.metric,
+          profileId: summary.profileId,
+        })),
   }));
   const quality = aggregateErrorRate(recomputed),
     baselineQuality = aggregateErrorRate(values.baseline.results),
@@ -141,6 +164,10 @@ export async function verifyProfileQualificationEvidence(summary, directory) {
       units: item.units,
     }));
   if (
+    JSON.stringify(summary.quality.scoring) !==
+      JSON.stringify(
+        summary.profileId === "chinese" ? CHINESE_SCORING_AUTHORITY : null,
+      ) ||
     Math.abs(quality.value - summary.quality.value) > 1e-12 ||
     Math.abs(baselineQuality.value - summary.quality.baseline.value) > 1e-12 ||
     JSON.stringify(expectedIndex) !== JSON.stringify(values.index.results) ||

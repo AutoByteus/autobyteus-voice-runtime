@@ -5,6 +5,7 @@ import path from "node:path";
 import * as OpenCC from "opencc-js";
 import { normalizeTranscript } from "../../benchmark/scoring/normalization.mjs";
 import { errorRate } from "../../benchmark/scoring/error-rate.mjs";
+import { scoreChineseQualification } from "../../benchmark/scoring/chinese-qualification.mjs";
 test("normalization fixtures are exact", async () => {
   const value = JSON.parse(
     await fs.readFile(
@@ -21,10 +22,21 @@ test("normalization fixtures are exact", async () => {
       fixture.id,
     );
 });
-test("Chinese CER normalizes Traditional and Simplified symmetrically", () => {
+test("Chinese qualification CER is separate and symmetric", () => {
   assert.equal(
-    errorRate("軟體", "软件", { metric: "CER", profileId: "chinese" }).value,
+    scoreChineseQualification({
+      rawReference: "軟件",
+      rawHypothesis: "软件",
+    }).value,
     0,
+  );
+  assert.throws(
+    () =>
+      errorRate("軟件", "软件", {
+        metric: "CER",
+        profileId: "chinese",
+      }),
+    /versioned owner/,
   );
 });
 test("canonical dictionary pipeline matches pinned OpenCC twp-to-cn", () => {

@@ -52,6 +52,8 @@ export async function buildReleaseCatalog({
     evidence.intendedRelease.runtimeVersion !== qset.packageVersion ||
     evidence.sourceCommit !== qset.sourceCommit ||
     evidence.releaseMatrix.sha256 !== matrix.sha256 ||
+    JSON.stringify(evidence.profileResourcePolicy) !==
+      JSON.stringify(qset.profileResourcePolicy) ||
     JSON.stringify(evidence.profileQualifications) !==
       JSON.stringify(qset.profiles) ||
     JSON.stringify(evidence.expectedProviderArchives.items) !==

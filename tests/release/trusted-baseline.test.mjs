@@ -99,6 +99,54 @@ test("English v2 authority replaces invalid final v1 files without changing the 
     });
 });
 
+test("Chinese v2 trust is scoring-bound and active v1 cannot participate", async () => {
+  const { record, trustedRecord } = await loadTrustedBaseline(
+      "chinese",
+      "darwin-arm64",
+    ),
+    baseline = JSON.parse(
+      await fs.readFile(path.join(root, record.evidencePath), "utf8"),
+    );
+  assert.equal(trustedRecord.schemaVersion, 2);
+  assert.equal(record.baselineId, "chinese-promoted-baseline-v2");
+  assert.equal(record.errors, 343);
+  assert.equal(record.units, 6580);
+  assert.doesNotThrow(() =>
+    validateBaselineIdentity(
+      baseline,
+      record,
+      record.corpusManifestSha256,
+      "CER",
+    ),
+  );
+  for (const mutate of [
+    (value) => (value.schemaVersion = 1),
+    (value) => (value.scoringContract.sha256 = "0".repeat(64)),
+    (value) => (value.errors += 1),
+    (value) => (value.results[0].units += 1),
+  ]) {
+    const changed = structuredClone(baseline);
+    mutate(changed);
+    assert.throws(
+      () =>
+        validateBaselineIdentity(
+          changed,
+          record,
+          record.corpusManifestSha256,
+          "CER",
+        ),
+      /scoring-bound|count/i,
+    );
+  }
+  for (const relative of [
+    "release/evidence/qualification-corpora/chinese-v1.json",
+    "release/evidence/baselines/chinese-v1.json",
+  ])
+    await assert.rejects(fs.access(path.join(root, relative)), {
+      code: "ENOENT",
+    });
+});
+
 test("checked-in corpus and baseline require 49 unique one-to-one identities", async () => {
   const corpus = JSON.parse(
     await fs.readFile(

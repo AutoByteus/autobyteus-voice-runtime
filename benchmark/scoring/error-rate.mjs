@@ -1,7 +1,16 @@
-import { scoringUnits } from "./normalization.mjs";
+import { englishWerUnits } from "./normalization.mjs";
 export function errorRate(reference, hypothesis, { metric, profileId }) {
-  const a = scoringUnits(reference, metric, profileId),
-    b = scoringUnits(hypothesis, metric, profileId);
+  if (metric !== "WER" || profileId !== "english")
+    throw new Error(
+      "Locale-specific qualification scoring requires its versioned owner.",
+    );
+  return errorRateFromUnits(
+    englishWerUnits(reference),
+    englishWerUnits(hypothesis),
+  );
+}
+
+export function errorRateFromUnits(a, b) {
   const row = Array.from({ length: b.length + 1 }, (_, index) => index);
   for (let i = 1; i <= a.length; i++) {
     let previous = row[0];
