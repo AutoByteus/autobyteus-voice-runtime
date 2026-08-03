@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "packageId": "voice.english.whisper-small-fp16.darwin-arm64",
+  "profileId": "english",
+  "target": "darwin-arm64",
+  "decision": "fail",
+  "failureCategory": "process-loss",
+  "attempts": [
+    {
+      "sequence": 0,
+      "phase": "cold",
+      "index": 0,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+      "status": "failed",
+      "outcome": null,
+      "failureCategory": "process-loss",
+      "timeout": false,
+      "timings": {
+        "resultMs": 3988.390125
+      }
+    }
+  ]
+}

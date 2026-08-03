@@ -2,183 +2,139 @@
 
 ## Execution Round Meta
 
-- Requirements Doc: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
-- Investigation Notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
-- Design Spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Supplemental Task Artifacts: `benchmark-protocol.md`, `backend-selection-study.md`, `english-preservation-correction.md`, `current-platform-qualification.md`, `voice-runtime-contract.md`, and their referenced evidence in the solution worktree.
-- Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
-- Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
-- Architecture Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Implementation Handoff / Revision: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-handoff.md`; `implementation-revision-record.md`
-- Code Review Report / Revision: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `code-review-revision-record.md`
-- Delivery Revision Record: `N/A`
+- Requirements / Design: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`; `investigation-notes.md`; `design-spec.md`
+- Supplemental authorities: `benchmark-protocol.md`, `backend-selection-study.md`, `english-preservation-correction.md`, `current-platform-qualification.md`, `voice-runtime-contract.md`, and their referenced solution evidence.
+- Upstream revisions/reviews: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-016`, `CRR-020`, `CRR-021`.
+- Implementation / Code Review: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-handoff.md`; `implementation-revision-record.md`; `code-review-report.md`; `code-review-revision-record.md`.
 - Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID / Round: `API-REV-008 / 8`
-- Trigger: user confirmed AC power after `CRR-019` Pass for `IR-015`, reviewed source `24a994a51256f0eef5840ecdc977febec71ea491`.
-- Prior Round Reviewed: `API-REV-007 — Blocked / 86%` on AC power before package construction.
-- Latest Authoritative Round: **`API-REV-008 — Fail / 93%` at `API-F-004` in `API-VOICE-003`.**
+- Current revision / round: `API-REV-009 / 9`.
+- Reviewed source: `1d712683c70c338d8bf5074f27c8b0c9da47a8cb`.
+- Prior result: `API-REV-008 — Fail / 93%` at package manifest path validation (`API-F-004`).
+- Latest authoritative result: **`API-REV-009 — Fail / 95%` at `API-F-005` and `API-F-006` in `API-VOICE-003`.**
 
 ## Investigation And Execution Basis
 
-- Investigation completed before final execution: `Yes`; round-8 source, authority, existing-coverage, environment, fixture, and execution decisions were recorded first.
-- Investigation plan followed: `Yes`; repository checks, actual Functional Preflight 2, input/corpus validation, and canonical English construction ran in fail-closed order.
-- Existing coverage decisions revised during execution: `No`. `API-VOICE-002` and durable `API-VOICE-013` remained reusable only after exact byte comparison; no durable coverage changed.
-- Reroute required during execution: `Yes`; exact primary English construction found `API-F-004`, and downstream execution stopped.
-- No threshold/path-policy relaxation, input mutation, alternate provider/model, unsandboxed qualification, release action, or fabricated Pass was used.
+- Coverage investigation completed and updated before final execution: `Yes`.
+- Plan followed: exact source/authority -> focused/full repository checks -> actual M1 Functional Preflight 2 -> source-bound input materialization and exact corpora -> canonical English double construction/verification/reproducibility -> compliance/conditions -> actual profile qualification.
+- Existing coverage decision change: `None`; `API-VOICE-002` and durable `API-VOICE-013` remained byte-identical and reusable. IR-016 regression coverage is implementation-owned and already source-reviewed.
+- Durable API/E2E coverage changed: `No`.
+- Stop/reroute: `Yes`; the first actual cold package trial failed before hello/model loading, and terminal Summary evidence was schema-invalid. No retry, fallback, provider/model/threshold change, isolation bypass, or release action occurred.
 
 ## Compatibility / Legacy Scope Check
 
-- Invalid backward compatibility in approved scope: `No`.
-- Compatibility-only or legacy-retention behavior observed: `No`.
-- Approved persisted-data transition followed: `Yes — Not Affected`; execution used owned paths and did not touch product user state.
-- Durable compatibility-only coverage added or retained: `No`.
-- Upstream recipient: `code_reviewer` for failure-origin review, unrelated to compatibility.
+- Invalid compatibility or legacy-retention behavior: `No`.
+- Approved persisted-data decision: `Not Affected`; execution used owned roots and did not touch product user state.
+- Compatibility-only durable coverage added/retained: `No`.
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario ID                                                 | Requirement / Acceptance Criteria             | Boundary / Mode                                                                             | Evidence Type       | Result                            | Evidence                                                                                                                                  |
-| ----------------------------------------------------------- | --------------------------------------------- | ------------------------------------------------------------------------------------------- | ------------------- | --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `API-VOICE-001`                                             | reviewed source integrity                     | exact detached source; focused/full repository suites                                       | Durable + Temporary | Pass                              | `api-rev-008/repository/`                                                                                                                 |
-| `API-VOICE-002`                                             | `AC-007`, `AC-009`, `AC-017`                  | exact English-v2 authority continuity and real 49-WAV corpus validation                     | Temporary           | Pass / Reused                     | source-reuse JSON; `inputs/corpus-validation.log`                                                                                         |
-| shared `API-VOICE-003`/`004` preflight                      | `AC-003`, `AC-017`, `AC-020`                  | actual M1 Functional Preflight 2                                                            | Live                | Pass                              | `environment/darwin-arm64-preflight-v2.json`: AC/thermal/memory/tool/sandbox/purge Pass; `loaded-host`, `69.83666666666667%` average idle |
-| shared closed inputs/corpora                                | `AC-006`, `AC-007`, `AC-009`, `AC-017`        | exact recipe materialization and production corpus validators                               | Live                | Pass                              | `inputs/materialization.log`; `inputs/corpus-validation.log`: English 49 and Chinese 200 unique WAVs                                      |
-| `API-VOICE-003`                                             | `AC-006`, `AC-017`                            | exact English darwin-arm64 primary package construction inside pinned deny-network Seatbelt | Live                | **Fail — `API-F-004`**            | `english-darwin-arm64/API-F-004-package-manifest-path-policy-failure.json`                                                                |
-| `API-VOICE-003` remaining package/repro/inference/30/30/100 | current-platform contract                     | second construction, package verification, launcher/model qualification                     | Live                | Not Tested after Fail             | primary archive absent                                                                                                                    |
-| `API-VOICE-004`, `011`, `012`                               | Chinese, compliance, QSet/projection criteria | actual packages/aggregate                                                                   | Live                | Not Tested after Fail             | fail-closed ordering                                                                                                                      |
-| `API-VOICE-005`–`010`                                       | non-current targets                           | none                                                                                        | N/A                 | Deferred / Outside Current Matrix | approved current-platform scope                                                                                                           |
-| `API-VOICE-013`                                             | production corpus trust/derivation regression | unchanged repository test                                                                   | Durable             | Pass / Reused                     | exact relevant bytes unchanged; focused/full suites pass                                                                                  |
+| Scenario                                        | Requirements / Criteria                 | Surface / Mode                                                          | Result                            | Evidence                                                                                                   |
+| ----------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------- | --------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| `API-VOICE-001`                                 | source integrity                        | clean detached exact source; focused/full suites                        | Pass                              | `api-rev-009/repository/`                                                                                  |
+| `API-VOICE-002` / `013`                         | `AC-007`, `009`, `017`                  | exact-byte reuse plus production 49-WAV validator                       | Pass / Reused                     | source-reuse JSON; corpus-validation log                                                                   |
+| shared `API-VOICE-003`/`004` readiness          | `AC-020`                                | actual M1 Functional Preflight 2                                        | Pass                              | AC/thermal/memory/tool/sandbox/purge Pass; loaded-host `78.21%` average idle                               |
+| shared inputs/corpora                           | `AC-006`, `007`, `009`, `017`           | exact source-bound recipes and 49/200 WAV validators                    | Pass                              | `inputs/`                                                                                                  |
+| `API-VOICE-003` construction                    | `AC-006`, `017`                         | two network-denied English builds, verifier, reproducibility            | Pass; prior `API-F-004` resolved  | two 616 MiB archives; exact SHA-256 `057c011a6371e40fdfdc7bcc67fe99709ea39024ed2dcf47f97d84b84dc2b15f`     |
+| `API-VOICE-003` public package start            | `AC-002`, `006`, `013`, `017`           | first cold purge/trial and focused exact public launcher under Seatbelt | **Fail — `API-F-005`**            | ledger `fail/process-loss`; focused launcher exits 1 with `ModuleNotFoundError: autobyteus_voice_provider` |
+| `API-VOICE-003` terminal failure evidence       | `AC-003`, `007`, `011`, `017`, `023`    | Summary 2 / Assessment retention after process-loss                     | **Fail — `API-F-006`**            | Summary schema rejects forwarded archive `schemaVersion`; no Summary/Assessment created                    |
+| remaining English inference/lifecycle/30/30/100 | current-platform contract               | actual package                                                          | Not Tested after Fail             | zero completed transcriptions; model never loaded                                                          |
+| `API-VOICE-004`, `011`, `012`                   | Chinese/compliance aggregate/projection | serial current matrix                                                   | Not Tested after Fail             | no passing English profile subject                                                                         |
+| `API-VOICE-005`–`010`                           | non-current targets                     | none                                                                    | Deferred / Outside Current Matrix | approved scope                                                                                             |
 
-## Additional Repository Coverage Execution
+## Repository Coverage Execution
 
-| Order | Command                                                                                      | Configuration                                 | Boundary                          | Result                                                                                             | Evidence                                            |
-| ----- | -------------------------------------------------------------------------------------------- | --------------------------------------------- | --------------------------------- | -------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| 1     | `npm ci --ignore-scripts`                                                                    | clean detached exact source                   | deterministic dependencies        | Pass                                                                                               | `repository/npm-ci.log`                             |
-| 2     | focused archive-normalization/native-environment/functional-retention/trusted-baseline tests | Node 22.23.1                                  | prior corrections and authorities | Pass, 17 top-level / 24 TAP                                                                        | `repository/focused-build-functional-authority.log` |
-| 3     | `VOICE_GO=/private/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check`                       | authenticated official Go 1.26.5 darwin-arm64 | full affected repository          | Pass: 69 top-level / 76 TAP Node; 7/7 Python plus compileall; all Go/source/schema/evidence checks | `repository/npm-run-check.log`                      |
+| Command                                                        | Result                                                                                             | Evidence                                             |
+| -------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| exact `24a994a...1d712683` authority/execution-byte comparison | Pass; listed authorities, package/preflight/profile/path-policy owners unchanged                   | `repository/API-VOICE-001-002-013-source-reuse.json` |
+| `npm ci --ignore-scripts`                                      | Pass                                                                                               | `repository/npm-ci.log`                              |
+| exact-Go focused runtime-closure/archive-normalization tests   | Pass, 11/11                                                                                        | `repository/focused-runtime-closure.log`             |
+| exact-Go `npm run check`                                       | Pass: 71 top-level / 78 TAP Node, 7/7 Python plus compileall, all Go/source/schema/evidence checks | `repository/npm-run-check.log`                       |
 
 ## Validation Confidence Scorecard
 
-| Confidence Category                                        | Post-Repository | Final | Change / Evidence                                                           | Residual Uncertainty                                |
-| ---------------------------------------------------------- | --------------: | ----: | --------------------------------------------------------------------------- | --------------------------------------------------- |
-| Requirement and acceptance-criteria proof                  |             85% |   88% | exact critical package gate directly fails                                  | downstream package/runtime criteria unexecuted      |
-| Changed-boundary execution directness                      |             85% |   96% | actual preflight, exact staging/manifest, production Go validator           | no archive/launcher inference                       |
-| Cross-boundary integration realism and mock gap            |             75% |   92% | real locked inputs/toolchains reached final archive validation              | provider runtime/model not started                  |
-| Environment, configuration, identity, and fixture fidelity |             85% |   98% | actual M1 on AC, authenticated tools/purge, exact inputs and 49/200 corpora | none material before failure                        |
-| Failure, edge-case, lifecycle, and recovery evidence       |             78% |   84% | direct fail-closed behavior and cleanup                                     | runtime lifecycle/recovery/attempt retention absent |
-| User-surface, browser, and desktop-shell confidence        |             N/A |   N/A | runtime-only                                                                | none                                                |
-| Durable regression coverage quality and relevance          |             95% |   99% | focused and full suites pass; no API test code changed                      | large run-specific proof is executable evidence     |
+| Category                                   | Post-Repository | Final | New Evidence / Limitation                                                                                      |
+| ------------------------------------------ | --------------: | ----: | -------------------------------------------------------------------------------------------------------------- |
+| Requirement/acceptance proof               |             85% |   90% | construction passes; public-launcher and terminal-evidence criteria directly fail; downstream inference absent |
+| Changed-boundary directness                |             85% |   98% | exact preflight, inputs, double package, verifier, purge, and public launcher executed                         |
+| Cross-boundary realism                     |             75% |   95% | real extracted archive/public launcher/private host boundary fails; model not loaded                           |
+| Environment/configuration/fixture fidelity |             85% |   99% | exact actual M1 on AC, toolchain, purge, Seatbelt, source-bound inputs, exact corpora                          |
+| Failure/lifecycle/recovery                 |             78% |   88% | direct process-loss plus masked terminal evidence captured; recovery/shutdown/full counts absent               |
+| User/browser/desktop                       |             N/A |   N/A | runtime-only                                                                                                   |
+| Durable regression quality                 |             95% |   99% | focused/full suites pass; no API/E2E test code changed                                                         |
 
 - Overall post-repository confidence: `84%`.
-- Overall final confidence: `93%` (simple average of six applicable categories, rounded).
-- Confidence gain: direct actual-host preflight, exact closed fixtures, and the real package-construction failure eliminated major environmental/mock uncertainty.
-- Every critical acceptance criterion directly proven: `No`.
-- Final applicable categories below 90%: requirement/AC proof; failure/lifecycle/recovery.
-- Default `95%` Pass target met: `No`; a critical acceptance criterion fails regardless of score.
+- Overall final confidence: `95%` (six-category rounded average).
+- Critical criteria fully proven: `No`; multiple critical criteria directly fail.
+- Default clean Pass target met: `No`; failure/lifecycle is below 90% and critical criteria fail.
+- Confidence reflects directness of the failure evidence, not product qualification success.
 
-## Broader Validation Decision And Execution
+## Broader Validation Execution
 
-- Decision/mode: `Required`; actual-host CLI, native package, lifecycle, worker, corpus, resource, compliance, and aggregation qualification.
-- Executed until critical failure: clean exact source -> repository checks -> owned `caffeinate` -> Functional Preflight 2 -> exact input materialization/corpus validation -> trusted native environment outside Seatbelt -> primary English build inside pinned deny-network Seatbelt.
-- Host: MacBookPro18,4, Apple M1 Max, 64 GiB, darwin-arm64. AC power confirmed. Low-power off, thermal/memory normal, exact purge capability and sandbox canaries passed.
-- Performance environment: `loaded-host`; average idle `69.83666666666667%`. This is non-blocking for functionality and is not called controlled performance.
-- Exact build result: the package assembler normalized/materialized the Python runtime and emitted a 19,003-record file manifest. Production Go archive validation rejected it with `manifest paths invalid or unsorted`; no archive was emitted.
-- Focused observer probe on the isolated exact-source checkout found zero ordering inversions and zero case collisions, but exactly two archive-policy-invalid retained paths:
-  - `host/python/lib/python3.12/site-packages/scipy/io/tests/data/Transparent Busy.ani`
-  - `host/python/lib/python3.12/site-packages/torch/include/c10/util/C++17.h`
-- The temporary observer added no behavior change, restored `build/package-assembler.mjs` to its exact original SHA-256, and left the detached source checkout clean.
+- Host: MacBookPro18,4, Apple M1 Max, 64 GiB, darwin-arm64.
+- Preflight: functional Pass on AC. Low-power off, owned `caffeinate`, normal thermal/memory, exact tool identities, Seatbelt canaries, and `/usr/bin/sudo -n /usr/sbin/purge` capability passed.
+- Performance classification: `loaded-host`, six samples `78.2, 79.17, 78.89, 79.9, 73.71, 79.39`, average `78.21%`. This did not block functionality and is not called controlled performance.
+- Inputs: source-bound English/Chinese materialization passed. Production validators accepted all exact unique 49 English and 200 Chinese WAVs.
+- English construction: both canonical builds completed wholly inside the pinned deny-network Seatbelt after one trusted native environment was created outside it. Package verifier and byte-for-byte reproducibility passed. Compressed size `645,512,982` bytes; extracted size `1,195,561,020` bytes, below the blocking 1.25 GiB gate; archive entry count `6,502`.
+- Compliance and conditions generation: Pass.
+- First cold trial: exact purge completion recorded. The attempt failed `process-loss` after `3,988.390125 ms`, before hello/model loading/transcription. No result was produced.
+- Focused exact-public-launcher reproduction: the extracted relocated launcher ran under the same qualification Seatbelt and exited `1` in `792.1125 ms`. Its contained `worker/worker.py` exists, but the launcher invokes the contained Python host with `-I -B -X utf8`; isolated mode omits the adjacent worker directory, so import of `autobyteus_voice_provider` fails.
+- Terminal evidence: the attempt ledger correctly says `fail/process-loss`, but `profile-qualification-evidence.mjs` composes `archive: { ...build.archive, fileName }`. The build archive object contains `schemaVersion: 1`; Summary 2's strict archive schema forbids that property. Evidence writing throws, masks the original error at the CLI boundary, creates no Summary 2, and therefore creates no Performance Assessment 1.
 
-| Step                                         | Expected                                                | Observed                                  | Result                |
-| -------------------------------------------- | ------------------------------------------------------- | ----------------------------------------- | --------------------- |
-| Functional Preflight 2                       | functional Pass on connected M1; classify load honestly | Pass; `loaded-host`                       | Pass                  |
-| exact English/Chinese inputs and corpora     | closed recipe identities; 49/200 unique WAVs            | exact materialization and validators pass | Pass                  |
-| first English package construction           | canonical archive created inside Seatbelt               | final manifest rejected; archive absent   | **Fail / API-F-004**  |
-| repeat/repro/profile/Chinese/QSet/projection | run only after first archive exists                     | correctly not started                     | Not Tested after Fail |
+## Platform / Runtime And Desktop Decision
 
-## Desktop Application Validation
+- Current target executed: English darwin-arm64 on the actual M1 Max.
+- Chinese darwin-arm64: not started after serial English failure.
+- Other OS/architectures: deferred, not claimed.
+- Browser/Electron: `N/A`; runtime-only. No desktop application was launched or modified.
 
-- Browser/desktop approach: `N/A`; this is runtime-only and no Electron/UI behavior is claimed.
-- Shell-specific behavior: native package construction via CLI/Seatbelt was directly executed.
-- Effect on an already-running desktop application: `None`.
-
-## Platform / Runtime Targets
-
-- Host: macOS darwin-arm64, MacBookPro18,4, Apple M1 Max, 64 GiB.
-- Tooling: Node 22.23.1, authenticated official Go 1.26.5 darwin-arm64, repository-bound CMake/Xcode/SDK/system identities.
-- Current release matrix: English MLX Whisper Small FP16 and Chinese Fun-ASR-Nano GGUF Q8 on darwin-arm64 only.
-- Other targets: deferred and not claimed.
-
-## Lifecycle / Upgrade / Restart / Persisted-Data Checks
+## Lifecycle / Persisted Data
 
 - Approved persisted-data decision: `Not Affected`.
-- Representative existing user data: `N/A`; repository owns no supported product data reader/writer.
-- User state mutation: none observed or performed.
-- Runtime lifecycle/relocation/recovery: Not Tested after archive-construction Fail.
-- Compatibility fallback: none used or observed.
+- User/product state: untouched.
+- Package relocation/extraction: directly passed before launcher startup.
+- Hello, model preparation, transcription, shutdown, recovery, no-orphan full journey: Not Tested after startup process-loss.
+- Focused probe process: exited; no task-owned provider process remained.
 
-## Durable Coverage Changed In The Codebase
+## Durable Coverage Changed
 
-- Repository-resident durable coverage added, updated, or removed: `No`.
-- Paths added/updated/removed: none.
-- Proportional test-code review: `Not Applicable`.
+None added, updated, or removed. Proportional API/E2E test-code review is `Not Applicable`.
 
-## Other Execution Artifacts
+## Evidence
 
-| Artifact                                                                                                | Purpose                                       | Retention |
-| ------------------------------------------------------------------------------------------------------- | --------------------------------------------- | --------- |
-| `api-e2e-evidence/api-rev-008/repository/`                                                              | source identity and repository checks         | Retained  |
-| `api-e2e-evidence/api-rev-008/environment/darwin-arm64-preflight-v2.json`                               | actual-host functional/readiness authority    | Retained  |
-| `api-e2e-evidence/api-rev-008/inputs/`                                                                  | exact materialization and 49/200 corpus proof | Retained  |
-| `api-e2e-evidence/api-rev-008/english-darwin-arm64/build-primary.log`                                   | exact production failure                      | Retained  |
-| `api-e2e-evidence/api-rev-008/english-darwin-arm64/API-F-004-package-manifest-path-policy-failure.json` | structured finding                            | Retained  |
-| `api-e2e-evidence/api-rev-008/english-darwin-arm64/API-F-004-focused-manifest-analysis.json`            | invalid-path isolation                        | Retained  |
+- `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-009/repository/`
+- `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-009/environment/darwin-arm64-preflight-v2.json`
+- `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-009/inputs/`
+- `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-009/english-darwin-arm64/`
+- Structured findings: `API-F-005-public-launcher-isolated-worker-import-failure.json`; `API-F-006-terminal-summary-archive-schema-failure.json`.
 
-## Temporary Execution Methods / Scaffolding
+## Temporary Executable Probes
 
-| Method                                                                        | Why                                                                              | Result                                                                       | Cleanup                                                            |
-| ----------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| isolated source-checkout observer inserted immediately before Go archive call | capture the generated manifest after the production error had already reproduced | confirmed 19,003 sorted/collision-free records and exactly two invalid paths | production file restored to exact original SHA-256; checkout clean |
-| owned `/usr/bin/caffeinate -dimsu`                                            | preserve functional host readiness                                               | preflight and construction attempt completed                                 | PID 48740 interrupted/reaped; absent                               |
+| Probe                                                                   | Purpose                                                              | Result                                                                    | Cleanup                                          |
+| ----------------------------------------------------------------------- | -------------------------------------------------------------------- | ------------------------------------------------------------------------- | ------------------------------------------------ |
+| exact archive extraction + public launcher under qualification Seatbelt | unmask first cold `process-loss` hidden by evidence-writer exception | contained Python fails import before hello; confirms API-F-005            | owned 1.2 GiB extraction removed; process absent |
+| archive projection/schema comparison                                    | isolate terminal Summary validation error                            | only unexpected property is forwarded `schemaVersion`; confirms API-F-006 | no source modification                           |
 
-## Dependencies Mocked Or Emulated
+## Cleanup
 
-None. Locked runtime/model inputs, toolchains, corpora, and actual M1 host were used. The focused manifest observer captured production-generated data and did not emulate package behavior.
-
-## Result Summary
-
-| Result                | Scenario IDs                                           | Summary                                                                                                                |
-| --------------------- | ------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| Pass                  | `API-VOICE-001`, `002`, `013`; shared preflight/inputs | repository, authority, actual M1 preflight, exact inputs and corpora pass                                              |
-| Fail                  | `API-VOICE-003` / `API-F-004`                          | exact primary English package cannot be archived because two retained dependency paths violate the package path policy |
-| Not Tested after Fail | remaining `API-VOICE-003`, `004`, `011`, `012`         | no primary English archive; fail-closed stop                                                                           |
-| Deferred              | `API-VOICE-005`–`010`                                  | outside approved current release matrix                                                                                |
-
-## Cleanup Performed
-
-| Resource                                 | Ownership       | Action                                          | Result                                           |
-| ---------------------------------------- | --------------- | ----------------------------------------------- | ------------------------------------------------ |
-| `caffeinate` PID 48740                   | API-REV-008     | interrupted/reaped                              | absent                                           |
-| package/provider/qualification processes | API-REV-008     | process scan                                    | none present                                     |
-| isolated exact-source checkout           | API-REV-008     | source restored after probe; retained for rerun | clean at exact `24a994a...`                      |
-| user state / releases                    | user / Delivery | untouched                                       | no mutation, tag, publication, or release action |
+- Owned `caffeinate` PID 64914: interrupted/reaped; absent.
+- Focused extracted package root: removed through repository safe writable-tree owner.
+- Task-owned package/provider/qualification processes: none present.
+- Exact-source checkout: clean at `1d712683c70c338d8bf5074f27c8b0c9da47a8cb`; retained with generated package/input roots for the correction rerun.
+- User state, tags, releases, and publication: untouched.
 
 ## Preliminary Classification
 
-- `Local Fix / implementation defect` in package assembly closure/path-policy integration.
-- The exact runtime tree retains two non-runtime dependency files whose paths cannot satisfy the existing archive policy. The production owner then correctly fails closed.
-- This is not an AC-power, sudo, host-load, corpus, provider/model, quality-threshold, design-policy-relaxation, or release issue.
-- Recommended final owner after review: Implementation Engineer. Code Reviewer must first confirm failure origin.
-
-## Recommended Recipient
-
-`code_reviewer` for focused `API-F-004` failure-origin review, with the complete cumulative package and exact logs/manifest analysis.
+- `API-F-005`: `Local Fix / implementation defect` in the host-neutral public launcher-to-contained-Python-worker composition. Exact launcher isolation prevents its packaged worker from importing adjacent application modules.
+- `API-F-006`: `Local Fix / implementation defect` in profile qualification archive projection and terminal-failure evidence retention. Summary 2 receives one forbidden build-report field, masks the real runtime failure, and cannot create the required evidence chain.
+- Recommended correction owner after focused review: Implementation Engineer.
 
 ## Latest Authoritative Result
 
 - Result: **`Fail`**.
-- Final validation confidence: `93%`.
-- Default `95%` confidence target met: `No`.
-- Final applicable categories below 90%: requirement/AC proof; failure/lifecycle/recovery.
-- Broader validation: `Required; executed until critical package-construction failure`.
-- Critical acceptance criteria lacking direct proof: `AC-006`/`AC-017` fail at package construction; remaining English/Chinese package, inference, exact 30/30/100, lifecycle, compliance, Qualification Set 2, and Branch Catalog Projection 2 are not tested.
+- Final confidence: `95%`.
+- Default clean Pass target met: `No`.
+- Final applicable category below 90%: failure/lifecycle/recovery.
+- Broader validation: `Required; executed until critical public-launcher and terminal-evidence failures`.
 - Required next recipient: `code_reviewer` for focused failure-origin review.
+- Remaining after reviewed correction: complete English 49-WAV/model/lifecycle/exact 30/30/100/resource proof, then full Chinese package/200-WAV equivalent, compliance/privacy closure, Qualification Set 2, and independently verified Branch Catalog Projection 2.

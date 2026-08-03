@@ -1,0 +1,11 @@
+[API-REV-009] execute complete English profile: 49 corpus + lifecycle/recovery + exact 30/30/100
+file:///private/tmp/autobyteus-voice-api-e2e-r9-20260803/repository/benchmark/profile-qualification-evidence.mjs:302
+    throw new Error(
+          ^
+
+Error: Qualification Summary invalid: [{"instancePath":"/archive","schemaPath":"#/additionalProperties","keyword":"additionalProperties","params":{"additionalProperty":"schemaVersion"},"message":"must NOT have additional properties"}]
+    at assertValidSummary (file:///private/tmp/autobyteus-voice-api-e2e-r9-20260803/repository/benchmark/profile-qualification-evidence.mjs:302:11)
+    at writeProfileQualificationEvidence (file:///private/tmp/autobyteus-voice-api-e2e-r9-20260803/repository/benchmark/profile-qualification-evidence.mjs:209:3)
+    at async file:///private/tmp/autobyteus-voice-api-e2e-r9-20260803/repository/benchmark/run-profile-qualification.mjs:167:5
+
+Node.js v22.23.1

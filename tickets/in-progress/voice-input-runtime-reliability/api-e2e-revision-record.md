@@ -2,16 +2,17 @@
 
 ## Revision Index
 
-| Revision ID   | Triggering Role / Report / Round                               | Related Upstream Revision IDs                           | Prior Result / Confidence | Current Result / Confidence |
-| ------------- | -------------------------------------------------------------- | ------------------------------------------------------- | ------------------------- | --------------------------- |
-| `API-REV-001` | Code Reviewer / `code-review-report.md` / `CRR-005`            | `SR-006`, `ARCH-REV-007`, `IR-005`, `CRR-005`           | `N/A`                     | `Fail / 65%`                |
-| `API-REV-002` | Code Reviewer / `code-review-report.md` / `CRR-008`            | `SR-007`, `ARCH-REV-008`, `IR-007`, `CRR-008`           | `Fail / 65%`              | `Blocked / 78%`             |
-| `API-REV-003` | Code Reviewer / `code-review-report.md` / `CRR-011`            | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-010`, `CRR-011` | `Blocked / 78%`           | `Fail / 79%`                |
-| `API-REV-004` | Code Reviewer / `code-review-report.md` / `CRR-013`            | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-011`, `CRR-013` | `Fail / 79%`              | `Blocked / 82%`             |
-| `API-REV-005` | Code Reviewer / `code-review-report.md` / `CRR-015`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-013`, `CRR-015` | `Blocked / 82%`           | `Fail / 87%`                |
-| `API-REV-006` | Code Reviewer / `code-review-report.md` / `CRR-017`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-014`, `CRR-017` | `Fail / 87%`              | `Fail / 89%`                |
-| `API-REV-007` | Code Reviewer / `code-review-report.md` / `CRR-019`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019` | `Fail / 89%`              | `Blocked / 86%`             |
-| `API-REV-008` | User AC-readiness confirmation after Code Reviewer / `CRR-019` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019` | `Blocked / 86%`           | `Fail / 93%`                |
+| Revision ID   | Triggering Role / Report / Round                               | Related Upstream Revision IDs                                      | Prior Result / Confidence | Current Result / Confidence |
+| ------------- | -------------------------------------------------------------- | ------------------------------------------------------------------ | ------------------------- | --------------------------- |
+| `API-REV-001` | Code Reviewer / `code-review-report.md` / `CRR-005`            | `SR-006`, `ARCH-REV-007`, `IR-005`, `CRR-005`                      | `N/A`                     | `Fail / 65%`                |
+| `API-REV-002` | Code Reviewer / `code-review-report.md` / `CRR-008`            | `SR-007`, `ARCH-REV-008`, `IR-007`, `CRR-008`                      | `Fail / 65%`              | `Blocked / 78%`             |
+| `API-REV-003` | Code Reviewer / `code-review-report.md` / `CRR-011`            | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-010`, `CRR-011`            | `Blocked / 78%`           | `Fail / 79%`                |
+| `API-REV-004` | Code Reviewer / `code-review-report.md` / `CRR-013`            | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-011`, `CRR-013`            | `Fail / 79%`              | `Blocked / 82%`             |
+| `API-REV-005` | Code Reviewer / `code-review-report.md` / `CRR-015`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-013`, `CRR-015`            | `Blocked / 82%`           | `Fail / 87%`                |
+| `API-REV-006` | Code Reviewer / `code-review-report.md` / `CRR-017`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-014`, `CRR-017`            | `Fail / 87%`              | `Fail / 89%`                |
+| `API-REV-007` | Code Reviewer / `code-review-report.md` / `CRR-019`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019`            | `Fail / 89%`              | `Blocked / 86%`             |
+| `API-REV-008` | User AC-readiness confirmation after Code Reviewer / `CRR-019` | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019`            | `Blocked / 86%`           | `Fail / 93%`                |
+| `API-REV-009` | Code Reviewer / `code-review-report.md` / `CRR-021`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-016`, `CRR-020`, `CRR-021` | `Fail / 93%`              | `Fail / 95%`                |
 
 ## Revision Entries
 
@@ -256,3 +257,42 @@ None.
 - New failure: `API-F-004`; prior `API-F-002`/`003` are resolved on the executed path.
 - Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
 - Remaining proof after reviewed correction: both complete package constructions and reproducibility, real 49/200 inference/quality, lifecycle/recovery/offline/read-only/no-mutation, exact 30/30/100 resource/performance observations, compliance/privacy, Qualification Set 2, Branch Catalog Projection 2, and independent verification.
+
+### API-REV-009 — Exact package builds; public Python worker and retained terminal evidence fail
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-021`; API/E2E round 9.
+- Triggering scenarios: direct `API-F-004` resolution, reusable `API-VOICE-002`/`013`, then current-matrix `API-VOICE-003`, `004`, `011`, and `012`.
+- Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-016`, `CRR-020`, `CRR-021`; delivery `N/A`.
+- Why recorded: the corrected runtime closure directly resolves package construction, path validation, verification, and reproducibility. The first exact English cold trial then exposed two new production defects: the isolated contained Python worker cannot import its packaged application module (`API-F-005`), and failure evidence cannot create schema-valid Summary 2 because it forwards archive `schemaVersion` (`API-F-006`).
+- Coverage/durable test changes: none. API-VOICE-002/013 authorities remained byte-identical. Run-specific package/launcher/attempt evidence is temporary executable evidence.
+- Execution delta: focused 11/11; full 71 top-level / 78 TAP Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; actual M1 preflight Pass at loaded-host 78.21%; exact source-bound English/Chinese inputs and 49/200 corpora Pass; two exact 616 MiB English archives, verifier, and reproducibility Pass; compliance/conditions Pass; first cold purge Pass; first launcher trial Fail before hello/model load; terminal evidence Fail.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                                    | Previous Classification           | Current Resolution                                 | Evidence                                                                                                                                                                                                        |
+| -------------------------------------------------------------------------------- | --------------------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `API-F-004` / `CR-F-024` retained Python dependency paths violate archive policy | Local Fix / implementation defect | Resolved / Pass at the exact full package boundary | two byte-identical archives at SHA-256 `057c011a6371e40fdfdc7bcc67fe99709ea39024ed2dcf47f97d84b84dc2b15f`; package verification/reproducibility Pass; extracted size 1,195,561,020 bytes; 6,502 archive entries |
+| API-REV-008 AC/preflight/closed input/corpus readiness                           | Passed prerequisites              | Reconfirmed                                        | fresh API-REV-009 preflight Pass on AC; exact source-bound materialization and 49/200 validators Pass                                                                                                           |
+
+#### New Failures
+
+- `API-F-005` — `API-VOICE-003`; `AC-002`, `AC-006`, `AC-013`, `AC-017`.
+  - Expected: extracted relocated public launcher starts the contained Python worker under Seatbelt, emits hello/model-preparing/inference-ready, and performs the first cold transcription.
+  - Observed: the exact first attempt records `fail/process-loss` after `3,988.390125 ms`. Focused exact public-launcher execution exits `1` after `792.1125 ms`; `worker.py` exists, but Python isolated mode omits its adjacent directory and raises `ModuleNotFoundError: No module named 'autobyteus_voice_provider'` before stdout/hello.
+  - Preliminary origin: bounded implementation defect in public launcher-to-private Python worker composition.
+- `API-F-006` — `API-VOICE-003`; `AC-003`, `AC-007`, `AC-011`, `AC-017`, `AC-023`.
+  - Expected: after process-loss, attempt/raw/sample evidence produces schema-valid fail/process-loss Summary 2 and then Performance Assessment 1 before the CLI exits nonzero.
+  - Observed: ledger correctly records fail/process-loss, but Summary composition spreads build archive `schemaVersion: 1` into a strict archive object that permits only fileName/SHA/size/count. Schema validation throws, no Summary/Assessment is written, and the terminal CLI error masks the public-launcher failure.
+  - Preliminary origin: bounded implementation defect in profile-evidence archive projection and terminal-failure retention.
+- Stop/reroute: fail-closed. No retry, isolation bypass, provider/model/threshold substitution, Chinese execution, QSet/projection, release, tag, or publication.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-009/`
+- Prior result/confidence: `Fail / 93%`.
+- Current result/confidence: `Fail / 95%`.
+- New failures: `API-F-005`, `API-F-006`; prior `API-F-004` is resolved.
+- Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary owner is Implementation Engineer.
+- Remaining proof after reviewed correction: complete English 49-WAV inference/quality/lifecycle/recovery/exact 30/30/100/resource evidence; then Chinese double package/full 200-WAV equivalent, compliance/privacy, Qualification Set 2, Branch Catalog Projection 2, and independent verification.

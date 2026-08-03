@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "target": "darwin-arm64",
+  "preflightSha256": "c6c7c4043617f25f8715bd79f6701adf29f881e7777f798d9f650030ec5c4e6c",
+  "tools": {
+    "node": {
+      "path": "/Users/normy/.hermes/node/bin/node",
+      "sha256": "2e3f1286a7eb3736346ed1803e458a0ff909e2b2d5bc746144dcb76970e9b99d"
+    },
+    "cmake": {
+      "path": "/opt/homebrew/Cellar/cmake/4.3.3/bin/cmake",
+      "sha256": "21cc7838296a3b72bea03d332b3fe39d189807d641b16ef46975d0f9f688f769"
+    },
+    "cCompiler": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+      "sha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+    },
+    "cxxCompiler": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+      "sha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+    },
+    "archiver": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar",
+      "sha256": "03925f16d09748c4406abd797d77979fa84e14001f660672a3b23105445e6a6e"
+    },
+    "ranlib": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+      "sha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6"
+    },
+    "linker": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ld",
+      "sha256": "2f8ee9a6fb55f61d9a4ea7abd9d4bfd5e1e0017bdd5248cd45839018c5fc4ca1"
+    },
+    "libtool": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+      "sha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6"
+    },
+    "make": {
+      "path": "/usr/bin/make",
+      "sha256": "179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818"
+    },
+    "shell": {
+      "path": "/bin/sh",
+      "sha256": "ad5c194b05f83bc5e793c1cd67b148a4b680467b5a5730ab1a31fe4e6460ee9f"
+    },
+    "tar": {
+      "path": "/usr/bin/bsdtar",
+      "sha256": "9ab7f0793033dc9dc4809d83d695118801bd687cbacda59a0cbbf151ba25dc2b"
+    },
+    "sdk": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+      "version": "26.1",
+      "settingsSha256": "5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff"
+    }
+  },
+  "configuration": {
+    "generator": "Unix Makefiles",
+    "buildType": "Release",
+    "parallelism": 1,
+    "flagPolicy": "empty-external-native-flags-v1"
+  },
+  "environment": {
+    "pathPolicy": "isolated-verified-tools-v1",
+    "locale": "C",
+    "clearedOverrides": [
+      "AR",
+      "ARCHFLAGS",
+      "AS",
+      "ASMFLAGS",
+      "CC",
+      "CCC_OVERRIDE_OPTIONS",
+      "CFLAGS",
+      "CMAKE_BUILD_PARALLEL_LEVEL",
+      "CMAKE_CXX_COMPILER_LAUNCHER",
+      "CMAKE_C_COMPILER_LAUNCHER",
+      "CMAKE_GENERATOR",
+      "CMAKE_GENERATOR_INSTANCE",
+      "CMAKE_GENERATOR_PLATFORM",
+      "CMAKE_GENERATOR_TOOLSET",
+      "CMAKE_MAKE_PROGRAM",
+      "CMAKE_PREFIX_PATH",
+      "CMAKE_TOOLCHAIN_FILE",
+      "CPATH",
+      "CPLUS_INCLUDE_PATH",
+      "CPPFLAGS",
+      "CXX",
+      "CXXFLAGS",
+      "C_INCLUDE_PATH",
+      "DEVELOPER_DIR",
+      "DYLD_LIBRARY_PATH",
+      "GCC_EXEC_PREFIX",
+      "INCLUDE",
+      "LD",
+      "LDFLAGS",
+      "LD_LIBRARY_PATH",
+      "LIBRARY_PATH",
+      "MACOSX_DEPLOYMENT_TARGET",
+      "OBJCPLUS_INCLUDE_PATH",
+      "OBJC_INCLUDE_PATH",
+      "SDKROOT",
+      "TOOLCHAINS"
+    ]
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "cacheProcedure": {
+    "id": "darwin-arm64-filesystem-cold-v1",
+    "sha256": "e846389de7f367ec34499716888be3f3b1a8c8863876b7818efd306cb951b8ae",
+    "required": true
+  },
+  "cacheExecutions": [
+    {
+      "index": 0,
+      "procedureId": "darwin-arm64-filesystem-cold-v1",
+      "procedureSha256": "e846389de7f367ec34499716888be3f3b1a8c8863876b7818efd306cb951b8ae",
+      "completed": true
+    }
+  ],
+  "cold": [],
+  "warmPreparation": [],
+  "warm": []
+}

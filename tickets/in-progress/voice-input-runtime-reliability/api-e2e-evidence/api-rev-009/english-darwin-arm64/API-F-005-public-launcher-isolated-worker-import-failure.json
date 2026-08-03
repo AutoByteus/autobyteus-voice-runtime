@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "apiRevision": "API-REV-009",
+  "findingId": "API-F-005",
+  "scenarioIds": [
+    "API-VOICE-003"
+  ],
+  "acceptanceCriteria": [
+    "AC-002",
+    "AC-006",
+    "AC-013",
+    "AC-017"
+  ],
+  "result": "fail",
+  "reviewedSourceCommit": "1d712683c70c338d8bf5074f27c8b0c9da47a8cb",
+  "expected": "The exact extracted, relocated English package public launcher starts its contained Python worker under the qualification Seatbelt, emits hello/model-preparing/inference-ready, and performs the first cold transcription.",
+  "observed": {
+    "qualificationAttemptDecision": "fail",
+    "failureCategory": "process-loss",
+    "attemptCount": 1,
+    "firstAttempt": {
+      "sequence": 0,
+      "phase": "cold",
+      "index": 0,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+      "status": "failed",
+      "outcome": null,
+      "failureCategory": "process-loss",
+      "timeout": false,
+      "timings": {
+        "resultMs": 3988.390125
+      }
+    },
+    "cacheExecutionCount": 1,
+    "publicLauncherExitCode": 1,
+    "publicLauncherElapsedMs": 792.1125,
+    "publicLauncherStdout": "",
+    "publicLauncherStderr": "Traceback (most recent call last):\n  File \"/private/tmp/autobyteus-voice-api-e2e-r9-20260803/focused-first-session-probe/relocated package \u2013 voice/worker/worker.py\", line 1, in <module>\n    from autobyteus_voice_provider.bootstrap import main\nModuleNotFoundError: No module named 'autobyteus_voice_provider'\n"
+  },
+  "focusedOriginEvidence": {
+    "launcherBehavior": "launcher/internal/run.go starts Python workers with -I -B -X utf8 and the worker script path.",
+    "packageWorkerPresent": true,
+    "isolatedImportFailure": "Python isolated mode omits the worker directory from sys.path, so worker.py cannot import its adjacent autobyteus_voice_provider package.",
+    "launcherSourceSha256": "812fbccdc8acfc64360533270f7db0c20a18d31df1465edd83c12467e507e7f0",
+    "workerSourceSha256": "3be3380fc089f8fad6c03e71cf5aad82a7ebd20dc733eb7947e344c1b5ff5ae4",
+    "probeResultSha256": "79ab9ede768bd9dd5b56c3c648900dfec2e6fd06dd99054c0e657fe514d2208d"
+  },
+  "priorFailureResolution": {
+    "API-F-004": "resolved: exact English double construction, package verification, and reproducibility passed; archive SHA-256 057c011a6371e40fdfdc7bcc67fe99709ea39024ed2dcf47f97d84b84dc2b15f"
+  },
+  "preliminaryClassification": "Local Fix / implementation defect in the host-neutral public launcher-to-contained-Python-worker composition",
+  "safety": {
+    "fallbackUsed": false,
+    "providerOrModelChanged": false,
+    "thresholdChanged": false,
+    "networkEnabled": false,
+    "releaseActionUsed": false,
+    "userStateMutated": false
+  },
+  "recommendedOwner": "Implementation Engineer after Code Reviewer failure-origin review"
+}
