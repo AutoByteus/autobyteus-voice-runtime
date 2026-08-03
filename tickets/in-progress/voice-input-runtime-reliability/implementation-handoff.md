@@ -22,6 +22,8 @@
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-014-functional-gate-decision-probe.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-014-functional-gate-decision-probe.json`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
@@ -30,20 +32,20 @@
 
 ## Current Implementation Summary
 
-`IR-012` implements the cumulative `SR-010` / `SR-011` design authorized by `ARCH-REV-012`. The current-platform path now separates blocking functional qualification from truthful performance classification without weakening any required attempt, hard-deadline, quality, resource, package, lifecycle, compliance, privacy, or evidence gate.
+`IR-013` is the bounded `CRR-014` / `CR-F-021` local fix on the accepted `IR-012` functional/performance separation. The evidence writer now computes the authoritative functional outcome before terminal attempt-ledger finalization. An all-attempts-success quality, RSS, size, count, observation, or other blocking functional breach therefore finalizes both the attempt ledger and Qualification Summary 2 as `fail / functional-gate-failed` rather than retaining a contradictory passing ledger.
 
-Functional Preflight 2 retains target/tool/power/thermal/memory/caffeinate/Seatbelt/purge prerequisites. It samples CPU idle exactly six times at ten-second intervals, records the true average, and classifies evidence as `controlled` or `loaded-host`; CPU load alone does not block package work. Each profile then writes immutable raw evidence and Qualification Summary 2 first, hashes it, writes Performance Assessment 1 with the exact Summary filename/SHA and matching raw identities, and finally contributes both exact artifacts to Qualification Set 2. Summary schemas forbid Assessment references; the QSet verifier independently reloads both artifacts and rejects missing, mismatched, reverse, or bidirectional edges.
+The profile CLI marks evidence retained before enforcing its passing-only exit, so a non-pass exits nonzero without rewriting or losing artifacts. Qualification Set 2 now receives consistent ledger/Summary evidence, writes the required durable aggregate non-pass result, and only then does its CLI exit nonzero. Performance Assessment remains independently truthful (`controlled-pass`, `controlled-miss`, or `loaded-host-observation`) and cannot override the functional result.
 
-Branch projection, integrated release evidence, Catalog 3, pre-tag manifest, published verification, and quarantine consume the versioned v2 chain cleanly. The exact two-entry darwin-arm64 matrix, providers, models, thresholds, runtime/archive/launcher/session/protocol behavior, publication ordering, and deferred x64/`auto` disposition remain unchanged.
+The accepted Functional Preflight 2, acyclic Summary -> Assessment -> QSet chain, downstream v2 consumers, exact two-entry darwin-arm64 matrix, providers, models, thresholds, runtime/archive/launcher/session/protocol behavior, publication ordering, and deferred x64/`auto` disposition remain unchanged.
 
-- Implementation cycle: `Design Impact / reviewed redesign`
-- Current implementation revision: `IR-012`
+- Implementation cycle: `Rework / Local Fix`
+- Current implementation revision: `IR-013`
 - Related solution revisions: `SR-010`, `SR-011`
 - Related architecture revisions: `ARCH-REV-011` historical Fail, `ARCH-REV-012` current Pass
-- Related code review: `CRR-013` passed the preserved source basis; current re-review pending
+- Related code review: `CRR-013` passed the preserved source basis; `CRR-014` triggering Local Fix; current re-review pending
 - Related API/E2E: `API-REV-004`, `API-RI-002`
-- Triggering/resolved architecture finding: `AR-F-013`
-- Source commit: `0afc5904ea7584cddcee7a1f70f0179036689a45`
+- Triggering finding: `CR-F-021`; `AR-F-013` remains resolved
+- Source commit: `628bef9d9b1f40f263cb1f41e711649b8ca7dfe6`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
@@ -57,8 +59,8 @@ Branch projection, integrated release evidence, Catalog 3, pre-tag manifest, pub
 | `BEH-004` | `benchmark/darwin-arm64-runner-preflight.mjs`, `darwin-performance-environment.mjs`, preflight v2 contract/schema, profile runner and evidence writer. | Functional prerequisites still block; true CPU average only classifies controlled versus loaded-host evidence; exact 30/30/100 completion and all hard deadlines remain blocking. |
 | `BEH-005` | Current matrix, locked recipes, English-v2 and Chinese selection/trusted-baseline evidence.                                                            | Preserved exact two-profile authority.                                                                                                                                            |
 | `BEH-006` | Existing deterministic Python/C++ normalizers and scorer.                                                                                              | Preserved.                                                                                                                                                                        |
-| `BEH-007` | `release/evidence/qualification-set.mjs`, Branch Catalog Projection 2, Release Qualification Evidence 2, Catalog 3, Pre-Tag Manifest 2.                | Functional eligibility and performance classification are separate; branch and Delivery boundaries remain acyclic and fail closed.                                                |
-| `BEH-008` | `profile-qualification-evidence.mjs`, Summary 2 schema, `performance-assessment.mjs`, Assessment 1 schema, QSet 2 verifier.                            | Exact one-way raw -> Summary -> Assessment -> QSet identity chain; every started attempt and required observation remains durable.                                                |
+| `BEH-007` | `release/evidence/qualification-set.mjs`, Branch Catalog Projection 2, Release Qualification Evidence 2, Catalog 3, Pre-Tag Manifest 2.                | A consistent non-pass QSet is durably written before its CLI exits nonzero; functional and performance decisions and downstream boundaries remain separate.                       |
+| `BEH-008` | `qualification-attempts.mjs`, `profile-qualification-evidence.mjs`, profile runner, Summary 2, Assessment 1, and QSet 2 owners.                        | Recomputed functional outcome finalizes ledger and Summary consistently; profile/QSet CLIs retain evidence before failing; the acyclic identity chain is preserved.               |
 | `BEH-009` | Existing shared catalog-entry identity plus versioned projection/release consumers.                                                                    | Preserved release-neutral branch projection and independent final Catalog 3 composition.                                                                                          |
 | `BEH-010` | Existing Provider Archive 1, fixed Go launcher, contained private host, embedded plan, locked inputs, and trusted build environment.                   | Preserved.                                                                                                                                                                        |
 | `BEH-011` | Existing PCM WAV validators and no-speech policies.                                                                                                    | Preserved.                                                                                                                                                                        |
@@ -68,11 +70,12 @@ Branch projection, integrated release evidence, Catalog 3, pre-tag manifest, pub
 
 - Functional preflight and load classification: `benchmark/darwin-arm64-runner-preflight.mjs`, `benchmark/darwin-arm64-preflight-contract.mjs`, `benchmark/darwin-performance-environment.mjs`, `benchmark/prepare-conditions.mjs`
 - Immutable profile evidence: `benchmark/profile-qualification-evidence.mjs`, `benchmark/performance-observation.mjs`, `benchmark/performance-assessment.mjs`
+- Terminal attempt and profile result propagation: `benchmark/qualification-attempts.mjs`, `benchmark/run-profile-qualification.mjs`
 - Qualification aggregation: `release/evidence/profile-qualification-verifier.mjs`, `release/evidence/performance.mjs`, `release/evidence/qualification-set.mjs`
 - Branch/release lifecycle: `release/branch-catalog-projection.mjs`, `release/verify-branch-catalog-projection.mjs`, `release/evidence/assemble.mjs`, `release/catalog-builder.mjs`, `release/pretag-release-manifest.mjs`, `release/qualify-release.mjs`, `release/verify-published-assets.mjs`
 - Versioned contracts: `contracts/qualification/`, `contracts/release/`, `contracts/catalog/`
 - Workflow and documentation: `.github/workflows/release-voice-runtime.yml`, `README.md`
-- Focused coverage: `tests/fixtures/passing-darwin-preflight.mjs`, `tests/release/functional-performance-boundary.test.mjs`, current-platform/qualification/performance/failure evidence tests
+- Focused CR-F-021 coverage: `tests/release/functional-gate-retention.test.mjs`
 
 ## Important Assumptions
 
@@ -88,9 +91,9 @@ Branch projection, integrated release evidence, Catalog 3, pre-tag manifest, pub
 
 ## Task Design Health Assessment Implementation Check
 
-- Change posture: reviewed behavior and evidence-boundary redesign after `API-RI-002`.
-- Root cause: the v1 preflight and QSet conflated controlled-performance eligibility and latency targets with the sole functional decision, while blocked preflight discarded the true sampled average; SR-010/SR-011 defined the corrected owners and acyclic evidence order.
-- Refactor needed now: `Yes`; implemented Functional Preflight 2, separate performance observation/assessment, Summary 2, QSet 2, and their versioned projection/release consumers.
+- Change posture: bounded implementation correction after `CRR-014` focused reproduction.
+- Root cause: `writeProfileQualificationEvidence()` finalized the ledger from the caller's provisional `pass` before recomputing blocking functional gates, and the profile CLI ignored the returned non-pass Summary.
+- Refactor needed now: `No broad refactor`; finalization order and passing-only CLI assertions were corrected in the existing owners.
 - Implementation matches the reviewed assessment: `Yes`.
 - Additional design or requirement reroute: `None`.
 
@@ -99,7 +102,7 @@ Branch projection, integrated release evidence, Catalog 3, pre-tag manifest, pub
 - Active v1 preflight, profile-summary, QSet, branch-projection, release-evidence, and pre-tag schemas/filenames were removed or replaced cleanly; no dual v1/v2 production path or compatibility reader was added.
 - Immutable historical API evidence remains untouched as evidence, not current runtime input.
 - No alternate provider/model/runtime/threshold/matrix/release-order path was introduced.
-- New implementation concerns were split into focused owners; all changed production source remains below 500 effective non-empty lines, and new owners remain below the 220-line change-pressure signal.
+- All changed production source remains below 500 effective non-empty lines (`run-profile-qualification.mjs` 499, `qualification-set.mjs` 451, evidence writer 298, attempt recorder 154); the production delta is 39 added / 7 removed lines, below the 220-line pressure signal.
 
 ## Persisted Data Transition Check
 
@@ -113,13 +116,13 @@ Branch projection, integrated release evidence, Catalog 3, pre-tag manifest, pub
 
 ## Local Implementation Checks Run
 
-- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `65/65` Node tests, `7/7` Python tests plus compileall, all Go tests/source guards, strict schema checks, and exact six-output English-v2 reproduction.
+- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `66/66` Node tests, `7/7` Python tests plus compileall, all Go tests/source guards, strict schema checks, and exact six-output English-v2 reproduction.
 - Verified Go 1.26.5 `test -race ./...`, `vet ./...`, and `gofmt -l` across launcher and packaging modules — passed.
 - Backend-selection checksum index — all `191/191` indexed historical files passed unchanged.
 - English-v2 checksum index — `8/8` passed unchanged.
-- Repository JSON parse sweep — `265/265` files parsed.
+- Workspace JSON parse sweep excluding dependencies and Git internals — `214/214` files parsed.
 - Focused Prettier and `git diff --check` — passed.
-- Focused tests cover true-average recomputation, controlled/loaded classification, latency miss as non-functional, missing samples/counts/deadlines as functional failure, durable partial evidence, Summary-first exact digest binding, forbidden reverse/bidirectional edges, missing/mismatched Assessment rejection, and versioned projection/release chain closure.
+- Focused CR-F-021 regression uses complete 30/30/100 attempts for both current profiles with every attempt successful and a blocking quality breach. It proves consistent fail/category in ledger and Summary, controlled performance classification remains independent, the profile passing-only assertion fails after retention, QSet 2 is durably written as fail, and its passing-only assertion then fails without deleting the set.
 
 These are implementation-scoped checks only. No API/E2E, actual M1 package qualification, release, tag, publication, or deployment result is claimed.
 
@@ -129,7 +132,7 @@ These are implementation-scoped checks only. No API/E2E, actual M1 package quali
 
 ## Downstream Coverage Hints
 
-1. Code Review should first verify the functional/performance ownership split, exact blocking criteria, and raw -> Summary 2 -> Assessment 1 -> QSet 2 digest direction.
+1. Code Review should first verify CR-F-021 finalization order, ledger/Summary consistency, retained profile failure, and written non-pass QSet before reviewing the preserved functional/performance split.
 2. After source Pass, API/E2E should open a new revision, rerun reusable API-VOICE-002/013 authority checks when their bytes remain unchanged, and execute the exact two current packages through Functional Preflight 2.
 3. API/E2E should retain both controlled and loaded-host evidence cases, all attempts and hard-deadline failures, exact 30/30/100 counts, package/resource/quality/lifecycle/compliance gates, QSet 2, and independently verified Branch Catalog Projection 2.
 4. Delivery should independently repeat the integrated-state chain and owns all tag/publication/post-publication actions.
@@ -137,5 +140,5 @@ These are implementation-scoped checks only. No API/E2E, actual M1 package quali
 ## Next Routing
 
 - Recipient: `code_reviewer`
-- Requested action: source/architecture re-review of `IR-012` against `SR-010` / `SR-011` and `ARCH-REV-012`.
+- Requested action: source re-review of `IR-013` / `CR-F-021` against `SR-010` / `SR-011` and `ARCH-REV-012`.
 - API/E2E remains paused until Code Review Pass.

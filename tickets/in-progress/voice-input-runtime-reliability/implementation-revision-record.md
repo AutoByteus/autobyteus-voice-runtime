@@ -18,6 +18,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-010`    | Code Reviewer / `code-review-report.md` / `CRR-010`                | Remaining `CR-F-018`; `CR-F-019`                        | `Local Fix`        | `SR-008`, `SR-009`; `ARCH-REV-010`; `CRR-010`; `API-REV-002`; `DR-*` N/A                                               | `Implementation Complete — Ready for Code Re-review` |
 | `IR-011`    | Code Reviewer / `code-review-report.md` / `CRR-012`                | `CR-F-020` / `API-F-001`                                | `Local Fix`        | `SR-008`, `SR-009`; `ARCH-REV-010`; `CRR-011`, `CRR-012`; `API-REV-003`; `DR-*` N/A                                    | `Implementation Complete — Ready for Code Re-review` |
 | `IR-012`    | Architecture Reviewer / `design-review-report.md` / round 12       | `API-RI-002`; resolved `AR-F-013`                       | `Design Impact`    | `SR-010`, `SR-011`; `ARCH-REV-011`, `ARCH-REV-012`; `CRR-013`; `API-REV-004`; `DR-*` N/A                               | `Implementation Complete — Ready for Code Re-review` |
+| `IR-013`    | Code Reviewer / `code-review-report.md` / `CRR-014`                | `CR-F-021`                                              | `Local Fix`        | `SR-010`, `SR-011`; `ARCH-REV-012`; `CRR-014`; `API-REV-004`; `DR-*` N/A                                               | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -323,3 +324,28 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: verified-root `npm run check` passed `65/65` Node tests, `7/7` Python tests plus compileall, all Go/source/schema/evidence checks, and exact six-output English-v2 reproduction. Go race/vet/gofmt passed. All `191/191` original backend-selection and `8/8` English-v2 checksums passed; `265/265` repository JSON files parsed; focused Prettier and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`.
 - Remaining limitations or risks: No API/E2E or actual M1 package qualification ran in this round. After source Pass, API/E2E must execute the two real packages, licensed 49/200-corpus inference, exact 30/30/100 attempts, resource/lifecycle/offline/no-mutation/compliance gates, Qualification Set 2, and Branch Catalog Projection 2. A loaded-host run is truthful functional evidence but not controlled-performance certification. Maintained-main integration/repeat, tag/publication, published verification, and quarantine remain Delivery-owned; x64/`auto` remain deferred.
+
+### IR-013 — Propagate post-attempt functional failures through retained evidence
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-014`, with reproduction evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-014-functional-gate-decision-probe.md` and `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-014-functional-gate-decision-probe.json`.
+- Triggering finding IDs: `CR-F-021`.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-014` / `Fail — Local Fix` against `IR-012`; the v2 functional/performance separation, six-sample load classification, acyclic Summary -> Assessment -> QSet chain, downstream consumers, and v1 cleanup were otherwise accepted.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-010`, `SR-011`.
+- Related architecture-review revision IDs: `ARCH-REV-012`.
+- Related code-review revision IDs: `CRR-014`.
+- Related API/E2E revision IDs: `API-REV-004`, `API-RI-002`; execution remains paused until source Pass.
+- Related delivery revision IDs: `N/A`.
+- Why this implementation revision is recorded: When every attempt succeeded but a later quality/RSS/size/count/observation gate failed, IR-012 finalized `qualification-attempts-v1.json` from a provisional pass before recomputing the functional decision. Summary 2 then correctly failed, the profile process still exited successfully, and QSet rejected the contradiction before writing the required durable non-pass aggregate. The existing reviewed contracts already define a single functional authority, so this is a bounded finalization/propagation correction.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-007`, `BEH-008`; `AC-003`, `AC-009`, `AC-017`, `AC-023`; `DS-003`.
+- Implementation delta:
+  - Added a non-mutating attempt-recorder snapshot and moved terminal ledger finalization after functional recomputation. The recomputed decision/category now finalizes both the ledger and Summary; terminal decision/category pairs are also validated fail closed.
+  - Made the profile runner consume its returned evidence. It records `evidenceWritten=true` before a passing-only assertion, so fail/blocked evidence is retained once and the CLI exits nonzero without a second rewrite.
+  - Added a shared passing-only Qualification Set assertion at the CLI boundary. The assembler still writes and returns a schema-valid non-pass set first, then the CLI exits nonzero.
+  - Added a focused two-profile fixture with exact successful 30 cold / 30 warm-preparation / 100 warm-request performance counts and complete English/Chinese quality counts, followed by a blocking quality breach. It verifies consistent ledger/Summary decisions and categories, independent controlled performance classification, profile exit authority, retained non-pass QSet, and QSet exit authority.
+  - Preserved every threshold, performance classification, provider/model, runtime/package/protocol behavior, matrix, downstream v2 contract, and release-order boundary.
+- Changed files or areas: `benchmark/qualification-attempts.mjs`, `benchmark/profile-qualification-evidence.mjs`, `benchmark/run-profile-qualification.mjs`, `release/evidence/qualification-set.mjs`, and new `tests/release/functional-gate-retention.test.mjs`; source commit `628bef9d9b1f40f263cb1f41e711649b8ca7dfe6`.
+- Local validation and result: verified-root `npm run check` passed `66/66` Node tests, `7/7` Python tests plus compileall, all Go/source/schema/evidence checks, and exact six-output English-v2 reproduction. Focused affected tests passed `11/11`; Go race/vet/gofmt passed; all `191/191` backend-selection and `8/8` English-v2 checksums passed; `214/214` current workspace JSON files parsed; focused Prettier and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: No API/E2E or actual M1 package qualification ran. After source Pass, API/E2E still owns real package/corpus/30/30/100/resource/lifecycle/compliance/QSet/projection execution. Loaded-host evidence remains functional but not controlled-performance certification. Maintained-main integration/repeat, tag/publication, published verification, and quarantine remain Delivery-owned; x64/`auto` remain deferred.
