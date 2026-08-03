@@ -1,0 +1,57 @@
+sdk=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+alias=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
+lrwxr-xr-x  1 root  wheel  5 Nov 24  2025 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++ -> clang
+d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
+d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang
+alias_exit=0
+alias_stderr_begin
+alias_stderr_end
+canonical_exit=1
+canonical_stderr_begin
+Undefined symbols for architecture arm64:
+  "std::__1::locale::use_facet(std::__1::locale::id&) const", referenced from:
+      std::__1::ctype<char> const& std::__1::use_facet[abi:ne200100]<std::__1::ctype<char>>(std::__1::locale const&) in main-d8abdd.o
+  "std::__1::ios_base::getloc() const", referenced from:
+      std::__1::basic_ios<char, std::__1::char_traits<char>>::widen[abi:ne200100](char) const in main-d8abdd.o
+  "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__init(char const*, unsigned long)", referenced from:
+      std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::basic_string[abi:ne200100]<0>(char const*) in main-d8abdd.o
+  "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::__init(unsigned long, char)", referenced from:
+      std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::basic_string[abi:ne200100](unsigned long, char) in main-d8abdd.o
+  "std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char>>::~basic_string()", referenced from:
+      _main in main-d8abdd.o
+      _main in main-d8abdd.o
+      std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>> std::__1::__pad_and_output[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>>, char const*, char const*, char const*, std::__1::ios_base&, char) in main-d8abdd.o
+      std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>> std::__1::__pad_and_output[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char>>, char const*, char const*, char const*, std::__1::ios_base&, char) in main-d8abdd.o
+  "std::__1::basic_ostream<char, std::__1::char_traits<char>>::sentry::sentry(std::__1::basic_ostream<char, std::__1::char_traits<char>>&)", referenced from:
+      std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long) in main-d8abdd.o
+  "std::__1::basic_ostream<char, std::__1::char_traits<char>>::sentry::~sentry()", referenced from:
+      std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long) in main-d8abdd.o
+      std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long) in main-d8abdd.o
+  "std::__1::cout", referenced from:
+      _main in main-d8abdd.o
+  "std::__1::ctype<char>::id", referenced from:
+      std::__1::ctype<char> const& std::__1::use_facet[abi:ne200100]<std::__1::ctype<char>>(std::__1::locale const&) in main-d8abdd.o
+  "std::__1::locale::~locale()", referenced from:
+      std::__1::basic_ios<char, std::__1::char_traits<char>>::widen[abi:ne200100](char) const in main-d8abdd.o
+      std::__1::basic_ios<char, std::__1::char_traits<char>>::widen[abi:ne200100](char) const in main-d8abdd.o
+  "std::__1::ios_base::__set_badbit_and_consider_rethrow()", referenced from:
+      std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long) in main-d8abdd.o
+  "std::__1::ios_base::clear(unsigned int)", referenced from:
+      std::__1::ios_base::setstate[abi:ne200100](unsigned int) in main-d8abdd.o
+  "std::terminate()", referenced from:
+      ___clang_call_terminate in main-d8abdd.o
+  "___cxa_begin_catch", referenced from:
+      std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long) in main-d8abdd.o
+      ___clang_call_terminate in main-d8abdd.o
+  "___cxa_end_catch", referenced from:
+      std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long) in main-d8abdd.o
+      std::__1::basic_ostream<char, std::__1::char_traits<char>>& std::__1::__put_character_sequence[abi:ne200100]<char, std::__1::char_traits<char>>(std::__1::basic_ostream<char, std::__1::char_traits<char>>&, char const*, unsigned long) in main-d8abdd.o
+  "___gxx_personality_v0", referenced from:
+      /private/var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/main-d8abdd.o
+ld: symbol(s) not found for architecture arm64
+clang: error: linker command failed with exit code 1 (use -v to see invocation)
+canonical_stderr_end
+alias_output=ready
+expected_alias_success=true
+expected_canonical_failure=true
+probe_result=pass

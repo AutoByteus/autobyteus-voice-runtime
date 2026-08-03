@@ -1,0 +1,48 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-010",
+  "apiRevisionId": "API-REV-013",
+  "scenarioId": "API-VOICE-004",
+  "acceptanceCriteria": [
+    "AC-006",
+    "AC-017",
+    "AC-019"
+  ],
+  "reviewedSourceCommit": "eaa0855bf300ee7805048343d4d022a9b625af60",
+  "executionMode": "canonical Chinese darwin-arm64 package construction under the pinned deny-network Seatbelt profile after passing exact M1 Functional Preflight 2 and outside-Seatbelt trusted native-environment creation",
+  "expected": "The authenticated C++ compiler identity preserves the Xcode clang++ invocation semantics required for the final C++ executable link, allowing the native worker and archive to be produced.",
+  "observed": "The sed and ranlib boundaries passed and the native dependency graph compiled. The final C++ executable link used canonical clang because preflight/native environment/CMake record the clang++ alias only as its canonical clang path; the link failed with a large undefined std::__1/C++ runtime symbol set before archive creation.",
+  "exitCode": 1,
+  "inputManifestSha256": "40faaf2c3fcacc56e17a1a33db4c4d2cf163cb6a3d3e3dbd7968dc1b605e75c0",
+  "preflightSha256": "939997311aa9748912c0a156b9926e79c783fb37e05effba6028524638134725",
+  "nativeBuildEnvironmentSha256": "d91bb0b376fe8b1e53bbbe3fa3614df6b0ad6158c92e03ef625d376448c7ebb6",
+  "buildLogSha256": "5f500107c3fc748003892938b1e046a665d3e961953adff51046c7e9eb6e28e2",
+  "focusedProbeSha256": "dfde6bdb1dd1408cbb334a16d77589334a511d923d6aaa75c5b202ddc5536c76",
+  "compilerIdentity": {
+    "invocationPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+    "linkTarget": "clang",
+    "canonicalTargetPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+    "targetSha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697",
+    "preflightCxxPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang"
+  },
+  "focusedProof": "With the exact SDK and identical source/arguments, clang++ alias exits 0 and produces/runs the program; canonical clang exits 1 with undefined std::__1/C++ runtime symbols. Alias and canonical target bytes are identical.",
+  "preliminaryClassification": "Local Fix / implementation defect",
+  "preliminaryOrigin": "Generic executable canonicalization loses the semantically required Xcode clang++ driver invocation name in preflight, native-environment binding, explicit CMAKE_CXX_COMPILER, and resolved-CMake verification.",
+  "stopPolicy": "Fail closed: no -lc++ injection, compiler/CMake override, PATH substitution, source edit, build retry, unsandboxed build, provider/model/threshold substitution, or release action.",
+  "remainingNotTested": [
+    "second Chinese construction",
+    "Chinese package verifier",
+    "Chinese reproducibility proof",
+    "Chinese compliance and 200-WAV/30-30-100/lifecycle/resource qualification",
+    "current-source English full rerun",
+    "Qualification Set 2",
+    "Branch Catalog Projection 2"
+  ],
+  "evidenceFiles": [
+    "build-primary.log",
+    "build-primary.exit-code",
+    "native-build-environment.json",
+    "create-native-build-environment.log",
+    "API-VOICE-004-cxx-driver-alias-semantics-probe.log"
+  ]
+}

@@ -16,6 +16,7 @@
 | `API-REV-010` | Code Reviewer / `code-review-report.md` / `CRR-023`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-017`, `CRR-022`, `CRR-023` | `Fail / 95%`              | `Fail / 97%`                |
 | `API-REV-011` | Code Reviewer / `code-review-report.md` / `CRR-025`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-018`, `CRR-024`, `CRR-025` | `Fail / 97%`              | `Fail / 98%`                |
 | `API-REV-012` | Code Reviewer / `code-review-report.md` / `CRR-027`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-019`, `CRR-026`, `CRR-027` | `Fail / 98%`              | `Fail / 98%`                |
+| `API-REV-013` | Code Reviewer / `code-review-report.md` / `CRR-029`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-020`, `CRR-028`, `CRR-029` | `Fail / 98%`              | `Fail / 98%`                |
 
 ## Revision Entries
 
@@ -384,10 +385,10 @@ None.
 
 #### Prior Failure Resolution
 
-| Prior Failure | Previous Classification | Current Resolution | Evidence |
-| --- | --- | --- | --- |
+| Prior Failure                                                                | Previous Classification           | Current Resolution                                       | Evidence                                                                                                                           |
+| ---------------------------------------------------------------------------- | --------------------------------- | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
 | `API-F-008` / `CR-F-028` authenticated ranlib alias canonicalized to libtool | Local Fix / implementation defect | Resolved / Pass at the exact production package boundary | current trusted environment records `ranlib -> libtool`; canonical build links `libggml-base.a` and emits `Built target ggml-base` |
-| `API-F-007` / `CR-F-027` Chinese input paths rejected | Resolved in API-REV-011 | Reconfirmed / Pass | current materialization and production package verifier accept all 3,149 records and advance through native compilation |
+| `API-F-007` / `CR-F-027` Chinese input paths rejected                        | Resolved in API-REV-011           | Reconfirmed / Pass                                       | current materialization and production package verifier accept all 3,149 records and advance through native compilation            |
 
 #### New Failure
 
@@ -407,5 +408,42 @@ None.
 - Prior result/confidence: `Fail / 98%`.
 - Current result/confidence: `Fail / 98%`.
 - New failure: `API-F-009`; prior `API-F-008` is directly resolved.
+- Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
+- Remaining proof after reviewed correction: exact Chinese double construction/reproducibility/package verification, 200-WAV inference/quality/normalization, exact 30/30/100/lifecycle/resource/compliance evidence; current-source English double build/full qualification; Qualification Set 2 and independently verified Branch Catalog Projection 2.
+
+### API-REV-013 — Sed closure passes; canonicalized C++ driver loses required link semantics
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-029`; API/E2E round 13.
+- Triggering scenarios: direct `API-F-009` recheck in `API-VOICE-004`, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-004`, `003`, `011`, and `012` while fail-closed gates pass.
+- Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-020`, `CRR-028`, `CRR-029`; delivery `N/A`.
+- Why recorded: the reviewed sed correction directly passes the exact package boundary: authenticated `/usr/bin/sed` executes both locked Metal transformations and the native dependency graph compiles. The same canonical Chinese construction then exposes `API-F-010`: generic executable canonicalization records Xcode `clang++ -> clang` only as canonical `clang`, so the final C++ executable link omits the C++ runtime and produces no archive.
+- Coverage/durable test changes: none. English-v2 authority and API-VOICE-013 bytes remain unchanged/reusable; run-specific preflight/materialization/build/failure/probe evidence is temporary executable evidence.
+- Execution delta: focused trusted-native/sed closure 9/9; full 78 top-level / 85 TAP Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; fresh actual M1 Functional Preflight 2 Pass at loaded-host `68.98%`; exact source-bound English/Chinese materialization and 49/200 corpus validation Pass; first Chinese network-denied construction passes sed and reaches final C++ link before Fail.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                                | Previous Classification           | Current Resolution                                           | Evidence                                                                                                                                                         |
+| ---------------------------------------------------------------------------- | --------------------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `API-F-009` / `CR-F-029` closed trusted native tool set omitted required sed | Local Fix / implementation defect | Resolved / Pass at the canonical production package boundary | current preflight/native environment bind exact `/usr/bin/sed`; both locked Metal transformations execute; native dependency graph compiles to final worker link |
+| `API-F-008` / `CR-F-027` ranlib alias canonicalized to libtool               | Resolved in API-REV-012           | Reconfirmed / Pass                                           | exact `ranlib -> libtool` invocation remains bound; static-library steps complete                                                                                |
+| `API-F-007` / `CR-F-025` Chinese input paths rejected                        | Resolved in API-REV-011           | Reconfirmed / Pass                                           | current materialization and production verifier accept the exact 3,149-record input tree                                                                         |
+
+#### New Failure
+
+- ID: `API-F-010`.
+- Scenario / criteria: `API-VOICE-004`; `AC-006`, `AC-017`, `AC-019`.
+- Expected: authenticated Xcode C++ compiler identity preserves `clang++` invocation semantics through preflight, native environment, closed `c++` tool entry, explicit `CMAKE_CXX_COMPILER`, and resolved-CMake verification, allowing the final worker executable and archive to be produced.
+- Observed: preflight and native environment record only canonical `/Applications/Xcode.app/.../usr/bin/clang`; CMake uses that path and final linkage exits `1` with undefined `std::__1`, `std::runtime_error`, `__cxa`, and `__gxx_personality_v0` symbols. A focused exact-SDK probe proves the root-owned `clang++ -> clang` alias and canonical target have identical SHA-256 `d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697`, but alias invocation exits `0`/prints `ready` while canonical invocation exits `1` with the same missing C++ runtime class.
+- Preliminary classification: `Local Fix / implementation defect` in semantically required C++ driver invocation identity preservation. Focused review should consider a strict specialized alias/target identity analogous in principle to the ranlib case, without generic symlink support or explicit `-lc++` workaround.
+- Stop/reroute: fail closed. No `-lc++` injection, compiler/CMake override, PATH substitution, source edit, retry, unsandboxed build, provider/model/threshold substitution, QSet/projection, tag, release, or publication.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-013/`
+- Prior result/confidence: `Fail / 98%`.
+- Current result/confidence: `Fail / 98%`.
+- New failure: `API-F-010`; prior `API-F-009` is directly resolved.
 - Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary correction owner is Implementation Engineer.
 - Remaining proof after reviewed correction: exact Chinese double construction/reproducibility/package verification, 200-WAV inference/quality/normalization, exact 30/30/100/lifecycle/resource/compliance evidence; current-source English double build/full qualification; Qualification Set 2 and independently verified Branch Catalog Projection 2.

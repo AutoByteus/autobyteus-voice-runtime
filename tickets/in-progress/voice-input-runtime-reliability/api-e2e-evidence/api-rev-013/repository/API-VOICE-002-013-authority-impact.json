@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "apiRevisionId": "API-REV-013",
+  "priorReviewedSourceCommit": "2e9399b214adbfe9d0cc245b256c152b2c0de7e4",
+  "currentReviewedSourceCommit": "eaa0855bf300ee7805048343d4d022a9b625af60",
+  "authorityBytes": [
+    {
+      "path": "release/evidence/qualification-corpora/english-v2.json",
+      "exists": true,
+      "changed": false,
+      "sha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd"
+    },
+    {
+      "path": "release/evidence/baselines/english-v2.json",
+      "exists": true,
+      "changed": false,
+      "sha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba"
+    },
+    {
+      "path": "benchmark/baseline/english-preservation-authority.mjs",
+      "exists": true,
+      "changed": false,
+      "sha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f"
+    },
+    {
+      "path": "benchmark/baseline/trusted-baseline.mjs",
+      "exists": true,
+      "changed": false,
+      "sha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c"
+    },
+    {
+      "path": "tooling/verify-english-preservation.mjs",
+      "exists": true,
+      "changed": false,
+      "sha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722"
+    },
+    {
+      "path": "tests/release/trusted-baseline.test.mjs",
+      "exists": true,
+      "changed": false,
+      "sha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39"
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/derive_english_preservation_v2.py",
+      "exists": true,
+      "changed": false,
+      "sha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49"
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/authority.json",
+      "exists": true,
+      "changed": false,
+      "sha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8"
+    }
+  ],
+  "authorityDecision": "Still Valid \u2014 Reusable",
+  "providerArchiveRuntimeChanged": false,
+  "sedCorrectionPaths": [
+    "benchmark/darwin-arm64-runner-preflight.mjs",
+    "build/native-tool-identities.mjs",
+    "build/trusted-native-environment.mjs",
+    "contracts/build/native-build-environment-v1.schema.json",
+    "contracts/qualification/darwin-arm64-preflight-v2.schema.json",
+    "tests/build/trusted-native-environment.test.mjs",
+    "tests/build/trusted-native-sed-closure.test.mjs",
+    "tests/fixtures/passing-darwin-preflight.mjs"
+  ],
+  "qualificationSetReuseDecision": "Prior profile evidence is not a current-source QSet subject; both profiles must be rebuilt and fully requalified at the current reviewed source commit.",
+  "durableCoverageDecision": "No API/E2E-owned durable coverage change; retain and execute current tests."
+}
