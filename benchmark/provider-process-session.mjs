@@ -15,6 +15,7 @@ export class ProviderProcessSession {
     launcher,
     sessionConfig,
     expected,
+    commandPrefix = null,
     spawn = nodeSpawn,
     deadlines = {},
   }) {
@@ -27,6 +28,9 @@ export class ProviderProcessSession {
     this.launcher = launcher;
     this.sessionConfig = sessionConfig;
     this.expected = Object.freeze(structuredClone(expected));
+    this.commandPrefix = commandPrefix
+      ? Object.freeze([...commandPrefix])
+      : null;
     this.spawnImpl = spawn;
     this.deadlines = Object.freeze({ ...DEADLINES, ...deadlines });
     this.state = "idle";
@@ -48,11 +52,19 @@ export class ProviderProcessSession {
     this.state = "spawned";
     this.startedAt = performance.now();
     try {
-      this.child = this.spawnImpl(
-        this.launcher,
-        ["--session-config", this.sessionConfig],
-        { stdio: ["pipe", "pipe", "pipe"], windowsHide: true },
-      );
+      const executable = this.commandPrefix?.[0] ?? this.launcher;
+      const commandArgs = this.commandPrefix
+        ? [
+            ...this.commandPrefix.slice(1),
+            this.launcher,
+            "--session-config",
+            this.sessionConfig,
+          ]
+        : ["--session-config", this.sessionConfig];
+      this.child = this.spawnImpl(executable, commandArgs, {
+        stdio: ["pipe", "pipe", "pipe"],
+        windowsHide: true,
+      });
       this.exitPromise = new Promise((resolve) => {
         this.child.once("exit", (code, signal) => {
           this.exitResult = { code, signal };

@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "profileId": "chinese",
+  "components": [
+    {
+      "componentId": "go",
+      "versionOrRevision": "Go 1.26.5",
+      "licenseIdentity": "BSD-3-Clause",
+      "licensePath": "licenses/GO-LICENSE.txt",
+      "source": "https://go.dev/LICENSE",
+      "redistribution": "approved",
+      "attributionRequired": true
+    },
+    {
+      "componentId": "funasr",
+      "versionOrRevision": "53a56d80667320b44a7dd779f5bf8c024b6c30a8",
+      "licenseIdentity": "Apache-2.0",
+      "licensePath": "licenses/FUNASR-LICENSE.txt",
+      "source": "https://github.com/FunAudioLLM/Fun-ASR",
+      "redistribution": "approved",
+      "attributionRequired": true
+    },
+    {
+      "componentId": "llama.cpp",
+      "versionOrRevision": "8086439a4cea94c71a5dfb8fe4ad1546aebd640f",
+      "licenseIdentity": "MIT",
+      "licensePath": "licenses/MIT-LICENSE.txt",
+      "source": "https://github.com/ggml-org/llama.cpp",
+      "redistribution": "approved",
+      "attributionRequired": true
+    },
+    {
+      "componentId": "utf8proc",
+      "versionOrRevision": "a1b99daa2a3393884220264c927a48ba1251a9c6",
+      "licenseIdentity": "MIT",
+      "licensePath": "licenses/UTF8PROC-LICENSE.md",
+      "source": "https://github.com/JuliaStrings/utf8proc",
+      "redistribution": "approved",
+      "attributionRequired": true
+    },
+    {
+      "componentId": "fun-asr-nano-gguf",
+      "versionOrRevision": "46e849502a867080d66d351b8dfb1018b607e509",
+      "licenseIdentity": "model-card governed redistribution",
+      "licensePath": "licenses/MIT-LICENSE.txt",
+      "source": "https://huggingface.co/FunAudioLLM/Fun-ASR-Nano-GGUF",
+      "redistribution": "approved",
+      "attributionRequired": true
+    },
+    {
+      "componentId": "opencc-data",
+      "versionOrRevision": "twp-to-cn-v1",
+      "licenseIdentity": "Apache-2.0",
+      "licensePath": "licenses/OPENCC-DATA-APACHE-2.0.txt",
+      "source": "https://github.com/BYVoid/OpenCC",
+      "redistribution": "approved",
+      "attributionRequired": true
+    }
+  ]
+}

@@ -16,7 +16,10 @@
     "check": "npm run check:js && npm run check:python && npm run check:go && npm run check:evidence && npm test",
     "build:package": "node build/package-assembler.mjs",
     "verify:package": "node build/package-verifier.mjs",
+    "materialize:inputs": "node build/materialize-release-inputs.mjs",
+    "preflight:darwin-arm64": "node benchmark/darwin-arm64-runner-preflight.mjs",
     "qualify:profile": "node benchmark/run-profile-qualification.mjs",
+    "qualify:set": "node release/evidence/qualification-set.mjs",
     "qualify:release": "node release/qualify-release.mjs"
   },
   "devDependencies": {

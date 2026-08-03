@@ -1,6 +1,5 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://autobyteus.com/voice/catalog-v3",
   "type": "object",
   "additionalProperties": false,
   "required": [
@@ -9,79 +8,83 @@
     "runtimeVersion",
     "sourceCommit",
     "releaseTag",
+    "releaseMatrix",
+    "releaseEvidence",
     "entries"
   ],
   "properties": {
-    "schemaVersion": { "const": 3 },
-    "runtimeId": { "const": "voice-input" },
+    "schemaVersion": {
+      "const": 3
+    },
+    "runtimeId": {
+      "const": "voice-input"
+    },
     "runtimeVersion": {
       "type": "string",
       "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
     },
-    "sourceCommit": { "$ref": "#/$defs/commit" },
+    "sourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
     "releaseTag": {
       "type": "string",
       "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
     },
+    "releaseMatrix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["matrixId", "sha256"],
+      "properties": {
+        "matrixId": {
+          "const": "voice-runtime-darwin-arm64-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "releaseEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "release-qualification-evidence-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
     "entries": {
       "type": "array",
-      "minItems": 8,
-      "items": { "$ref": "#/$defs/entry" }
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
     }
   },
   "$defs": {
-    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "commit": { "type": "string", "pattern": "^[a-f0-9]{40}$" },
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40}$)[a-f0-9]{40}$"
+    },
     "asset": {
       "type": "object",
       "additionalProperties": false,
       "required": ["path", "sha256"],
       "properties": {
-        "path": { "$ref": "#/$defs/path" },
-        "sha256": { "$ref": "#/$defs/sha" }
-      }
-    },
-    "path": {
-      "type": "string",
-      "pattern": "^(?!/)(?!.*(?:^|/)\\.{1,2}(?:/|$))(?!.*\\\\)[A-Za-z0-9._/-]+$",
-      "maxLength": 240
-    },
-    "archive": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "format",
-        "formatVersion",
-        "compression",
-        "canonicalization",
-        "rootDirectory",
-        "fileName",
-        "url",
-        "sha256",
-        "compressedSizeBytes",
-        "extractedSizeBytes",
-        "entryCount"
-      ],
-      "properties": {
-        "format": { "const": "zip" },
-        "formatVersion": { "const": 1 },
-        "compression": { "const": "deflate" },
-        "canonicalization": { "const": "autobyteus-provider-zip-v1" },
-        "rootDirectory": { "const": "package" },
-        "fileName": { "type": "string", "pattern": "^[A-Za-z0-9._-]+\\.zip$" },
-        "url": { "type": "string", "pattern": "^https://" },
-        "sha256": { "$ref": "#/$defs/sha" },
-        "compressedSizeBytes": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 1342177280
+        "path": {
+          "type": "string"
         },
-        "extractedSizeBytes": {
-          "type": "integer",
-          "minimum": 1,
-          "maximum": 1342177280
-        },
-        "entryCount": { "type": "integer", "minimum": 1, "maximum": 65534 }
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
       }
     },
     "entry": {
@@ -95,6 +98,7 @@
         "packageId",
         "providerId",
         "modelId",
+        "decision",
         "archive",
         "launcher",
         "packageDescriptor",
@@ -103,27 +107,118 @@
         "sessionConfigVersion",
         "capabilityDigest",
         "noticeInventoryDigest",
-        "qualificationEvidenceDigest",
-        "decision"
+        "generatedComplianceDigest",
+        "qualificationResultDigest"
       ],
       "properties": {
-        "profileId": { "enum": ["english", "chinese", "auto"] },
-        "languageMode": { "enum": ["en", "zh", "auto"] },
-        "platform": { "enum": ["darwin", "linux", "win32"] },
-        "architecture": { "enum": ["arm64", "x64"] },
-        "packageId": { "type": "string", "minLength": 1 },
-        "providerId": { "type": "string", "minLength": 1 },
-        "modelId": { "type": "string", "minLength": 1 },
-        "archive": { "$ref": "#/$defs/archive" },
-        "launcher": { "$ref": "#/$defs/path" },
-        "packageDescriptor": { "$ref": "#/$defs/asset" },
-        "fileManifest": { "$ref": "#/$defs/asset" },
-        "protocolVersion": { "const": 1 },
-        "sessionConfigVersion": { "const": 1 },
-        "capabilityDigest": { "$ref": "#/$defs/sha" },
-        "noticeInventoryDigest": { "$ref": "#/$defs/sha" },
-        "qualificationEvidenceDigest": { "$ref": "#/$defs/sha" },
-        "decision": { "enum": ["preserve", "select"] }
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "languageMode": {
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "packageId": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "modelId": {
+          "type": "string"
+        },
+        "decision": {
+          "enum": ["preserve", "select"]
+        },
+        "archive": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "format",
+            "formatVersion",
+            "compression",
+            "canonicalization",
+            "rootDirectory",
+            "fileName",
+            "sha256",
+            "compressedSizeBytes",
+            "extractedSizeBytes",
+            "entryCount",
+            "url"
+          ],
+          "properties": {
+            "format": {
+              "const": "zip"
+            },
+            "formatVersion": {
+              "const": 1
+            },
+            "compression": {
+              "const": "deflate"
+            },
+            "canonicalization": {
+              "const": "autobyteus-provider-zip-v1"
+            },
+            "rootDirectory": {
+              "const": "package"
+            },
+            "fileName": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            },
+            "compressedSizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "extractedSizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "entryCount": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "url": {
+              "type": "string",
+              "pattern": "^https://"
+            }
+          }
+        },
+        "launcher": {
+          "const": "bin/voice-provider"
+        },
+        "packageDescriptor": {
+          "$ref": "#/$defs/asset"
+        },
+        "fileManifest": {
+          "$ref": "#/$defs/asset"
+        },
+        "protocolVersion": {
+          "const": 1
+        },
+        "sessionConfigVersion": {
+          "const": 1
+        },
+        "capabilityDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "noticeInventoryDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "generatedComplianceDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "qualificationResultDigest": {
+          "$ref": "#/$defs/sha"
+        }
       }
     }
   }

@@ -21,6 +21,9 @@ test("reproducibility proof requires byte-identical archives and reports", async
         sourceCommit: "a".repeat(40),
         packageId: "fixture.package",
         buildInputManifestSha256: "b".repeat(64),
+        buildInputProvenanceSha256: "c".repeat(64),
+        buildInputRecipeSha256: "d".repeat(64),
+        releaseMatrixSha256: "e".repeat(64),
         archive: { sha256: archiveSha256 },
       };
     for (const side of ["first", "second"]) {

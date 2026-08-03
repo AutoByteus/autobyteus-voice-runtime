@@ -62,7 +62,15 @@ export async function verifyLockedFile(file, identity, label) {
     throw new Error(`${label} does not match its locked bytes.`);
 }
 export async function verifyInputManifest(root) {
-  const manifest = await readJson(path.join(root, "SHA256SUMS.json"));
+  const manifestPath = path.join(root, "SHA256SUMS.json"),
+    manifestInfo = await fs.lstat(manifestPath);
+  if (
+    !manifestInfo.isFile() ||
+    manifestInfo.isSymbolicLink() ||
+    (manifestInfo.mode & 0o222) !== 0
+  )
+    throw new Error("Input manifest must be an immutable regular file.");
+  const manifest = await readJson(manifestPath);
   if (
     manifest.schemaVersion !== 1 ||
     !Array.isArray(manifest.files) ||
@@ -75,15 +83,19 @@ export async function verifyInputManifest(root) {
       !/^[A-Za-z0-9._/-]+$/.test(item.path) ||
       !/^[a-f0-9]{64}$/.test(item.sha256) ||
       !Number.isSafeInteger(item.sizeBytes) ||
+      !["executable", "read-only"].includes(item.mode) ||
       expected.has(item.path)
     )
       throw new Error("Invalid input manifest record.");
     const file = path.join(root, item.path);
-    const info = await fs.stat(file);
+    const info = await fs.lstat(file);
     if (
       !info.isFile() ||
+      info.isSymbolicLink() ||
       info.size !== item.sizeBytes ||
-      (await shaFile(file)) !== item.sha256
+      (await shaFile(file)) !== item.sha256 ||
+      (info.mode & 0o222) !== 0 ||
+      Boolean(info.mode & 0o111) !== (item.mode === "executable")
     )
       throw new Error(`Input mismatch: ${item.path}`);
     expected.add(item.path);

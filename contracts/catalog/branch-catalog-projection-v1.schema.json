@@ -1,0 +1,258 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "sourceCommit",
+    "packageVersion",
+    "releaseMatrix",
+    "qualificationSet",
+    "entries",
+    "assetSet"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "artifactKind": {
+      "const": "branch-catalog-projection"
+    },
+    "sourceCommit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "packageVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "releaseMatrix": {
+      "$ref": "#/$defs/matrix"
+    },
+    "qualificationSet": {
+      "$ref": "#/$defs/qset"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/entry"
+      }
+    },
+    "assetSet": {
+      "$ref": "#/$defs/assetSet"
+    }
+  },
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "matrix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["matrixId", "sha256"],
+      "properties": {
+        "matrixId": {
+          "const": "voice-runtime-darwin-arm64-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "qset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "qualification-set-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "assetSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "items"],
+      "properties": {
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/item"
+          }
+        }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "languageMode",
+        "platform",
+        "architecture",
+        "packageId",
+        "providerId",
+        "modelId",
+        "decision",
+        "archive",
+        "launcher",
+        "packageDescriptor",
+        "fileManifest",
+        "protocolVersion",
+        "sessionConfigVersion",
+        "capabilityDigest",
+        "noticeInventoryDigest",
+        "generatedComplianceDigest",
+        "qualificationResultDigest"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "languageMode": {
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "packageId": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "modelId": {
+          "type": "string"
+        },
+        "decision": {
+          "enum": ["preserve", "select"]
+        },
+        "archive": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "format",
+            "formatVersion",
+            "compression",
+            "canonicalization",
+            "rootDirectory",
+            "fileName",
+            "sha256",
+            "compressedSizeBytes",
+            "extractedSizeBytes",
+            "entryCount"
+          ],
+          "properties": {
+            "format": {
+              "const": "zip"
+            },
+            "formatVersion": {
+              "const": 1
+            },
+            "compression": {
+              "const": "deflate"
+            },
+            "canonicalization": {
+              "const": "autobyteus-provider-zip-v1"
+            },
+            "rootDirectory": {
+              "const": "package"
+            },
+            "fileName": {
+              "type": "string",
+              "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            },
+            "compressedSizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "extractedSizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "entryCount": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "launcher": {
+          "const": "bin/voice-provider"
+        },
+        "packageDescriptor": {
+          "$ref": "#/$defs/asset"
+        },
+        "fileManifest": {
+          "$ref": "#/$defs/asset"
+        },
+        "protocolVersion": {
+          "const": 1
+        },
+        "sessionConfigVersion": {
+          "const": 1
+        },
+        "capabilityDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "noticeInventoryDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "generatedComplianceDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "qualificationResultDigest": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "asset": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    }
+  }
+}

@@ -4,6 +4,7 @@ import {
   copyClean,
   readJson,
   regularFiles,
+  sha256,
   shaFile,
   targetParts,
   writeJson,
@@ -21,6 +22,37 @@ export async function prepare(args, profileDirectory) {
   const inputs = path.resolve(args.inputs),
     stage = path.resolve(args.stage);
   const inputManifest = await verifyInputManifest(inputs);
+  const inputProvenance = await readJson(
+    path.join(inputs, "input-provenance-v1.json"),
+  );
+  const inputRecipe = await readJson(
+    path.join(ROOT, "build/input-recipes", inputProvenance.recipe.fileName),
+  );
+  const expectedObservations = inputRecipe.inputs.map((item) => ({
+      kind: item.kind,
+      role: item.role,
+      destination: item.destination,
+      identity: item.kind === "git-checkout" ? item.treeId : item.sha256,
+      licenseComponentId: item.licenseComponentId,
+    })),
+    materializedRecords = inputManifest.files.filter(
+      (item) => item.path !== "input-provenance-v1.json",
+    );
+  if (
+    inputProvenance.recipe.sha256 !==
+      (await shaFile(
+        path.join(ROOT, "build/input-recipes", inputProvenance.recipe.fileName),
+      )) ||
+    JSON.stringify(inputProvenance.releaseMatrix) !==
+      JSON.stringify(inputRecipe.releaseMatrix) ||
+    JSON.stringify(inputProvenance.package) !==
+      JSON.stringify(inputRecipe.package) ||
+    JSON.stringify(inputProvenance.inputs) !==
+      JSON.stringify(expectedObservations) ||
+    inputProvenance.materializedTreeSha256 !==
+      sha256(Buffer.from(`${JSON.stringify(materializedRecords)}\n`))
+  )
+    throw new Error("Materialized build-input provenance is not reproducible.");
   try {
     await fs.lstat(stage);
     throw new Error("Stage must not exist.");
@@ -28,7 +60,15 @@ export async function prepare(args, profileDirectory) {
     if (error.code !== "ENOENT") throw error;
   }
   await fs.mkdir(stage, { recursive: true, mode: 0o700 });
-  return { target, lock, inputs, stage, inputManifest };
+  return {
+    target,
+    lock,
+    inputs,
+    stage,
+    inputManifest,
+    inputProvenance,
+    inputRecipe,
+  };
 }
 export async function copyPackageNotices(context) {
   await fs.copyFile(
@@ -47,6 +87,7 @@ export async function copyPythonProvider(context, adapterDirectory) {
     "model/",
     "package-notices/",
     ...(adapterDirectory === "english-mlx" ? ["python-dependencies.lock"] : []),
+    "runtime-source/",
   ]);
   const materialized = await materializePythonRuntime(context);
   await verifyModel(context);
@@ -57,8 +98,8 @@ export async function copyPythonProvider(context, adapterDirectory) {
   }
   await fs.mkdir(path.join(context.stage, "worker"), { recursive: true });
   const providerSource = path.join(
-    ROOT,
-    "providers/python/autobyteus_voice_provider",
+    context.inputs,
+    "runtime-source/providers/python/autobyteus_voice_provider",
   );
   const pythonSources = (await regularFiles(providerSource)).filter((file) =>
     file.endsWith(".py"),
@@ -86,7 +127,12 @@ export async function copyPythonProvider(context, adapterDirectory) {
     );
   for (const name of ["worker.py", "recognizer.py"])
     await fs.copyFile(
-      path.join(ROOT, "providers", adapterDirectory, name),
+      path.join(
+        context.inputs,
+        "runtime-source/providers",
+        adapterDirectory,
+        name,
+      ),
       path.join(context.stage, "worker", name),
     );
   const modelStage = path.join(context.stage, "model");
@@ -154,6 +200,7 @@ export async function writeEngineConfiguration(context, configuration) {
 export function assertInputClosure(context, prefixes) {
   for (const item of context.inputManifest.files)
     if (
+      item.path !== "input-provenance-v1.json" &&
       !prefixes.some((prefix) =>
         prefix.endsWith("/")
           ? item.path.startsWith(prefix)

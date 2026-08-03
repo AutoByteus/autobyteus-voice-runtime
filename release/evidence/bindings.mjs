@@ -128,7 +128,8 @@ export async function verifyBuildBinding(
       (item) =>
         !/^[A-Za-z0-9._/-]+$/.test(item.path) ||
         !/^[a-f0-9]{64}$/.test(item.sha256) ||
-        !Number.isSafeInteger(item.sizeBytes),
+        !Number.isSafeInteger(item.sizeBytes) ||
+        !["executable", "read-only"].includes(item.mode),
     )
   )
     throw new Error("Preserved build-input manifest invalid.");

@@ -30,8 +30,14 @@ const build = await readJson(args["build-report"]);
 const goToolchain = await verifyGoToolchain(path.resolve(args.go));
 assertGoToolchainProvenance(goToolchain, build);
 const archivePath = path.resolve(args.archive);
+const provenancePath = path.join(
+  path.dirname(path.resolve(args["build-report"])),
+  path.basename(build.buildInputProvenanceFileName),
+);
 if ((await shaFile(archivePath)) !== build.archive.sha256)
   throw new Error("Archive/build report mismatch.");
+if ((await shaFile(provenancePath)) !== build.buildInputProvenanceSha256)
+  throw new Error("Build input provenance/report mismatch.");
 const work = await fs.mkdtemp(path.join(os.tmpdir(), "voice-package-verify-"));
 try {
   const expected = {

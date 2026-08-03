@@ -18,6 +18,10 @@ import {
 } from "./lib/files.mjs";
 import { trustedGoEnvironment, verifyGoToolchain } from "./locked-inputs.mjs";
 import { repositoryBuildLockDigest } from "./repository-lock-set.mjs";
+import {
+  loadCurrentReleaseMatrix,
+  matrixEntryKey,
+} from "../release/current-release-matrix.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "profile",
@@ -36,6 +40,13 @@ if (
 )
   throw new Error("Invalid source/version identity.");
 const target = targetParts(args.target);
+const currentMatrix = await loadCurrentReleaseMatrix();
+const currentEntry = currentMatrix.value.entries.find(
+  (entry) =>
+    entry.profileId === args.profile &&
+    entry.platform === target.platform &&
+    entry.architecture === target.architecture,
+);
 const profileMap = {
   english:
     args.target === "darwin-arm64" ? "english-mlx" : "english-faster-whisper",
@@ -50,6 +61,46 @@ const lock = await readJson(
   path.join(ROOT, "providers", providerDirectory, "provider-lock.json"),
 );
 const packageId = `voice.${args.profile}.${lock.model.family}-${lock.model.size}-${lock.model.precision}.${args.target}`;
+if (currentEntry) {
+  for (const [field, actual] of [
+    ["packageId", packageId],
+    ["providerId", lock.providerId],
+    ["modelId", lock.model.id],
+  ])
+    if (currentEntry[field] !== actual)
+      throw new Error(
+        `Current Release Matrix build identity mismatch: ${field}`,
+      );
+}
+const inputProvenancePath = path.join(
+  path.resolve(args.inputs),
+  "input-provenance-v1.json",
+);
+const inputProvenance = await readJson(inputProvenancePath);
+const repositoryLockSha256 = await repositoryBuildLockDigest(
+  args.profile,
+  args.target,
+);
+const currentRecipePath = path.join(
+  ROOT,
+  "build/input-recipes",
+  currentEntry?.recipeFileName ?? "outside-current-matrix",
+);
+if (
+  !currentEntry ||
+  inputProvenance.schemaVersion !== 1 ||
+  inputProvenance.repository.sourceCommit !== args["source-commit"] ||
+  inputProvenance.releaseMatrix.matrixId !== currentMatrix.value.matrixId ||
+  inputProvenance.releaseMatrix.sha256 !== currentMatrix.sha256 ||
+  inputProvenance.recipe.fileName !== currentEntry.recipeFileName ||
+  matrixEntryKey(inputProvenance.package) !== matrixEntryKey(currentEntry) ||
+  inputProvenance.package.packageId !== currentEntry.packageId ||
+  inputProvenance.repository.lockSha256 !== repositoryLockSha256 ||
+  inputProvenance.recipe.sha256 !== (await shaFile(currentRecipePath))
+)
+  throw new Error(
+    "Package build requires verified Current Release Matrix input provenance.",
+  );
 const work = await fs.mkdtemp(
   path.join(os.tmpdir(), "voice-provider-package-"),
 );
@@ -281,6 +332,8 @@ try {
   );
   const preservedInputManifest = `${path.resolve(args.output)}.inputs.json`;
   await fs.copyFile(inputManifestPath, preservedInputManifest);
+  const preservedInputProvenance = `${path.resolve(args.output)}.provenance.json`;
+  await fs.copyFile(inputProvenancePath, preservedInputProvenance);
   const normalizerSha256 =
     providerDirectory === "chinese-funasr"
       ? await treeDigest(path.join(stage, "normalizer"))
@@ -293,10 +346,12 @@ try {
     packageVersion: args.version,
     buildInputManifestFileName: path.basename(preservedInputManifest),
     buildInputManifestSha256: await shaFile(inputManifestPath),
-    repositoryBuildLockSha256: await repositoryBuildLockDigest(
-      profileId,
-      args.target,
-    ),
+    buildInputProvenanceFileName: path.basename(preservedInputProvenance),
+    buildInputProvenanceSha256: await shaFile(inputProvenancePath),
+    buildInputRecipeSha256: inputProvenance.recipe.sha256,
+    releaseMatrixId: currentMatrix.value.matrixId,
+    releaseMatrixSha256: currentMatrix.sha256,
+    repositoryBuildLockSha256: repositoryLockSha256,
     goToolchainHost: goToolchain.host,
     goToolchainArchiveSha256: goToolchain.archive.sha256,
     goToolchainRootManifestSha256: goToolchain.rootIdentity.manifestSha256,

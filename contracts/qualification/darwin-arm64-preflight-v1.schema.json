@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "target",
+    "status",
+    "checkedAt",
+    "host",
+    "power",
+    "quiescence",
+    "tools",
+    "sandbox",
+    "purge",
+    "failureCategory"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "target": { "const": "darwin-arm64" },
+    "status": { "enum": ["pass", "blocked"] },
+    "checkedAt": { "type": "string", "format": "date-time" },
+    "host": { "type": "object" },
+    "power": { "type": "object" },
+    "quiescence": { "type": "object" },
+    "tools": { "type": "object" },
+    "sandbox": { "type": "object" },
+    "purge": { "type": "object" },
+    "failureCategory": { "type": ["string", "null"] }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": { "status": { "const": "pass" } },
+        "required": ["status"]
+      },
+      "then": {
+        "properties": {
+          "host": { "$ref": "#/$defs/host" },
+          "power": { "$ref": "#/$defs/power" },
+          "quiescence": { "$ref": "#/$defs/quiescence" },
+          "tools": { "$ref": "#/$defs/tools" },
+          "sandbox": { "$ref": "#/$defs/sandbox" },
+          "purge": { "$ref": "#/$defs/purge" },
+          "failureCategory": { "const": null }
+        }
+      },
+      "else": {
+        "properties": {
+          "failureCategory": { "type": "string", "minLength": 1 }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^/" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "architecture", "cpuModel", "totalMemoryBytes"],
+      "properties": {
+        "platform": { "const": "darwin" },
+        "architecture": { "const": "arm64" },
+        "cpuModel": { "const": "Apple M1 Max" },
+        "totalMemoryBytes": { "type": "integer", "minimum": 68719476736 }
+      }
+    },
+    "power": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "acConnected",
+        "lowPowerModeOff",
+        "caffeinateActive",
+        "thermalNormal",
+        "memoryPressureNormal"
+      ],
+      "properties": {
+        "acConnected": { "const": true },
+        "lowPowerModeOff": { "const": true },
+        "caffeinateActive": { "const": true },
+        "thermalNormal": { "const": true },
+        "memoryPressureNormal": { "const": true }
+      }
+    },
+    "quiescence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "passed",
+        "samples",
+        "averageIdlePercent",
+        "competingProcesses"
+      ],
+      "properties": {
+        "passed": { "const": true },
+        "samples": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "items": { "type": "number", "minimum": 0, "maximum": 100 }
+        },
+        "averageIdlePercent": {
+          "type": "number",
+          "minimum": 80,
+          "maximum": 100
+        },
+        "competingProcesses": { "type": "array", "maxItems": 0 }
+      }
+    },
+    "tools": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node",
+        "nodeExecutable",
+        "goArchiveSha256",
+        "goRootTreeSha256",
+        "cmake",
+        "cmakeExecutable",
+        "appleClang",
+        "appleClangExecutable",
+        "appleClangCxxExecutable",
+        "xcode",
+        "sdk",
+        "commandPaths"
+      ],
+      "properties": {
+        "node": { "const": "v22.23.1" },
+        "nodeExecutable": { "$ref": "#/$defs/identity" },
+        "goArchiveSha256": { "$ref": "#/$defs/sha" },
+        "goRootTreeSha256": { "$ref": "#/$defs/sha" },
+        "cmake": { "const": "cmake version 4.3.3" },
+        "cmakeExecutable": { "$ref": "#/$defs/identity" },
+        "appleClang": {
+          "const": "Apple clang version 17.0.0 (clang-1700.4.4.1)"
+        },
+        "appleClangExecutable": { "$ref": "#/$defs/identity" },
+        "appleClangCxxExecutable": { "$ref": "#/$defs/identity" },
+        "xcode": { "const": "Xcode 26.1.1\nBuild version 17B100" },
+        "sdk": { "const": "26.1" },
+        "commandPaths": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "/usr/bin/sandbox-exec",
+            "/usr/bin/pmset",
+            "/usr/bin/top",
+            "/usr/sbin/sysctl",
+            "/usr/bin/memory_pressure",
+            "/usr/bin/caffeinate",
+            "/usr/bin/sudo",
+            "/usr/sbin/purge",
+            "/usr/bin/pgrep",
+            "/usr/bin/xcrun",
+            "/usr/bin/xcodebuild",
+            "/usr/bin/make"
+          ],
+          "properties": {
+            "/usr/bin/sandbox-exec": { "$ref": "#/$defs/sha" },
+            "/usr/bin/pmset": { "$ref": "#/$defs/sha" },
+            "/usr/bin/top": { "$ref": "#/$defs/sha" },
+            "/usr/sbin/sysctl": { "$ref": "#/$defs/sha" },
+            "/usr/bin/memory_pressure": { "$ref": "#/$defs/sha" },
+            "/usr/bin/caffeinate": { "$ref": "#/$defs/sha" },
+            "/usr/bin/sudo": { "$ref": "#/$defs/sha" },
+            "/usr/sbin/purge": { "$ref": "#/$defs/sha" },
+            "/usr/bin/pgrep": { "$ref": "#/$defs/sha" },
+            "/usr/bin/xcrun": { "$ref": "#/$defs/sha" },
+            "/usr/bin/xcodebuild": { "$ref": "#/$defs/sha" },
+            "/usr/bin/make": { "$ref": "#/$defs/sha" }
+          }
+        }
+      }
+    },
+    "sandbox": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile",
+        "profileSha256",
+        "networkDenied",
+        "localOperationsAllowed"
+      ],
+      "properties": {
+        "profile": {
+          "const": "benchmark/sandbox/darwin-arm64-network-denied-v1.sb"
+        },
+        "profileSha256": { "$ref": "#/$defs/sha" },
+        "networkDenied": { "const": true },
+        "localOperationsAllowed": { "const": true }
+      }
+    },
+    "purge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "nonInteractivePass"],
+      "properties": {
+        "command": { "const": "/usr/bin/sudo -n /usr/sbin/purge" },
+        "nonInteractivePass": { "const": true }
+      }
+    }
+  }
+}

@@ -1,130 +1,135 @@
-name: Voice runtime pre-tag qualification and publication
+name: Voice runtime qualified release
 on:
   workflow_dispatch:
     inputs:
       operation:
-        description: Prequalify first; publish only a successful prequalification run
+        description: Prequalify first; publish only its exact successful bytes
         type: choice
         options: [prequalify, publish]
         required: true
       release_tag:
-        description: Intended immutable release tag (vX.Y.Z)
+        description: Intended immutable tag (vX.Y.Z)
         required: true
       runtime_version:
         description: Runtime version (X.Y.Z)
         required: true
       qualification_run_id:
-        description: Required only for publish; completed prequalify workflow run ID
+        description: Successful prequalify workflow run ID (publish only)
         required: false
 permissions:
   contents: write
   actions: read
+env:
+  VOICE_RELEASE_TAG_INPUT: ${{ inputs.release_tag }}
+  VOICE_RUNTIME_VERSION_INPUT: ${{ inputs.runtime_version }}
+  VOICE_QUALIFICATION_RUN_ID_INPUT: ${{ inputs.qualification_run_id }}
 concurrency:
   group: voice-runtime-${{ inputs.release_tag }}
   cancel-in-progress: false
 jobs:
+  current-release-matrix:
+    if: inputs.operation == 'prequalify'
+    runs-on: [self-hosted, macOS, ARM64, voice-m1-max]
+    outputs:
+      build: ${{ steps.matrix.outputs.build }}
+      digest: ${{ steps.matrix.outputs.digest }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: matrix
+        shell: bash
+        run: |
+          node -e 'const v=process.argv[1],t=process.argv[2];if(!/^[0-9]+\.[0-9]+\.[0-9]+$/.test(v)||t!==`v${v}`)process.exit(1)' \
+            "$VOICE_RUNTIME_VERSION_INPUT" "$VOICE_RELEASE_TAG_INPUT"
+          node - <<'NODE' >> "$GITHUB_OUTPUT"
+          const fs=require('fs'),crypto=require('crypto');
+          const file='contracts/catalog/current-release-matrix-v1.json';
+          const bytes=fs.readFileSync(file), value=JSON.parse(bytes);
+          const include=value.entries.map(({profileId,platform,architecture})=>({profile:profileId,target:`${platform}-${architecture}`}));
+          console.log(`build=${JSON.stringify({include})}`);
+          console.log(`digest=${crypto.createHash('sha256').update(bytes).digest('hex')}`);
+          NODE
   build-and-qualify:
     if: inputs.operation == 'prequalify'
+    needs: current-release-matrix
     strategy:
       fail-fast: false
-      matrix:
-        include:
-          - {
-              profile: english,
-              target: darwin-arm64,
-              runner: [self-hosted, macOS, ARM64, voice-m1-max],
-            }
-          - {
-              profile: chinese,
-              target: darwin-arm64,
-              runner: [self-hosted, macOS, ARM64, voice-m1-max],
-            }
-          - {
-              profile: english,
-              target: darwin-x64,
-              runner: [self-hosted, macOS, X64, voice-runtime],
-            }
-          - {
-              profile: chinese,
-              target: darwin-x64,
-              runner: [self-hosted, macOS, X64, voice-runtime],
-            }
-          - {
-              profile: english,
-              target: linux-x64,
-              runner: [self-hosted, Linux, X64, voice-runtime],
-            }
-          - {
-              profile: chinese,
-              target: linux-x64,
-              runner: [self-hosted, Linux, X64, voice-runtime],
-            }
-          - {
-              profile: english,
-              target: win32-x64,
-              runner: [self-hosted, Windows, X64, voice-runtime],
-            }
-          - {
-              profile: chinese,
-              target: win32-x64,
-              runner: [self-hosted, Windows, X64, voice-runtime],
-            }
-    runs-on: ${{ matrix.runner }}
+      max-parallel: 1
+      matrix: ${{ fromJSON(needs.current-release-matrix.outputs.build) }}
+    runs-on: [self-hosted, macOS, ARM64, voice-m1-max]
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - name: Verify pinned build environment
+      - name: Verify source and closed toolchain
         shell: bash
         run: |
           test "$(node --version)" = v22.23.1
+          test "$(shasum -a 256 contracts/catalog/current-release-matrix-v1.json | cut -d' ' -f1)" = "${{ needs.current-release-matrix.outputs.digest }}"
           node build/verify-go-toolchain.mjs --go "$VOICE_GO"
+          test "$("$VOICE_CMAKE" --version | head -1)" = "cmake version 4.3.3"
           npm ci --ignore-scripts
-      - name: Build exact profile archive
+          npm run check
+      - name: Objective M1 runner preflight
         shell: bash
         run: |
-          mkdir -p out/qualifications/${{ matrix.profile }}-${{ matrix.target }} out/assets
-          ARCHIVE=voice-${{ matrix.profile }}-${{ matrix.target }}-${{ inputs.runtime_version }}.zip
-          node build/package-assembler.mjs \
-            --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
-            --inputs "$VOICE_BUILD_INPUT_ROOT/${{ matrix.profile }}/${{ matrix.target }}" \
-            --output "out/assets/$ARCHIVE" --go "$VOICE_GO" --cmake "$VOICE_CMAKE" \
-            --source-commit "$GITHUB_SHA" --version "${{ inputs.runtime_version }}"
+          mkdir -p out/qualifications/${{ matrix.profile }}-${{ matrix.target }} out/assets out/inputs
+          nohup /usr/bin/caffeinate -dimsu >"$RUNNER_TEMP/voice-caffeinate.log" 2>&1 &
+          echo "$!" > "$RUNNER_TEMP/voice-caffeinate.pid"
+          node benchmark/darwin-arm64-runner-preflight.mjs \
+            --go "$VOICE_GO" --cmake "$VOICE_CMAKE" \
+            --output "$RUNNER_TEMP/darwin-arm64-preflight-v1.json"
+      - name: Materialize exact closed inputs
+        shell: bash
+        run: |
+          node build/materialize-release-inputs.mjs \
+            --recipe build/input-recipes/${{ matrix.profile }}-darwin-arm64-v1.json \
+            --cache "$VOICE_INPUT_CACHE_ROOT" --repository "$GITHUB_WORKSPACE" \
+            --destination out/inputs/${{ matrix.profile }}-${{ matrix.target }} \
+            --source-commit "$GITHUB_SHA"
+          cp "$RUNNER_TEMP/darwin-arm64-preflight-v1.json" \
+            out/qualifications/${{ matrix.profile }}-${{ matrix.target }}/darwin-arm64-preflight-v1.json
+      - name: Build twice under network denial
+        shell: bash
+        run: |
+          ARCHIVE=voice-${{ matrix.profile }}-${{ matrix.target }}-$VOICE_RUNTIME_VERSION_INPUT.zip
+          REBUILD="$RUNNER_TEMP/voice-rebuild-${{ matrix.profile }}-${{ matrix.target }}"
+          mkdir "$REBUILD"
+          for OUTPUT in "$GITHUB_WORKSPACE/out/assets/$ARCHIVE" "$REBUILD/$ARCHIVE"; do
+            /usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb \
+              node build/package-assembler.mjs \
+              --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
+              --inputs "$GITHUB_WORKSPACE/out/inputs/${{ matrix.profile }}-${{ matrix.target }}" \
+              --output "$OUTPUT" --go "$VOICE_GO" --cmake "$VOICE_CMAKE" \
+              --source-commit "$GITHUB_SHA" --version "$VOICE_RUNTIME_VERSION_INPUT"
+          done
           node build/package-verifier.mjs --archive "out/assets/$ARCHIVE" \
             --build-report "out/assets/$ARCHIVE.build.json" --go "$VOICE_GO" \
             --output "out/qualifications/${{ matrix.profile }}-${{ matrix.target }}/package-verification.json"
-          REBUILD_DIR="$RUNNER_TEMP/voice-rebuild-${{ matrix.profile }}-${{ matrix.target }}"
-          mkdir -p "$REBUILD_DIR"
-          node build/package-assembler.mjs \
-            --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
-            --inputs "$VOICE_BUILD_INPUT_ROOT/${{ matrix.profile }}/${{ matrix.target }}" \
-            --output "$REBUILD_DIR/$ARCHIVE" --go "$VOICE_GO" --cmake "$VOICE_CMAKE" \
-            --source-commit "$GITHUB_SHA" --version "${{ inputs.runtime_version }}"
           node build/verify-reproducibility.mjs \
             --first-archive "out/assets/$ARCHIVE" --first-report "out/assets/$ARCHIVE.build.json" \
-            --second-archive "$REBUILD_DIR/$ARCHIVE" --second-report "$REBUILD_DIR/$ARCHIVE.build.json" \
+            --second-archive "$REBUILD/$ARCHIVE" --second-report "$REBUILD/$ARCHIVE.build.json" \
             --output "out/qualifications/${{ matrix.profile }}-${{ matrix.target }}/reproducibility-proof-v1.json"
-          rm -rf "$REBUILD_DIR"
-      - name: Execute actual-package qualification
+      - name: Generate compliance and execute exact package qualification
         shell: bash
         run: |
-          ARCHIVE=voice-${{ matrix.profile }}-${{ matrix.target }}-${{ inputs.runtime_version }}.zip
-          CONDITIONS=out/qualifications/${{ matrix.profile }}-${{ matrix.target }}/conditions-input.json
+          DIR=out/qualifications/${{ matrix.profile }}-${{ matrix.target }}
+          ARCHIVE=voice-${{ matrix.profile }}-${{ matrix.target }}-$VOICE_RUNTIME_VERSION_INPUT.zip
+          node release/compliance/generate-package-compliance.mjs \
+            --recipe build/input-recipes/${{ matrix.profile }}-darwin-arm64-v1.json \
+            --provenance "out/assets/$ARCHIVE.provenance.json" \
+            --notices "out/inputs/${{ matrix.profile }}-${{ matrix.target }}/package-notices/THIRD_PARTY_NOTICES.json" \
+            --build-report "out/assets/$ARCHIVE.build.json" --archive "out/assets/$ARCHIVE" \
+            --output "$DIR/package-compliance-input-v1.json"
           node benchmark/prepare-conditions.mjs \
             --source-commit "$GITHUB_SHA" --runner-commit "$GITHUB_SHA" \
             --profile ${{ matrix.profile }} --target ${{ matrix.target }} \
-            --evidence "$VOICE_EVIDENCE_ROOT/${{ matrix.profile }}/${{ matrix.target }}" \
-            --output "$CONDITIONS"
-          EXTRA="--cold-count 3 --warm-count 10"
-          if test "${{ matrix.target }}" = darwin-arm64; then EXTRA="--cold-count 30 --warm-count 100"; fi
-          BASELINE="release/evidence/baselines/${{ matrix.profile }}-v1.json"
-          if test "${{ matrix.profile }}" = english; then BASELINE="release/evidence/baselines/english-v2.json"; fi
+            --preflight "$DIR/darwin-arm64-preflight-v1.json" --output "$DIR/conditions-input.json"
+          BASELINE=release/evidence/baselines/${{ matrix.profile }}-v1.json
+          test "${{ matrix.profile }}" != english || BASELINE=release/evidence/baselines/english-v2.json
           node benchmark/run-profile-qualification.mjs \
             --archive "out/assets/$ARCHIVE" --build-report "out/assets/$ARCHIVE.build.json" \
-            --corpus "$VOICE_CORPUS_ROOT/${{ matrix.profile }}/corpus-v1.json" \
-            --baseline "$BASELINE" \
-            --conditions "$CONDITIONS" --go "$VOICE_GO" \
-            --reproducibility-proof "out/qualifications/${{ matrix.profile }}-${{ matrix.target }}/reproducibility-proof-v1.json" \
-            --output "out/qualifications/${{ matrix.profile }}-${{ matrix.target }}" $EXTRA
+            --corpus "$VOICE_CORPUS_ROOT/${{ matrix.profile }}/corpus-v1.json" --baseline "$BASELINE" \
+            --conditions "$DIR/conditions-input.json" --compliance "$DIR/package-compliance-input-v1.json" \
+            --go "$VOICE_GO" --reproducibility-proof "$DIR/reproducibility-proof-v1.json" --output "$DIR"
       - uses: actions/upload-artifact@v4
         with:
           name: qualified-${{ matrix.profile }}-${{ matrix.target }}
@@ -132,37 +137,50 @@ jobs:
           if-no-files-found: error
           retention-days: 7
           compression-level: 0
+      - name: Stop job-owned sleep prevention
+        if: always()
+        shell: bash
+        run: |
+          if test -f "$RUNNER_TEMP/voice-caffeinate.pid"; then
+            kill "$(cat "$RUNNER_TEMP/voice-caffeinate.pid")" 2>/dev/null || true
+          fi
   aggregate-pretag:
     if: inputs.operation == 'prequalify'
     needs: build-and-qualify
-    runs-on: [self-hosted, Linux, X64, voice-release]
+    runs-on: [self-hosted, macOS, ARM64, voice-m1-max]
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
       - uses: actions/download-artifact@v4
-        with:
-          pattern: qualified-*
-          path: bundle
-          merge-multiple: true
-      - name: Recompute release evidence before any tag
+        with: { pattern: qualified-*, path: bundle, merge-multiple: true }
+      - name: Build and verify acyclic integrated pre-tag chain
         shell: bash
         run: |
-          test "$(node --version)" = v22.23.1
           npm ci --ignore-scripts
           git fetch origin main --tags
-          test -z "$(git tag -l '${{ inputs.release_tag }}')"
-          node release/catalog-builder.mjs --qualifications bundle/qualifications \
-            --release-tag "${{ inputs.release_tag }}" \
-            --base-url "https://github.com/${GITHUB_REPOSITORY}/releases/download/${{ inputs.release_tag }}" \
-            --output bundle/voice-runtime-catalog-v3.json
-          node release/evidence/assemble.mjs --qualifications bundle/qualifications \
-            --catalog bundle/voice-runtime-catalog-v3.json --assets bundle/assets \
-            --maintained-main-commit "$(git rev-parse origin/main)" \
+          test -z "$(git tag -l -- "$VOICE_RELEASE_TAG_INPUT")"
+          MAIN=$(git rev-parse origin/main)
+          node release/evidence/qualification-set.mjs --qualifications bundle/qualifications \
+            --assets bundle/assets --source-commit "$GITHUB_SHA" --runner-commit "$GITHUB_SHA" \
+            --test-commit "$GITHUB_SHA" --output bundle/qualification-set-v1.json
+          node release/evidence/assemble.mjs --qualification-set bundle/qualification-set-v1.json \
+            --assets bundle/assets --runtime-version "$VOICE_RUNTIME_VERSION_INPUT" \
+            --release-tag "$VOICE_RELEASE_TAG_INPUT" --maintained-main-commit "$MAIN" \
             --output bundle/release-qualification-evidence-v1.json
-          node release/qualify-release.mjs --evidence bundle/release-qualification-evidence-v1.json \
-            --catalog bundle/voice-runtime-catalog-v3.json --qualifications bundle/qualifications \
-            --assets bundle/assets --maintained-main-commit "$(git rev-parse origin/main)" \
-            --output bundle/pretag-qualification-proof-v1.json
+          node release/catalog-builder.mjs --qualification-set bundle/qualification-set-v1.json \
+            --release-evidence bundle/release-qualification-evidence-v1.json \
+            --release-tag "$VOICE_RELEASE_TAG_INPUT" \
+            --base-url "https://github.com/${GITHUB_REPOSITORY}/releases/download" \
+            --output bundle/voice-runtime-catalog-v3.json
+          node release/pretag-release-manifest.mjs --qualification-set bundle/qualification-set-v1.json \
+            --release-evidence bundle/release-qualification-evidence-v1.json \
+            --catalog bundle/voice-runtime-catalog-v3.json --assets bundle/assets \
+            --output bundle/pretag-release-manifest-v1.json
+          node release/qualify-release.mjs --manifest bundle/pretag-release-manifest-v1.json \
+            --qualification-set bundle/qualification-set-v1.json \
+            --release-evidence bundle/release-qualification-evidence-v1.json \
+            --catalog bundle/voice-runtime-catalog-v3.json --assets bundle/assets \
+            --maintained-main-commit "$MAIN" --output bundle/pretag-qualification-proof-v1.json
       - uses: actions/upload-artifact@v4
         with:
           name: pretag-voice-runtime-${{ inputs.release_tag }}
@@ -172,40 +190,85 @@ jobs:
           compression-level: 0
   publish-qualified:
     if: inputs.operation == 'publish'
-    runs-on: [self-hosted, Linux, X64, voice-release]
-    env:
-      GH_TOKEN: ${{ github.token }}
+    runs-on: [self-hosted, macOS, ARM64, voice-m1-max]
+    env: { GH_TOKEN: "${{ github.token }}" }
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - name: Download the completed pre-tag artifact
+      - name: Download completed pre-tag run
         shell: bash
         run: |
-          test -n "${{ inputs.qualification_run_id }}"
-          META=$(gh api "/repos/$GITHUB_REPOSITORY/actions/runs/${{ inputs.qualification_run_id }}")
+          node -e 'const v=process.argv[1],t=process.argv[2];if(!/^[0-9]+\.[0-9]+\.[0-9]+$/.test(v)||t!==`v${v}`)process.exit(1)' \
+            "$VOICE_RUNTIME_VERSION_INPUT" "$VOICE_RELEASE_TAG_INPUT"
+          test -n "$VOICE_QUALIFICATION_RUN_ID_INPUT"
+          [[ "$VOICE_QUALIFICATION_RUN_ID_INPUT" =~ ^[0-9]+$ ]]
+          META=$(gh api "/repos/$GITHUB_REPOSITORY/actions/runs/$VOICE_QUALIFICATION_RUN_ID_INPUT")
           test "$(node -e 'let x=JSON.parse(process.argv[1]);process.stdout.write(x.conclusion)' "$META")" = success
           test "$(node -e 'let x=JSON.parse(process.argv[1]);process.stdout.write(x.head_sha)' "$META")" = "$GITHUB_SHA"
           mkdir bundle
-          gh run download "${{ inputs.qualification_run_id }}" --name "pretag-voice-runtime-${{ inputs.release_tag }}" --dir bundle
-      - name: Reverify, then tag and publish exact qualified bytes
+          gh run download "$VOICE_QUALIFICATION_RUN_ID_INPUT" --name "pretag-voice-runtime-$VOICE_RELEASE_TAG_INPUT" --dir bundle
+      - name: Reverify, tag, and publish exactly five files
+        id: publish
         shell: bash
         run: |
-          test "$(node --version)" = v22.23.1
           npm ci --ignore-scripts
+          node -e 'const x=require("./bundle/pretag-release-manifest-v1.json").intendedRelease;if(x.runtimeVersion!==process.argv[1]||x.releaseTag!==process.argv[2])process.exit(1)' \
+            "$VOICE_RUNTIME_VERSION_INPUT" "$VOICE_RELEASE_TAG_INPUT"
           git fetch origin main --tags
-          test -z "$(git tag -l '${{ inputs.release_tag }}')"
-          node release/qualify-release.mjs --evidence bundle/release-qualification-evidence-v1.json \
-            --catalog bundle/voice-runtime-catalog-v3.json --qualifications bundle/qualifications \
-            --assets bundle/assets --maintained-main-commit "$(git rev-parse origin/main)" \
-            --output bundle/publication-recheck.json
-          git tag -a "${{ inputs.release_tag }}" "$GITHUB_SHA" -m "Voice runtime ${{ inputs.release_tag }}"
-          git push origin "refs/tags/${{ inputs.release_tag }}"
-          gh release create "${{ inputs.release_tag }}" bundle/assets/*.zip \
+          MAIN=$(git rev-parse origin/main)
+          node release/qualify-release.mjs --manifest bundle/pretag-release-manifest-v1.json \
+            --qualification-set bundle/qualification-set-v1.json \
+            --release-evidence bundle/release-qualification-evidence-v1.json \
+            --catalog bundle/voice-runtime-catalog-v3.json --assets bundle/assets \
+            --maintained-main-commit "$MAIN" --output bundle/publication-recheck.json
+          git tag -a "$VOICE_RELEASE_TAG_INPUT" "$GITHUB_SHA" -m "Voice runtime $VOICE_RELEASE_TAG_INPUT"
+          git push origin "refs/tags/$VOICE_RELEASE_TAG_INPUT"
+          gh release create "$VOICE_RELEASE_TAG_INPUT" bundle/assets/*.zip \
             bundle/voice-runtime-catalog-v3.json bundle/release-qualification-evidence-v1.json \
-            --verify-tag --title "Voice runtime ${{ inputs.release_tag }}" \
-            --notes "Independently executable Provider Archive 1 profile packages."
-          mkdir published
-          gh release download "${{ inputs.release_tag }}" --dir published
-          node release/verify-published-assets.mjs --catalog bundle/voice-runtime-catalog-v3.json \
-            --evidence bundle/release-qualification-evidence-v1.json --assets published \
-            --output bundle/publication-verification.json
+            bundle/pretag-release-manifest-v1.json --verify-tag \
+            --title "Voice runtime $VOICE_RELEASE_TAG_INPUT — macOS Apple Silicon only" \
+            --notes "Provider Archive 1 packages for macOS Apple Silicon only."
+      - name: Download every published byte
+        id: download
+        if: always() && steps.publish.outcome != 'skipped'
+        continue-on-error: true
+        shell: bash
+        run: |
+          mkdir -p published
+          gh release download "$VOICE_RELEASE_TAG_INPUT" --dir published
+      - name: Always record published-byte verification
+        id: verify
+        if: always() && steps.publish.outcome != 'skipped'
+        continue-on-error: true
+        shell: bash
+        run: |
+          node release/verify-published-assets.mjs --manifest bundle/pretag-release-manifest-v1.json \
+            --downloads published --repository "$GITHUB_REPOSITORY" --release-tag "$VOICE_RELEASE_TAG_INPUT" \
+            --output bundle/published-asset-verification-v1.json
+      - name: Quarantine failed publication without changing its tag
+        id: quarantine
+        if: always() && steps.verify.outcome == 'failure'
+        continue-on-error: true
+        shell: bash
+        run: |
+          node release/quarantine-published-release.mjs \
+            --verification bundle/published-asset-verification-v1.json \
+            --release-tag "$VOICE_RELEASE_TAG_INPUT" --repository "$GITHUB_REPOSITORY" \
+            --output bundle/publication-quarantine-result-v1.json
+      - name: Retain post-publication audit results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: publication-audit-${{ inputs.release_tag }}
+          path: |
+            bundle/published-asset-verification-v1.json
+            bundle/publication-quarantine-result-v1.json
+          if-no-files-found: warn
+          retention-days: 90
+      - name: Fail finalization after verification or quarantine failure
+        if: always() && steps.publish.outcome != 'skipped'
+        shell: bash
+        run: |
+          test "${{ steps.publish.outcome }}" = success
+          test "${{ steps.verify.outcome }}" = success
+          test "${{ steps.quarantine.outcome }}" = skipped

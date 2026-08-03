@@ -4,209 +4,131 @@
   "additionalProperties": false,
   "required": [
     "schemaVersion",
+    "artifactKind",
+    "intendedRelease",
     "sourceCommit",
     "runnerCommit",
+    "testCommit",
+    "releaseMatrix",
+    "qualificationSet",
+    "mainReachability",
     "selectionStudy",
-    "catalog",
-    "corpora",
     "candidateHistory",
     "profileQualifications",
-    "mainReachability",
-    "preTagQualification"
+    "expectedProviderArchives",
+    "limitations",
+    "decision"
   ],
   "properties": {
-    "schemaVersion": { "const": 1 },
-    "sourceCommit": { "$ref": "#/$defs/commit" },
-    "runnerCommit": { "$ref": "#/$defs/commit" },
-    "selectionStudy": { "$ref": "#/$defs/digestRecord" },
-    "catalog": { "$ref": "#/$defs/digestRecord" },
-    "corpora": {
-      "type": "array",
-      "minItems": 2,
-      "items": { "$ref": "#/$defs/corpus" }
+    "schemaVersion": {
+      "const": 1
     },
-    "candidateHistory": {
-      "type": "array",
-      "minItems": 5,
-      "items": { "$ref": "#/$defs/candidate" }
+    "artifactKind": {
+      "const": "release-qualification-evidence"
     },
-    "profileQualifications": {
-      "type": "array",
-      "minItems": 8,
-      "items": { "$ref": "#/$defs/qualification" }
+    "intendedRelease": {
+      "$ref": "#/$defs/intended"
+    },
+    "sourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "runnerCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "testCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "releaseMatrix": {
+      "$ref": "#/$defs/matrix"
+    },
+    "qualificationSet": {
+      "$ref": "#/$defs/file"
     },
     "mainReachability": {
       "type": "object",
       "additionalProperties": false,
       "required": ["maintainedMainCommit", "releaseCommit", "reachable"],
       "properties": {
-        "maintainedMainCommit": { "$ref": "#/$defs/commit" },
-        "releaseCommit": { "$ref": "#/$defs/commit" },
-        "reachable": { "type": "boolean" }
-      }
-    },
-    "preTagQualification": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "qualifiedCommit",
-        "catalogSha256",
-        "assetSetSha256",
-        "completedBeforeTag"
-      ],
-      "properties": {
-        "qualifiedCommit": { "$ref": "#/$defs/commit" },
-        "catalogSha256": { "$ref": "#/$defs/sha" },
-        "assetSetSha256": { "$ref": "#/$defs/sha" },
-        "completedBeforeTag": { "type": "boolean" }
-      }
-    }
-  },
-  "$defs": {
-    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
-    "commit": { "type": "string", "pattern": "^(?!0{40}$)[a-f0-9]{40}$" },
-    "digestRecord": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["id", "sha256"],
-      "properties": {
-        "id": { "type": "string", "minLength": 1 },
-        "sha256": { "$ref": "#/$defs/sha" }
-      }
-    },
-    "corpus": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "id",
-        "manifestSha256",
-        "provenanceReference",
-        "license",
-        "redistributionApproved",
-        "consentReferenceDigest",
-        "uniqueIds",
-        "uniquePaths",
-        "uniqueAudioHashes",
-        "limitations"
-      ],
-      "properties": {
-        "id": { "type": "string", "minLength": 1 },
-        "manifestSha256": { "$ref": "#/$defs/sha" },
-        "provenanceReference": { "type": "string", "minLength": 1 },
-        "license": { "type": "string", "minLength": 1 },
-        "redistributionApproved": { "const": true },
-        "consentReferenceDigest": { "$ref": "#/$defs/sha" },
-        "uniqueIds": { "const": true },
-        "uniquePaths": { "const": true },
-        "uniqueAudioHashes": { "const": true },
-        "limitations": {
-          "type": "array",
-          "items": { "type": "string", "minLength": 1 }
+        "maintainedMainCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "releaseCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "reachable": {
+          "const": true
         }
       }
     },
-    "candidate": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "candidateId",
-        "profileId",
-        "providerId",
-        "modelId",
-        "resultDigest",
-        "outcome",
-        "reason"
-      ],
-      "properties": {
-        "candidateId": { "type": "string", "minLength": 1 },
-        "profileId": { "enum": ["english", "chinese", "auto"] },
-        "providerId": { "type": "string", "minLength": 1 },
-        "modelId": { "type": "string", "minLength": 1 },
-        "resultDigest": { "$ref": "#/$defs/sha" },
-        "outcome": { "enum": ["selected", "preserved", "rejected", "future"] },
-        "reason": { "type": "string", "minLength": 1 }
+    "selectionStudy": {
+      "$ref": "#/$defs/digest"
+    },
+    "candidateHistory": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
       }
     },
-    "latency": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["count", "failures", "timeouts", "p50Ms", "p95Ms", "maxMs"],
-      "properties": {
-        "count": { "type": "integer", "minimum": 0 },
-        "failures": { "type": "integer", "minimum": 0 },
-        "timeouts": { "type": "integer", "minimum": 0 },
-        "p50Ms": { "type": "number", "minimum": 0 },
-        "p95Ms": { "type": "number", "minimum": 0 },
-        "maxMs": { "type": "number", "minimum": 0 }
+    "profileQualifications": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/profile"
       }
     },
-    "quality": {
+    "expectedProviderArchives": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "metric",
-        "value",
-        "baseline",
-        "pairedUncertainty",
-        "sampleCount",
-        "emptyCount",
-        "failedCount",
-        "rawResultsSha256",
-        "resultIndexSha256"
-      ],
+      "required": ["sha256", "items"],
       "properties": {
-        "metric": { "enum": ["WER", "CER", "AUTO_DIAGNOSTIC"] },
-        "value": { "type": "number", "minimum": 0 },
-        "baseline": { "$ref": "#/$defs/baseline" },
-        "pairedUncertainty": { "$ref": "#/$defs/uncertainty" },
-        "sampleCount": { "type": "integer", "minimum": 1 },
-        "emptyCount": { "type": "integer", "minimum": 0 },
-        "failedCount": { "type": "integer", "minimum": 0 },
-        "rawResultsSha256": { "$ref": "#/$defs/sha" },
-        "resultIndexSha256": { "$ref": "#/$defs/sha" }
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/archiveItem"
+          }
+        }
       }
     },
-    "baseline": {
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "decision": {
+      "const": "pass"
+    }
+  },
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40}$)[a-f0-9]{40}$"
+    },
+    "matrix": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "id",
-        "evidenceSha256",
-        "configurationDigest",
-        "providerId",
-        "modelId",
-        "value",
-        "sampleCount",
-        "trustedCatalogSha256",
-        "promotedResultSha256",
-        "corpusManifestSha256"
-      ],
+      "required": ["matrixId", "sha256"],
       "properties": {
-        "id": { "type": "string", "minLength": 1 },
-        "evidenceSha256": { "$ref": "#/$defs/sha" },
-        "configurationDigest": { "$ref": "#/$defs/sha" },
-        "providerId": { "type": "string", "minLength": 1 },
-        "modelId": { "type": "string", "minLength": 1 },
-        "value": { "type": "number", "minimum": 0 },
-        "sampleCount": { "type": "integer", "minimum": 1 },
-        "trustedCatalogSha256": { "$ref": "#/$defs/sha" },
-        "promotedResultSha256": { "$ref": "#/$defs/sha" },
-        "corpusManifestSha256": { "$ref": "#/$defs/sha" }
+        "matrixId": {
+          "const": "voice-runtime-darwin-arm64-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
       }
     },
-    "uncertainty": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": ["method", "repetitions", "difference", "lower95", "upper95"],
-      "properties": {
-        "method": { "const": "paired-bootstrap-v1" },
-        "repetitions": { "const": 10000 },
-        "difference": { "type": "number" },
-        "lower95": { "type": "number" },
-        "upper95": { "type": "number" }
-      }
-    },
-    "qualification": {
+    "profile": {
       "type": "object",
       "additionalProperties": false,
       "required": [
@@ -214,23 +136,17 @@
         "languageMode",
         "platform",
         "architecture",
-        "decision",
         "packageId",
         "providerId",
         "modelId",
-        "buildReportSha256",
-        "buildInputManifestSha256",
+        "candidateDecision",
+        "recipeSha256",
+        "provenanceSha256",
         "repositoryBuildLockSha256",
-        "goToolchainArchiveSha256",
-        "goToolchainRootManifestSha256",
         "goToolchainRootTreeSha256",
-        "goToolchainRootFileCount",
-        "goToolchainRootSizeBytes",
+        "buildReportSha256",
         "reproducibilityProofSha256",
-        "runtimeConformanceSha256",
-        "performanceSamplesSha256",
-        "qualificationSummarySha256",
-        "archiveSha256",
+        "archive",
         "descriptorSha256",
         "fileManifestSha256",
         "launcherSha256",
@@ -240,72 +156,307 @@
         "modelSha256",
         "normalizerSha256",
         "protocolSha256",
+        "capabilityDigest",
         "noticeInventorySha256",
+        "generatedComplianceSha256",
+        "preflightSha256",
+        "sandboxProfileSha256",
+        "corpusManifestSha256",
+        "baselineSha256",
+        "rawResultsSha256",
+        "resultIndexSha256",
+        "qualificationSummarySha256",
+        "runtimeConformanceSha256",
+        "performance",
         "quality",
-        "handshake",
-        "coldPreparation",
-        "warmPreparation",
-        "coldResult",
-        "warmRequest",
-        "maxRssBytes",
-        "extractedSizeBytes",
-        "packageRuns",
-        "actualPlatform",
-        "normalizationFixtures",
-        "relocation",
-        "offline",
-        "noPackageMutation",
-        "recovery",
-        "licenseApproved"
+        "limitations",
+        "outcomes",
+        "decision"
       ],
       "properties": {
-        "profileId": { "enum": ["english", "chinese", "auto"] },
-        "languageMode": { "enum": ["en", "zh", "auto"] },
-        "platform": { "enum": ["darwin", "linux", "win32"] },
-        "architecture": { "enum": ["arm64", "x64"] },
-        "decision": { "enum": ["preserve", "select"] },
-        "packageId": { "type": "string", "minLength": 1 },
-        "providerId": { "type": "string", "minLength": 1 },
-        "modelId": { "type": "string", "minLength": 1 },
-        "buildReportSha256": { "$ref": "#/$defs/sha" },
-        "buildInputManifestSha256": { "$ref": "#/$defs/sha" },
-        "repositoryBuildLockSha256": { "$ref": "#/$defs/sha" },
-        "goToolchainArchiveSha256": { "$ref": "#/$defs/sha" },
-        "goToolchainRootManifestSha256": { "$ref": "#/$defs/sha" },
-        "goToolchainRootTreeSha256": { "$ref": "#/$defs/sha" },
-        "goToolchainRootFileCount": { "type": "integer", "minimum": 1 },
-        "goToolchainRootSizeBytes": { "type": "integer", "minimum": 1 },
-        "reproducibilityProofSha256": { "$ref": "#/$defs/sha" },
-        "runtimeConformanceSha256": { "$ref": "#/$defs/sha" },
-        "performanceSamplesSha256": { "$ref": "#/$defs/sha" },
-        "qualificationSummarySha256": { "$ref": "#/$defs/sha" },
-        "archiveSha256": { "$ref": "#/$defs/sha" },
-        "descriptorSha256": { "$ref": "#/$defs/sha" },
-        "fileManifestSha256": { "$ref": "#/$defs/sha" },
-        "launcherSha256": { "$ref": "#/$defs/sha" },
-        "launcherPlanSha256": { "$ref": "#/$defs/sha" },
-        "hostSha256": { "$ref": "#/$defs/sha" },
-        "engineConfigurationSha256": { "$ref": "#/$defs/sha" },
-        "modelSha256": { "$ref": "#/$defs/sha" },
-        "normalizerSha256": { "$ref": "#/$defs/sha" },
-        "protocolSha256": { "$ref": "#/$defs/sha" },
-        "noticeInventorySha256": { "$ref": "#/$defs/sha" },
-        "quality": { "$ref": "#/$defs/quality" },
-        "handshake": { "$ref": "#/$defs/latency" },
-        "coldPreparation": { "$ref": "#/$defs/latency" },
-        "warmPreparation": { "$ref": "#/$defs/latency" },
-        "coldResult": { "$ref": "#/$defs/latency" },
-        "warmRequest": { "$ref": "#/$defs/latency" },
-        "maxRssBytes": { "type": "integer", "minimum": 1 },
-        "extractedSizeBytes": { "type": "integer", "minimum": 1 },
-        "packageRuns": { "type": "integer", "minimum": 1 },
-        "actualPlatform": { "const": true },
-        "normalizationFixtures": { "const": true },
-        "relocation": { "const": true },
-        "offline": { "const": true },
-        "noPackageMutation": { "const": true },
-        "recovery": { "const": true },
-        "licenseApproved": { "const": true }
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "languageMode": {
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "packageId": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "modelId": {
+          "type": "string"
+        },
+        "candidateDecision": {
+          "enum": ["preserve", "select"]
+        },
+        "recipeSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "provenanceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "repositoryBuildLockSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "goToolchainRootTreeSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "buildReportSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "reproducibilityProofSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "archive": {
+          "$ref": "#/$defs/archive"
+        },
+        "descriptorSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "fileManifestSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "launcherSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "launcherPlanSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "hostSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "engineConfigurationSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "modelSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "normalizerSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "protocolSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "capabilityDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "noticeInventorySha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "generatedComplianceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "preflightSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "sandboxProfileSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "corpusManifestSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "baselineSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "rawResultsSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "resultIndexSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "qualificationSummarySha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "runtimeConformanceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "performance": {
+          "$ref": "#/$defs/performance"
+        },
+        "quality": {
+          "type": "object"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outcomes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actualPlatform",
+            "normalizationFixtures",
+            "relocation",
+            "offline",
+            "noPackageMutation",
+            "recovery",
+            "licenseApproved"
+          ],
+          "properties": {
+            "actualPlatform": {
+              "const": true
+            },
+            "normalizationFixtures": {
+              "const": true
+            },
+            "relocation": {
+              "const": true
+            },
+            "offline": {
+              "const": true
+            },
+            "noPackageMutation": {
+              "const": true
+            },
+            "recovery": {
+              "const": true
+            },
+            "licenseApproved": {
+              "const": true
+            }
+          }
+        },
+        "decision": {
+          "const": "pass"
+        }
+      }
+    },
+    "intended": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtimeVersion", "releaseTag"],
+      "properties": {
+        "runtimeVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "releaseTag": {
+          "type": "string",
+          "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "qualification-set-v1.json"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sha256"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "archiveItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "archive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileName",
+        "sizeBytes",
+        "sha256",
+        "extractedSizeBytes",
+        "entryCount"
+      ],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "extractedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "entryCount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coldCount",
+        "warmPreparationCount",
+        "warmRequestCount",
+        "failures",
+        "timeouts",
+        "samplesSha256"
+      ],
+      "properties": {
+        "coldCount": {
+          "const": 30
+        },
+        "warmPreparationCount": {
+          "const": 30
+        },
+        "warmRequestCount": {
+          "const": 100
+        },
+        "failures": {
+          "const": 0
+        },
+        "timeouts": {
+          "const": 0
+        },
+        "samplesSha256": {
+          "$ref": "#/$defs/sha"
+        }
       }
     }
   }

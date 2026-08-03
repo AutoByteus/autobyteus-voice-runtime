@@ -5,7 +5,6 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import { parsePairs, shaFile, ROOT } from "../lib/files.mjs";
-import { verifyGitSource } from "../native/locked-source.mjs";
 import {
   prepare,
   assertInputClosure,
@@ -26,17 +25,14 @@ assertInputClosure(context, [
   "utf8proc-source/",
   "model/",
   "package-notices/",
+  "runtime-source/",
 ]);
 for (const [directory, commit] of [
   ["funasr-source", context.lock.engine.funAsrCommit],
   ["llama-cpp-source", context.lock.engine.llamaCppCommit],
   ["utf8proc-source", context.lock.engine.utf8procCommit],
 ])
-  await verifyGitSource(
-    path.join(context.inputs, directory),
-    commit,
-    directory,
-  );
+  assertMaterializedGitSource(context, directory, commit);
 for (const model of context.lock.model.files) {
   const file = path.join(context.inputs, "model", model.name),
     info = await fs.stat(file);
@@ -52,7 +48,7 @@ await run(
   path.resolve(args.cmake),
   [
     "-S",
-    path.join(ROOT, "providers/chinese-funasr"),
+    path.join(context.inputs, "runtime-source/providers/chinese-funasr"),
     "-B",
     build,
     `-DLLAMA_CPP_SOURCE_DIR=${path.join(context.inputs, "llama-cpp-source")}`,
@@ -120,8 +116,8 @@ await fs.writeFile(
 );
 await fs.mkdir(path.join(context.stage, "normalizer"), { recursive: true });
 const normalizerSource = path.join(
-  ROOT,
-  "contracts/normalization/twp-to-cn-v1.json",
+  context.inputs,
+  "runtime-source/contracts/normalization/twp-to-cn-v1.json",
 );
 if ((await shaFile(normalizerSource)) !== context.lock.normalizer.mappingSha256)
   throw new Error("Pinned normalization mapping identity mismatch.");
@@ -138,3 +134,19 @@ await writeEngineConfiguration(context, {
   language: "zh",
   contextTerms: false,
 });
+
+function assertMaterializedGitSource(context, directory, commit) {
+  const observed = context.inputProvenance.inputs.find(
+      (item) => item.kind === "git-checkout" && item.destination === directory,
+    ),
+    expected = context.inputRecipe.inputs.find(
+      (item) => item.kind === "git-checkout" && item.destination === directory,
+    );
+  if (
+    !observed ||
+    !expected ||
+    expected.revision !== commit ||
+    observed.identity !== expected.treeId
+  )
+    throw new Error(`${directory} materialized source identity mismatch.`);
+}

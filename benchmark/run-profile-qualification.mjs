@@ -17,6 +17,10 @@ import {
 } from "./baseline/qualification-baseline.mjs";
 import { executeCacheProcedure } from "./cache-procedure.mjs";
 import {
+  qualificationCommandPrefix,
+  validateQualificationConditions,
+} from "./qualification-environment.mjs";
+import {
   assertGoToolchainProvenance,
   trustedGoEnvironment,
   verifyGoToolchain,
@@ -38,6 +42,7 @@ const args = parsePairs(process.argv.slice(2), [
   "corpus",
   "baseline",
   "conditions",
+  "compliance",
   "go",
   "reproducibility-proof",
   "output",
@@ -55,7 +60,7 @@ if (
   conditions.target !== `${build.target.platform}-${build.target.architecture}`
 )
   throw new Error("Corpus/profile/source mismatch.");
-await validateConditions(conditions, args.conditions);
+await validateQualificationConditions(conditions, args.conditions, build);
 const normalizationFixtures = await proveNormalization();
 const baselineTrust = await validateQualificationBaseline(
   baseline,
@@ -63,15 +68,8 @@ const baselineTrust = await validateQualificationBaseline(
   corpus,
   build,
 );
-const coldCount = Number(args["cold-count"] ?? 30),
-  warmCount = Number(args["warm-count"] ?? 100);
-if (
-  !Number.isInteger(coldCount) ||
-  coldCount < 1 ||
-  !Number.isInteger(warmCount) ||
-  warmCount < 1
-)
-  throw new Error("Invalid trial counts.");
+const coldCount = 30,
+  warmCount = 100;
 const actual = {
   platform: process.platform,
   architecture: process.arch === "x64" ? "x64" : process.arch,
@@ -93,10 +91,23 @@ try {
     path.dirname(buildReportPath),
     path.basename(build.buildInputManifestFileName),
   );
+  const inputProvenancePath = path.join(
+    path.dirname(buildReportPath),
+    path.basename(build.buildInputProvenanceFileName),
+  );
+  const compliancePath = path.resolve(args.compliance),
+    compliance = await readJson(compliancePath);
   if (
     build.buildInputManifestFileName !==
       path.basename(build.buildInputManifestFileName) ||
-    (await shaFile(inputManifestPath)) !== build.buildInputManifestSha256
+    (await shaFile(inputManifestPath)) !== build.buildInputManifestSha256 ||
+    build.buildInputProvenanceFileName !==
+      path.basename(build.buildInputProvenanceFileName) ||
+    (await shaFile(inputProvenancePath)) !== build.buildInputProvenanceSha256 ||
+    compliance.decision !== "pass" ||
+    compliance.packageId !== build.packageId ||
+    compliance.archiveSha256 !== build.archive.sha256 ||
+    compliance.provenanceSha256 !== build.buildInputProvenanceSha256
   )
     throw new Error("Preserved build-input manifest mismatch.");
   if (
@@ -119,6 +130,14 @@ try {
     path.join(output, "build-input-manifest.json"),
   );
   await fs.copyFile(
+    inputProvenancePath,
+    path.join(output, "input-provenance-v1.json"),
+  );
+  await fs.copyFile(
+    compliancePath,
+    path.join(output, "package-compliance-v1.json"),
+  );
+  await fs.copyFile(
     args["reproducibility-proof"],
     path.join(output, "reproducibility-proof-v1.json"),
   );
@@ -128,11 +147,13 @@ try {
     args.conditions,
     path.join(output, "qualification-conditions-v1.json"),
   );
-  for (const audit of [conditions.licenseAudit, conditions.offlineAudit])
-    await fs.copyFile(
-      path.join(path.dirname(path.resolve(args.conditions)), audit.fileName),
-      path.join(output, audit.fileName),
-    );
+  await fs.copyFile(
+    path.join(
+      path.dirname(path.resolve(args.conditions)),
+      conditions.preflight.fileName,
+    ),
+    path.join(output, "darwin-arm64-preflight-v1.json"),
+  );
   const packageRoot = await extractPackage(
     work,
     build,
@@ -275,6 +296,10 @@ try {
     packageVersion: build.packageVersion,
     buildReportSha256: await shaFile(args["build-report"]),
     buildInputManifestSha256: build.buildInputManifestSha256,
+    buildInputProvenanceSha256: build.buildInputProvenanceSha256,
+    buildInputRecipeSha256: build.buildInputRecipeSha256,
+    releaseMatrixId: build.releaseMatrixId,
+    releaseMatrixSha256: build.releaseMatrixSha256,
     repositoryBuildLockSha256: build.repositoryBuildLockSha256,
     goToolchainHost: build.goToolchainHost,
     goToolchainArchiveSha256: build.goToolchainArchiveSha256,
@@ -303,6 +328,9 @@ try {
     normalizerSha256: build.normalizerSha256,
     protocolSha256: build.protocolSha256,
     noticeInventorySha256: build.noticeInventorySha256,
+    generatedComplianceSha256: await shaFile(compliancePath),
+    preflightSha256: conditions.preflight.sha256,
+    sandboxProfileSha256: conditions.executionEnvironment.sandbox.profileSha256,
     conditions,
     corpus: corpus.corpusEvidence,
     quality: {
@@ -338,10 +366,10 @@ try {
     actualPlatform: true,
     normalizationFixtures,
     relocation: true,
-    offline: conditions.offlineAudit.decision === "network-disabled",
+    offline: conditions.executionEnvironment.sandbox.networkDenied === true,
     noPackageMutation: true,
     recovery: conformance.cleanNextStart,
-    licenseApproved: conditions.licenseAudit.decision === "approved",
+    licenseApproved: compliance.decision === "pass",
   };
   await writeJson(path.join(output, "qualification-summary.json"), summary);
 } finally {
@@ -375,6 +403,7 @@ async function createSession(root, base, work, deadlines) {
     ),
     sessionConfig: config,
     expected: { ...base, sessionId },
+    commandPrefix: qualificationCommandPrefix(conditions),
     deadlines,
   });
 }
@@ -448,32 +477,6 @@ function latency(values) {
     p95Ms: pick(0.95),
     maxMs: sorted.at(-1) ?? 0,
   };
-}
-async function validateConditions(value, file) {
-  if (
-    value.schemaVersion !== 1 ||
-    value.sourceCommit !== build.sourceCommit ||
-    value.runnerCommit !== value.sourceCommit ||
-    !value.hardware ||
-    !value.operatingSystem ||
-    !value.executionEnvironment?.powerCondition ||
-    !value.executionEnvironment?.backgroundLoad ||
-    !value.executionEnvironment?.filesystemCacheProcedure?.id ||
-    typeof value.executionEnvironment.filesystemCacheProcedure.required !==
-      "boolean" ||
-    !/^[a-f0-9]{64}$/.test(
-      value.executionEnvironment.filesystemCacheProcedure.sha256,
-    )
-  )
-    throw new Error("Invalid qualification conditions.");
-  for (const audit of [value.licenseAudit, value.offlineAudit]) {
-    const auditPath = path.join(
-      path.dirname(path.resolve(file)),
-      audit.fileName,
-    );
-    if ((await shaFile(auditPath)) !== audit.sha256)
-      throw new Error("Qualification audit digest mismatch.");
-  }
 }
 async function proveNormalization() {
   const fixtures = await readJson(

@@ -12,12 +12,16 @@ Every catalog entry is a Provider Archive 1 canonical ZIP containing one languag
 
 The public command has no provider, model, language, host, decoding, context, or fallback flags. The launcher derives its relocated package root, validates the strict session/config/control identity, creates a minimal private environment, and starts exactly the embedded Python or native worker plan. The worker emits Protocol 1 JSON lines only after binding identity; `inference-ready` follows full package verification and real recognizer construction.
 
-Approved packages are:
+The current release is **macOS Apple Silicon only**. Its sole current matrix is
+`contracts/catalog/current-release-matrix-v1.json` and contains exactly:
 
 - English / darwin-arm64: hermetic CPython + MLX Whisper Small FP16.
-- English / darwin-x64, linux-x64, win32-x64: hermetic CPython + faster-whisper Small INT8.
-- Chinese / all four targets: native Fun-ASR-Nano GGUF Q8.
-- Auto: omitted unless all separate qualification gates pass.
+- Chinese / darwin-arm64: native Fun-ASR-Nano GGUF Q8.
+
+`auto`, macOS Intel, Linux, and Windows are not supported, qualified,
+cataloged, or published by this release. Generic target-capable implementation
+source is retained only for a future reviewed matrix expansion. Catalog absence
+means unsupported; it is never permission to infer or synthesize a package.
 
 There is no Node provider, system Python, live package/model download, external media decoder, shell launcher, legacy protocol, or model fallback in the production tree.
 
@@ -37,7 +41,12 @@ These are source/unit/contract checks only. They do not replace actual-target pa
 
 ## Package build and verification
 
-Builders are offline/fail-closed. `--inputs` must be a complete `SHA256SUMS.json`-closed tree containing the exact profile/target inputs described below. `.git` metadata is excluded from that manifest and independently authenticated by commit/tree state.
+Builders are offline/fail-closed. `--inputs` must be produced by
+`build/materialize-release-inputs.mjs` from one of the two current recipes. The
+materializer verifies SHA-addressed cache objects, exact clean Git trees, and
+repository files before creating a fresh `SHA256SUMS.json`-closed tree plus
+`input-provenance-v1.json`. Acquisition is separate and is never attempted by
+the materializer or package builder.
 
 - Python packages accept the repository-locked Python Build Standalone archive, the exact target wheelhouse in `build/python-wheel-locks/<target>.json`, model files, and notices. The builder extracts and materializes Python itself; an operator-supplied `python-root` or origin marker is not accepted.
 - Native packages require clean Git worktrees at the exact Fun-ASR, llama.cpp, and utf8proc commits in the provider lock, plus exact model files and notices. Modified, untracked, ignored, or marker-only source trees fail.
@@ -68,8 +77,28 @@ node build/verify-reproducibility.mjs \
   --output dist/reproducibility-proof-v1.json
 ```
 
-`benchmark/run-profile-qualification.mjs` requires that reproducibility proof and owns exact-package corpus, timing, RSS, relocation, no-mutation, and recovery evidence. `release/catalog-builder.mjs` and `release/qualify-release.mjs` recompute the complete eight-package release matrix. The manual workflow has separate `prequalify` and `publish` operations; publication re-verifies a successful pre-tag artifact before creating a tag.
+`benchmark/darwin-arm64-runner-preflight.mjs` fail-closes objective M1 Max,
+power, pressure, quiescence, toolchain, Seatbelt, and noninteractive purge
+eligibility before counted work. `benchmark/run-profile-qualification.mjs`
+then owns the exact 30 filesystem-cold, 30 warm-preparation, and 100 warm-request
+sets plus complete corpus, timing, RSS, relocation, no-mutation, and recovery
+evidence. Qualification produces a branch-only Qualification Set followed by
+the required independently verified Branch Catalog Projection, with no release
+tag, URL, maintained-main, or public status.
 
-Qualification uses the repository-owned baselines in `release/evidence/baselines/`. The external audio tree must carry a byte-identical copy of the applicable manifest in `release/evidence/qualification-corpora/`. On the M1 Max reference runner, every filesystem-cold trial executes the pinned `sudo -n purge` procedure before process start; the runner account must be pre-authorized for that noninteractive command. Raw cold-reset, cold-preparation, warm-preparation, and warm-request sample sets are preserved and re-verified before release.
+Delivery independently repeats qualification after integrating maintained
+`main`, then builds the acyclic chain: Qualification Set -> Release
+Qualification Evidence -> Catalog 3 -> Pre-Tag Release Manifest. Publication
+uploads exactly the two archives, evidence, catalog, and manifest. Published
+byte verification is a separate always-recorded result; a failed result may
+delete only the GitHub Release object/assets while preserving the tag.
+
+Qualification uses the repository-owned English-v2 and Chinese baselines. The
+external audio tree must carry a byte-identical copy of the applicable manifest
+in `release/evidence/qualification-corpora/`. On the M1 Max reference runner,
+every filesystem-cold trial executes the pinned `sudo -n purge` procedure before
+process start; the runner account must be pre-authorized for only that
+noninteractive command. Raw cold-reset, cold-preparation, warm-preparation, and
+warm-request sample sets are preserved and re-verified before release.
 
 Do not tag or publish from ordinary implementation or review work.

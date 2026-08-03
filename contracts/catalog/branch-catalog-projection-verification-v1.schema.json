@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "decision",
+    "failureCategory",
+    "releaseMatrixSha256",
+    "qualificationSetSha256",
+    "projectionSha256",
+    "assetSetSha256"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "decision": { "enum": ["pass", "fail"] },
+    "failureCategory": { "type": ["string", "null"] },
+    "releaseMatrixSha256": { "$ref": "#/$defs/nullableSha" },
+    "qualificationSetSha256": { "$ref": "#/$defs/nullableSha" },
+    "projectionSha256": { "$ref": "#/$defs/nullableSha" },
+    "assetSetSha256": { "$ref": "#/$defs/nullableSha" }
+  },
+  "$defs": {
+    "nullableSha": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" }
+  }
+}
