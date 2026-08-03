@@ -5,13 +5,15 @@
 - Requirements: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
 - Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
 - Design: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Supplemental design authorities:
+- Supplemental authorities:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/benchmark-protocol.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/backend-selection-study.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/aggregate-results.json`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/SHA256SUMS.txt`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/english-preservation-correction.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/chinese-qualification-correction.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/chinese-qualification-v2/`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/current-platform-qualification.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/voice-runtime-contract.md`
 - Revision and review authorities:
@@ -21,126 +23,122 @@
 - Triggering review and executable evidence:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-028-api-f-009-origin.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-029-sed-closure-resolution.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-030-api-f-010-origin.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-031-cxx-driver-resolution.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-032-api-f-011-f-012-origin.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-013/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/`
 
 ## Current Implementation Summary
 
-`IR-021` is the bounded `CRR-030` local fix for `CR-F-030` / `API-F-010` in `API-VOICE-004`.
+`IR-022` implements the reviewed `SR-012` / `ARCH-REV-013` correction for `CR-F-031` / `API-F-011` and `CR-F-032` / `API-F-012` without changing product output, providers, models, qualification thresholds, package/runtime/protocol behavior, or release ordering.
 
-The Xcode tool identity owner now shares one internal strict invocation-alias implementation while exposing only command-specific `ranlib -> libtool` and `clang++ -> clang` boundaries. The new C++ identity preserves the absolute `clang++` invocation path, exact relative `clang` link target, canonical target path, and target SHA-256. It is cross-bound to the separately authenticated C compiler identity and live-verifies the exact selected `*.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin` topology, link, target, and bytes.
+Chinese product `normalizedText` remains under `autobyteus-simplified-zh-v1`. Qualification now uses a separate frozen `autobyteus-chinese-cer-selection-comparable-v1` owner over retained raw reference/raw hypothesis. Exact reviewed contract, mapping, derivation, corpus, baseline, trust, authority, validation, and API-REV-014 re-score bytes are installed and checksum-verified. Active Chinese v2 trust recomputes all 200 historical rows to `343/6580`; the unbound active v1 corpus/baseline paths are removed with no fallback or historical evidence rewrite. The retained API-REV-014 raw results independently re-score to `342/6580`.
 
-Functional Preflight 2 captures this identity. Both authorized consumers revalidate it; the closed trusted directory's `c++` entry points to the verified alias while `cc` remains canonical clang; explicit `CMAKE_CXX_COMPILER` uses the invocation path; and resolved-CMake verification rejects the canonical target or any other drift. No C++ library flag, ambient path, alternate driver, or fallback was added.
+The Current Release Matrix now digest-binds a strict two-row Profile Resource Policy. English remains hard-capped at 2.5 GiB. Chinese uses a 4.0-GiB hard process-tree RSS ceiling and a separate 2.5-GiB Assessment-only optimization target. Qualification Summary 2 owns the hard result; Performance Assessment 1 binds the immutable Summary and records optimization status without changing functional authority. QSet 2, Branch Catalog Projection 2, integrated Release Evidence 2, and Catalog construction bind the same matrix/policy/scoring/trust lineage through the existing acyclic chain.
 
-Focused coverage uses both the actual selected Xcode toolchain and an Xcode-shaped deterministic fixture. With identical authenticated bytes and exact SDK, actual `clang++` links and runs a C++ program while direct canonical `clang` fails with the same runtime-symbol family observed by API-REV-013. Retargeted aliases, modified target bytes, non-symlink topology, wrong toolchain directory, closed-directory drift, and CMake target-path drift fail closed. Existing ranlib alias semantics, authenticated sed closure, and tar canonicalization remain unchanged.
-
-`API-REV-013` directly confirms `CR-F-029` resolved: the canonical Chinese build executed both locked Metal sed transformations and compiled through the final native link. `CR-F-028` and `CR-F-027` also remain directly resolved, and `CR-F-022` through `CR-F-029` remain resolved in current source. Providers, models, locked source bytes, matrix, thresholds, Functional Preflight 2 gates, Seatbelt, archive/session/protocol contracts, evidence semantics, and release ordering remain unchanged.
-
-- Implementation cycle: `Rework / Local Fix`
-- Current implementation revision: `IR-021`
-- Related solution revisions: `SR-010`, `SR-011`
-- Related architecture revision: `ARCH-REV-012`
-- Related code review: `CRR-029` historical source Pass withdrawn after API-REV-013; `CRR-030` triggering Local Fix; current re-review pending
-- Related API/E2E: `API-REV-013`, `API-F-010`, `API-VOICE-004`
-- Triggering finding: `CR-F-030`
-- Source commit: `57efa584b34f2b9a5eaba012c01f7e05228dffed`
+- Implementation cycle: `Rework / Design Impact`
+- Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md`
+- Current implementation revision: `IR-022`
+- Related solution revision: `SR-012` (preserving prior authority through `SR-011`)
+- Related architecture revision: `ARCH-REV-013`
+- Related code review: `CRR-031` prior source Pass; `CRR-032` triggering Design Impact; current re-review pending
+- Related API/E2E: `API-REV-014`; `API-F-011`, `API-F-012`; `API-VOICE-004`, `API-VOICE-011`
+- Related delivery revision: `N/A`
+- Triggering findings: `CR-F-031`, `CR-F-032`
+- Source commit: `af008705488a029b95007e25c7c00484387d3ffe`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior ID          | Approved Change / Preserved Outcome                                                                                | Implemented Production Path / Key Files                                                                                                      | Result / Notes                                                                                                |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| `BEH-001`            | Runtime-worktree-only implementation.                                                                              | Dedicated runtime source commit and implementation artifacts.                                                                                | Preserved; no desktop, shared checkout, tag, publication, release asset, or user-state change.                |
-| `BEH-002`, `BEH-003` | Bounded launcher/worker lifecycle remains unchanged.                                                               | Existing reviewed launcher, worker, and protocol owners.                                                                                     | Preserved; prior complete English qualification remains API-owned evidence.                                   |
-| `BEH-004`, `BEH-010` | The current native package must retain authenticated command-name semantics for the exact Xcode C and C++ drivers. | Preflight capture -> strict alias record -> authorized consumers -> closed `cc`/`c++` entries -> explicit/resolved CMake compiler authority. | C remains canonical clang; C++ remains verified clang++; target/alias/topology/byte/CMake drift fails closed. |
-| `BEH-005`, `BEH-006` | Matrix, provider/model/corpus authority, normalization, and scoring remain unchanged.                              | Existing reviewed owners.                                                                                                                    | Preserved.                                                                                                    |
-| `BEH-007`–`BEH-009`  | Qualification evidence and execution remain exact and fail closed.                                                 | Existing reviewed qualification/evidence owners.                                                                                             | Preserved; no threshold, trial, evidence, or performance-classification change.                               |
-| `BEH-011`, `BEH-012` | WAV/no-speech and session/protocol behavior remain unchanged.                                                      | Existing validators, workers, launcher, and contracts.                                                                                       | Preserved.                                                                                                    |
+| Behavior ID                     | Approved Change / Preserved Outcome                                                                                            | Implemented Production Path / Key Files                                                                                                        | Result / Notes                                                                                                           |
+| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `BEH-001`–`BEH-003`             | Runtime-only boundary and bounded provider lifecycle remain unchanged.                                                         | Existing launcher, session, worker, protocol, and runtime owners.                                                                              | Preserved; no desktop, shared-checkout, user-state, tag, publication, or release-asset change.                           |
+| `BEH-004`, `BEH-008`            | Functional qualification retains exact package/lifecycle/RSS evidence while using reviewed profile resource authority.         | Current Release Matrix -> `benchmark/profile-resource-policy.mjs` -> RSS observation -> Summary hard result -> Assessment optimization result. | Missing/non-positive RSS or a profile hard-ceiling breach still fails; optimization misses are visible but non-blocking. |
+| `BEH-005`                       | Exact two-entry darwin-arm64 matrix and provider/model choices remain unchanged; active Chinese trust becomes scorer-bound v2. | `release/evidence/trusted-baselines-v1.json`, `benchmark/baseline/trusted-baseline.mjs`, v2 corpus/baseline/evidence.                          | Exact 200-row recomputation yields unchanged `343/6580`; active v1 is absent and rejected.                               |
+| `BEH-006`                       | Product Simplified Chinese output is separate from qualification comparison.                                                   | `benchmark/scoring/normalization.mjs` remains product-only; `benchmark/scoring/chinese-qualification.mjs` owns frozen symmetric raw/raw CER.   | Product fixtures remain unchanged; runner and independent verifier score `rawText`, not `normalizedText`.                |
+| `BEH-007`, `BEH-009`, `BEH-010` | Summary -> Assessment -> QSet -> projection/release chain remains exact and acyclic.                                           | Updated strict schemas, `profile-qualification-evidence.mjs`, independent profile verifier, QSet/projector/release consumers, workflow.        | Hard policy/scorer/trust identities propagate by digest; matrix, publication boundary, and release order are preserved.  |
+| `BEH-011`, `BEH-012`            | WAV boundary, no-speech semantics, and no context-term behavior remain unchanged.                                              | Existing provider/session/contract owners.                                                                                                     | Preserved.                                                                                                               |
 
 ## Key Files Or Areas
 
-- Shared strict Xcode alias and generic identity owner: `build/native-tool-identities.mjs`
-- Functional preflight capture and consumption: `benchmark/darwin-arm64-runner-preflight.mjs`, `benchmark/darwin-arm64-preflight-contract.mjs`
-- Strict native environment projection/live verification: `build/trusted-native-environment.mjs`
-- Explicit/resolved CMake authority: `build/resolved-cmake-configuration.mjs`
-- Strict evidence schemas: `contracts/qualification/darwin-arm64-preflight-v2.schema.json`, `contracts/build/native-build-environment-v1.schema.json`
-- Actual and negative driver coverage: `tests/build/trusted-native-cxx-driver.test.mjs`
-- Closed-directory/CMake drift coverage: `tests/build/trusted-native-environment.test.mjs`
-- Xcode-shaped passing fixture: `tests/fixtures/passing-darwin-preflight.mjs`
+- Product/scoring split: `benchmark/scoring/{normalization,error-rate,chinese-qualification,qualification-scoring}.mjs`
+- Exact scoring authority: `contracts/scoring/`, `evidence/chinese-qualification-v2/`
+- Active Chinese trust: `release/evidence/{qualification-corpora,baselines}/chinese-v2.json`, `release/evidence/trusted-baselines-v1.json`, `benchmark/baseline/trusted-baseline.mjs`
+- Profile resource authority: `contracts/qualification/profile-resource-policy-v1.{json,schema.json}`, `benchmark/profile-resource-policy.mjs`, `contracts/catalog/current-release-matrix-v1.json`
+- Summary/Assessment/QSet propagation: `benchmark/profile-qualification-evidence.mjs`, `benchmark/performance-assessment.mjs`, `release/evidence/profile-qualification-verifier.mjs`, `release/evidence/qualification-set.mjs`
+- Projection/release propagation: `release/{branch-catalog-projection,verify-branch-catalog-projection,catalog-builder}.mjs`, `release/evidence/assemble.mjs`, corresponding strict schemas
+- Durable focused coverage: `tests/scoring/chinese-qualification.test.mjs`, `tests/release/profile-resource-policy.test.mjs`, `tests/release/trusted-baseline.test.mjs`
 
 ## Important Assumptions
 
-- The selected Xcode's required topology is exact relative `clang++ -> clang` inside `XcodeDefault.xctoolchain/usr/bin`; invocation basename controls C++ standard-library link behavior even though target bytes are identical.
-- Only two reviewed command-specific Xcode aliases are admitted: `clang++ -> clang` and `ranlib -> libtool`. The internal shared implementation is not a generic external symlink allowlist.
-- Preflight and native-build environment records are generated qualification/build candidates under the reviewed `Discard or Rebuild` rule. API-REV-013 evidence remains immutable history and must be regenerated under current source before reuse.
+- The frozen Chinese scorer/map is selection-comparison authority only and is not a general linguistic or product-normalization rule.
+- The 4.0-GiB Chinese hard ceiling is approved only for the exact current Chinese darwin-arm64 package on the governed M1 qualification path; it does not establish lower-memory, x64, `auto`, concurrent-provider, or desktop-supervisor support.
+- Generated current Summary/Assessment/QSet/projection/release candidates must be rebuilt under this source. API-REV-014 and prior evidence remain immutable history.
 
 ## Known Risks And Remaining Work
 
-- API/E2E must restart at canonical Chinese construction after source Pass, prove the actual final native C++ link and complete CMake/archive path with the authenticated driver, build two byte-identical Chinese archives, and complete Chinese package/runtime/200-WAV/30-30-100/resource/lifecycle checks.
-- API/E2E must also complete the required current-source English profile before Qualification Set 2 and Branch Catalog Projection 2. Prior English evidence may be reused only under the API/E2E Engineer's explicit current-source validity decision.
-- Maintained-main refresh/integration, integrated-state qualification, tag/publication, published-byte verification, and quarantine remain Delivery-owned.
+- Implementation checks did not build packages, execute the actual M1 qualification environment, or rerun either 30/30/100 profile. API/E2E must rerun both current-source profiles after source Pass; the design re-score is not execution substitution.
+- API/E2E must produce consistent current-source Qualification Set 2 and Branch Catalog Projection 2 only after both profiles pass.
+- Maintained-main refresh/reconciliation, integrated-state qualification, tag/publication, published-byte verification, and quarantine remain Delivery-owned.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: bounded implementation correction with no requirement or architecture change.
-- Root cause: `Lost Semantic Identity`; canonicalization preserved compiler bytes but erased the invocation basename that selects C++ driver/link behavior.
-- Refactor decision: `Shared internal specialization`; reuse one strict Xcode invocation-alias implementation behind command-specific ranlib and clang++ wrappers, schemas, and cross-bindings.
+- Reviewed change posture: `Behavior Change`, `Refactor`, `Release Hardening`, `Performance/Qualification`.
+- Reviewed root-cause classification: `Duplicated Policy Or Coordination` + `Shared Structure Looseness` + `Missing Invariant`.
+- Reviewed refactor decision: `Refactor Needed Now`.
 - Implementation matched the reviewed assessment: `Yes`.
-- Design Impact reroute: `N/A`; the existing authenticated tool architecture directly supports semantic alias identity without compensating flags or fallback.
+- If challenged, routed as Design Impact: `N/A`; the architecture review supplied the corrected authority before implementation resumed.
+- Evidence / notes: product output and qualification scoring now have separate owners; active trust binds exact scorer/map/source identities; one exact matrix-keyed resource policy replaces the global RSS literal; downstream artifacts consume rather than restate these decisions.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`.
-- Alternate build/runtime path introduced: `None`.
-- Arbitrary Xcode symlink support introduced: `No`; only exact command-specific wrappers are exported.
-- `-lc++` or other compensating flag introduced: `No`.
-- Ambient `PATH`, ranlib, sed, or tar behavior changed: `No`.
-- Source size guardrails: `Yes`; changed production modules are 55–341 physical lines, within repository limits.
+- Legacy old behavior retained in scope: `No`; active Chinese v1 corpus/baseline paths and the global RSS limit are removed.
+- Dead/obsolete paths removed in scope: `Yes`.
+- Shared structures remain tight: `Yes`; scoring, product normalization, hard resource decisions, and optimization observations have distinct owners/shapes.
+- Canonical shared design guidance reapplied: `Yes`.
+- Changed source guardrails: `Yes`; changed non-test source files remain at or below 499 effective non-empty lines. The largest source delta, `trusted-baseline.mjs`, is 212 added lines and remains below the 220-line split signal.
+- Notes: no locale fallback, v1 alias, wildcard/default policy row, conditional per-profile literal, dual read, or alternate release/runtime path was added.
 
 ## Persisted Data Transition Check
 
-- Approved decision: `Discard or Rebuild` for generated preflight/build/package/qualification candidates; `Not Affected` for desktop/user data and immutable historical evidence.
-- Implementation follows the decision: `Yes`; the corrected source regenerates strict preflight/native-environment records and does not mutate prior API evidence.
+- Approved decision: `Discard or Rebuild` for generated current qualification/release candidates; immutable historical evidence is preserved.
+- Design reference: `design-spec.md` SR-012 file mapping and change sequence, especially steps 4, 5, 7, 8, and active generated candidate disposition.
+- Implementation follows the approved decision without migration or version-specific runtime fallback: `Yes`.
+- Result: current v2 authorities are checked in; active v1 inputs are removed; no prior API, selection-study, or published evidence bytes were edited; future Summary/Assessment/QSet/projection/release candidates must regenerate.
 - Deviation: `None`.
 
 ## Environment Or Dependency Notes
 
-- Local checks used Node `22.23.1`, Python `3.9.6`, and repository-verified Go `1.26.5 darwin/arm64` at `/tmp/autobyteus-go1.26.5-v1/go/bin/go`.
-- Actual selected Xcode proof captured `clang++ -> clang` with shared target SHA-256 `d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697`, then proved alias success/direct-target failure with exact SDK and no explicit C++ library flag.
-- No dependency, Xcode selection, provider/model, input, threshold, corpus/evidence byte, ABI, matrix, sandbox profile, or release permission changed.
+- Local Go checks used exact pinned `/tmp/autobyteus-go1.26.5-v1/go/bin/go` via `VOICE_GO` and `PATH`.
+- No dependency version, provider/model input, external M1 environment, tag, or release asset changed.
 
 ## Local Implementation Checks Run
 
-- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `80/80` top-level Node cases (`87/87` TAP tests including negative subcases), `7/7` Python tests plus compileall, all Go/source/schema/evidence checks, and exact six-output English-v2 reproduction.
-- Focused native tool coverage — passed `11/11`: actual alias success/direct-target symbol failure, retarget/byte/non-symlink/directory/closed-entry/CMake drift, and retained ranlib/sed behaviors.
-- Actual-host strict clang++ capture/live verification — passed with the exact API-recorded target digest and cross-binding to canonical C.
-- Verified Go 1.26.5 `test -race ./...`, `vet ./...`, and formatting across launcher and packaging modules — passed.
-- Backend-selection checksums `191/191`; English-v2 checksums `8/8`; API-REV-013 evidence checksums `20/20`; workspace JSON parse sweep `294/294` — passed.
-- Focused Prettier and `git diff --check` — passed.
+- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — pass: source guards; 7/7 Python unit tests plus compileall; all Go tests/guards; English-v2 exact reproduction; Chinese-v2 scoring/trust/policy verification; 95/95 Node TAP tests.
+- `node evidence/chinese-qualification-v2/derive_chinese_qualification_v2.mjs` — pass: 200/200 source rows and historical normalization pairs; exact `343/6580`; exact authority digests.
+- `shasum -a 256 -c evidence/chinese-qualification-v2/SHA256SUMS.txt` — 9/9 pass; all nine runtime evidence bytes also match the reviewed upstream authority byte-for-byte.
+- Durable raw-result regression — pass: retained API-REV-014 raw evidence digest re-scores to exact `342/6580`.
+- Focused policy regressions — pass: exact matrix closure/no x64 default; English 2.5-GiB boundary; Chinese `3,949,543,424` bytes passes 4.0-GiB hard gate and misses only 2.5-GiB optimization; >4.0 GiB fails; policy substitution fails.
+- Authored-file Prettier check and `git diff --check` — pass.
 
-These are implementation-scoped checks only. No new actual Chinese build, inference, qualification, release, tag, publication, or deployment result is claimed.
+These are implementation-scoped checks only, not API/E2E qualification or downstream acceptance.
 
 ## Frontend Rendered-Result Check
 
-`Not Applicable` — this runtime C++ driver-identity correction has no rendered frontend.
+Not Applicable — runtime qualification, evidence, and release-contract source only; no rendered frontend or user interaction changed.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-1. Code Review should trace `clang++ -> clang` from preflight capture through both strict schemas, C-identity cross-binding, both authorized consumers, the closed `c++` entry, explicit CMake arguments, and resolved cache.
-2. Reproduce identical-byte actual Xcode behavior: clang++ must link/run the C++ proof and canonical clang must fail with the expected runtime-symbol family without `-lc++`.
-3. Exercise retarget, modified target, non-symlink topology, wrong directory, closed-entry target drift, and CMake canonical-target drift; confirm every path fails closed.
-4. Confirm only command-specific Xcode alias wrappers are exposed and ranlib, sed closure, tar canonicalization, Seatbelt, locked inputs, providers/models/matrix/thresholds remain unchanged.
-5. After source Pass, API/E2E should restart at canonical Chinese construction and complete both current-source profiles before QSet 2/projection.
+- Source review should independently verify all nine Chinese-v2 authority bytes/digests, 200-row `343/6580` baseline recomputation, `342/6580` API-REV-014 raw re-score, unchanged product normalization fixtures, and absence of active Chinese v1.
+- Verify exact matrix/policy one-to-one closure; English <=2.5 GiB; Chinese <=4.0 GiB; Chinese >2.5 and <=4.0 is Assessment-only miss; missing/zero RSS and >4.0 GiB fail.
+- Verify Summary 2 owns only the hard policy result, Assessment 1 binds the final Summary and records optimization, and QSet/projection/release consumers independently bind exact policy/scorer/trust digests without reverse edges or duplicated literals.
+- After source Pass, API/E2E should restart both current-source profile qualifications and only then assemble QSet 2 and Branch Catalog Projection 2.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-- Recipient now: `code_reviewer` for source re-review of `IR-021` / `CR-F-030` against `SR-010` / `SR-011`, `ARCH-REV-012`, `CRR-030`, and API-REV-013 evidence.
-- API/E2E remains paused until Code Review Pass.
-- No API/E2E scenario is claimed complete by this implementation handoff.
+Yes. API/E2E remains paused until Code Review passes `IR-022`; no API/E2E pass is claimed here.
