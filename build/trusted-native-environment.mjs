@@ -2,9 +2,13 @@ import path from "node:path";
 import Ajv2020 from "ajv/dist/2020.js";
 import { readJson, ROOT, shaFile } from "./lib/files.mjs";
 import { assertPassingDarwinArm64Preflight } from "../benchmark/darwin-arm64-preflight-contract.mjs";
-import { assertTrustedExecutableIdentity } from "./native-tool-identities.mjs";
+import {
+  assertTrustedExecutableIdentity,
+  canonicalExecutablePath,
+} from "./native-tool-identities.mjs";
 export {
   assertTrustedExecutableIdentity,
+  canonicalExecutablePath,
   materializeTrustedToolDirectory,
   verifyTrustedToolDirectory,
 } from "./native-tool-identities.mjs";
@@ -103,7 +107,7 @@ export async function createTrustedNativeBuildEnvironment({
         settingsSha256: preflight.tools.sdkSettingsSha256,
       },
     };
-  if (path.resolve(cmakePath) !== tools.cmake.path)
+  if ((await canonicalExecutablePath(cmakePath)) !== tools.cmake.path)
     throw new Error("CMake path does not match the passing preflight.");
   const record = {
     schemaVersion: 1,
@@ -184,8 +188,8 @@ export function trustedNativeBuildEnvironment(
 }
 
 function identity(commandPath, commands) {
-  const sha256 = commands[commandPath];
-  if (!sha256)
+  const value = commands[commandPath];
+  if (!value)
     throw new Error(`Preflight command identity missing: ${commandPath}`);
-  return { path: commandPath, sha256 };
+  return value;
 }

@@ -2,13 +2,18 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { shaFile } from "./lib/files.mjs";
 
-export async function assertTrustedExecutableIdentity(identityValue) {
-  const resolved = await fs.realpath(identityValue.path),
+export async function canonicalExecutablePath(executable) {
+  const resolved = await fs.realpath(path.resolve(executable)),
     info = await fs.lstat(resolved);
+  if (!info.isFile() || info.isSymbolicLink())
+    throw new Error(`Trusted executable is not a regular file: ${executable}`);
+  return resolved;
+}
+
+export async function assertTrustedExecutableIdentity(identityValue) {
+  const resolved = await canonicalExecutablePath(identityValue.path);
   if (
     resolved !== identityValue.path ||
-    !info.isFile() ||
-    info.isSymbolicLink() ||
     (await shaFile(resolved)) !== identityValue.sha256
   )
     throw new Error(

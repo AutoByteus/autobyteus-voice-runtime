@@ -54,6 +54,7 @@ the materializer or package builder.
 - All Go subprocesses derive `GOROOT` from that verified `VOICE_GO` root, disable environment configuration, external cache programs, and automatic toolchain selection, and set the target through one internal/Node/Go tuple map. Inherited `GOROOT`, `GOTOOLCHAIN`, `GOTOOLDIR`, `GOCACHEPROG`, `GOENV`, `GOFLAGS`, `GOEXPERIMENT`, target, CGO, or external-tool overrides are rejected rather than trusted.
 - Every build report binds the repository lock set in addition to the closed external input manifest.
 - Package assembly consumes a passing `darwin-arm64-preflight-v1.json` and creates one `native-build-environment-v1.json` owner. It rejects inherited compiler/linker/CMake/SDK selectors and flags before builder invocation; pins the exact preflight-authenticated Node, CMake, Apple compiler/linker/archive tools, Make, shell, tar, and SDK settings; supplies explicit CMake configuration; and records that environment digest in both build reports and the reproducibility proof.
+- Configured executable aliases such as the standard Homebrew CMake and macOS tar symlinks are canonicalized once and retain their exact target-byte identity end to end. Preflight identifies execute-only `/usr/bin/sudo` without opening it by binding its root-owned mode/device/inode/size/timestamps and a successful `sudo -V` execution probe, then separately proves the exact noninteractive `/usr/sbin/purge` capability; either identity or capability drift blocks qualification.
 
 ```bash
 node build/package-assembler.mjs \

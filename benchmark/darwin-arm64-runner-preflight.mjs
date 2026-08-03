@@ -14,6 +14,11 @@ import {
   writeJson,
 } from "../build/lib/files.mjs";
 import { verifyGoToolchain } from "../build/locked-inputs.mjs";
+import { canonicalExecutablePath } from "../build/native-tool-identities.mjs";
+import {
+  capturePinnedSudoIdentity,
+  systemCommandIdentityDigest,
+} from "./system-command-identity.mjs";
 
 const run = promisify(execFile);
 const PROFILE = path.join(
@@ -94,6 +99,7 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       throw blocked("runner-power-or-pressure");
     record.quiescence = await waitForQuiescence();
     if (!record.quiescence.passed) throw blocked("runner-not-quiescent");
+    const sudoExecutable = await capturePinnedSudoIdentity();
     record.tools = {
       node: process.version,
       nodeExecutable: await executableIdentity(process.execPath),
@@ -112,6 +118,7 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       sdk,
       sdkPath: await directoryIdentity(sdkPath),
       sdkSettingsSha256: await shaFile(path.join(sdkPath, "SDKSettings.json")),
+      sudoExecutable,
       commandPaths: await requiredCommandIdentities(),
     };
     if (
@@ -130,6 +137,7 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
     record.purge = {
       command: "/usr/bin/sudo -n /usr/sbin/purge",
       nonInteractivePass: true,
+      sudoExecutableIdentitySha256: systemCommandIdentityDigest(sudoExecutable),
     };
     record.status = "pass";
   } catch (error) {
@@ -244,7 +252,6 @@ async function requiredCommandIdentities() {
     "/usr/sbin/sysctl",
     "/usr/bin/memory_pressure",
     "/usr/bin/caffeinate",
-    "/usr/bin/sudo",
     "/usr/sbin/purge",
     "/usr/bin/pgrep",
     "/usr/bin/xcrun",
@@ -253,19 +260,18 @@ async function requiredCommandIdentities() {
     "/usr/bin/tar",
     "/bin/sh",
   ]) {
-    const info = await fs.lstat(commandPath);
-    if (!info.isFile()) throw blocked("required-command-missing");
-    result[commandPath] = await shaFile(commandPath);
+    result[commandPath] = await executableIdentity(commandPath);
   }
   return result;
 }
 
 async function executableIdentity(executable) {
-  const resolved = await fs.realpath(executable),
-    info = await fs.lstat(resolved);
-  if (!info.isFile() || info.isSymbolicLink())
+  try {
+    const resolved = await canonicalExecutablePath(executable);
+    return { path: resolved, sha256: await shaFile(resolved) };
+  } catch {
     throw blocked("toolchain-command-identity");
-  return { path: resolved, sha256: await shaFile(resolved) };
+  }
 }
 
 async function directoryIdentity(directory) {

@@ -7,12 +7,18 @@ import {
   assertNoUntrustedNativeBuildOverrides,
   assertTrustedExecutableIdentity,
   cmakeConfigureArguments,
+  createTrustedNativeBuildEnvironment,
   materializeTrustedToolDirectory,
   trustedNativeBuildEnvironment,
   verifyResolvedCmakeConfiguration,
   verifyTrustedToolDirectory,
 } from "../../build/trusted-native-environment.mjs";
-import { shaFile } from "../../build/lib/files.mjs";
+import { shaFile, writeJson } from "../../build/lib/files.mjs";
+import { locked } from "../../build/locked-inputs.mjs";
+import {
+  capturePinnedSudoIdentity,
+  systemCommandIdentityDigest,
+} from "../../benchmark/system-command-identity.mjs";
 
 const root = path.resolve(import.meta.dirname, "../..");
 
@@ -36,6 +42,28 @@ test("native build overrides are rejected case-insensitively before use", () => 
   assert.doesNotThrow(() =>
     assertNoUntrustedNativeBuildOverrides({ CXXFLAGS: "" }),
   );
+});
+
+test("the production environment owner accepts the preflight CMake symlink", async () => {
+  const temp = await fs.mkdtemp(
+    path.join(os.tmpdir(), "voice-native-symlink-test-"),
+  );
+  try {
+    const tool = path.join(temp, "cmake-real"),
+      supplied = path.join(temp, "cmake");
+    await fs.writeFile(tool, "fixture\n", { mode: 0o755 });
+    await fs.symlink(path.basename(tool), supplied);
+    const preflightPath = path.join(temp, "preflight.json");
+    await writeJson(preflightPath, await passingPreflightFixture(temp, tool));
+    const record = await createTrustedNativeBuildEnvironment({
+      preflightPath,
+      cmakePath: supplied,
+      environment: {},
+    });
+    assert.equal(record.tools.cmake.path, await fs.realpath(tool));
+  } finally {
+    await fs.rm(temp, { recursive: true, force: true });
+  }
 });
 
 test("the trusted PATH is closed and rechecks every selected tool", async () => {
@@ -217,5 +245,103 @@ function fixtureRecord(rootPath) {
       locale: "C",
       clearedOverrides: ["CMAKE_GENERATOR", "CXXFLAGS"],
     },
+  };
+}
+
+async function passingPreflightFixture(rootPath, toolPath) {
+  const tool = {
+      path: await fs.realpath(toolPath),
+      sha256: await shaFile(toolPath),
+    },
+    sdkPath = path.join(rootPath, "sdk"),
+    sdkSettings = path.join(sdkPath, "SDKSettings.json"),
+    commandNames = [
+      "/usr/bin/sandbox-exec",
+      "/usr/bin/pmset",
+      "/usr/bin/top",
+      "/usr/sbin/sysctl",
+      "/usr/bin/memory_pressure",
+      "/usr/bin/caffeinate",
+      "/usr/sbin/purge",
+      "/usr/bin/pgrep",
+      "/usr/bin/xcrun",
+      "/usr/bin/xcodebuild",
+      "/usr/bin/make",
+      "/usr/bin/tar",
+      "/bin/sh",
+    ];
+  await fs.mkdir(sdkPath);
+  await fs.writeFile(sdkSettings, "{}\n");
+  const commandPaths = {};
+  for (const name of commandNames) {
+    const resolved = await fs.realpath(name);
+    commandPaths[name] = { path: resolved, sha256: await shaFile(resolved) };
+  }
+  const sudoExecutable = await capturePinnedSudoIdentity(),
+    go = locked.goToolchain.archives["darwin-arm64"],
+    sandbox = path.join(
+      root,
+      "benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+    );
+  return {
+    schemaVersion: 1,
+    target: "darwin-arm64",
+    status: "pass",
+    checkedAt: "2026-08-03T00:00:00.000Z",
+    host: {
+      platform: "darwin",
+      architecture: "arm64",
+      cpuModel: "Apple M1 Max",
+      totalMemoryBytes: 68719476736,
+    },
+    power: {
+      acConnected: true,
+      lowPowerModeOff: true,
+      caffeinateActive: true,
+      thermalNormal: true,
+      memoryPressureNormal: true,
+    },
+    quiescence: {
+      passed: true,
+      samples: [90, 90, 90, 90, 90, 90],
+      averageIdlePercent: 90,
+      competingProcesses: [],
+    },
+    tools: {
+      node: "v22.23.1",
+      nodeExecutable: {
+        path: await fs.realpath(process.execPath),
+        sha256: await shaFile(process.execPath),
+      },
+      goArchiveSha256: go.sha256,
+      goRootTreeSha256: go.rootTreeSha256,
+      cmake: "cmake version 4.3.3",
+      cmakeExecutable: tool,
+      appleClang: "Apple clang version 17.0.0 (clang-1700.4.4.1)",
+      appleClangExecutable: tool,
+      appleClangCxxExecutable: tool,
+      appleArExecutable: tool,
+      appleRanlibExecutable: tool,
+      appleLinkerExecutable: tool,
+      appleLibtoolExecutable: tool,
+      xcode: "Xcode 26.1.1\nBuild version 17B100",
+      sdk: "26.1",
+      sdkPath,
+      sdkSettingsSha256: await shaFile(sdkSettings),
+      sudoExecutable,
+      commandPaths,
+    },
+    sandbox: {
+      profile: "benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+      profileSha256: await shaFile(sandbox),
+      networkDenied: true,
+      localOperationsAllowed: true,
+    },
+    purge: {
+      command: "/usr/bin/sudo -n /usr/sbin/purge",
+      nonInteractivePass: true,
+      sudoExecutableIdentitySha256: systemCommandIdentityDigest(sudoExecutable),
+    },
+    failureCategory: null,
   };
 }

@@ -3,6 +3,10 @@ import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { locked } from "../build/locked-inputs.mjs";
 import { readJson, ROOT, shaFile } from "../build/lib/files.mjs";
+import {
+  systemCommandIdentityDigest,
+  verifyPinnedSudoIdentity,
+} from "./system-command-identity.mjs";
 
 const schema = await readJson(
     path.join(
@@ -31,9 +35,12 @@ export async function assertPassingDarwinArm64Preflight(value) {
     Math.abs(average - value.quiescence.averageIdlePercent) > 1e-12 ||
     value.tools.goArchiveSha256 !== go.sha256 ||
     value.tools.goRootTreeSha256 !== go.rootTreeSha256 ||
-    value.sandbox.profileSha256 !== (await shaFile(sandbox))
+    value.sandbox.profileSha256 !== (await shaFile(sandbox)) ||
+    value.purge.sudoExecutableIdentitySha256 !==
+      systemCommandIdentityDigest(value.tools.sudoExecutable)
   )
     throw new Error("M1 preflight identities do not recompute.");
+  await verifyPinnedSudoIdentity(value.tools.sudoExecutable);
   return value;
 }
 

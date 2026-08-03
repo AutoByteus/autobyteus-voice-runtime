@@ -138,6 +138,7 @@
         "sdk",
         "sdkPath",
         "sdkSettingsSha256",
+        "sudoExecutable",
         "commandPaths"
       ],
       "properties": {
@@ -160,6 +161,55 @@
         "sdk": { "const": "26.1" },
         "sdkPath": { "type": "string", "pattern": "^/" },
         "sdkSettingsSha256": { "$ref": "#/$defs/sha" },
+        "sudoExecutable": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "deviceId",
+            "inode",
+            "ownerUid",
+            "ownerGid",
+            "mode",
+            "sizeBytes",
+            "modifiedNanoseconds",
+            "changedNanoseconds",
+            "probe"
+          ],
+          "properties": {
+            "path": { "const": "/usr/bin/sudo" },
+            "deviceId": { "type": "string", "pattern": "^[0-9]+$" },
+            "inode": { "type": "string", "pattern": "^[0-9]+$" },
+            "ownerUid": { "const": 0 },
+            "ownerGid": { "const": 0 },
+            "mode": { "const": "4511" },
+            "sizeBytes": { "type": "integer", "minimum": 1 },
+            "modifiedNanoseconds": {
+              "type": "string",
+              "pattern": "^[0-9]+$"
+            },
+            "changedNanoseconds": {
+              "type": "string",
+              "pattern": "^[0-9]+$"
+            },
+            "probe": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["args", "stdoutSha256", "stderrSha256"],
+              "properties": {
+                "args": {
+                  "type": "array",
+                  "prefixItems": [{ "const": "-V" }],
+                  "items": false,
+                  "minItems": 1,
+                  "maxItems": 1
+                },
+                "stdoutSha256": { "$ref": "#/$defs/sha" },
+                "stderrSha256": { "$ref": "#/$defs/sha" }
+              }
+            }
+          }
+        },
         "commandPaths": {
           "type": "object",
           "additionalProperties": false,
@@ -170,7 +220,6 @@
             "/usr/sbin/sysctl",
             "/usr/bin/memory_pressure",
             "/usr/bin/caffeinate",
-            "/usr/bin/sudo",
             "/usr/sbin/purge",
             "/usr/bin/pgrep",
             "/usr/bin/xcrun",
@@ -180,20 +229,19 @@
             "/bin/sh"
           ],
           "properties": {
-            "/usr/bin/sandbox-exec": { "$ref": "#/$defs/sha" },
-            "/usr/bin/pmset": { "$ref": "#/$defs/sha" },
-            "/usr/bin/top": { "$ref": "#/$defs/sha" },
-            "/usr/sbin/sysctl": { "$ref": "#/$defs/sha" },
-            "/usr/bin/memory_pressure": { "$ref": "#/$defs/sha" },
-            "/usr/bin/caffeinate": { "$ref": "#/$defs/sha" },
-            "/usr/bin/sudo": { "$ref": "#/$defs/sha" },
-            "/usr/sbin/purge": { "$ref": "#/$defs/sha" },
-            "/usr/bin/pgrep": { "$ref": "#/$defs/sha" },
-            "/usr/bin/xcrun": { "$ref": "#/$defs/sha" },
-            "/usr/bin/xcodebuild": { "$ref": "#/$defs/sha" },
-            "/usr/bin/make": { "$ref": "#/$defs/sha" },
-            "/usr/bin/tar": { "$ref": "#/$defs/sha" },
-            "/bin/sh": { "$ref": "#/$defs/sha" }
+            "/usr/bin/sandbox-exec": { "$ref": "#/$defs/identity" },
+            "/usr/bin/pmset": { "$ref": "#/$defs/identity" },
+            "/usr/bin/top": { "$ref": "#/$defs/identity" },
+            "/usr/sbin/sysctl": { "$ref": "#/$defs/identity" },
+            "/usr/bin/memory_pressure": { "$ref": "#/$defs/identity" },
+            "/usr/bin/caffeinate": { "$ref": "#/$defs/identity" },
+            "/usr/sbin/purge": { "$ref": "#/$defs/identity" },
+            "/usr/bin/pgrep": { "$ref": "#/$defs/identity" },
+            "/usr/bin/xcrun": { "$ref": "#/$defs/identity" },
+            "/usr/bin/xcodebuild": { "$ref": "#/$defs/identity" },
+            "/usr/bin/make": { "$ref": "#/$defs/identity" },
+            "/usr/bin/tar": { "$ref": "#/$defs/identity" },
+            "/bin/sh": { "$ref": "#/$defs/identity" }
           }
         }
       }
@@ -219,10 +267,15 @@
     "purge": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["command", "nonInteractivePass"],
+      "required": [
+        "command",
+        "nonInteractivePass",
+        "sudoExecutableIdentitySha256"
+      ],
       "properties": {
         "command": { "const": "/usr/bin/sudo -n /usr/sbin/purge" },
-        "nonInteractivePass": { "const": true }
+        "nonInteractivePass": { "const": true },
+        "sudoExecutableIdentitySha256": { "$ref": "#/$defs/sha" }
       }
     }
   }
