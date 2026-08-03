@@ -21,121 +21,118 @@
 - Triggering review and execution evidence:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-016-api-f-002-origin.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-018-api-f-003-origin.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/`
 
 ## Current Implementation Summary
 
-`IR-014` is the bounded `CRR-016` / `CR-F-022` local fix for the actual `API-REV-005` package-entry failure. The release workflow now completes the existing fail-closed preflight, pinned `/usr/bin/sudo` identity probe, noninteractive purge-capability proof, CMake selection, and trusted native tool/SDK authorization immediately before package construction and outside Seatbelt. It writes one exact native-build-environment record bound to the preflight bytes.
+`IR-015` is the bounded `CRR-018` / `CR-F-023` local fix for the authenticated Python Build Standalone archive incompatibility exposed by `API-REV-006`. The Python materializer now binds an explicit nine-link topology to the exact approved darwin-arm64 archive SHA-256. Before any generic traversal or wheel installation, it rejects absolute, escaping, dangling, cyclic, special, missing, or unexpected entries; removes unused aliases and build-only targets; and renames the validated `python3.12` target into the required ordinary executable `host/python/bin/python3`.
 
-Both deterministic archive builds remain wholly inside the pinned network-denial Seatbelt profile. The package assembler consumes the pre-authorized record rather than spawning the Seatbelt-forbidden setuid sudo process. Consumption still validates the complete preflight contract, exact sandbox digest, purge-to-sudo identity binding, live sudo filesystem metadata, exact preflight bytes, exact derived tool identities, live executable bytes, SDK settings, and inherited native-override policy. Preflight, identity, capability, tool, record, or profile drift remains fail closed.
+Global `regularFiles()` symlink/special-entry rejection is unchanged and now runs immediately after normalization as well as during pruning, verification, staging, manifest construction, and archive construction. Pruning retains only `bin/python3`, removes generated command wrappers and nondeterministic wheel `RECORD` install metadata, deletes bytecode/build-only files, and rejects any retained file that embeds its temporary materialization root. The exact retained 25,153,180-byte archive and locked wheelhouse were locally materialized twice: both final trees had the same SHA-256 tree identity, no links, only the required executable under `bin/`, and the relocated runtime successfully imported `mlx_whisper`.
 
-The accepted Functional Preflight 2, exact two-entry darwin-arm64 matrix, providers, models, thresholds, 49/200 corpus authorities, 30/30/100 qualification contracts, runtime/archive/launcher/session/protocol behavior, functional/performance evidence split, release ordering, and deferred x64/`auto` disposition are unchanged.
+`CR-F-022` remains resolved: API-REV-006 passed the outside-Seatbelt authorization and sandbox-safe trusted-environment consumption before reaching this later materializer defect. Functional Preflight 2, network denial, providers, models, thresholds, corpora, 30/30/100 contracts, archive/session/protocol behavior, evidence/release ordering, and deferred x64/`auto` disposition remain unchanged.
 
 - Implementation cycle: `Rework / Local Fix`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision: `IR-014`
+- Current implementation revision: `IR-015`
 - Related solution revisions: `SR-010`, `SR-011`
 - Related architecture revisions: `ARCH-REV-012`
-- Related code review: `CRR-015` historical source Pass withdrawn by actual execution; `CRR-016` triggering Local Fix; current re-review pending
-- Related API/E2E: `API-REV-005`, `API-F-002`, `API-VOICE-003`; prior `API-REV-004`, `API-RI-002`
+- Related code review: `CRR-017` historical source Pass withdrawn after actual execution; `CRR-018` triggering Local Fix; current re-review pending
+- Related API/E2E: `API-REV-006`, `API-F-003`, `API-VOICE-003`; prior `API-REV-005`, `API-F-002`
 - Related delivery revisions: `N/A`
-- Triggering finding: `CR-F-022`
-- Source commit: `fda4a3bc482c2452b6842644d62dfb062ad8339c`
+- Triggering finding: `CR-F-023`
+- Source commit: `24a994a51256f0eef5840ecdc977febec71ea491`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior ID          | Approved Change / Preserved Outcome                                                                                          | Implemented Production Path / Key Files                                                                                                                                               | Result / Notes                                                                                                                                       |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BEH-001`            | Runtime-worktree-only implementation.                                                                                        | This source commit and handoff touch only the dedicated runtime worktree.                                                                                                             | Preserved; no desktop, shared checkout, release, tag, publication, or user-state change.                                                             |
-| `BEH-002`, `BEH-003` | Persistent recognizers and bounded worker/reference-client lifecycle remain unchanged.                                       | Existing provider workers, Go launcher, and reference client.                                                                                                                         | Preserved.                                                                                                                                           |
-| `BEH-004`            | Current packages require exact Functional Preflight 2 and network-denied deterministic construction.                         | Workflow -> `create-native-build-environment.mjs` -> full preflight/sudo/purge/tool authorization -> Seatbelt -> `package-assembler.mjs` -> `consumeTrustedNativeBuildEnvironment()`. | Corrected composition: forbidden sudo execution occurs before Seatbelt; both builds remain inside Seatbelt and revalidate every consumable identity. |
-| `BEH-005`, `BEH-006` | Exact matrix, model/corpus authority, normalization, and scoring remain unchanged.                                           | Existing matrix, locked recipes, English-v2/Chinese evidence, normalizers, and scorer.                                                                                                | Preserved.                                                                                                                                           |
-| `BEH-007`–`BEH-009`  | Functional/performance qualification, QSet, projection, catalog, and release evidence remain unchanged.                      | Existing Summary 2 -> Assessment 1 -> QSet 2 and release lifecycle owners.                                                                                                            | Preserved; no evidence or release-order change.                                                                                                      |
-| `BEH-010`            | Each current package must be constructed as an independently executable Provider Archive 1 from closed authenticated inputs. | Exact preflight/native authorization outside Seatbelt; exact tool/SDK revalidation and all archive work inside pinned network denial.                                                 | CR-F-022 source path corrected without an unsandboxed package build or alternate package path.                                                       |
-| `BEH-011`, `BEH-012` | WAV/no-speech and strict session/protocol behavior remain unchanged.                                                         | Existing validators, provider workers, launcher, and protocol/session contracts.                                                                                                      | Preserved.                                                                                                                                           |
+| Behavior ID          | Approved Change / Preserved Outcome                                                                               | Implemented Production Path / Key Files                                                                                                                                                                       | Result / Notes                                                                                                                                                                                     |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEH-001`            | Runtime-worktree-only implementation.                                                                             | Dedicated runtime source commit and implementation artifacts.                                                                                                                                                 | Preserved; no desktop, shared checkout, tag, publication, or user-state change.                                                                                                                    |
+| `BEH-002`, `BEH-003` | Recognizer and bounded worker/reference-client lifecycle remain unchanged.                                        | Existing providers, launcher, and reference client.                                                                                                                                                           | Preserved.                                                                                                                                                                                         |
+| `BEH-004`            | Current packages require exact preflight, closed authenticated inputs, offline construction, and reproducibility. | Workflow -> authorized Seatbelt assembler -> MLX builder -> `materializePythonRuntime()` -> digest-bound archive-link normalizer -> offline locked-wheel install -> strict prune/relocatability verification. | Exact selected archive is accepted only through its approved topology; unsafe drift fails before inference or archive construction.                                                                |
+| `BEH-005`, `BEH-006` | Matrix, model/corpus authority, normalization, and scoring remain unchanged.                                      | Existing matrix, recipes, evidence, normalizers, and scorer.                                                                                                                                                  | Preserved.                                                                                                                                                                                         |
+| `BEH-007`–`BEH-009`  | Qualification, QSet, projection, catalog, and release evidence remain unchanged.                                  | Existing Summary 2 -> Assessment 1 -> QSet 2 and release lifecycle.                                                                                                                                           | Preserved.                                                                                                                                                                                         |
+| `BEH-010`            | Provider Archive 1 must be closed, symlink-free, relocatable, offline, and reproducible.                          | `archive-link-normalization.mjs`, `materialize-runtime.mjs`, `common.mjs`, and package assembler's unchanged final `regularFiles(stage)`/archive owners.                                                      | Required `host/python/bin/python3` is ordinary and executable; aliases, build-only link targets, generated CLIs, RECORD variance, path leaks, links, and special entries do not reach the package. |
+| `BEH-011`, `BEH-012` | WAV/no-speech and session/protocol behavior remain unchanged.                                                     | Existing validators, workers, launcher, and contracts.                                                                                                                                                        | Preserved.                                                                                                                                                                                         |
 
 ## Key Files Or Areas
 
-- Outside-Seatbelt authorization CLI: `build/create-native-build-environment.mjs`
-- Trusted native environment authorization/consumption: `build/trusted-native-environment.mjs`
-- Full versus sandbox-safe preflight consumption: `benchmark/darwin-arm64-preflight-contract.mjs`
-- Full sudo probe and live metadata-only revalidation: `benchmark/system-command-identity.mjs`
-- Sandboxed package entry: `build/package-assembler.mjs`
-- Canonical production sequencing: `.github/workflows/release-voice-runtime.yml`
-- Focused composition and drift coverage: `tests/build/trusted-native-environment.test.mjs`, `tests/release/system-command-identity.test.mjs`
+- Exact archive topology and normalization: `build/python/archive-link-normalization.mjs`
+- Python extraction, offline wheel install, pruning, distribution verification, and path-leak guard: `build/python/materialize-runtime.mjs`
+- Final stage/package symlink rejection: `build/profile-builders/common.mjs`, `build/package-assembler.mjs`, `build/lib/files.mjs`
+- Focused coverage: `tests/build/python-archive-link-normalization.test.mjs`
 
 ## Important Assumptions
 
-- The workflow-controlled temporary preflight and build-environment record remain local trusted inputs between the immediately adjacent authorization and Seatbelt-wrapped construction steps. Package consumption binds their exact bytes and rechecks all host/tool identities usable by the build.
-- Functional Preflight 2 remains the sole authority that actually executes `sudo -V` and `sudo -n /usr/sbin/purge`; sandbox consumption does not claim to repeat a capability the exact Seatbelt contract forbids.
-- The dedicated M1 reference runner, exact materialized package inputs, and licensed corpora remain downstream environment inputs.
+- Only the exact current darwin-arm64 archive digest has an approved non-empty link topology. Any future locked archive containing links must add independently reviewed exact topology data rather than inheriting this disposition.
+- Installed console commands are not runtime entrypoints; the reviewed package plan invokes only `host/python/bin/python3` plus the packaged worker. Distribution `METADATA` is retained and verified; install-time `RECORD` files and generated console wrappers are deliberately removed as build metadata.
+- The retained API-REV-006 archive, wheelhouse, and trusted environment were used only for a narrow implementation materializer check. This is not API/E2E qualification or authorization to continue the matrix.
 
 ## Known Risks And Remaining Work
 
-- The actual canonical English package command that failed in API-REV-005 must be rerun by API/E2E after source Pass. This implementation round proves the exact production consumption owner runs under Seatbelt without invoking sudo but does not materialize/build the real provider package.
-- Actual double construction, English 49 / Chinese 200 inference, exact 30 cold / 30 warm-preparation / 100 warm-request execution, lifecycle/recovery/offline/read-only/no-mutation/privacy/compliance proof, RSS, extracted size, QSet 2, and Branch Catalog Projection 2 remain API/E2E-owned.
-- Maintained-main refresh/integration, repeated integrated qualification, tag/publication, published-byte verification, and quarantine remain Delivery-owned. x64 and `auto` remain deferred and unsupported by the current matrix.
+- API/E2E must rerun the canonical first English archive command from the beginning after source Pass. Implementation did not construct/verify the full Provider Archive 1, execute corpus inference, or collect qualification evidence.
+- Actual double archive construction, 49/200-corpus inference, exact 30 cold / 30 warm-preparation / 100 warm-request execution, lifecycle/recovery/privacy/compliance, RSS/size, QSet 2, and Branch Catalog Projection 2 remain API/E2E-owned.
+- Maintained-main refresh/integration, repeated integrated qualification, tag/publication, published-byte verification, and quarantine remain Delivery-owned.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: bounded implementation correction after actual supported workflow execution.
-- Reviewed root-cause classification: individually correct preflight identity verification and Seatbelt construction were composed in the wrong order, causing the package entry to spawn setuid sudo inside Seatbelt.
-- Reviewed refactor decision: `No broad refactor`; split the existing trusted native environment owner into explicit full authorization and sandbox-safe consumption modes and sequence them at the workflow boundary.
+- Reviewed change posture: bounded implementation correction after joining an authenticated external input with the supported production path.
+- Reviewed root cause: the archive-specific owner used a followed `stat()` result but had no exact topology validation/normalization before the global symlink-free final-tree owner.
+- Reviewed refactor decision: `No broad refactor`; add a dedicated digest-bound archive-layout owner and keep generic final-tree enforcement unchanged.
 - Implementation matched the reviewed assessment: `Yes`.
-- If challenged, routed as Design Impact: `N/A`; all required properties were preserved locally.
-- Evidence: focused real-Seatbelt production-owner regression plus workflow/package-entry static composition and negative drift coverage.
+- Design Impact reroute: `N/A`; the selected input and package contract are reconciled without fallback or weakened enforcement.
+- Evidence: exact retained archive topology probe, two real materializations with equal final tree digest, relocated MLX import, focused durable topology/negative tests, and full source checks.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`.
-- Legacy old behavior retained in scope: `No`; package assembly no longer has an immediate live authorization path inside Seatbelt.
-- Dead/obsolete paths removed: `Yes`; the package assembler's `--cmake`/create-inside-sandbox path was replaced by the required `--build-environment` consumption input.
-- Shared structures remain tight: `Yes`; one environment record and one preflight remain authoritative, with full and sandbox-safe validation modes owned by the same boundaries.
-- Canonical shared design guidance reapplied: `Yes`; the workflow depends on the trusted environment owner rather than bypassing its internal tool verification.
-- Changed source size guardrails: `Yes`; all changed production files remain below 500 effective non-empty lines. The largest is `build/package-assembler.mjs` at 432; no changed production file exceeded the 220-line delta signal.
+- Legacy old behavior retained: `No`; link-following before global rejection is replaced cleanly.
+- Dead/obsolete artifacts removed in scope: `Yes`; archive aliases, their unused targets, generated CLI wrappers, install-only `RECORD` files, bytecode, and build-only distributions/headers/libraries are removed.
+- Shared structures remain tight: `Yes`; archive-specific knowledge is isolated from the global `regularFiles()` contract.
+- Canonical shared design guidance reapplied: `Yes`; the Python materializer owns reconciliation, while callers continue to depend on the final symlink-free tree boundary.
+- Source size guardrails: `Yes`; changed production files are 167 and 184 effective non-empty lines, and the production delta remains below the 220-line signal.
 
 ## Persisted Data Transition Check
 
-- Approved decision: `Discard or Rebuild` for active generated qualification/release candidates; `Not Affected` for user/desktop persisted data and immutable historical API evidence.
-- Implementation follows the decision: `Yes`; the native-build-environment record is an ephemeral workflow input regenerated from the current exact preflight, not persisted runtime or compatibility data.
+- Approved decision: `Discard or Rebuild` for active generated package/qualification candidates; `Not Affected` for desktop/user data and immutable historical API evidence.
+- Implementation follows the decision: `Yes`; runtime trees are rebuilt deterministically and no compatibility reader or migration was added.
 - Deviation: `None`.
 
 ## Environment Or Dependency Notes
 
 - Local checks used Node `22.23.1`, Python `3.9.6`, and repository-verified Go `1.26.5 darwin/arm64` at `/tmp/autobyteus-go1.26.5-v1/go/bin/go`.
-- No dependency version, provider/model, threshold, corpus/evidence byte, package ABI, current matrix, sandbox profile, or release permission changed.
+- Exact real materializer input: Python archive SHA-256 `62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b`, size `25,153,180`; unchanged locked wheelhouse and IR-014 trusted native environment.
+- No dependency, provider/model, input identity, threshold, corpus/evidence byte, ABI, matrix, sandbox, or release permission changed.
 
 ## Local Implementation Checks Run
 
-- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `67/67` Node tests, `7/7` Python tests plus compileall, all Go tests/source guards, strict schema checks, and exact six-output English-v2 reproduction.
-- Focused `node --test tests/build/trusted-native-environment.test.mjs tests/release/system-command-identity.test.mjs` — passed `8/8`. It executes the production sandbox-safe consumer under the exact checked-in Seatbelt profile after outside authorization and rejects preflight probe/capability, live sudo metadata, sandbox-profile, and trusted-tool drift.
+- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `69/69` top-level Node cases (`76/76` TAP tests including negative subcases), `7/7` Python tests plus compileall, all Go/source/schema/evidence checks, and exact six-output English-v2 reproduction.
+- Focused archive coverage — passed exact nine-link normalization plus absolute, escaping, dangling, cyclic, unexpected, missing, and special-entry rejection. Synthetic materializations remain identical after relocation, contain only ordinary files, and retain only `bin/python3` under `bin/`.
+- Narrow real-input materializer check — the exact authenticated archive and wheelhouse materialized twice to identical tree digest `65150bfe112e0fef4313270a9aebcd77b2dd14721dce0105a090380df4934094`, `18,978` ordinary files, only `bin/python3`, zero `.dist-info/RECORD` files, and a relocated `import mlx_whisper` returned `ready`.
 - Verified Go 1.26.5 `test -race ./...`, `vet ./...`, and `gofmt -l` across launcher and packaging modules — passed.
-- Backend-selection checksum index — all `191/191` indexed historical files passed unchanged.
-- English-v2 checksum index — `8/8` passed unchanged.
-- Workspace JSON parse sweep excluding dependencies and Git internals — `218/218` files parsed.
+- Backend-selection checksums `191/191`; English-v2 checksums `8/8`; workspace JSON parse sweep `222/222` — passed.
 - Focused Prettier and `git diff --check` — passed.
 
-These are implementation-scoped checks only. No API/E2E, actual package qualification, release, tag, publication, or deployment result is claimed.
+These are implementation-scoped checks only. No API/E2E, full package qualification, release, tag, publication, or deployment result is claimed.
 
 ## Frontend Rendered-Result Check
 
-`Not Applicable` — this runtime build-boundary correction has no rendered frontend or user interaction.
+`Not Applicable` — this runtime materialization correction has no rendered frontend.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-1. Code Review should trace the workflow ordering through the full authorization owner and confirm that every package-assembler invocation remains inside the exact Seatbelt profile while no transitive sandbox path executes sudo.
-2. Code Review should independently mutate the preflight probe/capability, sudo metadata identity, build-environment/preflight binding, tool bytes, and sandbox digest and confirm fail-closed rejection.
-3. After source Pass, API/E2E should resume API-REV-005 by rerunning the exact corrected canonical English package construction first, then continue the two-profile matrix only if the archive is created and independently verified.
-4. Delivery should independently repeat the integrated-state chain and owns all tag/publication/post-publication actions.
+1. Code Review should independently compare the nine-link layout with the authenticated archive evidence and verify validation precedes any followed traversal or interpreter execution.
+2. Review unexpected, absolute/escaping, dangling, cyclic, special, missing-link, digest/target mismatch, executable disposition, console-wrapper/RECORD pruning, final path-leak rejection, and unchanged global `regularFiles()` enforcement.
+3. After source Pass, API/E2E should rerun the corrected canonical first English build before continuing the serial matrix; it should independently verify archive closure, relocation, reproducibility, and the exact package runtime.
+4. Delivery retains all integrated-state, tag, publication, published-byte, and quarantine ownership.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-- Recipient now: `code_reviewer` for source re-review of `IR-014` / `CR-F-022` against `SR-010` / `SR-011`, `ARCH-REV-012`, and the API-REV-005 failure evidence.
+- Recipient now: `code_reviewer` for source re-review of `IR-015` / `CR-F-023` against `SR-010` / `SR-011`, `ARCH-REV-012`, `CRR-018`, and API-REV-006 evidence.
 - API/E2E remains paused until Code Review Pass.
