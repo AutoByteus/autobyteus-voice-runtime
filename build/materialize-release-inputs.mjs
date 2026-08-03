@@ -18,6 +18,10 @@ import {
   matrixEntryKey,
 } from "../release/current-release-matrix.mjs";
 import { repositoryBuildLockDigest } from "./repository-lock-set.mjs";
+import {
+  assertBuildInputPath,
+  assertBuildInputPathSet,
+} from "./build-input-path-policy.mjs";
 
 const run = promisify(execFile);
 
@@ -224,6 +228,7 @@ async function copyCheckout(source, destination) {
     if (!match)
       throw new Error("Git checkout contains unsupported entry mode.");
     const relative = match[3];
+    assertBuildInputPath(relative);
     const target = path.join(destination, relative);
     await assertWithin(destination, target);
     await fs.mkdir(path.dirname(target), { recursive: true });
@@ -260,8 +265,11 @@ async function verifyFile(file, identity) {
 
 async function fileRecords(root) {
   const result = [];
-  for (const relative of await regularFiles(root)) {
-    if (relative === "SHA256SUMS.json") continue;
+  const paths = (await regularFiles(root)).filter(
+    (relative) => relative !== "SHA256SUMS.json",
+  );
+  assertBuildInputPathSet(paths);
+  for (const relative of paths) {
     const file = path.join(root, relative);
     const info = await fs.lstat(file),
       mode = info.mode;

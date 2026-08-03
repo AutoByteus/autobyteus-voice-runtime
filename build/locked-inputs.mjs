@@ -1,6 +1,7 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { ROOT, readJson, sha256, shaFile } from "./lib/files.mjs";
+import { assertBuildInputPathSet } from "./build-input-path-policy.mjs";
 export const locked = await readJson(
   path.join(ROOT, "build/locked-inputs.json"),
 );
@@ -77,10 +78,14 @@ export async function verifyInputManifest(root) {
     manifest.files.length === 0
   )
     throw new Error("Invalid input manifest.");
+  try {
+    assertBuildInputPathSet(manifest.files.map((item) => item?.path));
+  } catch (error) {
+    throw new Error("Invalid input manifest record.", { cause: error });
+  }
   const expected = new Set(["SHA256SUMS.json"]);
   for (const item of manifest.files) {
     if (
-      !/^[A-Za-z0-9._/-]+$/.test(item.path) ||
       !/^[a-f0-9]{64}$/.test(item.sha256) ||
       !Number.isSafeInteger(item.sizeBytes) ||
       !["executable", "read-only"].includes(item.mode) ||
@@ -103,17 +108,6 @@ export async function verifyInputManifest(root) {
   const actual = new Set();
   async function walk(directory) {
     for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
-      const relativeDirectory = path
-        .relative(root, directory)
-        .split(path.sep)
-        .join("/");
-      if (
-        entry.name === ".git" &&
-        /^(?:funasr-source|llama-cpp-source|utf8proc-source)$/.test(
-          relativeDirectory,
-        )
-      )
-        continue;
       const target = path.join(directory, entry.name);
       if (entry.isSymbolicLink()) throw new Error("Input symlink rejected.");
       if (entry.isDirectory()) await walk(target);
