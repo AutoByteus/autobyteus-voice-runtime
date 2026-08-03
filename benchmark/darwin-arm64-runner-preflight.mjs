@@ -14,7 +14,10 @@ import {
   writeJson,
 } from "../build/lib/files.mjs";
 import { verifyGoToolchain } from "../build/locked-inputs.mjs";
-import { canonicalExecutablePath } from "../build/native-tool-identities.mjs";
+import {
+  canonicalExecutablePath,
+  captureXcodeRanlibIdentity,
+} from "../build/native-tool-identities.mjs";
 import {
   capturePinnedSudoIdentity,
   systemCommandIdentityDigest,
@@ -102,7 +105,8 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
     if (Object.values(record.power).some((value) => value !== true))
       throw blocked("runner-power-or-pressure");
     record.performanceEnvironment = await capturePerformanceEnvironment();
-    const sudoExecutable = await capturePinnedSudoIdentity();
+    const sudoExecutable = await capturePinnedSudoIdentity(),
+      appleLibtoolExecutable = await executableIdentity(libtoolPath);
     record.tools = {
       node: process.version,
       nodeExecutable: await executableIdentity(process.execPath),
@@ -114,9 +118,12 @@ export async function runDarwinArm64Preflight({ go, cmake, output }) {
       appleClangExecutable: await executableIdentity(clangPath),
       appleClangCxxExecutable: await executableIdentity(clangCxxPath),
       appleArExecutable: await executableIdentity(arPath),
-      appleRanlibExecutable: await executableIdentity(ranlibPath),
+      appleRanlibExecutable: await xcodeRanlibIdentity(
+        ranlibPath,
+        appleLibtoolExecutable,
+      ),
       appleLinkerExecutable: await executableIdentity(linkerPath),
-      appleLibtoolExecutable: await executableIdentity(libtoolPath),
+      appleLibtoolExecutable,
       xcode,
       sdk,
       sdkPath: await directoryIdentity(sdkPath),
@@ -258,6 +265,14 @@ async function executableIdentity(executable) {
   try {
     const resolved = await canonicalExecutablePath(executable);
     return { path: resolved, sha256: await shaFile(resolved) };
+  } catch {
+    throw blocked("toolchain-command-identity");
+  }
+}
+
+async function xcodeRanlibIdentity(executable, libtoolIdentity) {
+  try {
+    return await captureXcodeRanlibIdentity(executable, libtoolIdentity);
   } catch {
     throw blocked("toolchain-command-identity");
   }

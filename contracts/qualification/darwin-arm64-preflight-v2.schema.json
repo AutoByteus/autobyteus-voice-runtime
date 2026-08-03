@@ -115,6 +115,32 @@
         }
       }
     },
+    "xcodeRanlibIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "invocationPath",
+        "linkTarget",
+        "targetPath",
+        "targetSha256"
+      ],
+      "properties": {
+        "invocationPath": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "linkTarget": {
+          "const": "libtool"
+        },
+        "targetPath": {
+          "type": "string",
+          "pattern": "^/"
+        },
+        "targetSha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
     "host": {
       "type": "object",
       "additionalProperties": false,
@@ -219,7 +245,7 @@
           "$ref": "#/$defs/identity"
         },
         "appleRanlibExecutable": {
-          "$ref": "#/$defs/identity"
+          "$ref": "#/$defs/xcodeRanlibIdentity"
         },
         "appleLinkerExecutable": {
           "$ref": "#/$defs/identity"

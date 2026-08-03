@@ -37,7 +37,7 @@
         "cCompiler": { "$ref": "#/$defs/identity" },
         "cxxCompiler": { "$ref": "#/$defs/identity" },
         "archiver": { "$ref": "#/$defs/identity" },
-        "ranlib": { "$ref": "#/$defs/identity" },
+        "ranlib": { "$ref": "#/$defs/xcodeRanlibIdentity" },
         "linker": { "$ref": "#/$defs/identity" },
         "libtool": { "$ref": "#/$defs/identity" },
         "make": { "$ref": "#/$defs/identity" },
@@ -91,6 +91,22 @@
       "properties": {
         "path": { "type": "string", "pattern": "^/" },
         "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "xcodeRanlibIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "invocationPath",
+        "linkTarget",
+        "targetPath",
+        "targetSha256"
+      ],
+      "properties": {
+        "invocationPath": { "type": "string", "pattern": "^/" },
+        "linkTarget": { "const": "libtool" },
+        "targetPath": { "type": "string", "pattern": "^/" },
+        "targetSha256": { "$ref": "#/$defs/sha" }
       }
     }
   }

@@ -21,11 +21,81 @@ export async function assertTrustedExecutableIdentity(identityValue) {
     );
 }
 
+export async function captureXcodeRanlibIdentity(
+  invocationPath,
+  libtoolIdentity,
+) {
+  await assertTrustedExecutableIdentity(libtoolIdentity);
+  const supplied = path.resolve(invocationPath),
+    alias = path.join(
+      await fs.realpath(path.dirname(supplied)),
+      path.basename(supplied),
+    ),
+    info = await fs.lstat(alias),
+    linkTarget = await fs.readlink(alias),
+    identityValue = {
+      invocationPath: alias,
+      linkTarget,
+      targetPath: await fs.realpath(alias),
+      targetSha256: await shaFile(await fs.realpath(alias)),
+    };
+  if (!info.isSymbolicLink())
+    throw new Error("Xcode ranlib invocation must be a symbolic alias.");
+  await assertXcodeRanlibIdentity(identityValue, libtoolIdentity);
+  return identityValue;
+}
+
+export async function assertXcodeRanlibIdentity(
+  identityValue,
+  libtoolIdentity,
+) {
+  const invocation = path.resolve(identityValue.invocationPath),
+    canonicalInvocation = path.join(
+      await fs.realpath(path.dirname(invocation)),
+      path.basename(invocation),
+    ),
+    expectedDirectorySuffix = path.join(
+      "Contents",
+      "Developer",
+      "Toolchains",
+      "XcodeDefault.xctoolchain",
+      "usr",
+      "bin",
+    ),
+    directory = path.dirname(invocation),
+    suffix = `${path.sep}${expectedDirectorySuffix}`,
+    bundleRoot = directory.endsWith(suffix)
+      ? directory.slice(0, -suffix.length)
+      : "",
+    info = await fs.lstat(invocation);
+  if (
+    canonicalInvocation !== identityValue.invocationPath ||
+    path.basename(invocation) !== "ranlib" ||
+    !bundleRoot.endsWith(".app") ||
+    !info.isSymbolicLink() ||
+    identityValue.linkTarget !== "libtool" ||
+    (await fs.readlink(invocation)) !== identityValue.linkTarget ||
+    path.join(directory, identityValue.linkTarget) !==
+      identityValue.targetPath ||
+    (await fs.realpath(invocation)) !== identityValue.targetPath ||
+    identityValue.targetPath !== libtoolIdentity.path ||
+    identityValue.targetSha256 !== libtoolIdentity.sha256
+  )
+    throw new Error("Xcode ranlib alias identity mismatch.");
+  await assertTrustedExecutableIdentity({
+    path: identityValue.targetPath,
+    sha256: identityValue.targetSha256,
+  });
+}
+
 export async function materializeTrustedToolDirectory(record, workDirectory) {
   const directory = path.join(workDirectory, "trusted-native-tools");
   await fs.mkdir(directory, { recursive: false, mode: 0o700 });
   for (const [name, identityValue] of toolEntries(record))
-    await fs.symlink(identityValue.path, path.join(directory, name));
+    await fs.symlink(
+      invocationPath(name, identityValue),
+      path.join(directory, name),
+    );
   await verifyTrustedToolDirectory(record, directory);
   return directory;
 }
@@ -43,11 +113,17 @@ export async function verifyTrustedToolDirectory(record, directory) {
       info = await fs.lstat(link);
     if (
       !info.isSymbolicLink() ||
-      (await fs.readlink(link)) !== identityValue.path
+      (await fs.readlink(link)) !== invocationPath(name, identityValue)
     )
       throw new Error(`Trusted native tool link mismatch: ${name}`);
-    await assertTrustedExecutableIdentity(identityValue);
+    if (name === "ranlib")
+      await assertXcodeRanlibIdentity(identityValue, record.tools.libtool);
+    else await assertTrustedExecutableIdentity(identityValue);
   }
+}
+
+function invocationPath(name, identityValue) {
+  return name === "ranlib" ? identityValue.invocationPath : identityValue.path;
 }
 
 function toolEntries(record) {

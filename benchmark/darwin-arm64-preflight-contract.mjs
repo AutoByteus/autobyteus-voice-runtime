@@ -3,6 +3,7 @@ import Ajv2020 from "ajv/dist/2020.js";
 import addFormats from "ajv-formats";
 import { locked } from "../build/locked-inputs.mjs";
 import { readJson, ROOT, shaFile } from "../build/lib/files.mjs";
+import { assertXcodeRanlibIdentity } from "../build/native-tool-identities.mjs";
 import {
   systemCommandIdentityDigest,
   verifyPinnedSudoIdentity,
@@ -65,6 +66,10 @@ async function assertPassingPreflightRecord(value) {
       systemCommandIdentityDigest(value.tools.sudoExecutable)
   )
     throw new Error("M1 preflight identities do not recompute.");
+  await assertXcodeRanlibIdentity(
+    value.tools.appleRanlibExecutable,
+    value.tools.appleLibtoolExecutable,
+  );
   return value;
 }
 

@@ -6,6 +6,7 @@ import {
   capturePinnedSudoIdentity,
   systemCommandIdentityDigest,
 } from "../../benchmark/system-command-identity.mjs";
+import { captureXcodeRanlibIdentity } from "../../build/native-tool-identities.mjs";
 
 const root = path.resolve(import.meta.dirname, "../..");
 
@@ -14,6 +15,12 @@ export async function passingDarwinPreflightFixture(rootPath, toolPath) {
       path: await fs.realpath(toolPath),
       sha256: await shaFile(toolPath),
     },
+    xcodeBin = path.join(
+      rootPath,
+      "FixtureXcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    ),
+    libtoolPath = path.join(xcodeBin, "libtool"),
+    ranlibPath = path.join(xcodeBin, "ranlib"),
     sdkPath = path.join(rootPath, "sdk"),
     sdkSettings = path.join(sdkPath, "SDKSettings.json"),
     commandNames = [
@@ -31,6 +38,19 @@ export async function passingDarwinPreflightFixture(rootPath, toolPath) {
       "/usr/bin/tar",
       "/bin/sh",
     ];
+  await fs.mkdir(xcodeBin, { recursive: true });
+  await fs.writeFile(libtoolPath, '#!/bin/sh\n[ "${0##*/}" = ranlib ]\n', {
+    mode: 0o755,
+  });
+  await fs.symlink("libtool", ranlibPath);
+  const libtoolIdentity = {
+      path: await fs.realpath(libtoolPath),
+      sha256: await shaFile(libtoolPath),
+    },
+    ranlibIdentity = await captureXcodeRanlibIdentity(
+      ranlibPath,
+      libtoolIdentity,
+    );
   await fs.mkdir(sdkPath, { recursive: true });
   await fs.writeFile(sdkSettings, "{}\n");
   const commandPaths = {};
@@ -83,9 +103,9 @@ export async function passingDarwinPreflightFixture(rootPath, toolPath) {
       appleClangExecutable: tool,
       appleClangCxxExecutable: tool,
       appleArExecutable: tool,
-      appleRanlibExecutable: tool,
+      appleRanlibExecutable: ranlibIdentity,
       appleLinkerExecutable: tool,
-      appleLibtoolExecutable: tool,
+      appleLibtoolExecutable: libtoolIdentity,
       xcode: "Xcode 26.1.1\nBuild version 17B100",
       sdk: "26.1",
       sdkPath,

@@ -9,6 +9,7 @@ import { promisify } from "node:util";
 import {
   assertNoUntrustedNativeBuildOverrides,
   assertTrustedExecutableIdentity,
+  assertXcodeRanlibIdentity,
   cmakeConfigureArguments,
   consumeTrustedNativeBuildEnvironment,
   createTrustedNativeBuildEnvironment,
@@ -66,6 +67,63 @@ test("the production environment owner accepts the preflight CMake symlink", asy
       environment: {},
     });
     assert.equal(record.tools.cmake.path, await fs.realpath(tool));
+    assert.match(record.tools.ranlib.invocationPath, /\/ranlib$/);
+    assert.equal(record.tools.ranlib.targetPath, record.tools.libtool.path);
+    assert.equal(record.tools.tar.path, await fs.realpath("/usr/bin/tar"));
+  } finally {
+    await fs.rm(temp, { recursive: true, force: true });
+  }
+});
+
+test("the Xcode ranlib alias retains invocation semantics and authenticated topology", async () => {
+  const temp = await fs.mkdtemp(
+    path.join(os.tmpdir(), "voice-native-ranlib-alias-test-"),
+  );
+  try {
+    const cmake = path.join(temp, "cmake");
+    await fs.writeFile(cmake, "fixture\n", { mode: 0o755 });
+    const preflight = await passingDarwinPreflightFixture(temp, cmake),
+      identity = preflight.tools.appleRanlibExecutable,
+      libtool = preflight.tools.appleLibtoolExecutable,
+      originalBytes = await fs.readFile(libtool.path);
+    await assertXcodeRanlibIdentity(identity, libtool);
+    await run(identity.invocationPath, []);
+    await assert.rejects(run(identity.targetPath, []));
+    const record = fixtureRecord(temp);
+    record.tools.ranlib = identity;
+    record.tools.libtool = libtool;
+    assert.ok(
+      cmakeConfigureArguments(record).includes(
+        `-DCMAKE_RANLIB=${identity.invocationPath}`,
+      ),
+    );
+
+    const alternate = path.join(path.dirname(identity.targetPath), "other");
+    await fs.writeFile(alternate, originalBytes, { mode: 0o755 });
+    await fs.rm(identity.invocationPath);
+    await fs.symlink(path.basename(alternate), identity.invocationPath);
+    await assert.rejects(
+      assertXcodeRanlibIdentity(identity, libtool),
+      /alias identity mismatch/,
+    );
+
+    await fs.rm(identity.invocationPath);
+    await fs.symlink(identity.linkTarget, identity.invocationPath);
+    await fs.writeFile(identity.targetPath, "changed target\n", {
+      mode: 0o755,
+    });
+    await assert.rejects(
+      assertXcodeRanlibIdentity(identity, libtool),
+      /Trusted executable identity mismatch/,
+    );
+
+    await fs.writeFile(identity.targetPath, originalBytes, { mode: 0o755 });
+    await fs.rm(identity.invocationPath);
+    await fs.writeFile(identity.invocationPath, originalBytes, { mode: 0o755 });
+    await assert.rejects(
+      assertXcodeRanlibIdentity(identity, libtool),
+      /alias identity mismatch/,
+    );
   } finally {
     await fs.rm(temp, { recursive: true, force: true });
   }
@@ -187,12 +245,23 @@ test("the trusted PATH is closed and rechecks every selected tool", async () => 
     for (const identity of Object.values(record.tools).filter(
       (value) => value.sha256,
     )) {
+      await fs.mkdir(path.dirname(identity.path), { recursive: true });
       await fs.writeFile(identity.path, `${path.basename(identity.path)}\n`, {
         mode: 0o755,
       });
       identity.path = await fs.realpath(identity.path);
       identity.sha256 = await shaFile(identity.path);
     }
+    record.tools.ranlib.invocationPath = path.join(
+      path.dirname(record.tools.libtool.path),
+      "ranlib",
+    );
+    record.tools.ranlib.targetPath = record.tools.libtool.path;
+    record.tools.ranlib.targetSha256 = record.tools.libtool.sha256;
+    await fs.symlink(
+      record.tools.ranlib.linkTarget,
+      record.tools.ranlib.invocationPath,
+    );
     const work = path.join(temp, "work");
     await fs.mkdir(work);
     const tools = await materializeTrustedToolDirectory(record, work);
@@ -236,14 +305,14 @@ test("trusted executable bytes and explicit CMake configuration are bound", asyn
       "-G",
       "Unix Makefiles",
       "-DCMAKE_BUILD_TYPE=Release",
-      `-DCMAKE_MAKE_PROGRAM=${temp}/make`,
-      `-DCMAKE_C_COMPILER=${temp}/clang`,
-      `-DCMAKE_CXX_COMPILER=${temp}/clang++`,
-      `-DCMAKE_AR=${temp}/ar`,
-      `-DCMAKE_RANLIB=${temp}/ranlib`,
-      `-DCMAKE_LINKER=${temp}/ld`,
-      `-DCMAKE_LIBTOOL=${temp}/libtool`,
-      `-DCMAKE_OSX_SYSROOT=${temp}/sdk`,
+      `-DCMAKE_MAKE_PROGRAM=${record.tools.make.path}`,
+      `-DCMAKE_C_COMPILER=${record.tools.cCompiler.path}`,
+      `-DCMAKE_CXX_COMPILER=${record.tools.cxxCompiler.path}`,
+      `-DCMAKE_AR=${record.tools.archiver.path}`,
+      `-DCMAKE_RANLIB=${record.tools.ranlib.invocationPath}`,
+      `-DCMAKE_LINKER=${record.tools.linker.path}`,
+      `-DCMAKE_LIBTOOL=${record.tools.libtool.path}`,
+      `-DCMAKE_OSX_SYSROOT=${record.tools.sdk.path}`,
       "-DCMAKE_C_FLAGS=",
       "-DCMAKE_CXX_FLAGS=",
       "-DCMAKE_EXE_LINKER_FLAGS=",
@@ -265,7 +334,10 @@ test("resolved CMake selection must match the bound environment", async () => {
   );
   try {
     const record = fixtureRecord(temp),
-      cache = (cxxFlags = "") =>
+      cache = ({
+        cxxFlags = "",
+        ranlib = record.tools.ranlib.invocationPath,
+      } = {}) =>
         `${Object.entries({
           CMAKE_GENERATOR: record.configuration.generator,
           CMAKE_BUILD_TYPE: record.configuration.buildType,
@@ -273,7 +345,7 @@ test("resolved CMake selection must match the bound environment", async () => {
           CMAKE_C_COMPILER: record.tools.cCompiler.path,
           CMAKE_CXX_COMPILER: record.tools.cxxCompiler.path,
           CMAKE_AR: record.tools.archiver.path,
-          CMAKE_RANLIB: record.tools.ranlib.path,
+          CMAKE_RANLIB: ranlib,
           CMAKE_LINKER: record.tools.linker.path,
           CMAKE_LIBTOOL: record.tools.libtool.path,
           CMAKE_OSX_SYSROOT: record.tools.sdk.path,
@@ -287,10 +359,21 @@ test("resolved CMake selection must match the bound environment", async () => {
           .join("\n")}\n`;
     await fs.writeFile(path.join(temp, "CMakeCache.txt"), cache());
     await verifyResolvedCmakeConfiguration(record, temp);
-    await fs.writeFile(path.join(temp, "CMakeCache.txt"), cache("-DUNBOUND=1"));
+    await fs.writeFile(
+      path.join(temp, "CMakeCache.txt"),
+      cache({ cxxFlags: "-DUNBOUND=1" }),
+    );
     await assert.rejects(
       verifyResolvedCmakeConfiguration(record, temp),
       /Resolved CMake configuration mismatch: CMAKE_CXX_FLAGS/,
+    );
+    await fs.writeFile(
+      path.join(temp, "CMakeCache.txt"),
+      cache({ ranlib: record.tools.ranlib.targetPath }),
+    );
+    await assert.rejects(
+      verifyResolvedCmakeConfiguration(record, temp),
+      /Resolved CMake configuration mismatch: CMAKE_RANLIB/,
     );
   } finally {
     await fs.rm(temp, { recursive: true, force: true });
@@ -331,9 +414,14 @@ test("every current package builder consumes the trusted owner", async () => {
 
 function fixtureRecord(rootPath) {
   const tool = (name) => ({
-    path: `${rootPath}/${name}`,
+    path: path.isAbsolute(name) ? name : `${rootPath}/${name}`,
     sha256: "a".repeat(64),
   });
+  const xcodeBin = path.join(
+      rootPath,
+      "FixtureXcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin",
+    ),
+    libtool = tool(path.join(xcodeBin, "libtool"));
   return {
     schemaVersion: 1,
     target: "darwin-arm64",
@@ -344,9 +432,14 @@ function fixtureRecord(rootPath) {
       cCompiler: tool("clang"),
       cxxCompiler: tool("clang++"),
       archiver: tool("ar"),
-      ranlib: tool("ranlib"),
+      ranlib: {
+        invocationPath: path.join(xcodeBin, "ranlib"),
+        linkTarget: "libtool",
+        targetPath: libtool.path,
+        targetSha256: libtool.sha256,
+      },
       linker: tool("ld"),
-      libtool: tool("libtool"),
+      libtool,
       make: tool("make"),
       shell: tool("sh"),
       tar: tool("tar"),

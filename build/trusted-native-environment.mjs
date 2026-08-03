@@ -7,11 +7,14 @@ import {
 } from "../benchmark/darwin-arm64-preflight-contract.mjs";
 import {
   assertTrustedExecutableIdentity,
+  assertXcodeRanlibIdentity,
   canonicalExecutablePath,
 } from "./native-tool-identities.mjs";
 export {
   assertTrustedExecutableIdentity,
+  assertXcodeRanlibIdentity,
   canonicalExecutablePath,
+  captureXcodeRanlibIdentity,
   materializeTrustedToolDirectory,
   verifyTrustedToolDirectory,
 } from "./native-tool-identities.mjs";
@@ -149,7 +152,6 @@ export async function verifyTrustedNativeBuildEnvironment(record) {
     "cCompiler",
     "cxxCompiler",
     "archiver",
-    "ranlib",
     "linker",
     "libtool",
     "make",
@@ -157,6 +159,7 @@ export async function verifyTrustedNativeBuildEnvironment(record) {
     "tar",
   ])
     await assertTrustedExecutableIdentity(record.tools[tool]);
+  await assertXcodeRanlibIdentity(record.tools.ranlib, record.tools.libtool);
   const settings = path.join(record.tools.sdk.path, "SDKSettings.json");
   if ((await shaFile(settings)) !== record.tools.sdk.settingsSha256)
     throw new Error("Trusted SDK settings identity mismatch.");
