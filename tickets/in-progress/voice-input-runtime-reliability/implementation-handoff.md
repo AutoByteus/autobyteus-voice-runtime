@@ -21,116 +21,119 @@
 - Triggering review and executable evidence:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-020-api-f-004-origin.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-022-api-f-005-f-006-origin.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-009/`
 
 ## Current Implementation Summary
 
-`IR-016` is the bounded `CRR-020` / `CR-F-024` local fix for the Provider Archive path-policy failure exposed by `API-REV-008`. Python runtime pruning is now owned by one runtime-closure module. It preserves executable runtime and public runtime APIs, while excluding dependency test-suite directories named `test` or `tests` and package-local development `include` trees before staging. The policy is structural rather than a pair of filename exceptions. Public modules such as `numpy.testing` remain because the exact relocated MLX import path requires them.
+`IR-017` is the bounded `CRR-022` local fix for `CR-F-025` / `API-F-005` and `CR-F-026` / `API-F-006`.
 
-The canonical Go Provider Archive path grammar is unchanged. A durable fixture preserves the exact ordered 19,003-path API-REV-008 production observation by digest. Applying the closure removes 12,502 non-runtime Python paths, leaves a 6,501-record complete staged path set, and the existing Go `ReadManifest()` owner accepts it. The exact retained Python archive and locked wheelhouse also materialized twice to the same 6,476-file tree; it contains no dependency test suites, development headers, symbolic links, or archive-invalid paths, and its relocated Python executable successfully imports the packaged worker, `MlxWhisperRecognizer`, `mlx.core`, and `mlx_whisper`.
+The public Go launcher still invokes only the validated contained private host, still uses `-I -B -X utf8`, and still supplies the closed launcher environment. Its Python path now enters through a constant bootstrap that receives the canonical parent of the already validated worker path, inserts exactly that package-owned directory at `sys.path[0]`, and executes the validated worker as `__main__`. It does not read inherited `PYTHONPATH`, depend on CWD, use a system-runtime fallback, or add another public launcher. A durable composition test builds the real Go launcher into a relocated package path containing spaces and non-ASCII, poisons ambient Python path/home and CWD, confirms `sys.flags.isolated == 1`, confirms the canonical worker directory is the import root, imports `autobyteus_voice_provider`, and receives the first `hello` frame.
 
-`CR-F-022` and `CR-F-023` remain resolved. Providers, models, locked inputs, thresholds, Functional Preflight 2, Seatbelt, corpus/evidence authority, exact trial counts, package/session/protocol behavior, and release ordering are unchanged.
+Qualification Summary 2 construction now explicitly projects only `fileName`, `sha256`, compressed size, extracted size, and entry count from the wider build archive. The build report keeps its owning `schemaVersion: 1`, and the strict Summary schema remains unchanged. A production-shaped `process-loss` regression now retains a consistent fail/process-loss attempt ledger and Summary, writes and verifies Performance Assessment 1 against the Summary digest, and then exercises the passing-only terminal boundary.
+
+API-REV-009 directly confirmed `CR-F-024`, `CR-F-023`, and `CR-F-022` remain resolved: the exact English package built twice byte-identically and passed archive, compliance, size, and entry verification before reaching these later startup/evidence defects. Providers, models, inputs, thresholds, Functional Preflight 2, Seatbelt, corpus/evidence authority, exact trial counts, package/session/protocol contracts, and release ordering remain unchanged.
 
 - Implementation cycle: `Rework / Local Fix`
-- Current implementation revision: `IR-016`
+- Current implementation revision: `IR-017`
 - Related solution revisions: `SR-010`, `SR-011`
 - Related architecture revision: `ARCH-REV-012`
-- Related code review: `CRR-019` historical source Pass withdrawn after execution; `CRR-020` triggering Local Fix; current re-review pending
-- Related API/E2E: `API-REV-008`, `API-F-004`, `API-VOICE-003`
-- Triggering finding: `CR-F-024`
-- Source commit: `1d712683c70c338d8bf5074f27c8b0c9da47a8cb`
+- Related code review: `CRR-021` historical source Pass withdrawn after API-REV-009; `CRR-022` triggering Local Fix; current re-review pending
+- Related API/E2E: `API-REV-009`, `API-F-005`, `API-F-006`, `API-VOICE-003`
+- Triggering findings: `CR-F-025`, `CR-F-026`
+- Source commit: `e133c4a7a73a5531c726ecb04461acb641461667`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior ID          | Approved Change / Preserved Outcome                                                                                                | Implemented Production Path / Key Files                                                                                                                                                                | Result / Notes                                                                                        |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| `BEH-001`            | Runtime-worktree-only implementation.                                                                                              | Dedicated runtime source commit and implementation artifacts.                                                                                                                                          | Preserved; no desktop, shared checkout, tag, publication, release asset, or user-state change.        |
-| `BEH-002`, `BEH-003` | Recognizer and bounded worker/reference-client lifecycle remain unchanged.                                                         | Existing providers, launcher, and reference client.                                                                                                                                                    | Preserved.                                                                                            |
-| `BEH-004`            | Current packages require exact preflight, authenticated closed inputs, offline construction, and reproducibility.                  | Seatbelt assembler -> MLX builder -> `materializePythonRuntime()` -> archive-link normalization -> locked-wheel install -> `prunePythonRuntime()` -> runtime/distribution/relocatability verification. | The selected archive remains exact; closure is deterministic and runs before staging.                 |
-| `BEH-005`–`BEH-009`  | Matrix, model/corpus authority, normalization, scoring, qualification, projection, catalog, and release evidence remain unchanged. | Existing reviewed owners.                                                                                                                                                                              | Preserved.                                                                                            |
-| `BEH-010`            | Provider Archive 1 stays closed, symlink-free, relocatable, offline, reproducible, and compliant with its immutable path grammar.  | `runtime-closure.mjs`, `materialize-runtime.mjs`, unchanged `regularFiles()` enforcement, package manifest construction, and canonical Go `ReadManifest()`.                                            | Dependency tests and development headers do not enter the stage; canonical Go policy is not weakened. |
-| `BEH-011`, `BEH-012` | WAV/no-speech and session/protocol behavior remain unchanged.                                                                      | Existing validators, workers, launcher, and contracts.                                                                                                                                                 | Preserved.                                                                                            |
+| Behavior ID          | Approved Change / Preserved Outcome                                                                                  | Implemented Production Path / Key Files                                                                                                         | Result / Notes                                                                                                 |
+| -------------------- | -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `BEH-001`            | Runtime-worktree-only implementation.                                                                                | Dedicated runtime source commit and implementation artifacts.                                                                                   | Preserved; no desktop, shared checkout, tag, publication, release asset, or user-state change.                 |
+| `BEH-002`, `BEH-003` | The one public launcher must start the bounded private worker lifecycle.                                             | `launcher/internal/run.go`: validated host/worker -> isolated constant bootstrap -> canonical validated worker parent -> worker as `__main__`.  | First contained application import and `hello` frame now succeed without ambient paths or fallback.            |
+| `BEH-004`, `BEH-010` | Exact package, isolated environment, relocation, offline construction, and Provider Archive behavior remain binding. | Existing plan/config/control/containment validation and private environment precede the new bootstrap; package/archive owners remain unchanged. | `-I`, closed environment, contained paths, one public launcher, and no fallback are preserved.                 |
+| `BEH-005`, `BEH-006` | Matrix, provider/model/corpus authority, normalization, and scoring remain unchanged.                                | Existing reviewed owners.                                                                                                                       | Preserved.                                                                                                     |
+| `BEH-007`, `BEH-008` | Every started failure must retain the Summary-first evidence chain before terminal failure.                          | `profile-qualification-evidence.mjs`: explicit strict archive projection -> Summary 2 -> Assessment 1 -> existing passing-only boundary.        | Production-shaped process loss retains ledger, Summary, and Assessment without masking the initiating failure. |
+| `BEH-009`            | Qualification must execute the exact public launcher and lifecycle.                                                  | Existing runner -> `ProviderProcessSession` -> public launcher; composition corrected inside the launcher only.                                 | Preserved; actual MLX execution remains API/E2E-owned.                                                         |
+| `BEH-011`, `BEH-012` | WAV/no-speech and session/protocol behavior remain unchanged.                                                        | Existing validators, workers, launcher, and contracts.                                                                                          | Preserved.                                                                                                     |
 
 ## Key Files Or Areas
 
-- Runtime-closure policy: `build/python/runtime-closure.mjs`
-- Exact extraction, wheel installation, closure, distribution, and relocatability pipeline: `build/python/materialize-runtime.mjs`
-- Canonical Go manifest validation bridge: `packaging/archive/runtime_closure_manifest_test.go`
-- Focused closure/full-observation coverage: `tests/build/python-runtime-closure.test.mjs`
-- Exact observed path fixture: `tests/fixtures/python-runtime-closure/api-rev-008-package-paths.txt.gz`
-- Preserved archive-topology coverage: `tests/build/python-archive-link-normalization.test.mjs`
+- Isolated package-owned worker bootstrap: `launcher/internal/run.go`
+- Strict Summary archive projection: `benchmark/profile-qualification-evidence.mjs`
+- Relocated launcher/private-Python composition coverage: `tests/contracts/python-launcher-composition.test.mjs`
+- Production-shaped process-loss retention coverage: `tests/release/qualification-failure-evidence.test.mjs`
+- Production-shaped post-attempt gate fixture: `tests/release/functional-gate-retention.test.mjs`
 
 ## Important Assumptions
 
-- Directories named `test` or `tests` below an installed distribution and package-local `include` directories are non-runtime payload for these exact locked wheels. Public `testing` modules are runtime APIs and are deliberately retained.
-- Distribution `METADATA` remains the installed-version authority. The earlier deliberate removal of install-time `RECORD`, generated console wrappers, bytecode, build-only distributions, and root build headers/configuration remains unchanged.
-- The retained API-REV-008 manifest and exact materialized inputs were used only for narrow implementation checks. This does not claim a canonical package build or API/E2E qualification result.
+- `validatePrivatePaths()` has already canonicalized and contained the worker regular file before its parent is supplied as the Python import root. Worker/control files remain manifest-verified and the full archive remains independently closed by package verification.
+- The composition test uses a contained private-host fixture shim to exercise the compiled Go launcher and isolated interpreter contract; it is not a production system-Python path. Production continues to invoke only the packaged `host/python/bin/python3` selected by the verified launcher plan.
+- Performance Assessment 1 intentionally has no functional decision or reverse Summary edge. Consistency is proven by its exact Summary and attempt-ledger identities/counts, while fail/process-loss authority remains in the ledger and Summary.
 
 ## Known Risks And Remaining Work
 
-- API/E2E must restart at the canonical English construction after source Pass and prove the full archive, relocated provider protocol, inference, and two-build reproducibility on the approved M1 environment.
-- Actual 49/200-corpus inference, exact 30 cold / 30 warm-preparation / 100 warm-request execution, lifecycle/recovery/privacy/compliance, RSS/size, Qualification Set 2, and Branch Catalog Projection 2 remain API/E2E-owned.
+- API/E2E must resume at the exact current English qualification boundary after source Pass and prove the corrected public launcher reaches actual MLX model preparation and inference under the approved Seatbelt environment.
+- Actual 49/200-corpus inference, exact 30 cold / 30 warm-preparation / 100 warm-request completion, lifecycle/recovery/privacy/compliance, RSS/size, Qualification Set 2, and Branch Catalog Projection 2 remain API/E2E-owned.
 - Maintained-main refresh/integration, integrated-state qualification, tag/publication, published-byte verification, and quarantine remain Delivery-owned.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: bounded correction after joining the exact materialized Python closure to the immutable Provider Archive grammar.
-- Root cause: prior pruning removed root build payload but retained installed dependency tests and development headers; two resulting names violated the archive grammar.
-- Refactor decision: `No broad refactor`; extract one coherent Python runtime-closure owner and keep the Go archive policy unchanged.
+- Reviewed change posture: two bounded implementation corrections with no requirement or architecture change.
+- Root causes: isolated Python omitted the adjacent application directory; a strict evidence consumer spread a wider producer-owned archive object.
+- Refactor decision: `No broad refactor`; establish one launcher-owned bootstrap root and use explicit field projection at the strict evidence boundary.
 - Implementation matched the reviewed assessment: `Yes`.
-- Design Impact reroute: `N/A`; no provider, model, input, threshold, package, protocol, or release-order change was required.
+- Design Impact reroute: `N/A`; no provider, model, input, threshold, schema, package, protocol, or release-order change was required.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`.
-- Legacy old behavior retained: `No`; dependency test/development payload is removed cleanly before staging.
-- Dead/obsolete artifacts removed in scope: `Yes`; 12,502 non-runtime paths from the observed complete stage are excluded structurally.
-- Shared structures remain tight: `Yes`; materialization and manifest-focused tests share the same closure predicate, while the canonical Go validator remains independent.
-- Source size guardrails: `Yes`; changed production files are 152 and 90 physical lines, below the repository signal.
+- Alternate runtime/public path introduced: `None`.
+- Legacy old behavior retained: `No`; direct isolated execution without a package import root and archive object spreading are replaced cleanly.
+- Strict schema enforcement retained: `Yes`; no `additionalProperties` relaxation or producer schema removal.
+- Source size guardrails: `Yes`; changed production files remain 65 and 311 physical lines, within repository limits.
 
 ## Persisted Data Transition Check
 
 - Approved decision: `Discard or Rebuild` for generated package/qualification candidates; `Not Affected` for desktop/user data and immutable historical evidence.
-- Implementation follows the decision: `Yes`; runtime trees are rebuilt deterministically, with no migration or compatibility reader.
+- Implementation follows the decision: `Yes`; no migration or compatibility reader was added.
 - Deviation: `None`.
 
 ## Environment Or Dependency Notes
 
 - Local checks used Node `22.23.1`, Python `3.9.6`, and repository-verified Go `1.26.5 darwin/arm64` at `/tmp/autobyteus-go1.26.5-v1/go/bin/go`.
-- Exact real materializer input remained Python archive SHA-256 `62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b`, size `25,153,180`, with the unchanged locked wheelhouse and trusted native environment.
-- No dependency version, provider/model, input identity, threshold, corpus/evidence byte, ABI, matrix, sandbox, or release permission changed.
+- No dependency version, provider/model, input identity, threshold, corpus/evidence byte, ABI, matrix, sandbox profile, or release permission changed.
+- API-REV-009 immutable evidence checksums remain `41/41`; implementation did not mutate or reuse its generated package as a new qualification result.
 
 ## Local Implementation Checks Run
 
-- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `71/71` top-level Node cases (`78/78` TAP tests including negative subcases), `7/7` Python tests plus compileall, all Go/source/schema/evidence checks, and exact six-output English-v2 reproduction.
-- Focused closure coverage — passed structural SciPy `tests` and Torch `include` removal while retaining `numpy.testing`; the digest-bound exact 19,003-path observation closes to 6,501 paths and passes the canonical Go `ReadManifest()` validator.
-- Narrow exact-input materializer check — two materializations produced tree SHA-256 `857fce720a46d020d7db274ac05e5219fb91cd65feedb66c1d1f7ad2d0d05da3`, `6,476` files, zero dependency test-suite files, zero package development-header files, and zero invalid archive paths. After relocation, the packaged worker/recognizer plus `mlx.core` and `mlx_whisper` imported successfully.
+- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `72/72` top-level Node cases (`79/79` TAP tests including negative subcases), `7/7` Python tests plus compileall, all Go/source/schema/evidence checks, and exact six-output English-v2 reproduction.
+- Focused launcher composition — passed with the compiled real public Go launcher at a relocated spaces/non-ASCII path, a contained private-host fixture, poisoned ambient Python environment/CWD, `isolated == 1`, canonical worker import root, `autobyteus_voice_provider` import, and first `hello` frame.
+- Focused production-shaped process loss — passed ledger and Summary `fail/process-loss` agreement, exact five-field Summary archive projection from a producer archive carrying `schemaVersion: 1`, retained Assessment/Summary digest binding, independent assessment verification, and terminal passing-only rejection.
 - Verified Go 1.26.5 `test -race ./...`, `vet ./...`, and `gofmt -l` across launcher and packaging modules — passed.
-- Backend-selection checksums `191/191`; English-v2 checksums `8/8`; workspace JSON parse sweep `230/230` — passed.
+- Backend-selection checksums `191/191`; English-v2 checksums `8/8`; API-REV-009 evidence checksums `41/41`; workspace JSON parse sweep `251/251` — passed.
 - Focused Prettier and `git diff --check` — passed.
 
-These are implementation-scoped checks only. No API/E2E, full package qualification, release, tag, publication, or deployment result is claimed.
+These are implementation-scoped checks only. No API/E2E actual MLX qualification, release, tag, publication, or deployment result is claimed.
 
 ## Frontend Rendered-Result Check
 
-`Not Applicable` — this runtime package-closure correction has no rendered frontend.
+`Not Applicable` — this runtime launcher/evidence correction has no rendered frontend.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-1. Code Review should independently reproduce the exact fixture digest/counts, verify the structural closure excludes both observed path classes, and confirm the complete filtered manifest reaches the unchanged Go validator.
-2. Review that public runtime modules named `testing` remain, while only `test`/`tests` suites and installed-package `include` trees are excluded; verify final global symlink/special/path enforcement is unchanged.
-3. After source Pass, API/E2E should restart with the canonical English build and independently verify complete archive closure, relocation, MLX inference, protocol behavior, and reproducibility before continuing the serial matrix.
-4. Delivery retains all integrated-state, tag, publication, published-byte, and quarantine ownership.
+1. Code Review should independently verify the bootstrap root is derived only after `containedRegular()` worker validation, that `-I` and the closed environment remain, and that no ambient/system/CWD fallback enters production.
+2. Review the real relocated composition regression and confirm it fails under the prior direct `-I worker.py` path while proving isolation and first-frame success now.
+3. Independently feed a producer archive carrying `schemaVersion: 1` through process-loss finalization and verify the strict Summary contains only its five allowed archive fields before Assessment is written.
+4. After source Pass, API/E2E should resume at current English qualification and prove actual packaged MLX startup/inference and durable failure evidence before continuing the serial matrix.
+5. Delivery retains all integrated-state, tag, publication, published-byte, and quarantine ownership.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-- Recipient now: `code_reviewer` for source re-review of `IR-016` / `CR-F-024` against `SR-010` / `SR-011`, `ARCH-REV-012`, `CRR-020`, and API-REV-008 evidence.
+- Recipient now: `code_reviewer` for source re-review of `IR-017` / `CR-F-025` / `CR-F-026` against `SR-010` / `SR-011`, `ARCH-REV-012`, `CRR-022`, and API-REV-009 evidence.
 - API/E2E remains paused until Code Review Pass.
 - No API/E2E scenario is claimed complete by this implementation handoff.
