@@ -21,87 +21,85 @@
 - Triggering review and executable evidence:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-024-api-f-007-origin.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-025-build-input-path-resolution.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-026-api-f-008-origin.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-027-ranlib-alias-resolution.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-028-api-f-009-origin.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-011/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/`
 
 ## Current Implementation Summary
 
-`IR-019` is the bounded `CRR-026` local fix for `CR-F-028` / `API-F-008` in `API-VOICE-004`.
+`IR-020` is the bounded `CRR-028` local fix for `CR-F-029` / `API-F-009` in `API-VOICE-004`.
 
-The native tool identity owner now models Xcode `ranlib` as the semantic invocation alias rather than collapsing it into its `libtool` target. The strict identity records the absolute `ranlib` invocation path, exact relative link target `libtool`, canonical target path, and target SHA-256. Live verification requires the alias to reside at the expected `*.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib` topology, remain a symbolic link to its same-directory `libtool`, resolve to the separately authenticated libtool identity, and retain exact target bytes.
+Functional Preflight 2 now captures exact `/usr/bin/sed` bytes through the existing canonical regular-executable identity owner. Both strict schemas require that identity; native-environment projection binds it to the same preflight record; both outside-authorized and sandboxed consumers live-reverify it; and the closed trusted-tool directory contains exactly one authenticated `sed` entry. The package build `PATH` remains the single isolated trusted directory and does not expose ambient `/usr/bin`.
 
-Functional Preflight 2 captures this specialized identity. The trusted native environment revalidates it both before and inside the authorized Seatbelt consumer, places the invocation alias—not the target—behind the closed trusted `PATH`, passes it explicitly as `CMAKE_RANLIB`, and requires the resolved CMake cache to contain that exact invocation path. Generic tools retain the established canonical-target identity behavior; in particular `/usr/bin/tar -> bsdtar` is still authenticated and invoked as its canonical target rather than gaining arbitrary-alias support.
+Focused production-shaped coverage faithfully executes the locked llama.cpp Metal embedding pipeline's two bare `sed` transformations through `/bin/sh` with only the generated closed `PATH`. It verifies the exact embedded output and the twelve-entry closure. Missing preflight identity, missing trusted entry, unbound record identity, unbound extra tool, modified sed bytes, and trusted-link drift all fail closed before or during use. Existing Xcode `ranlib -> libtool` alias semantics and generic `/usr/bin/tar -> /usr/bin/bsdtar` canonicalization remain unchanged.
 
-Production-shaped coverage uses an Xcode-bundle tool layout whose `libtool` bytes succeed only when invoked under the `ranlib` alias. It proves alias success, direct-target failure, exact CMake selection, and fail-closed rejection of retargeting, target-byte drift, non-symlink topology, and resolved-CMake drift. An actual-host implementation probe independently captured `/Applications/Xcode.app/.../ranlib -> libtool`, authenticated matching target bytes, successfully indexed a static archive through the alias, and observed direct libtool invocation fail as expected.
-
-`API-REV-011` directly proves the shared Build Input fix for `CR-F-027` at the exact 3,149-record Chinese boundary; `CR-F-022` through `CR-F-027` remain resolved. Providers, models, locked inputs, thresholds, Functional Preflight 2 gates, Seatbelt, archive/session/protocol contracts, evidence semantics, matrix, and release ordering remain unchanged.
+`API-REV-012` directly confirms `CR-F-028` resolved: the canonical Chinese build authenticated the ranlib alias and linked `libggml-base.a` before encountering the independent missing-sed closure defect. `CR-F-027` also remains directly resolved, and `CR-F-022` through `CR-F-028` remain resolved in the corrected source. Providers, models, locked source bytes, matrix, thresholds, Functional Preflight 2 gates, Seatbelt, archive/session/protocol contracts, evidence semantics, and release ordering remain unchanged.
 
 - Implementation cycle: `Rework / Local Fix`
-- Current implementation revision: `IR-019`
+- Current implementation revision: `IR-020`
 - Related solution revisions: `SR-010`, `SR-011`
 - Related architecture revision: `ARCH-REV-012`
-- Related code review: `CRR-025` historical source Pass withdrawn after API-REV-011; `CRR-026` triggering Local Fix; current re-review pending
-- Related API/E2E: `API-REV-011`, `API-F-008`, `API-VOICE-004`
-- Triggering finding: `CR-F-028`
-- Source commit: `2e9399b214adbfe9d0cc245b256c152b2c0de7e4`
+- Related code review: `CRR-027` historical source Pass withdrawn after API-REV-012; `CRR-028` triggering Local Fix; current re-review pending
+- Related API/E2E: `API-REV-012`, `API-F-009`, `API-VOICE-004`
+- Triggering finding: `CR-F-029`
+- Source commit: `eaa0855bf300ee7805048343d4d022a9b625af60`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior ID          | Approved Change / Preserved Outcome                                                                            | Implemented Production Path / Key Files                                                                                                             | Result / Notes                                                                                                         |
-| -------------------- | -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `BEH-001`            | Runtime-worktree-only implementation.                                                                          | Dedicated runtime source commit and implementation artifacts.                                                                                       | Preserved; no desktop, shared checkout, tag, publication, release asset, or user-state change.                         |
-| `BEH-002`, `BEH-003` | Bounded launcher/worker lifecycle remains unchanged.                                                           | Existing reviewed launcher, worker, and protocol owners.                                                                                            | Preserved; prior complete English qualification remains API-owned evidence.                                            |
-| `BEH-004`, `BEH-010` | The exact current Chinese package build must use authenticated tools with their required invocation semantics. | Preflight capture -> strict alias record -> authorized native environment -> closed trusted tool directory -> explicit CMake args/cache validation. | `ranlib` semantics survive identity capture and package construction without permitting arbitrary aliases or fallback. |
-| `BEH-005`, `BEH-006` | Matrix, provider/model/corpus authority, normalization, and scoring remain unchanged.                          | Existing reviewed owners.                                                                                                                           | Preserved.                                                                                                             |
-| `BEH-007`–`BEH-009`  | Qualification evidence and execution remain exact and fail closed.                                             | Existing reviewed qualification/evidence owners.                                                                                                    | Preserved; no threshold, trial, evidence, or performance-classification change.                                        |
-| `BEH-011`, `BEH-012` | WAV/no-speech and session/protocol behavior remain unchanged.                                                  | Existing validators, workers, launcher, and contracts.                                                                                              | Preserved.                                                                                                             |
+| Behavior ID          | Approved Change / Preserved Outcome                                                                                          | Implemented Production Path / Key Files                                                                                           | Result / Notes                                                                                                           |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `BEH-001`            | Runtime-worktree-only implementation.                                                                                        | Dedicated runtime source commit and implementation artifacts.                                                                     | Preserved; no desktop, shared checkout, tag, publication, release asset, or user-state change.                           |
+| `BEH-002`, `BEH-003` | Bounded launcher/worker lifecycle remains unchanged.                                                                         | Existing reviewed launcher, worker, and protocol owners.                                                                          | Preserved; prior complete English qualification remains API-owned evidence.                                              |
+| `BEH-004`, `BEH-010` | The exact current Chinese package build must have a complete authenticated command closure under its network-denied sandbox. | Preflight capture -> strict command identity -> native environment -> closed trusted directory -> locked Metal CMake custom rule. | Bare `sed` resolves only to the verified exact executable; ambient paths, missing tools, and identity drift fail closed. |
+| `BEH-005`, `BEH-006` | Matrix, provider/model/corpus authority, normalization, and scoring remain unchanged.                                        | Existing reviewed owners.                                                                                                         | Preserved.                                                                                                               |
+| `BEH-007`–`BEH-009`  | Qualification evidence and execution remain exact and fail closed.                                                           | Existing reviewed qualification/evidence owners.                                                                                  | Preserved; no threshold, trial, evidence, or performance-classification change.                                          |
+| `BEH-011`, `BEH-012` | WAV/no-speech and session/protocol behavior remain unchanged.                                                                | Existing validators, workers, launcher, and contracts.                                                                            | Preserved.                                                                                                               |
 
 ## Key Files Or Areas
 
-- Specialized and generic identity owner: `build/native-tool-identities.mjs`
-- Preflight producer and consumer: `benchmark/darwin-arm64-runner-preflight.mjs`, `benchmark/darwin-arm64-preflight-contract.mjs`
-- Trusted native build environment: `build/trusted-native-environment.mjs`
-- Explicit CMake selection and verification: `build/resolved-cmake-configuration.mjs`
+- Functional preflight capture: `benchmark/darwin-arm64-runner-preflight.mjs`
+- Generic and specialized tool identity/closed-directory owner: `build/native-tool-identities.mjs`
+- Strict native environment projection and live verification: `build/trusted-native-environment.mjs`
 - Strict evidence schemas: `contracts/qualification/darwin-arm64-preflight-v2.schema.json`, `contracts/build/native-build-environment-v1.schema.json`
-- Alias-sensitive production composition and negative coverage: `tests/build/trusted-native-environment.test.mjs`
-- Xcode-shaped shared fixture: `tests/fixtures/passing-darwin-preflight.mjs`
+- Exact closed Metal pipeline coverage: `tests/build/trusted-native-sed-closure.test.mjs`
+- Missing/unbound/modified identity coverage: `tests/build/trusted-native-environment.test.mjs`
+- Passing preflight fixture: `tests/fixtures/passing-darwin-preflight.mjs`
 
 ## Important Assumptions
 
-- Xcode's current required topology is an ordinary `ranlib` symbolic alias with exact relative target `libtool` in the selected `XcodeDefault.xctoolchain/usr/bin` directory. Any location, topology, target, or byte change fails and needs renewed review rather than automatic acceptance.
-- Semantic alias retention is intentionally specialized to Xcode `ranlib`. Other tools continue to use the existing regular canonical-target identity, so the correction does not create a generic symlink allowlist.
-- Preflight and native-build environment records are generated qualification/build candidates under the reviewed `Discard or Rebuild` rule; prior API evidence remains immutable and is not made valid under the stricter current schema.
+- `/usr/bin/sed` is a required command of the exact locked current Chinese source, not a general ambient tool entitlement. Its path and bytes are captured, bound, and live-verified like the existing generic regular executables.
+- The closed trusted directory is the sole build `PATH`. Future bare commands introduced by a locked-source change must fail and receive an explicit reviewed closure update; no directory-level ambient exposure or fallback is permitted.
+- Preflight and native-build environment records are generated qualification/build candidates under the reviewed `Discard or Rebuild` rule. API-REV-012 evidence remains immutable history and must be regenerated under current source before reuse.
 
 ## Known Risks And Remaining Work
 
-- API/E2E must restart at canonical Chinese construction after source Pass, prove the actual current CMake build now uses the authenticated `ranlib` alias, build two byte-identical archives, and complete Chinese package/runtime/200-WAV/30-30-100/resource/lifecycle checks before Qualification Set 2 and Branch Catalog Projection 2.
-- Existing complete English evidence may be reused only under the API/E2E Engineer's current-source/evidence validity decision.
+- API/E2E must restart at canonical Chinese construction after source Pass, prove the actual Metal embedding and complete CMake/archive path with the authenticated `sed`, build two byte-identical Chinese archives, and complete Chinese package/runtime/200-WAV/30-30-100/resource/lifecycle checks.
+- API/E2E must also complete the required current-source English profile before Qualification Set 2 and Branch Catalog Projection 2. Prior English evidence may be reused only under the API/E2E Engineer's explicit current-source validity decision.
 - Maintained-main refresh/integration, integrated-state qualification, tag/publication, published-byte verification, and quarantine remain Delivery-owned.
 
 ## Task Design Health Assessment Implementation Check
 
 - Reviewed change posture: bounded implementation correction with no requirement or architecture change.
-- Root cause: `Lost Semantic Identity`; a generic executable identity correctly authenticated canonical bytes but erased invocation-name semantics required by Apple's multiplexed libtool/ranlib binary.
-- Refactor decision: `Small owner specialization required`; retain the generic canonical owner and add one strict Xcode-ranlib alias identity used end to end.
+- Root cause: `Incomplete Closed Dependency List`; the exact locked Metal rule invoked a visible bare command omitted from the otherwise strict tool closure.
+- Refactor decision: `Existing owner extension`; add the one required generic identity consistently to capture, schemas, projection, verification, and materialization.
 - Implementation matched the reviewed assessment: `Yes`.
-- Design Impact reroute: `N/A`; the specialized boundary preserves every reviewed security and packaging invariant without fallback or policy weakening.
+- Design Impact reroute: `N/A`; the existing authenticated closed-tool architecture directly supports the correction without fallback or policy weakening.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`.
 - Alternate build/runtime path introduced: `None`.
-- Generic arbitrary-symlink support introduced: `No`; Xcode ranlib alone has a strict topology/target/byte-bound identity.
-- Canonical handling for `/usr/bin/tar -> bsdtar` changed: `No`.
-- Resolved CMake validation weakened: `No`; it now requires the exact semantic invocation path.
-- Source size guardrails: `Yes`; changed production modules are 55–327 physical lines, within repository limits.
+- Ambient `/usr/bin` exposure introduced: `No`; only exact authenticated sed is added.
+- Xcode ranlib alias handling changed: `No`.
+- Generic tar canonicalization changed: `No`.
+- Source size guardrails: `Yes`; changed production modules are 144–328 physical lines, within repository limits.
 
 ## Persisted Data Transition Check
 
@@ -112,34 +110,34 @@ Production-shaped coverage uses an Xcode-bundle tool layout whose `libtool` byte
 ## Environment Or Dependency Notes
 
 - Local checks used Node `22.23.1`, Python `3.9.6`, and repository-verified Go `1.26.5 darwin/arm64` at `/tmp/autobyteus-go1.26.5-v1/go/bin/go`.
-- Actual-host identity probe used the selected Xcode at `/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin`: `ranlib -> libtool`, target SHA-256 `d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6`; `/usr/bin/tar` independently canonicalized to `/usr/bin/bsdtar`.
+- Actual host identity proof resolved `/usr/bin/sed` as a regular executable with SHA-256 `abd2eb945442a8ab1d210e58edb153f34870ee6d7c359f0f6d8385b1f7fc50fc`, matching API-REV-012 evidence.
 - No dependency, Xcode selection, provider/model, input, threshold, corpus/evidence byte, ABI, matrix, sandbox profile, or release permission changed.
 
 ## Local Implementation Checks Run
 
-- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `77/77` top-level Node cases (`84/84` TAP tests including negative subcases), `7/7` Python tests plus compileall, all Go/source/schema/evidence checks, and exact six-output English-v2 reproduction.
-- Focused trusted native environment coverage — passed `8/8`, including alias-sensitive execution, direct-target failure, retarget, target-byte, topology, trusted-directory, and CMake-cache drift paths.
-- Actual-host Xcode alias probe — captured and reverified the strict identity, successfully ran the alias against a static archive, and confirmed direct `libtool` invocation exits nonzero; generic tar canonicalization remained `/usr/bin/bsdtar`.
+- `VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — passed: `78/78` top-level Node cases (`85/85` TAP tests including negative subcases), `7/7` Python tests plus compileall, all Go/source/schema/evidence checks, and exact six-output English-v2 reproduction.
+- Focused trusted-native environment and Metal command closure — passed `9/9`, including the exact two-command embedding pipeline under the one-directory `PATH`, missing/unbound/modified/drifted sed negatives, and retained ranlib/tar behaviors.
+- Actual-host sed identity capture and generic live verification — passed with the exact API-recorded digest.
 - Verified Go 1.26.5 `test -race ./...`, `vet ./...`, and formatting across launcher and packaging modules — passed.
-- Backend-selection checksums `191/191`; English-v2 checksums `8/8`; API-REV-011 evidence checksums `21/21`; workspace JSON parse sweep `280/280` — passed.
+- Backend-selection checksums `191/191`; English-v2 checksums `8/8`; API-REV-012 evidence checksums `19/19`; workspace JSON parse sweep `287/287` — passed.
 - Focused Prettier and `git diff --check` — passed.
 
 These are implementation-scoped checks only. No new actual Chinese build, inference, qualification, release, tag, publication, or deployment result is claimed.
 
 ## Frontend Rendered-Result Check
 
-`Not Applicable` — this runtime tool-identity correction has no rendered frontend.
+`Not Applicable` — this runtime native-tool closure correction has no rendered frontend.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-1. Code Review should independently inspect the specialized identity's alias location, `readlink`, real target, separate libtool binding, and byte checks, and confirm generic tools still canonicalize.
-2. Run the production-shaped test to observe alias success/direct-target failure and independently exercise retarget, modified-target, regular-file topology, wrong-location, and CMake-target drift.
-3. Confirm the preflight schema, native-environment schema, producer, both authorized consumers, trusted tool directory, CMake arguments, and CMake cache all agree on the same invocation/target meanings.
-4. Confirm no remaining `ranlib.path` consumer exists and no fallback, arbitrary symlink allowance, or change to `/usr/bin/tar -> bsdtar` handling was introduced.
+1. Code Review should trace `/usr/bin/sed` from preflight capture through both strict schemas, exact preflight binding, generic live verification, trusted-directory materialization, and the final one-directory `PATH`.
+2. Run the focused Metal pipeline and independently confirm its bare `sed` commands fail when the trusted entry is missing and succeed only with the exact bound executable.
+3. Exercise missing preflight identity, unbound environment identity, extra unbound tool, modified bytes, and trusted-link drift; confirm each fails without ambient fallback.
+4. Confirm Xcode ranlib alias semantics, tar canonicalization, Seatbelt, locked source bytes, and all provider/model/matrix/threshold behavior are unchanged.
 5. After source Pass, API/E2E should restart at canonical Chinese construction and complete both current-source profiles before QSet 2/projection.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-- Recipient now: `code_reviewer` for source re-review of `IR-019` / `CR-F-028` against `SR-010` / `SR-011`, `ARCH-REV-012`, `CRR-026`, and API-REV-011 evidence.
+- Recipient now: `code_reviewer` for source re-review of `IR-020` / `CR-F-029` against `SR-010` / `SR-011`, `ARCH-REV-012`, `CRR-028`, and API-REV-012 evidence.
 - API/E2E remains paused until Code Review Pass.
 - No API/E2E scenario is claimed complete by this implementation handoff.
