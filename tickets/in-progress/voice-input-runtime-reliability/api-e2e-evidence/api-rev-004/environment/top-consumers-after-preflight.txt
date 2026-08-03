@@ -1,0 +1,20 @@
+  PID  %CPU %MEM     ELAPSED COMM
+  346  38.2  0.0 14-04:53:38 /System/Library/Frameworks/CoreServices.framework/Versions/A/Frameworks/Metadata.framework/Versions/A/Support/mds
+ 5047  38.1 23.5 14-04:53:01 /System/Library/Frameworks/Virtualization.framework/Versions/A/XPCServices/com.apple.Virtualization.VirtualMachine.xpc/Contents/MacOS/com.apple.Virtualization.VirtualMachine
+  390  23.1  0.2 14-04:53:38 /System/Library/PrivateFrameworks/SkyLight.framework/Resources/WindowServer
+46311  17.8  0.3    05:27:30 /Applications/AutoByteus.app/Contents/Frameworks/AutoByteus Helper (Renderer).app/Contents/MacOS/AutoByteus Helper (Renderer)
+53002  16.7  0.1 02-19:05:47 /Applications/WeChat.app/Contents/Frameworks/wxplayer
+57423  16.2  1.4    06:56:33 /Applications/AutoByteus.app/Contents/Frameworks/AutoByteus Helper (Renderer).app/Contents/MacOS/AutoByteus Helper (Renderer)
+21635   9.8  0.7    02:53:18 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/150.0.7871.127/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+10325   7.1  0.8 02-05:35:07 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/150.0.7871.182/Helpers/Codex (Renderer).app/Contents/MacOS/Codex (Renderer)
+57416   6.1  0.2    06:56:36 /Applications/AutoByteus.app/Contents/MacOS/AutoByteus
+58144   6.0  0.3    06:55:59 codex
+78953   4.3  0.0       00:01 /bin/bash
+57417   4.1  0.1    06:56:34 /Applications/AutoByteus.app/Contents/Frameworks/AutoByteus Helper.app/Contents/MacOS/AutoByteus Helper
+40087   3.8  1.1 12-18:32:55 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/150.0.7871.127/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+ 9996   3.3  0.1 02-05:35:12 /Applications/ChatGPT.app/Contents/Frameworks/Codex Framework.framework/Versions/150.0.7871.182/Helpers/Codex (Service).app/Contents/MacOS/Codex (Service)
+11078   3.1  0.6 14-04:45:38 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/150.0.7871.127/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+ 1619   3.0  0.2 14-04:53:21 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/150.0.7871.127/Helpers/Google Chrome Helper.app/Contents/MacOS/Google Chrome Helper
+14870   2.7  0.8 02-03:27:39 /Applications/Google Chrome.app/Contents/Frameworks/Google Chrome Framework.framework/Versions/150.0.7871.127/Helpers/Google Chrome Helper (Renderer).app/Contents/MacOS/Google Chrome Helper (Renderer)
+  558   2.3  0.1 14-04:53:37 /System/Library/DriverExtensions/com.apple.DriverKit-AppleBCMWLAN.dext/com.apple.DriverKit-AppleBCMWLAN
+62580   1.9  0.2 01-23:19:11 /Applications/TencentMeeting.app/Contents/MacOS/TencentMeeting

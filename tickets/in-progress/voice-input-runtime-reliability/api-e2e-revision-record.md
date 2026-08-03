@@ -7,6 +7,7 @@
 | `API-REV-001` | Code Reviewer / `code-review-report.md` / `CRR-005` | `SR-006`, `ARCH-REV-007`, `IR-005`, `CRR-005` | `N/A` | `Fail / 65%` |
 | `API-REV-002` | Code Reviewer / `code-review-report.md` / `CRR-008` | `SR-007`, `ARCH-REV-008`, `IR-007`, `CRR-008` | `Fail / 65%` | `Blocked / 78%` |
 | `API-REV-003` | Code Reviewer / `code-review-report.md` / `CRR-011` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-010`, `CRR-011` | `Blocked / 78%` | `Fail / 79%` |
+| `API-REV-004` | Code Reviewer / `code-review-report.md` / `CRR-013` | `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-011`, `CRR-013` | `Fail / 79%` | `Blocked / 82%` |
 
 ## Revision Entries
 
@@ -90,3 +91,30 @@ None.
 - New failure: `API-F-001` — actual healthy `pmset -g therm` output is misparsed by production preflight.
 - Recommended recipient: `code_reviewer` for focused failure-origin review; preliminary `Local Fix` candidate for Implementation Engineer.
 - Remaining risks/prerequisites: after reviewed source correction, the host must be connected to AC and must pass exact noninteractive `/usr/bin/sudo -n /usr/sbin/purge`; then the full two-package build/inference/lifecycle/30/30/100/compliance/QSet/projection matrix must run. No package, model, tag, publication, or release action ran in this revision.
+
+### API-REV-004 — Thermal fix passes; M1 host does not reach quiescence
+
+- Trigger: Code Reviewer `CRR-013`; API/E2E round 4; reviewed source `23d766873fa1be357c657fab8203913fec09e65b` (`IR-011`).
+- Scenarios: prior `API-F-001` resolution; reusable `API-VOICE-002`/`013`; shared M1 preflight for `API-VOICE-003`/`004`.
+- Why recorded: source and exact readiness dependencies passed, and the production preflight directly confirmed the thermal repair. The full 15-minute quiescence window then completed without the required six-sample >=80% CPU-idle average, so package work remained blocked.
+- Durable coverage changes: none. Authority/test reuse bytes remain unchanged. IR-011's thermal coverage is upstream implementation coverage already accepted by CRR-013.
+- Execution delta: focused thermal/authority 9/9; full 60/60 Node, 7/7 Python plus compileall and all Go/source/schema/evidence checks; AC/purge ready; actual M1 production preflight with owned `caffeinate`.
+
+#### Prior Failure Resolution
+
+| Prior Failure | Previous Classification | Current Resolution | Evidence |
+| --- | --- | --- | --- |
+| `API-F-001` / API-REV-003 actual healthy thermal output rejected | Local Fix / implementation defect | Resolved / Pass at the exact production boundary | `api-rev-004/environment/darwin-arm64-preflight-v1.json`: `thermalNormal=true`; CRR-013 source review |
+| AC power and noninteractive purge absent | Environment prerequisites | Resolved | preflight `acConnected=true`; independent exact `/usr/bin/sudo -n /usr/sbin/purge` exit 0 |
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/`
+- Prior result/confidence: `Fail / 79%`.
+- Current result/confidence: `Blocked / 82%`.
+- New failure IDs: none.
+- Recommended recipient: user request only; no teammate routing while Blocked.
+- Exact blocker: final samples `73.94, 71.42, 69.93, 66.30, 67.73, 68.51`, computed average `69.638%`, required >=80%. Observed major consumers included Docker Desktop's virtualization VM/renderer, WindowServer, WeChat media, and AutoByteus renderers.
+- Resume: user quits Docker Desktop/VM and other CPU-heavy apps while keeping AC connected; API/E2E opens the next revision and reruns production preflight before package materialization. No package, model, QSet/projection, tag, publication, or release action ran.

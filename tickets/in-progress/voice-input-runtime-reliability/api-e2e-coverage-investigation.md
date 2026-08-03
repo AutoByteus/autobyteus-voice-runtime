@@ -23,11 +23,11 @@
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
 - Delivery Revision Record: `N/A`
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-003`
-- Current Investigation Round: `3`
-- Trigger: `CRR-011` Pass for `IR-010` at reviewed source commit `b7342bc8e06d587bfe640faa4209c62ac2f4bae9` against `SR-008` / `SR-009` and `ARCH-REV-010`.
-- Prior Investigation Reviewed: `API-REV-002 — Blocked / 78%`; exact English-v2 authority and durable production-validator coverage passed, while the former eight-target package matrix was unavailable.
-- Latest Authoritative Investigation: round 3 completed as `Fail / 79%` at the mandatory actual M1 preflight; package construction and qualification remain unexecuted after the fail-closed gate.
+- Current API/E2E Revision ID: `API-REV-004`
+- Current Investigation Round: `4`
+- Trigger: `CRR-013` Pass for `IR-011` at reviewed source commit `23d766873fa1be357c657fab8203913fec09e65b` against `SR-008` / `SR-009` and `ARCH-REV-010`.
+- Prior Investigation Reviewed: `API-REV-003 — Fail / 79%` at `API-F-001`; repository and unchanged authority coverage passed, but the actual M1 thermal parser rejected healthy `pmset` output before package construction.
+- Latest Authoritative Investigation: `API-REV-004 — Blocked / 82%`. `API-F-001` is directly resolved and AC/purge readiness passes, but the production preflight did not reach the required six-sample `>=80%` average CPU-idle condition within 15 minutes.
 
 ## Current Requirement And Design Basis
 
@@ -54,6 +54,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | Branch-only aggregation | Added | `current-platform-qualification.md`; Branch Catalog Projection 1 contracts | Produce QSet 1 and independently verified two-entry branch projection without release identity/publication. |
 | English-v2 authority | Preserved | `SR-007`; `API-REV-002`; `CRR-011` | Reuse `API-VOICE-002` only because the exact authority/corpus/baseline/validator bytes are unchanged. |
 | Durable production-validator coverage | Preserved | `API-VOICE-013`; accepted by `CRR-011` | Reuse the accepted durable regression only because its test and production-owner bytes are unchanged. |
+| Actual M1 thermal-state parsing | Changed | `IR-011`; `CRR-013`; `CR-F-020` | Re-run the production preflight first. The reviewed parser accepts only the captured exact healthy three-line state, classifies explicit warnings, and fails closed on unknown input. |
 | v0.3/bootstrap/protocol-0 and withdrawn provider paths | Removed | clean-cut design and removal guards | Do not restore compatibility tests, wrappers, or fallback providers. |
 
 ## Changed Surface And Boundary Classification
@@ -75,7 +76,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 ## Project Execution Discovery
 
 - Assigned worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime`
-- Reviewed source commit: `b7342bc8e06d587bfe640faa4209c62ac2f4bae9`; current worktree documentation HEAD may be later, so package execution will use an owned clean checkout at the reviewed source commit while ticket evidence remains in the assigned worktree.
+- Reviewed source commit: `23d766873fa1be357c657fab8203913fec09e65b`; current worktree documentation HEAD may be later, so package execution will use an owned clean checkout at the reviewed source commit while ticket evidence remains in the assigned worktree.
 - Stack: Node.js 22.23.1 orchestration, Python packaged providers and source checks, pinned official Go 1.26.5 launcher/archive tooling, CMake/C++20 native Fun-ASR, canonical ZIP packages.
 - No repository `AGENTS.md` exists. `README.md`, `package.json`, input recipes, benchmark protocol, and workflow agree on the exact command sequence.
 - Required secrets: `N/A`. Required local capabilities/assets are exact tool roots, cache objects/checkouts, corpora, and noninteractive purge permission; no secret values will be recorded.
@@ -93,7 +94,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | Component / Dependency | Working Directory | Setup / Execution | Readiness Check | Cleanup Method |
 | --- | --- | --- | --- | --- |
 | Repository checks | assigned worktree | `npm ci --ignore-scripts`; exact `VOICE_GO=... npm run check` | all 57 Node, 7 Python, Go/source/schema/evidence checks | suite-owned temps |
-| Clean reviewed-source checkout | owned API/E2E temp root | checkout exact `b7342bc...`; `npm ci --ignore-scripts` | clean tree and exact commit | repository safe removal owner after evidence retention |
+| Clean reviewed-source checkout | owned API/E2E temp root | checkout exact `23d7668...`; `npm ci --ignore-scripts` | clean tree and exact commit | repository safe removal owner after evidence retention |
 | M1 preflight | actual MacBookPro18,4 host | owned `caffeinate`; exact Go and CMake paths; preflight CLI | passing preflight JSON, including purge capability and six quiescence samples | stop only owned `caffeinate` |
 | Closed inputs | owned cache/materialized roots | fill recipe-declared cache objects/checkouts; materializer CLI | exact sizes/digests/clean revisions and generated closure/provenance | remove only owned materialized/cache copies |
 | Exact corpora | owned corpus root | byte-copy repository manifests and exact 49/200 referenced WAVs | validator/digest/uniqueness/baseline binding | remove owned corpus copy; never mutate preserved study data |
@@ -112,7 +113,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | Path / Scenario | Current Assertion Or Intent | Related Basis | Validity Decision | Evidence | Action |
 | --- | --- | --- | --- | --- | --- |
 | `tests/build/*`, `tests/contracts/*`, Go launcher/archive tests | closed input, archive, launcher, schema and trusted environment rules | `AC-002`, `AC-006`, `AC-013`, `AC-017`, `AC-020` | Still Valid | `CRR-011` full suite and focused production tests pass | Retain; supplement with actual packages. |
-| `tests/benchmark/darwin-arm64-runner-preflight.test.mjs` and native environment tests | exact host/tool/quiescence/purge identity and canonical build entry | `AC-003`, `AC-017`, `AC-020` | Still Valid | accepted under `CRR-011` | Retain; run actual host preflight. |
+| preflight/native-environment tests plus `tests/release/darwin-thermal-state.test.mjs` | exact host/tool/quiescence/purge identity, canonical build entry, and fail-closed thermal parsing | `AC-003`, `AC-017`, `AC-020`; `API-F-001` | Still Valid | accepted under `CRR-013`; captured healthy fixture is byte-identical to API-REV-003 evidence | Retain; run actual host preflight. |
 | `tests/providers/*.py`, protocol/conformance/lifecycle tests | audio/session/protocol/outcome/failure semantics | `AC-002`–`AC-006`, `AC-013`, `AC-017` | Still Valid | 7/7 Python and related Node/Go coverage passed in review | Retain; supplement with real providers. |
 | `tests/scoring/normalization.test.mjs` | symmetric scoring and Chinese normalization | `AC-008`, `AC-009` | Still Valid | current scorer authority | Retain; verify real Chinese outputs. |
 | performance/failure/qualification tests | exact 30/30/100, all-started-attempt retention, pass-only aggregation | `AC-003`, `AC-007`, `AC-017`, `AC-020` | Still Valid | `CRR-011` accepted current owners | Retain; populate real M1 evidence. |
@@ -121,7 +122,7 @@ Persisted user/desktop data is `Not Affected`. This runtime-only work must not t
 | current QSet/branch projection tests | reject incomplete, non-pass, drifted, or release-bearing branch evidence | current-platform contract | Still Valid | accepted full source review | Retain; execute real two-package aggregation. |
 | removed v0.3/bootstrap/protocol-0 tests | obsolete system-Python/bootstrap/schema-2 behavior | clean-cut removal | Stale / Remove | current source guards reject legacy paths | Keep removed; do not replace for compatibility. |
 
-Exact reuse evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/repository/API-VOICE-002-013-authority-reuse.json`. It records an empty `e8cf3c7..b7342bc` diff over the relevant authority/validator/test set, matching working-tree/source SHA-256 values, and no durable coverage change in this round.
+Exact reuse evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/repository/API-VOICE-002-013-authority-reuse.json`. It records an empty `b7342bc..23d7668` diff over the relevant authority/validator/test set, matching working-tree/source SHA-256 values, and no API/E2E-owned durable coverage change in this round.
 
 ## Stale Or Obsolete Coverage Decisions
 
@@ -135,7 +136,7 @@ None. Run-specific package/corpus/performance/qualification evidence is intentio
 
 ## Durable Coverage To Update
 
-None. `API-VOICE-013` is unchanged and was accepted by `CRR-011`.
+None. `API-VOICE-013` is unchanged and was accepted by `CRR-011`; IR-011's new thermal parser coverage is upstream implementation coverage accepted by `CRR-013`, not an API/E2E-owned durable change.
 
 ## Durable Coverage To Remove
 
@@ -145,44 +146,46 @@ None.
 
 | Order | Command / Action | Configuration | Boundary / Scenario | Result | Evidence |
 | --- | --- | --- | --- | --- | --- |
-| 0 | exact authority/test byte comparison | `e8cf3c7..b7342bc...` plus working-tree SHA-256 | `API-VOICE-002`/`013` reuse validity | Pass | `api-e2e-evidence/api-rev-003/repository/API-VOICE-002-013-authority-reuse.json` |
-| 1 | `npm ci --ignore-scripts` | assigned worktree, Node 22.23.1 | dependency closure | Pass | `api-e2e-evidence/api-rev-003/repository/npm-ci.log` |
-| 2 | focused `tests/release/trusted-baseline.test.mjs`, then exact-Go `npm run check` | official verified darwin-arm64 Go 1.26.5 root | `API-VOICE-001`, reusable `013`, full regression | Pass | focused 6/6; full 57/57 Node, 7/7 Python plus compileall, all Go/source/schema/evidence checks in API-REV-003 repository logs |
-| 3 | actual M1 preflight with owned `caffeinate` | exact Go/CMake and system identities | precondition for `API-VOICE-003`/`004` | Fail | production wrote a schema-valid blocked record; actual normal `pmset -g therm` text is misclassified by the source regex (`API-F-001`). AC power and noninteractive purge are also absent. See `environment/API-VOICE-003-004-actual-preflight-failure.json`. |
-| 4 | recipe cache verification and deterministic materialization | exact clean reviewed-source checkout | closed English/Chinese inputs | Not executed after critical Fail | fail-closed preflight gate |
-| 5 | two Seatbelt builds per profile plus package/repro verifier | network denied | byte-identical exact packages | Not executed after critical Fail | fail-closed preflight gate |
-| 6 | compliance + conditions + full English profile | exact 49 WAV; 30/30/100 | `API-VOICE-003`, part of `011` | Not executed after critical Fail | fail-closed preflight gate |
-| 7 | compliance + conditions + full Chinese profile | exact 200 WAV; 30/30/100 | `API-VOICE-004`, part of `011` | Not executed after critical Fail | fail-closed preflight gate |
-| 8 | injected retained failure | contract-defined injection, no retry | failure-evidence integrity | Not executed after critical Fail | fail-closed preflight gate |
-| 9 | QSet 1 -> Branch Catalog Projection 1 -> independent verification | exactly two local archives | `API-VOICE-012` | Not executed after critical Fail | prerequisite profile results absent |
+| 0 | exact authority/test byte comparison | `b7342bc...23d7668` plus working-tree SHA-256 | `API-VOICE-002`/`013` reuse validity | Pass | `api-e2e-evidence/api-rev-004/repository/API-VOICE-002-013-authority-reuse.json` |
+| 1 | `npm ci --ignore-scripts` | assigned worktree, Node 22.23.1 | dependency closure | Pass | `api-e2e-evidence/api-rev-004/repository/npm-ci.log` |
+| 2 | focused thermal/trusted-baseline tests, then exact-Go `npm run check` | official verified darwin-arm64 Go 1.26.5 root | `API-VOICE-001`, `API-F-001` resolution, reusable `013`, full regression | Pass | focused 9/9; full 60/60 Node, 7/7 Python plus compileall, all Go/source/schema/evidence checks in API-REV-004 repository logs |
+| 3 | actual M1 production preflight with owned `caffeinate` | AC connected; exact purge exits 0; exact Go/CMake/system identities | mandatory prerequisite and direct `API-F-001` resolution | Blocked | thermalNormal=true directly resolves API-F-001; six final idle samples were 73.94, 71.42, 69.93, 66.30, 67.73, 68.51 (computed average 69.638%, required >=80%). See `environment/API-VOICE-003-004-quiescence-block.json`. |
+| 4 | recipe cache verification and deterministic materialization | exact clean reviewed-source checkout | closed English/Chinese inputs | Not executed after Blocked | fail-closed preflight gate |
+| 5 | two Seatbelt builds per profile plus package/repro verifier | network denied | byte-identical exact packages | Not executed after Blocked | fail-closed preflight gate |
+| 6 | compliance + conditions + full English profile | exact 49 WAV; 30/30/100 | `API-VOICE-003`, part of `011` | Not executed after Blocked | fail-closed preflight gate |
+| 7 | compliance + conditions + full Chinese profile | exact 200 WAV; 30/30/100 | `API-VOICE-004`, part of `011` | Not executed after Blocked | fail-closed preflight gate |
+| 8 | contract-defined injected retained failure | no retry | failure-evidence integrity | Not executed after Blocked | fail-closed preflight gate |
+| 9 | QSet 1 -> Branch Catalog Projection 1 -> independent verification | exactly two local archives | `API-VOICE-012` | Not executed after Blocked | no passing profile inputs |
 
 ## Post-Repository Confidence Scorecard (Mandatory)
 
 | Confidence Category | Score | What Supports The Score | Remaining Uncertainty | Additional Validation |
 | --- | --- | --- | --- | --- |
-| Requirement and acceptance-criteria proof | 80% | current matrix/source/authority/compliance/evidence owners pass repository coverage | critical actual-package criteria remain unexecuted | repaired passing preflight and full matrix |
-| Changed-boundary execution directness | 80% | real production authority and all current repository owners execute | no final package/model process executes | actual packages |
+| Confidence Category | Score | What Supports The Score | Remaining Uncertainty | Additional Validation |
+| --- | --- | --- | --- | --- |
+| Requirement and acceptance-criteria proof | 82% | current matrix/source/authority/thermal/compliance/evidence owners pass current repository coverage | critical actual-package criteria remain unexecuted | passing preflight and full matrix |
+| Changed-boundary execution directness | 82% | real production authority and current thermal owner execute; actual readiness probes pass | no final package/model process executes | production preflight and packages |
 | Cross-boundary integration realism and mock gap | 75% | launcher/archive/provider boundaries have durable coverage | native private host/model/package integration remains absent | full qualification |
-| Environment, configuration, identity, and fixture fidelity | 80% | exact Node and official Go root; actual M1 host is available | preflight/closed inputs/corpora not yet accepted | actual preflight and materialization |
+| Environment, configuration, identity, and fixture fidelity | 85% | exact Node/official Go; actual M1 now on AC; exact noninteractive purge exits 0 | complete production preflight and input closure still pending | preflight/materialization |
 | Failure, edge-case, lifecycle, and recovery evidence | 75% | durable lifecycle/failure-retention suites pass | real package lifecycle/injected failure absent | full qualification |
 | User-surface, browser, and desktop-shell confidence | N/A | runtime-only; no UI/desktop boundary | none in scope | none |
-| Durable regression coverage quality and relevance | 95% | 57/57 Node, 7/7 Python, all Go/source/schema/evidence; unchanged API-VOICE-013 accepted | run-specific native evidence cannot be durable | retain current coverage |
+| Durable regression coverage quality and relevance | 95% | focused 9/9; full 60/60 Node, 7/7 Python, all Go/source/schema/evidence | run-specific native evidence cannot be durable | retain current coverage |
 
-- Overall post-repository confidence: `81%` (simple average of six applicable categories, rounded).
+- Overall post-repository confidence: `82%` (simple average of six applicable categories, rounded).
 - Every critical acceptance criterion directly proven: `No`.
 - Any applicable category below `90%`: `Yes` — every applicable category except durable regression coverage.
 - Default clean-confidence target met: `No`.
-- Material residual risks: actual preflight, native builds, real inference/quality/lifecycle, exact samples/resources, compliance, and aggregate evidence.
+- Material residual risks: production preflight, native builds, real inference/quality/lifecycle, exact samples/resources, compliance, and aggregate evidence.
 
 ## Broader Validation Decision (Mandatory)
 
-- Decision: `Required`; execution attempted and stopped with `Fail` at the mandatory actual-host preflight.
+- Decision: `Blocked` after the required actual-host mode executed its full 15-minute quiescence window.
 - Selected execution mode: actual-host `CLI`, `Lifecycle`, `Worker`, and native package qualification.
 - Confidence gap addressed: repository coverage cannot prove real model construction/inference, package relocation/offline/read-only behavior, M1 performance/RSS/size, exact corpus quality, or aggregate byte integrity.
 - Why this materially improves confidence: it executes the public release subject on the only current supported platform with the exact providers, models, corpora, thresholds, and trial counts.
 - Expected confidence after validation: at least `95%`, with no applicable category below `90%`, only if every current critical gate passes.
 - Browser decision: `N/A`; no browser or desktop UI is in scope.
-- Observed execution result: `API-F-001` is a reproducible implementation defect: actual healthy `/usr/bin/pmset -g therm` output says no warning was recorded, but the production regex matches the bare word `warning` and sets `thermalNormal=false`. Independently, the host was on battery and `/usr/bin/sudo -n /usr/sbin/purge` exited 1. The source defect makes the round `Fail` and routes to Code Reviewer; AC power and purge remain exact environment prerequisites for the rerun.
+- Exact unavailable condition: sustained host quiescence. AC power, low-power-off, corrected thermal parsing, normal memory pressure, owned `caffeinate`, and exact purge capability all passed. The final six samples averaged 69.638% idle instead of the required >=80%. Major observed consumers included Docker Desktop's virtualization VM, Docker renderer, WindowServer, WeChat media, and AutoByteus renderers. API/E2E does not own or stop those processes. Resume after the user quits Docker/VM and other CPU-heavy applications.
 
 ## Desktop Application Validation Decision
 
@@ -231,10 +234,10 @@ None.
 
 ## Investigation Decision
 
-- Proceed To API/E2E Execution: `No further execution in this round`; the planned execution began and stopped fail-closed at the critical preflight.
+- Proceed To API/E2E Execution: `No further execution in this round`; the production preflight completed as Blocked.
 - Repository-Resident Durable Coverage Will Be Added / Updated / Removed: `No`.
-- Post-repository confidence: `81%`.
-- Broader validation decision: `Required; attempted; Fail at mandatory preflight`.
-- Reroute Required Before Validation Execution: `Yes — before resuming package construction`.
-- Recommended Recipient: `code_reviewer` for focused failure-origin review of `API-F-001`.
-- Notes: `API-VOICE-002` and `API-VOICE-013` remain reusable only for their unchanged boundary. Six non-arm64 scenarios are deferred/outside matrix. No package, model, QSet, projection, tag, publication, or release action ran.
+- Post-repository confidence: `82%`.
+- Broader validation decision: `Blocked`.
+- Reroute Required Before Validation Execution: `No teammate reroute`; user action is required to quiet user-owned applications.
+- Recommended Recipient: `User request`, per Blocked workflow.
+- Notes: `API-F-001` is directly resolved (`thermalNormal=true`). AC and purge pass. `API-VOICE-002` and `API-VOICE-013` remain reusable only for their unchanged boundary. Six non-arm64 scenarios remain deferred/outside matrix. No package or release action ran.

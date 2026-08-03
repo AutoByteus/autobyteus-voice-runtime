@@ -1,0 +1,38 @@
+{
+  "schemaVersion": 1,
+  "target": "darwin-arm64",
+  "status": "blocked",
+  "checkedAt": "2026-08-03T10:57:38.739Z",
+  "host": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "cpuModel": "Apple M1 Max",
+    "totalMemoryBytes": 68719476736
+  },
+  "power": {
+    "acConnected": true,
+    "lowPowerModeOff": true,
+    "caffeinateActive": true,
+    "thermalNormal": true,
+    "memoryPressureNormal": true
+  },
+  "quiescence": {
+    "passed": false,
+    "samples": [
+      73.94,
+      71.42,
+      69.93,
+      66.3,
+      67.73,
+      68.51
+    ],
+    "averageIdlePercent": 0,
+    "competingProcesses": [
+      "detected"
+    ]
+  },
+  "tools": {},
+  "sandbox": {},
+  "purge": {},
+  "failureCategory": "runner-not-quiescent"
+}
