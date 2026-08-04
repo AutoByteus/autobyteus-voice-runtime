@@ -1,0 +1,19 @@
+startedAtUtc=2026-08-04T03:44:05Z
+sourceCommit=32829080938911f0f46390a3fd2af823e105bd32
+[stdin]:1
+const fs=require('fs');const d=JSON.parse(fs.readFileSync(process.argv[2]));if(d.decision!=='pass')throw new Error(`non-pass summary: ${d.decision}`);console.log(`${d.profileId} qualification pass`)
+                                                                                                   ^
+
+Error: non-pass summary: undefined
+    at [stdin]:1:106
+    at runScriptInThisContext (node:internal/vm:209:10)
+    at node:internal/process/execution:446:12
+    at [stdin]-wrapper:6:24
+    at runScriptInContext (node:internal/process/execution:444:60)
+    at evalFunction (node:internal/process/execution:279:30)
+    at evalTypeScript (node:internal/process/execution:291:3)
+    at node:internal/main/eval_stdin:53:5
+    at ReadStream.<anonymous> (node:internal/process/execution:201:5)
+    at ReadStream.emit (node:events:519:28)
+
+Node.js v22.23.1

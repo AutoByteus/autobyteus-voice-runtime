@@ -1,0 +1,2730 @@
+{
+  "schemaVersion": 1,
+  "packageId": "voice.english.whisper-small-fp16.darwin-arm64",
+  "profileId": "english",
+  "target": "darwin-arm64",
+  "decision": "pass",
+  "failureCategory": null,
+  "attempts": [
+    {
+      "sequence": 0,
+      "phase": "cold",
+      "index": 0,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 1128.028083000001,
+        "preparationMs": 28209.216917,
+        "requestMs": 523.835583,
+        "resultMs": 34010.693625
+      }
+    },
+    {
+      "sequence": 1,
+      "phase": "cold",
+      "index": 1,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "e6f2e4c80e5b88af78013ce6751b186208919a27549fb9e100272208b3e78fd0",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 480.24316700000054,
+        "preparationMs": 4915.467708000004,
+        "requestMs": 367.778542,
+        "resultMs": 8364.635666999995
+      }
+    },
+    {
+      "sequence": 2,
+      "phase": "cold",
+      "index": 2,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "3be7d32f9f9e49016279c9e341d5333229c147a7496076071f46fec47b2a8c2b",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 299.58908299999894,
+        "preparationMs": 4822.193083000006,
+        "requestMs": 390.96083300000464,
+        "resultMs": 8173.728917
+      }
+    },
+    {
+      "sequence": 3,
+      "phase": "cold",
+      "index": 3,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "be7624eeac3cd2b189f942f28f1951bf32a121c91669eaba0fd18da671dc4203",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 487.65912499999104,
+        "preparationMs": 4992.263666999992,
+        "requestMs": 402.9988330000051,
+        "resultMs": 8497.230415999999
+      }
+    },
+    {
+      "sequence": 4,
+      "phase": "cold",
+      "index": 4,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "f9c3260247ceba373edea48b3addcff11119c34d77f1fceea1a91ce78634890e",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 626.802125000002,
+        "preparationMs": 5085.744500000001,
+        "requestMs": 347.5462919999991,
+        "resultMs": 8722.594666000005
+      }
+    },
+    {
+      "sequence": 5,
+      "phase": "cold",
+      "index": 5,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "c9f5fd5ab00cfe00a90dab73bdfd8f2825fda2930d2e3f6f7765256a83aedf50",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 409.33220799999253,
+        "preparationMs": 4904.344459,
+        "requestMs": 399.19083300000057,
+        "resultMs": 7630.093000000008
+      }
+    },
+    {
+      "sequence": 6,
+      "phase": "cold",
+      "index": 6,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "4cd2b2341a50616cc62b1de26a5cd2a3696faa1b6fe36af380901eacd22e0fe9",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 564.1380840000056,
+        "preparationMs": 4950.312874999989,
+        "requestMs": 370.864167000007,
+        "resultMs": 8462.505582999991
+      }
+    },
+    {
+      "sequence": 7,
+      "phase": "cold",
+      "index": 7,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "2617b2e90f55139172e6c28a2ac10b8cdd6052b08443bc9ed241d9cb6ee309f2",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 462.7590409999975,
+        "preparationMs": 5098.472249999992,
+        "requestMs": 360.0849579999922,
+        "resultMs": 8658.149042000005
+      }
+    },
+    {
+      "sequence": 8,
+      "phase": "cold",
+      "index": 8,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "31abd2ac9d4ffac7ce249e660ab835f4bd1d33d7f1e988ad185c9e9e58e06c77",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 342.08479100000113,
+        "preparationMs": 4833.290957999998,
+        "requestMs": 388.98904200000106,
+        "resultMs": 8344.731875000012
+      }
+    },
+    {
+      "sequence": 9,
+      "phase": "cold",
+      "index": 9,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "d4d84953f0843ed491be08af8effc90178116cc25a43480b6b8766bc5701c5cf",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 408.24524999999267,
+        "preparationMs": 5199.455042000001,
+        "requestMs": 349.26566699999967,
+        "resultMs": 8357.8655
+      }
+    },
+    {
+      "sequence": 10,
+      "phase": "cold",
+      "index": 10,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "1b56e22e38d3292f8fce41ba55318a831c291d7019c8cbdd515a061b17284be5",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 396.40245900000446,
+        "preparationMs": 4778.6738329999935,
+        "requestMs": 330.2815000000119,
+        "resultMs": 8062.185082999989
+      }
+    },
+    {
+      "sequence": 11,
+      "phase": "cold",
+      "index": 11,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "9fbb10d4f979df040894b47eb99ca221e76d3d2546170aad6d65a2efeb465c78",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 436.1631670000206,
+        "preparationMs": 4659.874250000023,
+        "requestMs": 323.8871249999793,
+        "resultMs": 7989.167916000006
+      }
+    },
+    {
+      "sequence": 12,
+      "phase": "cold",
+      "index": 12,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "feb75243981b946a02007e428379a6e4f1374d485fd2f6f8e2b696192f79d985",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 541.3130000000237,
+        "preparationMs": 4757.880416,
+        "requestMs": 348.0704589999805,
+        "resultMs": 8291.525667000009
+      }
+    },
+    {
+      "sequence": 13,
+      "phase": "cold",
+      "index": 13,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "446286000735ba48a738547f544417e7c85b398739e4a719e700696efd1c97fb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 418.5663749999949,
+        "preparationMs": 4804.002750000014,
+        "requestMs": 304.27745900000446,
+        "resultMs": 8026.589124999999
+      }
+    },
+    {
+      "sequence": 14,
+      "phase": "cold",
+      "index": 14,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "50171f02cee7b221842c3f85b5ae2f721db6e3805275915e1dfb9a0a4a35f87d",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 323.0849579999922,
+        "preparationMs": 4753.175584000011,
+        "requestMs": 396.6009170000034,
+        "resultMs": 8142.698959000001
+      }
+    },
+    {
+      "sequence": 15,
+      "phase": "cold",
+      "index": 15,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "133ba4e910bcb61821535fe959b91383b46042f919c6f659cf26471502b51cbd",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 436.07050000000163,
+        "preparationMs": 4798.358708000014,
+        "requestMs": 377.87987500001327,
+        "resultMs": 8305.69191600001
+      }
+    },
+    {
+      "sequence": 16,
+      "phase": "cold",
+      "index": 16,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "99b20596262179f1549a9b50b7aa4fcfa39eb8ee41b9aa1ff70671aea0b896f3",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 433.8028340000019,
+        "preparationMs": 4811.942833000008,
+        "requestMs": 323.26195800001733,
+        "resultMs": 8183.564209000004
+      }
+    },
+    {
+      "sequence": 17,
+      "phase": "cold",
+      "index": 17,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "ef2f97eef7669fa93e8cecad4c5a4f603d137fe7cfbc4be71f3ba0aad5b86db3",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 366.4592089999933,
+        "preparationMs": 4908.347374999983,
+        "requestMs": 352.29020799999125,
+        "resultMs": 8197.811457999982
+      }
+    },
+    {
+      "sequence": 18,
+      "phase": "cold",
+      "index": 18,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "59d6101a0fbee656bae14a55e145d211e5c6115bb092d6a38c80c9d9ff92a55e",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 421.3460829999822,
+        "preparationMs": 4778.617375000002,
+        "requestMs": 437.7029170000169,
+        "resultMs": 8177.038167000021
+      }
+    },
+    {
+      "sequence": 19,
+      "phase": "cold",
+      "index": 19,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "7fa68e447e76b165ce1744169653103e44223ee57b5b42b472224c9bce52aa4f",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 437.9069169999857,
+        "preparationMs": 4802.964208000019,
+        "requestMs": 376.30308300000615,
+        "resultMs": 8165.233124999999
+      }
+    },
+    {
+      "sequence": 20,
+      "phase": "cold",
+      "index": 20,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "b7db2bebbc3ff2cb8a5c00d537987f98052606a011f32bd3a5935a640e2e91cb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 436.13583300000755,
+        "preparationMs": 4890.727125000005,
+        "requestMs": 340.70758400001796,
+        "resultMs": 8244.13395800002
+      }
+    },
+    {
+      "sequence": 21,
+      "phase": "cold",
+      "index": 21,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "2824b44d0d15a9d22e274ce8d1abc0cf3bd9c181b3635762b520e979c547ff21",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 418.6626669999969,
+        "preparationMs": 5167.241249999992,
+        "requestMs": 315.7272090000042,
+        "resultMs": 8464.589291000011
+      }
+    },
+    {
+      "sequence": 22,
+      "phase": "cold",
+      "index": 22,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "2f175c35ed2399273c9ae81595c379b3de7be79c5f8d63af2eab882f6000e5bc",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 395.64166699998896,
+        "preparationMs": 4806.236499999999,
+        "requestMs": 380.6360830000194,
+        "resultMs": 8296.933625000005
+      }
+    },
+    {
+      "sequence": 23,
+      "phase": "cold",
+      "index": 23,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "d8531f1d437a30bc6390207ae761daef80fb05ce727b42ecc48dc938ea11787d",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 470.1145410000172,
+        "preparationMs": 4842.911083000014,
+        "requestMs": 333.7705409999762,
+        "resultMs": 8222.55008299998
+      }
+    },
+    {
+      "sequence": 24,
+      "phase": "cold",
+      "index": 24,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "3eecfa2b9f4eb428b26d4a5074f78eeaa24393a3cbad171102ab85ee48a97ae2",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 465.90608300000895,
+        "preparationMs": 4954.843292000005,
+        "requestMs": 352.9142910000228,
+        "resultMs": 8475.809915999998
+      }
+    },
+    {
+      "sequence": 25,
+      "phase": "cold",
+      "index": 25,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "d706d40c747e31b83a36cf412aa70b2ae6e4e9547358973226f32dedbc8f4e6a",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 353.9617919999873,
+        "preparationMs": 5083.461374999984,
+        "requestMs": 327.2040829999896,
+        "resultMs": 8216.436416000011
+      }
+    },
+    {
+      "sequence": 26,
+      "phase": "cold",
+      "index": 26,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "62f8adb4a33f9291e8a82267125d9da428bd24a69aa6da9a7574e0c3fc57d21a",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 327.60445800001617,
+        "preparationMs": 4976.363167000003,
+        "requestMs": 406.6330420000013,
+        "resultMs": 8451.046042000002
+      }
+    },
+    {
+      "sequence": 27,
+      "phase": "cold",
+      "index": 27,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "85df95265c784161550e5e6f2d559d1a9fa8525c9e27297ef21bb0c9c6ebcbcb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 293.8957079999964,
+        "preparationMs": 4876.811958000006,
+        "requestMs": 340.03920800000196,
+        "resultMs": 7902.943166000012
+      }
+    },
+    {
+      "sequence": 28,
+      "phase": "cold",
+      "index": 28,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "9b8095943bceaef944a7ee28228b71400d2647a79dcc40d24e0a541a1d109c37",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 451.4348750000354,
+        "preparationMs": 5036.80795799999,
+        "requestMs": 372.1602080000448,
+        "resultMs": 8493.495666000003
+      }
+    },
+    {
+      "sequence": 29,
+      "phase": "cold",
+      "index": 29,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "c54c7ea72117b3bf2bd89dcbb76a1be3fe907492ad7de927121f9121e0d90303",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 415.1712079999852,
+        "preparationMs": 5005.305792000028,
+        "requestMs": 349.67404200002784,
+        "resultMs": 7745.046333000006
+      }
+    },
+    {
+      "sequence": 30,
+      "phase": "warm-preparation",
+      "index": 0,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 234.43587500002468,
+        "preparationMs": 4024.3340420000022
+      }
+    },
+    {
+      "sequence": 31,
+      "phase": "warm-preparation",
+      "index": 1,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 228.4751249999972,
+        "preparationMs": 3975.966582999972
+      }
+    },
+    {
+      "sequence": 32,
+      "phase": "warm-preparation",
+      "index": 2,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 237.3863330000313,
+        "preparationMs": 3990.9867080000113
+      }
+    },
+    {
+      "sequence": 33,
+      "phase": "warm-preparation",
+      "index": 3,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 233.3937079999596,
+        "preparationMs": 4064.2246659999946
+      }
+    },
+    {
+      "sequence": 34,
+      "phase": "warm-preparation",
+      "index": 4,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.15841599996202,
+        "preparationMs": 4188.780625000014
+      }
+    },
+    {
+      "sequence": 35,
+      "phase": "warm-preparation",
+      "index": 5,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 226.79266699997243,
+        "preparationMs": 3836.948875000002
+      }
+    },
+    {
+      "sequence": 36,
+      "phase": "warm-preparation",
+      "index": 6,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 232.37712499999907,
+        "preparationMs": 3956.1785420000087
+      }
+    },
+    {
+      "sequence": 37,
+      "phase": "warm-preparation",
+      "index": 7,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 230.0750419999822,
+        "preparationMs": 4052.9355000000214
+      }
+    },
+    {
+      "sequence": 38,
+      "phase": "warm-preparation",
+      "index": 8,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 226.07137499999953,
+        "preparationMs": 3952.833958000003
+      }
+    },
+    {
+      "sequence": 39,
+      "phase": "warm-preparation",
+      "index": 9,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 226.432208000042,
+        "preparationMs": 3962.5435419999994
+      }
+    },
+    {
+      "sequence": 40,
+      "phase": "warm-preparation",
+      "index": 10,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 239.11745899997186,
+        "preparationMs": 4034.153833999997
+      }
+    },
+    {
+      "sequence": 41,
+      "phase": "warm-preparation",
+      "index": 11,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 237.45012499997392,
+        "preparationMs": 4426.179917000001
+      }
+    },
+    {
+      "sequence": 42,
+      "phase": "warm-preparation",
+      "index": 12,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 232.84458299999824,
+        "preparationMs": 3957.4642079999903
+      }
+    },
+    {
+      "sequence": 43,
+      "phase": "warm-preparation",
+      "index": 13,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 233.4720419999794,
+        "preparationMs": 3929.1452909999643
+      }
+    },
+    {
+      "sequence": 44,
+      "phase": "warm-preparation",
+      "index": 14,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 240.03637499996694,
+        "preparationMs": 3796.4275830000406
+      }
+    },
+    {
+      "sequence": 45,
+      "phase": "warm-preparation",
+      "index": 15,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 229.06016699998872,
+        "preparationMs": 3989.370874999964
+      }
+    },
+    {
+      "sequence": 46,
+      "phase": "warm-preparation",
+      "index": 16,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 244.69912499998463,
+        "preparationMs": 3880.786291999975
+      }
+    },
+    {
+      "sequence": 47,
+      "phase": "warm-preparation",
+      "index": 17,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 250.1912499999744,
+        "preparationMs": 3934.7248749999562
+      }
+    },
+    {
+      "sequence": 48,
+      "phase": "warm-preparation",
+      "index": 18,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.85020799998892,
+        "preparationMs": 3827.2314170000027
+      }
+    },
+    {
+      "sequence": 49,
+      "phase": "warm-preparation",
+      "index": 19,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 221.8856670000241,
+        "preparationMs": 3867.5742080000346
+      }
+    },
+    {
+      "sequence": 50,
+      "phase": "warm-preparation",
+      "index": 20,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 222.6117920000106,
+        "preparationMs": 3928.612749999971
+      }
+    },
+    {
+      "sequence": 51,
+      "phase": "warm-preparation",
+      "index": 21,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 224.76758300000802,
+        "preparationMs": 4108.8894169999985
+      }
+    },
+    {
+      "sequence": 52,
+      "phase": "warm-preparation",
+      "index": 22,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 229.61987499997485,
+        "preparationMs": 3974.2044999999925
+      }
+    },
+    {
+      "sequence": 53,
+      "phase": "warm-preparation",
+      "index": 23,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 234.60224999999627,
+        "preparationMs": 3991.568750000035
+      }
+    },
+    {
+      "sequence": 54,
+      "phase": "warm-preparation",
+      "index": 24,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 231.38945899996907,
+        "preparationMs": 3912.1315419999883
+      }
+    },
+    {
+      "sequence": 55,
+      "phase": "warm-preparation",
+      "index": 25,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 226.4967080000206,
+        "preparationMs": 4025.7793339999625
+      }
+    },
+    {
+      "sequence": 56,
+      "phase": "warm-preparation",
+      "index": 26,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 230.3759999999893,
+        "preparationMs": 3809.4136660000077
+      }
+    },
+    {
+      "sequence": 57,
+      "phase": "warm-preparation",
+      "index": 27,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.30245799996192,
+        "preparationMs": 3981.4446250000037
+      }
+    },
+    {
+      "sequence": 58,
+      "phase": "warm-preparation",
+      "index": 28,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 236.39970899996115,
+        "preparationMs": 3938.853624999989
+      }
+    },
+    {
+      "sequence": 59,
+      "phase": "warm-preparation",
+      "index": 29,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": null,
+      "status": "succeeded",
+      "outcome": null,
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993
+      }
+    },
+    {
+      "sequence": 60,
+      "phase": "warm-request",
+      "index": 0,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 369.15850000001956
+      }
+    },
+    {
+      "sequence": 61,
+      "phase": "warm-request",
+      "index": 1,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "e6f2e4c80e5b88af78013ce6751b186208919a27549fb9e100272208b3e78fd0",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 171.4680839999928
+      }
+    },
+    {
+      "sequence": 62,
+      "phase": "warm-request",
+      "index": 2,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "3be7d32f9f9e49016279c9e341d5333229c147a7496076071f46fec47b2a8c2b",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 206.3100829999894
+      }
+    },
+    {
+      "sequence": 63,
+      "phase": "warm-request",
+      "index": 3,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "be7624eeac3cd2b189f942f28f1951bf32a121c91669eaba0fd18da671dc4203",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 162.6884999999893
+      }
+    },
+    {
+      "sequence": 64,
+      "phase": "warm-request",
+      "index": 4,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "f9c3260247ceba373edea48b3addcff11119c34d77f1fceea1a91ce78634890e",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 159.34479100001045
+      }
+    },
+    {
+      "sequence": 65,
+      "phase": "warm-request",
+      "index": 5,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "c9f5fd5ab00cfe00a90dab73bdfd8f2825fda2930d2e3f6f7765256a83aedf50",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 213.09820899995975
+      }
+    },
+    {
+      "sequence": 66,
+      "phase": "warm-request",
+      "index": 6,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "4cd2b2341a50616cc62b1de26a5cd2a3696faa1b6fe36af380901eacd22e0fe9",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 157.32391699997243
+      }
+    },
+    {
+      "sequence": 67,
+      "phase": "warm-request",
+      "index": 7,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "2617b2e90f55139172e6c28a2ac10b8cdd6052b08443bc9ed241d9cb6ee309f2",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 168.34862500004238
+      }
+    },
+    {
+      "sequence": 68,
+      "phase": "warm-request",
+      "index": 8,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "31abd2ac9d4ffac7ce249e660ab835f4bd1d33d7f1e988ad185c9e9e58e06c77",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 187.45562500000233
+      }
+    },
+    {
+      "sequence": 69,
+      "phase": "warm-request",
+      "index": 9,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "d4d84953f0843ed491be08af8effc90178116cc25a43480b6b8766bc5701c5cf",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 143.42645800003083
+      }
+    },
+    {
+      "sequence": 70,
+      "phase": "warm-request",
+      "index": 10,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "1b56e22e38d3292f8fce41ba55318a831c291d7019c8cbdd515a061b17284be5",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 147.86108400003286
+      }
+    },
+    {
+      "sequence": 71,
+      "phase": "warm-request",
+      "index": 11,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "9fbb10d4f979df040894b47eb99ca221e76d3d2546170aad6d65a2efeb465c78",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 123.33029100002022
+      }
+    },
+    {
+      "sequence": 72,
+      "phase": "warm-request",
+      "index": 12,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "feb75243981b946a02007e428379a6e4f1374d485fd2f6f8e2b696192f79d985",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 154.8082079999731
+      }
+    },
+    {
+      "sequence": 73,
+      "phase": "warm-request",
+      "index": 13,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "446286000735ba48a738547f544417e7c85b398739e4a719e700696efd1c97fb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 113.70874999999069
+      }
+    },
+    {
+      "sequence": 74,
+      "phase": "warm-request",
+      "index": 14,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "50171f02cee7b221842c3f85b5ae2f721db6e3805275915e1dfb9a0a4a35f87d",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 198.5381660000421
+      }
+    },
+    {
+      "sequence": 75,
+      "phase": "warm-request",
+      "index": 15,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "133ba4e910bcb61821535fe959b91383b46042f919c6f659cf26471502b51cbd",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 180.52329199999804
+      }
+    },
+    {
+      "sequence": 76,
+      "phase": "warm-request",
+      "index": 16,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "99b20596262179f1549a9b50b7aa4fcfa39eb8ee41b9aa1ff70671aea0b896f3",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 125.83441700000549
+      }
+    },
+    {
+      "sequence": 77,
+      "phase": "warm-request",
+      "index": 17,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "ef2f97eef7669fa93e8cecad4c5a4f603d137fe7cfbc4be71f3ba0aad5b86db3",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 155.39933300000848
+      }
+    },
+    {
+      "sequence": 78,
+      "phase": "warm-request",
+      "index": 18,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "59d6101a0fbee656bae14a55e145d211e5c6115bb092d6a38c80c9d9ff92a55e",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 227.11000000004424
+      }
+    },
+    {
+      "sequence": 79,
+      "phase": "warm-request",
+      "index": 19,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "7fa68e447e76b165ce1744169653103e44223ee57b5b42b472224c9bce52aa4f",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 191.51325000001816
+      }
+    },
+    {
+      "sequence": 80,
+      "phase": "warm-request",
+      "index": 20,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "b7db2bebbc3ff2cb8a5c00d537987f98052606a011f32bd3a5935a640e2e91cb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 142.62020800000755
+      }
+    },
+    {
+      "sequence": 81,
+      "phase": "warm-request",
+      "index": 21,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "2824b44d0d15a9d22e274ce8d1abc0cf3bd9c181b3635762b520e979c547ff21",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 116.29370799998287
+      }
+    },
+    {
+      "sequence": 82,
+      "phase": "warm-request",
+      "index": 22,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "2f175c35ed2399273c9ae81595c379b3de7be79c5f8d63af2eab882f6000e5bc",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 188.98737499996787
+      }
+    },
+    {
+      "sequence": 83,
+      "phase": "warm-request",
+      "index": 23,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "d8531f1d437a30bc6390207ae761daef80fb05ce727b42ecc48dc938ea11787d",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 126.8034579999512
+      }
+    },
+    {
+      "sequence": 84,
+      "phase": "warm-request",
+      "index": 24,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "3eecfa2b9f4eb428b26d4a5074f78eeaa24393a3cbad171102ab85ee48a97ae2",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 153.51945900003193
+      }
+    },
+    {
+      "sequence": 85,
+      "phase": "warm-request",
+      "index": 25,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "d706d40c747e31b83a36cf412aa70b2ae6e4e9547358973226f32dedbc8f4e6a",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 118.82708299998194
+      }
+    },
+    {
+      "sequence": 86,
+      "phase": "warm-request",
+      "index": 26,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "62f8adb4a33f9291e8a82267125d9da428bd24a69aa6da9a7574e0c3fc57d21a",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 197.53445799998008
+      }
+    },
+    {
+      "sequence": 87,
+      "phase": "warm-request",
+      "index": 27,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "85df95265c784161550e5e6f2d559d1a9fa8525c9e27297ef21bb0c9c6ebcbcb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 144.98729099996854
+      }
+    },
+    {
+      "sequence": 88,
+      "phase": "warm-request",
+      "index": 28,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "9b8095943bceaef944a7ee28228b71400d2647a79dcc40d24e0a541a1d109c37",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 168.86462499998743
+      }
+    },
+    {
+      "sequence": 89,
+      "phase": "warm-request",
+      "index": 29,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "c54c7ea72117b3bf2bd89dcbb76a1be3fe907492ad7de927121f9121e0d90303",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 136.08829200000037
+      }
+    },
+    {
+      "sequence": 90,
+      "phase": "warm-request",
+      "index": 30,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "dde1e5fbb092f0af4667cf352e6e4f772a957d24181fb1e6afc23a190673bf61",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 181.06362500000978
+      }
+    },
+    {
+      "sequence": 91,
+      "phase": "warm-request",
+      "index": 31,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "ffb375d3627927f847c2f4b4655cc2d8e5e064d5e078907641d24e50fad10cd0",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 154.774207999988
+      }
+    },
+    {
+      "sequence": 92,
+      "phase": "warm-request",
+      "index": 32,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "ad3100c49ebf88d1f15d75cbecaa26cc055df7e2727563b980bbccc6af2a0a9f",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 129.3796250000014
+      }
+    },
+    {
+      "sequence": 93,
+      "phase": "warm-request",
+      "index": 33,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "3570df6f805501d94a7b7d86dd39dfd6f52f9525bf566d29a56c5a0e5231d558",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 205.67162500001723
+      }
+    },
+    {
+      "sequence": 94,
+      "phase": "warm-request",
+      "index": 34,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "de0a4aacdbc52a0a2ff48c3fb58f0e84006b7fe8c0fdcba34250646e56dacbdf",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 131.89683300000615
+      }
+    },
+    {
+      "sequence": 95,
+      "phase": "warm-request",
+      "index": 35,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "561b13caa64209f0fdded9fd60e4595b765c0746791f7ad407e153d38580a4de",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 144.75195800000802
+      }
+    },
+    {
+      "sequence": 96,
+      "phase": "warm-request",
+      "index": 36,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "70aaf10158644971ea49189ad31ef343b792fb3cbc12e53b76fbcdfc624a31e8",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 179.13895900000352
+      }
+    },
+    {
+      "sequence": 97,
+      "phase": "warm-request",
+      "index": 37,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "c38bc9f79a9bac156ed8c8c1b2162f45757c8d1276f05bb2a85aa739caff75b6",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 171.05412500002421
+      }
+    },
+    {
+      "sequence": 98,
+      "phase": "warm-request",
+      "index": 38,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "7045803950c7da4034e537393ab5d0c15829b08dd361fd9a9de35df3fd08485c",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 154.765625
+      }
+    },
+    {
+      "sequence": 99,
+      "phase": "warm-request",
+      "index": 39,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "4ea5cca9f30fb9f75efc1981f7946656241db3b36250c2a87255760c465a81dd",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 164.96454199997243
+      }
+    },
+    {
+      "sequence": 100,
+      "phase": "warm-request",
+      "index": 40,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "57eaa7659f1d60861689163f45d2d5397e27498d521faa7508aec02a993aa7b8",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 176.3798330000136
+      }
+    },
+    {
+      "sequence": 101,
+      "phase": "warm-request",
+      "index": 41,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "8495a00f44057603005f64f35d45e97643e0cf25573b73de12a4f8a789709c93",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 180.21695899998304
+      }
+    },
+    {
+      "sequence": 102,
+      "phase": "warm-request",
+      "index": 42,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "35010f8669e91931066e923bcfdb3a0d7d5a95f333a2327fbf2aa94524ec440a",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 189.88020799995866
+      }
+    },
+    {
+      "sequence": 103,
+      "phase": "warm-request",
+      "index": 43,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "c45c170afabf447f4909301f8e6fb7444cc72190765158f54207a311ef7558ba",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 182.6902499999851
+      }
+    },
+    {
+      "sequence": 104,
+      "phase": "warm-request",
+      "index": 44,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "e402c9a346fec837f60bb94d4d38bc6a4f639c82acd5c0ef29bef0dd74c9e12e",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 156.95058399997652
+      }
+    },
+    {
+      "sequence": 105,
+      "phase": "warm-request",
+      "index": 45,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "e16a6a17344d1f357a295b95ea90a0674654195d5569ab0faf394255debd7602",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 161.375875000027
+      }
+    },
+    {
+      "sequence": 106,
+      "phase": "warm-request",
+      "index": 46,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "440d1f00277cc6fcdfa38796177d27922c59097522e61ea52b3f7bab4ccb8319",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 170.04858299996704
+      }
+    },
+    {
+      "sequence": 107,
+      "phase": "warm-request",
+      "index": 47,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "aa3552dc30f62b9ae8f13f37b8c8f26e41612b30d0635122d7c01faebdf96201",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 192.99920900003053
+      }
+    },
+    {
+      "sequence": 108,
+      "phase": "warm-request",
+      "index": 48,
+      "performanceCounted": true,
+      "qualityCounted": true,
+      "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 312.61879199999385
+      }
+    },
+    {
+      "sequence": 109,
+      "phase": "warm-request",
+      "index": 49,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 180.37799999996787
+      }
+    },
+    {
+      "sequence": 110,
+      "phase": "warm-request",
+      "index": 50,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "e6f2e4c80e5b88af78013ce6751b186208919a27549fb9e100272208b3e78fd0",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 172.54316699999617
+      }
+    },
+    {
+      "sequence": 111,
+      "phase": "warm-request",
+      "index": 51,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "3be7d32f9f9e49016279c9e341d5333229c147a7496076071f46fec47b2a8c2b",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 194.3944579999661
+      }
+    },
+    {
+      "sequence": 112,
+      "phase": "warm-request",
+      "index": 52,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "be7624eeac3cd2b189f942f28f1951bf32a121c91669eaba0fd18da671dc4203",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 157.80758299998706
+      }
+    },
+    {
+      "sequence": 113,
+      "phase": "warm-request",
+      "index": 53,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "f9c3260247ceba373edea48b3addcff11119c34d77f1fceea1a91ce78634890e",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 145.42300000000978
+      }
+    },
+    {
+      "sequence": 114,
+      "phase": "warm-request",
+      "index": 54,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "c9f5fd5ab00cfe00a90dab73bdfd8f2825fda2930d2e3f6f7765256a83aedf50",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 205.61570899997605
+      }
+    },
+    {
+      "sequence": 115,
+      "phase": "warm-request",
+      "index": 55,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "4cd2b2341a50616cc62b1de26a5cd2a3696faa1b6fe36af380901eacd22e0fe9",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 161.91237500001444
+      }
+    },
+    {
+      "sequence": 116,
+      "phase": "warm-request",
+      "index": 56,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "2617b2e90f55139172e6c28a2ac10b8cdd6052b08443bc9ed241d9cb6ee309f2",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 161.41049999999814
+      }
+    },
+    {
+      "sequence": 117,
+      "phase": "warm-request",
+      "index": 57,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "31abd2ac9d4ffac7ce249e660ab835f4bd1d33d7f1e988ad185c9e9e58e06c77",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 187.98245900002075
+      }
+    },
+    {
+      "sequence": 118,
+      "phase": "warm-request",
+      "index": 58,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "d4d84953f0843ed491be08af8effc90178116cc25a43480b6b8766bc5701c5cf",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 152.41895800002385
+      }
+    },
+    {
+      "sequence": 119,
+      "phase": "warm-request",
+      "index": 59,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "1b56e22e38d3292f8fce41ba55318a831c291d7019c8cbdd515a061b17284be5",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 139.79883300000802
+      }
+    },
+    {
+      "sequence": 120,
+      "phase": "warm-request",
+      "index": 60,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "9fbb10d4f979df040894b47eb99ca221e76d3d2546170aad6d65a2efeb465c78",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 124.48545799998101
+      }
+    },
+    {
+      "sequence": 121,
+      "phase": "warm-request",
+      "index": 61,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "feb75243981b946a02007e428379a6e4f1374d485fd2f6f8e2b696192f79d985",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 155.00750000000698
+      }
+    },
+    {
+      "sequence": 122,
+      "phase": "warm-request",
+      "index": 62,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "446286000735ba48a738547f544417e7c85b398739e4a719e700696efd1c97fb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 114.71799999999348
+      }
+    },
+    {
+      "sequence": 123,
+      "phase": "warm-request",
+      "index": 63,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "50171f02cee7b221842c3f85b5ae2f721db6e3805275915e1dfb9a0a4a35f87d",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 191.58004200004507
+      }
+    },
+    {
+      "sequence": 124,
+      "phase": "warm-request",
+      "index": 64,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "133ba4e910bcb61821535fe959b91383b46042f919c6f659cf26471502b51cbd",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 177.30475000001024
+      }
+    },
+    {
+      "sequence": 125,
+      "phase": "warm-request",
+      "index": 65,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "99b20596262179f1549a9b50b7aa4fcfa39eb8ee41b9aa1ff70671aea0b896f3",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 124.46020799997495
+      }
+    },
+    {
+      "sequence": 126,
+      "phase": "warm-request",
+      "index": 66,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "ef2f97eef7669fa93e8cecad4c5a4f603d137fe7cfbc4be71f3ba0aad5b86db3",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 155.15983300004154
+      }
+    },
+    {
+      "sequence": 127,
+      "phase": "warm-request",
+      "index": 67,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "59d6101a0fbee656bae14a55e145d211e5c6115bb092d6a38c80c9d9ff92a55e",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 237.2558329999447
+      }
+    },
+    {
+      "sequence": 128,
+      "phase": "warm-request",
+      "index": 68,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "7fa68e447e76b165ce1744169653103e44223ee57b5b42b472224c9bce52aa4f",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 187.7374580000178
+      }
+    },
+    {
+      "sequence": 129,
+      "phase": "warm-request",
+      "index": 69,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "b7db2bebbc3ff2cb8a5c00d537987f98052606a011f32bd3a5935a640e2e91cb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 138.13145799998892
+      }
+    },
+    {
+      "sequence": 130,
+      "phase": "warm-request",
+      "index": 70,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "2824b44d0d15a9d22e274ce8d1abc0cf3bd9c181b3635762b520e979c547ff21",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 115.09525000001304
+      }
+    },
+    {
+      "sequence": 131,
+      "phase": "warm-request",
+      "index": 71,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "2f175c35ed2399273c9ae81595c379b3de7be79c5f8d63af2eab882f6000e5bc",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 188.08991699997569
+      }
+    },
+    {
+      "sequence": 132,
+      "phase": "warm-request",
+      "index": 72,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "d8531f1d437a30bc6390207ae761daef80fb05ce727b42ecc48dc938ea11787d",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 126.43129199999385
+      }
+    },
+    {
+      "sequence": 133,
+      "phase": "warm-request",
+      "index": 73,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "3eecfa2b9f4eb428b26d4a5074f78eeaa24393a3cbad171102ab85ee48a97ae2",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 154.55987499997718
+      }
+    },
+    {
+      "sequence": 134,
+      "phase": "warm-request",
+      "index": 74,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "d706d40c747e31b83a36cf412aa70b2ae6e4e9547358973226f32dedbc8f4e6a",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 116.60445800004527
+      }
+    },
+    {
+      "sequence": 135,
+      "phase": "warm-request",
+      "index": 75,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "62f8adb4a33f9291e8a82267125d9da428bd24a69aa6da9a7574e0c3fc57d21a",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 193.896584000031
+      }
+    },
+    {
+      "sequence": 136,
+      "phase": "warm-request",
+      "index": 76,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "85df95265c784161550e5e6f2d559d1a9fa8525c9e27297ef21bb0c9c6ebcbcb",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 146.62562499998603
+      }
+    },
+    {
+      "sequence": 137,
+      "phase": "warm-request",
+      "index": 77,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "9b8095943bceaef944a7ee28228b71400d2647a79dcc40d24e0a541a1d109c37",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 171.93516699998872
+      }
+    },
+    {
+      "sequence": 138,
+      "phase": "warm-request",
+      "index": 78,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "c54c7ea72117b3bf2bd89dcbb76a1be3fe907492ad7de927121f9121e0d90303",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 136.78133299999172
+      }
+    },
+    {
+      "sequence": 139,
+      "phase": "warm-request",
+      "index": 79,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "dde1e5fbb092f0af4667cf352e6e4f772a957d24181fb1e6afc23a190673bf61",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 179.3320830000448
+      }
+    },
+    {
+      "sequence": 140,
+      "phase": "warm-request",
+      "index": 80,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "ffb375d3627927f847c2f4b4655cc2d8e5e064d5e078907641d24e50fad10cd0",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 163.8040419999743
+      }
+    },
+    {
+      "sequence": 141,
+      "phase": "warm-request",
+      "index": 81,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "ad3100c49ebf88d1f15d75cbecaa26cc055df7e2727563b980bbccc6af2a0a9f",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 126.43029200000456
+      }
+    },
+    {
+      "sequence": 142,
+      "phase": "warm-request",
+      "index": 82,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "3570df6f805501d94a7b7d86dd39dfd6f52f9525bf566d29a56c5a0e5231d558",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 205.9192500000354
+      }
+    },
+    {
+      "sequence": 143,
+      "phase": "warm-request",
+      "index": 83,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "de0a4aacdbc52a0a2ff48c3fb58f0e84006b7fe8c0fdcba34250646e56dacbdf",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 132.16358300001593
+      }
+    },
+    {
+      "sequence": 144,
+      "phase": "warm-request",
+      "index": 84,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "561b13caa64209f0fdded9fd60e4595b765c0746791f7ad407e153d38580a4de",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 148.66783400002168
+      }
+    },
+    {
+      "sequence": 145,
+      "phase": "warm-request",
+      "index": 85,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "70aaf10158644971ea49189ad31ef343b792fb3cbc12e53b76fbcdfc624a31e8",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 149.96824999997625
+      }
+    },
+    {
+      "sequence": 146,
+      "phase": "warm-request",
+      "index": 86,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "c38bc9f79a9bac156ed8c8c1b2162f45757c8d1276f05bb2a85aa739caff75b6",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 165.44699999998556
+      }
+    },
+    {
+      "sequence": 147,
+      "phase": "warm-request",
+      "index": 87,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "7045803950c7da4034e537393ab5d0c15829b08dd361fd9a9de35df3fd08485c",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 155.39329199999338
+      }
+    },
+    {
+      "sequence": 148,
+      "phase": "warm-request",
+      "index": 88,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "4ea5cca9f30fb9f75efc1981f7946656241db3b36250c2a87255760c465a81dd",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 165.82254199997988
+      }
+    },
+    {
+      "sequence": 149,
+      "phase": "warm-request",
+      "index": 89,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "57eaa7659f1d60861689163f45d2d5397e27498d521faa7508aec02a993aa7b8",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 176.21824999997625
+      }
+    },
+    {
+      "sequence": 150,
+      "phase": "warm-request",
+      "index": 90,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "8495a00f44057603005f64f35d45e97643e0cf25573b73de12a4f8a789709c93",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 178.60108300001593
+      }
+    },
+    {
+      "sequence": 151,
+      "phase": "warm-request",
+      "index": 91,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "35010f8669e91931066e923bcfdb3a0d7d5a95f333a2327fbf2aa94524ec440a",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 187.63104200002272
+      }
+    },
+    {
+      "sequence": 152,
+      "phase": "warm-request",
+      "index": 92,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "c45c170afabf447f4909301f8e6fb7444cc72190765158f54207a311ef7558ba",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 183.7748750000028
+      }
+    },
+    {
+      "sequence": 153,
+      "phase": "warm-request",
+      "index": 93,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "e402c9a346fec837f60bb94d4d38bc6a4f639c82acd5c0ef29bef0dd74c9e12e",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 158.38712500000838
+      }
+    },
+    {
+      "sequence": 154,
+      "phase": "warm-request",
+      "index": 94,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "e16a6a17344d1f357a295b95ea90a0674654195d5569ab0faf394255debd7602",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 161.27433300000848
+      }
+    },
+    {
+      "sequence": 155,
+      "phase": "warm-request",
+      "index": 95,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "440d1f00277cc6fcdfa38796177d27922c59097522e61ea52b3f7bab4ccb8319",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 160.81508299999405
+      }
+    },
+    {
+      "sequence": 156,
+      "phase": "warm-request",
+      "index": 96,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "aa3552dc30f62b9ae8f13f37b8c8f26e41612b30d0635122d7c01faebdf96201",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 197.66204100003233
+      }
+    },
+    {
+      "sequence": 157,
+      "phase": "warm-request",
+      "index": 97,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 294.8354999999865
+      }
+    },
+    {
+      "sequence": 158,
+      "phase": "warm-request",
+      "index": 98,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 183.16837500000838
+      }
+    },
+    {
+      "sequence": 159,
+      "phase": "warm-request",
+      "index": 99,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "e6f2e4c80e5b88af78013ce6751b186208919a27549fb9e100272208b3e78fd0",
+      "status": "succeeded",
+      "outcome": "transcript",
+      "failureCategory": null,
+      "timeout": false,
+      "timings": {
+        "handshakeMs": 227.0647079999908,
+        "preparationMs": 3951.898749999993,
+        "requestMs": 174.46195800002897
+      }
+    }
+  ]
+}

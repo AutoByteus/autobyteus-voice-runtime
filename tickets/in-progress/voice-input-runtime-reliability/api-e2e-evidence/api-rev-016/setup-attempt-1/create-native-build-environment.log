@@ -1,0 +1,10 @@
+file:///private/tmp/autobyteus-voice-api-e2e-r16-20260804-v2/repository/build/trusted-native-environment.mjs:88
+    throw new Error(`Untrusted native build override: ${found.join(",")}`);
+          ^
+
+Error: Untrusted native build override: CPATH,LIBRARY_PATH,SDKROOT
+    at assertNoUntrustedNativeBuildOverrides (file:///private/tmp/autobyteus-voice-api-e2e-r16-20260804-v2/repository/build/trusted-native-environment.mjs:88:11)
+    at createTrustedNativeBuildEnvironment (file:///private/tmp/autobyteus-voice-api-e2e-r16-20260804-v2/repository/build/trusted-native-environment.mjs:96:3)
+    at file:///private/tmp/autobyteus-voice-api-e2e-r16-20260804-v2/repository/build/create-native-build-environment.mjs:11:18
+
+Node.js v22.23.1

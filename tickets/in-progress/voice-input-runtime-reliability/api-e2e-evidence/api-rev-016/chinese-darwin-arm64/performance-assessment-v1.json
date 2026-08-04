@@ -1,0 +1,121 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "performance-assessment",
+  "packageId": "voice.chinese.fun-asr-nano-0.6b-gguf-q8.darwin-arm64",
+  "profileId": "chinese",
+  "target": "darwin-arm64",
+  "qualificationSummary": {
+    "fileName": "qualification-summary-v2.json",
+    "sha256": "3d9fae0627516e21496d6a87e1fcc4922a876ebe1e55208449efdeba402c511a"
+  },
+  "preflight": {
+    "fileName": "darwin-arm64-preflight-v2.json",
+    "sha256": "bab3cc54e01b20fc47a89ab95dbed0f3a4fd3286e4e667c679e1099b8210ce0d"
+  },
+  "performanceSamples": {
+    "fileName": "performance-samples-v1.json",
+    "sha256": "5c76e5651fa05d6d5ad9c23f9c435bb83add71d73c744b460d1680abf06235aa"
+  },
+  "qualificationAttempts": {
+    "fileName": "qualification-attempts-v1.json",
+    "sha256": "2c3e2c767288e17ad091c4fc8c185dd0962540037f0df97705e38cce77ebdac3"
+  },
+  "preparationStageEvidence": {
+    "fileName": "preparation-stage-evidence-v1.json",
+    "sha256": "1ab97c1e480c45108c8cb68c09c7014b54f285e8cc74d2c8c42f65e7fbde61ec"
+  },
+  "preparationEvidence": {
+    "diagnosticContract": {
+      "contractId": "autobyteus-voice-preparation-diagnostics-v1",
+      "fileName": "preparation-diagnostics-v1.json",
+      "sha256": "cc608a1bb92e1d4b8dc85a135cfb36e052c39151ef69d44b98dafc3a676f728c"
+    },
+    "stageEvidenceSchema": {
+      "fileName": "preparation-stage-evidence-v1.schema.json",
+      "sha256": "247d4de42a5847618bc61c14583a2d071006de44029c464db5488b2c869ef792"
+    },
+    "qualificationClock": "qualification-attempt-monotonic-v1",
+    "attemptCount": 60,
+    "validAttemptCount": 60,
+    "privacyDecision": "pass"
+  },
+  "performanceEnvironment": "loaded-host",
+  "attempts": {
+    "started": 260,
+    "succeeded": 260,
+    "failed": 0,
+    "timedOut": 0,
+    "excluded": 0
+  },
+  "hardDeadlines": {
+    "helloMs": 2000,
+    "preparationMs": 30000,
+    "requestMs": 30000,
+    "gracefulShutdownMs": 2000,
+    "forcedShutdownMs": 2000,
+    "violations": 0
+  },
+  "resourcePolicy": {
+    "policyId": "voice-runtime-profile-resource-policy-v1",
+    "sha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+    "row": {
+      "profileId": "chinese",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "hardProcessTreeRssCeilingBytes": 4294967296,
+      "assessmentOptimizationTargetBytes": 2684354560
+    },
+    "observedPeakProcessTreeRssBytes": 2105065472,
+    "hardCeilingMet": true
+  },
+  "resourceOptimization": {
+    "targetBytes": 2684354560,
+    "observedPeakProcessTreeRssBytes": 2105065472,
+    "targetMet": true
+  },
+  "metrics": {
+    "handshake": {
+      "sampleCount": 30,
+      "p50Ms": 418.99025000000256,
+      "p95Ms": 613.3002080000006,
+      "maxMs": 1322.2143749999996,
+      "referenceTargetMs": 1000,
+      "referenceMet": true
+    },
+    "coldPreparation": {
+      "sampleCount": 30,
+      "p50Ms": 1968.9082920000073,
+      "p95Ms": 2144.2199170000094,
+      "maxMs": 2204.249666000018,
+      "referenceTargetMs": 20000,
+      "referenceMet": true
+    },
+    "warmPreparation": {
+      "sampleCount": 30,
+      "p50Ms": 1865.9817909999983,
+      "p95Ms": 1974.6296250000014,
+      "maxMs": 2036.6497500000114,
+      "referenceTargetMs": 10000,
+      "referenceMet": true
+    },
+    "coldResult": {
+      "sampleCount": 30,
+      "p50Ms": 5573.435250000002,
+      "p95Ms": 6661.903375000002,
+      "maxMs": 6687.774791,
+      "referenceTargetMs": 25000,
+      "referenceMet": true
+    },
+    "warmRequest": {
+      "sampleCount": 100,
+      "p50Ms": 919.4807919999585,
+      "p95Ms": 2049.8620830000145,
+      "maxMs": 2766.670791999961,
+      "referenceTargetMs": 10000,
+      "referenceMet": true
+    }
+  },
+  "peakProcessTreeRssBytes": 2105065472,
+  "extractedSizeBytes": 1285167443,
+  "assessment": "loaded-host-observation"
+}

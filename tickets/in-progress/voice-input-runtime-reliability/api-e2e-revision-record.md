@@ -19,6 +19,7 @@
 | `API-REV-013` | Code Reviewer / `code-review-report.md` / `CRR-029`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-020`, `CRR-028`, `CRR-029` | `Fail / 98%`              | `Fail / 98%`                |
 | `API-REV-014` | Code Reviewer / `code-review-report.md` / `CRR-031`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-021`, `CRR-030`, `CRR-031` | `Fail / 98%`              | `Fail / 99%`                |
 | `API-REV-015` | Code Reviewer / `code-review-report.md` / `CRR-033`            | `SR-012`, `ARCH-REV-013`, `IR-022`, `CRR-032`, `CRR-033`           | `Fail / 99%`              | `Fail / 99%`                |
+| `API-REV-016` | Code Reviewer / `code-review-report.md` / `CRR-035`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `CRR-034`, `CRR-035` | `Fail / 99%`              | `Fail / 99%`                |
 
 ## Revision Entries
 
@@ -528,3 +529,42 @@ None.
 - New failure: `API-F-013`; `API-F-012` is directly resolved; `API-F-011` execution recheck remains incomplete.
 - Recommended recipient: `code_reviewer` for focused failure-origin review.
 - Remaining proof after reviewed resolution: complete current-source Chinese profile, current-source English full package/profile qualification, Qualification Set 2, and independently verified Branch Catalog Projection 2. Delivery-owned integrated-main/release work remains later.
+
+### API-REV-016 — Both current packages pass; stale QSet path predicate blocks branch closure
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-035`; API/E2E round 16.
+- Triggering scenarios: direct `API-F-013` recheck in `API-VOICE-004`, then complete current-source `API-VOICE-004`, `API-VOICE-003`, `API-VOICE-011`, and `API-VOICE-012`.
+- Related upstream revisions: `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `CRR-034`, `CRR-035`; delivery `N/A`.
+- Why recorded: exact source `32829080938911f0f46390a3fd2af823e105bd32` passed focused/full checks, actual-M1 preflight, both double builds, both complete package/profile qualifications, quality, lifecycle, resource, compliance, and privacy. QSet 2 then independently failed only because its profile verifier retained an obsolete path regex that rejects ten valid authenticated Chinese Build Input Path 1 routes.
+- Coverage/durable test changes: none. Run-specific inputs, packages, profile evidence, QSet failure, and focused probes are temporary executable evidence. The absence of an exact QSet regression for the approved ten paths is part of `API-F-014`.
+- Execution delta: loaded-host Functional Preflight 2 at `72.71833333333333%` idle; Chinese archive reproduced at `84783c61...2cc3`, completed 260/260 with CER `342/6580` and `2,105,065,472`-byte peak RSS; English archive reproduced at `9e4d1d598...46f8`, completed 160/160 with baseline-equal WER and `1,770,749,952`-byte peak RSS; both Summary/Assessment records passed. QSet command durably wrote functional Fail and exited nonzero; projection was not produced.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                        | Previous Classification | Current Resolution     | Evidence                                                                                                              |
+| ---------------------------------------------------- | ----------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `API-F-013` / Chinese cold attempt 22 timeout        | Design Impact           | Resolved / direct Pass | 30/30 cold and 30/30 warm preparation; all 60 stage records valid; cold-preparation p95 `2,144.220 ms`; 260/260 total |
+| `API-F-012` / Chinese RSS policy                     | Design Impact           | Reconfirmed / Pass     | `2,105,065,472 <= 4,294,967,296` bytes and the 2.5-GiB optimization target is also met                                |
+| `API-F-011` / Chinese scorer comparability           | Design Impact           | Resolved / direct Pass | exact v2 scorer/map/trust; candidate `342/6580` versus baseline `343/6580` across 200 WAVs                            |
+| `API-F-010` and earlier package-construction defects | Local Fix               | Reconfirmed / Pass     | both exact profiles build twice byte-identically and pass package verification/reproducibility/compliance             |
+
+#### New Failure
+
+- ID: `API-F-014`.
+- Scenario / criteria: `API-VOICE-012`; `AC-006`, `AC-019`, `AC-021`, `AC-023`.
+- Expected: QSet 2 independently revalidates both passing subjects through canonical Build Input Path 1 and retains exactly two Pass rows before Branch Projection 2.
+- Observed: English independent verification passes. Chinese fails `Preserved build-input manifest invalid.` because `release/evidence/bindings.mjs:131-142` uses obsolete `/^[A-Za-z0-9._/-]+$/`; it rejects ten authenticated 3,152-file manifest paths containing approved `()`, `[]`, or `+` routing syntax.
+- Terminal evidence: QSet 2 is durably `fail / loaded-host-observation`, Chinese row is `fail / qualification-verification-failed`, and the QSet command exits nonzero. Branch Projection 2 is not generated.
+- Preliminary classification: `Local Fix`; the aggregate/profile verifier should reuse the canonical Build Input Path 1 owner and add exact regression coverage for these ten paths. No requirement/design/provider/model/threshold/package/runtime/protocol change is indicated.
+- Stop/reroute: fail closed. No path mutation/omission, workaround, profile retry, Catalog 3, tag, release, or publication.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/`
+- Prior result/confidence: `Fail / 99%`.
+- Current result/confidence: `Fail / 99%`.
+- New failure: `API-F-014`; `API-F-013` is directly resolved.
+- Recommended recipient: `code_reviewer` for focused failure-origin review.
+- Remaining proof after reviewed correction: regenerate/reverify QSet 2 against unchanged exact profile evidence if source/contract impact permits, then produce and independently verify Branch Catalog Projection 2. Delivery-owned integrated-main/release work remains later.

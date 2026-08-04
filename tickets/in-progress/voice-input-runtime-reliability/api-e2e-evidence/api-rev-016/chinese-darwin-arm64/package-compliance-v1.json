@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "profileId": "chinese",
+  "packageId": "voice.chinese.fun-asr-nano-0.6b-gguf-q8.darwin-arm64",
+  "providerId": "autobyteus.voice.funasr-nano-q8",
+  "modelId": "fun-asr-nano-gguf-q8",
+  "recipeSha256": "b7d122f3cba9f193ead206683fbf56d1f9987c981a3afa855fa4bae7bea2a77d",
+  "provenanceSha256": "64cf8fdc25e072516882a82091973d1aec2823a9fb163e39e8d3d5840e7aa93d",
+  "descriptorSha256": "9eade280fa0be8fe15dfd4876555daf890a359e690944bd2a5ccabf9b68905c3",
+  "archiveSha256": "84783c61b8a08e0e0848a4906139210868cf552ee0104d5179be7144be432cc3",
+  "noticeInventorySha256": "1d794497c64ba28c1158b51d215159651657cf660e2910cfaaa276dfe1ab2a1a",
+  "policySha256": "3993ac49c02c8685b4a55834fddad8698068b0c2b8296ac5ec3bdbe6b613febe",
+  "components": [
+    {
+      "componentId": "fun-asr-nano-gguf",
+      "versionOrRevision": "46e849502a867080d66d351b8dfb1018b607e509",
+      "licenseIdentity": "model-card governed redistribution",
+      "licenseTextSha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://huggingface.co/FunAudioLLM/Fun-ASR-Nano-GGUF"
+    },
+    {
+      "componentId": "funasr",
+      "versionOrRevision": "53a56d80667320b44a7dd779f5bf8c024b6c30a8",
+      "licenseIdentity": "Apache-2.0",
+      "licenseTextSha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://github.com/FunAudioLLM/Fun-ASR"
+    },
+    {
+      "componentId": "go",
+      "versionOrRevision": "Go 1.26.5",
+      "licenseIdentity": "BSD-3-Clause",
+      "licenseTextSha256": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://go.dev/LICENSE"
+    },
+    {
+      "componentId": "llama.cpp",
+      "versionOrRevision": "8086439a4cea94c71a5dfb8fe4ad1546aebd640f",
+      "licenseIdentity": "MIT",
+      "licenseTextSha256": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://github.com/ggml-org/llama.cpp"
+    },
+    {
+      "componentId": "opencc-data",
+      "versionOrRevision": "twp-to-cn-v1",
+      "licenseIdentity": "Apache-2.0",
+      "licenseTextSha256": "b534e465949558eec2597b04f5092b5e161236a68dfbfd04d547592ac3964308",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://github.com/BYVoid/OpenCC"
+    },
+    {
+      "componentId": "utf8proc",
+      "versionOrRevision": "a1b99daa2a3393884220264c927a48ba1251a9c6",
+      "licenseIdentity": "MIT",
+      "licenseTextSha256": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
+      "attributionRequired": true,
+      "redistribution": "approved",
+      "source": "https://github.com/JuliaStrings/utf8proc"
+    }
+  ],
+  "decision": "pass"
+}

@@ -1,0 +1,178 @@
+TAP version 13
+# Subtest: byte framing accepts every split and coalesced canonical records
+ok 1 - byte framing accepts every split and coalesced canonical records
+  ---
+  duration_ms: 9.25025
+  type: 'test'
+  ...
+# Subtest: invalid, oversized, noncanonical, and truncated prefixed lines fail
+ok 2 - invalid, oversized, noncanonical, and truncated prefixed lines fail
+  ---
+  duration_ms: 0.88225
+  type: 'test'
+  ...
+# Subtest: worker duration and qualification receipt clocks remain separate
+ok 3 - worker duration and qualification receipt clocks remain separate
+  ---
+  duration_ms: 0.116291
+  type: 'test'
+  ...
+# Subtest: diagnostic receipt time is captured at LF consumption
+ok 4 - diagnostic receipt time is captured at LF consumption
+  ---
+  duration_ms: 0.200791
+  type: 'test'
+  ...
+# Subtest: closed RSS windows retain contained, crossings, touching, and shared samples
+ok 5 - closed RSS windows retain contained, crossings, touching, and shared samples
+  ---
+  duration_ms: 0.493583
+  type: 'test'
+  ...
+# Subtest: invalid windows, ordering, and worker regression fail closed
+ok 6 - invalid windows, ordering, and worker regression fail closed
+  ---
+  duration_ms: 0.252041
+  type: 'test'
+  ...
+# Subtest: failed partial preparation is retained and unrelated stderr is redacted
+ok 7 - failed partial preparation is retained and unrelated stderr is redacted
+  ---
+  duration_ms: 0.23825
+  type: 'test'
+  ...
+# Subtest: successful preparation with no RSS coverage fails durable evidence
+ok 8 - successful preparation with no RSS coverage fails durable evidence
+  ---
+  duration_ms: 0.614959
+  type: 'test'
+  ...
+# Subtest: written evidence revalidates and recomputes
+ok 9 - written evidence revalidates and recomputes
+  ---
+  duration_ms: 8.30275
+  type: 'test'
+  ...
+# Subtest: qualification binding rejects evidence from another attempt identity
+ok 10 - qualification binding rejects evidence from another attempt identity
+  ---
+  duration_ms: 2.9885
+  type: 'test'
+  ...
+# Subtest: session follows ready, request, and bounded shutdown
+ok 11 - session follows ready, request, and bounded shutdown
+  ---
+  duration_ms: 2.494042
+  type: 'test'
+  ...
+# Subtest: malformed protocol terminally fails and awaits termination
+ok 12 - malformed protocol terminally fails and awaits termination
+  ---
+  duration_ms: 0.469458
+  type: 'test'
+  ...
+# Subtest: hello timeout terminally fails and awaits termination
+ok 13 - hello timeout terminally fails and awaits termination
+  ---
+  duration_ms: 19.924917
+  type: 'test'
+  ...
+# Subtest: write failure terminally fails without replay
+ok 14 - write failure terminally fails without replay
+  ---
+  duration_ms: 0.485375
+  type: 'test'
+  ...
+# Subtest: terminal failure escalates once when graceful termination is ignored
+ok 15 - terminal failure escalates once when graceful termination is ignored
+  ---
+  duration_ms: 22.187333
+  type: 'test'
+  ...
+# Subtest: statefully decodes UTF-8 and line delimiters split at every byte
+ok 16 - statefully decodes UTF-8 and line delimiters split at every byte
+  ---
+  duration_ms: 2.607625
+  type: 'test'
+  ...
+# Subtest: truncated UTF-8 on stdout termination fails the session
+ok 17 - truncated UTF-8 on stdout termination fails the session
+  ---
+  duration_ms: 0.278042
+  type: 'test'
+  ...
+# Subtest: session forwards exact raw stderr chunks without interpreting framing
+ok 18 - session forwards exact raw stderr chunks without interpreting framing
+  ---
+  duration_ms: 0.467083
+  type: 'test'
+  ...
+# Subtest: CommonCrypto streaming digest matches exact boundary payloads
+ok 19 - CommonCrypto streaming digest matches exact boundary payloads
+  ---
+  duration_ms: 3969.401959
+  type: 'test'
+  ...
+# Subtest: integrity owner is bounded, Apple-only, and classifies failures
+ok 20 - integrity owner is bounded, Apple-only, and classifies failures
+  ---
+  duration_ms: 282.128542
+  type: 'test'
+  ...
+# Subtest: preparation emitter writes exact private canonical lines
+ok 21 - preparation emitter writes exact private canonical lines
+  ---
+  duration_ms: 258.447167
+  type: 'test'
+  ...
+# Subtest: Current Release Matrix is the sole exact two-entry current authority
+ok 22 - Current Release Matrix is the sole exact two-entry current authority
+  ---
+  duration_ms: 3.927291
+  type: 'test'
+  ...
+# Subtest: materializer creates a closed deterministic tree from a clean exact repository
+ok 23 - materializer creates a closed deterministic tree from a clean exact repository
+  ---
+  duration_ms: 278.738792
+  type: 'test'
+  ...
+# Subtest: branch projection is release-neutral, exact, and independently byte-recomputed
+ok 24 - branch projection is release-neutral, exact, and independently byte-recomputed
+  ---
+  duration_ms: 341.27825
+  type: 'test'
+  ...
+# Subtest: release chain is acyclic and published verification is a separate always-written result
+ok 25 - release chain is acyclic and published verification is a separate always-written result
+  ---
+  duration_ms: 506.69925
+  type: 'test'
+  ...
+# Subtest: quarantine deletes only the failed GitHub Release and proves the tag is unchanged
+ok 26 - quarantine deletes only the failed GitHub Release and proves the tag is unchanged
+  ---
+  duration_ms: 212.948
+  type: 'test'
+  ...
+# Subtest: workflow derives two current jobs and preserves post-publication separation
+ok 27 - workflow derives two current jobs and preserves post-publication separation
+  ---
+  duration_ms: 0.624542
+  type: 'test'
+  ...
+# Subtest: a post-attempt functional breach controls ledger, profile exit, and retained QSet
+ok 28 - a post-attempt functional breach controls ledger, profile exit, and retained QSet
+  ---
+  duration_ms: 504.494541
+  type: 'test'
+  ...
+1..28
+# tests 28
+# suites 0
+# pass 28
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 4566.716208

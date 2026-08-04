@@ -1,0 +1,6 @@
+completedAtUtc=2026-08-04T03:59:52Z
+stage=chinese-qualification
+exitCode=1
+executionRoot=/private/tmp/autobyteus-voice-api-e2e-r16-20260804-v3
+source=/private/tmp/autobyteus-voice-api-e2e-r16-20260804-v2/repository
+sourceCommit=32829080938911f0f46390a3fd2af823e105bd32

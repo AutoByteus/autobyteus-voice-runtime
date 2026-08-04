@@ -1,0 +1,6 @@
+english: PASS
+chinese: FAIL
+Error: Preserved build-input manifest invalid.
+    at verifyBuildBinding (file:///private/tmp/autobyteus-voice-api-e2e-r16-20260804-v2/repository/release/evidence/bindings.mjs:142:11)
+    at verifyProfileQualificationEvidence (file:///private/tmp/autobyteus-voice-api-e2e-r16-20260804-v2/repository/release/evidence/profile-qualification-verifier.mjs:77:9)
+    at async file:///private/tmp/autobyteus-voice-api-e2e-r16-20260804-v2/repository/[eval1]:6:8

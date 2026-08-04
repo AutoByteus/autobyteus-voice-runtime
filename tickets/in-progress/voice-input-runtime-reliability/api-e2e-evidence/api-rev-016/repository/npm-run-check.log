@@ -1,0 +1,701 @@
+
+> @autobyteus/voice-input-runtime@1.0.0 check
+> npm run check:js && npm run check:python && npm run check:go && npm run check:evidence && npm test
+
+
+> @autobyteus/voice-input-runtime@1.0.0 check:js
+> node tooling/check-source.mjs
+
+
+> @autobyteus/voice-input-runtime@1.0.0 check:python
+> python3 -m unittest discover -s tests/providers -p '*_test.py' && python3 -m compileall -q providers
+
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.061s
+
+OK
+
+> @autobyteus/voice-input-runtime@1.0.0 check:go
+> node tooling/check-go.mjs
+
+?   	github.com/AutoByteus/autobyteus-voice-runtime/launcher/cmd/voice-provider-launcher	[no test files]
+ok  	github.com/AutoByteus/autobyteus-voice-runtime/launcher/internal	0.316s
+?   	github.com/AutoByteus/autobyteus-voice-runtime/launcher/internal/embeddedplan	[no test files]
+ok  	github.com/AutoByteus/autobyteus-voice-runtime/packaging/archive	0.660s
+?   	github.com/AutoByteus/autobyteus-voice-runtime/packaging/cmd/provider-package-tool	[no test files]
+
+> @autobyteus/voice-input-runtime@1.0.0 check:evidence
+> node tooling/verify-english-preservation.mjs && node tooling/verify-chinese-qualification.mjs
+
+English preservation v2 authority reproduced byte-identically.
+Chinese v2 scoring/trust and Profile Resource Policy verified.
+
+> @autobyteus/voice-input-runtime@1.0.0 test
+> node --test tests/**/*.test.mjs
+
+TAP version 13
+# Subtest: byte framing accepts every split and coalesced canonical records
+ok 1 - byte framing accepts every split and coalesced canonical records
+  ---
+  duration_ms: 12.051959
+  type: 'test'
+  ...
+# Subtest: invalid, oversized, noncanonical, and truncated prefixed lines fail
+ok 2 - invalid, oversized, noncanonical, and truncated prefixed lines fail
+  ---
+  duration_ms: 0.942291
+  type: 'test'
+  ...
+# Subtest: worker duration and qualification receipt clocks remain separate
+ok 3 - worker duration and qualification receipt clocks remain separate
+  ---
+  duration_ms: 0.131833
+  type: 'test'
+  ...
+# Subtest: diagnostic receipt time is captured at LF consumption
+ok 4 - diagnostic receipt time is captured at LF consumption
+  ---
+  duration_ms: 0.299958
+  type: 'test'
+  ...
+# Subtest: closed RSS windows retain contained, crossings, touching, and shared samples
+ok 5 - closed RSS windows retain contained, crossings, touching, and shared samples
+  ---
+  duration_ms: 0.546292
+  type: 'test'
+  ...
+# Subtest: invalid windows, ordering, and worker regression fail closed
+ok 6 - invalid windows, ordering, and worker regression fail closed
+  ---
+  duration_ms: 0.284
+  type: 'test'
+  ...
+# Subtest: failed partial preparation is retained and unrelated stderr is redacted
+ok 7 - failed partial preparation is retained and unrelated stderr is redacted
+  ---
+  duration_ms: 0.263667
+  type: 'test'
+  ...
+# Subtest: successful preparation with no RSS coverage fails durable evidence
+ok 8 - successful preparation with no RSS coverage fails durable evidence
+  ---
+  duration_ms: 0.642167
+  type: 'test'
+  ...
+# Subtest: written evidence revalidates and recomputes
+ok 9 - written evidence revalidates and recomputes
+  ---
+  duration_ms: 15.736875
+  type: 'test'
+  ...
+# Subtest: qualification binding rejects evidence from another attempt identity
+ok 10 - qualification binding rejects evidence from another attempt identity
+  ---
+  duration_ms: 8.512292
+  type: 'test'
+  ...
+# Subtest: session follows ready, request, and bounded shutdown
+ok 11 - session follows ready, request, and bounded shutdown
+  ---
+  duration_ms: 2.542208
+  type: 'test'
+  ...
+# Subtest: malformed protocol terminally fails and awaits termination
+ok 12 - malformed protocol terminally fails and awaits termination
+  ---
+  duration_ms: 0.468709
+  type: 'test'
+  ...
+# Subtest: hello timeout terminally fails and awaits termination
+ok 13 - hello timeout terminally fails and awaits termination
+  ---
+  duration_ms: 19.642667
+  type: 'test'
+  ...
+# Subtest: write failure terminally fails without replay
+ok 14 - write failure terminally fails without replay
+  ---
+  duration_ms: 0.494916
+  type: 'test'
+  ...
+# Subtest: terminal failure escalates once when graceful termination is ignored
+ok 15 - terminal failure escalates once when graceful termination is ignored
+  ---
+  duration_ms: 23.123708
+  type: 'test'
+  ...
+# Subtest: statefully decodes UTF-8 and line delimiters split at every byte
+ok 16 - statefully decodes UTF-8 and line delimiters split at every byte
+  ---
+  duration_ms: 3.12325
+  type: 'test'
+  ...
+# Subtest: truncated UTF-8 on stdout termination fails the session
+ok 17 - truncated UTF-8 on stdout termination fails the session
+  ---
+  duration_ms: 0.277666
+  type: 'test'
+  ...
+# Subtest: session forwards exact raw stderr chunks without interpreting framing
+ok 18 - session forwards exact raw stderr chunks without interpreting framing
+  ---
+  duration_ms: 0.478375
+  type: 'test'
+  ...
+# Subtest: CommonCrypto streaming digest matches exact boundary payloads
+ok 19 - CommonCrypto streaming digest matches exact boundary payloads
+  ---
+  duration_ms: 4941.199084
+  type: 'test'
+  ...
+# Subtest: integrity owner is bounded, Apple-only, and classifies failures
+ok 20 - integrity owner is bounded, Apple-only, and classifies failures
+  ---
+  duration_ms: 322.316291
+  type: 'test'
+  ...
+# Subtest: preparation emitter writes exact private canonical lines
+ok 21 - preparation emitter writes exact private canonical lines
+  ---
+  duration_ms: 134.127542
+  type: 'test'
+  ...
+# Subtest: cleanup removes a verified read-only package tree
+ok 22 - cleanup removes a verified read-only package tree
+  ---
+  duration_ms: 9.866459
+  type: 'test'
+  ...
+# Subtest: internal target mapping covers every supported Node and Go tuple
+ok 23 - internal target mapping covers every supported Node and Go tuple
+  ---
+  duration_ms: 1.021792
+  type: 'test'
+  ...
+# Subtest: every supported Go root manifest is bound to its locked archive
+ok 24 - every supported Go root manifest is bound to its locked archive
+  ---
+  duration_ms: 39.119541
+  type: 'test'
+  ...
+# Subtest: version-preserving fake Go compiler is rejected by exact bytes
+ok 25 - version-preserving fake Go compiler is rejected by exact bytes
+  ---
+  duration_ms: 10.185291
+  type: 'test'
+  ...
+# Subtest: official locked Go front binary without its sibling root is rejected
+ok 26 - official locked Go front binary without its sibling root is rejected
+  ---
+  duration_ms: 68.972459
+  type: 'test'
+  ...
+# Subtest: exact Go front binary is rejected when a sibling tool is missing
+ok 27 - exact Go front binary is rejected when a sibling tool is missing
+  ---
+  duration_ms: 25.984417
+  type: 'test'
+  ...
+# Subtest: exact Go front binary is rejected when a sibling tool is modified
+ok 28 - exact Go front binary is rejected when a sibling tool is modified
+  ---
+  duration_ms: 25.902459
+  type: 'test'
+  ...
+# Subtest: inherited alternate GOROOT is rejected before Go execution
+ok 29 - inherited alternate GOROOT is rejected before Go execution
+  ---
+  duration_ms: 9.517834
+  type: 'test'
+  ...
+# Subtest: inherited GOCACHEPROG is rejected before verified Go invocation
+ok 30 - inherited GOCACHEPROG is rejected before verified Go invocation
+  ---
+  duration_ms: 50.120709
+  type: 'test'
+  ...
+# Subtest: locked native source rejects a modified tree at the same commit
+ok 31 - locked native source rejects a modified tree at the same commit
+  ---
+  duration_ms: 393.4455
+  type: 'test'
+  ...
+# Subtest: wheelhouse rejects target wheel bytes changed without a version change
+ok 32 - wheelhouse rejects target wheel bytes changed without a version change
+  ---
+  duration_ms: 3.446833
+  type: 'test'
+  ...
+# Subtest: operator-materialized Python trees are not accepted as build inputs
+ok 33 - operator-materialized Python trees are not accepted as build inputs
+  ---
+  duration_ms: 0.3565
+  type: 'test'
+  ...
+# Subtest: the exact locked topology becomes a closed relocatable reproducible tree
+ok 34 - the exact locked topology becomes a closed relocatable reproducible tree
+  ---
+  duration_ms: 171.063709
+  type: 'test'
+  ...
+# Subtest: unsafe, incomplete, and unexpected archive entries fail closed
+    # Subtest: absolute link
+    ok 1 - absolute link
+      ---
+      duration_ms: 16.196167
+      type: 'test'
+      ...
+    # Subtest: escaping link
+    ok 2 - escaping link
+      ---
+      duration_ms: 22.560667
+      type: 'test'
+      ...
+    # Subtest: dangling link
+    ok 3 - dangling link
+      ---
+      duration_ms: 16.058375
+      type: 'test'
+      ...
+    # Subtest: cyclic link
+    ok 4 - cyclic link
+      ---
+      duration_ms: 13.141083
+      type: 'test'
+      ...
+    # Subtest: unexpected link
+    ok 5 - unexpected link
+      ---
+      duration_ms: 18.401209
+      type: 'test'
+      ...
+    # Subtest: missing approved link
+    ok 6 - missing approved link
+      ---
+      duration_ms: 12.355209
+      type: 'test'
+      ...
+    # Subtest: special entry
+    ok 7 - special entry
+      ---
+      duration_ms: 23.503875
+      type: 'test'
+      ...
+    1..7
+ok 35 - unsafe, incomplete, and unexpected archive entries fail closed
+  ---
+  duration_ms: 123.749
+  type: 'test'
+  ...
+# Subtest: Python closure excludes dependency tests and development headers coherently
+ok 36 - Python closure excludes dependency tests and development headers coherently
+  ---
+  duration_ms: 25.717583
+  type: 'test'
+  ...
+# Subtest: the complete observed staged manifest passes the canonical Go validator after closure
+ok 37 - the complete observed staged manifest passes the canonical Go validator after closure
+  ---
+  duration_ms: 4789.955334
+  type: 'test'
+  ...
+# Subtest: reproducibility proof requires byte-identical archives and reports
+ok 38 - reproducibility proof requires byte-identical archives and reports
+  ---
+  duration_ms: 111.199875
+  type: 'test'
+  ...
+# Subtest: the exact Xcode clang++ alias links C++ while its identical clang target does not
+ok 39 - the exact Xcode clang++ alias links C++ while its identical clang target does not
+  ---
+  duration_ms: 2246.230208
+  type: 'test'
+  ...
+# Subtest: the clang++ alias rejects target, byte, topology, and directory drift
+ok 40 - the clang++ alias rejects target, byte, topology, and directory drift
+  ---
+  duration_ms: 163.787041
+  type: 'test'
+  ...
+# Subtest: native build overrides are rejected case-insensitively before use
+ok 41 - native build overrides are rejected case-insensitively before use
+  ---
+  duration_ms: 0.8875
+  type: 'test'
+  ...
+# Subtest: the production environment owner accepts the preflight CMake symlink
+ok 42 - the production environment owner accepts the preflight CMake symlink
+  ---
+  duration_ms: 471.80975
+  type: 'test'
+  ...
+# Subtest: the Xcode ranlib alias retains invocation semantics and authenticated topology
+ok 43 - the Xcode ranlib alias retains invocation semantics and authenticated topology
+  ---
+  duration_ms: 299.088833
+  type: 'test'
+  ...
+# Subtest: the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn
+ok 44 - the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn
+  ---
+  duration_ms: 798.459417
+  type: 'test'
+  ...
+# Subtest: the trusted PATH is closed and rechecks every selected tool
+ok 45 - the trusted PATH is closed and rechecks every selected tool
+  ---
+  duration_ms: 64.769625
+  type: 'test'
+  ...
+# Subtest: trusted executable bytes and explicit CMake configuration are bound
+ok 46 - trusted executable bytes and explicit CMake configuration are bound
+  ---
+  duration_ms: 4.786459
+  type: 'test'
+  ...
+# Subtest: resolved CMake selection must match the bound environment
+ok 47 - resolved CMake selection must match the bound environment
+  ---
+  duration_ms: 4.466417
+  type: 'test'
+  ...
+# Subtest: every current package builder consumes the trusted owner
+ok 48 - every current package builder consumes the trusted owner
+  ---
+  duration_ms: 1.53525
+  type: 'test'
+  ...
+# Subtest: the locked Metal sed pipeline runs through only the authenticated closed PATH
+ok 49 - the locked Metal sed pipeline runs through only the authenticated closed PATH
+  ---
+  duration_ms: 690.991083
+  type: 'test'
+  ...
+# Subtest: pinned launcher build is byte deterministic and rejects public argv
+ok 50 - pinned launcher build is byte deterministic and rejects public argv
+  ---
+  duration_ms: 6149.669666
+  type: 'test'
+  ...
+# Subtest: relocated public launcher bootstraps the contained Python import root
+ok 51 - relocated public launcher bootstraps the contained Python import root
+  ---
+  duration_ms: 5101.822792
+  type: 'test'
+  ...
+# Subtest: launcher fixtures obey exact schema
+ok 52 - launcher fixtures obey exact schema
+  ---
+  duration_ms: 42.808792
+  type: 'test'
+  ...
+# Subtest: startup fixtures obey exact schema
+ok 53 - startup fixtures obey exact schema
+  ---
+  duration_ms: 18.017417
+  type: 'test'
+  ...
+# Subtest: protocol fixtures obey exact schema
+ok 54 - protocol fixtures obey exact schema
+  ---
+  duration_ms: 38.878584
+  type: 'test'
+  ...
+# Subtest: all public schemas compile strictly
+ok 55 - all public schemas compile strictly
+  ---
+  duration_ms: 213.756917
+  type: 'test'
+  ...
+# Subtest: Build Input path policy accepts the exact current Chinese source path set
+ok 56 - Build Input path policy accepts the exact current Chinese source path set
+  ---
+  duration_ms: 11.001917
+  type: 'test'
+  ...
+# Subtest: Build Input path policy rejects aliases, unsafe syntax, and collisions
+ok 57 - Build Input path policy rejects aliases, unsafe syntax, and collisions
+  ---
+  duration_ms: 0.481375
+  type: 'test'
+  ...
+# Subtest: package verification rejects an unsafe Build Input manifest record
+ok 58 - package verification rejects an unsafe Build Input manifest record
+  ---
+  duration_ms: 4.043583
+  type: 'test'
+  ...
+# Subtest: materialized current Chinese routing paths pass the package verifier unchanged
+ok 59 - materialized current Chinese routing paths pass the package verifier unchanged
+  ---
+  duration_ms: 973.048291
+  type: 'test'
+  ...
+# Subtest: Current Release Matrix is the sole exact two-entry current authority
+ok 60 - Current Release Matrix is the sole exact two-entry current authority
+  ---
+  duration_ms: 4.642875
+  type: 'test'
+  ...
+# Subtest: materializer creates a closed deterministic tree from a clean exact repository
+ok 61 - materializer creates a closed deterministic tree from a clean exact repository
+  ---
+  duration_ms: 468.649625
+  type: 'test'
+  ...
+# Subtest: branch projection is release-neutral, exact, and independently byte-recomputed
+ok 62 - branch projection is release-neutral, exact, and independently byte-recomputed
+  ---
+  duration_ms: 464.814375
+  type: 'test'
+  ...
+# Subtest: release chain is acyclic and published verification is a separate always-written result
+ok 63 - release chain is acyclic and published verification is a separate always-written result
+  ---
+  duration_ms: 728.625792
+  type: 'test'
+  ...
+# Subtest: quarantine deletes only the failed GitHub Release and proves the tag is unchanged
+ok 64 - quarantine deletes only the failed GitHub Release and proves the tag is unchanged
+  ---
+  duration_ms: 310.361791
+  type: 'test'
+  ...
+# Subtest: workflow derives two current jobs and preserves post-publication separation
+ok 65 - workflow derives two current jobs and preserves post-publication separation
+  ---
+  duration_ms: 0.816083
+  type: 'test'
+  ...
+# Subtest: generated compliance is an exact recipe/provenance/policy/notice join
+ok 66 - generated compliance is an exact recipe/provenance/policy/notice join
+  ---
+  duration_ms: 88.824334
+  type: 'test'
+  ...
+# Subtest: qualification contract fixes Seatbelt and exact 30/30/100 trial sets
+ok 67 - qualification contract fixes Seatbelt and exact 30/30/100 trial sets
+  ---
+  duration_ms: 3.889666
+  type: 'test'
+  ...
+# Subtest: every current recipe repository-file byte still matches its reviewed digest
+ok 68 - every current recipe repository-file byte still matches its reviewed digest
+  ---
+  duration_ms: 75.350791
+  type: 'test'
+  ...
+# Subtest: the captured healthy pmset thermal state is normal
+ok 69 - the captured healthy pmset thermal state is normal
+  ---
+  duration_ms: 4.659958
+  type: 'test'
+  ...
+# Subtest: an affirmative thermal or performance warning is rejected
+ok 70 - an affirmative thermal or performance warning is rejected
+  ---
+  duration_ms: 0.741792
+  type: 'test'
+  ...
+# Subtest: unrecognized or malformed thermal state is rejected
+ok 71 - unrecognized or malformed thermal state is rejected
+  ---
+  duration_ms: 0.077
+  type: 'test'
+  ...
+# Subtest: a post-attempt functional breach controls ledger, profile exit, and retained QSet
+ok 72 - a post-attempt functional breach controls ledger, profile exit, and retained QSet
+  ---
+  duration_ms: 763.920833
+  type: 'test'
+  ...
+# Subtest: functional preflight retains the true six-sample average and only classifies load
+ok 73 - functional preflight retains the true six-sample average and only classifies load
+  ---
+  duration_ms: 0.818166
+  type: 'test'
+  ...
+# Subtest: latency reference status cannot change functional authority
+ok 74 - latency reference status cannot change functional authority
+  ---
+  duration_ms: 0.0945
+  type: 'test'
+  ...
+# Subtest: missing timing observations cannot enter a passing functional chain
+ok 75 - missing timing observations cannot enter a passing functional chain
+  ---
+  duration_ms: 0.276375
+  type: 'test'
+  ...
+# Subtest: a failed prerequisite is durable Blocked evidence, not a load classification
+ok 76 - a failed prerequisite is durable Blocked evidence, not a load classification
+  ---
+  duration_ms: 27.070708
+  type: 'test'
+  ...
+# Subtest: Summary 2 forbids a reverse Assessment edge and Assessment 1 has no functional decision
+ok 77 - Summary 2 forbids a reverse Assessment edge and Assessment 1 has no functional decision
+  ---
+  duration_ms: 61.545708
+  type: 'test'
+  ...
+# Subtest: maintained-main proof rejects descendants and accepts equality or integration
+ok 78 - maintained-main proof rejects descendants and accepts equality or integration
+  ---
+  duration_ms: 615.945333
+  type: 'test'
+  ...
+# Subtest: performance evidence requires executed cold resets and meaningful warm samples
+ok 79 - performance evidence requires executed cold resets and meaningful warm samples
+  ---
+  duration_ms: 4.159625
+  type: 'test'
+  ...
+# Subtest: Profile Resource Policy closes the exact matrix without defaults
+ok 80 - Profile Resource Policy closes the exact matrix without defaults
+  ---
+  duration_ms: 26.290917
+  type: 'test'
+  ...
+# Subtest: Chinese 3,949,543,424-byte peak passes hard 4 GiB and misses only optimization
+ok 81 - Chinese 3,949,543,424-byte peak passes hard 4 GiB and misses only optimization
+  ---
+  duration_ms: 20.280584
+  type: 'test'
+  ...
+# Subtest: English retains the 2.5 GiB hard boundary
+ok 82 - English retains the 2.5 GiB hard boundary
+  ---
+  duration_ms: 17.969292
+  type: 'test'
+  ...
+# Subtest: policy bytes are matrix-bound and cannot be substituted
+ok 83 - policy bytes are matrix-bound and cannot be substituted
+  ---
+  duration_ms: 18.753125
+  type: 'test'
+  ...
+# Subtest: a started timeout is durable before and after failure
+ok 84 - a started timeout is durable before and after failure
+  ---
+  duration_ms: 10.033667
+  type: 'test'
+  ...
+# Subtest: production-shaped process loss retains ledger, Summary, and Assessment before terminal failure
+ok 85 - production-shaped process loss retains ledger, Summary, and Assessment before terminal failure
+  ---
+  duration_ms: 214.940833
+  type: 'test'
+  ...
+# Subtest: release schema rejects declarative pass records without raw identities and measurements
+ok 86 - release schema rejects declarative pass records without raw identities and measurements
+  ---
+  duration_ms: 56.655416
+  type: 'test'
+  ...
+# Subtest: candidate history retains selected and unsuccessful improvement lanes by exact digest
+ok 87 - candidate history retains selected and unsuccessful improvement lanes by exact digest
+  ---
+  duration_ms: 8.362333
+  type: 'test'
+  ...
+# Subtest: release workflow qualifies before creating a tag and has no tag trigger
+ok 88 - release workflow qualifies before creating a tag and has no tag trigger
+  ---
+  duration_ms: 0.73975
+  type: 'test'
+  ...
+# Subtest: the non-root preflight identifies execute-only sudo without reading it
+ok 89 - the non-root preflight identifies execute-only sudo without reading it
+  ---
+  duration_ms: 37.659375
+  type: 'test'
+  ...
+# Subtest: repository-owned baseline rejects wrong digest and semantic identities
+ok 90 - repository-owned baseline rejects wrong digest and semantic identities
+  ---
+  duration_ms: 52.713625
+  type: 'test'
+  ...
+# Subtest: English v2 authority replaces invalid final v1 files without changing the trust boundary
+ok 91 - English v2 authority replaces invalid final v1 files without changing the trust boundary
+  ---
+  duration_ms: 13.736375
+  type: 'test'
+  ...
+# Subtest: Chinese v2 trust is scoring-bound and active v1 cannot participate
+ok 92 - Chinese v2 trust is scoring-bound and active v1 cannot participate
+  ---
+  duration_ms: 22.925209
+  type: 'test'
+  ...
+# Subtest: checked-in corpus and baseline require 49 unique one-to-one identities
+ok 93 - checked-in corpus and baseline require 49 unique one-to-one identities
+  ---
+  duration_ms: 1.8265
+  type: 'test'
+  ...
+# Subtest: production corpus validator covers the English-v2 manifest shape and rejects duplicate identities
+ok 94 - production corpus validator covers the English-v2 manifest shape and rejects duplicate identities
+  ---
+  duration_ms: 127.126417
+  type: 'test'
+  ...
+# Subtest: English v2 authority rejects changed immutable source bytes
+ok 95 - English v2 authority rejects changed immutable source bytes
+  ---
+  duration_ms: 10.64575
+  type: 'test'
+  ...
+# Subtest: English v2 reproduction rejects changed generated authority when five other outputs match
+ok 96 - English v2 reproduction rejects changed generated authority when five other outputs match
+  ---
+  duration_ms: 10.621167
+  type: 'test'
+  ...
+# Subtest: frozen Chinese scorer reproduces all 200 rows and 343/6580
+ok 97 - frozen Chinese scorer reproduces all 200 rows and 343/6580
+  ---
+  duration_ms: 31.466959
+  type: 'test'
+  ...
+# Subtest: Chinese scoring authority binds exact contract/map and excludes product punctuation
+ok 98 - Chinese scoring authority binds exact contract/map and excludes product punctuation
+  ---
+  duration_ms: 5.5055
+  type: 'test'
+  ...
+# Subtest: retained API-REV-014 raw text re-scores to exact 342/6580
+ok 99 - retained API-REV-014 raw text re-scores to exact 342/6580
+  ---
+  duration_ms: 7.769125
+  type: 'test'
+  ...
+# Subtest: normalization fixtures are exact
+ok 100 - normalization fixtures are exact
+  ---
+  duration_ms: 6.695375
+  type: 'test'
+  ...
+# Subtest: Chinese qualification CER is separate and symmetric
+ok 101 - Chinese qualification CER is separate and symmetric
+  ---
+  duration_ms: 0.519334
+  type: 'test'
+  ...
+# Subtest: canonical dictionary pipeline matches pinned OpenCC twp-to-cn
+ok 102 - canonical dictionary pipeline matches pinned OpenCC twp-to-cn
+  ---
+  duration_ms: 6.975291
+  type: 'test'
+  ...
+1..102
+# tests 109
+# suites 0
+# pass 109
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 6373.332375

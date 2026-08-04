@@ -1,0 +1,7 @@
+capturedAtUtc=2026-08-04T03:39:58Z
+reason=user/tool wait interruption terminated the detached-unaware unified exec session; no product failure was observed and no terminal Summary/Assessment existed
+disposition=invalid non-terminal infrastructure execution; preserved and excluded from functional qualification; one clean exact-workflow restart authorized by the user's explicit continue request
+observedLedgerDecision=in-progress
+observedAttemptCount=36
+lastAttempt=sequence=35,phase=warm-preparation,index=5,status=started
+qualificationProcessesAfterInterruption:
