@@ -1,5 +1,6 @@
 import Ajv2020 from "ajv/dist/2020.js";
 import path from "node:path";
+import { assertBuildInputPathSet } from "../../build/build-input-path-policy.mjs";
 import { readJson, ROOT, sha256, shaFile } from "../../build/lib/files.mjs";
 import { repositoryBuildLockDigest } from "../../build/repository-lock-set.mjs";
 import { locked } from "../../build/locked-inputs.mjs";
@@ -127,19 +128,7 @@ export async function verifyBuildBinding(
   ])
     if (build[field] !== expected)
       throw new Error(`Build report ${field} mismatch.`);
-  if (
-    inputManifest.schemaVersion !== 1 ||
-    !Array.isArray(inputManifest.files) ||
-    inputManifest.files.length === 0 ||
-    inputManifest.files.some(
-      (item) =>
-        !/^[A-Za-z0-9._/-]+$/.test(item.path) ||
-        !/^[a-f0-9]{64}$/.test(item.sha256) ||
-        !Number.isSafeInteger(item.sizeBytes) ||
-        !["executable", "read-only"].includes(item.mode),
-    )
-  )
-    throw new Error("Preserved build-input manifest invalid.");
+  assertPreservedBuildInputManifest(inputManifest);
   const target = `${qualification.platform}-${qualification.architecture}`,
     goToolchain = locked.goToolchain.archives[target];
   if (
@@ -161,4 +150,27 @@ export async function verifyBuildBinding(
     )) !== goToolchain.rootManifestSha256
   )
     throw new Error("Repository-owned build/toolchain lock binding mismatch.");
+}
+
+export function assertPreservedBuildInputManifest(inputManifest) {
+  if (
+    inputManifest?.schemaVersion !== 1 ||
+    !Array.isArray(inputManifest.files) ||
+    inputManifest.files.length === 0 ||
+    inputManifest.files.some(
+      (item) =>
+        !item ||
+        !/^[a-f0-9]{64}$/.test(item.sha256) ||
+        !Number.isSafeInteger(item.sizeBytes) ||
+        !["executable", "read-only"].includes(item.mode),
+    )
+  )
+    throw new Error("Preserved build-input manifest invalid.");
+  try {
+    assertBuildInputPathSet(inputManifest.files.map((item) => item.path));
+  } catch (error) {
+    throw new Error("Preserved build-input manifest invalid.", {
+      cause: error,
+    });
+  }
 }

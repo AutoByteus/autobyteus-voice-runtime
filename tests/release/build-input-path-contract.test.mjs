@@ -12,9 +12,15 @@ import {
 } from "../../build/build-input-path-policy.mjs";
 import { materializeReleaseInputs } from "../../build/materialize-release-inputs.mjs";
 import { verifyInputManifest } from "../../build/locked-inputs.mjs";
-import { readJson, sha256, writeJson } from "../../build/lib/files.mjs";
+import {
+  readJson,
+  sha256,
+  shaFile,
+  writeJson,
+} from "../../build/lib/files.mjs";
 import { repositoryBuildLockDigest } from "../../build/repository-lock-set.mjs";
 import { loadCurrentReleaseMatrix } from "../../release/current-release-matrix.mjs";
+import { assertPreservedBuildInputManifest } from "../../release/evidence/bindings.mjs";
 
 const run = promisify(execFile);
 const root = path.resolve(import.meta.dirname, "../..");
@@ -76,6 +82,62 @@ test("Build Input path policy rejects aliases, unsafe syntax, and collisions", (
     () => assertBuildInputPathSet(["source/File.cc", "source/file.cc"]),
     /case-colliding/,
   );
+});
+
+test("aggregate verifier accepts the exact retained API-REV-016 Chinese manifest", async () => {
+  const manifestPath = path.join(
+      root,
+      "tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/chinese-darwin-arm64/build-input-manifest.json",
+    ),
+    manifest = await readJson(manifestPath),
+    punctuationPaths = manifest.files
+      .map((item) => item.path)
+      .filter((value) => /[()[\]+]/.test(value));
+  assert.equal(
+    await shaFile(manifestPath),
+    "f7bfb8f17fdf52c76d036c082690bda5d488118f491add5793b9e6b6becc2478",
+  );
+  assert.equal(manifest.files.length, 3_152);
+  assert.deepEqual(
+    punctuationPaths,
+    currentRoutingPaths.map((value) => `llama-cpp-source/${value}`),
+  );
+  assert.doesNotThrow(() => assertPreservedBuildInputManifest(manifest));
+});
+
+test("aggregate verifier retains canonical unsafe-path and record rejection", () => {
+  const record = (relative) => ({
+    path: relative,
+    sizeBytes: 1,
+    sha256: "a".repeat(64),
+    mode: "read-only",
+  });
+  for (const files of [
+    [record("source/../escape")],
+    [record("source/file.cc"), record("source/file.cc")],
+    [record("source/File.cc"), record("source/file.cc")],
+  ])
+    assert.throws(
+      () =>
+        assertPreservedBuildInputManifest({
+          schemaVersion: 1,
+          files,
+        }),
+      /Preserved build-input manifest invalid/,
+    );
+  for (const invalid of [
+    { ...record("source/file.cc"), sha256: "z".repeat(64) },
+    { ...record("source/file.cc"), sizeBytes: 1.5 },
+    { ...record("source/file.cc"), mode: "writable" },
+  ])
+    assert.throws(
+      () =>
+        assertPreservedBuildInputManifest({
+          schemaVersion: 1,
+          files: [invalid],
+        }),
+      /Preserved build-input manifest invalid/,
+    );
 });
 
 test("package verification rejects an unsafe Build Input manifest record", async () => {
