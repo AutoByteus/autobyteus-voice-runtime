@@ -11,8 +11,8 @@
 - Corrected verifier/test commit: `5c8afe4c5ba3843d9f813d9b48a0f05c1e433f9a`.
 - Implementation artifact/upstream HEAD at handoff: `3916b0646f5a5d487a066057d35f34a651a58f46`.
 - Retained API-REV-016 evidence commit: `34c45617284de7890fd7a398fb3c13d215bdb08c`.
-- Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-- API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+- Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+- API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
 - Current revision / round: `API-REV-017 / 17`.
 - Prior result: `API-REV-016 — Fail / 99%` at `API-F-014` in `API-VOICE-012`.
 - Latest authoritative result: **`API-REV-017 — Pass / 99%` for the exact two-entry current darwin-arm64 matrix.**
@@ -123,7 +123,7 @@
 
 ## Evidence
 
-- Current aggregate evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/`
+- Current aggregate evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/`
 - Reuse/impact record: `api-rev-017/repository/API-VOICE-012-aggregate-only-reuse-impact.json`
 - Prior-failure resolution: `api-rev-017/aggregate/API-F-014-resolution.json`
 - Qualification Set 2: `api-rev-017/aggregate/qualification-set-v2.json`

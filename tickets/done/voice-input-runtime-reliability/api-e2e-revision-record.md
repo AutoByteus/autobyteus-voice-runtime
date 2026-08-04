@@ -26,7 +26,7 @@
 
 ### API-REV-001 — Final English corpus identity blocks exact-package qualification
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-005`; API/E2E round 1.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-005`; API/E2E round 1.
 - Triggering finding or scenario IDs: `API-VOICE-002`; `AC-007`, `AC-009`, `AC-017`.
 - Related solution, architecture-review, implementation, code-review, or delivery revision IDs: `SR-006`, `ARCH-REV-007`, `IR-005`, `CRR-005`; delivery `N/A`.
 - Why this baseline was recorded: The mandatory investigation completed, repository checks passed, and the first direct qualification prerequisite found that the checked-in final English corpus and trusted baseline repeat one clip/audio identity even though approved final corpora must be unique. The real validator fails before inference, so the remaining package matrix stopped fail-closed.
@@ -39,10 +39,10 @@
 None.
 
 - Canonical artifacts and sections updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/repository/API-VOICE-002-corpus-identity-failure.json`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/repository/API-VOICE-002-corpus-identity-failure.json`
 - Prior result and confidence: `N/A`
 - Current result and confidence: `Fail / 65%`
 - New or remaining failure IDs: `API-VOICE-002` remains open. Exact package scenarios `API-VOICE-003`–`API-VOICE-012` remain unexecuted, not failed.
@@ -51,7 +51,7 @@ None.
 
 ### API-REV-002 — Corrected English authority passes; exact package matrix lacks required environment
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-008`; API/E2E round 2.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-008`; API/E2E round 2.
 - Triggering finding or scenario IDs: recheck `API-VOICE-002`; continue `API-VOICE-003`–`API-VOICE-012`; add `API-VOICE-013`.
 - Related solution, architecture-review, implementation, code-review, or delivery revision IDs: `SR-007`, `ARCH-REV-008`, `IR-006`, `IR-007`, `CRR-007`, `CRR-008`; delivery `N/A`.
 - Why this revision was recorded: The exact corrected 49-WAV corpus/baseline prerequisite directly resolves the prior failure, and a bounded durable production-validator regression now passes. The supported actual-package matrix then reached a real environment blocker: no complete closed build-input trees or approved audits are configured, no x64/Windows target runners exist, GitHub reports zero self-hosted runners, and the M1 runner lacks noninteractive pinned purge permission.
@@ -66,10 +66,10 @@ None.
 | `API-VOICE-002` / API-REV-001 English final corpus repeated one operational identity | `Design Impact`; resolved upstream through `SR-007` | `Resolved / Pass`  | `api-e2e-evidence/api-rev-002/repository/API-VOICE-002-corpus-identity-resolution.json`: 49/49 exact unique WAV identities, approved corpus/baseline digests, one-to-one trust, 70/969; supported reproduction and all six output comparisons pass |
 
 - Canonical artifacts and sections updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-002/`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tests/release/trusted-baseline.test.mjs`
 - Prior result and confidence: `Fail / 65%`
 - Current result and confidence: `Blocked / 78%`
@@ -79,7 +79,7 @@ None.
 
 ### API-REV-003 — Actual M1 preflight rejects healthy no-warning output
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-011`; API/E2E round 3.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-011`; API/E2E round 3.
 - Triggering scenarios: reusable `API-VOICE-002`/`013`, then complete current-matrix `API-VOICE-003`, `004`, `011`, and `012`.
 - Related upstream revisions: `SR-008`, `SR-009`, `ARCH-REV-010`, `IR-008`–`IR-010`, `CRR-009`–`CRR-011`.
 - Why this revision was recorded: the user-approved matrix is now exactly two darwin-arm64 packages. Current source/authority coverage passed, but the mandatory actual M1 production preflight exposed `API-F-001`: its thermal regex matches the word `warning` inside normal “No ... warning ... recorded” output and marks a healthy output shape abnormal. Downstream package work stopped fail-closed.
@@ -95,10 +95,10 @@ None.
 | `API-VOICE-002` / `API-VOICE-013` reuse authority | Passed boundary, reuse conditional on unchanged bytes | Confirmed unchanged and reusable                                                                                                                                        | `api-e2e-evidence/api-rev-003/repository/API-VOICE-002-013-authority-reuse.json` |
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-003/`
 - Prior result/confidence: `Blocked / 78%`.
 - Current result/confidence: `Fail / 79%`.
 - New failure: `API-F-001` — actual healthy `pmset -g therm` output is misparsed by production preflight.
@@ -121,10 +121,10 @@ None.
 | AC power and noninteractive purge absent                         | Environment prerequisites         | Resolved                                         | preflight `acConnected=true`; independent exact `/usr/bin/sudo -n /usr/sbin/purge` exit 0             |
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/`
 - Prior result/confidence: `Fail / 79%`.
 - Current result/confidence: `Blocked / 82%`.
 - New failure IDs: none.
@@ -159,10 +159,10 @@ None.
 - Stop/reroute: fail-closed. No unsandboxed build, skipped identity verification, fallback, threshold change, or release action. Route cumulative evidence to `code_reviewer` for focused failure-origin review.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/`
 - Prior result/confidence: `Blocked / 82%`.
 - Current result/confidence: `Fail / 87%`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review.
@@ -193,10 +193,10 @@ None.
 - Stop/reroute: fail-closed. No link/input mutation, alternate Python archive, unsandboxed build, fallback, threshold change, or release action. Route cumulative evidence to `code_reviewer` for focused failure-origin review.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-006/`
 - Prior result/confidence: `Fail / 87%`.
 - Current result/confidence: `Fail / 89%`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review.
@@ -218,10 +218,10 @@ None.
 | `API-F-002` / `CR-F-022` sudo inside Seatbelt          | Resolved in API-REV-006           | Not re-executed this blocked round; source remains unchanged in relevant boundary except the reviewed Python fix | current source review                                            |
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/`
 - Prior result/confidence: `Fail / 89%`.
 - Current result/confidence: `Blocked / 86%`.
 - New failure IDs: none.
@@ -231,7 +231,7 @@ None.
 
 ### API-REV-008 — AC and Python normalization pass; exact package manifest violates archive path policy
 
-- Triggering role, report path, and round: user supplied the API-REV-007 AC dependency after Code Reviewer `CRR-019`; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; API/E2E round 8.
+- Triggering role, report path, and round: user supplied the API-REV-007 AC dependency after Code Reviewer `CRR-019`; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; API/E2E round 8.
 - Triggering scenarios: prior AC blocker and `API-F-003` recheck; reusable `API-VOICE-002`/`013`; current-matrix `API-VOICE-003`, `004`, `011`, and `012`.
 - Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-015`, `CRR-019`; delivery `N/A`.
 - Why recorded: actual M1 Functional Preflight 2 passed on AC, exact sources/inputs/corpora passed, and the corrected Python archive advanced through normalization into final package staging. The first canonical English build then failed `API-F-004`: its generated 19,003-record manifest retained two files whose paths violate the package archive ASCII path policy, so the Go archive owner rejected the manifest and produced no archive.
@@ -256,10 +256,10 @@ None.
 - Stop/reroute: repeat construction, package verification/reproducibility, 49/200 inference, exact 30/30/100, lifecycle/compliance, Qualification Set 2, and Branch Catalog Projection 2 were not run after the first required archive failed. Route to `code_reviewer` for focused failure-origin review.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/`
 - Prior result/confidence: `Blocked / 86%`.
 - Current result/confidence: `Fail / 93%`.
 - New failure: `API-F-004`; prior `API-F-002`/`003` are resolved on the executed path.
@@ -268,7 +268,7 @@ None.
 
 ### API-REV-009 — Exact package builds; public Python worker and retained terminal evidence fail
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-021`; API/E2E round 9.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-021`; API/E2E round 9.
 - Triggering scenarios: direct `API-F-004` resolution, reusable `API-VOICE-002`/`013`, then current-matrix `API-VOICE-003`, `004`, `011`, and `012`.
 - Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-016`, `CRR-020`, `CRR-021`; delivery `N/A`.
 - Why recorded: the corrected runtime closure directly resolves package construction, path validation, verification, and reproducibility. The first exact English cold trial then exposed two new production defects: the isolated contained Python worker cannot import its packaged application module (`API-F-005`), and failure evidence cannot create schema-valid Summary 2 because it forwards archive `schemaVersion` (`API-F-006`).
@@ -295,10 +295,10 @@ None.
 - Stop/reroute: fail-closed. No retry, isolation bypass, provider/model/threshold substitution, Chinese execution, QSet/projection, release, tag, or publication.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-009/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-009/`
 - Prior result/confidence: `Fail / 93%`.
 - Current result/confidence: `Fail / 95%`.
 - New failures: `API-F-005`, `API-F-006`; prior `API-F-004` is resolved.
@@ -307,7 +307,7 @@ None.
 
 ### API-REV-010 — English fully qualifies; Chinese closed-input manifest fails its production path policy
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-023`; API/E2E round 10.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-023`; API/E2E round 10.
 - Triggering scenarios: direct `API-F-005` / `API-F-006` resolution, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-003`, `API-VOICE-004`, `API-VOICE-011`, and `API-VOICE-012`.
 - Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-017`, `CRR-022`, `CRR-023`; delivery `N/A`.
 - Why recorded: the reviewed launcher/evidence corrections pass the exact packaged MLX boundary and complete every English functional/performance gate. The first exact Chinese construction then finds `API-F-007`: deterministic materialization emits ten exact llama.cpp UI source paths that the mandatory production input-manifest validator rejects, so no Chinese archive can be constructed.
@@ -332,10 +332,10 @@ None.
 - Stop/reroute: fail-closed. No manifest edit, policy relaxation, source-tree mutation, retry, fallback, provider/model/threshold substitution, unsandboxed build, QSet/projection, tag, release, or publication.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-010/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-010/`
 - Prior result/confidence: `Fail / 95%`.
 - Current result/confidence: `Fail / 97%`.
 - New failure: `API-F-007`; prior `API-F-005` / `API-F-006` are resolved.
@@ -344,7 +344,7 @@ None.
 
 ### API-REV-011 — Build Input paths pass; canonicalized ranlib loses required alias semantics
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-025`; API/E2E round 11.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-025`; API/E2E round 11.
 - Triggering scenarios: shared Build Input Path / English reuse impact, direct `API-F-007` resolution, then current-matrix `API-VOICE-004`, `API-VOICE-003`, `API-VOICE-011`, and `API-VOICE-012`.
 - Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-018`, `CRR-024`, `CRR-025`; delivery `N/A`.
 - Why recorded: the shared Build Input correction directly passes both retained input trees and current-source materialization. The first exact Chinese build advances through all 3,149 records and native compilation, resolving `API-F-007`, but fails `API-F-008` when trusted-tool canonicalization supplies `libtool` as `CMAKE_RANLIB` and loses the authenticated `ranlib` alias behavior required by Apple static linking.
@@ -368,10 +368,10 @@ None.
 - Stop/reroute: fail-closed. No CMake/tool override, PATH substitution, retry, unsandboxed build, provider/model/threshold substitution, QSet/projection, tag, release, or publication.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-011/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-011/`
 - Prior result/confidence: `Fail / 97%`.
 - Current result/confidence: `Fail / 98%`.
 - New failure: `API-F-008`; prior `API-F-007` is resolved.
@@ -380,7 +380,7 @@ None.
 
 ### API-REV-012 — Ranlib passes; closed native tool set omits required sed
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-027`; API/E2E round 12.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-027`; API/E2E round 12.
 - Triggering scenarios: direct `API-F-008` recheck in `API-VOICE-004`, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-004`, `003`, `011`, and `012` while fail-closed gates pass.
 - Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-019`, `CRR-026`, `CRR-027`; delivery `N/A`.
 - Why recorded: the reviewed ranlib correction directly passes the exact package boundary and builds `libggml-base.a`. The same canonical Chinese construction then exposes `API-F-009`: the locked llama.cpp Metal step invokes bare `sed`, but the authenticated preflight/native-environment/closed trusted PATH omit `/usr/bin/sed`, so construction stops before an archive exists.
@@ -405,10 +405,10 @@ None.
 - Stop/reroute: fail-closed. No PATH injection, sed override, source edit, retry, unsandboxed build, fallback, provider/model/threshold substitution, QSet/projection, tag, release, or publication.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/`
 - Prior result/confidence: `Fail / 98%`.
 - Current result/confidence: `Fail / 98%`.
 - New failure: `API-F-009`; prior `API-F-008` is directly resolved.
@@ -417,7 +417,7 @@ None.
 
 ### API-REV-013 — Sed closure passes; canonicalized C++ driver loses required link semantics
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-029`; API/E2E round 13.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-029`; API/E2E round 13.
 - Triggering scenarios: direct `API-F-009` recheck in `API-VOICE-004`, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-004`, `003`, `011`, and `012` while fail-closed gates pass.
 - Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-020`, `CRR-028`, `CRR-029`; delivery `N/A`.
 - Why recorded: the reviewed sed correction directly passes the exact package boundary: authenticated `/usr/bin/sed` executes both locked Metal transformations and the native dependency graph compiles. The same canonical Chinese construction then exposes `API-F-010`: generic executable canonicalization records Xcode `clang++ -> clang` only as canonical `clang`, so the final C++ executable link omits the C++ runtime and produces no archive.
@@ -442,10 +442,10 @@ None.
 - Stop/reroute: fail closed. No `-lc++` injection, compiler/CMake override, PATH substitution, source edit, retry, unsandboxed build, provider/model/threshold substitution, QSet/projection, tag, release, or publication.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-013/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-013/`
 - Prior result/confidence: `Fail / 98%`.
 - Current result/confidence: `Fail / 98%`.
 - New failure: `API-F-010`; prior `API-F-009` is directly resolved.
@@ -454,7 +454,7 @@ None.
 
 ### API-REV-014 — Chinese package and runtime function pass; quality authority and RSS gates fail
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-031`; API/E2E round 14.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-031`; API/E2E round 14.
 - Triggering scenarios: direct `API-F-010` recheck in `API-VOICE-004`, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-004`, `003`, `011`, and `012` while fail-closed gates pass.
 - Related upstream revisions: `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-021`, `CRR-030`, `CRR-031`; delivery `N/A`.
 - Why recorded: the corrected strict C++ identity directly passes the actual resolved CMake/link/archive boundary, producing two byte-identical verified Chinese packages. The complete packaged runtime then succeeds on all 260 attempts, including all 200 WAVs, with full lifecycle/recovery/offline/relocation/no-mutation/compliance evidence. Functional Summary 2 nevertheless fails the approved quality-non-regression and process-tree RSS gates.
@@ -483,10 +483,10 @@ None.
 - Performance classification: `loaded-host-observation`; warm-preparation p95 `10.326 s` misses the `10 s` reference, while all other p95 references pass. This performance miss is non-blocking and independent of the functional fail.
 - Stop/reroute: fail closed after durable Chinese Summary/Assessment/attempt evidence. No retry, threshold change, baseline/scorer rewrite, provider/model substitution, current-source English run, QSet/projection, tag, release, or publication.
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/`
 - Prior result/confidence: `Fail / 98%`.
 - Current result/confidence: `Fail / 99%`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review. Likely reset owner is Solution Designer unless review identifies a bounded scorer or runtime-resource implementation defect.
@@ -494,7 +494,7 @@ None.
 
 ### API-REV-015 — Corrected resource policy passes; controlled Chinese cold start times out
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-033`; API/E2E round 15.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-033`; API/E2E round 15.
 - Triggering scenarios: direct `API-F-011` / `API-F-012` recheck in `API-VOICE-004`, reusable `API-VOICE-002` / `API-VOICE-013`, then current-matrix `API-VOICE-004`, `003`, `011`, and `012` while fail-closed gates pass.
 - Related upstream revisions: `SR-012`, `ARCH-REV-013`, `IR-022`, `CRR-032`, `CRR-033`; delivery `N/A`.
 - Why recorded: the corrected Chinese scorer/map/baseline and exact profile resource policy passed source/focused/full checks and propagated into current package evidence. Two current-source Chinese builds were byte-identical and passed verification, reproducibility, and compliance. The controlled actual-M1 full profile then failed a hard cold-start readiness deadline before the warm/quality phase.
@@ -521,10 +521,10 @@ None.
 - Stop/reroute: fail closed. No retry, timeout/policy/threshold relaxation, warm proxy, provider/model substitution, English run, QSet/projection, tag, release, or publication.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-015/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-015/`
 - Prior result/confidence: `Fail / 99%`.
 - Current result/confidence: `Fail / 99%`.
 - New failure: `API-F-013`; `API-F-012` is directly resolved; `API-F-011` execution recheck remains incomplete.
@@ -533,7 +533,7 @@ None.
 
 ### API-REV-016 — Both current packages pass; stale QSet path predicate blocks branch closure
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-035`; API/E2E round 16.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-035`; API/E2E round 16.
 - Triggering scenarios: direct `API-F-013` recheck in `API-VOICE-004`, then complete current-source `API-VOICE-004`, `API-VOICE-003`, `API-VOICE-011`, and `API-VOICE-012`.
 - Related upstream revisions: `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `CRR-034`, `CRR-035`; delivery `N/A`.
 - Why recorded: exact source `32829080938911f0f46390a3fd2af823e105bd32` passed focused/full checks, actual-M1 preflight, both double builds, both complete package/profile qualifications, quality, lifecycle, resource, compliance, and privacy. QSet 2 then independently failed only because its profile verifier retained an obsolete path regex that rejects ten valid authenticated Chinese Build Input Path 1 routes.
@@ -560,10 +560,10 @@ None.
 - Stop/reroute: fail closed. No path mutation/omission, workaround, profile retry, Catalog 3, tag, release, or publication.
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/`
 - Prior result/confidence: `Fail / 99%`.
 - Current result/confidence: `Fail / 99%`.
 - New failure: `API-F-014`; `API-F-013` is directly resolved.
@@ -572,7 +572,7 @@ None.
 
 ### API-REV-017 — Canonical QSet verifier closes the two-profile branch qualification
 
-- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-037`; API/E2E round 17.
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-037`; API/E2E round 17.
 - Triggering finding or scenario IDs: direct recheck of `API-F-014` / `CR-F-034` in `API-VOICE-012`; `AC-006`, `AC-019`, `AC-021`, `AC-023`.
 - Related solution, architecture-review, implementation, and code-review revisions: `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `IR-024`, `CRR-035`, `CRR-036`, `CRR-037`; Delivery `N/A`.
 - Why recorded: the reviewed aggregate verifier correction delegates the complete build-input manifest path set to canonical Build Input Path 1 without changing any product/package/profile byte. The approved aggregate-only rerun revalidated immutable API-REV-016 evidence, produced a passing Qualification Set 2, produced Branch Catalog Projection 2, and independently verified its exact bytes.
@@ -588,10 +588,10 @@ None.
 | `API-F-013` and earlier profile/package failures                                                           | resolved before API-REV-016 | Reconfirmed through immutable content bindings | every API-REV-016 evidence checksum Pass; unchanged Chinese 260/260 and English 160/160 subjects are bound into passing QSet/projection                                   |
 
 - Canonical artifacts updated:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/`
 - Prior result and confidence: `Fail / 99%`.
 - Current result and confidence: **`Pass / 99%`**.
 - New or remaining failure IDs: none in the approved current two-profile darwin-arm64 API/E2E scope.

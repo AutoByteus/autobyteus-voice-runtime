@@ -113,6 +113,17 @@ non-pass `qualification-summary-v2.json`/Qualification Set 2 result. Workflow
 uploads for each profile and the aggregate qualification audit run under
 `always()`; no failed trial is retried, excluded, or relabeled as passing.
 
+Chinese preparation verifies the complete package before recognizer
+construction through the Apple CommonCrypto SHA-256 owner using a fixed 1 MiB
+buffer. Whole-model allocation, skipped or cached manifest verification, and
+post-recognizer integrity checks are not supported. Private preparation stages
+are canonical LF-framed stderr diagnostics, not Protocol 1 output. The
+qualification runner timestamps complete-line receipt and RSS scan windows on
+one attempt clock, arms boundary observations, and derives inclusive interval
+Stage Evidence without treating worker durations as qualification timestamps.
+Missing or invalid coverage fails successful-attempt evidence rather than being
+fabricated or silently ignored.
+
 Delivery independently repeats qualification after integrating maintained
 `main`, then builds the acyclic chain: Qualification Set 2 -> Release
 Qualification Evidence 2 -> Catalog 3 -> Pre-Tag Release Manifest 2. Publication

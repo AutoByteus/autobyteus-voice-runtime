@@ -1,0 +1,9 @@
+{
+  "probe": "all counted attempts succeed but the English quality value exceeds its blocking threshold",
+  "writerReturned": true,
+  "summaryFunctionalDecision": "fail",
+  "summaryFailureCategory": "functional-gate-failed",
+  "attemptLedgerDecision": "pass",
+  "attemptLedgerFailureCategory": null,
+  "assessment": "controlled-pass"
+}
