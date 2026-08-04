@@ -87,7 +87,7 @@ test("Build Input path policy rejects aliases, unsafe syntax, and collisions", (
 test("aggregate verifier accepts the exact retained API-REV-016 Chinese manifest", async () => {
   const manifestPath = path.join(
       root,
-      "tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/chinese-darwin-arm64/build-input-manifest.json",
+      "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/chinese-darwin-arm64/build-input-manifest.json",
     ),
     manifest = await readJson(manifestPath),
     punctuationPaths = manifest.files
