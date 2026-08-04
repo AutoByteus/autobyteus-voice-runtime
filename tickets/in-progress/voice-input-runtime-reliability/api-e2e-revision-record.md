@@ -20,6 +20,7 @@
 | `API-REV-014` | Code Reviewer / `code-review-report.md` / `CRR-031`            | `SR-010`, `SR-011`, `ARCH-REV-012`, `IR-021`, `CRR-030`, `CRR-031` | `Fail / 98%`              | `Fail / 99%`                |
 | `API-REV-015` | Code Reviewer / `code-review-report.md` / `CRR-033`            | `SR-012`, `ARCH-REV-013`, `IR-022`, `CRR-032`, `CRR-033`           | `Fail / 99%`              | `Fail / 99%`                |
 | `API-REV-016` | Code Reviewer / `code-review-report.md` / `CRR-035`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `CRR-034`, `CRR-035` | `Fail / 99%`              | `Fail / 99%`                |
+| `API-REV-017` | Code Reviewer / `code-review-report.md` / `CRR-037`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-024`, `CRR-036`, `CRR-037` | `Fail / 99%`              | `Pass / 99%`                |
 
 ## Revision Entries
 
@@ -568,3 +569,31 @@ None.
 - New failure: `API-F-014`; `API-F-013` is directly resolved.
 - Recommended recipient: `code_reviewer` for focused failure-origin review.
 - Remaining proof after reviewed correction: regenerate/reverify QSet 2 against unchanged exact profile evidence if source/contract impact permits, then produce and independently verify Branch Catalog Projection 2. Delivery-owned integrated-main/release work remains later.
+
+### API-REV-017 — Canonical QSet verifier closes the two-profile branch qualification
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`; `CRR-037`; API/E2E round 17.
+- Triggering finding or scenario IDs: direct recheck of `API-F-014` / `CR-F-034` in `API-VOICE-012`; `AC-006`, `AC-019`, `AC-021`, `AC-023`.
+- Related solution, architecture-review, implementation, and code-review revisions: `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `IR-024`, `CRR-035`, `CRR-036`, `CRR-037`; Delivery `N/A`.
+- Why recorded: the reviewed aggregate verifier correction delegates the complete build-input manifest path set to canonical Build Input Path 1 without changing any product/package/profile byte. The approved aggregate-only rerun revalidated immutable API-REV-016 evidence, produced a passing Qualification Set 2, produced Branch Catalog Projection 2, and independently verified its exact bytes.
+- Coverage/durable test changes: no repository-resident durable API/E2E coverage was added, updated, or removed. The upstream IR-024 two-file correction and exact regression already passed CRR-037.
+- Scenarios rechecked: `API-VOICE-012` only. English `API-VOICE-003` and Chinese `API-VOICE-004` profile subjects were reused after exact checksum/scope validation and were neither rerun nor relabeled.
+- Execution delta: every API-REV-016 checksum Pass; correction scope exact; focused canonical path contract 6/6 Pass; retained qualification copies and two archives exact; QSet 2 Pass; Branch Catalog Projection 2 Pass; separate projection verifier Pass.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                                                              | Previous Classification     | Current Resolution                             | Evidence                                                                                                                                                                  |
+| ---------------------------------------------------------------------------------------------------------- | --------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `API-F-014` / `CR-F-034`: QSet used a stale path regex and rejected ten valid authenticated Chinese routes | Local Fix                   | **Resolved / Pass**                            | exact 3,152-record manifest passes canonical owner; QSet SHA `c5eaedef...0003` has two Pass rows; projection SHA `bcc3b1c2...eddd`; independent verifier `decision: pass` |
+| `API-F-013` and earlier profile/package failures                                                           | resolved before API-REV-016 | Reconfirmed through immutable content bindings | every API-REV-016 evidence checksum Pass; unchanged Chinese 260/260 and English 160/160 subjects are bound into passing QSet/projection                                   |
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/`
+- Prior result and confidence: `Fail / 99%`.
+- Current result and confidence: **`Pass / 99%`**.
+- New or remaining failure IDs: none in the approved current two-profile darwin-arm64 API/E2E scope.
+- Recommended recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable`, then Delivery.
+- Remaining risks/untested scope: performance remains a loaded-host observation rather than controlled certification; x64, Linux, Windows, and `auto` remain deferred; maintained-main refresh, integrated qualification, documentation sync, Catalog 3, tag, publication, and published-byte equality remain Delivery-owned. No release action occurred.

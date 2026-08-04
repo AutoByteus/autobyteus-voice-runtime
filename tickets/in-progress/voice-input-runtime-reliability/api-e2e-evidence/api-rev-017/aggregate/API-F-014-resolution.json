@@ -1,0 +1,106 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-012",
+  "resolvedFailureId": "API-F-014",
+  "acceptanceCriteria": ["AC-006", "AC-019", "AC-021", "AC-023"],
+  "decision": "pass",
+  "priorResult": {
+    "revision": "API-REV-016",
+    "decision": "fail",
+    "failureCategory": "qualification-verification-failed"
+  },
+  "correctionReview": "CRR-037",
+  "retainedEvidenceCommit": "34c45617284de7890fd7a398fb3c13d215bdb08c",
+  "sourceCommit": "32829080938911f0f46390a3fd2af823e105bd32",
+  "runnerCommit": "32829080938911f0f46390a3fd2af823e105bd32",
+  "testCommit": "5c8afe4c5ba3843d9f813d9b48a0f05c1e433f9a",
+  "profileEvidenceReused": true,
+  "profilesRerun": false,
+  "profileDecisions": [
+    {
+      "profileId": "english",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "functionalDecision": "pass",
+      "archive": {
+        "fileName": "voice-english-darwin-arm64-1.0.0.zip",
+        "sizeBytes": 645513268,
+        "sha256": "9e4d1d5981ba9389f63bdf98094078a6152fbac05ff42d52c287138baafa46f8",
+        "extractedSizeBytes": 1195561364,
+        "entryCount": 6502
+      },
+      "performanceAssessment": {
+        "fileName": "performance-assessment-v1.json",
+        "sha256": "d68cacb2d58ce0d1c191b66261b1008d5f114bfa7b0ef1d1037d9a7c1ad93058",
+        "classification": "loaded-host-observation",
+        "resourcePolicySha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744"
+      }
+    },
+    {
+      "profileId": "chinese",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "functionalDecision": "pass",
+      "archive": {
+        "fileName": "voice-chinese-darwin-arm64-1.0.0.zip",
+        "sizeBytes": 1068528640,
+        "sha256": "84783c61b8a08e0e0848a4906139210868cf552ee0104d5179be7144be432cc3",
+        "extractedSizeBytes": 1285167443,
+        "entryCount": 22
+      },
+      "performanceAssessment": {
+        "fileName": "performance-assessment-v1.json",
+        "sha256": "931ca62fafcc517b9efdd3639b4aa994889e7193f1f2fcbdfdf84fd9d8792017",
+        "classification": "loaded-host-observation",
+        "resourcePolicySha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744"
+      }
+    }
+  ],
+  "qualificationSet": {
+    "functionalDecision": "pass",
+    "performanceAssessment": "loaded-host-observation",
+    "sha256": "c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003",
+    "reviewerProbeSha256": "c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003",
+    "matchesReviewerProbe": true
+  },
+  "branchCatalogProjection": {
+    "sha256": "bcc3b1c2f3afc42fa0861adcdd3558ad0779ecf7f3c77c370501679a50bbeddd",
+    "entryCount": 2,
+    "assetSet": {
+      "sha256": "47d79c0fdf23e7f67aa209d278f5f86364f53692801a3968b7943701f35aae05",
+      "items": [
+        {
+          "fileName": "voice-chinese-darwin-arm64-1.0.0.zip",
+          "sizeBytes": 1068528640,
+          "sha256": "84783c61b8a08e0e0848a4906139210868cf552ee0104d5179be7144be432cc3"
+        },
+        {
+          "fileName": "voice-english-darwin-arm64-1.0.0.zip",
+          "sizeBytes": 645513268,
+          "sha256": "9e4d1d5981ba9389f63bdf98094078a6152fbac05ff42d52c287138baafa46f8"
+        }
+      ]
+    },
+    "qualificationSet": {
+      "fileName": "qualification-set-v2.json",
+      "sha256": "c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003"
+    }
+  },
+  "independentVerification": {
+    "schemaVersion": 2,
+    "decision": "pass",
+    "failureCategory": null,
+    "releaseMatrixSha256": "f3f57336d2598bc7c78ba0d8a10e6ad4da77c16b10274533986f29571d6de76d",
+    "qualificationSetSha256": "c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003",
+    "projectionSha256": "bcc3b1c2f3afc42fa0861adcdd3558ad0779ecf7f3c77c370501679a50bbeddd",
+    "assetSetSha256": "47d79c0fdf23e7f67aa209d278f5f86364f53692801a3968b7943701f35aae05",
+    "artifactSha256": "a78c59fa085a95a6af28cdd3adc6065f87c216caceb304f6edcf034cd5e96c27"
+  },
+  "releaseActionsPerformed": false,
+  "durableApiE2eCoverageChanged": false,
+  "residualScope": [
+    "loaded-host performance remains observational, not controlled certification",
+    "darwin-x64/linux-x64/win32-x64 and auto remain deferred outside the current release matrix",
+    "maintained-main refresh, integrated qualification, Catalog 3, tag, publication, and published-byte equality remain Delivery-owned"
+  ]
+}

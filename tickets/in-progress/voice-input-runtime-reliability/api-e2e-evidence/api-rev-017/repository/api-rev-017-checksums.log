@@ -1,0 +1,16 @@
+./aggregate/API-F-014-resolution.json: OK
+./aggregate/branch-catalog-projection-v2.json: OK
+./aggregate/branch-catalog-projection-verification-v2.json: OK
+./aggregate/branch-catalog-projection.exit-code: OK
+./aggregate/branch-catalog-projection.log: OK
+./aggregate/qualification-set-v2.json: OK
+./aggregate/qualification-set.exit-code: OK
+./aggregate/qualification-set.log: OK
+./aggregate/verify-branch-catalog-projection.exit-code: OK
+./aggregate/verify-branch-catalog-projection.log: OK
+./repository/API-VOICE-012-aggregate-only-reuse-impact.json: OK
+./repository/api-rev-016-retained-checksums.log: OK
+./repository/correction-scope-and-source-integrity.log: OK
+./repository/focused-build-input-path-contract.log: OK
+./repository/json-parse.log: OK
+./repository/retained-profile-and-asset-identity.log: OK
