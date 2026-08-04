@@ -117,6 +117,7 @@ the guarded workflow rather than relabeling the historical attempt.
 - Chinese: build completed; full qualification was terminated with signal 15 / exit 143 before the later user-directed cancellation.
 - Aggregate: started, then cancelled. Publication was never dispatched.
 - User requirement: release CI is a minimal integration/artifact/publication gate and must not repeat API/E2E-owned comprehensive performance/profile qualification by default.
+- Runner requirement: release CI must not depend on the user's personal computer; execution belongs on GitHub-hosted or dedicated organization-managed runner infrastructure.
 - Classification: `Design Impact / ownership boundary` to `solution_designer`.
 - Release state: no `v1.0.0` tag, GitHub Release, catalog, manifest, or published asset.
 - Evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30883225852/`.

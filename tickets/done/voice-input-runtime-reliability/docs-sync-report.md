@@ -91,7 +91,8 @@ tag publication, published-byte verification, and the deferred target set.
 ## Delivery Round 4 — Release-Pipeline Ownership Clarification
 
 - User decision: Delivery/release CI must remain minimal and must not repeat the comprehensive performance/profile qualification already owned by API/E2E.
+- Infrastructure decision: production release CI must not rely on a personal computer; the approved design must use GitHub-hosted or dedicated organization-managed runner infrastructure.
 - Impact classification: `Design Impact / ownership boundary`; the current `.github/workflows/release-voice-runtime.yml` encodes a materially different release contract and cannot be edited safely as a documentation-only Delivery change.
 - Immediate docs decision: no speculative README or workflow guidance is written. Existing product/runtime documentation remains accurate; release-pipeline guidance is held for a reviewed Solution Design revision.
-- Required long-lived follow-up: document the approved minimal final-main gate, immutable API/E2E evidence/artifact promotion rules, requalification triggers, and bounded publication-byte verification after design/review/implementation completes.
+- Required long-lived follow-up: document the approved minimal final-main gate, immutable API/E2E evidence/artifact promotion rules, requalification triggers, bounded publication-byte verification, and managed runner ownership after design/review/implementation completes.
 - Current result: `Blocked for release docs sync`; route to `solution_designer` rather than guessing.

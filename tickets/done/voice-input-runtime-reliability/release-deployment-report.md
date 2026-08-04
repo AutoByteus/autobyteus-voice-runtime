@@ -112,6 +112,7 @@ release is part of this ticket.
 - Aggregate: cancelled after starting artifact download.
 - Publication: not dispatched; no tag/release/assets exist.
 - User requirement: pipeline tests must be minimal because API/E2E already owns comprehensive qualification and performance coverage.
+- Infrastructure requirement: production release CI must not use or depend on the user's personal workstation; use GitHub-hosted or dedicated organization-managed runner capacity.
 - Classification: `Design Impact / ownership boundary`; required recipient `solution_designer`.
 - Delivery constraint: do not redesign or bypass qualification evidence reuse ad hoc. Resume only from a reviewed minimal-CI/evidence-promotion design.
 - Evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30883225852/`.
