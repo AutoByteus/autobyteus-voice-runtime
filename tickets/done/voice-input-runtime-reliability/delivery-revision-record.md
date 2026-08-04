@@ -6,6 +6,7 @@
 | ----------- | -------------------------------------------------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
 | `DR-001`    | `code_reviewer` handoff after `CRR-037`, `API-REV-017`, and `CRR-038`                  | `N/A`                                   | `Pass — latest main already integrated, repository/checksum checks passed, README synchronized, handoff ready; explicit user gate holds finalization/release` | `README.md`, `delivery-integration-check.log`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`, `release-notes.md` |
 | `DR-002`    | User authorized finalization and release and clarified the voice-runtime-only boundary | `DR-001 — Pass / awaiting verification` | `Pass — verification gate satisfied, target unchanged, ticket archived, v1.0.0 finalization authorized`                                                       | `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`, `release-notes.md`                                                |
+| `DR-003`    | Finalized-main v1.0.0 prequalification run `30881048872`                               | `DR-002 — Pass / release authorized`    | `Blocked — repository finalization passed; prequalification failed closed on two archived-ticket evidence paths in durable tests; no tag or release created`  | `delivery-evidence/prequalify-30881048872/`, `handoff-summary.md`, `release-deployment-report.md`                                              |
 
 ## Revision Entries
 
@@ -36,3 +37,18 @@
 - Post-verification refresh: `origin/main` remained `996cebf2295f7458c0a80b7894b34b0f1aecb575`; no new base commit, re-integration, rerun, or renewed verification was required.
 - Ticket transition: moved to `tickets/done/voice-input-runtime-reliability` before the final ticket commit.
 - Current result: `Pass`; repository finalization and the guarded prequalify-then-publish workflow are authorized and in progress.
+
+### DR-003 — Repository finalized; release prequalification blocked
+
+- Date: 2026-08-04
+- Prior authoritative result: `DR-002` — user verification received, runtime-only v1.0.0 release authorized, target refresh unchanged, and ticket archived.
+- Ticket finalization: commit `f02ccbf38157c4d13758b5f1cb70eab57cff7237` was pushed to `origin/codex/voice-input-runtime-reliability`.
+- Maintained-main finalization: ticket branch merged with merge commit `a890d22031359f53d94c7c67bf183344fb35d904`; local and `origin/main` matched after push. Unrelated untracked `lea-termin-erinnerung-2026-03-26.ics` and `research/` remained untouched.
+- Release attempt: prequalification workflow run `30881048872` on exact finalized-main subject `a890d220...` completed `failure`: https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/30881048872.
+- Direct failure: the current-release-matrix job passed, but both profile jobs failed the full source/test gate because `tests/release/build-input-path-contract.test.mjs` and `tests/scoring/chinese-qualification.test.mjs` still resolve retained evidence under `tickets/in-progress/voice-input-runtime-reliability/` after the required Delivery archival moved it to `tickets/done/voice-input-runtime-reliability/`.
+- Consequence: no profile build or qualification ran; aggregate pre-tag failed from absent inputs; publication was not dispatched; `v1.0.0`, its GitHub Release, Catalog 3, release evidence, manifest, and published-byte result do not exist.
+- Classification: `Local Fix / durable test path`, routed to `implementation_engineer`; the durable test correction must receive the applicable review and validation before Delivery retries the exact prequalify-then-publish sequence.
+- Evidence: `delivery-evidence/prequalify-30881048872/`; manifest SHA-256 entries are recorded in its `SHA256SUMS.txt`.
+- Runner lifecycle: temporary runner `voice-m1-max-20260804` was stopped and removed from the repository after the failed run; GitHub reports zero registered repository runners.
+- Cleanup disposition: ticket worktree, local branch, and remote ticket branch are intentionally retained while release is blocked. No already-completed repository finalization was undone.
+- Current result: `Blocked` for release/publication; repository finalization itself is complete.

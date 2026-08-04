@@ -13,8 +13,8 @@ release is part of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-002`
-- Notes: user verification and runtime-only v1.0.0 authorization are recorded; finalization is in progress.
+- Current revision: `DR-003`
+- Notes: repository finalization passed; the first finalized-main prequalification failed closed before build/qualification, so release remains blocked and unpublished.
 
 ## Initial Delivery Integration Refresh
 
@@ -57,38 +57,45 @@ release is part of this ticket.
 - Current package/runtime version: `1.0.0`.
 - Intended tag: `v1.0.0`.
 - Tag availability: local and remote tag absent at handoff preparation.
-- Release commit: `Not created — verification gate`.
+- Finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`.
+- Release tag: `Not created`; the prequalification gate failed before publication.
 
 ## Repository Finalization
 
 - Bootstrap context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`.
 - Ticket branch: `codex/voice-input-runtime-reliability`.
-- Ticket branch final commit/push: `In progress`.
+- Ticket branch final commit/push: `Pass`; `f02ccbf38157c4d13758b5f1cb70eab57cff7237` is on `origin/codex/voice-input-runtime-reliability`.
 - Finalization target: `origin/main` / local `main` at `/Users/normy/autobyteus_org/autobyteus-voice-runtime`.
 - Maintained-main checkout note: unrelated untracked `lea-termin-erinnerung-2026-03-26.ics` and `research/` are user state and must be preserved.
 - Target advanced after verification: `No`.
 - Delivery edits protected before re-integration: `Not needed`; target unchanged.
 - Re-integration before final merge: `Not needed`.
-- Target update, merge, and push: `In progress`.
-- Status: `In progress — authorized and unblocked`.
+- Target update, merge, and push: `Pass`; merge commit `a890d22031359f53d94c7c67bf183344fb35d904` is on `origin/main`.
+- Status: `Repository finalization complete`; the later release-stage failure does not undo it.
 
 ## Release / Publication / Deployment
 
 - Applicable: `Yes`, after repository finalization.
 - Method: documented GitHub Actions workflow `.github/workflows/release-voice-runtime.yml`.
-- Planned prequalification dispatch: `gh workflow run release-voice-runtime.yml --repo AutoByteus/autobyteus-voice-runtime --ref main -f operation=prequalify -f release_tag=v1.0.0 -f runtime_version=1.0.0`.
-- Planned publication dispatch: same workflow on `main`, `operation=publish`, with the exact successful prequalification run ID.
+- Prequalification dispatch: executed against exact finalized-main commit `a890d22031359f53d94c7c67bf183344fb35d904` as run `30881048872`.
+- Publication dispatch: not executed because prequalification did not pass.
 - Required prepublication result: complete two-profile qualification, integrated Qualification Set 2, Release Qualification Evidence 2, Catalog 3, Pre-Tag Release Manifest 2, and pre-tag proof all pass from the final `main` commit.
 - Required publication result: tag/release created, exactly two archives plus Catalog 3, Release Evidence, and Pre-Tag Manifest published, then Published Asset Verification Result 1 `pass`.
-- Result: `In progress — repository finalization precedes prequalification`.
+- Result: `Blocked / Fail closed` — matrix derivation passed, but both profile jobs failed `npm run check` before preflight/build/qualification because two durable tests retained now-stale `tickets/in-progress/voice-input-runtime-reliability/` evidence paths after required ticket archival. Aggregate pre-tag then failed consequentially because no qualified artifact existed.
+- Direct failing test owners: `tests/release/build-input-path-contract.test.mjs` and `tests/scoring/chinese-qualification.test.mjs`.
+- Classification/routing: `Local Fix / durable test path` to `implementation_engineer`; after correction, the applicable code/test review and executable validation must pass before Delivery retries.
+- Workflow evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30881048872/`.
+- Workflow URL: https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/30881048872.
+- Publication state: no `v1.0.0` tag, no GitHub Release, and no published asset exists.
 - Release notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/release-notes.md` prepared for handoff; workflow publication note remains repository-owned.
 - Rollback/quarantine: a published-byte failure must retain evidence/tag, delete only the GitHub Release object/assets through the quarantine owner, and require a new version/full cycle. No tag reuse.
 
 ## Post-Finalization Cleanup
 
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime`.
-- Worktree cleanup/prune/local branch cleanup: `Pending successful finalization and release verification`.
-- Remote branch cleanup: `Pending`.
+- Worktree cleanup/prune/local branch cleanup: `Retained because release is blocked`.
+- Remote branch cleanup: `Retained because release is blocked`.
+- Temporary self-hosted release runner: stopped and deregistered after the failed attempt; repository runner count returned to zero.
 
 ## Environment Or Persisted-Data Transition Notes
 
@@ -98,17 +105,20 @@ release is part of this ticket.
 
 ## Verification Checks
 
-| Check                                       | Result              | Evidence                                                 |
-| ------------------------------------------- | ------------------- | -------------------------------------------------------- |
-| Refresh `origin/main`                       | Pass                | `996cebf2295f7458c0a80b7894b34b0f1aecb575`               |
-| Main ancestry/currentness                   | Pass                | merge base equals `origin/main`; left/right `0 / 74`     |
-| Full source/unit/contract suite             | Pass                | 111 Node TAP, 7 Python, Go/source/schema/evidence checks |
-| API-REV-016 immutable checksums             | Pass                | every manifest entry verified                            |
-| API-REV-017 aggregate checksums             | Pass                | every manifest entry verified                            |
-| API/E2E authority                           | Pass / 99%          | English 160/160; Chinese 260/260; QSet/Projection Pass   |
-| Docs sync                                   | Pass / Updated      | `docs-sync-report.md`; README diff                       |
-| Final integrated-main release qualification | Pending user gate   | required after merge, before tag                         |
-| Published-byte equality                     | Pending publication | must be `pass` before completion                         |
+| Check                                       | Result         | Evidence                                                 |
+| ------------------------------------------- | -------------- | -------------------------------------------------------- |
+| Refresh `origin/main`                       | Pass           | `996cebf2295f7458c0a80b7894b34b0f1aecb575`               |
+| Main ancestry/currentness                   | Pass           | merge base equals `origin/main`; left/right `0 / 74`     |
+| Full source/unit/contract suite             | Pass           | 111 Node TAP, 7 Python, Go/source/schema/evidence checks |
+| API-REV-016 immutable checksums             | Pass           | every manifest entry verified                            |
+| API-REV-017 aggregate checksums             | Pass           | every manifest entry verified                            |
+| API/E2E authority                           | Pass / 99%     | English 160/160; Chinese 260/260; QSet/Projection Pass   |
+| Docs sync                                   | Pass / Updated | `docs-sync-report.md`; README diff                       |
+| Ticket branch commit/push                   | Pass           | `f02ccbf38157c4d13758b5f1cb70eab57cff7237`               |
+| Maintained-main merge/push                  | Pass           | `a890d22031359f53d94c7c67bf183344fb35d904`               |
+| Final integrated-main release qualification | Fail / Blocked | run `30881048872`; two stale archived-ticket test paths  |
+| Tag and GitHub Release                      | Not created    | publication correctly not dispatched                     |
+| Published-byte equality                     | Not run        | no publication exists                                    |
 
 ## Residual Risks
 
@@ -118,7 +128,11 @@ release is part of this ticket.
 
 ## Final Status
 
-**In progress — user-authorized runtime-only finalization and release.** The
-latest maintained main is already contained, checks/docs pass, and the ticket is
-archived. Repository finalization, complete final-main prequalification,
-tag/publication, published-byte verification, and cleanup are being executed.
+**Blocked — repository finalization complete, release unpublished.** The ticket
+branch and maintained `main` were pushed successfully, but finalized-main
+prequalification run `30881048872` failed closed before any package build or
+qualification because two durable tests still point at the ticket's former
+`in-progress` evidence location. No tag, GitHub Release, or published byte was
+created. The required next owner is `implementation_engineer`; Delivery must
+resume only after the resulting durable test correction completes its applicable
+review and validation chain.
