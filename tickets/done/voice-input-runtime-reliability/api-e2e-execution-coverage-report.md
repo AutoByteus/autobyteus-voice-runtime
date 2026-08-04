@@ -2,158 +2,142 @@
 
 ## Execution Round Meta
 
-- Requirements Doc: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
-- Investigation Notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
-- Design Spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Supplemental authorities: `benchmark-protocol.md`, `backend-selection-study.md`, `english-preservation-correction.md`, `chinese-qualification-correction.md`, `current-platform-qualification.md`, `voice-runtime-contract.md`, `cold-preparation-stability-study.md`, and their referenced evidence trees.
-- Upstream revisions/reviews: `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `IR-024`, `CRR-034`–`CRR-037`.
-- Retained product source/runner commit: `32829080938911f0f46390a3fd2af823e105bd32`.
-- Corrected verifier/test commit: `5c8afe4c5ba3843d9f813d9b48a0f05c1e433f9a`.
-- Implementation artifact/upstream HEAD at handoff: `3916b0646f5a5d487a066057d35f34a651a58f46`.
-- Retained API-REV-016 evidence commit: `34c45617284de7890fd7a398fb3c13d215bdb08c`.
-- Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-- API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current revision / round: `API-REV-017 / 17`.
-- Prior result: `API-REV-016 — Fail / 99%` at `API-F-014` in `API-VOICE-012`.
-- Latest authoritative result: **`API-REV-017 — Pass / 99%` for the exact two-entry current darwin-arm64 matrix.**
+- Requirements/design basis: original `requirements.md`, `investigation-notes.md`, `design-spec.md`, `benchmark-protocol.md`, current-platform/voice-runtime contracts, and accepted correction studies in `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/`.
+- Current worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix`.
+- Current ticket artifacts: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/`.
+- Upstream revisions: `SR-013`, `SR-014`, `ARCH-REV-015`, `API-REV-017`, `DR-003`, `IR-025`, `CRR-038`, `CRR-039`.
+- Preserved finalized release-candidate merge: `a890d22031359f53d94c7c67bf183344fb35d904`.
+- Current origin/main base at implementation start: `5531e83421dce859f9934c16e006c34cf5291cde`.
+- Correction commit: `f5c14ed9e9ad835e33eec20033f625d61d1e0173`.
+- Implementation artifact/current tested HEAD: `b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e`.
+- Triggering Delivery result: `DR-003`, prequalification run `30881048872`.
+- Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`.
+- API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`.
+- Current revision / round: `API-REV-018 / 18`.
+- Prior authoritative API/E2E result: `API-REV-017 — Pass / 99%`.
+- Latest authoritative result: **`API-REV-018 — Pass / 99%` for the post-archive archived-checkout source/test gate.**
 
 ## Investigation And Execution Basis
 
 - Coverage investigation refreshed before execution: `Yes`.
-- Authorized plan followed: revalidate immutable API-REV-016 evidence and correction scope -> run the focused canonical path-contract coverage -> regenerate Qualification Set 2 with honest three-commit identity -> generate Branch Catalog Projection 2 -> independently recompute and verify the projection.
+- Plan followed: clean archived-ticket checkout -> correction scope/layout/stale-reference proof -> immutable fixture identity/semantics -> exact closed-toolchain verification -> focused two-file tests -> full repository check -> retained-history checksum and clean-source validation -> owned checkout cleanup.
 - Material deviation: `None`.
-- Profile rerun: `No`, as required by `CRR-037`; no package/profile-relevant byte or authority changed.
-- Existing coverage decisions revised: `API-F-014` moved from open `Local Fix` to directly resolved. English and Chinese API-REV-016 qualification/profile evidence remains immutable and valid.
+- Existing coverage decision: API-REV-016/017 package/profile/QSet/projection evidence remains valid because no product or authority-relevant byte changed.
+- Package/profile requalification: `Not Required` by direct impact evidence and `CRR-039` scope.
 - Repository-resident durable API/E2E coverage changed: `No`.
 - Reroute required during execution: `No`.
 
 ## Compatibility / Legacy Scope Check
 
-- Invalid compatibility or legacy-retention behavior observed: `No`.
-- Approved persisted-data transition: `Not Affected`.
-- User/desktop state: untouched; this aggregate-only round read retained API-owned evidence and archives and wrote only API-REV-017 evidence.
-- Compatibility-only durable coverage added or retained: `No`.
+- Former `tickets/in-progress/...` fixture behavior retained through fallback: `No`.
+- Lifecycle probing, copied fixture, duplicate authority, or dual-path read added: `No`.
+- Approved persisted-data decision: `Not Affected`.
+- User/shared state changed: `No`.
+- Compatibility-only API/E2E coverage added: `No`.
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario / Boundary                 | Requirements / Criteria                                                                     | Actual Surface                                                                             | Result                            | Evidence                                                             |
-| ----------------------------------- | ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | --------------------------------- | -------------------------------------------------------------------- |
-| retained English profile            | `API-VOICE-003`; `AC-003`, `AC-006`–`011`, `AC-017`, `AC-019`, `AC-020`, `AC-023`           | immutable API-REV-016 Summary/Assessment/archive and 160/160 qualification                 | Pass / reused                     | `api-rev-016/english-darwin-arm64/`; API-REV-017 reuse-impact record |
-| retained Chinese profile            | `API-VOICE-004`; `AC-003`, `AC-006`–`011`, `AC-017`, `AC-019`, `AC-020`, `AC-023`, `AC-024` | immutable API-REV-016 Summary/Assessment/archive and 260/260 qualification                 | Pass / reused                     | `api-rev-016/chinese-darwin-arm64/`; API-REV-017 reuse-impact record |
-| prior `API-F-014`                   | `API-VOICE-012`; `AC-006`, `AC-019`, `AC-021`, `AC-023`                                     | corrected production QSet verifier over exact retained 3,152-record Chinese input manifest | **Resolved / Pass**               | focused 6/6; QSet 2 functional Pass                                  |
-| Qualification Set 2                 | `API-VOICE-012`; exact matrix and one-way evidence bindings                                 | corrected production composer and independent profile verifier                             | **Pass**                          | `aggregate/qualification-set-v2.json`                                |
-| Branch Catalog Projection 2         | `API-VOICE-012`; exact two entries/assets, release-neutral projection                       | production projection composer                                                             | **Pass**                          | `aggregate/branch-catalog-projection-v2.json`                        |
-| independent projection verification | `API-VOICE-012`; matrix/QSet/assets/entries byte recomputation                              | separately implemented production verifier                                                 | **Pass**                          | `aggregate/branch-catalog-projection-verification-v2.json`           |
-| `API-VOICE-005`–`010`               | non-current targets                                                                         | none                                                                                       | Deferred / Outside Current Matrix | approved current-platform scope                                      |
+| Scenario / Boundary               | Basis                          | Execution Surface                                                      | Result                                                 | Evidence                              |
+| --------------------------------- | ------------------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------- |
+| `API-VOICE-014` archived checkout | `DR-003`, `BEH-004`, `BEH-010` | clean detached checkout at `b19f51f...`, ticket only in `tickets/done` | Pass                                                   | layout/scope log                      |
+| exact correction scope            | `IR-025`, `CRR-039`            | commit and diff inspection                                             | Pass; two literals, 2 insertions/2 deletions           | layout/scope log                      |
+| API-REV-016 manifest fixture      | Build Input Path regression    | final archived path, SHA-256, record count, focused test               | Pass; `f7bfb8f...2478`, 3,152 records                  | fixture log; focused log              |
+| API-REV-014 raw-results fixture   | Chinese comparable re-score    | final archived path, SHA-256, result count, focused test               | Pass; `5e128114...20f`, 200 results, 342/6580 re-score | fixture log; focused log              |
+| source/closed-toolchain gate      | failed remote workflow step    | exact Node/Go/CMake plus `npm ci` and full `npm run check`             | Pass                                                   | toolchain/npm/full logs               |
+| historical run integrity          | `DR-003`                       | retained checksum manifest                                             | Pass; remains truthful Fail                            | DR-003 checksum log                   |
+| prior API acceptance continuity   | `API-REV-017`                  | retained checksum manifest and relevant-byte analysis                  | Pass / reusable                                        | API-REV-017 checksum log; impact JSON |
 
 ## Repository Coverage Execution
 
-| Command / Action                                                        | Result                                                                                                                                   | Evidence                                                            |
-| ----------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `shasum -a 256 -c api-rev-016/SHA256SUMS.txt`                           | Pass; every retained evidence byte exact                                                                                                 | `repository/api-rev-016-retained-checksums.log`                     |
-| correction/source scope and post-correction production diff             | Pass; correction is exactly `bindings.mjs` plus its test; no later production-source change                                              | `repository/correction-scope-and-source-integrity.log`              |
-| `node --test tests/release/build-input-path-contract.test.mjs`          | Pass, 6/6; exact retained manifest and ten approved punctuation routes accepted; unsafe/collision/digest/size/mode cases remain rejected | `repository/focused-build-input-path-contract.log`                  |
-| retained qualification-copy and archive/companion identity verification | Pass; profile evidence copies exact and archive sizes/SHA-256 match summaries                                                            | `repository/retained-profile-and-asset-identity.log`                |
-| JSON parse and API-REV-017 checksum verification                        | Pass                                                                                                                                     | `repository/json-parse.log`; `repository/api-rev-017-checksums.log` |
-
-`CRR-037` additionally records the already-reviewed full pinned-Go check: 111/111 Node TAP, 7/7 Python plus all Go/source/schema/evidence checks Pass. API/E2E did not repeat unrelated repository suites because the approved scope was aggregate-only and exact retained checksum/source-impact validation found no profile-relevant change.
+| Command / Action                                                                                               | Result                                                                                | Evidence                                                   |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| assert clean checkout `b19f51f...`, `tickets/done` present, former ticket path absent, no stale test reference | Pass                                                                                  | `repository/archived-layout-scope-and-stale-reference.log` |
+| inspect `f5c14ed...` and compare finalized candidate/current artifact relevant paths                           | Pass; only two test literals, no product/workflow/contract or later non-ticket change | same log                                                   |
+| `shasum -a 256` plus semantic record counts for both archived fixtures                                         | Pass                                                                                  | `repository/archived-fixture-identities.log`               |
+| Node `v22.23.1`, verified complete Go `1.26.5 darwin/arm64`, CMake `4.3.3`                                     | Pass                                                                                  | `repository/closed-toolchain-verification.log`             |
+| `npm ci --ignore-scripts`                                                                                      | Pass                                                                                  | `repository/npm-ci.log`                                    |
+| `node --test tests/release/build-input-path-contract.test.mjs tests/scoring/chinese-qualification.test.mjs`    | Pass, 9/9; zero fail/skip                                                             | `repository/focused-archived-fixture-tests.log`            |
+| `PATH=<pinned-go> VOICE_GO=<pinned-go> npm run check`                                                          | Pass: 111/111 Node TAP, 7/7 Python plus compileall, all Go/source/schema/evidence     | `repository/npm-run-check.log`                             |
+| DR-003 and API-REV-017 checksum manifests                                                                      | Pass                                                                                  | retained checksum logs                                     |
+| post-execution HEAD/status/diff check                                                                          | Pass; clean exact checkout                                                            | `repository/post-execution-source-integrity.log`           |
 
 ## Validation Confidence Scorecard
 
-| Category                                            | Post-Repository | Final | Evidence / Limitation                                                                                       |
-| --------------------------------------------------- | --------------: | ----: | ----------------------------------------------------------------------------------------------------------- |
-| Requirement and acceptance-criteria proof           |             99% |  100% | both complete retained profiles plus passing QSet and independently verified two-entry projection           |
-| Changed-boundary execution directness               |            100% |  100% | exact production verifier/composer/projection/verifier executed                                             |
-| Cross-boundary integration realism and mock gap     |             99% |  100% | actual archives, complete real profile evidence, matrix, QSet, asset set, and projection composed together  |
-| Environment/configuration/identity/fixture fidelity |             99% |   99% | exact retained bytes and honest source/runner/test identities; performance environment remains loaded-host  |
-| Failure/edge/lifecycle/recovery evidence            |            100% |  100% | prior full lifecycle evidence retained; exact prior failure rechecked first and resolved without relabeling |
-| User/browser/desktop                                |             N/A |   N/A | runtime-only; no UI claim                                                                                   |
-| Durable regression quality                          |             99% |   99% | canonical owner plus exact 3,152-record and unsafe/collision regressions; no API-owned durable edit         |
+| Category                                            | Post-Repository | Final | Evidence / Limitation                                                                |
+| --------------------------------------------------- | --------------: | ----: | ------------------------------------------------------------------------------------ |
+| Requirement and acceptance-criteria proof           |             99% |   99% | exact post-archive gate passes; prior product qualification remains immutable        |
+| Changed-boundary execution directness               |            100% |  100% | both corrected tests execute from final archived layout                              |
+| Cross-boundary integration realism and mock gap     |             99% |   99% | clean checkout and full source/test chain; remote retry intentionally Delivery-owned |
+| Environment/configuration/identity/fixture fidelity |            100% |  100% | exact commits, directory topology, toolchain, fixture hashes/counts                  |
+| Failure/edge/lifecycle/recovery evidence            |             99% |   99% | historical Fail preserved, corrected local lifecycle passes without fallback         |
+| User/browser/desktop                                |             N/A |   N/A | no runtime/UI change or claim                                                        |
+| Durable regression quality                          |            100% |  100% | direct 9/9 plus full 111/111; digest and semantic assertions unchanged               |
 
 - Overall post-repository confidence: `99%`.
-- Overall final confidence: `99%` (simple average of applicable categories, rounded down to preserve the loaded-host limitation).
-- Every critical acceptance criterion in the current two-profile scope directly proven: `Yes`.
+- Overall final confidence: `99%`.
+- Every critical criterion in the bounded correction scope directly proven: `Yes`.
 - Any applicable category below 90%: `No`.
 - Default clean-Pass target met: `Yes`.
-- Confidence-limiting residual: performance observations are `loaded-host-observation`, not controlled certification. This does not change functional acceptance.
 
 ## Broader Validation Decision And Execution
 
-- Decision: `Required / Executed / Pass`.
-- Selected mode: production aggregate composition over immutable exact-package qualifications/assets, followed by production branch projection and independent byte-level recomputation.
-- Execution inputs: `/private/tmp/autobyteus-voice-api-e2e-r16-20260804-v3/output/{qualifications,assets}`.
-- QSet command: `node release/evidence/qualification-set.mjs --qualifications ... --assets ... --source-commit 3282908... --runner-commit 3282908... --test-commit 5c8afe4... --output .../qualification-set-v2.json`.
-- Projection command: `node release/branch-catalog-projection.mjs --qualification-set ... --assets ... --output .../branch-catalog-projection-v2.json`.
-- Independent verification command: `node release/verify-branch-catalog-projection.mjs --projection ... --qualification-set ... --assets ... --output .../branch-catalog-projection-verification-v2.json`.
-- All three commands exited `0`.
-
-### Qualification Set 2
-
-- Functional decision: `pass`; both English and Chinese independent verification rows are `pass`.
-- Performance assessment: `loaded-host-observation`; no controlled-performance claim is made.
-- Identity: `sourceCommit = runnerCommit = 32829080938911f0f46390a3fd2af823e105bd32`; `testCommit = 5c8afe4c5ba3843d9f813d9b48a0f05c1e433f9a`.
-- QSet SHA-256: `c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003`, byte-identical to the independent `CRR-037` production probe.
-
-### Branch Catalog Projection 2
-
-- Exactly two entries: English `darwin-arm64` and Chinese `darwin-arm64`.
-- Exactly two archive assets with preserved SHA-256 and size; asset-set SHA-256 `47d79c0fdf23e7f67aa209d278f5f86364f53692801a3968b7943701f35aae05`.
-- Projection SHA-256: `bcc3b1c2f3afc42fa0861adcdd3558ad0779ecf7f3c77c370501679a50bbeddd`.
-- Independent verifier: `decision: pass`, `failureCategory: null`; it recomputed release matrix, QSet, projection, entries, and asset set and matched the projection bytes.
+- Decision: **`Not Required` beyond the directly executed archived-checkout source/test gate.**
+- Rationale: run `30881048872` failed before preflight/build/profile qualification. The correction has no relevant production, workflow, contract, authority, archive, profile, QSet, or projection byte change. Rebuilding/requalifying would not exercise the changed boundary more directly.
+- Remote prequalification dispatch: not performed; Delivery-owned.
+- Package/profile execution: not repeated; immutable API-REV-016/017 evidence remains authoritative.
+- Browser/desktop execution: `N/A`.
 
 ## Platform / Runtime And Desktop Decision
 
-- Passed scope: exact English and Chinese `darwin-arm64` packages on the governed M1 current platform.
-- Performance: retained `loaded-host-observation`; all recorded profile p95 references passed, but no controlled certification is claimed.
-- Deferred/outside current matrix: darwin-x64, linux-x64, win32-x64, and `auto`; none is advertised or counted as passed.
-- Browser/Electron: `N/A`; no desktop application was launched or modified.
-- Chinese 4-GiB support evidence remains limited to the exact package/host and is not generalized to lower-memory, concurrent, x64, auto, or other targets.
+- Validation host: macOS arm64, Node 22.23.1, exact verified Go 1.26.5 darwin/arm64, CMake 4.3.3.
+- Product runtime/package behavior: unchanged and therefore not rerun.
+- Preserved performance classification: `loaded-host-observation`, not controlled certification.
+- Deferred scope remains darwin-x64, Linux, Windows, `auto`, and desktop integration.
 
 ## Lifecycle / Persisted Data
 
-- Approved persisted-data decision: `Not Affected`.
-- No migration, compatibility reader, user state, desktop installation, or `~/.autobyteus` path was exercised or changed.
-- Full package lifecycle/recovery/offline/read-only/no-mutation evidence is preserved unchanged in API-REV-016 and was content-bound into the passing aggregate.
+- Ticket archival lifecycle: directly exercised from a checkout with only `tickets/done/voice-input-runtime-reliability`.
+- Former in-progress fixture location: absent and not referenced under `tests/`.
+- Persisted/user/runtime data: not affected.
+- Historical workflow run `30881048872`: unchanged truthful Fail.
+- No tag, release, asset, publication, or remote run was created or altered.
 
 ## Durable Coverage Changed
 
 - Repository-resident durable coverage added, updated, or removed by API/E2E: `No`.
-- Paths added/updated/removed: none.
-- Proportional successful test-code review: `Not Applicable`; the only durable test change belongs to reviewed IR-024 and already passed CRR-037.
+- Paths added/updated/removed by API/E2E: none.
+- IR-025 source-owned test paths under review: `tests/release/build-input-path-contract.test.mjs`, `tests/scoring/chinese-qualification.test.mjs`.
+- Requested proportional API/E2E test-code review: `Not Applicable` because API/E2E changed no durable test code; CRR-039 already reviewed IR-025 source/test changes.
 
 ## Evidence
 
-- Current aggregate evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/`
-- Reuse/impact record: `api-rev-017/repository/API-VOICE-012-aggregate-only-reuse-impact.json`
-- Prior-failure resolution: `api-rev-017/aggregate/API-F-014-resolution.json`
-- Qualification Set 2: `api-rev-017/aggregate/qualification-set-v2.json`
-- Branch Catalog Projection 2: `api-rev-017/aggregate/branch-catalog-projection-v2.json`
-- Independent verification: `api-rev-017/aggregate/branch-catalog-projection-verification-v2.json`
-- Complete retained profile evidence: `api-rev-016/{english-darwin-arm64,chinese-darwin-arm64}/`
-- Current checksum manifest: `api-rev-017/SHA256SUMS.txt`.
+- Current evidence root: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-018/`.
+- Authoritative result/impact: `repository/API-VOICE-014-post-archive-impact-and-result.json`.
+- Archived layout/scope: `repository/archived-layout-scope-and-stale-reference.log`.
+- Fixture identities: `repository/archived-fixture-identities.log`.
+- Focused/full tests: `repository/focused-archived-fixture-tests.log`, `repository/npm-run-check.log`.
+- Historical/current checksum continuity: `repository/dr-003-retained-failure-checksums.log`, `repository/api-rev-017-retained-checksums.log`.
+- Evidence checksum manifest: `SHA256SUMS.txt`.
 
 ## Cleanup
 
-- No provider, build, preflight, or qualification process was started in this aggregate-only round.
-- No process or user data required cleanup.
-- Retained API-owned profile/assets root remains intact for downstream integrated-state verification.
-- Maintained-main, Catalog 3, tags, releases, publication, and remote bytes were untouched.
+- Owned clean checkout `/private/tmp/autobyteus-voice-api-e2e-r18-20260804/repository`: removed with `git worktree remove`; its ignored `node_modules` was removed with it.
+- Provider/build/preflight/qualification processes started: none.
+- User/shared state touched: none.
+- Remote workflow/tag/release/publication actions: none.
 
 ## Preliminary Classification
 
-- `API-F-014` / `CR-F-034`: resolved `Local Fix` at the exact production aggregate boundary.
-- New failure: none.
-- Residual risks are explicitly deferred or Delivery-owned rather than blocking current API/E2E acceptance.
+- `DR-003` stale durable-test path: resolved `Local Fix` at the exact archived-checkout source/test boundary.
+- New API/E2E failure: none.
 
 ## Latest Authoritative Result
 
-- Result: **`Pass`** for the approved exact two-entry darwin-arm64 current-platform scope.
-- Runtime subjects: **Chinese 260/260 Pass; English 160/160 Pass** from immutable API-REV-016 evidence.
-- Aggregate: **Qualification Set 2 Pass; Branch Catalog Projection 2 generated and independently verified Pass.**
+- Result: **`Pass`** for IR-025's applicable post-archive source/test validation.
+- Prior current-platform product acceptance: **remains `Pass / 99%`** and reusable.
 - Final validation confidence: `99%`.
 - Default `95%` clean-Pass target met: `Yes`.
 - Applicable category below 90%: `No`.
-- Broader validation: `Required / Executed / Pass`.
-- Critical acceptance criteria lacking direct proof in current scope: none.
+- Broader validation: `Not Required` beyond executed source/test gate.
 - Required next recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable`, then Delivery.
-- Release status: not released; Delivery still owns maintained-main refresh/integrated qualification, documentation sync, Catalog 3, tag, publication, and published-byte equality.
+- Release status: still blocked/unpublished historically; Delivery owns new remote prequalification, tag, release, publication, and published-byte verification.

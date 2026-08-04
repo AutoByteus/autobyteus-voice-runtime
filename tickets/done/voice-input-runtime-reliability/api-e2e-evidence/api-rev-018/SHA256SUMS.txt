@@ -1,0 +1,13 @@
+7e7c2005524f28ac22175c174eeeec4f571475fede8596f3e2b71807572d92ee  ./repository/API-VOICE-014-post-archive-impact-and-result.json
+1465420f2f5351d0efa8c1fb6f98ef76de610214bc468e8c5e560222ead8958a  ./repository/api-rev-017-retained-checksums.log
+7cf36082299bce199a4bc32f46669efb48ffecfb12db27bef6964888a3bcfdfb  ./repository/archived-fixture-identities.log
+cb2d02b127876887a0e17fd13db00537f764f6db20be0d14af80af20ab4fbb56  ./repository/archived-layout-scope-and-stale-reference.log
+d644a14017d879fddcf917ee22ed787b34227a2fb357ec7a3789b035827f1482  ./repository/clean-archived-checkout.log
+4031f5d690d2b37ffb15c32146e3cd3d29c1a565a2b817d75a58eec3dd7d0df0  ./repository/cleanup.log
+5802609471172d9d473977cdf2f0eac783826edcd4489d6481e47b45cf98eb1f  ./repository/closed-toolchain-verification.log
+de1c30c6dc649c580cbd1b0d4170232fb9f89e276325bbcb91d011b74aadaa74  ./repository/dr-003-retained-failure-checksums.log
+fedd59a715785fb9742bf2b932ee6e6aaa76cdc6f38043534138a9521efe2b35  ./repository/focused-archived-fixture-tests.log
+420e6694621d9af0633d21240e4f38166832b3134cc612552dc8e0da4f29db98  ./repository/json-parse.log
+5b329d8856d6d5e393cc63613be96c4746e5c98be775649ebe878b3af9e53e1a  ./repository/npm-ci.log
+4de15324a04f41972e22c89bfc10d80c6980baf1a3e1e48a96ee7b6e7387f087  ./repository/npm-run-check.log
+215eb97d091c9144ca788438bd21b26e98ae7feec09480f48436c7d8824f8e67  ./repository/post-execution-source-integrity.log

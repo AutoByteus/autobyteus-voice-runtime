@@ -91,7 +91,7 @@ test("Chinese scoring authority binds exact contract/map and excludes product pu
 test("retained API-REV-014 raw text re-scores to exact 342/6580", async () => {
   const file = path.join(
     root,
-    "tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/raw-results.json",
+    "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/raw-results.json",
   );
   assert.equal(
     await shaFile(file),

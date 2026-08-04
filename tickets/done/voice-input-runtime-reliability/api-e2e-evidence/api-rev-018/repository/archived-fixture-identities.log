@@ -1,0 +1,9 @@
+# current archived fixture SHA-256
+f7bfb8f17fdf52c76d036c082690bda5d488118f491add5793b9e6b6becc2478  tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/chinese-darwin-arm64/build-input-manifest.json
+5e1281146ebbd46e14ce21ddb1255a611502878e9eb8a4b7e37486a2c82f520f  tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/raw-results.json
+# preserved finalized-candidate fixture SHA-256 from Git objects
+f7bfb8f17fdf52c76d036c082690bda5d488118f491add5793b9e6b6becc2478  -
+5e1281146ebbd46e14ce21ddb1255a611502878e9eb8a4b7e37486a2c82f520f  -
+# semantic fixture facts
+true
+true

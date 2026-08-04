@@ -7,6 +7,7 @@
 | `DR-001`    | `code_reviewer` handoff after `CRR-037`, `API-REV-017`, and `CRR-038`                  | `N/A`                                   | `Pass — latest main already integrated, repository/checksum checks passed, README synchronized, handoff ready; explicit user gate holds finalization/release` | `README.md`, `delivery-integration-check.log`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`, `release-notes.md` |
 | `DR-002`    | User authorized finalization and release and clarified the voice-runtime-only boundary | `DR-001 — Pass / awaiting verification` | `Pass — verification gate satisfied, target unchanged, ticket archived, v1.0.0 finalization authorized`                                                       | `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`, `release-notes.md`                                                |
 | `DR-003`    | Finalized-main v1.0.0 prequalification run `30881048872`                               | `DR-002 — Pass / release authorized`    | `Blocked — repository finalization passed; prequalification failed closed on two archived-ticket evidence paths in durable tests; no tag or release created`  | `delivery-evidence/prequalify-30881048872/`, `handoff-summary.md`, `release-deployment-report.md`                                              |
+| `DR-004`    | `code_reviewer` handoff after IR-025, CRR-039, API-REV-018, and CRR-040                | `DR-003 — release blocked`              | `Pass — latest main already integrated; archived-fixture correction and review artifacts pass; no long-lived docs impact; guarded release retry ready`        | `delivery-postarchive-integration-check.log`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                      |
 
 ## Revision Entries
 
@@ -54,3 +55,19 @@
 - Requested callback: the cumulative delivery status and blocker package were delivered successfully to `solution_designer`.
 - Cleanup disposition: ticket worktree, local branch, and remote ticket branch are intentionally retained while release is blocked. No already-completed repository finalization was undone.
 - Current result: `Blocked` for release/publication; repository finalization itself is complete.
+
+### DR-004 — Post-archive correction integrated and retry-ready
+
+- Date: 2026-08-04
+- Trigger: Code Reviewer handed off IR-025 after CRR-039 `Pass / 9.8`, API-REV-018 `Pass / 99%`, and CRR-040 proportional test review `Not Applicable` with no findings.
+- Prior authoritative result: `DR-003` — repository finalization complete; release blocked before build/qualification by two stale archived-ticket fixture paths; no tag or release existed.
+- Base refresh: `git fetch origin --prune` passed. `origin/main` remained `5531e83421dce859f9934c16e006c34cf5291cde`.
+- Integration: already current. Refreshed `origin/main` is the merge base and ancestor of candidate `ac1294b4f25fb9eef92c7a6cf259e5068567e3d8`; left/right count `0 / 3`. No base merge, checkpoint, or rebase was required.
+- Correction chain: IR-025 source/test-literal correction `f5c14ed9e9ad835e33eec20033f625d61d1e0173`; implementation artifact `b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e`; API-REV-018 artifact/current candidate `ac1294b4f25fb9eef92c7a6cf259e5068567e3d8`.
+- Integrated-state validation: `Pass`; focused archived-fixture tests `9/9`, full repository gate `111/111` Node TAP and `7/7` Python plus Go/source/schema/evidence checks, API-REV-017/API-REV-018 checksum manifests, and retained DR-003 failure-evidence checksums all passed.
+- Evidence: `delivery-postarchive-integration-check.log`, SHA-256 `658c502f545ab6a26e7265af1d0eb864dae4f69301c01a291cab6889df2ddac3`.
+- Historical accuracy: run `30881048872` remains a failure and is not relabeled. Its failure log/checksums remain intact.
+- Docs sync: `No additional long-lived impact`. Only two test fixture location literals changed from the former archived `in-progress` path to the correct `done` path. README provider/model, protocol, matrix, runtime, qualification, release, and operator guidance remain accurate.
+- Verification gate: renewed user verification is `Not Required`; the correction is test-fixture-only, changes no runtime/release behavior or artifact byte, and the prior explicit runtime-only v1.0.0 release authorization remains applicable.
+- Residuals: performance remains `loaded-host-observation`; x64/Linux/Windows/`auto` and desktop remain deferred/out of scope.
+- Current result: `Pass`; repository integration of IR-025 and a guarded prequalify retry are authorized by the existing user release instruction.

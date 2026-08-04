@@ -2,18 +2,32 @@
 
 ## Status
 
-- Delivery status: **Repository finalization complete; v1.0.0 release blocked fail-closed by finalized-main prequalification**.
+- Delivery status: **IR-025 post-archive correction passed integrated-state checks and review; guarded v1.0.0 release retry ready**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
-- Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime`
-- Ticket branch: `codex/voice-input-runtime-reliability`
+- Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix`
+- Ticket branch: `codex/voice-input-runtime-reliability-postarchive-fix`
 - Recorded finalization target: `origin/main` / local `main`
 - Bootstrap source baseline: `251eab80a1cfd6a6d4c4d2a1fdbe1c06c3923dde` (`v0.3.0`)
-- Latest tracked base: `origin/main @ 996cebf2295f7458c0a80b7894b34b0f1aecb575`
+- Latest tracked base: `origin/main @ 5531e83421dce859f9934c16e006c34cf5291cde`
 - Reviewed API/E2E artifact HEAD: `5333d1d00c31fc9fe6fe2dcfe86219e2b894bebe`
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
 - Finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Post-Archive Correction Refresh
+
+- `git fetch origin --prune`: **Pass**, 2026-08-04.
+- Base movement relative to the post-archive fix branch: **No**. `origin/main` remained `5531e83421dce859f9934c16e006c34cf5291cde`.
+- Integration method: **Already current**; `origin/main` is the merge base/ancestor of `ac1294b4f25fb9eef92c7a6cf259e5068567e3d8`, left/right `0 / 3`.
+- Correction: `f5c14ed9e9ad835e33eec20033f625d61d1e0173`; exactly two durable test fixture literals now use the archived `tickets/done` evidence paths.
+- Source/test review: CRR-039 **Pass / 9.8**.
+- API/E2E: API-REV-018 **Pass / 99%**; exact clean archived checkout and fixture identities verified; package/profile requalification `Not Required`.
+- Proportional test review: CRR-040 **Not Applicable**; no API/E2E-owned durable coverage changed.
+- Delivery integrated-state check: **Pass** — focused `9/9`, full `111/111` Node and `7/7` Python plus all Go/source/schema/evidence checks, API-REV-017/API-REV-018 and DR-003 checksums.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/delivery-postarchive-integration-check.log` (SHA-256 `658c502f545ab6a26e7265af1d0eb864dae4f69301c01a291cab6889df2ddac3`).
+- Docs impact: **No additional long-lived change**; the fix is test-fixture-path-only.
+- Renewed user verification: **Not Required**; runtime/release behavior and artifacts are unchanged, and the prior explicit runtime-only v1.0.0 authorization remains valid.
 
 ## Delivery Integration Refresh
 
@@ -90,6 +104,10 @@
 - User-requested Solution Designer callback: **Pass**; the cumulative finalization/release-blocker status was sent to `solution_designer`.
 - Evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30881048872/`.
 - Cleanup: temporary repository-scoped M1 runner removed; ticket worktree/branches retained while blocked.
+
+The DR-003 run remains truthfully failed. IR-025 resolves its source/test gate
+cause; Delivery will now merge this correction into maintained `main` and retry
+the guarded workflow rather than relabeling the historical attempt.
 
 ## User Verification And Authorization
 

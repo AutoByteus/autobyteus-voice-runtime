@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-014",
+  "trigger": {
+    "deliveryRevision": "DR-003",
+    "historicalWorkflowRun": "30881048872",
+    "historicalResult": "fail",
+    "review": "CRR-039",
+    "implementationRevision": "IR-025"
+  },
+  "decision": "pass",
+  "checkout": {
+    "commit": "b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e",
+    "ticketDonePresent": true,
+    "formerTicketInProgressAbsent": true,
+    "cleanBeforeAndAfter": true
+  },
+  "correction": {
+    "commit": "f5c14ed9e9ad835e33eec20033f625d61d1e0173",
+    "parent": "5531e83421dce859f9934c16e006c34cf5291cde",
+    "preservedFinalizedCandidate": "a890d22031359f53d94c7c67bf183344fb35d904",
+    "changedPaths": [
+      "tests/release/build-input-path-contract.test.mjs",
+      "tests/scoring/chinese-qualification.test.mjs"
+    ],
+    "insertions": 2,
+    "deletions": 2,
+    "productWorkflowContractChangedPaths": [],
+    "postCorrectionNonTicketChangedPaths": [],
+    "staleFormerTicketReferenceUnderTests": false,
+    "fallbackOrLifecycleProbeAdded": false
+  },
+  "fixtures": [
+    {
+      "purpose": "API-REV-016 Chinese build-input manifest",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/chinese-darwin-arm64/build-input-manifest.json",
+      "sha256": "f7bfb8f17fdf52c76d036c082690bda5d488118f491add5793b9e6b6becc2478",
+      "expectedSha256": "f7bfb8f17fdf52c76d036c082690bda5d488118f491add5793b9e6b6becc2478",
+      "identityPass": true,
+      "recordCount": 3152
+    },
+    {
+      "purpose": "API-REV-014 Chinese raw result re-score",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/raw-results.json",
+      "sha256": "5e1281146ebbd46e14ce21ddb1255a611502878e9eb8a4b7e37486a2c82f520f",
+      "expectedSha256": "5e1281146ebbd46e14ce21ddb1255a611502878e9eb8a4b7e37486a2c82f520f",
+      "identityPass": true,
+      "resultCount": 200
+    }
+  ],
+  "execution": {
+    "focusedTests": {
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0
+    },
+    "fullCheck": {
+      "nodeTapPassed": 111,
+      "nodeTapFailed": 0,
+      "pythonPassed": 7,
+      "goSourceSchemaEvidence": "pass"
+    },
+    "closedToolchain": {
+      "node": "v22.23.1",
+      "go": "go1.26.5 darwin/arm64",
+      "cmake": "4.3.3"
+    }
+  },
+  "impact": {
+    "packageProfileAuthorityRelevantByteChanged": false,
+    "priorApiRev017AcceptanceReusable": true,
+    "packageOrProfileRequalificationRequired": false,
+    "broaderValidationDecision": "Not Required",
+    "reason": "The exact archived-checkout source/test gate and immutable fixture identities are directly exercised; the failed remote run stopped before runtime boundaries and correction changes only two test literals."
+  },
+  "durableApiE2eCoverageChanged": false,
+  "releaseActionsPerformed": false,
+  "historicalRunRewritten": false,
+  "userOrSharedStateChanged": false,
+  "residuals": [
+    "loaded-host performance remains observational",
+    "x64, Linux, Windows, auto, and desktop remain deferred",
+    "remote prequalification retry, tag, release, publication, and published-byte equality remain Delivery-owned"
+  ]
+}

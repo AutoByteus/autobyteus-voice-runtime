@@ -1,0 +1,19 @@
+# checkout identity and archive layout
+HEAD=b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e
+done ticket present: PASS
+former in-progress ticket absent: PASS
+# correction commit identity/parent/scope
+5531e83421dce859f9934c16e006c34cf5291cde
+1	1	tests/release/build-input-path-contract.test.mjs
+1	1	tests/scoring/chinese-qualification.test.mjs
+M	tests/release/build-input-path-contract.test.mjs
+M	tests/scoring/chinese-qualification.test.mjs
+# no product/workflow/contract change from finalized candidate to correction
+product/workflow/contract diff: EMPTY
+# no non-ticket change after correction through artifact HEAD
+post-correction non-ticket diff: EMPTY
+# no stale in-progress fixture reference under tests
+stale references: NONE
+# exact new literals
+tests/scoring/chinese-qualification.test.mjs:94:    "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/raw-results.json",
+tests/release/build-input-path-contract.test.mjs:90:      "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/chinese-darwin-arm64/build-input-manifest.json",

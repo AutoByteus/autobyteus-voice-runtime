@@ -21,6 +21,7 @@
 | `API-REV-015` | Code Reviewer / `code-review-report.md` / `CRR-033`            | `SR-012`, `ARCH-REV-013`, `IR-022`, `CRR-032`, `CRR-033`           | `Fail / 99%`              | `Fail / 99%`                |
 | `API-REV-016` | Code Reviewer / `code-review-report.md` / `CRR-035`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `CRR-034`, `CRR-035` | `Fail / 99%`              | `Fail / 99%`                |
 | `API-REV-017` | Code Reviewer / `code-review-report.md` / `CRR-037`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-024`, `CRR-036`, `CRR-037` | `Fail / 99%`              | `Pass / 99%`                |
+| `API-REV-018` | Code Reviewer / `code-review-report.md` / `CRR-039`            | `API-REV-017`, `DR-003`, `IR-025`, `CRR-038`, `CRR-039`            | `Pass / 99%`              | `Pass / 99%`                |
 
 ## Revision Entries
 
@@ -597,3 +598,32 @@ None.
 - New or remaining failure IDs: none in the approved current two-profile darwin-arm64 API/E2E scope.
 - Recommended recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable`, then Delivery.
 - Remaining risks/untested scope: performance remains a loaded-host observation rather than controlled certification; x64, Linux, Windows, and `auto` remain deferred; maintained-main refresh, integrated qualification, documentation sync, Catalog 3, tag, publication, and published-byte equality remain Delivery-owned. No release action occurred.
+
+### API-REV-018 — Archived evidence paths restore the finalized-main source gate
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-039`; API/E2E round 18.
+- Triggering finding/scenario: `DR-003` historical prequalification run `30881048872`; new `API-VOICE-014` post-archive source/test gate; `BEH-004`, `BEH-010`.
+- Related revisions: `API-REV-017`, `DR-002`, `DR-003`, `IR-025`, `CRR-038`, `CRR-039`.
+- Why recorded: Delivery correctly archived the ticket before finalized-main prequalification, exposing two durable tests that still read immutable evidence from the removed in-progress path. IR-025 changes only those two literals to the final done path. This round directly validates the corrected archived-checkout source/test lifecycle without repeating unrelated packages or release actions.
+- Coverage/durable test changes by API/E2E: none. IR-025 owns the existing two-test literal correction; API/E2E added only run-specific evidence and canonical reports.
+- Scenario delta: added `API-VOICE-014`; revalidated API-REV-017 and DR-003 checksum continuity; package/profile scenarios remain accepted and were not rerun after exact impact analysis.
+- Execution delta: clean detached archived checkout at `b19f51f...`; correction scope exact; former ticket path absent; two fixture identities exact; focused 9/9 Pass; full 111/111 Node TAP, 7/7 Python plus all Go/source/schema/evidence checks Pass; cleanup complete.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                                                     | Previous Classification       | Current Resolution                                          | Evidence                                                                                                           |
+| ------------------------------------------------------------------------------------------------- | ----------------------------- | ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `DR-003` source/test blocker: two durable tests opened removed `tickets/in-progress/...` fixtures | Local Fix / durable test path | **Resolved / Pass locally at exact archived-checkout gate** | two literal-only correction; final archived paths; exact fixture SHA-256 values; focused 9/9 and full 111/111 Pass |
+| Historical workflow run `30881048872`                                                             | Truthful Delivery Fail        | Preserved, not rewritten                                    | retained DR-003 checksum manifest Pass; no remote retry or release action in API/E2E                               |
+| `API-REV-017` product/aggregate acceptance                                                        | Pass / 99%                    | Reconfirmed reusable                                        | every retained checksum Pass; no relevant product/authority byte change                                            |
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-018/`
+- Prior result/confidence: `Pass / 99%`.
+- Current result/confidence: **`Pass / 99%`**.
+- New or remaining API/E2E failure IDs: none.
+- Recommended recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable`, then Delivery.
+- Remaining risks/untested scope: remote prequalification retry and release remain Delivery-owned; performance remains loaded-host observation; x64, Linux, Windows, `auto`, and desktop remain deferred. No v1.0.0 tag, release, or assets exist yet.
