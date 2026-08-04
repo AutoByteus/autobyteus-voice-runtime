@@ -87,3 +87,11 @@ tag publication, published-byte verification, and the deferred target set.
 - Ticket-local delivery docs: updated to preserve the integration/retry decision and historical failed-run truth.
 - Validation: focused `9/9`, full repository gate `111/111` Node plus `7/7` Python and all Go/source/schema/evidence checks, API-REV-017/API-REV-018 checksum manifests, and DR-003 failure-evidence checksums passed.
 - Result: `Pass / explicit no-impact`; guarded v1.0.0 prequalification retry may proceed after branch/main finalization.
+
+## Delivery Round 4 — Release-Pipeline Ownership Clarification
+
+- User decision: Delivery/release CI must remain minimal and must not repeat the comprehensive performance/profile qualification already owned by API/E2E.
+- Impact classification: `Design Impact / ownership boundary`; the current `.github/workflows/release-voice-runtime.yml` encodes a materially different release contract and cannot be edited safely as a documentation-only Delivery change.
+- Immediate docs decision: no speculative README or workflow guidance is written. Existing product/runtime documentation remains accurate; release-pipeline guidance is held for a reviewed Solution Design revision.
+- Required long-lived follow-up: document the approved minimal final-main gate, immutable API/E2E evidence/artifact promotion rules, requalification triggers, and bounded publication-byte verification after design/review/implementation completes.
+- Current result: `Blocked for release docs sync`; route to `solution_designer` rather than guessing.

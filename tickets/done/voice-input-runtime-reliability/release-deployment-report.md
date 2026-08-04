@@ -13,8 +13,8 @@ release is part of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-004`
-- Notes: IR-025, CRR-039, API-REV-018, and CRR-040 resolve the DR-003 source/test gate blocker; integrated-state checks pass and the guarded retry is ready. The historical failure remains unchanged.
+- Current revision: `DR-005`
+- Notes: IR-025 remains integrated and passed, but the user rejected Delivery-owned full performance/profile requalification. Retry `30883225852` was cancelled, no release exists, and the pipeline ownership contract is routed to Solution Design.
 
 ## Initial Delivery Integration Refresh
 
@@ -103,6 +103,19 @@ release is part of this ticket.
 - Release notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/release-notes.md` prepared for handoff; workflow publication note remains repository-owned.
 - Rollback/quarantine: a published-byte failure must retain evidence/tag, delete only the GitHub Release object/assets through the quarantine owner, and require a new version/full cycle. No tag reuse.
 
+### Attempt 2 And User Disposition
+
+- Finalized-main subject: `5932090580d106648fa64375c7d8bd9ec2e23bff`.
+- Prequalification retry: `30883225852`; final conclusion `cancelled`.
+- English job: success.
+- Chinese job: failure; full qualification received signal 15 / exit 143 before the later cancellation request.
+- Aggregate: cancelled after starting artifact download.
+- Publication: not dispatched; no tag/release/assets exist.
+- User requirement: pipeline tests must be minimal because API/E2E already owns comprehensive qualification and performance coverage.
+- Classification: `Design Impact / ownership boundary`; required recipient `solution_designer`.
+- Delivery constraint: do not redesign or bypass qualification evidence reuse ad hoc. Resume only from a reviewed minimal-CI/evidence-promotion design.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30883225852/`.
+
 ## Post-Finalization Cleanup
 
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime`.
@@ -141,9 +154,10 @@ release is part of this ticket.
 
 ## Final Status
 
-**Retry ready — release still unpublished.** IR-025 corrected only the two stale
-archived fixture literals, and CRR-039, API-REV-018, CRR-040, plus Delivery's
-integrated-state checks passed. Historical run `30881048872` remains a truthful
-failure and no tag or release is claimed from it. Delivery is authorized to
-integrate the correction into maintained `main` and execute a fresh guarded
-prequalify-then-publish cycle for runtime-only v1.0.0.
+**Blocked / Design Impact — release unpublished.** Maintained `main` contains
+the reviewed IR-025 correction, but the user rejected the workflow's repeated
+full performance/profile qualification as outside Delivery CI ownership. Retry
+`30883225852` was cancelled, the temporary runner was removed, and no tag or
+release exists. Solution Design must define the minimal pipeline and accepted
+API/E2E evidence/artifact promotion contract before implementation, review,
+validation, and Delivery can resume.

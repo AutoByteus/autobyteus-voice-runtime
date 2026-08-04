@@ -8,6 +8,7 @@
 | `DR-002`    | User authorized finalization and release and clarified the voice-runtime-only boundary | `DR-001 — Pass / awaiting verification` | `Pass — verification gate satisfied, target unchanged, ticket archived, v1.0.0 finalization authorized`                                                       | `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`, `release-notes.md`                                                |
 | `DR-003`    | Finalized-main v1.0.0 prequalification run `30881048872`                               | `DR-002 — Pass / release authorized`    | `Blocked — repository finalization passed; prequalification failed closed on two archived-ticket evidence paths in durable tests; no tag or release created`  | `delivery-evidence/prequalify-30881048872/`, `handoff-summary.md`, `release-deployment-report.md`                                              |
 | `DR-004`    | `code_reviewer` handoff after IR-025, CRR-039, API-REV-018, and CRR-040                | `DR-003 — release blocked`              | `Pass — latest main already integrated; archived-fixture correction and review artifacts pass; no long-lived docs impact; guarded release retry ready`        | `delivery-postarchive-integration-check.log`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                      |
+| `DR-005`    | User rejected full performance/profile qualification in the Delivery release pipeline  | `DR-004 — guarded retry ready`          | `Blocked / Design Impact — heavy run cancelled; no release; Solution Designer must redefine minimal CI and accepted-evidence promotion boundary`              | `delivery-evidence/prequalify-30883225852/`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                       |
 
 ## Revision Entries
 
@@ -71,3 +72,19 @@
 - Verification gate: renewed user verification is `Not Required`; the correction is test-fixture-only, changes no runtime/release behavior or artifact byte, and the prior explicit runtime-only v1.0.0 release authorization remains applicable.
 - Residuals: performance remains `loaded-host-observation`; x64/Linux/Windows/`auto` and desktop remain deferred/out of scope.
 - Current result: `Pass`; repository integration of IR-025 and a guarded prequalify retry are authorized by the existing user release instruction.
+
+### DR-005 — Heavy Delivery qualification rejected; design reset required
+
+- Date: 2026-08-04
+- Prior authoritative result: `DR-004` — IR-025 and its full review/validation chain passed; maintained-main correction integration and guarded v1.0.0 retry were ready.
+- Repository integration: post-archive fix branch `eb39ca0d8604494ec0b7b709d4a87a97b5f5c057` was pushed and merged to maintained `main` as `5932090580d106648fa64375c7d8bd9ec2e23bff` before the retry.
+- Retry run: prequalification `30883225852` executed on exact maintained-main subject `5932090...`.
+- Execution result before disposition: current matrix passed; English build/full qualification passed; Chinese build completed but its full profile qualification was terminated with signal 15 / exit 143 and the profile job concluded failure after evidence retention/upload. Aggregate pre-tag then started.
+- User clarification: Delivery/release CI must be minimal because comprehensive functional/performance qualification is already owned and completed by API/E2E. The release pipeline must not repeat the heavy performance/profile qualification matrix by default.
+- Delivery action: cancellation requested; aggregate pre-tag concluded cancelled; temporary runner stopped and deregistered. Workflow conclusion is `cancelled`.
+- Publication state: no publish dispatch, `v1.0.0` tag, GitHub Release, Catalog 3, release manifest, or published asset exists.
+- Classification: `Design Impact / ownership boundary` to `solution_designer`. Delivery will not improvise a workflow change, reuse authority, or evidence-promotion contract.
+- Required redesign outcome: define a minimal final-main gate that consumes API/E2E-approved immutable evidence/artifacts, determines when requalification is genuinely required, and retains bounded artifact/publication integrity checks without Delivery-owned performance qualification.
+- Evidence: `delivery-evidence/prequalify-30883225852/`; checksum manifest preserves the run metadata, full log, and disposition.
+- Cleanup: repository self-hosted runner count is zero. Ticket correction worktree/branch and original ticket branch/worktree remain preserved while design/release is blocked.
+- Current result: `Blocked`; maintained `main` contains the reviewed IR-025 correction, but v1.0.0 remains unreleased pending Solution Design and the applicable review/implementation/validation chain.

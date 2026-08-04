@@ -2,7 +2,7 @@
 
 ## Status
 
-- Delivery status: **IR-025 post-archive correction passed integrated-state checks and review; guarded v1.0.0 release retry ready**.
+- Delivery status: **v1.0.0 release blocked by user-directed pipeline ownership redesign; heavy retry cancelled and no release exists**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix`
@@ -108,6 +108,19 @@
 The DR-003 run remains truthfully failed. IR-025 resolves its source/test gate
 cause; Delivery will now merge this correction into maintained `main` and retry
 the guarded workflow rather than relabeling the historical attempt.
+
+## User-Directed Pipeline Redesign
+
+- Post-archive correction merge: `5932090580d106648fa64375c7d8bd9ec2e23bff` on maintained `main`.
+- Retry run: `30883225852` on exact merge subject — final conclusion `cancelled`.
+- English: full build/qualification succeeded.
+- Chinese: build completed; full qualification was terminated with signal 15 / exit 143 before the later user-directed cancellation.
+- Aggregate: started, then cancelled. Publication was never dispatched.
+- User requirement: release CI is a minimal integration/artifact/publication gate and must not repeat API/E2E-owned comprehensive performance/profile qualification by default.
+- Classification: `Design Impact / ownership boundary` to `solution_designer`.
+- Release state: no `v1.0.0` tag, GitHub Release, catalog, manifest, or published asset.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30883225852/`.
+- Runner cleanup: complete; repository runner count is zero.
 
 ## User Verification And Authorization
 
