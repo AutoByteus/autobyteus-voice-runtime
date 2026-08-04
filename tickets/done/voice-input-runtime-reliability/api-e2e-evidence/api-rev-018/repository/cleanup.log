@@ -1,0 +1,9 @@
+owned checkout: /private/tmp/autobyteus-voice-api-e2e-r18-20260804/repository
+owned clean checkout and node_modules removed: PASS
+provider/build/preflight/qualification processes started: NONE
+user/shared state touched: NONE
+remote workflow/tag/release/publication actions: NONE
+local v1.0.0 tag present:
+NO
+owned r18 worktree still registered:
+NO
