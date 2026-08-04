@@ -16,6 +16,8 @@
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/chinese-qualification-v2/`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/current-platform-qualification.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/voice-runtime-contract.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/cold-preparation-stability-study.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/cold-preparation-stability/`
 - Revision and review authorities:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
@@ -23,122 +25,123 @@
 - Triggering review and executable evidence:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-031-cxx-driver-resolution.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-032-api-f-011-f-012-origin.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-033-qualification-authority-resolution.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/code-review-evidence/CRR-034-api-f-013-origin.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-015/`
 
 ## Current Implementation Summary
 
-`IR-022` implements the reviewed `SR-012` / `ARCH-REV-013` correction for `CR-F-031` / `API-F-011` and `CR-F-032` / `API-F-012` without changing product output, providers, models, qualification thresholds, package/runtime/protocol behavior, or release ordering.
+`IR-023` implements the reviewed cumulative `SR-013` / `SR-014` and `ARCH-REV-015` correction for `CR-F-033` / `API-F-013`, including the `AR-F-014` temporal evidence closure. The implementation replaces the Chinese worker's model-sized whole-file SHA-256 allocation with one Apple-only CommonCrypto owner using fixed 1-MiB reads while preserving exact manifest order, bytes, identities, modes, containment, closure, and fail-closed startup behavior.
 
-Chinese product `normalizedText` remains under `autobyteus-simplified-zh-v1`. Qualification now uses a separate frozen `autobyteus-chinese-cer-selection-comparable-v1` owner over retained raw reference/raw hypothesis. Exact reviewed contract, mapping, derivation, corpus, baseline, trust, authority, validation, and API-REV-014 re-score bytes are installed and checksum-verified. Active Chinese v2 trust recomputes all 200 historical rows to `343/6580`; the unbound active v1 corpus/baseline paths are removed with no fallback or historical evidence rewrite. The retained API-REV-014 raw results independently re-score to `342/6580`.
+The Chinese worker now emits the exact private ten-record Preparation Diagnostics 1 sequence on stderr around manifest verification, encoder load, language-model load, context creation, and normalizer load. Protocol 1 stdout and public lifecycle behavior are unchanged. Qualification establishes one monotonic origin before each spawn, frames raw stderr bytes across split/coalesced chunks, timestamps every completed line at LF consumption, and brackets both periodic and boundary-triggered single-flight process-tree RSS scans on the same clock. Stage Evidence 1 derives only worker duration from worker time and derives receipt/RSS association by inclusive interval intersection, retaining coverage class, exact sample sequences, and nonexclusive maximum. The existing maximum across every full-session RSS observation remains the sole hard resource-policy input.
 
-The Current Release Matrix now digest-binds a strict two-row Profile Resource Policy. English remains hard-capped at 2.5 GiB. Chinese uses a 4.0-GiB hard process-tree RSS ceiling and a separate 2.5-GiB Assessment-only optimization target. Qualification Summary 2 owns the hard result; Performance Assessment 1 binds the immutable Summary and records optimization status without changing functional authority. QSet 2, Branch Catalog Projection 2, integrated Release Evidence 2, and Catalog construction bind the same matrix/policy/scoring/trust lineage through the existing acyclic chain.
+Strict Summary 2, Assessment 1, QSet 2, and Release Evidence contracts bind the diagnostic contract, Stage Evidence schema, raw Stage Evidence artifact, attempt identities, validation/privacy counts, and package contract identity without adding a reverse evidence edge or alternate decision path. English remains explicitly free of Chinese preparation evidence. The superseded scalar `sha256.{h,cpp}` path is deleted with no fallback.
 
 - Implementation cycle: `Rework / Design Impact`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision: `IR-022`
-- Related solution revision: `SR-012` (preserving prior authority through `SR-011`)
-- Related architecture revision: `ARCH-REV-013`
-- Related code review: `CRR-031` prior source Pass; `CRR-032` triggering Design Impact; current re-review pending
-- Related API/E2E: `API-REV-014`; `API-F-011`, `API-F-012`; `API-VOICE-004`, `API-VOICE-011`
+- Current implementation revision: `IR-023`
+- Related solution revisions: `SR-013`, `SR-014` (preserving prior authority through `SR-012`)
+- Related architecture revisions: `ARCH-REV-014`, `ARCH-REV-015`
+- Related code reviews: `CRR-033` prior source Pass; `CRR-034` triggering Design Impact; current re-review pending
+- Related API/E2E: `API-REV-015`; `API-F-013`; `API-VOICE-004`
 - Related delivery revision: `N/A`
-- Triggering findings: `CR-F-031`, `CR-F-032`
-- Source commit: `af008705488a029b95007e25c7c00484387d3ffe`
+- Triggering findings: `CR-F-033`, `API-F-013`; resolved architecture finding `AR-F-014`
+- Implementation source commit: `32829080938911f0f46390a3fd2af823e105bd32`
 - Product-iteration acceptance: `Not Required`
 - Result: `Implementation Complete — Ready for Code Re-review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior ID                     | Approved Change / Preserved Outcome                                                                                            | Implemented Production Path / Key Files                                                                                                        | Result / Notes                                                                                                           |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------ |
-| `BEH-001`–`BEH-003`             | Runtime-only boundary and bounded provider lifecycle remain unchanged.                                                         | Existing launcher, session, worker, protocol, and runtime owners.                                                                              | Preserved; no desktop, shared-checkout, user-state, tag, publication, or release-asset change.                           |
-| `BEH-004`, `BEH-008`            | Functional qualification retains exact package/lifecycle/RSS evidence while using reviewed profile resource authority.         | Current Release Matrix -> `benchmark/profile-resource-policy.mjs` -> RSS observation -> Summary hard result -> Assessment optimization result. | Missing/non-positive RSS or a profile hard-ceiling breach still fails; optimization misses are visible but non-blocking. |
-| `BEH-005`                       | Exact two-entry darwin-arm64 matrix and provider/model choices remain unchanged; active Chinese trust becomes scorer-bound v2. | `release/evidence/trusted-baselines-v1.json`, `benchmark/baseline/trusted-baseline.mjs`, v2 corpus/baseline/evidence.                          | Exact 200-row recomputation yields unchanged `343/6580`; active v1 is absent and rejected.                               |
-| `BEH-006`                       | Product Simplified Chinese output is separate from qualification comparison.                                                   | `benchmark/scoring/normalization.mjs` remains product-only; `benchmark/scoring/chinese-qualification.mjs` owns frozen symmetric raw/raw CER.   | Product fixtures remain unchanged; runner and independent verifier score `rawText`, not `normalizedText`.                |
-| `BEH-007`, `BEH-009`, `BEH-010` | Summary -> Assessment -> QSet -> projection/release chain remains exact and acyclic.                                           | Updated strict schemas, `profile-qualification-evidence.mjs`, independent profile verifier, QSet/projector/release consumers, workflow.        | Hard policy/scorer/trust identities propagate by digest; matrix, publication boundary, and release order are preserved.  |
-| `BEH-011`, `BEH-012`            | WAV boundary, no-speech semantics, and no context-term behavior remain unchanged.                                              | Existing provider/session/contract owners.                                                                                                     | Preserved.                                                                                                               |
+| Behavior ID                                | Approved Change / Preserved Outcome                                                                                                    | Implemented Production Path / Key Files                                                                                                             | Result / Notes                                                                                                                                               |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `BEH-001`, `BEH-003`                       | Runtime-only scope and bounded failure/termination behavior remain unchanged.                                                          | Existing launcher, session, protocol, recorder, and termination owners; raw stderr observation is additive and private.                             | No desktop, shared-checkout, user-state, tag, publication, provider, model, deadline, or retry change.                                                       |
+| `BEH-002`                                  | Chinese manifest verification remains mandatory before recognizer construction but no longer allocates model-sized buffers.            | `package_integrity.{h,cpp}`, `package_integrity_apple.cpp`, `session.cpp`, Apple-only `CMakeLists.txt`, refreshed Chinese input recipe.             | Fixed 1-MiB CommonCrypto reads; lowercase exact SHA-256; open/read/init/update/final failures remain fail-closed.                                            |
+| `BEH-004`, `BEH-008`                       | Preparation becomes privacy-safe and observable without changing public Protocol 1 or controlling/retrying the worker.                 | `preparation_diagnostics.{h,cpp}`, `contracts/diagnostics/preparation-diagnostics-v1.json`, exact boundaries in `main.cpp` and `funasr_engine.cpp`. | Ten canonical ASCII JSON+LF stderr records; no path, audio, transcript, identity, digest, command, or free-form error.                                       |
+| `BEH-004`, `BEH-007`, `BEH-008`            | Worker duration and qualification receipt/RSS time remain distinct and evidence joins are realizable.                                  | `preparation-diagnostics.mjs`, `rss-sampler.mjs`, `qualification-preparation.mjs`, `provider-process-session.mjs`, `run-profile-qualification.mjs`. | One pre-spawn monotonic origin; LF receipt timestamps; scan start/completion windows; boundary single flight plus periodic sampling; inclusive intersection. |
+| `BEH-007`, `BEH-009`, `BEH-010`            | Existing Summary -> Assessment -> QSet -> release chain remains acyclic and exact.                                                     | Stage Evidence schema, qualification evidence/assessment owners, QSet/release schemas, `bindings.mjs`, package report contract digest.              | Attempt identities, authorities, raw artifact digest, validation/privacy totals, and English null specialization are independently rechecked.                |
+| `BEH-005`, `BEH-006`, `BEH-011`, `BEH-012` | Exact two-package matrix, scorer/trust/resource policy, product normalization, WAV behavior, and no-context decision remain unchanged. | Existing reviewed matrix, scorer, baseline, policy, audio, normalization, and package owners.                                                       | Preserved; full-session max RSS remains hard authority and stage maxima are observational only.                                                              |
 
 ## Key Files Or Areas
 
-- Product/scoring split: `benchmark/scoring/{normalization,error-rate,chinese-qualification,qualification-scoring}.mjs`
-- Exact scoring authority: `contracts/scoring/`, `evidence/chinese-qualification-v2/`
-- Active Chinese trust: `release/evidence/{qualification-corpora,baselines}/chinese-v2.json`, `release/evidence/trusted-baselines-v1.json`, `benchmark/baseline/trusted-baseline.mjs`
-- Profile resource authority: `contracts/qualification/profile-resource-policy-v1.{json,schema.json}`, `benchmark/profile-resource-policy.mjs`, `contracts/catalog/current-release-matrix-v1.json`
-- Summary/Assessment/QSet propagation: `benchmark/profile-qualification-evidence.mjs`, `benchmark/performance-assessment.mjs`, `release/evidence/profile-qualification-verifier.mjs`, `release/evidence/qualification-set.mjs`
-- Projection/release propagation: `release/{branch-catalog-projection,verify-branch-catalog-projection,catalog-builder}.mjs`, `release/evidence/assemble.mjs`, corresponding strict schemas
-- Durable focused coverage: `tests/scoring/chinese-qualification.test.mjs`, `tests/release/profile-resource-policy.test.mjs`, `tests/release/trusted-baseline.test.mjs`
+- Apple package integrity: `providers/chinese-funasr/src/package_integrity.{h,cpp}`, `package_integrity_apple.cpp`, `session.cpp`, `providers/chinese-funasr/CMakeLists.txt`, Chinese input recipe.
+- Worker diagnostics: `providers/chinese-funasr/src/preparation_diagnostics.{h,cpp}`, `main.cpp`, `funasr_engine.{h,cpp}`, `contracts/diagnostics/preparation-diagnostics-v1.json`.
+- Qualification clock/RSS/stage evidence: `benchmark/preparation-diagnostics.mjs`, `benchmark/rss-sampler.mjs`, `benchmark/qualification-preparation.mjs`, `benchmark/provider-process-session.mjs`, `benchmark/run-profile-qualification.mjs`, `contracts/qualification/preparation-stage-evidence-v1.schema.json`.
+- Evidence propagation: `benchmark/profile-qualification-evidence.mjs`, `benchmark/performance-assessment.mjs`, strict Summary/Assessment/QSet/Release Evidence schemas, `release/evidence/{qualification-set,bindings}.mjs`, `build/package-assembler.mjs`.
+- Focused coverage: `tests/build/chinese-preparation-runtime.test.mjs`, `tests/benchmark/preparation-diagnostics.test.mjs`, `tests/benchmark/provider-process-session.test.mjs`, and adjusted release evidence fixtures.
 
 ## Important Assumptions
 
-- The frozen Chinese scorer/map is selection-comparison authority only and is not a general linguistic or product-normalization rule.
-- The 4.0-GiB Chinese hard ceiling is approved only for the exact current Chinese darwin-arm64 package on the governed M1 qualification path; it does not establish lower-memory, x64, `auto`, concurrent-provider, or desktop-supervisor support.
-- Generated current Summary/Assessment/QSet/projection/release candidates must be rebuilt under this source. API-REV-014 and prior evidence remain immutable history.
+- `elapsedUs` is worker-process monotonic duration evidence only; it is never mapped to qualification time.
+- `receivedAtUs`, `startedAtUs`, and `completedAtUs` are attempt-local safe-integer microsecond offsets and are meaningful only within their exact attempt identity.
+- A stage's overlapping RSS maximum is nonexclusive observation evidence. It cannot replace, lower, or override complete-session `maxRssBytes`.
+- The CommonCrypto backend is intentionally Apple-only for the exact current Chinese darwin-arm64 package. Unsupported current-target compilation fails rather than choosing a scalar or portable runtime fallback.
 
 ## Known Risks And Remaining Work
 
-- Implementation checks did not build packages, execute the actual M1 qualification environment, or rerun either 30/30/100 profile. API/E2E must rerun both current-source profiles after source Pass; the design re-score is not execution substitution.
-- API/E2E must produce consistent current-source Qualification Set 2 and Branch Catalog Projection 2 only after both profiles pass.
-- Maintained-main refresh/reconciliation, integrated-state qualification, tag/publication, published-byte verification, and quarantine remain Delivery-owned.
+- Implementation checks compiled the complete native worker and hashed the exact model payloads, but did not rebuild the canonical network-denied Provider Archive through the release workflow or execute the required pinned-purge 30/30 preparation proof.
+- API/E2E must rerun canonical Chinese construction under Seatbelt, the focused 30/30 preparation proof, then the complete 30 cold / 30 warm-preparation / 100 warm-request / 200-item qualification. It must also complete the current-source English profile before QSet 2 and Branch Catalog Projection 2.
+- Maintained-main refresh/reconciliation, integrated-state repeat, tag/publication, published-byte verification, and quarantine remain Delivery-owned.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: `Behavior Change`, `Refactor`, `Release Hardening`, `Performance/Qualification`.
-- Reviewed root-cause classification: `Duplicated Policy Or Coordination` + `Shared Structure Looseness` + `Missing Invariant`.
-- Reviewed refactor decision: `Refactor Needed Now`.
+- Reviewed change posture: `Performance`, `Bug Fix`, `Behavior Change`, `Refactor`, `Release Hardening`.
+- Reviewed root-cause classification: verified model-sized whole-file buffering plus missing temporal observability invariant.
+- Reviewed refactor decision: `Refactor Needed Now` for one package-integrity owner and one qualification preparation-evidence owner.
 - Implementation matched the reviewed assessment: `Yes`.
-- If challenged, routed as Design Impact: `N/A`; the architecture review supplied the corrected authority before implementation resumed.
-- Evidence / notes: product output and qualification scoring now have separate owners; active trust binds exact scorer/map/source identities; one exact matrix-keyed resource policy replaces the global RSS literal; downstream artifacts consume rather than restate these decisions.
+- If challenged, routed as Design Impact: `N/A`; `SR-013`/`SR-014` and `ARCH-REV-015` supplied the corrected authority before implementation resumed.
+- Evidence / notes: the scalar digest owner is deleted; diagnostics remain private; the runner and worker clocks are not conflated; no component/runtime alternate path was added.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`.
-- Legacy old behavior retained in scope: `No`; active Chinese v1 corpus/baseline paths and the global RSS limit are removed.
+- Legacy old behavior retained in scope: `No`; `sha256.{h,cpp}` and whole-file-vector hashing are deleted.
 - Dead/obsolete paths removed in scope: `Yes`.
-- Shared structures remain tight: `Yes`; scoring, product normalization, hard resource decisions, and optimization observations have distinct owners/shapes.
+- Shared structures remain tight: `Yes`; package integrity, diagnostic framing, RSS collection, derived Stage Evidence, and release binding have separate single owners.
 - Canonical shared design guidance reapplied: `Yes`.
-- Changed source guardrails: `Yes`; changed non-test source files remain at or below 499 effective non-empty lines. The largest source delta, `trusted-baseline.mjs`, is 212 added lines and remains below the 220-line split signal.
-- Notes: no locale fallback, v1 alias, wildcard/default policy row, conditional per-profile literal, dual read, or alternate release/runtime path was added.
+- Changed source guardrails: `Yes`; source checks pass. The new preparation collector remains below 500 effective lines, and input preservation/session-start concerns were split into focused helpers rather than expanding the qualification runner past the guardrail.
+- Notes: no portable fallback, public protocol extension, component/runtime throttle, retry, exclusion, deadline change, alternate RSS gate, or duplicate evidence-decision path was added.
 
 ## Persisted Data Transition Check
 
-- Approved decision: `Discard or Rebuild` for generated current qualification/release candidates; immutable historical evidence is preserved.
-- Design reference: `design-spec.md` SR-012 file mapping and change sequence, especially steps 4, 5, 7, 8, and active generated candidate disposition.
-- Implementation follows the approved decision without migration or version-specific runtime fallback: `Yes`.
-- Result: current v2 authorities are checked in; active v1 inputs are removed; no prior API, selection-study, or published evidence bytes were edited; future Summary/Assessment/QSet/projection/release candidates must regenerate.
+- Approved decision: `Discard or Rebuild` for generated current qualification/release candidates; immutable historical evidence remains unchanged.
+- Design reference: `design-spec.md` SR-014 evidence structures, final file mapping, and change sequence.
+- Implementation follows the approved decision without an unapproved migration or runtime fallback: `Yes`.
+- Result: current future qualification outputs use the strict new Stage Evidence/Summary/Assessment/QSet identities; API-REV-015 and earlier evidence remain immutable history and are not promoted.
 - Deviation: `None`.
 
 ## Environment Or Dependency Notes
 
-- Local Go checks used exact pinned `/tmp/autobyteus-go1.26.5-v1/go/bin/go` via `VOICE_GO` and `PATH`.
-- No dependency version, provider/model input, external M1 environment, tag, or release asset changed.
+- Local Go checks used exact pinned `/tmp/autobyteus-go1.26.5-v1/go/bin/go` through `VOICE_GO` and `PATH`.
+- Native implementation checks used installed CMake 4.3.3, Xcode clang++/Apple SDK, and the already-authenticated API-REV-015 materialized llama.cpp/utf8proc/model inputs only as local compile/digest fixtures. No locked input, dependency version, provider/model, shared state, or release asset changed.
 
 ## Local Implementation Checks Run
 
-- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — pass: source guards; 7/7 Python unit tests plus compileall; all Go tests/guards; English-v2 exact reproduction; Chinese-v2 scoring/trust/policy verification; 95/95 Node TAP tests.
-- `node evidence/chinese-qualification-v2/derive_chinese_qualification_v2.mjs` — pass: 200/200 source rows and historical normalization pairs; exact `343/6580`; exact authority digests.
-- `shasum -a 256 -c evidence/chinese-qualification-v2/SHA256SUMS.txt` — 9/9 pass; all nine runtime evidence bytes also match the reviewed upstream authority byte-for-byte.
-- Durable raw-result regression — pass: retained API-REV-014 raw evidence digest re-scores to exact `342/6580`.
-- Focused policy regressions — pass: exact matrix closure/no x64 default; English 2.5-GiB boundary; Chinese `3,949,543,424` bytes passes 4.0-GiB hard gate and misses only 2.5-GiB optimization; >4.0 GiB fails; policy substitution fails.
-- Authored-file Prettier check and `git diff --check` — pass.
+- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — pass: source/schema guards; 7/7 Python tests plus compileall; all Go tests/guards; English-v2 and Chinese-v2 authority checks; 109/109 Node TAP tests.
+- Focused Apple integrity/runtime tests — pass: empty/`abc`, 1/63/64/65 bytes, 1 MiB - 1 / exact / + 1, open/init/update/final failures, fixed-buffer/no-vector source guard, Apple-only build selection, and exact ten-line private diagnostic emission.
+- Exact model digest proof — pass: the new CommonCrypto owner reproduced `f92f91d01a24fbed6c863495b2ee8c6a6788144a02858b75743f0946668de8a2` for the 469,331,008-byte encoder and `819f385dc0e035dccc3d9e7edaf6b7b044b8ba7ace63cbcbf84c7e397eecbf27` for the 804,753,280-byte language model.
+- Complete native worker compile — pass: CMake configured and built current `voice-provider-worker` as a darwin-arm64 Mach-O against the exact materialized locked llama.cpp/utf8proc inputs with project warnings-as-errors.
+- Focused preparation evidence tests — pass: every split/coalesced/bytewise frame, LF receipt timing, worker/runner clock separation, inclusive contained/crossing/touching/shared/short-stage joins, invalid windows/order/clock, missing coverage, partial failure retention, bounded redaction/privacy, cross-attempt binding, downstream-request failure after successful preparation, and raw evidence recomputation.
+- Authored-file Prettier and `git diff --check` — pass.
 
 These are implementation-scoped checks only, not API/E2E qualification or downstream acceptance.
 
 ## Frontend Rendered-Result Check
 
-Not Applicable — runtime qualification, evidence, and release-contract source only; no rendered frontend or user interaction changed.
+Not Applicable — runtime worker, qualification, evidence, and release-contract source only; no rendered frontend or user interaction changed.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-- Source review should independently verify all nine Chinese-v2 authority bytes/digests, 200-row `343/6580` baseline recomputation, `342/6580` API-REV-014 raw re-score, unchanged product normalization fixtures, and absence of active Chinese v1.
-- Verify exact matrix/policy one-to-one closure; English <=2.5 GiB; Chinese <=4.0 GiB; Chinese >2.5 and <=4.0 is Assessment-only miss; missing/zero RSS and >4.0 GiB fail.
-- Verify Summary 2 owns only the hard policy result, Assessment 1 binds the final Summary and records optimization, and QSet/projection/release consumers independently bind exact policy/scorer/trust digests without reverse edges or duplicated literals.
-- After source Pass, API/E2E should restart both current-source profile qualifications and only then assemble QSet 2 and Branch Catalog Projection 2.
+- Independently review exact CommonCrypto fixed-buffer behavior, full manifest ordering/closure preservation, Apple-only selection, recipe identities, and absence of the old scalar/vector path.
+- Verify the worker's exact successful ten-record sequence and partial-stage failure behavior while confirming Protocol 1 stdout is byte/ordering compatible.
+- Verify diagnostic LF timestamps and RSS scan windows use one pre-spawn attempt clock; boundary scans are single-flight; interval joins are inclusive; short/coalesced stages are not mislabeled contained; and no stage maximum becomes resource authority.
+- Verify successful Chinese preparation requires 60 exact valid Stage Evidence attempts, while failed attempts retain partial evidence and a later request failure may coexist with successful preparation evidence for the same ledger identity.
+- Verify Summary 2 remains immutable/Assessment-free; Assessment binds the final Summary and raw Stage Evidence; QSet/release independently bind those identities; English fields remain null; and historical evidence is not accepted as current.
+- After source Pass, API/E2E should restart with canonical Chinese construction and the required focused 30/30 preparation proof before the complete two-profile qualification matrix.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-Yes. API/E2E remains paused until Code Review passes `IR-022`; no API/E2E pass is claimed here.
+Yes. API/E2E remains paused until Code Review passes `IR-023`; no API/E2E or release pass is claimed here.
