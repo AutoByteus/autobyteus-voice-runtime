@@ -77,3 +77,13 @@ tag publication, published-byte verification, and the deferred target set.
 - Post-verification base refresh: `origin/main` remained `996cebf2295f7458c0a80b7894b34b0f1aecb575`, already contained by the verified candidate.
 - Additional docs impact: `No additional long-lived change`; the README update from DR-001 remains authoritative.
 - Ticket state: archived before the final ticket commit.
+
+## Delivery Round 3 — IR-025 Post-Archive Correction
+
+- Trigger: CRR-039 `Pass / 9.8`, API-REV-018 `Pass / 99%`, and CRR-040 `Not Applicable` after the DR-003 prequalification blocker.
+- Integrated base: `origin/main @ 5531e83421dce859f9934c16e006c34cf5291cde`; already contained by candidate `ac1294b4f25fb9eef92c7a6cf259e5068567e3d8` with left/right `0 / 3`.
+- Correction: exactly two durable test fixture literals now resolve retained API evidence from `tickets/done/voice-input-runtime-reliability/` rather than its former pre-archive `tickets/in-progress/voice-input-runtime-reliability/` location.
+- Long-lived docs impact: `No additional change`. The correction does not alter a product, provider, model, protocol, package, matrix, qualification, release, operator, compliance, persistence, or desktop contract. README remains accurate.
+- Ticket-local delivery docs: updated to preserve the integration/retry decision and historical failed-run truth.
+- Validation: focused `9/9`, full repository gate `111/111` Node plus `7/7` Python and all Go/source/schema/evidence checks, API-REV-017/API-REV-018 checksum manifests, and DR-003 failure-evidence checksums passed.
+- Result: `Pass / explicit no-impact`; guarded v1.0.0 prequalification retry may proceed after branch/main finalization.

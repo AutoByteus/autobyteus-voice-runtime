@@ -13,8 +13,8 @@ release is part of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-003`
-- Notes: repository finalization passed; the first finalized-main prequalification failed closed before build/qualification, so release remains blocked and unpublished.
+- Current revision: `DR-004`
+- Notes: IR-025, CRR-039, API-REV-018, and CRR-040 resolve the DR-003 source/test gate blocker; integrated-state checks pass and the guarded retry is ready. The historical failure remains unchanged.
 
 ## Initial Delivery Integration Refresh
 
@@ -46,6 +46,18 @@ release is part of this ticket.
 - Docs updated: `README.md`.
 - Update: bounded CommonCrypto integrity and one-clock private Stage Evidence/RSS contract.
 - No-impact areas: provider/model choice, matrix, Protocol 1, package/session ABI, resource thresholds, compliance inventory, release workflow, and persisted/user state.
+- IR-025 follow-up: `No additional long-lived docs impact`; only two durable test fixture location literals changed to the archived `tickets/done` path.
+
+## Post-Archive Correction Integration
+
+- Refreshed base: `origin/main @ 5531e83421dce859f9934c16e006c34cf5291cde`.
+- Candidate: `ac1294b4f25fb9eef92c7a6cf259e5068567e3d8`; base already contained, left/right `0 / 3`.
+- IR-025 correction: `f5c14ed9e9ad835e33eec20033f625d61d1e0173`.
+- Review/validation: CRR-039 `Pass / 9.8`; API-REV-018 `Pass / 99%`; CRR-040 `Not Applicable`, no findings.
+- Delivery check: focused `9/9`; full `111/111` Node and `7/7` Python plus Go/source/schema/evidence; API-REV-017/API-REV-018/DR-003 checksum manifests all pass.
+- Evidence: `delivery-postarchive-integration-check.log`, SHA-256 `658c502f545ab6a26e7265af1d0eb864dae4f69301c01a291cab6889df2ddac3`.
+- Renewed user verification: `Not Required`; no runtime/release behavior, package/profile byte, or user-facing handoff changed.
+- Status: `Pass / retry ready`; ticket branch and target merge/push precede the guarded workflow retry.
 
 ## Ticket State Transition
 
@@ -129,11 +141,9 @@ release is part of this ticket.
 
 ## Final Status
 
-**Blocked — repository finalization complete, release unpublished.** The ticket
-branch and maintained `main` were pushed successfully, but finalized-main
-prequalification run `30881048872` failed closed before any package build or
-qualification because two durable tests still point at the ticket's former
-`in-progress` evidence location. No tag, GitHub Release, or published byte was
-created. The required next owner is `implementation_engineer`; Delivery must
-resume only after the resulting durable test correction completes its applicable
-review and validation chain.
+**Retry ready — release still unpublished.** IR-025 corrected only the two stale
+archived fixture literals, and CRR-039, API-REV-018, CRR-040, plus Delivery's
+integrated-state checks passed. Historical run `30881048872` remains a truthful
+failure and no tag or release is claimed from it. Delivery is authorized to
+integrate the correction into maintained `main` and execute a fresh guarded
+prequalify-then-publish cycle for runtime-only v1.0.0.
