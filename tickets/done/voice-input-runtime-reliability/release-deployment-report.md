@@ -84,6 +84,7 @@ release is part of this ticket.
 - Result: `Blocked / Fail closed` — matrix derivation passed, but both profile jobs failed `npm run check` before preflight/build/qualification because two durable tests retained now-stale `tickets/in-progress/voice-input-runtime-reliability/` evidence paths after required ticket archival. Aggregate pre-tag then failed consequentially because no qualified artifact existed.
 - Direct failing test owners: `tests/release/build-input-path-contract.test.mjs` and `tests/scoring/chinese-qualification.test.mjs`.
 - Classification/routing: `Local Fix / durable test path` to `implementation_engineer`; after correction, the applicable code/test review and executable validation must pass before Delivery retries.
+- Routing result: cumulative blocker package delivered successfully to `implementation_engineer`; requested status callback delivered successfully to `solution_designer`.
 - Workflow evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30881048872/`.
 - Workflow URL: https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/30881048872.
 - Publication state: no `v1.0.0` tag, no GitHub Release, and no published asset exists.
