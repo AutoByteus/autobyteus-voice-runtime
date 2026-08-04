@@ -108,6 +108,11 @@ export async function verifyBuildBinding(
     build.archive.sha256 !== qualification.archiveSha256
   )
     throw new Error("Build report identity mismatch.");
+  if (
+    build.preparationDiagnosticsSha256 !==
+    (qualification.preparationEvidence?.diagnosticContract.sha256 ?? null)
+  )
+    throw new Error("Build report preparation contract mismatch.");
   for (const [field, expected] of [
     ["descriptorSha256", qualification.descriptorSha256],
     ["fileManifestSha256", qualification.fileManifestSha256],

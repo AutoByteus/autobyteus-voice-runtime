@@ -288,6 +288,9 @@ async function passingProfile(entry, item, assets, performance, assessment) {
     resourcePolicy: q.resourcePolicy,
     runtimeConformanceSha256: q.runtimeConformanceSha256,
     qualificationAttemptsSha256: q.rawEvidence.qualificationAttempts.sha256,
+    preparationStageEvidenceSha256:
+      q.rawEvidence.preparationStageEvidence?.sha256 ?? null,
+    preparationEvidence: q.preparationEvidence,
     attempts: q.attempts,
     performance: performanceView(q, performance),
     quality: q.quality,
@@ -335,6 +338,9 @@ async function nonPassingProfile({
     performanceAssessment: await assessmentIdentity(item, assessment),
     resourcePolicy: q.resourcePolicy,
     qualificationAttemptsSha256: q.rawEvidence.qualificationAttempts.sha256,
+    preparationStageEvidenceSha256:
+      q.rawEvidence.preparationStageEvidence?.sha256 ?? null,
+    preparationEvidence: q.preparationEvidence,
     performanceSamplesSha256: q.rawEvidence.performanceSamples.sha256,
     rawResultsSha256: q.rawEvidence.rawResults.sha256,
     resultIndexSha256: q.rawEvidence.resultIndex.sha256,

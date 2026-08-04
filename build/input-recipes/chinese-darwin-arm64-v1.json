@@ -129,8 +129,8 @@
       "role": "runtime-source",
       "destination": "runtime-source/providers/chinese-funasr/CMakeLists.txt",
       "sourcePath": "providers/chinese-funasr/CMakeLists.txt",
-      "sizeBytes": 2551,
-      "sha256": "05249ca01b2d9422f6449f4f80405075bfb56e5b190ab3ebd6f0f8f1ed96b57b",
+      "sizeBytes": 2635,
+      "sha256": "24fdb921ddcc33f6e834069f6a87c1b3e2e7e368c858b2ca122fe38d80410b35",
       "licenseComponentId": "funasr"
     },
     {
@@ -174,8 +174,8 @@
       "role": "runtime-source",
       "destination": "runtime-source/providers/chinese-funasr/src/funasr_engine.cpp",
       "sourcePath": "providers/chinese-funasr/src/funasr_engine.cpp",
-      "sizeBytes": 12416,
-      "sha256": "0d3ce17168b46c935cff0490f862e01f2875f0365b5cff275ac63649139598c1",
+      "sizeBytes": 12792,
+      "sha256": "e2c2db6290b98abe55440c10d90683e99ceafdc67e2e2327b3230b4713ab943d",
       "licenseComponentId": "funasr"
     },
     {
@@ -183,8 +183,8 @@
       "role": "runtime-source",
       "destination": "runtime-source/providers/chinese-funasr/src/funasr_engine.h",
       "sourcePath": "providers/chinese-funasr/src/funasr_engine.h",
-      "sizeBytes": 448,
-      "sha256": "e63eff7895677cf6d08fb6094c561756dbb03c40fb7270c27b3ebbda7533067e",
+      "sizeBytes": 591,
+      "sha256": "285662e176acab00b82079d79da2ef6463c8aa9345da3fabf424b094c63a638b",
       "licenseComponentId": "funasr"
     },
     {
@@ -192,8 +192,8 @@
       "role": "runtime-source",
       "destination": "runtime-source/providers/chinese-funasr/src/main.cpp",
       "sourcePath": "providers/chinese-funasr/src/main.cpp",
-      "sizeBytes": 6681,
-      "sha256": "490e2b79e658519822b8b958db883af48e45f0680f2dc2efac752dfb9d6ce36e",
+      "sizeBytes": 7185,
+      "sha256": "88e4d3f222f72618ecc57b4a3c2de734d2799fb3e5a9d97e0a70dcdbdfcc6cbc",
       "licenseComponentId": "funasr"
     },
     {
@@ -212,6 +212,51 @@
       "sourcePath": "providers/chinese-funasr/src/normalization.h",
       "sizeBytes": 320,
       "sha256": "e0eaaeb54fb51fff982488df97bde948943a4063b7b85cb85a7e9446d7f30949",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/package_integrity.cpp",
+      "sourcePath": "providers/chinese-funasr/src/package_integrity.cpp",
+      "sizeBytes": 1408,
+      "sha256": "be743a06e21b61b31af0efab0bd0dc797fb8ac3a17604b00c2b3836dbb130be0",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/package_integrity.h",
+      "sourcePath": "providers/chinese-funasr/src/package_integrity.h",
+      "sizeBytes": 185,
+      "sha256": "ebf923a82874051ba813f576538be2fc920744bbb41efaad1f97cfb3a23c7123",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/package_integrity_apple.cpp",
+      "sourcePath": "providers/chinese-funasr/src/package_integrity_apple.cpp",
+      "sizeBytes": 1570,
+      "sha256": "62c9e5bbf3a6efb6fd7df9c4c1fa7d94e59187ad4f1897dd1ac76e2ef16abd01",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/preparation_diagnostics.cpp",
+      "sourcePath": "providers/chinese-funasr/src/preparation_diagnostics.cpp",
+      "sizeBytes": 1740,
+      "sha256": "67d28aaee49a7a78b837f42a5b3138d4bcaa6222c1b78a8847e3787410090e5c",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/preparation_diagnostics.h",
+      "sourcePath": "providers/chinese-funasr/src/preparation_diagnostics.h",
+      "sizeBytes": 364,
+      "sha256": "99f5172763b85673bd2cc0f85052fe3ef9986713ee4d080c80f8df6bc4468ff7",
       "licenseComponentId": "funasr"
     },
     {
@@ -237,8 +282,8 @@
       "role": "runtime-source",
       "destination": "runtime-source/providers/chinese-funasr/src/session.cpp",
       "sourcePath": "providers/chinese-funasr/src/session.cpp",
-      "sizeBytes": 20497,
-      "sha256": "a27b7306c16fc449e7c34ddae6d9e24704bfbd72237e3bc42cde0fcac05fb4f9",
+      "sizeBytes": 20580,
+      "sha256": "d717303172ae274dd6b0b156369c4e1367c62aa0f02169e3a449e3e051ceb0e9",
       "licenseComponentId": "funasr"
     },
     {
@@ -248,24 +293,6 @@
       "sourcePath": "providers/chinese-funasr/src/session.h",
       "sizeBytes": 815,
       "sha256": "8cc4288f93649c6407b8be8ac7fd70f7d1f98ff4492abeb0aad047b478b6d3ef",
-      "licenseComponentId": "funasr"
-    },
-    {
-      "kind": "repository-file",
-      "role": "runtime-source",
-      "destination": "runtime-source/providers/chinese-funasr/src/sha256.cpp",
-      "sourcePath": "providers/chinese-funasr/src/sha256.cpp",
-      "sizeBytes": 2564,
-      "sha256": "06480a04db4b0f333c4d4e430467b82f32808aaefc1f4d7097bc3d1ef805f7f7",
-      "licenseComponentId": "funasr"
-    },
-    {
-      "kind": "repository-file",
-      "role": "runtime-source",
-      "destination": "runtime-source/providers/chinese-funasr/src/sha256.h",
-      "sourcePath": "providers/chinese-funasr/src/sha256.h",
-      "sizeBytes": 165,
-      "sha256": "e42123628026bbe8e677420a43c6265741e8cabf57712efeb147dde15a63c81d",
       "licenseComponentId": "funasr"
     },
     {

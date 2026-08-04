@@ -6,6 +6,10 @@ import { DEADLINES } from "./provider-process-session.mjs";
 import { writePerformanceAssessment } from "./performance-assessment.mjs";
 import { assertCompletePerformanceSamples } from "./performance-observation.mjs";
 import { assertResourcePolicyObservation } from "./profile-resource-policy.mjs";
+import {
+  PREPARATION_EVIDENCE_AUTHORITIES,
+  writePreparationStageEvidence,
+} from "./preparation-diagnostics.mjs";
 import { readJson, ROOT, shaFile, writeJson } from "../build/lib/files.mjs";
 
 const summarySchema = await readJson(
@@ -40,6 +44,7 @@ export async function writeProfileQualificationEvidence({
   warm,
   raw,
   rss,
+  preparationAttempts = [],
   conformancePath = null,
   decision,
   failureCategory = null,
@@ -50,6 +55,7 @@ export async function writeProfileQualificationEvidence({
     indexPath = path.join(output, "result-index.json"),
     performancePath = path.join(output, "performance-samples-v1.json"),
     attemptPath = path.join(output, "qualification-attempts-v1.json"),
+    preparationPath = path.join(output, "preparation-stage-evidence-v1.json"),
     preflightPath = path.join(output, "darwin-arm64-preflight-v2.json"),
     summaryPath = path.join(output, "qualification-summary-v2.json"),
     assessmentPath = path.join(output, "performance-assessment-v1.json");
@@ -76,6 +82,13 @@ export async function writeProfileQualificationEvidence({
     warmPreparation,
     warm,
   });
+  const preparationArtifact =
+    build.profileId === "chinese"
+      ? await writePreparationStageEvidence(
+          preparationPath,
+          preparationAttempts,
+        )
+      : null;
   const pendingAttempts = recorder.snapshot(),
     counts = recorder.counts(),
     quality = aggregateErrorRate(raw),
@@ -98,6 +111,7 @@ export async function writeProfileQualificationEvidence({
       warm,
       raw,
       rss,
+      preparationAttempts,
       quality,
       corpusMetric: corpus.manifest.metric,
       resourceObservation,
@@ -146,7 +160,24 @@ export async function writeProfileQualificationEvidence({
       qualificationAttempts: await fileIdentity(attemptPath),
       rawResults: await fileIdentity(rawPath),
       resultIndex: await fileIdentity(indexPath),
+      preparationStageEvidence: preparationArtifact
+        ? await fileIdentity(preparationPath)
+        : null,
     },
+    preparationEvidence: preparationArtifact
+      ? {
+          ...PREPARATION_EVIDENCE_AUTHORITIES,
+          attemptCount: preparationArtifact.attempts.length,
+          validAttemptCount: preparationArtifact.attempts.filter(
+            (item) => item.diagnosticValidation === "pass",
+          ).length,
+          privacyDecision: preparationArtifact.attempts.every(
+            (item) => item.privacyDecision === "pass",
+          )
+            ? "pass"
+            : "fail",
+        }
+      : null,
     attempts: {
       started: counts.started,
       succeeded: counts.completed,
@@ -256,6 +287,7 @@ function functionalOutcome({
   warm,
   raw,
   rss,
+  preparationAttempts,
   quality,
   corpusMetric,
   resourceObservation,
@@ -295,10 +327,29 @@ function functionalOutcome({
     !hasCompletePerformanceSamples({ cold, warmPreparation, warm }) ||
     rss.length === 0 ||
     rss.some((value) => !Number.isFinite(value) || value <= 0) ||
+    !hasValidPreparationEvidence(build.profileId, preparationAttempts) ||
     corpusMetric !== expectedMetric
   )
     return { decision: "fail", failureCategory: "functional-gate-failed" };
   return { decision: "pass", failureCategory: null };
+}
+
+function hasValidPreparationEvidence(profileId, attempts) {
+  if (profileId !== "chinese") return attempts.length === 0;
+  return (
+    attempts.length === 60 &&
+    attempts.every(
+      (item) =>
+        item.outcome === "success" &&
+        item.diagnosticValidation === "pass" &&
+        item.privacyDecision === "pass" &&
+        item.completedStages.length === 5 &&
+        item.partialStage === null &&
+        item.completedStages.every(
+          (stage) => stage.rssCoverage !== "unavailable",
+        ),
+    )
+  );
 }
 
 function hasCompletePerformanceSamples(samples) {

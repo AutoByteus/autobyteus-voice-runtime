@@ -212,3 +212,26 @@ test("truncated UTF-8 on stdout termination fails the session", async () => {
   assert.equal(session.state, "failed");
   assert.deepEqual(child.kills, ["SIGTERM"]);
 });
+test("session forwards exact raw stderr chunks without interpreting framing", async () => {
+  const child = childFactory(),
+    session = create(child),
+    chunks = [],
+    events = [];
+  session.attachStderrObserver({
+    onSpawn: (spawned) => events.push(["spawn", spawned.pid]),
+    onBytes: (bytes) => chunks.push(Buffer.from(bytes)),
+    onClose: () => events.push(["close"]),
+  });
+  queueMicrotask(() => {
+    child.stderr.emit("data", Buffer.from([0xe8, 0xaa]));
+    child.stderr.emit("data", Buffer.from([0x9e, 0x0a, 0x41]));
+    child.stderr.emit("end");
+  });
+  await session.start();
+  assert.deepEqual(events, [["spawn", 1234], ["close"]]);
+  assert.deepEqual(
+    Buffer.concat(chunks),
+    Buffer.from([0xe8, 0xaa, 0x9e, 0x0a, 0x41]),
+  );
+  await session.shutdown("0198f0f0-7e65-7f72-9c3e-95b59eeb72b2");
+});

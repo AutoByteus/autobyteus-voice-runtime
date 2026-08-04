@@ -1,11 +1,13 @@
 #pragma once
+#include <functional>
 #include <memory>
 #include <string>
 #include <vector>
 
 class FunAsrEngine {
 public:
-    FunAsrEngine(const std::string& encoder_path, const std::string& language_model_path);
+    using PreparationBoundary = std::function<void(const char* stage, const char* event)>;
+    FunAsrEngine(const std::string& encoder_path, const std::string& language_model_path, PreparationBoundary boundary);
     ~FunAsrEngine();
     FunAsrEngine(const FunAsrEngine&) = delete;
     FunAsrEngine& operator=(const FunAsrEngine&) = delete;

@@ -586,6 +586,26 @@ function profile(entry, archive, digest, policy) {
     modelId: entry.modelId,
     candidateDecision: entry.decision,
     ...Object.fromEntries(hashes.map((key) => [key, digest])),
+    preparationStageEvidenceSha256:
+      entry.profileId === "chinese" ? digest : null,
+    preparationEvidence:
+      entry.profileId === "chinese"
+        ? {
+            diagnosticContract: {
+              contractId: "autobyteus-voice-preparation-diagnostics-v1",
+              fileName: "preparation-diagnostics-v1.json",
+              sha256: digest,
+            },
+            stageEvidenceSchema: {
+              fileName: "preparation-stage-evidence-v1.schema.json",
+              sha256: digest,
+            },
+            qualificationClock: "qualification-attempt-monotonic-v1",
+            attemptCount: 60,
+            validAttemptCount: 60,
+            privacyDecision: "pass",
+          }
+        : null,
     archive: { ...archive, extractedSizeBytes: 100, entryCount: 2 },
     attempts: {
       started: entry.profileId === "english" ? 160 : 260,

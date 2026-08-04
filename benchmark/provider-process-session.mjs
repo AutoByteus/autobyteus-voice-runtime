@@ -18,6 +18,9 @@ export class ProviderProcessSession {
     commandPrefix = null,
     spawn = nodeSpawn,
     deadlines = {},
+    onSpawn = null,
+    stderrSink = null,
+    stderrCloseSink = null,
   }) {
     if (
       typeof launcher !== "string" ||
@@ -32,6 +35,9 @@ export class ProviderProcessSession {
       ? Object.freeze([...commandPrefix])
       : null;
     this.spawnImpl = spawn;
+    this.onSpawn = onSpawn;
+    this.stderrSink = stderrSink;
+    this.stderrCloseSink = stderrCloseSink;
     this.deadlines = Object.freeze({ ...DEADLINES, ...deadlines });
     this.state = "idle";
     this.child = null;
@@ -82,6 +88,8 @@ export class ProviderProcessSession {
       this.child.stdout.on("data", (chunk) => this.consume(chunk));
       this.child.stdout.once("end", () => this.finishStdout());
       this.child.stderr.on("data", (chunk) => this.consumeStderr(chunk));
+      this.child.stderr.once("end", () => this.finishStderr());
+      this.onSpawn?.(this.child);
       this.state = "awaiting-hello";
       await this.waitFor("hello", this.deadlines.helloMs);
       if (this.state !== "ready")
@@ -91,6 +99,20 @@ export class ProviderProcessSession {
       await this.fail(error);
       throw error;
     }
+  }
+  attachStderrObserver({ onSpawn, onBytes, onClose }) {
+    if (this.state !== "idle")
+      throw new Error("STDERR_OBSERVER_MUST_ATTACH_BEFORE_START");
+    if (
+      typeof onSpawn !== "function" ||
+      typeof onBytes !== "function" ||
+      typeof onClose !== "function"
+    )
+      throw new TypeError("Stderr observer is incomplete.");
+    this.onSpawn = onSpawn;
+    this.stderrSink = onBytes;
+    this.stderrCloseSink = onClose;
+    return this;
   }
   async transcribe(audioPath, requestId = randomUUID()) {
     if (this.state !== "ready" || this.pending)
@@ -351,22 +373,18 @@ export class ProviderProcessSession {
     });
   }
   consumeStderr(chunk) {
-    const lines = chunk
-      .toString("utf8")
-      .split(/\r?\n/)
-      .filter(Boolean)
-      .map((line) =>
-        /^[A-Z][A-Z0-9_]{2,80}$/.test(line)
-          ? line
-          : "VOICE_PROVIDER_DIAGNOSTIC_REDACTED",
-      );
-    this.stderr = (this.stderr + lines.join("\n") + "\n").slice(-8192);
+    if (this.stderrSink) this.stderrSink(Buffer.from(chunk));
+    else this.stderr = "VOICE_PROVIDER_DIAGNOSTIC_REDACTED\n";
+  }
+  finishStderr() {
+    this.stderrCloseSink?.();
   }
   detach() {
     if (!this.child) return;
     this.child.stdout?.removeAllListeners("data");
     this.child.stdout?.removeAllListeners("end");
     this.child.stderr?.removeAllListeners("data");
+    this.child.stderr?.removeAllListeners("end");
     this.child.stdin?.destroy();
   }
 }

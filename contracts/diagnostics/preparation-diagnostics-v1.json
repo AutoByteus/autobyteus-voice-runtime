@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "contractId": "autobyteus-voice-preparation-diagnostics-v1",
+  "prefix": "AUTOBYTEUS_VOICE_PREP_V1 ",
+  "clock": "worker-process-monotonic-v1",
+  "encoding": "ascii-canonical-json-lf",
+  "maxLineBytes": 256,
+  "stages": [
+    "manifest-verification",
+    "encoder-load",
+    "language-model-load",
+    "context-create",
+    "normalizer-load"
+  ],
+  "events": ["start", "complete"],
+  "recordKeys": ["elapsedUs", "event", "sequence", "stage"],
+  "recordCount": 10
+}

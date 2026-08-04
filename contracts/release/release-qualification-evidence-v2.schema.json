@@ -184,7 +184,9 @@
         "qualificationSummary",
         "performanceAssessment",
         "resourcePolicy",
-        "functionalDecision"
+        "functionalDecision",
+        "preparationStageEvidenceSha256",
+        "preparationEvidence"
       ],
       "properties": {
         "profileId": {
@@ -392,8 +394,60 @@
         },
         "resourcePolicy": {
           "$ref": "#/$defs/resourcePolicy"
+        },
+        "preparationStageEvidenceSha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preparationEvidence": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/preparationEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
-      }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "profileId": {
+                "const": "chinese"
+              }
+            },
+            "required": ["profileId"]
+          },
+          "then": {
+            "properties": {
+              "preparationStageEvidenceSha256": {
+                "$ref": "#/$defs/sha"
+              },
+              "preparationEvidence": {
+                "$ref": "#/$defs/preparationEvidence"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "preparationStageEvidenceSha256": {
+                "type": "null"
+              },
+              "preparationEvidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
     },
     "intended": {
       "type": "object",
@@ -622,6 +676,69 @@
         },
         "hardCeilingMet": {
           "type": "boolean"
+        }
+      }
+    },
+    "diagnosticContractIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contractId", "fileName", "sha256"],
+      "properties": {
+        "contractId": {
+          "const": "autobyteus-voice-preparation-diagnostics-v1"
+        },
+        "fileName": {
+          "const": "preparation-diagnostics-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "stageEvidenceSchemaIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "preparation-stage-evidence-v1.schema.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "preparationEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diagnosticContract",
+        "stageEvidenceSchema",
+        "qualificationClock",
+        "attemptCount",
+        "validAttemptCount",
+        "privacyDecision"
+      ],
+      "properties": {
+        "diagnosticContract": {
+          "$ref": "#/$defs/diagnosticContractIdentity"
+        },
+        "stageEvidenceSchema": {
+          "$ref": "#/$defs/stageEvidenceSchemaIdentity"
+        },
+        "qualificationClock": {
+          "const": "qualification-attempt-monotonic-v1"
+        },
+        "attemptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "validAttemptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "privacyDecision": {
+          "enum": ["pass", "fail"]
         }
       }
     }

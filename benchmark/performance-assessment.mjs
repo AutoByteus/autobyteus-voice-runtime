@@ -4,6 +4,7 @@ import path from "node:path";
 import Ajv2020 from "ajv/dist/2020.js";
 import { readJson, ROOT, shaFile, writeJson } from "../build/lib/files.mjs";
 import { assertPassingDarwinArm64Preflight } from "./darwin-arm64-preflight-contract.mjs";
+import { verifyPreparationStageEvidence } from "./preparation-diagnostics.mjs";
 import {
   assertCompletePerformanceSamples,
   buildPerformanceMetrics,
@@ -118,6 +119,7 @@ async function buildPerformanceAssessment({
       (await shaFile(qualificationAttemptsPath))
   )
     throw new Error("Summary raw/preflight identities do not match inputs.");
+  await verifyPreparationBinding(summary, summaryPath, attempts);
   const attemptCounts = {
     started: attempts.attempts.length,
     succeeded: attempts.attempts.filter((item) => item.status === "succeeded")
@@ -150,6 +152,8 @@ async function buildPerformanceAssessment({
     preflight: summary.preflight,
     performanceSamples: summary.rawEvidence.performanceSamples,
     qualificationAttempts: summary.rawEvidence.qualificationAttempts,
+    preparationStageEvidence: summary.rawEvidence.preparationStageEvidence,
+    preparationEvidence: summary.preparationEvidence,
     performanceEnvironment,
     attempts: attemptCounts,
     hardDeadlines: summary.hardDeadlines,
@@ -160,6 +164,50 @@ async function buildPerformanceAssessment({
     extractedSizeBytes: summary.extractedSizeBytes,
     assessment,
   };
+}
+
+export async function verifyPreparationBinding(summary, summaryPath, attempts) {
+  const identity = summary.rawEvidence.preparationStageEvidence;
+  if (summary.profileId === "english") {
+    if (identity !== null || summary.preparationEvidence !== null)
+      throw new Error(
+        "English qualification must not bind Chinese diagnostics.",
+      );
+    return;
+  }
+  if (!identity || !summary.preparationEvidence)
+    throw new Error("Chinese preparation evidence binding is missing.");
+  const file = path.join(path.dirname(summaryPath), identity.fileName),
+    evidence = await verifyPreparationStageEvidence(file),
+    preparationAttempts = attempts.attempts.filter(
+      (item) => item.phase !== "warm-request",
+    );
+  if (
+    (await shaFile(file)) !== identity.sha256 ||
+    JSON.stringify(evidence.diagnosticContract) !==
+      JSON.stringify(summary.preparationEvidence.diagnosticContract) ||
+    JSON.stringify(evidence.stageEvidenceSchema) !==
+      JSON.stringify(summary.preparationEvidence.stageEvidenceSchema) ||
+    evidence.qualificationClock !==
+      summary.preparationEvidence.qualificationClock ||
+    evidence.attempts.length !== summary.preparationEvidence.attemptCount ||
+    evidence.attempts.length !== preparationAttempts.length ||
+    evidence.attempts.some((item, index) => {
+      const ledgerAttempt = preparationAttempts[index];
+      return (
+        item.attemptSequence !== ledgerAttempt.sequence ||
+        (item.outcome === "failure" && ledgerAttempt.status !== "failed") ||
+        (item.outcome === "success" &&
+          !Number.isFinite(ledgerAttempt.timings?.preparationMs))
+      );
+    }) ||
+    evidence.attempts.filter((item) => item.diagnosticValidation === "pass")
+      .length !== summary.preparationEvidence.validAttemptCount ||
+    (evidence.attempts.every((item) => item.privacyDecision === "pass")
+      ? "pass"
+      : "fail") !== summary.preparationEvidence.privacyDecision
+  )
+    throw new Error("Chinese preparation evidence binding mismatch.");
 }
 
 export function buildResourceOptimization(resourcePolicy, observedBytes) {

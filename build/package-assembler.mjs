@@ -175,6 +175,11 @@ try {
       path.join(ROOT, source),
       path.join(stage, "contracts", name),
     );
+  if (providerDirectory === "chinese-funasr")
+    await fs.copyFile(
+      path.join(ROOT, "contracts/diagnostics/preparation-diagnostics-v1.json"),
+      path.join(stage, "contracts/preparation-diagnostics-v1.json"),
+    );
   const launcherName =
     target.platform === "win32" ? "voice-provider.exe" : "voice-provider";
   const privateExecutable =
@@ -422,6 +427,12 @@ try {
     protocolSha256: await shaFile(
       path.join(stage, "contracts/voice-input-protocol-v1.schema.json"),
     ),
+    preparationDiagnosticsSha256:
+      providerDirectory === "chinese-funasr"
+        ? await shaFile(
+            path.join(stage, "contracts/preparation-diagnostics-v1.json"),
+          )
+        : null,
     noticeInventorySha256: await shaFile(
       path.join(stage, "THIRD_PARTY_NOTICES.json"),
     ),

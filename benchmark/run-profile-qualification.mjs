@@ -5,6 +5,8 @@ import path from "node:path";
 import { randomUUID } from "node:crypto";
 import { ProviderProcessSession } from "./provider-process-session.mjs";
 import { measureWithRss } from "./rss-sampler.mjs";
+import { startQualificationSession } from "./qualification-preparation.mjs";
+import { preserveQualificationInputs } from "./qualification-inputs.mjs";
 import { proveRuntimeConformance } from "./runtime-conformance.mjs";
 import { validateCorpus } from "./corpus/validate-corpus.mjs";
 import {
@@ -41,7 +43,6 @@ import {
   parsePairs,
   readJson,
   removeWritableTree,
-  shaFile,
   writeJson,
 } from "../build/lib/files.mjs";
 
@@ -101,7 +102,17 @@ await fs.mkdir(output, { recursive: true });
 let context = null,
   evidenceWritten = false;
 try {
-  const preserved = await preserveQualificationInputs(output);
+  const preserved = await preserveQualificationInputs({
+    destination: output,
+    build,
+    conditions,
+    buildReportPath: path.resolve(args["build-report"]),
+    reproducibilityProofPath: path.resolve(args["reproducibility-proof"]),
+    compliancePath: path.resolve(args.compliance),
+    baselinePath: path.resolve(args.baseline),
+    corpusPath: path.resolve(args.corpus),
+    conditionsPath: path.resolve(args.conditions),
+  });
   const packageRoot = await extractQualifiedPackage({
       work,
       build,
@@ -137,6 +148,7 @@ try {
     warm: [],
     raw: [],
     rss: [],
+    preparationAttempts: [],
     activeSession: null,
     failureCategory: null,
     conformancePath: null,
@@ -182,80 +194,6 @@ try {
   await removeWritableTree(work);
 }
 
-async function preserveQualificationInputs(destination) {
-  const buildReportPath = path.resolve(args["build-report"]),
-    reproducibilityProofPath = path.resolve(args["reproducibility-proof"]),
-    reproducibilityProof = await readJson(reproducibilityProofPath),
-    sibling = (name) =>
-      path.join(path.dirname(buildReportPath), path.basename(name)),
-    inputManifestPath = sibling(build.buildInputManifestFileName),
-    inputProvenancePath = sibling(build.buildInputProvenanceFileName),
-    nativeBuildEnvironmentPath = sibling(build.nativeBuildEnvironmentFileName),
-    compliancePath = path.resolve(args.compliance),
-    compliance = await readJson(compliancePath);
-  if (
-    build.buildInputManifestFileName !==
-      path.basename(build.buildInputManifestFileName) ||
-    (await shaFile(inputManifestPath)) !== build.buildInputManifestSha256 ||
-    build.buildInputProvenanceFileName !==
-      path.basename(build.buildInputProvenanceFileName) ||
-    (await shaFile(inputProvenancePath)) !== build.buildInputProvenanceSha256 ||
-    build.nativeBuildEnvironmentFileName !==
-      path.basename(build.nativeBuildEnvironmentFileName) ||
-    (await shaFile(nativeBuildEnvironmentPath)) !==
-      build.nativeBuildEnvironmentSha256 ||
-    compliance.decision !== "pass" ||
-    compliance.packageId !== build.packageId ||
-    compliance.archiveSha256 !== build.archive.sha256 ||
-    compliance.provenanceSha256 !== build.buildInputProvenanceSha256
-  )
-    throw new Error("Preserved build-input/environment manifest mismatch.");
-  if (
-    reproducibilityProof.schemaVersion !== 1 ||
-    reproducibilityProof.passed !== true ||
-    reproducibilityProof.sourceCommit !== build.sourceCommit ||
-    reproducibilityProof.packageId !== build.packageId ||
-    reproducibilityProof.buildInputManifestSha256 !==
-      build.buildInputManifestSha256 ||
-    reproducibilityProof.nativeBuildEnvironmentSha256 !==
-      build.nativeBuildEnvironmentSha256 ||
-    reproducibilityProof.archiveSha256 !== build.archive.sha256 ||
-    reproducibilityProof.firstBuildReportSha256 !==
-      (await shaFile(buildReportPath)) ||
-    reproducibilityProof.secondBuildReportSha256 !==
-      reproducibilityProof.firstBuildReportSha256
-  )
-    throw new Error("Reproducibility proof does not bind this build.");
-  for (const [source, name] of [
-    [buildReportPath, "build-report.json"],
-    [inputManifestPath, "build-input-manifest.json"],
-    [inputProvenancePath, "input-provenance-v1.json"],
-    [nativeBuildEnvironmentPath, "native-build-environment-v1.json"],
-    [compliancePath, "package-compliance-v1.json"],
-    [reproducibilityProofPath, "reproducibility-proof-v1.json"],
-    [path.resolve(args.baseline), "baseline-evidence.json"],
-    [path.resolve(args.corpus), "corpus-manifest.json"],
-    [path.resolve(args.conditions), "qualification-conditions-v1.json"],
-    [
-      path.join(
-        path.dirname(path.resolve(args.conditions)),
-        conditions.preflight.fileName,
-      ),
-      "darwin-arm64-preflight-v2.json",
-    ],
-  ])
-    await fs.copyFile(source, path.join(destination, name));
-  return {
-    buildReportPath,
-    reproducibilityProofPath,
-    nativeBuildEnvironmentPath: path.join(
-      destination,
-      "native-build-environment-v1.json",
-    ),
-    compliancePath: path.join(destination, "package-compliance-v1.json"),
-  };
-}
-
 async function runColdTrials(state) {
   for (let index = 0; index < coldCount; index++) {
     const clip = corpus.manifest.clips[index % corpus.manifest.clips.length],
@@ -286,11 +224,13 @@ async function runColdTrials(state) {
         work,
       );
       state.activeSession = session;
-      await measureWithRss(
-        session.start(),
-        () => session.child?.pid,
-        state.rss,
-      );
+      await startQualificationSession({
+        session,
+        profileId: build.profileId,
+        attemptSequence: sequence,
+        rss: state.rss,
+        preparationAttempts: state.preparationAttempts,
+      });
       const result = await measuredTranscription(session, clip, state.rss);
       assertSuccessfulQualificationResult(result);
       const sample = {
@@ -332,11 +272,13 @@ async function runWarmPreparationTrials(state) {
         work,
       );
       state.activeSession = session;
-      await measureWithRss(
-        session.start(),
-        () => session.child?.pid,
-        state.rss,
-      );
+      await startQualificationSession({
+        session,
+        profileId: build.profileId,
+        attemptSequence: sequence,
+        rss: state.rss,
+        preparationAttempts: state.preparationAttempts,
+      });
       if (index < coldCount - 1) {
         await session.shutdown();
         state.activeSession = null;
@@ -469,6 +411,7 @@ async function writeEvidence(state, decision, failureCategory) {
     warm: state.warm,
     raw: state.raw,
     rss: state.rss,
+    preparationAttempts: state.preparationAttempts,
     conformancePath: state.conformancePath,
     decision,
     failureCategory,

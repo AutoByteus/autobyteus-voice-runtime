@@ -15,6 +15,7 @@ import {
 import { loadCurrentReleaseMatrix } from "../../release/current-release-matrix.mjs";
 import { resolveProfileResourcePolicy } from "../../benchmark/profile-resource-policy.mjs";
 import { CHINESE_SCORING_AUTHORITY } from "../../benchmark/scoring/chinese-qualification.mjs";
+import { derivePreparationStages } from "../../benchmark/preparation-diagnostics.mjs";
 import { readJson, shaFile, writeJson } from "../../build/lib/files.mjs";
 import { passingDarwinPreflightFixture } from "../fixtures/passing-darwin-preflight.mjs";
 
@@ -204,12 +205,69 @@ async function writeQualityFailureFixture({
       ...performance,
       raw,
       rss: [1024],
+      preparationAttempts:
+        entry.profileId === "chinese" ? preparationEvidenceFixture() : [],
       decision: "pass",
       failureCategory: null,
       noPackageMutation: true,
       recovery: true,
     });
   return { directory, evidence };
+}
+
+function preparationEvidenceFixture() {
+  const stages = [
+    "manifest-verification",
+    "encoder-load",
+    "language-model-load",
+    "context-create",
+    "normalizer-load",
+  ];
+  return Array.from({ length: 60 }, (_, attemptSequence) => {
+    const receivedRecords = stages.flatMap((stage, stageIndex) => [
+        {
+          record: {
+            elapsedUs: stageIndex * 20,
+            event: "start",
+            sequence: stageIndex * 2,
+            stage,
+          },
+          receivedAtUs: stageIndex * 30,
+        },
+        {
+          record: {
+            elapsedUs: stageIndex * 20 + 10,
+            event: "complete",
+            sequence: stageIndex * 2 + 1,
+            stage,
+          },
+          receivedAtUs: stageIndex * 30 + 20,
+        },
+      ]),
+      rssObservations = stages.map((_, sequence) => ({
+        sequence,
+        startedAtUs: sequence * 30 + 5,
+        completedAtUs: sequence * 30 + 15,
+        rssBytes: 1024,
+      })),
+      derived = derivePreparationStages({
+        attemptSequence,
+        receivedRecords,
+        rssObservations,
+      });
+    return {
+      attemptSequence,
+      outcome: "success",
+      diagnosticValidation: "pass",
+      privacyDecision: "pass",
+      redactedLineCount: 0,
+      failureCodes: [],
+      receivedRecords,
+      rssObservations,
+      ...derived,
+      maxRssBytes: 1024,
+    };
+  });
 }
 
 async function buildFixture({

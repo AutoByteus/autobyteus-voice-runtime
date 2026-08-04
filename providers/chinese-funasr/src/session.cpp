@@ -1,5 +1,5 @@
 #include "session.h"
-#include "sha256.h"
+#include "package_integrity.h"
 #include <fstream>
 #include <cstdlib>
 #include <map>
@@ -152,7 +152,7 @@ BoundSession bind_session(const fs::path& root_input, const fs::path& config_pat
     const auto manifest_path = contained_regular(root, "provider/package-files-v1.json");
     const auto descriptor = read_json(descriptor_path);
     const auto manifest = read_json(manifest_path);
-    if (sha256_file(descriptor_path) != expected["descriptorSha256"].get<std::string>() || sha256_file(manifest_path) != expected["fileManifestSha256"].get<std::string>() || !mode_matches(manifest_path, "read-only")) throw std::runtime_error("control-digest");
+    if (sha256_file_incremental_apple(descriptor_path) != expected["descriptorSha256"].get<std::string>() || sha256_file_incremental_apple(manifest_path) != expected["fileManifestSha256"].get<std::string>() || !mode_matches(manifest_path, "read-only")) throw std::runtime_error("control-digest");
     validate_descriptor_shape(descriptor);
     exact_keys(manifest, {"schemaVersion","packageId","files"});
     if (manifest.at("schemaVersion") != 1 || !text(manifest.at("packageId")) || !manifest.at("files").is_array() || manifest.at("files").empty()) throw std::runtime_error("invalid-manifest");
@@ -207,7 +207,7 @@ BoundSession bind_session(const fs::path& root_input, const fs::path& config_pat
     for (const auto& relative : controls) {
         const auto file = session.resolve(relative);
         const auto record = records.at(relative);
-        const auto digest = sha256_file(file);
+        const auto digest = sha256_file_incremental_apple(file);
         if (digest != record["sha256"].get<std::string>() || fs::file_size(file) != record["sizeBytes"].get<std::uintmax_t>() || !mode_matches(file, record["mode"].get<std::string>())) throw std::runtime_error("control-identity-mismatch");
         if (identities.contains(relative) && digest != identities.at(relative)) throw std::runtime_error("descriptor-control-identity-mismatch");
     }
@@ -220,7 +220,7 @@ void verify_complete_manifest(const BoundSession& session) {
         const auto relative = record["path"].get<std::string>();
         if (!expected.insert(relative).second) throw std::runtime_error("duplicate-manifest-path");
         const auto file = session.resolve(relative);
-        if (fs::file_size(file) != record["sizeBytes"].get<std::uintmax_t>() || sha256_file(file) != record["sha256"].get<std::string>() || !mode_matches(file, record["mode"].get<std::string>())) throw std::runtime_error("file-identity-mismatch");
+        if (fs::file_size(file) != record["sizeBytes"].get<std::uintmax_t>() || sha256_file_incremental_apple(file) != record["sha256"].get<std::string>() || !mode_matches(file, record["mode"].get<std::string>())) throw std::runtime_error("file-identity-mismatch");
     }
     if (!mode_matches(session.resolve("provider/package-files-v1.json"), "read-only")) throw std::runtime_error("manifest-mode-mismatch");
     std::set<std::string> actual;

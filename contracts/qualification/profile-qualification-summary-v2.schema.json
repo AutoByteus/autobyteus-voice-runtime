@@ -29,6 +29,7 @@
     "runtimeConformanceSha256",
     "preflight",
     "rawEvidence",
+    "preparationEvidence",
     "attempts",
     "hardDeadlines",
     "packageId",
@@ -264,6 +265,16 @@
     },
     "resourcePolicy": {
       "$ref": "#/$defs/resourcePolicy"
+    },
+    "preparationEvidence": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/preparationEvidence"
+        },
+        {
+          "type": "null"
+        }
+      ]
     }
   },
   "$defs": {
@@ -309,7 +320,8 @@
         "performanceSamples",
         "qualificationAttempts",
         "rawResults",
-        "resultIndex"
+        "resultIndex",
+        "preparationStageEvidence"
       ],
       "properties": {
         "performanceSamples": {
@@ -323,6 +335,16 @@
         },
         "resultIndex": {
           "$ref": "#/$defs/resultIndexIdentity"
+        },
+        "preparationStageEvidence": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/preparationStageEvidenceIdentity"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       }
     },
@@ -682,6 +704,82 @@
           "minimum": 1
         }
       }
+    },
+    "preparationStageEvidenceIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "preparation-stage-evidence-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "diagnosticContractIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contractId", "fileName", "sha256"],
+      "properties": {
+        "contractId": {
+          "const": "autobyteus-voice-preparation-diagnostics-v1"
+        },
+        "fileName": {
+          "const": "preparation-diagnostics-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "stageEvidenceSchemaIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "preparation-stage-evidence-v1.schema.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "preparationEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diagnosticContract",
+        "stageEvidenceSchema",
+        "qualificationClock",
+        "attemptCount",
+        "validAttemptCount",
+        "privacyDecision"
+      ],
+      "properties": {
+        "diagnosticContract": {
+          "$ref": "#/$defs/diagnosticContractIdentity"
+        },
+        "stageEvidenceSchema": {
+          "$ref": "#/$defs/stageEvidenceSchemaIdentity"
+        },
+        "qualificationClock": {
+          "const": "qualification-attempt-monotonic-v1"
+        },
+        "attemptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "validAttemptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "privacyDecision": {
+          "enum": ["pass", "fail"]
+        }
+      }
     }
   },
   "allOf": [
@@ -754,6 +852,17 @@
               }
             },
             "type": "object"
+          },
+          "preparationEvidence": {
+            "$ref": "#/$defs/preparationEvidence"
+          },
+          "rawEvidence": {
+            "type": "object",
+            "properties": {
+              "preparationStageEvidence": {
+                "$ref": "#/$defs/preparationStageEvidenceIdentity"
+              }
+            }
           }
         }
       },
@@ -790,6 +899,17 @@
               }
             },
             "type": "object"
+          },
+          "preparationEvidence": {
+            "type": "null"
+          },
+          "rawEvidence": {
+            "type": "object",
+            "properties": {
+              "preparationStageEvidence": {
+                "type": "null"
+              }
+            }
           }
         }
       }

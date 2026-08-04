@@ -1,6 +1,7 @@
 #include "audio.h"
 #include "funasr_engine.h"
 #include "normalization.h"
+#include "preparation_diagnostics.h"
 #include "result_policy.h"
 #include "session.h"
 #include <chrono>
@@ -55,10 +56,19 @@ int main(int argc, char** argv) {
     emit({{"type","lifecycle"},{"protocolVersion",1},{"state","model-preparing"}});
     std::unique_ptr<FunAsrEngine> engine;
     std::unique_ptr<Normalizer> normalizer;
+    PreparationDiagnostics diagnostics;
     try {
+        diagnostics.start("manifest-verification");
         verify_complete_manifest(session);
-        engine = std::make_unique<FunAsrEngine>(session.resolve("model/funasr-encoder-f16.gguf").string(), session.resolve("model/qwen3-0.6b-q8_0.gguf").string());
+        diagnostics.complete("manifest-verification");
+        const auto boundary = [&diagnostics](const char* stage, const char* event) {
+            if (std::string(event) == "start") diagnostics.start(stage);
+            else diagnostics.complete(stage);
+        };
+        engine = std::make_unique<FunAsrEngine>(session.resolve("model/funasr-encoder-f16.gguf").string(), session.resolve("model/qwen3-0.6b-q8_0.gguf").string(), boundary);
+        diagnostics.start("normalizer-load");
         normalizer = std::make_unique<Normalizer>(session.resolve("normalizer/t2s-mapping-v1.json"));
+        diagnostics.complete("normalizer-load");
     } catch (...) {
         emit({{"type","lifecycle"},{"protocolVersion",1},{"state","failed"},{"code","MODEL_PREPARATION_FAILED"}});
         return 1;

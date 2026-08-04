@@ -127,15 +127,20 @@ struct FunAsrEngine::Impl {
     std::vector<llama_token> prefix;
     std::vector<llama_token> suffix;
 
-    Impl(const std::string& encoder_path, const std::string& language_model_path) {
+    Impl(const std::string& encoder_path, const std::string& language_model_path, const FunAsrEngine::PreparationBoundary& boundary) {
         llama_log_set([](ggml_log_level, const char*, void*) {}, nullptr);
+        boundary("encoder-load", "start");
         if (!load_enc(encoder_path.c_str(), encoder)) throw std::runtime_error("encoder-load-failed");
+        boundary("encoder-load", "complete");
+        boundary("language-model-load", "start");
         ggml_backend_load_all();
         llama_model_params model_params = llama_model_default_params();
         model_params.n_gpu_layers = 0;
         model = llama_model_load_from_file(language_model_path.c_str(), model_params);
         if (!model) throw std::runtime_error("language-model-load-failed");
         vocab = llama_model_get_vocab(model);
+        boundary("language-model-load", "complete");
+        boundary("context-create", "start");
         llama_context_params context_params = llama_context_default_params();
         context_params.n_ctx = 2048; context_params.n_batch = 2048; context_params.n_ubatch = 2048;
         context = llama_init_from_model(model, context_params);
@@ -144,6 +149,7 @@ struct FunAsrEngine::Impl {
         llama_sampler_chain_add(sampler, llama_sampler_init_greedy());
         prefix = tokenize("<|im_start|>system\nYou are a helpful assistant.<|im_end|>\n<|im_start|>user\n语音转写：");
         suffix = tokenize("<|im_end|>\n<|im_start|>assistant\n");
+        boundary("context-create", "complete");
     }
     ~Impl() {
         if (sampler) llama_sampler_free(sampler);
@@ -185,6 +191,6 @@ struct FunAsrEngine::Impl {
     }
 };
 
-FunAsrEngine::FunAsrEngine(const std::string& encoder_path, const std::string& language_model_path) : impl_(std::make_unique<Impl>(encoder_path, language_model_path)) {}
+FunAsrEngine::FunAsrEngine(const std::string& encoder_path, const std::string& language_model_path, PreparationBoundary boundary) : impl_(std::make_unique<Impl>(encoder_path, language_model_path, boundary)) {}
 FunAsrEngine::~FunAsrEngine() = default;
 std::string FunAsrEngine::transcribe(const std::vector<float>& samples) { return impl_->transcribe(samples); }
