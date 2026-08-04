@@ -1,0 +1,244 @@
+--- readiness timeout owners ---
+benchmark/provider-process-session.mjs:8:  preparationMs: 30000,
+benchmark/provider-process-session.mjs:9:  requestMs: 30000,
+contracts/protocol/voice-input-protocol-v1.schema.json:124:          "maximum": 30000
+contracts/qualification/performance-assessment-v1.schema.json:208:          "const": 30000
+contracts/qualification/performance-assessment-v1.schema.json:211:          "const": 30000
+contracts/qualification/profile-qualification-summary-v2.schema.json:371:          "const": 30000
+contracts/qualification/profile-qualification-summary-v2.schema.json:374:          "const": 30000
+benchmark/cache-procedure.mjs:36:    timeout: 30000,
+benchmark/darwin-arm64-runner-preflight.mjs:151:    await run("/usr/bin/sudo", ["-n", "/usr/sbin/purge"], { timeout: 30000 });
+benchmark/protocol-v1.mjs:132:    value.audioDurationMs <= 30000 &&
+benchmark/system-command-identity.mjs:64:    timeout: 30000,
+--- changed source from API-REV-014 reviewed source to current ---
+ .github/workflows/release-voice-runtime.yml        |     3 +-
+ README.md                                          |    17 +-
+ benchmark/baseline/trusted-baseline.mjs            |   213 +-
+ benchmark/performance-assessment.mjs               |    24 +-
+ benchmark/product-normalization-proof.mjs          |    15 +
+ benchmark/profile-qualification-evidence.mjs       |    17 +-
+ benchmark/profile-resource-policy.mjs              |    86 +
+ benchmark/run-profile-qualification.mjs            |    35 +-
+ benchmark/scoring/chinese-qualification.mjs        |   121 +
+ benchmark/scoring/error-rate.mjs                   |    15 +-
+ benchmark/scoring/normalization.mjs                |    16 +-
+ benchmark/scoring/qualification-scoring.mjs        |    20 +
+ build/input-recipes/chinese-darwin-arm64-v1.json   |     4 +-
+ build/input-recipes/english-darwin-arm64-v1.json   |     4 +-
+ build/locked-inputs.json                           |     3 +-
+ .../branch-catalog-projection-v2.schema.json       |    31 +-
+ contracts/catalog/current-release-matrix-v1.json   |     7 +-
+ .../catalog/current-release-matrix-v1.schema.json  |    76 +-
+ .../normalization/transcript-normalization-v1.md   |     7 +-
+ .../performance-assessment-v1.schema.json          |   280 +-
+ .../profile-qualification-summary-v2.schema.json   |   251 +-
+ .../qualification/profile-resource-policy-v1.json  |    21 +
+ .../profile-resource-policy-v1.schema.json         |   105 +
+ contracts/release/qualification-set-v2.schema.json |   104 +-
+ .../release-qualification-evidence-v2.schema.json  |    90 +-
+ .../chinese-cer-selection-comparable-v1.json       |    42 +
+ contracts/scoring/opencc-t2s-scoring-map-v1.json   |  5004 +++++
+ .../results/profile-v2-funasr-nano-q8-zh.json      |  3427 ++++
+ .../quality-profile-v2-funasr-nano-q8-zh.json      |  1819 ++
+ evidence/chinese-qualification-v2/SHA256SUMS.txt   |     9 +
+ .../api-rev-014-comparable-rescore.json            |    61 +
+ evidence/chinese-qualification-v2/authority.json   |    36 +
+ .../chinese-cer-scoring-contract-v1.json           |    42 +
+ .../chinese-v2.baseline.json                       |  1234 ++
+ .../chinese-v2.corpus.json                         |     0
+ .../chinese-v2.trusted-baseline-record.json        |    42 +
+ .../derive_chinese_qualification_v2.mjs            |   229 +
+ .../opencc-t2s-scoring-map-v1.json                 |  5004 +++++
+ evidence/chinese-qualification-v2/validation.json  |    24 +
+ package.json                                       |     2 +-
+ release/branch-catalog-projection.mjs              |     5 +-
+ release/catalog-builder.mjs                        |     2 +
+ release/current-release-matrix.mjs                 |    16 +-
+ release/evidence/assemble.mjs                      |     5 +-
+ release/evidence/baselines/chinese-v2.json         |  1234 ++
+ .../evidence/profile-qualification-verifier.mjs    |    49 +-
+ .../evidence/qualification-corpora/chinese-v2.json |  1414 ++
+ release/evidence/qualification-set.mjs             |    29 +-
+ release/evidence/trusted-baselines-v1.json         |    53 +-
+ release/verify-branch-catalog-projection.mjs       |     5 +-
+ tests/release/current-platform-contracts.test.mjs  |    44 +-
+ tests/release/current-qualification-gates.test.mjs |     5 +
+ tests/release/functional-gate-retention.test.mjs   |    10 +
+ tests/release/profile-resource-policy.test.mjs     |   116 +
+ .../qualification-failure-evidence.test.mjs        |     5 +
+ tests/release/trusted-baseline.test.mjs            |    48 +
+ tests/scoring/chinese-qualification.test.mjs       |   114 +
+ tests/scoring/normalization.test.mjs               |    16 +-
+ .../api-e2e-coverage-investigation.md              |   207 +-
+ .../api-e2e-evidence/api-rev-014/SHA256SUMS.txt    |    50 +
+ ...PI-F-011-chinese-quality-contract-analysis.json |    77 +
+ .../API-F-011-chinese-quality-delta.json           |  2006 ++
+ ...-011-chinese-quality-nonregression-failure.json |   372 +
+ .../API-F-012-chinese-rss-gate-failure.json        |    46 +
+ .../chinese-darwin-arm64/archive-digests.log       |     2 +
+ .../chinese-darwin-arm64/baseline-evidence.json    |     0
+ .../chinese-darwin-arm64/build-input-manifest.json | 18899 +++++++++++++++++++
+ .../chinese-darwin-arm64/build-primary.log         |     0
+ .../chinese-darwin-arm64/build-report.json         |    51 +
+ .../chinese-darwin-arm64/build-secondary.log       |     0
+ .../chinese-darwin-arm64/compliance-generation.log |     0
+ .../chinese-darwin-arm64/conditions-input.json     |   190 +
+ .../chinese-darwin-arm64/corpus-manifest.json      |  1414 ++
+ .../create-native-build-environment.log            |     0
+ .../darwin-arm64-preflight-v2.json                 |   181 +
+ .../chinese-darwin-arm64/input-provenance-v1.json  |   231 +
+ .../native-build-environment-v1.json               |   112 +
+ .../native-build-environment.json                  |   112 +
+ .../package-compliance-input-v1.json               |    70 +
+ .../package-compliance-v1.json                     |    70 +
+ .../chinese-darwin-arm64/package-verification.json |    12 +
+ .../chinese-darwin-arm64/package-verifier.log      |     0
+ .../performance-assessment-v1.json                 |    84 +
+ .../performance-samples-v1.json                    |   896 +
+ .../chinese-darwin-arm64/prepare-conditions.log    |     0
+ .../qualification-attempts-v1.json                 |  4430 +++++
+ .../qualification-conditions-v1.json               |   190 +
+ .../qualification-summary-v2.json                  |   334 +
+ .../chinese-darwin-arm64/raw-results.json          |  2406 +++
+ .../reproducibility-proof-v1.json                  |    14 +
+ .../chinese-darwin-arm64/reproducibility.log       |     0
+ .../chinese-darwin-arm64/result-index.json         |  1405 ++
+ .../run-profile-qualification.exit-code            |     1 +
+ .../run-profile-qualification.log                  |     9 +
+ .../runtime-conformance-v1.json                    |    11 +
+ ...e-darwin-arm64-1.0.0.zip.build-environment.json |   112 +
+ ...voice-chinese-darwin-arm64-1.0.0.zip.build.json |    51 +
+ ...oice-chinese-darwin-arm64-1.0.0.zip.inputs.json | 18899 +++++++++++++++++++
+ ...-chinese-darwin-arm64-1.0.0.zip.provenance.json |   231 +
+ .../environment/cleanup-and-process-scan.log       |     8 +
+ .../environment/darwin-arm64-preflight-v2.json     |   181 +
+ .../environment/functional-preflight-v2.log        |     0
+ .../api-rev-014/environment/voice-caffeinate.pid   |     1 +
+ .../api-rev-014/inputs/corpus-validation.log       |     2 +
+ .../api-rev-014/inputs/materialization.log         |     8 +
+ .../API-VOICE-002-013-authority-impact.json        |    73 +
+ .../repository/focused-trusted-native-identity.log |    76 +
+ .../api-rev-014/repository/local-clone.log         |     6 +
+ .../api-rev-014/repository/npm-ci.log              |     7 +
+ .../api-rev-014/repository/npm-run-check.log       |   568 +
+ .../api-e2e-execution-coverage-report.md           |   212 +-
+ .../api-e2e-revision-record.md                     |    41 +
+ .../implementation-handoff.md                      |    99 +-
+ .../implementation-revision-record.md              |    27 +
+ tooling/verify-chinese-qualification.mjs           |    67 +
+ 115 files changed, 75868 insertions(+), 393 deletions(-)
+.github/workflows/release-voice-runtime.yml
+README.md
+benchmark/baseline/trusted-baseline.mjs
+benchmark/performance-assessment.mjs
+benchmark/product-normalization-proof.mjs
+benchmark/profile-qualification-evidence.mjs
+benchmark/profile-resource-policy.mjs
+benchmark/run-profile-qualification.mjs
+benchmark/scoring/chinese-qualification.mjs
+benchmark/scoring/error-rate.mjs
+benchmark/scoring/normalization.mjs
+benchmark/scoring/qualification-scoring.mjs
+build/input-recipes/chinese-darwin-arm64-v1.json
+build/input-recipes/english-darwin-arm64-v1.json
+build/locked-inputs.json
+contracts/catalog/branch-catalog-projection-v2.schema.json
+contracts/catalog/current-release-matrix-v1.json
+contracts/catalog/current-release-matrix-v1.schema.json
+contracts/normalization/transcript-normalization-v1.md
+contracts/qualification/performance-assessment-v1.schema.json
+contracts/qualification/profile-qualification-summary-v2.schema.json
+contracts/qualification/profile-resource-policy-v1.json
+contracts/qualification/profile-resource-policy-v1.schema.json
+contracts/release/qualification-set-v2.schema.json
+contracts/release/release-qualification-evidence-v2.schema.json
+contracts/scoring/chinese-cer-selection-comparable-v1.json
+contracts/scoring/opencc-t2s-scoring-map-v1.json
+evidence/backend-selection/results/profile-v2-funasr-nano-q8-zh.json
+evidence/backend-selection/results/quality-profile-v2-funasr-nano-q8-zh.json
+evidence/chinese-qualification-v2/SHA256SUMS.txt
+evidence/chinese-qualification-v2/api-rev-014-comparable-rescore.json
+evidence/chinese-qualification-v2/authority.json
+evidence/chinese-qualification-v2/chinese-cer-scoring-contract-v1.json
+evidence/chinese-qualification-v2/chinese-v2.baseline.json
+evidence/chinese-qualification-v2/chinese-v2.corpus.json
+evidence/chinese-qualification-v2/chinese-v2.trusted-baseline-record.json
+evidence/chinese-qualification-v2/derive_chinese_qualification_v2.mjs
+evidence/chinese-qualification-v2/opencc-t2s-scoring-map-v1.json
+evidence/chinese-qualification-v2/validation.json
+package.json
+release/branch-catalog-projection.mjs
+release/catalog-builder.mjs
+release/current-release-matrix.mjs
+release/evidence/assemble.mjs
+release/evidence/baselines/chinese-v2.json
+release/evidence/profile-qualification-verifier.mjs
+release/evidence/qualification-corpora/chinese-v2.json
+release/evidence/qualification-set.mjs
+release/evidence/trusted-baselines-v1.json
+release/verify-branch-catalog-projection.mjs
+tests/release/current-platform-contracts.test.mjs
+tests/release/current-qualification-gates.test.mjs
+tests/release/functional-gate-retention.test.mjs
+tests/release/profile-resource-policy.test.mjs
+tests/release/qualification-failure-evidence.test.mjs
+tests/release/trusted-baseline.test.mjs
+tests/scoring/chinese-qualification.test.mjs
+tests/scoring/normalization.test.mjs
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/SHA256SUMS.txt
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/API-F-011-chinese-quality-contract-analysis.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/API-F-011-chinese-quality-delta.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/API-F-011-chinese-quality-nonregression-failure.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/API-F-012-chinese-rss-gate-failure.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/archive-digests.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/baseline-evidence.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/build-input-manifest.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/build-primary.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/build-report.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/build-secondary.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/compliance-generation.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/conditions-input.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/corpus-manifest.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/create-native-build-environment.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/darwin-arm64-preflight-v2.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/input-provenance-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/native-build-environment-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/native-build-environment.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/package-compliance-input-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/package-compliance-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/package-verification.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/package-verifier.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/performance-assessment-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/performance-samples-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/prepare-conditions.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/qualification-attempts-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/qualification-conditions-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/qualification-summary-v2.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/raw-results.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/reproducibility-proof-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/reproducibility.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/result-index.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/run-profile-qualification.exit-code
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/run-profile-qualification.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/runtime-conformance-v1.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/voice-chinese-darwin-arm64-1.0.0.zip.build-environment.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/voice-chinese-darwin-arm64-1.0.0.zip.build.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/voice-chinese-darwin-arm64-1.0.0.zip.inputs.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/chinese-darwin-arm64/voice-chinese-darwin-arm64-1.0.0.zip.provenance.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/environment/cleanup-and-process-scan.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/environment/darwin-arm64-preflight-v2.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/environment/functional-preflight-v2.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/environment/voice-caffeinate.pid
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/inputs/corpus-validation.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/inputs/materialization.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/repository/API-VOICE-002-013-authority-impact.json
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/repository/focused-trusted-native-identity.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/repository/local-clone.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/repository/npm-ci.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-014/repository/npm-run-check.log
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md
+tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md
+tickets/in-progress/voice-input-runtime-reliability/implementation-handoff.md
+tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md
+tooling/verify-chinese-qualification.mjs

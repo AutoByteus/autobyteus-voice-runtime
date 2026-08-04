@@ -1,0 +1,312 @@
+=== exact archive identity ===
+-r--r--r--@ 1 normy  wheel    24M Aug  3 16:23 /private/tmp/autobyteus-voice-api-e2e-r6-20260803/output/inputs/english-darwin-arm64/python-host-archive
+62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b  /private/tmp/autobyteus-voice-api-e2e-r6-20260803/output/inputs/english-darwin-arm64/python-host-archive
+/private/tmp/autobyteus-voice-api-e2e-r6-20260803/output/inputs/english-darwin-arm64/python-host-archive: gzip compressed data, original size modulo 2^32 67541504
+=== symlink entries in exact authenticated archive ===
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/2to3 -> 2to3-3.12
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/idle3 -> idle3.12
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/pydoc3 -> pydoc3.12
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/python -> python3.12
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/python3 -> python3.12
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/bin/python3-config -> python3.12-config
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/lib/pkgconfig/python3-embed.pc -> python-3.12-embed.pc
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/lib/pkgconfig/python3.pc -> python-3.12.pc
+lrwxrwxr-x  0 root   root        0 Jan  1  2024 python/share/man/man1/python3.1 -> python3.12.1
+=== symlink count ===
+9
+=== relevant production source ===
+     1	import fs from "node:fs/promises";
+     2	import os from "node:os";
+     3	import path from "node:path";
+     4	import { execFile } from "node:child_process";
+     5	import { promisify } from "node:util";
+     6	import { readJson, regularFiles, ROOT, shaFile } from "../lib/files.mjs";
+     7	import { locked, verifyLockedFile } from "../locked-inputs.mjs";
+     8	import { trustedNativeBuildEnvironment } from "../trusted-native-environment.mjs";
+     9	
+    10	const run = promisify(execFile);
+    11	const BUILD_ONLY = new Set(["pip", "setuptools", "wheel"]);
+    12	
+    13	export async function materializePythonRuntime(context) {
+    14	  const tuple = `${context.target.platform}-${context.target.architecture}`;
+    15	  const archive = path.join(context.inputs, "python-host-archive");
+    16	  await verifyLockedFile(
+    17	    archive,
+    18	    locked.pythonBuildStandalone.archives[tuple],
+    19	    "Hermetic Python archive",
+    20	  );
+    21	  const wheelLockPath = path.join(
+    22	    ROOT,
+    23	    `build/python-wheel-locks/${tuple}.json`,
+    24	  );
+    25	  const wheelLock = await readJson(wheelLockPath);
+    26	  if (
+    27	    wheelLock.schemaVersion !== 1 ||
+    28	    wheelLock.target !== tuple ||
+    29	    !Array.isArray(wheelLock.wheels) ||
+    30	    wheelLock.wheels.length === 0
+    31	  )
+    32	    throw new Error("Repository-owned Python wheel lock is invalid.");
+    33	  const wheelhouse = path.join(context.inputs, "python-wheelhouse");
+    34	  await verifyWheelhouse(wheelhouse, wheelLock);
+    35	  const materialization = await fs.mkdtemp(
+    36	    path.join(os.tmpdir(), "voice-python-materialize-"),
+    37	  );
+    38	  try {
+    39	    const environment = trustedNativeBuildEnvironment(
+    40	      context.buildEnvironment,
+    41	      materialization,
+    42	      context.trustedTools,
+    43	    );
+    44	    await run(
+    45	      context.buildEnvironment.tools.tar.path,
+    46	      ["-xf", archive, "-C", materialization],
+    47	      {
+    48	        env: environment,
+    49	        maxBuffer: 16 * 1024 * 1024,
+    50	      },
+    51	    );
+    52	    const root = path.join(materialization, "python");
+    53	    const executable = path.join(
+    54	      root,
+    55	      context.target.platform === "win32" ? "python.exe" : "bin/python3",
+    56	    );
+    57	    if (!(await fs.stat(executable)).isFile())
+    58	      throw new Error("Locked Python archive has no expected executable.");
+    59	    const wheelPaths = wheelLock.wheels.map((wheel) =>
+    60	      path.join(wheelhouse, wheel.fileName),
+    61	    );
+    62	    await run(
+    63	      executable,
+    64	      [
+    65	        "-I",
+    66	        "-m",
+    67	        "pip",
+    68	        "install",
+    69	        "--no-index",
+    70	        "--no-deps",
+    71	        "--no-compile",
+    72	        "--disable-pip-version-check",
+    73	        ...wheelPaths,
+    74	      ],
+    75	      {
+    76	        env: environment,
+    77	        maxBuffer: 32 * 1024 * 1024,
+    78	      },
+    79	    );
+    80	    await prune(root);
+    81	    await verifyRuntimeTree(root, wheelLock.wheels);
+    82	    return {
+    83	      root,
+    84	      wheelLock,
+    85	      wheelLockSha256: await shaFile(wheelLockPath),
+    86	      dispose: () => fs.rm(materialization, { recursive: true, force: true }),
+    87	    };
+    88	  } catch (error) {
+    89	    await fs.rm(materialization, { recursive: true, force: true });
+    90	    throw error;
+    91	  }
+    92	}
+    93	
+    94	export async function verifyWheelhouse(wheelhouse, wheelLock) {
+    95	  const expectedFiles = wheelLock.wheels.map((wheel) => wheel.fileName).sort();
+    96	  const actualFiles = (await fs.readdir(wheelhouse)).sort();
+    97	  if (JSON.stringify(expectedFiles) !== JSON.stringify(actualFiles))
+    98	    throw new Error("Wheelhouse does not exactly match the repository lock.");
+    99	  for (const wheel of wheelLock.wheels)
+   100	    if (
+   101	      !/^[A-Za-z0-9_.+-]+\.whl$/.test(wheel.fileName) ||
+   102	      !/^[a-f0-9]{64}$/.test(wheel.sha256) ||
+   103	      (await shaFile(path.join(wheelhouse, wheel.fileName))) !== wheel.sha256
+   104	    )
+   105	      throw new Error(`Locked wheel identity mismatch: ${wheel.fileName}`);
+   106	}
+   107	
+   108	async function prune(root) {
+   109	  for (const relative of await regularFiles(root)) {
+   110	    if (/\.pyc$/i.test(relative) || /(^|\/)__pycache__\//.test(relative))
+   111	      await fs.rm(path.join(root, relative), { force: true });
+   112	  }
+   113	  for (const directory of await directories(root)) {
+   114	    const name = path.basename(directory).toLowerCase();
+   115	    if (
+   116	      name === "ensurepip" ||
+   117	      [...BUILD_ONLY].some(
+   118	        (item) =>
+   119	          name === item ||
+   120	          (name.startsWith(`${item}-`) && name.endsWith(".dist-info")),
+   121	      )
+   122	    )
+   123	      await fs.rm(directory, { recursive: true, force: true });
+   124	  }
+   125	  for (const relative of ["include", "lib/pkgconfig", "libs"])
+   126	    await fs.rm(path.join(root, relative), { recursive: true, force: true });
+   127	  for (const relative of await regularFiles(root))
+   128	    if (
+   129	      /(^|\/)(?:pip(?:3(?:\.12)?)?|python3\.12-config)(?:\.exe)?$/i.test(
+   130	        relative,
+   131	      ) ||
+   132	      /(^|\/)libpython[^/]*\.(?:a|lib)$/i.test(relative)
+   133	    )
+   134	      await fs.rm(path.join(root, relative), { force: true });
+   135	}
+   136	
+   137	async function verifyRuntimeTree(root, wheels) {
+   138	  const expected = new Map(
+   139	    wheels
+   140	      .filter((wheel) => !BUILD_ONLY.has(canonical(wheel.name)))
+   141	      .map((wheel) => [canonical(wheel.name), wheel.version]),
+   142	  );
+   143	  const installed = new Map();
+   144	  for (const relative of (await regularFiles(root)).filter((file) =>
+   145	    file.endsWith(".dist-info/METADATA"),
+   146	  )) {
+   147	    const metadata = await fs.readFile(path.join(root, relative), "utf8");
+   148	    const name = /^Name:\s*(.+)$/im.exec(metadata)?.[1]?.trim();
+   149	    const version = /^Version:\s*(.+)$/im.exec(metadata)?.[1]?.trim();
+   150	    if (!name || !version)
+   151	      throw new Error("Installed wheel metadata is invalid.");
+   152	    installed.set(canonical(name), version);
+   153	  }
+   154	  if (
+   155	    expected.size !== installed.size ||
+   156	    [...expected].some(([name, version]) => installed.get(name) !== version)
+   157	  )
+   158	    throw new Error(
+   159	      "Materialized Python distributions differ from locked wheels.",
+   160	    );
+   161	}
+   162	
+   163	async function directories(root) {
+   164	  const result = [];
+   165	  async function walk(directory) {
+   166	    for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
+   167	      if (!entry.isDirectory()) continue;
+   168	      const target = path.join(directory, entry.name);
+   169	      result.push(target);
+   170	      await walk(target);
+   171	    }
+   172	  }
+   173	  await walk(root);
+   174	  return result.sort((a, b) => b.length - a.length);
+   175	}
+   176	
+   177	function canonical(value) {
+   178	  return value.toLowerCase().replace(/[-_.]+/g, "-");
+   179	}
+=== regularFiles owner ===
+     1	import fs from "node:fs/promises";
+     2	import path from "node:path";
+     3	import { createHash } from "node:crypto";
+     4	export const ROOT = path.resolve(import.meta.dirname, "../..");
+     5	export function sha256(value) {
+     6	  return createHash("sha256").update(value).digest("hex");
+     7	}
+     8	export async function shaFile(file) {
+     9	  return sha256(await fs.readFile(file));
+    10	}
+    11	export async function readJson(file) {
+    12	  return JSON.parse(await fs.readFile(file, "utf8"));
+    13	}
+    14	export async function writeJson(file, value) {
+    15	  await fs.mkdir(path.dirname(file), { recursive: true });
+    16	  await fs.writeFile(file, `${JSON.stringify(value, null, 2)}\n`);
+    17	}
+    18	export async function regularFiles(root) {
+    19	  const result = [];
+    20	  async function visit(directory) {
+    21	    for (const entry of await fs.readdir(directory, { withFileTypes: true })) {
+    22	      const target = path.join(directory, entry.name);
+    23	      if (entry.isSymbolicLink())
+    24	        throw new Error("Symbolic links are forbidden.");
+    25	      if (entry.isDirectory()) await visit(target);
+    26	      else if (entry.isFile())
+    27	        result.push(path.relative(root, target).split(path.sep).join("/"));
+    28	      else throw new Error("Only ordinary files are supported.");
+    29	    }
+    30	  }
+    31	  await visit(root);
+    32	  return result.sort();
+    33	}
+    34	export async function treeDigest(root) {
+    35	  const records = [];
+    36	  for (const relative of await regularFiles(root)) {
+    37	    const file = path.join(root, relative);
+    38	    records.push([relative, (await fs.stat(file)).size, await shaFile(file)]);
+    39	  }
+    40	  return sha256(Buffer.from(`${JSON.stringify(records)}\n`));
+    41	}
+    42	export function parsePairs(values, required) {
+    43	  const result = {};
+    44	  for (let i = 0; i < values.length; i += 2) {
+    45	    if (!values[i]?.startsWith("--") || values[i + 1] === undefined)
+    46	      throw new Error("Arguments must be --name value pairs.");
+    47	    const key = values[i].slice(2);
+    48	    if (result[key] !== undefined) throw new Error(`Duplicate --${key}.`);
+    49	    result[key] = values[i + 1];
+    50	  }
+    51	  for (const key of required)
+    52	    if (!result[key]) throw new Error(`Missing --${key}.`);
+    53	  return result;
+    54	}
+    55	export async function copyClean(source, destination) {
+=== recipe role ===
+{
+  "kind": "cache-object",
+  "role": "python-host",
+  "destination": "python-host-archive",
+  "sizeBytes": 25153180,
+  "sha256": "62aeee6161d57303a71a138b75fd5cc6fb8c89c4b1d9c7f0a052d89fa0b6652b",
+  "upstream": "https://github.com/astral-sh/python-build-standalone/releases/download/20260718/cpython-3.12.13%2B20260718-aarch64-apple-darwin-install_only.tar.gz",
+  "licenseComponentId": "python-build-standalone"
+}
+=== production failure ===
+[2026-08-03T14:24:23Z] corrected English primary build begin
+node:internal/errors:983
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /Users/normy/.hermes/node/bin/node /private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/mlx.mjs --target darwin-arm64 --inputs /private/tmp/autobyteus-voice-api-e2e-r6-20260803/output/inputs/english-darwin-arm64 --stage /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/package --build-environment /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/native-build-environment-v1.json --trusted-tools /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/trusted-native-tools
+file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:24
+        throw new Error("Symbolic links are forbidden.");
+              ^
+
+Error: Symbolic links are forbidden.
+    at visit (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:24:15)
+    at async visit (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:25:32)
+    at async regularFiles (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:31:3)
+    at async prune (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/python/materialize-runtime.mjs:109:26)
+    at async materializePythonRuntime (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/python/materialize-runtime.mjs:80:5)
+    at async copyPythonProvider (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/common.mjs:104:24)
+    at async file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/mlx.mjs:45:1
+
+Node.js v22.23.1
+
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at ChildProcess.exithandler (node:child_process:417:12)
+    at ChildProcess.emit (node:events:519:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+  code: 1,
+  killed: false,
+  signal: null,
+  cmd: '/Users/normy/.hermes/node/bin/node /private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/mlx.mjs --target darwin-arm64 --inputs /private/tmp/autobyteus-voice-api-e2e-r6-20260803/output/inputs/english-darwin-arm64 --stage /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/package --build-environment /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/native-build-environment-v1.json --trusted-tools /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/trusted-native-tools',
+  stdout: '',
+  stderr: 'file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:24\n' +
+    '        throw new Error("Symbolic links are forbidden.");\n' +
+    '              ^\n' +
+    '\n' +
+    'Error: Symbolic links are forbidden.\n' +
+    '    at visit (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:24:15)\n' +
+    '    at async visit (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:25:32)\n' +
+    '    at async regularFiles (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:31:3)\n' +
+    '    at async prune (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/python/materialize-runtime.mjs:109:26)\n' +
+    '    at async materializePythonRuntime (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/python/materialize-runtime.mjs:80:5)\n' +
+    '    at async copyPythonProvider (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/common.mjs:104:24)\n' +
+    '    at async file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/mlx.mjs:45:1\n' +
+    '\n' +
+    'Node.js v22.23.1\n'
+}
+
+Node.js v22.23.1

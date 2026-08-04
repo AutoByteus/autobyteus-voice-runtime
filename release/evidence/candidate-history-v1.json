@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "selectionStudyId": "backend-selection-sr-006",
+  "candidates": [
+    {
+      "candidateId": "mlx-whisper-small-preserved",
+      "profileId": "english",
+      "providerId": "autobyteus.voice.mlx-whisper-small",
+      "modelId": "whisper-small-mlx-fp16",
+      "resultPath": "results/controlled-mlx-fp16-en.json",
+      "resultDigest": "41130ffff80dcabb59c442116201a8ea965e01d1a64513e32a5bc6c1f012f3e3",
+      "outcome": "preserved",
+      "reason": "User-approved English profile retained; exact package remains subject to non-regression."
+    },
+    {
+      "candidateId": "faster-whisper-small-preserved",
+      "profileId": "english",
+      "providerId": "autobyteus.voice.faster-whisper-small",
+      "modelId": "whisper-small-ctranslate2-int8",
+      "resultPath": "results/faster-whisper-source-metadata.json",
+      "resultDigest": "ff63b2030f1dd6eeccb884148127fe3b2f8f396deb69fb60019031b6493c892d",
+      "outcome": "preserved",
+      "reason": "User-approved non-Apple English profile retained; every target remains subject to package proof."
+    },
+    {
+      "candidateId": "paraformer-control-rejected",
+      "profileId": "chinese",
+      "providerId": "selection-study.paraformer",
+      "modelId": "paraformer-large",
+      "resultPath": "results/quality-paraformer-int8.json",
+      "resultDigest": "691582fb094d67a95bbeb37144a4a575f2e0e18026dd6e329f151456be654655",
+      "outcome": "rejected",
+      "reason": "Required improvement control ran and did not win the approved Chinese selection lane."
+    },
+    {
+      "candidateId": "sensevoice-rejected",
+      "profileId": "chinese",
+      "providerId": "selection-study.sensevoice",
+      "modelId": "sensevoice-small-int8",
+      "resultPath": "results/quality-profile-v2-funasr-vs-sensevoice-bootstrap.json",
+      "resultDigest": "987f5cfd16dbe260b1866e27aad1ed3fc3088a9d658c42f725b2d5a3720f5795",
+      "outcome": "rejected",
+      "reason": "Operationally efficient but statistically worse than Fun-ASR under the corrected corpus."
+    },
+    {
+      "candidateId": "faster-whisper-chinese-rejected",
+      "profileId": "chinese",
+      "providerId": "selection-study.faster-whisper",
+      "modelId": "whisper-small-float32-beam5",
+      "resultPath": "results/quality-screen-funasr-vs-faster-whisper-float32-beam5-bootstrap.json",
+      "resultDigest": "782ce704ee867d3bef3d1751d6ff4b6b9f3bfb51db8a290027868a6d4ae8fdbd",
+      "outcome": "rejected",
+      "reason": "Chinese quality screen was decisively worse."
+    },
+    {
+      "candidateId": "whisper-cpp-chinese-rejected",
+      "profileId": "chinese",
+      "providerId": "selection-study.whisper-cpp",
+      "modelId": "whisper-small-f16-beam5",
+      "resultPath": "results/quality-screen-funasr-vs-whisper-cpp-f16-beam5-bootstrap.json",
+      "resultDigest": "b990fe5c33cba77f3035374f0195410fbbd47ec7f005343eac1ae82265f70a1c",
+      "outcome": "rejected",
+      "reason": "Chinese quality screen was decisively worse."
+    },
+    {
+      "candidateId": "qwen3-asr-rejected",
+      "profileId": "chinese",
+      "providerId": "selection-study.qwen3-asr",
+      "modelId": "qwen3-asr-0.6b-q8",
+      "resultPath": "results/quality-profile-v2-funasr-vs-qwen3-asr-0.6b-q8-bootstrap.json",
+      "resultDigest": "57bbf02130a72f07b731d9adf8521772f0430445103e8735da78f4dd5ea9a986",
+      "outcome": "rejected",
+      "reason": "Quality was worse and persistent RSS exceeded the approved gate."
+    },
+    {
+      "candidateId": "funasr-selected",
+      "profileId": "chinese",
+      "providerId": "autobyteus.voice.funasr-nano-q8",
+      "modelId": "fun-asr-nano-gguf-q8",
+      "resultPath": "results/quality-profile-v2-funasr-nano-q8-zh.json",
+      "resultDigest": "c7229574bad3ee199d43e1ee146c61e65514fa2c2ba514d7358ff40134f64089",
+      "outcome": "selected",
+      "reason": "Corrected 200-unique-audio lane selected Fun-ASR with 5.213% CER."
+    },
+    {
+      "candidateId": "auto-separate-qualification",
+      "profileId": "auto",
+      "providerId": "autobyteus.voice.funasr-nano-q8",
+      "modelId": "fun-asr-nano-gguf-q8",
+      "resultPath": "results/mixed-funasr-nano-q8-auto.json",
+      "resultDigest": "699591da6d6951f462626a282d895ca1e19206ec64f8ae9ac3feb5f3549b8dde",
+      "outcome": "future",
+      "reason": "Auto is omitted unless its separate package/corpus gate qualifies."
+    }
+  ]
+}

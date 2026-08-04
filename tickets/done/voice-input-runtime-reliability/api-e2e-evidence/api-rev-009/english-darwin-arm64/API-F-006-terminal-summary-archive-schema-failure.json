@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "apiRevision": "API-REV-009",
+  "findingId": "API-F-006",
+  "scenarioIds": [
+    "API-VOICE-003"
+  ],
+  "acceptanceCriteria": [
+    "AC-003",
+    "AC-007",
+    "AC-011",
+    "AC-017",
+    "AC-023"
+  ],
+  "result": "fail",
+  "expected": "After the first cold process-loss, the runner atomically retains a schema-valid Qualification Summary 2 and related terminal evidence with the same fail/process-loss decision, then exits nonzero.",
+  "observed": {
+    "attemptLedgerDecision": "fail",
+    "attemptLedgerFailureCategory": "process-loss",
+    "summaryCreated": false,
+    "runnerExitCode": 1,
+    "runnerTerminalError": "Qualification Summary invalid: /archive additionalProperty schemaVersion",
+    "buildArchive": {
+      "compressedSizeBytes": 645512982,
+      "entryCount": 6502,
+      "extractedSizeBytes": 1195561020,
+      "schemaVersion": 1,
+      "sha256": "057c011a6371e40fdfdc7bcc67fe99709ea39024ed2dcf47f97d84b84dc2b15f"
+    },
+    "composedSummaryArchive": {
+      "compressedSizeBytes": 645512982,
+      "entryCount": 6502,
+      "extractedSizeBytes": 1195561020,
+      "schemaVersion": 1,
+      "sha256": "057c011a6371e40fdfdc7bcc67fe99709ea39024ed2dcf47f97d84b84dc2b15f",
+      "fileName": "voice-english-darwin-arm64-1.0.0.zip"
+    },
+    "summaryArchiveAllowedProperties": [
+      "fileName",
+      "sha256",
+      "compressedSizeBytes",
+      "extractedSizeBytes",
+      "entryCount"
+    ],
+    "unexpectedSummaryArchiveProperties": [
+      "schemaVersion"
+    ]
+  },
+  "focusedOriginEvidence": {
+    "composition": "profile-qualification-evidence.mjs uses archive: { ...build.archive, fileName }, forwarding archive-report schemaVersion.",
+    "schema": "profile-qualification-summary-v2.schema.json archive.additionalProperties is false and does not allow schemaVersion.",
+    "profileEvidenceSourceSha256": "eae23f57e1b2edc7a2f12bddb8061b147ec3e41cce9baa58810d558b8ecc9336",
+    "summarySchemaSha256": "c59c8f7219c6bdcc3d61ae67bde5b6d293325536a208b858a691510c90d26f82",
+    "runLogSha256": "fb32c8284805dd24e0f380b8f5b942be25e4965ff2c648b7c9015b32fdecb1f6"
+  },
+  "impact": "The evidence-writer defect masks the original public-launcher failure at the CLI boundary and prevents the required schema-valid terminal Summary/Assessment chain.",
+  "preliminaryClassification": "Local Fix / implementation defect in profile qualification archive projection and terminal-failure evidence retention",
+  "recommendedOwner": "Implementation Engineer after Code Reviewer failure-origin review"
+}

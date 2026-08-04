@@ -1,2 +1,7 @@
-.work/
+node_modules/
 dist/
+.work/
+*.log
+__pycache__/
+*.py[cod]
+.DS_Store

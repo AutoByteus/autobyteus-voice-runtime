@@ -1,0 +1,537 @@
+{
+  "schemaVersion": 1,
+  "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+  "language": "auto",
+  "command": [
+    "/tmp/autobyteus-voice-backend-study-20260802/build/funasr-llamacpp/bin/llama-funasr-cli-hotwords-v2",
+    "--enc",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/funasr-encoder-f16.gguf",
+    "-m",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/qwen3-0.6b-q8_0.gguf",
+    "-a",
+    "<clip>",
+    "--chunk",
+    "15"
+  ],
+  "corpusId": "ascend-real-mandarin-english-control-v1",
+  "screeningExecution": {
+    "concurrentWorkers": 1,
+    "performanceAuthority": "Rejected — quality screening only"
+  },
+  "warmSession": {
+    "quality": [
+      {
+        "id": "ascend-test-00361",
+        "category": "mixed-real",
+        "reference": "mistake is because我当初其实原本是想要往US去走但我那时候是在the third i remember third year",
+        "durationMs": 9140,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00361",
+          "ok": true,
+          "text": "Mistake is because我当初其实原本是想要往U S去走，但我那时候是在the third I remember third year。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2016.546,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.58 ms, sched copies = 1\n[done] 1.96s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00362",
+        "category": "mixed-real",
+        "reference": "对再说apply for the fourth year i will我觉得我去exchange是在第四年的时候但是我apply是在third years的时候apply",
+        "durationMs": 7820,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00362",
+          "ok": true,
+          "text": "对，那时候apply for the fourth year。哎，我就是我去是在第四年的时候，但是我apply的时候在third year的时候apply。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2054.683,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.56 ms, sched copies = 1\n[done] 1.99s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00364",
+        "category": "mixed-real",
+        "reference": "activities different kind of activities对有时候去忙一些那个舞会啊party呀有时候忙一些领队啊就是the low summer camp for students so i have lots of different kinds of",
+        "durationMs": 11200,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00364",
+          "ok": true,
+          "text": "Activities different kind of activities 对，有时候去忙一些那种舞会啊，party 啊，有时候忙一些营队啊，就是呃，low summer camp for students，so I have lots of different kind of",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2328.443,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.53 ms, sched copies = 1\n[done] 2.27s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00369",
+        "category": "mixed-real",
+        "reference": "就是美国学校的exchange的话托福toefl toefl score need to be like over one hundred and five",
+        "durationMs": 7290,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00369",
+          "ok": true,
+          "text": "就是美国学校的exchange的话，toef toef toef score need to be like above one hundred and five。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1919.807,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.92 ms, sched copies = 1\n[done] 1.86s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00675",
+        "category": "mixed-real",
+        "reference": "就是说as a beginner you can play well at the first time",
+        "durationMs": 4200,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00675",
+          "ok": true,
+          "text": "就是说，as a beginner，you can play well at the first time。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1762.143,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.65 ms, sched copies = 1\n[done] 1.71s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00701",
+        "category": "mixed-real",
+        "reference": "就是he's faster stronger and more scared for than the other players",
+        "durationMs": 6440,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00701",
+          "ok": true,
+          "text": "To he is faster, stronger and more skillful than other players.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2097.11,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.67 ms, sched copies = 1\n[done] 2.03s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00383",
+        "category": "mixed-real",
+        "reference": "嗯actually i also like the iron man um best",
+        "durationMs": 5430,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00383",
+          "ok": true,
+          "text": "Actually, I also like the Airman Best.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1907.103,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.08 ms, sched copies = 1\n[done] 1.84s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00394",
+        "category": "mixed-real",
+        "reference": "呃do you have a hobby of collecting the movie's ticket",
+        "durationMs": 4780,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00394",
+          "ok": true,
+          "text": "Do you have a hobby of collecting the movies ticket?",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1842.014,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.92 ms, sched copies = 1\n[done] 1.78s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00395",
+        "category": "mixed-real",
+        "reference": "呃i with this habit only when i came to Hong Kong",
+        "durationMs": 4790,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00395",
+          "ok": true,
+          "text": "I raised this habit only when I came to Hong Kong.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1757.954,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.66 ms, sched copies = 1\n[done] 1.69s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00654",
+        "category": "mixed-real",
+        "reference": "um you mentioned that you think呃swimming is the best sport for diet and i can't agree anymore",
+        "durationMs": 8260,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00654",
+          "ok": true,
+          "text": "Um, you mention that you think, um, swimming is the best sport for there, and I can't agree anymore.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2003.659,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.68 ms, sched copies = 1\n[done] 1.94s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00660",
+        "category": "mixed-real",
+        "reference": "呃do you think man can do better sports than woman",
+        "durationMs": 4790,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00660",
+          "ok": true,
+          "text": "Em, and do you think man can do better sports than woman?",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1737.054,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.19 ms, sched copies = 1\n[done] 1.67s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00671",
+        "category": "mixed-real",
+        "reference": "呃actually I like swimming from the bottom bottom of my heart but I think呃我的身体是其实对游泳是抗拒的因为我特别的怕水",
+        "durationMs": 12100,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00671",
+          "ok": true,
+          "text": "嗯，actually I love swimming from the bottom bottom of my heart，but I think嗯，我的身体是是对游泳是抗拒的，因为我特别的怕水。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2904.792,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.11 ms, sched copies = 1\n[done] 2.85s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00119",
+        "category": "mixed-real",
+        "reference": "然后在 the the difference uh for environment field it the difference between Hong Kong and mainland",
+        "durationMs": 6220,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00119",
+          "ok": true,
+          "text": "然后在the the difference uh for environment field is the difference between Hong Kong and mainland.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1964.494,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.79 ms, sched copies = 1\n[done] 1.91s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00196",
+        "category": "mixed-real",
+        "reference": "嗯we in my major we have嗯over eighty students and half is the local students",
+        "durationMs": 7690,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00196",
+          "ok": true,
+          "text": "Uh, we in my major, we have uh over eighty students and half is the local student.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1824.414,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.87 ms, sched copies = 1\n[done] 1.77s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00478",
+        "category": "mixed-real",
+        "reference": "所以呃and the interesting for this um lecture is we only have eight students",
+        "durationMs": 5490,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00478",
+          "ok": true,
+          "text": "So, uh, and the interesting for this, uh, lecture is we only have eight students.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1849.349,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.70 ms, sched copies = 1\n[done] 1.80s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00484",
+        "category": "mixed-real",
+        "reference": "呃 if China should er develop the hydro hydraulic fracturing technology to exploit the natural gas",
+        "durationMs": 7380,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00484",
+          "ok": true,
+          "text": "If China should develop the hydraulic forcing technology to exploit the natural gas.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1701.023,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.92 ms, sched copies = 1\n[done] 1.64s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00694",
+        "category": "mixed-real",
+        "reference": "然后我再告诉它what i want to listen to music the name is blah blah blah blah blah",
+        "durationMs": 5340,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00694",
+          "ok": true,
+          "text": "然后我再告诉他，我I want to listen to music，呃，name is巴拉巴拉巴拉。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2078.542,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.61 ms, sched copies = 1\n[done] 2.03s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00752",
+        "category": "mixed-real",
+        "reference": "and i think uh even though some people say there will be another呃",
+        "durationMs": 5630,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00752",
+          "ok": true,
+          "text": "And I think even though some people say there will be another",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2096.353,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.66 ms, sched copies = 1\n[done] 2.03s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00009",
+        "category": "mixed-real",
+        "reference": "no我专业是那个i s m information systems management",
+        "durationMs": 4030,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00009",
+          "ok": true,
+          "text": "那我专案是那个I S M Information Systems Management。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1760.776,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.62 ms, sched copies = 1\n[done] 1.69s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00607",
+        "category": "mixed-real",
+        "reference": "and嗯and I eat for dinner eat for lunch eat for eat breakfast and then study and go to bed so",
+        "durationMs": 11850,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00607",
+          "ok": true,
+          "text": "And then, and then, um, and then eat for dinner, eat for lunch, eat for breakfast, and then study and go to bed. So.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2346.069,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.01 ms, sched copies = 1\n[done] 2.29s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00773",
+        "category": "mixed-real",
+        "reference": "那我呃嗯Why you choose Hong Kong instead of other other foreign countries like US or Australia",
+        "durationMs": 8040,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00773",
+          "ok": true,
+          "text": "Now, um, why you choose Hong Kong instead of other foreign countries like U.S. or Australia?",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2021.355,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.05 ms, sched copies = 1\n[done] 1.97s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-00968",
+        "category": "mixed-real",
+        "reference": "那种关于呃着装啊还有关于那些关于interview skills的东西所以you need to have um to dress formal",
+        "durationMs": 10890,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-00968",
+          "ok": true,
+          "text": "那种关于呃着装啊，还有关于那些interview skills的东西。所以you need to have呃to dress formal。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2154.057,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.08 ms, sched copies = 1\n[done] 2.09s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-01094",
+        "category": "mixed-real",
+        "reference": "so you will walk slowly and slowly and then you you you should呃",
+        "durationMs": 4860,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-01094",
+          "ok": true,
+          "text": "So it will work slowly and slowly, and then you, you, you should, um.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1808.098,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.66 ms, sched copies = 1\n[done] 1.75s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-test-01096",
+        "category": "mixed-real",
+        "reference": "but for iphone you will be more呃",
+        "durationMs": 3620,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-test-01096",
+          "ok": true,
+          "text": "for iPhone it will be more",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1817.872,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.02 ms, sched copies = 1\n[done] 1.76s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00001",
+        "category": "mixed-real",
+        "reference": "小朋友我回想一下when i was in elementary school",
+        "durationMs": 4600,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00001",
+          "ok": true,
+          "text": "小朋友，我我回想一下回来，我是在阿门去school。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1853.095,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.22 ms, sched copies = 1\n[done] 1.79s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00265",
+        "category": "mixed-real",
+        "reference": "an program leader when i was in呃university",
+        "durationMs": 4530,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00265",
+          "ok": true,
+          "text": "And program leader when I was in university.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1731.447,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.81 ms, sched copies = 1\n[done] 1.67s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00575",
+        "category": "mixed-real",
+        "reference": "但至于这个bedtimes是不是一定要用来睡觉呢我觉得只有depends on students themselves",
+        "durationMs": 8770,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00575",
+          "ok": true,
+          "text": "但至于这个 bad times 是不是一定要用来睡觉呢？我觉得就 depends on students themselves.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2397.472,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.74 ms, sched copies = 1\n[done] 2.34s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00821",
+        "category": "mixed-real",
+        "reference": "so uh for me I think呃one another sport is yoga",
+        "durationMs": 5750,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00821",
+          "ok": true,
+          "text": "So for me, I think one another sport is yoga.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1759.483,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.85 ms, sched copies = 1\n[done] 1.70s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00829",
+        "category": "mixed-real",
+        "reference": "because in many Olympic Games there are many women嗯do better when man",
+        "durationMs": 7260,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00829",
+          "ok": true,
+          "text": "Because in many Olympic games, there many woman do better than men.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2158.034,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.78 ms, sched copies = 1\n[done] 2.09s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "ascend-validation-00850",
+        "category": "mixed-real",
+        "reference": "very little money to呃to it so I don't have any special feelings but",
+        "durationMs": 7160,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "ascend-validation-00850",
+          "ok": true,
+          "text": "Very little money to do it, so I don't have any special feelings, but",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2281.864,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.94 ms, sched copies = 1\n[done] 2.22s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      }
+    ],
+    "performance": []
+  },
+  "summaries": {}
+}

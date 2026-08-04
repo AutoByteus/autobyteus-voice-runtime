@@ -1,0 +1,76 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "decision",
+    "releaseTag",
+    "repository",
+    "observedAt",
+    "preTagReleaseManifest",
+    "expectedPublishedPayloadSetSha256",
+    "observations"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "decision": { "enum": ["pass", "fail"] },
+    "releaseTag": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "observedAt": { "type": "string", "format": "date-time" },
+    "preTagReleaseManifest": { "$ref": "#/$defs/manifest" },
+    "expectedPublishedPayloadSetSha256": { "$ref": "#/$defs/sha" },
+    "observations": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "$ref": "#/$defs/observation" }
+    }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "nullableSha": { "type": ["string", "null"], "pattern": "^[a-f0-9]{64}$" },
+    "manifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expectedSha256", "publishedSha256", "status"],
+      "properties": {
+        "expectedSha256": { "$ref": "#/$defs/sha" },
+        "publishedSha256": { "$ref": "#/$defs/nullableSha" },
+        "status": {
+          "enum": ["match", "missing", "size-mismatch", "digest-mismatch"]
+        }
+      }
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "role",
+        "fileName",
+        "expectedSizeBytes",
+        "observedSizeBytes",
+        "expectedSha256",
+        "observedSha256",
+        "status"
+      ],
+      "properties": {
+        "role": { "enum": ["catalog", "release-evidence", "provider-archive"] },
+        "fileName": { "type": "string" },
+        "expectedSizeBytes": { "type": "integer", "minimum": 1 },
+        "observedSizeBytes": { "type": ["integer", "null"], "minimum": 0 },
+        "expectedSha256": { "$ref": "#/$defs/sha" },
+        "observedSha256": { "$ref": "#/$defs/nullableSha" },
+        "status": {
+          "enum": ["match", "missing", "size-mismatch", "digest-mismatch"]
+        }
+      }
+    }
+  }
+}

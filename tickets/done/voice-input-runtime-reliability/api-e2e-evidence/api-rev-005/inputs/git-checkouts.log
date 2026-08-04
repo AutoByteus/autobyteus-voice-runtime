@@ -1,0 +1,24 @@
+### funasr-source 53a56d80667320b44a7dd779f5bf8c024b6c30a8
+Initialized empty Git repository in /private/tmp/autobyteus-voice-api-e2e-r5-20260803/input-cache/checkouts/funasr-source/.git/
+From https://github.com/FunAudioLLM/Fun-ASR
+ * branch            53a56d80667320b44a7dd779f5bf8c024b6c30a8 -> FETCH_HEAD
+HEAD is now at 53a56d8 docs: replace retired homepage links (#156)
+revision=53a56d80667320b44a7dd779f5bf8c024b6c30a8
+tree=60ab5bc5658100856984773714347f1d03b73e7d
+clean=true
+### llama-cpp-source 8086439a4cea94c71a5dfb8fe4ad1546aebd640f
+Initialized empty Git repository in /private/tmp/autobyteus-voice-api-e2e-r5-20260803/input-cache/checkouts/llama-cpp-source/.git/
+From https://github.com/ggml-org/llama.cpp
+ * branch            8086439a4cea94c71a5dfb8fe4ad1546aebd640f -> FETCH_HEAD
+HEAD is now at 8086439 webui: export conversations as jsonl (#24688)
+revision=8086439a4cea94c71a5dfb8fe4ad1546aebd640f
+tree=6de5862fca5eb1d6241e75b65df90257ee362f6a
+clean=true
+### utf8proc-source a1b99daa2a3393884220264c927a48ba1251a9c6
+Initialized empty Git repository in /private/tmp/autobyteus-voice-api-e2e-r5-20260803/input-cache/checkouts/utf8proc-source/.git/
+From https://github.com/JuliaStrings/utf8proc
+ * branch            a1b99daa2a3393884220264c927a48ba1251a9c6 -> FETCH_HEAD
+HEAD is now at a1b99da rm blank line
+revision=a1b99daa2a3393884220264c927a48ba1251a9c6
+tree=b5b227d68996d6e0cdafd9bf4bdb53cf5f05f339
+clean=true

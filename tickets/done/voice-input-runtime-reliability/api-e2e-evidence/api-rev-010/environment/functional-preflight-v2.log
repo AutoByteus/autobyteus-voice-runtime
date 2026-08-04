@@ -1,0 +1,6 @@
+[API-REV-010 Functional Preflight 2]
+command=node benchmark/darwin-arm64-runner-preflight.mjs --go /private/tmp/autobyteus-go1.26.5-v1/go/bin/go --cmake /opt/homebrew/bin/cmake --output <canonical evidence path>
+caffeinatePid=73462
+Now drawing from 'AC Power'
+ -InternalBattery-0 (id=21692515)	100%; charged; 0:00 remaining present: true
+exit=0

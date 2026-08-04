@@ -1,0 +1,14 @@
+{
+  "type": "transcription-result",
+  "protocolVersion": 1,
+  "requestId": "0198f0f0-7e65-7f72-9c3e-95b59eeb72b0",
+  "outcome": "transcript",
+  "rawText": "請使用 AutoByteus。",
+  "normalizedText": "请使用 AutoByteus。",
+  "detectedLanguage": "zh",
+  "metrics": {
+    "audioDurationMs": 5880,
+    "inferenceMs": 1545,
+    "normalizationMs": 1
+  }
+}

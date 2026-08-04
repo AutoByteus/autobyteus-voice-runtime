@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "matrixId": "voice-runtime-darwin-arm64-v1",
+  "supportStatement": "macOS Apple Silicon only",
+  "entries": [
+    {
+      "profileId": "english",
+      "languageMode": "en",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "packageId": "voice.english.whisper-small-fp16.darwin-arm64",
+      "providerId": "autobyteus.voice.mlx-whisper-small",
+      "modelId": "whisper-small-mlx-fp16",
+      "decision": "preserve",
+      "recipeFileName": "english-darwin-arm64-v1.json"
+    },
+    {
+      "profileId": "chinese",
+      "languageMode": "zh",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "packageId": "voice.chinese.fun-asr-nano-0.6b-gguf-q8.darwin-arm64",
+      "providerId": "autobyteus.voice.funasr-nano-q8",
+      "modelId": "fun-asr-nano-gguf-q8",
+      "decision": "select",
+      "recipeFileName": "chinese-darwin-arm64-v1.json"
+    }
+  ],
+  "profileResourcePolicy": {
+    "policyId": "voice-runtime-profile-resource-policy-v1",
+    "fileName": "profile-resource-policy-v1.json",
+    "sha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744"
+  }
+}

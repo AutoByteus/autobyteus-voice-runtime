@@ -1,0 +1,9 @@
+$ (cd solution evidence/english-preservation-v2 && shasum -a 256 -c SHA256SUMS.txt)
+./authority.json: OK
+./derive_english_preservation_v2.py: OK
+./english-v2.baseline.json: OK
+./english-v2.corpus.json: OK
+./english-v2.promoted-quality.json: OK
+./english-v2.promoted-result.json: OK
+./english-v2.trusted-baseline-record.json: OK
+./validation.json: OK

@@ -1,0 +1,537 @@
+{
+  "schemaVersion": 1,
+  "backend": "funasr-nano-gguf-q8-static-hotwords",
+  "language": "auto",
+  "command": [
+    "/tmp/autobyteus-voice-backend-study-20260802/build/funasr-llamacpp/bin/llama-funasr-cli-hotwords",
+    "--enc",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/funasr-encoder-f16.gguf",
+    "-m",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/qwen3-0.6b-q8_0.gguf",
+    "-a",
+    "<clip>",
+    "--chunk",
+    "15"
+  ],
+  "corpusId": "macos-tingting-mandarin-english-code-switch-v1",
+  "screeningExecution": {
+    "concurrentWorkers": 1,
+    "performanceAuthority": "Rejected — quality screening only"
+  },
+  "warmSession": {
+    "quality": [
+      {
+        "id": "mixed-tts-01",
+        "category": "mixed",
+        "reference": "请打开 AutoByteus settings 然后选择 Luna Medium 模型。",
+        "durationMs": 4847,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-01",
+          "ok": true,
+          "text": "请打开AutoByteus Settings，然后选择Luna Medium模型。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 2456.178,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.72 ms, sched copies = 1\n[done] 1.99s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-02",
+        "category": "mixed",
+        "reference": "今天的 sprint review 安排在下午三点，请提前准备 demo。",
+        "durationMs": 5381,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-02",
+          "ok": true,
+          "text": "今天的Sprint Review安排在下午三点，请提前准备demo。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1688.766,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.97 ms, sched copies = 1\n[done] 1.63s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-03",
+        "category": "mixed",
+        "reference": "把这个 markdown file 保存到 local workspace 里面。",
+        "durationMs": 4098,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-03",
+          "ok": true,
+          "text": "把这个 Markdown File 保存到 local workspace 里面。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1604.136,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.92 ms, sched copies = 1\n[done] 1.54s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-04",
+        "category": "mixed",
+        "reference": "我们需要检查 backend logs 才能找到 performance bottleneck。",
+        "durationMs": 4648,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-04",
+          "ok": true,
+          "text": "我们需要检查BackEnd Locks才能找到Performance Botonic。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1662.864,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.77 ms, sched copies = 1\n[done] 1.61s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-05",
+        "category": "mixed",
+        "reference": "请使用 Codex runtime 运行这个 software engineering team。",
+        "durationMs": 4626,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-05",
+          "ok": true,
+          "text": "请使用Codex Runtime运行这个Software Engineering Team。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1642.017,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.73 ms, sched copies = 1\n[done] 1.58s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-06",
+        "category": "mixed",
+        "reference": "点击 architecture reviewer 发送的 reference file。",
+        "durationMs": 3895,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-06",
+          "ok": true,
+          "text": "点击Architecture Reviewer发送的Reference File。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1510.544,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.72 ms, sched copies = 1\n[done] 1.46s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-07",
+        "category": "mixed",
+        "reference": "这个 WebSocket stream 每秒发送很多 content delta events。",
+        "durationMs": 4619,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-07",
+          "ok": true,
+          "text": "这个WebSarketStream每秒发送很多ContentDelta Events。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1829.135,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.09 ms, sched copies = 1\n[done] 1.78s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-08",
+        "category": "mixed",
+        "reference": "我想比较 MLX Whisper 和 sherpa ONNX 的 latency。",
+        "durationMs": 6807,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-08",
+          "ok": true,
+          "text": "我想比较MLX Whisper和Sherpa Onnx的latency。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 2011.93,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.74 ms, sched copies = 1\n[done] 1.96s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-09",
+        "category": "mixed",
+        "reference": "Mandarin Chinese output 应该统一转换成 simplified Chinese。",
+        "durationMs": 5124,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-09",
+          "ok": true,
+          "text": "Mandarin Chinese Output应该统一转换成Simplified Chinese.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1638.302,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.53 ms, sched copies = 1\n[done] 1.56s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-10",
+        "category": "mixed",
+        "reference": "请把 voice input language mode 设置成 auto detect。",
+        "durationMs": 3987,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-10",
+          "ok": true,
+          "text": "请把VoiceInputLanguageMode设置成AutoDeject。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1657.249,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.83 ms, sched copies = 1\n[done] 1.60s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-11",
+        "category": "mixed",
+        "reference": "明天上午十点进行 API end to end testing。",
+        "durationMs": 4938,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-11",
+          "ok": true,
+          "text": "明天上午十点进行，A P I end to end testing.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1713.567,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.80 ms, sched copies = 1\n[done] 1.65s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-12",
+        "category": "mixed",
+        "reference": "这个 pull request 需要 code review 和 regression tests。",
+        "durationMs": 4051,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-12",
+          "ok": true,
+          "text": "这个pull request需要code review和regression tests.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1701.863,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.02 ms, sched copies = 1\n[done] 1.62s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-13",
+        "category": "mixed",
+        "reference": "请记录 cold start warm inference 和 peak memory。",
+        "durationMs": 3709,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-13",
+          "ok": true,
+          "text": "请记录ColdStartWarmInference和PeakMemory。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1576.331,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.89 ms, sched copies = 1\n[done] 1.51s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-14",
+        "category": "mixed",
+        "reference": "Electron app 不应该在 renderer thread 里面运行模型。",
+        "durationMs": 4344,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-14",
+          "ok": true,
+          "text": "Electron App 不应该在 Render Threat 里面运行模型。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1636.035,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.54 ms, sched copies = 1\n[done] 1.58s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-15",
+        "category": "mixed",
+        "reference": "我们先优化 voice runtime 然后再修改 AutoByteus Web。",
+        "durationMs": 4543,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-15",
+          "ok": true,
+          "text": "我们先优化VoiceRuntime，然后再修改AutoByteusWeb。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1626.637,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.63 ms, sched copies = 1\n[done] 1.56s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-16",
+        "category": "mixed",
+        "reference": "这个 model package 的 SHA two five six 必须能够验证。",
+        "durationMs": 3900,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-16",
+          "ok": true,
+          "text": "这个Model Package的Sub256必须能够验证。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1560.515,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.86 ms, sched copies = 1\n[done] 1.50s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-17",
+        "category": "mixed",
+        "reference": "用户说 start recording 以后应该立即显示 loading state。",
+        "durationMs": 4589,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-17",
+          "ok": true,
+          "text": "用户说start recording以后应该立即显示loading state。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1547.402,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.64 ms, sched copies = 1\n[done] 1.48s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-18",
+        "category": "mixed",
+        "reference": "请不要使用 network fallback 所有 transcription 必须 local。",
+        "durationMs": 4765,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-18",
+          "ok": true,
+          "text": "请不要使用Network反馈，所有Transcription必须Local。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1589.71,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.57 ms, sched copies = 1\n[done] 1.53s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-19",
+        "category": "mixed",
+        "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。",
+        "durationMs": 6399,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-19",
+          "ok": true,
+          "text": "Sense VoiceMo，对Chinese ASR可能更快，但需要测试Quality。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1640.56,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.62 ms, sched copies = 1\n[done] 1.57s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-20",
+        "category": "mixed",
+        "reference": "Whisper Small 在 English speech 上通常保持很好的 accuracy。",
+        "durationMs": 4868,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-20",
+          "ok": true,
+          "text": "Wes Fairsmall在English Speech上通常保持很好的accuracy.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1624.872,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.53 ms, sched copies = 1\n[done] 1.56s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-21",
+        "category": "mixed",
+        "reference": "我们要测试 punctuation numbers proper nouns 和 mixed language。",
+        "durationMs": 4799,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-21",
+          "ok": true,
+          "text": "我们要测试Punctuation Numbers Propronounce和MIXED Language。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1995.005,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.62 ms, sched copies = 1\n[done] 1.93s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-22",
+        "category": "mixed",
+        "reference": "把 meeting notes 导出为 UTF eight encoded text file。",
+        "durationMs": 5364,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-22",
+          "ok": true,
+          "text": "把meeting notes导出为u t f it encoded text file",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1767.991,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.99 ms, sched copies = 1\n[done] 1.71s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-23",
+        "category": "mixed",
+        "reference": "如果 runtime handshake 失败就返回 stable error code。",
+        "durationMs": 4511,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-23",
+          "ok": true,
+          "text": "如果Runtime Handshake失败，就返回Stable Error Code。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1635.624,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.64 ms, sched copies = 1\n[done] 1.58s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-24",
+        "category": "mixed",
+        "reference": "selected model identity 必须和 installed manifest 完全一致。",
+        "durationMs": 4924,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-24",
+          "ok": true,
+          "text": "Select it model identity必须和install manifest完全一致。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1581.244,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.68 ms, sched copies = 1\n[done] 1.52s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-25",
+        "category": "mixed",
+        "reference": "请运行 thirty cold trials 和 one hundred warm trials。",
+        "durationMs": 4394,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-25",
+          "ok": true,
+          "text": "请运行30 cold trails 和 100 warm trails。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1716.884,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.63 ms, sched copies = 1\n[done] 1.65s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-26",
+        "category": "mixed",
+        "reference": "在 M one Max MacBook Pro 上测量 resident set size。",
+        "durationMs": 4410,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-26",
+          "ok": true,
+          "text": "在M1 Max MacBook Pro上测量Resident Set Size。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1670.017,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.78 ms, sched copies = 1\n[done] 1.60s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-27",
+        "category": "mixed",
+        "reference": "这个 release candidate 不能在 architecture approval 以前发布。",
+        "durationMs": 4666,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-27",
+          "ok": true,
+          "text": "这个release candidate不能在Architecture approval以前发布。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1653.623,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.69 ms, sched copies = 1\n[done] 1.59s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-28",
+        "category": "mixed",
+        "reference": "请把 transcript 插入当前 active text field 的 cursor position。",
+        "durationMs": 5160,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-28",
+          "ok": true,
+          "text": "请把Transcript插入当前ActiveTextField的curse position。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1858.139,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.77 ms, sched copies = 1\n[done] 1.79s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-29",
+        "category": "mixed",
+        "reference": "今天我们测试 Wi Fi settings OpenAI API 和 local database。",
+        "durationMs": 6553,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-29",
+          "ok": true,
+          "text": "今天我们测试Wi-FiSetings OpenAI API和Local Database。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1656.832,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.55 ms, sched copies = 1\n[done] 1.60s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "mixed-tts-30",
+        "category": "mixed",
+        "reference": "最终设计应该 evidence driven 而不是先假设 Node 或 Python。",
+        "durationMs": 4695,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "mixed-tts-30",
+          "ok": true,
+          "text": "最终设计应该 evidence driven 而不是先假设 node 或 python。",
+          "backend": "funasr-nano-gguf-q8-static-hotwords",
+          "requestRoundTripMs": 1676.969,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.78 ms, sched copies = 1\n[done] 1.62s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      }
+    ],
+    "performance": []
+  },
+  "summaries": {}
+}

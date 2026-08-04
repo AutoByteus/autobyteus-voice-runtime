@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "revisionId": "API-REV-011",
+  "findingId": "API-F-008",
+  "scenarioId": "API-VOICE-004",
+  "acceptanceCriteria": ["AC-006", "AC-017", "AC-019"],
+  "decision": "fail",
+  "sourceCommit": "8680c6a9693f3b55021c9317e0163281c946ca96",
+  "host": {
+    "modelIdentifier": "MacBookPro18,4",
+    "cpuModel": "Apple M1 Max",
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "preconditions": {
+    "functionalPreflight": "pass",
+    "performanceEnvironment": "loaded-host",
+    "sharedBuildInputPath": "pass",
+    "apiF007": "resolved-at-production-boundary"
+  },
+  "execution": {
+    "mode": "first canonical Chinese darwin-arm64 construction wholly inside pinned deny-network Seatbelt",
+    "exitCode": 1,
+    "logFile": "build-primary.log",
+    "commandOwner": "build/package-assembler.mjs -> build/profile-builders/funasr.mjs -> CMake --build"
+  },
+  "expected": "After the 3,149-record Build Input manifest passes, the trusted exact Apple toolchain compiles and links the Chinese native worker so two reproducible archives can be created.",
+  "observed": "The build advanced through manifest verification and C/C++ compilation to 5%, then CMake invoked canonical libtool as CMAKE_RANLIB. libtool rejected ranlib-style argv with no output file specified, so native build and archive creation failed.",
+  "productionError": "error: .../usr/bin/libtool: no output file specified (specify with -o output)",
+  "analysisFile": "API-F-008-chinese-ranlib-alias-analysis.json",
+  "aliasProbeFile": "API-VOICE-004-ranlib-alias-semantics-probe.log",
+  "preliminaryClassification": "Local Fix / implementation defect in trusted native command identity alias preservation.",
+  "stoppedFailClosed": true,
+  "notExecutedAfterFailure": [
+    "second Chinese construction",
+    "Chinese package verification/reproducibility",
+    "Chinese 200-WAV inference",
+    "Chinese exact 30/30/100/resource/lifecycle/compliance gates",
+    "current-source English qualification",
+    "Qualification Set 2",
+    "Branch Catalog Projection 2"
+  ],
+  "forbiddenSubstitutionsNotUsed": [
+    "CMAKE_RANLIB override",
+    "PATH/tool substitution",
+    "unsandboxed build",
+    "provider/model substitution",
+    "threshold relaxation",
+    "retry",
+    "release action"
+  ]
+}

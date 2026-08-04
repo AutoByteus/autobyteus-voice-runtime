@@ -1,0 +1,8 @@
+cleanup_started=2026-08-03T18:37:09Z
+owned_caffeinate_pid=69481
+before_owned_process=
+69481  6296 /usr/bin/caffeinate -dimsu
+owned_caffeinate_reaped=true
+remaining_task_owned_scan=
+unrelated_voice_process_policy=preserved
+cleanup_finished=2026-08-03T18:37:09Z

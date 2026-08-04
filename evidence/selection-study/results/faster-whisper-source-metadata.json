@@ -1,0 +1,52 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-02",
+  "platform": "macOS-26.5.2-arm64-arm-64bit",
+  "machine": "arm64",
+  "python": "Python 3.9.6",
+  "fasterWhisper": "1.2.1",
+  "ctranslate2": "4.8.1",
+  "supportedCpuComputeTypes": [
+    "float32",
+    "int8",
+    "int8_float32"
+  ],
+  "model": {
+    "source": "Systran/faster-whisper-small",
+    "huggingFaceRevision": "536b0662742c02347bc0e980a01041f333bce120",
+    "localFiles": {
+      ".gitattributes": {
+        "bytes": 1477,
+        "sha256": "db7c0371f46f0840b8f25794c1e3321c9b5820a8cb6ba9694a46fc64b8fae5a6"
+      },
+      "README.md": {
+        "bytes": 1998,
+        "sha256": "329373481008c7c38654aff8ecdcf0163c211557cc7ba8e2ef6f2f84b4f75ec8"
+      },
+      "config.json": {
+        "bytes": 2370,
+        "sha256": "b55496ac7940a7ae47d2c01eab40edfd8701feec1229d9cce3b40014383fb828"
+      },
+      "model.bin": {
+        "bytes": 483546902,
+        "sha256": "3e305921506d8872816023e4c273e75d2419fb89b24da97b4fe7bce14170d671"
+      },
+      "tokenizer.json": {
+        "bytes": 2203239,
+        "sha256": "fb7b63191e9bb045082c79fd742a3106a12c99513ab30df4a0d47fa6cb6fd0ab"
+      },
+      "vocabulary.txt": {
+        "bytes": 459861,
+        "sha256": "34ce3fe1c5041027b3f8d42912270993f986dbc4bb34cf27f951e34a1e453913"
+      }
+    },
+    "totalBytes": 486215847
+  },
+  "experiment": {
+    "hardware": "MacBookPro18,4 Apple M1 Max 10-core 64GB",
+    "threads": 4,
+    "provider": "CTranslate2 CPU",
+    "screenCorpus": "fleurs-simplified-mandarin-profile-v2-screen-50",
+    "screenClipCount": 50
+  }
+}

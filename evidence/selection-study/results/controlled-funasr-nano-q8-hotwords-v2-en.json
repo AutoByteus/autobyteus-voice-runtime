@@ -1,0 +1,877 @@
+{
+  "schemaVersion": 1,
+  "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+  "language": "en",
+  "command": [
+    "/tmp/autobyteus-voice-backend-study-20260802/build/funasr-llamacpp/bin/llama-funasr-cli-hotwords-v2",
+    "--enc",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/funasr-encoder-f16.gguf",
+    "-m",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/funasr-nano-gguf/qwen3-0.6b-q8_0.gguf",
+    "-a",
+    "<clip>",
+    "--chunk",
+    "15"
+  ],
+  "corpusId": "fleurs-controlled-mandarin-english-v1",
+  "screeningExecution": {
+    "concurrentWorkers": 1,
+    "performanceAuthority": "Rejected — quality screening only"
+  },
+  "warmSession": {
+    "quality": [
+      {
+        "id": "fleurs-en-1660",
+        "category": "english",
+        "reference": "romanticism had a large element of cultural determinism drawn from writers such as goethe fichte and schlegel",
+        "durationMs": 10680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1660",
+          "ok": true,
+          "text": "Romanticism had a large element of cultural determinism drawn from writers such as Goethe, Fichte, and Schlegel.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1964.581,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.74 ms, sched copies = 1\n[done] 1.90s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1662",
+        "category": "english",
+        "reference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
+        "durationMs": 8380,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1662",
+          "ok": true,
+          "text": "Alloys are basically a mixture of two or more metals. Don't forget there are many elements on the periodic table.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2252.204,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.76 ms, sched copies = 1\n[done] 2.19s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1673",
+        "category": "english",
+        "reference": "during the revolutionary war the thirteen states first formed a weak central government-with the congress being its only component-under the articles of confederation",
+        "durationMs": 10680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1673",
+          "ok": true,
+          "text": "During the Revolutionary War, the Thirteen States first formed a weak central government, with the Congress being its only component under the Articles of Confederation.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2058.657,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.73 ms, sched copies = 1\n[done] 2.01s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1675",
+        "category": "english",
+        "reference": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+        "durationMs": 8760,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1675",
+          "ok": true,
+          "text": "All nouns alongside the word \"see\" for you always begin with a capital letter, even in the middle of a sentence.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1814.813,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.81 ms, sched copies = 1\n[done] 1.76s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1687",
+        "category": "english",
+        "reference": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+        "durationMs": 11220,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1687",
+          "ok": true,
+          "text": "Segregation and recombination shuffle variation back and forth between the two pools with each generation.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1911.222,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.59 ms, sched copies = 1\n[done] 1.85s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1689",
+        "category": "english",
+        "reference": "europe is a continent that is relatively small but with many independent countries under normal circumstances travelling through multiple countries would mean having to go through visa applications and passport control multiple times",
+        "durationMs": 13020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1689",
+          "ok": true,
+          "text": "European is the continent that is relatively small, but with many independent countries. Under normal circumstances, traveling to multiple countries would mean having to go through visa application and passport control multiple times.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2241.311,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.63 ms, sched copies = 1\n[done] 2.18s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1701",
+        "category": "english",
+        "reference": "goats seem to have been first domesticated roughly 10,000 years ago in the zagros mountains of iran",
+        "durationMs": 10620,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1701",
+          "ok": true,
+          "text": "Goats seem to have been first domesticated roughly 10,000 years ago in the Zagros Mountains of Iran.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1980.507,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.07 ms, sched copies = 1\n[done] 1.93s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1704",
+        "category": "english",
+        "reference": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+        "durationMs": 7320,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1704",
+          "ok": true,
+          "text": "In 1990, it was added to the list of World Heritage sites in danger due to the threat of desert sands.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2041.104,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.57 ms, sched copies = 1\n[done] 1.99s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1714",
+        "category": "english",
+        "reference": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+        "durationMs": 10840,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1714",
+          "ok": true,
+          "text": "The satellite was sent into space by a rocket. Scientists use telescopes in space because the Earth's atmosphere distorts some of our light and view.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1979.422,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.75 ms, sched copies = 1\n[done] 1.93s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1720",
+        "category": "english",
+        "reference": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+        "durationMs": 6420,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1720",
+          "ok": true,
+          "text": "The hot chocolate is up to Belgian standards; fruit juices are pricey but excellent.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1722.695,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.67 ms, sched copies = 1\n[done] 1.66s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1731",
+        "category": "english",
+        "reference": "in the archipelagos and lakes you do not necessarily need a yacht",
+        "durationMs": 7480,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1731",
+          "ok": true,
+          "text": "In the archipelagos and lakes you do not necessarily need a yacht.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1940.247,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.65 ms, sched copies = 1\n[done] 1.87s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1737",
+        "category": "english",
+        "reference": "lions are the most social cats living in large groups called prides",
+        "durationMs": 4140,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1737",
+          "ok": true,
+          "text": "Lions are the most social cat living in large groups called parades.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1697.646,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.03 ms, sched copies = 1\n[done] 1.65s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1745",
+        "category": "english",
+        "reference": "plants look their best when in a natural environment so resist the temptation to remove even just one specimen",
+        "durationMs": 9660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1745",
+          "ok": true,
+          "text": "Plants look their best when in a natural environment, so resist the temptation to remove even just one specimen.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2129.595,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.79 ms, sched copies = 1\n[done] 2.07s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1755",
+        "category": "english",
+        "reference": "one bomb exploded outside the governor general's office",
+        "durationMs": 6640,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1755",
+          "ok": true,
+          "text": "One bomb exploded outside the Governor's General's office.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1606.737,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.59 ms, sched copies = 1\n[done] 1.55s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1756",
+        "category": "english",
+        "reference": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced us troops would be leaving syria",
+        "durationMs": 9960,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1756",
+          "ok": true,
+          "text": "Late on Sunday, the United States President Donald Trump in a statement delivered via the press secretary announced U.S. troops would be leaving Syria.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2135.779,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.76 ms, sched copies = 1\n[done] 2.07s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1768",
+        "category": "english",
+        "reference": "most of the buildings on the edges of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+        "durationMs": 7620,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1768",
+          "ok": true,
+          "text": "Most of the buildings on the edge of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1998.158,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.55 ms, sched copies = 1\n[done] 1.94s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1772",
+        "category": "english",
+        "reference": "so it is likely that the notation was added simply as a label",
+        "durationMs": 5860,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1772",
+          "ok": true,
+          "text": "So it is likely that the notation was added simply as a label.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1799.653,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.87 ms, sched copies = 1\n[done] 1.74s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1781",
+        "category": "english",
+        "reference": "madagascar is by far the biggest and a continent on its own when it comes to wildlife",
+        "durationMs": 8880,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1781",
+          "ok": true,
+          "text": "Madagascar is by far the biggest anaconda continent on its own when it comes to wildlife.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2070.555,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.61 ms, sched copies = 1\n[done] 2.02s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1782",
+        "category": "english",
+        "reference": "also between each dynasty was an unstable age of divided provinces the best-known of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+        "durationMs": 11760,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1782",
+          "ok": true,
+          "text": "Also between each dynasty was an unstable age of dividend provinces. The best known of these periods was the Three Kingdoms epoch, taking place for sixty years between the Han and the Jin dynasties.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2255.094,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.02 ms, sched copies = 1\n[done] 2.20s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1793",
+        "category": "english",
+        "reference": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+        "durationMs": 11100,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1793",
+          "ok": true,
+          "text": "If you're not used to driving on country roads, keep your wits about you. Steep grades, narrow lanes, and sharp curves predominate.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2234.983,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.13 ms, sched copies = 1\n[done] 2.18s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1799",
+        "category": "english",
+        "reference": "beyond wednesday's event carpanedo competed in two individual races at the championships",
+        "durationMs": 5700,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1799",
+          "ok": true,
+          "text": "Beyond Wednesday's event, Carpinito competed in two individual races at the championships.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1777.569,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.74 ms, sched copies = 1\n[done] 1.72s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1802",
+        "category": "english",
+        "reference": "the internet combines elements of both mass and interpersonal communication",
+        "durationMs": 5760,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1802",
+          "ok": true,
+          "text": "The Internet combines elements of both mass and interpersonal communication.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1643.035,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.94 ms, sched copies = 1\n[done] 1.59s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1813",
+        "category": "english",
+        "reference": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+        "durationMs": 10260,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1813",
+          "ok": true,
+          "text": "Barcelona's official languages are Catalan and Spanish. About a half prefer to speak Catalan, a vast majority understands it, and virtually everyone knows Spanish.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2127.777,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.71 ms, sched copies = 1\n[done] 2.07s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1817",
+        "category": "english",
+        "reference": "the schengen zone however works somewhat like one country in this respect",
+        "durationMs": 6800,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1817",
+          "ok": true,
+          "text": "The Shengen Zone, however, works somewhat like one country in this respect.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1709.65,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.63 ms, sched copies = 1\n[done] 1.65s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1828",
+        "category": "english",
+        "reference": "a search of the internet for hostile environment course' will probably provide the address of a local company",
+        "durationMs": 7200,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1828",
+          "ok": true,
+          "text": "A search of the Internet for hostile environment course will probably provide the address of a local company.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2368.914,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.55 ms, sched copies = 1\n[done] 2.30s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1839",
+        "category": "english",
+        "reference": "think of the skiing route as of a similar hiking route",
+        "durationMs": 4940,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1839",
+          "ok": true,
+          "text": "Think of the skiing route as of a similar hiking route.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1746.407,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.73 ms, sched copies = 1\n[done] 1.68s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1840",
+        "category": "english",
+        "reference": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+        "durationMs": 8400,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1840",
+          "ok": true,
+          "text": "In many other cities of Italy and in the rest of the world, particularly in Poland, similar setups were made, which were viewed by a great number of people.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2420.056,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.63 ms, sched copies = 1\n[done] 2.37s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1851",
+        "category": "english",
+        "reference": "rip currents are the returning flow from waves breaking off the beach often at a reef or similar",
+        "durationMs": 4980,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1851",
+          "ok": true,
+          "text": "Root currents are the returning flow from waves breaking off the sea, often at a reef or similar.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1901.71,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.64 ms, sched copies = 1\n[done] 1.84s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1857",
+        "category": "english",
+        "reference": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+        "durationMs": 10260,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1857",
+          "ok": true,
+          "text": "He added that they should not, however, be asked to take on obligations that go beyond their development stage, responsibility and capabilities.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1981.804,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.63 ms, sched copies = 1\n[done] 1.92s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1866",
+        "category": "english",
+        "reference": "first most riders wear riding boots with a heel and a smooth quite narrow sole",
+        "durationMs": 4680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1866",
+          "ok": true,
+          "text": "First, most riders were riding boots with the heel on a smooth, quiet, narrow sole.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1725.043,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.74 ms, sched copies = 1\n[done] 1.67s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1873",
+        "category": "english",
+        "reference": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it ok!",
+        "durationMs": 10980,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1873",
+          "ok": true,
+          "text": "Be firm in turning down men and don't be afraid to stand your ground. Cultural differences are not, it doesn't make it okay.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2720.342,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.86 ms, sched copies = 1\n[done] 2.67s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1881",
+        "category": "english",
+        "reference": "sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes",
+        "durationMs": 7740,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1881",
+          "ok": true,
+          "text": "Sharing a field trip virtually is also a great way to reflect on a trip and share experiences with future classes.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 3065.887,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.87 ms, sched copies = 1\n[done] 3.00s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1889",
+        "category": "english",
+        "reference": "it has brought us the train the car and many other transportation devices",
+        "durationMs": 6780,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1889",
+          "ok": true,
+          "text": "It has brought us to train the car and many other transportation devices.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2952.226,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 3.01 ms, sched copies = 1\n[done] 2.89s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1893",
+        "category": "english",
+        "reference": "the sundarbans are the largest littoral mangrove belt in the world stretching 80 km 50 mi into the bangladeshi and indian hinterland from the coast",
+        "durationMs": 12240,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1893",
+          "ok": true,
+          "text": "The Sundarbans are the largest littoral mangrove belt in the world, stretching 80 km (50 mi) into the Bangladeshi and Indian hinterland from the coast.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2584.121,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 4.06 ms, sched copies = 1\n[done] 2.50s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1902",
+        "category": "english",
+        "reference": "he was initially hospitalised in the james paget hospital in great yarmouth",
+        "durationMs": 7500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1902",
+          "ok": true,
+          "text": "He was initially hospitalized in the James Pageant Hospital in Great Yarmouth.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1952.688,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.91 ms, sched copies = 1\n[done] 1.88s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1909",
+        "category": "english",
+        "reference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
+        "durationMs": 5640,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1909",
+          "ok": true,
+          "text": "Ritual teams are held to the same standard of excellence as conventional teams, but there are subtle differences.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2003.598,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.52 ms, sched copies = 1\n[done] 1.93s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1912",
+        "category": "english",
+        "reference": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+        "durationMs": 10520,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1912",
+          "ok": true,
+          "text": "Most of the smaller islands are independent nations or associated with France and known as luxury beach resorts.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2009.844,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.78 ms, sched copies = 1\n[done] 1.95s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1922",
+        "category": "english",
+        "reference": "there are of course christian theological explanations for this tradition but it may well be a pre-christian spring and fertility ritual",
+        "durationMs": 9060,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1922",
+          "ok": true,
+          "text": "There are of course Christian theological explanations for this tradition, but it may well be a pre-Christian spring and fertility ritual.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1865.143,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.78 ms, sched copies = 1\n[done] 1.80s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1938",
+        "category": "english",
+        "reference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+        "durationMs": 11420,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1938",
+          "ok": true,
+          "text": "The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1890.206,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.70 ms, sched copies = 1\n[done] 1.83s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1939",
+        "category": "english",
+        "reference": "also after the revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed",
+        "durationMs": 7020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1939",
+          "ok": true,
+          "text": "Also after revolution occupants were open to all male applicants, allowing the most ambitious and successful to succeed.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 1924.428,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.64 ms, sched copies = 1\n[done] 1.86s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1951",
+        "category": "english",
+        "reference": "in 2002 goma was destroyed by lava from the nyiragongo volcano which buried most of the town's streets particularly the town centre",
+        "durationMs": 9600,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1951",
+          "ok": true,
+          "text": "In 2002, Goma was destroyed by lava from the Nyrungogo volcano, which buried most of the town's streets, particularly the town centre.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2604.584,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.76 ms, sched copies = 1\n[done] 2.54s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1952",
+        "category": "english",
+        "reference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+        "durationMs": 11320,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1952",
+          "ok": true,
+          "text": "Anyone who is going to drive at high latitudes or over mountain passes should consider the possibility of snow, ice, or freezing temperatures.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2377.61,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.19 ms, sched copies = 1\n[done] 2.32s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1964",
+        "category": "english",
+        "reference": "the 25 dunlap broadsides still known to exist are the oldest surviving copies of the document the original handwritten copy has not survived",
+        "durationMs": 9840,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1964",
+          "ok": true,
+          "text": "The twenty-five dunlap broadsides still known to exist are the oldest surviving copies of the document. The original handwriting copying has not survived.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2051.633,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.55 ms, sched copies = 1\n[done] 1.99s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1969",
+        "category": "english",
+        "reference": "it states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally see example",
+        "durationMs": 12800,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1969",
+          "ok": true,
+          "text": "It states that the most effective place for the main subject is at the intersection of lines dividing the images into thirds vertically and horizontally (see example).",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2610.962,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.77 ms, sched copies = 1\n[done] 2.55s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1977",
+        "category": "english",
+        "reference": "prides are made up of one to three related adult males along with as many as thirty females and cubs",
+        "durationMs": 6780,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1977",
+          "ok": true,
+          "text": "Cribes are made up of one to three related adult males, along with as many as thirty females and cubs.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2116.046,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.54 ms, sched copies = 1\n[done] 2.04s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1981",
+        "category": "english",
+        "reference": "if you only go ashore using shipboard excursions you will not need a separate visa as of 2009",
+        "durationMs": 9260,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1981",
+          "ok": true,
+          "text": "If you only go ashore using shipboard excursions, you will not need a separate visa as of 2009.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2207.694,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 2.17 ms, sched copies = 1\n[done] 2.15s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1992",
+        "category": "english",
+        "reference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
+        "durationMs": 9500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1992",
+          "ok": true,
+          "text": "The term \"Safari\" in popular use refers to overland travel to view the stunning African wildlife, particularly on savanna.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2207.98,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.53 ms, sched copies = 1\n[done] 2.07s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-1995",
+        "category": "english",
+        "reference": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been to challenging for the student to handle alone",
+        "durationMs": 9720,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-1995",
+          "ok": true,
+          "text": "Virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been too challenging for the student to handle alone.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 2266.218,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.96 ms, sched copies = 1\n[done] 2.18s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-2009",
+        "category": "english",
+        "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+        "durationMs": 11040,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-2009",
+          "ok": true,
+          "text": "The most readily accessible plant resources would have been the proteins accessible in leaves and legumes, but these are hard for primates like us to digest unless they are cooked.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 3265.175,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.93 ms, sched copies = 1\n[done] 3.21s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      },
+      {
+        "id": "fleurs-en-2009",
+        "category": "english",
+        "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+        "durationMs": 11040,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "fleurs-en-2009",
+          "ok": true,
+          "text": "The most readily accessible plant resources would have been the proteins accessible in leaves and legumes, but these are hard for primates like us to digest unless they are cooked.",
+          "backend": "funasr-nano-gguf-q8-static-hotwords-v2",
+          "requestRoundTripMs": 3265.175,
+          "candidateScreeningUnderContention": true,
+          "stderrTail": "utoregressive) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens =   16, n_seqs =  1, n_outputs =   16\nsched_reserve: fused Gated Delta Net (chunked) enabled\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\ngraph_reserve: reserving a graph for ubatch with n_tokens =    1, n_seqs =  1, n_outputs =    1\ngraph_reserve: reserving a graph for ubatch with n_tokens = 2048, n_seqs =  1, n_outputs = 2048\nsched_reserve:        CPU compute buffer size =  1203.01 MiB\nsched_reserve: graph nodes  = 986\nsched_reserve: graph splits = 1\nsched_reserve: reserve took 1.93 ms, sched copies = 1\n[done] 3.21s ; chunk=15s\n~llama_context:       MTL0 compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\n~llama_context:        CPU compute buffer size is 1203.0078 MiB, matches expectation of 1203.0078 MiB\n~llama_context:        CPU compute buffer size is   0.0000 MiB, matches expectation of   0.0000 MiB\nggml_metal_free: deallocating\n"
+        }
+      }
+    ],
+    "performance": []
+  },
+  "summaries": {}
+}

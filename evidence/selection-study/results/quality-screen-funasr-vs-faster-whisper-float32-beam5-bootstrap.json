@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "method": "paired nonparametric clip bootstrap; corpus-weighted edit rate within each resample",
+  "seed": 20260802,
+  "iterations": 100000,
+  "language": "zh",
+  "metric": "CER-after-T2S",
+  "clipCount": 50,
+  "left": {
+    "backend": "funasr-nano-gguf-q8",
+    "source": "/tmp/autobyteus-voice-backend-study-20260802/results/quality-screen-funasr-nano-q8-zh.json",
+    "errorRate": 0.06403351286654697
+  },
+  "right": {
+    "backend": "faster-whisper-float32-beam5",
+    "source": "/tmp/autobyteus-voice-backend-study-20260802/results/quality-screen-faster-whisper-float32-beam5-zh.json",
+    "errorRate": 0.12028725314183124
+  },
+  "differenceLeftMinusRight": -0.056253740275284264,
+  "difference95PercentBootstrapInterval": [
+    -0.07672131147540984,
+    -0.037714285714285714
+  ],
+  "bootstrapOutcomeProbability": {
+    "leftLowerError": 1.0,
+    "rightLowerError": 0.0,
+    "equal": 0.0
+  },
+  "limitation": "50 FLEURS clips; this quantifies uncertainty for this locked sample, not all user speech."
+}

@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "model": "sherpa-onnx-paraformer-zh-2024-03-09",
+  "source": "https://github.com/k2-fsa/sherpa-onnx/releases/download/asr-models/sherpa-onnx-paraformer-zh-2024-03-09.tar.bz2",
+  "archiveSha256": "8c6724d0a86bd867217d353db1eaa11f2f143bca446a1f2752e8c551a6f2bde0",
+  "archiveBytes": 996591364,
+  "modelInt8Bytes": 227330205,
+  "modelFp32Bytes": 822641426,
+  "capability": "Chinese + English; official sherpa-onnx converted Paraformer large"
+}

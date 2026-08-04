@@ -1,0 +1,61 @@
+{
+  "schemaVersion": 1,
+  "experimentId": "api-rev-014-chinese-canonical-rescore",
+  "source": {
+    "apiRevision": "API-REV-014",
+    "reviewedSourceCommit": "57efa584b34f2b9a5eaba012c01f7e05228dffed",
+    "rawResultsSha256": "5e1281146ebbd46e14ce21ddb1255a611502878e9eb8a4b7e37486a2c82f520f",
+    "rawResultCount": 200
+  },
+  "scoringContract": {
+    "id": "autobyteus-chinese-cer-selection-comparable-v1",
+    "sha256": "7ca1743cad4e209d9c04068c334ab4fa2e9e5932d093f7b82f888f7a67207af5"
+  },
+  "baseline": {
+    "id": "chinese-promoted-baseline-v2",
+    "errors": 343,
+    "units": 6580,
+    "value": 0.052127659574468084
+  },
+  "current": {
+    "errors": 342,
+    "units": 6580,
+    "value": 0.05197568389057751,
+    "absolutePointDelta": -0.015197568389057475,
+    "absoluteGatePassed": true,
+    "nonRegressionGatePassed": true
+  },
+  "rawTranscriptComparison": {
+    "byteIdentical": 196,
+    "changed": 4,
+    "changedRows": [
+      {
+        "clipId": "fleurs-zh-1712-r31",
+        "historicalErrors": 4,
+        "currentErrors": 3
+      },
+      {
+        "clipId": "fleurs-zh-1720-r192",
+        "historicalErrors": 1,
+        "currentErrors": 1
+      },
+      {
+        "clipId": "fleurs-zh-1998-r760",
+        "historicalErrors": 0,
+        "currentErrors": 0
+      },
+      {
+        "clipId": "fleurs-zh-2004-r772",
+        "historicalErrors": 4,
+        "currentErrors": 4
+      }
+    ]
+  },
+  "invariants": {
+    "inferenceNotRerun": true,
+    "rawTranscriptNotModified": true,
+    "symmetricScoring": true,
+    "productionNormalizedTextNotScored": true
+  },
+  "conclusion": "The exact API-REV-014 packaged output passes Chinese absolute quality and non-regression when baseline and candidate are scored by the same versioned contract."
+}

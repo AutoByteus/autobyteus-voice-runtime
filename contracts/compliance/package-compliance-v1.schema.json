@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "profileId",
+    "packageId",
+    "providerId",
+    "modelId",
+    "recipeSha256",
+    "provenanceSha256",
+    "descriptorSha256",
+    "archiveSha256",
+    "noticeInventorySha256",
+    "policySha256",
+    "components",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "profileId": { "enum": ["english", "chinese"] },
+    "packageId": { "type": "string" },
+    "providerId": { "type": "string" },
+    "modelId": { "type": "string" },
+    "recipeSha256": { "$ref": "#/$defs/sha" },
+    "provenanceSha256": { "$ref": "#/$defs/sha" },
+    "descriptorSha256": { "$ref": "#/$defs/sha" },
+    "archiveSha256": { "$ref": "#/$defs/sha" },
+    "noticeInventorySha256": { "$ref": "#/$defs/sha" },
+    "policySha256": { "$ref": "#/$defs/sha" },
+    "components": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/$defs/component" }
+    },
+    "decision": { "const": "pass" }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "componentId",
+        "versionOrRevision",
+        "licenseIdentity",
+        "licenseTextSha256",
+        "attributionRequired",
+        "redistribution",
+        "source"
+      ],
+      "properties": {
+        "componentId": { "type": "string" },
+        "versionOrRevision": { "type": "string" },
+        "licenseIdentity": { "type": "string" },
+        "licenseTextSha256": { "$ref": "#/$defs/sha" },
+        "attributionRequired": { "type": "boolean" },
+        "redistribution": { "const": "approved" },
+        "source": { "type": "string", "pattern": "^https://" }
+      }
+    }
+  }
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": 1,
+  "revisionId": "API-REV-011",
+  "reviewedSourceCommit": "8680c6a9693f3b55021c9317e0163281c946ca96",
+  "priorEvidenceSourceCommit": "e133c4a7a73a5531c726ecb04461acb641461667",
+  "changedProductionContractPaths": [
+    {
+      "status": "A",
+      "path": "build/build-input-path-policy.mjs"
+    },
+    {
+      "status": "M",
+      "path": "build/locked-inputs.mjs"
+    },
+    {
+      "status": "M",
+      "path": "build/materialize-release-inputs.mjs"
+    },
+    {
+      "status": "A",
+      "path": "contracts/build/build-input-path-v1.md"
+    },
+    {
+      "status": "A",
+      "path": "tests/fixtures/build-input/api-rev-010-chinese-paths.txt.gz"
+    },
+    {
+      "status": "A",
+      "path": "tests/release/build-input-path-contract.test.mjs"
+    }
+  ],
+  "providerArchiveImplementationDiffEmpty": true,
+  "retainedBuildInputVerification": {
+    "english": "pass",
+    "chinese": "pass"
+  },
+  "retainedManifestPathAnalysis": {
+    "english": {
+      "manifestSha256": "bdeb46b3d44f8aa5dd0888947293c123547c5c2807d2c01706e0dd8f26f1422e",
+      "recordCount": 48,
+      "oldRegexRejectedCount": 0,
+      "oldRegexRejectedPaths": [],
+      "buildInputPath1RejectedCount": 0,
+      "buildInputPath1RejectedPaths": []
+    },
+    "chinese": {
+      "manifestSha256": "45ebe9bfe4885fb3207c8c613ac76a5bbc439343ff6b93f0345082718e99515e",
+      "recordCount": 3149,
+      "oldRegexRejectedCount": 10,
+      "oldRegexRejectedPaths": [
+        "llama-cpp-source/tools/ui/src/routes/(chat)/+layout.svelte",
+        "llama-cpp-source/tools/ui/src/routes/(chat)/+page.svelte",
+        "llama-cpp-source/tools/ui/src/routes/(chat)/+page.ts",
+        "llama-cpp-source/tools/ui/src/routes/(chat)/chat/[id]/+page.svelte",
+        "llama-cpp-source/tools/ui/src/routes/(chat)/chat/[id]/+page.ts",
+        "llama-cpp-source/tools/ui/src/routes/+error.svelte",
+        "llama-cpp-source/tools/ui/src/routes/+layout.svelte",
+        "llama-cpp-source/tools/ui/src/routes/mcp-servers/+page.svelte",
+        "llama-cpp-source/tools/ui/src/routes/settings/+layout.svelte",
+        "llama-cpp-source/tools/ui/src/routes/settings/[[section]]/+page.svelte"
+      ],
+      "buildInputPath1RejectedCount": 0,
+      "buildInputPath1RejectedPaths": []
+    }
+  },
+  "priorEnglishEvidenceIdentity": {
+    "summarySourceCommit": "e133c4a7a73a5531c726ecb04461acb641461667",
+    "summaryRunnerCommit": "e133c4a7a73a5531c726ecb04461acb641461667",
+    "provenanceSourceCommit": "e133c4a7a73a5531c726ecb04461acb641461667",
+    "qualificationSummarySha256": "6bea35cbcd556494255dbed82e2b0b99791ad63cfa35682b160f43f3f00483e2",
+    "performanceAssessmentSha256": "92206b3b4cb1dda934639ffd545b486af61eb1b5d47aab0ec87dd63d76c922e9",
+    "archiveSha256": "08ecb07a195bbe78901ca21a4a4775d8067ac42e75049861f78f7b647626581d"
+  },
+  "currentQualificationSetOwner": {
+    "path": "release/evidence/qualification-set.mjs",
+    "sha256": "7838e8538221616a6ced71449eaccab3a784f10d4beb6c1f7bb0de920cf93d0f",
+    "requiredIdentityComparisons": [
+      "summary.sourceCommit === requested sourceCommit",
+      "summary.runnerCommit === requested runnerCommit",
+      "provenance.repository.sourceCommit === requested sourceCommit"
+    ],
+    "requestedCurrentSourceCommit": "8680c6a9693f3b55021c9317e0163281c946ca96"
+  },
+  "reuseDecision": {
+    "apiRev010EnglishFunctionalEvidence": "Still Valid as historical direct behavior evidence because the provider archive/runtime implementation and exact English input paths are unaffected.",
+    "apiRev010EnglishAsCurrentQualificationSetSubject": "Not Reusable: its Summary, runner, and provenance bind e133c4a7, while current-source QSet 2 must bind 8680c6a9.",
+    "requiredAction": "Rematerialize, rebuild twice, and fully requalify English at 8680c6a9 before current QSet 2. Chinese remains first direct API-F-007 recheck."
+  },
+  "durableApiE2eCoverageChanged": false
+}

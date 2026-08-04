@@ -1,0 +1,10 @@
+$ node focused production-regex probe against /usr/bin/pmset -g therm
+{
+  "thermal": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+  "regex": "/(warning|performance warning|CPU_Speed_Limit\\s+[0-9](?!00))/i",
+  "regexMatches": true,
+  "productionThermalNormal": false
+}
+$ /usr/bin/sudo -n /usr/sbin/purge
+sudo: a password is required
+purge-exit=1

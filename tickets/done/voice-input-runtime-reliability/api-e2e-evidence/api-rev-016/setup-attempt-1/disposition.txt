@@ -1,0 +1,4 @@
+Result: environment-setup failure before package construction.
+Cause: API/E2E launcher inherited CPATH, LIBRARY_PATH, and SDKROOT; production correctly rejected all three untrusted native overrides before creating a native build environment.
+Product qualification effect: none; no package construction or provider qualification began.
+Correction: restart the exact workflow with those ambient build overrides explicitly removed, as required by the trusted-environment contract. No source/test/threshold/provider change.

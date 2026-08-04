@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-011",
+  "apiRevisionId": "API-REV-014",
+  "facts": {
+    "currentSummary": {
+      "functionalDecision": "fail",
+      "failureCategory": "functional-gate-failed",
+      "cer": 0.06346796234436684,
+      "errors": 418,
+      "units": 6586
+    },
+    "promotedBaseline": {
+      "cer": 0.052127659574468084,
+      "errors": 343,
+      "units": 6580
+    },
+    "pairedUncertainty": {
+      "method": "paired-bootstrap-v1",
+      "repetitions": 10000,
+      "difference": 0.01134030276989876,
+      "lower95": 0.00702610491288521,
+      "upper95": 0.016451892628326817
+    },
+    "rawTranscriptSameCount": 196,
+    "rawTranscriptChangedCount": 4,
+    "sameTranscriptBaselineErrors": 334,
+    "sameTranscriptCurrentErrors": 410,
+    "referenceScoringContractMismatchCount": 9,
+    "hypothesisScoringContractMismatchCount": 42
+  },
+  "selectionStudyScoringContract": "OpenCC t2s, NFKC/lowercase, then retain only Han characters and ASCII alphanumerics; all punctuation is removed.",
+  "currentQualificationScoringContract": "Production twp-to-cn phrase/character conversion, then CER removes whitespace and only ，。！？,.!?; other punctuation such as 、, quotes, parentheses, colons, and em dash remains scoring input.",
+  "examples": [
+    {
+      "clipId": "fleurs-zh-1789-r538",
+      "rawTextSame": true,
+      "baselineErrors": 0,
+      "currentErrors": 10,
+      "deltaErrors": 10,
+      "selectionNormalizedReference": "其他提名包括最佳影片最佳导演最佳摄影最佳服装设计最佳电影剪辑最佳原创配乐最佳艺术指导最佳音效剪辑最佳混音和最佳原创剧本",
+      "currentScoringReference": "其他提名包括最佳影片最佳导演最佳摄影最佳服装设计最佳电影剪辑最佳原创配乐最佳艺术指导最佳音效剪辑最佳混音和最佳原创剧本",
+      "referenceScoringDiffers": false,
+      "selectionNormalizedHypothesis": "其他提名包括最佳影片最佳导演最佳摄影最佳服装设计最佳电影剪辑最佳原创配乐最佳艺术指导最佳音效剪辑最佳混音和最佳原创剧本",
+      "currentScoringHypothesis": "其他提名包括最佳视频、最佳导演、最佳摄影、最佳服装设计、最佳电影剪辑、最佳原创配乐、最佳艺术指导、最佳音效剪辑、最佳混音和最佳原创剧本",
+      "hypothesisScoringDiffers": true
+    },
+    {
+      "clipId": "fleurs-zh-1832-r542",
+      "rawTextSame": true,
+      "baselineErrors": 0,
+      "currentErrors": 9,
+      "deltaErrors": 9,
+      "selectionNormalizedReference": "流行的运动项目包括足球篮球排球水球击剑橄榄球自行车冰球轮滑曲棍球和一级方程式赛车",
+      "currentScoringReference": "流行的运动项目包括足球篮球排球水球击剑橄榄球自行车冰球轮滑曲棍球和一级方程式赛车",
+      "referenceScoringDiffers": false,
+      "selectionNormalizedHypothesis": "流行的运动项目包括足球篮球排球水球击剑橄榄球自行车冰球轮滑曲棍球和一级方程式赛车",
+      "currentScoringHypothesis": "流行的运动项目包括足球、篮球、排球、水球、击剑、橄榄球、自行车、冰球、轮滑、曲棍球和一级方程式赛车",
+      "hypothesisScoringDiffers": true
+    },
+    {
+      "clipId": "fleurs-zh-1732-r480",
+      "rawTextSame": true,
+      "baselineErrors": 10,
+      "currentErrors": 15,
+      "deltaErrors": 5,
+      "selectionNormalizedReference": "事件发生的时代通常被称为欧洲史的中世纪盛时即的1112和13世纪时期公元10001300年",
+      "currentScoringReference": "事件发生的时代通常被称为欧洲史的中世纪盛时即的1112和13世纪时期公元1000-1300年",
+      "referenceScoringDiffers": true,
+      "selectionNormalizedHypothesis": "事件发生的时代通常被称为欧洲史的中世纪盛世吉德十一十二和十三世纪时期公元1000到1300年",
+      "currentScoringHypothesis": "事件发生的时代通常被称为欧洲史的中世纪盛世——吉德十一、十二和十三世纪时期(公元1000到1300年)",
+      "hypothesisScoringDiffers": true
+    }
+  ],
+  "inference": "The mandatory current quality result and promoted baseline are not score-comparable under one normalization/unit contract. 196/200 raw transcripts are byte-identical to the promoted result, yet those identical transcripts gain 76 errors (334 -> 410) under the current qualification scorer. The four actual transcript changes net one fewer error (9 -> 8).",
+  "classification": "Design Impact / quality evidence-authority and scoring-contract mismatch; focused failure-origin review required. No baseline rewrite, normalization change, threshold relaxation, provider/model substitution, or rerun is authorized."
+}

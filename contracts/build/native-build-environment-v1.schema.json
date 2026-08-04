@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "target",
+    "preflightSha256",
+    "tools",
+    "configuration",
+    "environment"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "target": { "const": "darwin-arm64" },
+    "preflightSha256": { "$ref": "#/$defs/sha" },
+    "tools": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "node",
+        "cmake",
+        "cCompiler",
+        "cxxCompiler",
+        "archiver",
+        "ranlib",
+        "linker",
+        "libtool",
+        "make",
+        "sed",
+        "shell",
+        "tar",
+        "sdk"
+      ],
+      "properties": {
+        "node": { "$ref": "#/$defs/identity" },
+        "cmake": { "$ref": "#/$defs/identity" },
+        "cCompiler": { "$ref": "#/$defs/identity" },
+        "cxxCompiler": { "$ref": "#/$defs/xcodeClangCxxIdentity" },
+        "archiver": { "$ref": "#/$defs/identity" },
+        "ranlib": { "$ref": "#/$defs/xcodeRanlibIdentity" },
+        "linker": { "$ref": "#/$defs/identity" },
+        "libtool": { "$ref": "#/$defs/identity" },
+        "make": { "$ref": "#/$defs/identity" },
+        "sed": { "$ref": "#/$defs/identity" },
+        "shell": { "$ref": "#/$defs/identity" },
+        "tar": { "$ref": "#/$defs/identity" },
+        "sdk": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "version", "settingsSha256"],
+          "properties": {
+            "path": { "type": "string", "pattern": "^/" },
+            "version": { "const": "26.1" },
+            "settingsSha256": { "$ref": "#/$defs/sha" }
+          }
+        }
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["generator", "buildType", "parallelism", "flagPolicy"],
+      "properties": {
+        "generator": { "const": "Unix Makefiles" },
+        "buildType": { "const": "Release" },
+        "parallelism": { "const": 1 },
+        "flagPolicy": { "const": "empty-external-native-flags-v1" }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pathPolicy", "locale", "clearedOverrides"],
+      "properties": {
+        "pathPolicy": { "const": "isolated-verified-tools-v1" },
+        "locale": { "const": "C" },
+        "clearedOverrides": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "pattern": "^[A-Z0-9_]+$" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": { "type": "string", "pattern": "^/" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "xcodeRanlibIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "invocationPath",
+        "linkTarget",
+        "targetPath",
+        "targetSha256"
+      ],
+      "properties": {
+        "invocationPath": { "type": "string", "pattern": "^/" },
+        "linkTarget": { "const": "libtool" },
+        "targetPath": { "type": "string", "pattern": "^/" },
+        "targetSha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "xcodeClangCxxIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "invocationPath",
+        "linkTarget",
+        "targetPath",
+        "targetSha256"
+      ],
+      "properties": {
+        "invocationPath": { "type": "string", "pattern": "^/" },
+        "linkTarget": { "const": "clang" },
+        "targetPath": { "type": "string", "pattern": "^/" },
+        "targetSha256": { "$ref": "#/$defs/sha" }
+      }
+    }
+  }
+}

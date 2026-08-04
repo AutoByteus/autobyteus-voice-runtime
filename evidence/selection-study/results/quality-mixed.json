@@ -1,0 +1,914 @@
+{
+  "schemaVersion": 1,
+  "reports": [
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/mixed-mlx-fp16-auto.json",
+      "backend": "mlx-fp16",
+      "language": "auto",
+      "metric": "CER-after-T2S",
+      "clipCount": 30,
+      "corpusErrorRate": 0.166524,
+      "rawScriptCorpusErrorRate": null,
+      "macroClipErrorRate": 0.17938,
+      "emptyHypotheses": 0,
+      "operational": {
+        "spawnToReadyMs": {
+          "count": 0
+        },
+        "firstRequestMs": {
+          "count": 0
+        },
+        "coldEndToEndMs": {
+          "count": 0
+        },
+        "warmRequestMs": {
+          "count": 30,
+          "min": 281.439,
+          "median": 289.62,
+          "p95": 307.467,
+          "max": 335.854,
+          "mean": 292.846
+        },
+        "maxSampledRssBytes": 865337344
+      },
+      "perClip": [
+        {
+          "id": "mixed-tts-01",
+          "reference": "请打开 AutoByteus settings 然后选择 Luna Medium 模型。",
+          "hypothesis": "请打开Otto by Gears Settings 然后选择Lunar Medium模型。",
+          "normalizedReference": "请打开autobyteussettings然后选择lunamedium模型",
+          "normalizedHypothesis": "请打开ottobygearssettings然后选择lunarmedium模型",
+          "errorRate": 0.162162,
+          "requestRoundTripMs": 298.057
+        },
+        {
+          "id": "mixed-tts-02",
+          "reference": "今天的 sprint review 安排在下午三点，请提前准备 demo。",
+          "hypothesis": "今天的SprintReview安排在下午3點,請提前準備demo",
+          "normalizedReference": "今天的sprintreview安排在下午三点请提前准备demo",
+          "normalizedHypothesis": "今天的sprintreview安排在下午3点请提前准备demo",
+          "errorRate": 0.032258,
+          "requestRoundTripMs": 277.91
+        },
+        {
+          "id": "mixed-tts-03",
+          "reference": "把这个 markdown file 保存到 local workspace 里面。",
+          "hypothesis": "把这个 markdown file 保存到 local workspace 里面。",
+          "normalizedReference": "把这个markdownfile保存到localworkspace里面",
+          "normalizedHypothesis": "把这个markdownfile保存到localworkspace里面",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 257.307
+        },
+        {
+          "id": "mixed-tts-04",
+          "reference": "我们需要检查 backend logs 才能找到 performance bottleneck。",
+          "hypothesis": "我们需要检查Back and Locks才能找到Performance Botanical Nick",
+          "normalizedReference": "我们需要检查backendlogs才能找到performancebottleneck",
+          "normalizedHypothesis": "我们需要检查backandlocks才能找到performancebotanicalnick",
+          "errorRate": 0.238095,
+          "requestRoundTripMs": 272.757
+        },
+        {
+          "id": "mixed-tts-05",
+          "reference": "请使用 Codex runtime 运行这个 software engineering team。",
+          "hypothesis": "请使用Codex runtime运行这个software engineering team",
+          "normalizedReference": "请使用codexruntime运行这个softwareengineeringteam",
+          "normalizedHypothesis": "请使用codexruntime运行这个softwareengineeringteam",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 253.808
+        },
+        {
+          "id": "mixed-tts-06",
+          "reference": "点击 architecture reviewer 发送的 reference file。",
+          "hypothesis": "the reference file.",
+          "normalizedReference": "点击architecturereviewer发送的referencefile",
+          "normalizedHypothesis": "thereferencefile",
+          "errorRate": 0.605263,
+          "requestRoundTripMs": 223.241
+        },
+        {
+          "id": "mixed-tts-07",
+          "reference": "这个 WebSocket stream 每秒发送很多 content delta events。",
+          "hypothesis": "這個WebSocketStream每秒發送很多Content Delta Events",
+          "normalizedReference": "这个websocketstream每秒发送很多contentdeltaevents",
+          "normalizedHypothesis": "这个websocketstream每秒发送很多contentdeltaevents",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 265.383
+        },
+        {
+          "id": "mixed-tts-08",
+          "reference": "我想比较 MLX Whisper 和 sherpa ONNX 的 latency。",
+          "hypothesis": "我想比较",
+          "normalizedReference": "我想比较mlxwhisper和sherpaonnx的latency",
+          "normalizedHypothesis": "我想比较",
+          "errorRate": 0.878788,
+          "requestRoundTripMs": 221.131
+        },
+        {
+          "id": "mixed-tts-09",
+          "reference": "Mandarin Chinese output 应该统一转换成 simplified Chinese。",
+          "hypothesis": "Mandarin Chinese output應該統一轉換成 simplified Chinese.",
+          "normalizedReference": "mandarinchineseoutput应该统一转换成simplifiedchinese",
+          "normalizedHypothesis": "mandarinchineseoutput应该统一转换成simplifiedchinese",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 246.978
+        },
+        {
+          "id": "mixed-tts-10",
+          "reference": "请把 voice input language mode 设置成 auto detect。",
+          "hypothesis": "Please set the voice input language mode to auto-detect",
+          "normalizedReference": "请把voiceinputlanguagemode设置成autodetect",
+          "normalizedHypothesis": "pleasesetthevoiceinputlanguagemodetoautodetect",
+          "errorRate": 0.405405,
+          "requestRoundTripMs": 244.891
+        },
+        {
+          "id": "mixed-tts-11",
+          "reference": "明天上午十点进行 API end to end testing。",
+          "hypothesis": "明天上午10點進行B-P-I-N-2-N-T-T-I-N",
+          "normalizedReference": "明天上午十点进行apiendtoendtesting",
+          "normalizedHypothesis": "明天上午10点进行bpin2nttin",
+          "errorRate": 0.461538,
+          "requestRoundTripMs": 302.957
+        },
+        {
+          "id": "mixed-tts-12",
+          "reference": "这个 pull request 需要 code review 和 regression tests。",
+          "hypothesis": "This pool request, need code review and regression tests.",
+          "normalizedReference": "这个pullrequest需要codereview和regressiontests",
+          "normalizedHypothesis": "thispoolrequestneedcodereviewandregressiontests",
+          "errorRate": 0.317073,
+          "requestRoundTripMs": 242.788
+        },
+        {
+          "id": "mixed-tts-13",
+          "reference": "请记录 cold start warm inference 和 peak memory。",
+          "hypothesis": "Please record Cold Start Warm Inference and Peak Memory.",
+          "normalizedReference": "请记录coldstartwarminference和peakmemory",
+          "normalizedHypothesis": "pleaserecordcoldstartwarminferenceandpeakmemory",
+          "errorRate": 0.416667,
+          "requestRoundTripMs": 246.065
+        },
+        {
+          "id": "mixed-tts-14",
+          "reference": "Electron app 不应该在 renderer thread 里面运行模型。",
+          "hypothesis": "Election App不应该在Renderer Thread里面运行模型。",
+          "normalizedReference": "electronapp不应该在rendererthread里面运行模型",
+          "normalizedHypothesis": "electionapp不应该在rendererthread里面运行模型",
+          "errorRate": 0.028571,
+          "requestRoundTripMs": 269.79
+        },
+        {
+          "id": "mixed-tts-15",
+          "reference": "我们先优化 voice runtime 然后再修改 AutoByteus Web。",
+          "hypothesis": "我们先优化 voice runtime 然后再修改 Autobi-gears web",
+          "normalizedReference": "我们先优化voiceruntime然后再修改autobyteusweb",
+          "normalizedHypothesis": "我们先优化voiceruntime然后再修改autobigearsweb",
+          "errorRate": 0.114286,
+          "requestRoundTripMs": 269.404
+        },
+        {
+          "id": "mixed-tts-16",
+          "reference": "这个 model package 的 SHA two five six 必须能够验证。",
+          "hypothesis": "这个model package的cell256必须能够验证",
+          "normalizedReference": "这个modelpackage的shatwofivesix必须能够验证",
+          "normalizedHypothesis": "这个modelpackage的cell256必须能够验证",
+          "errorRate": 0.382353,
+          "requestRoundTripMs": 266.33
+        },
+        {
+          "id": "mixed-tts-17",
+          "reference": "用户说 start recording 以后应该立即显示 loading state。",
+          "hypothesis": "用戶说Start Recording以后应该立即显示Loading State。",
+          "normalizedReference": "用户说startrecording以后应该立即显示loadingstate",
+          "normalizedHypothesis": "用户说startrecording以后应该立即显示loadingstate",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 270.612
+        },
+        {
+          "id": "mixed-tts-18",
+          "reference": "请不要使用 network fallback 所有 transcription 必须 local。",
+          "hypothesis": "请不要使用 Network Failback 所有 Transcription 必须 Local",
+          "normalizedReference": "请不要使用networkfallback所有transcription必须local",
+          "normalizedHypothesis": "请不要使用networkfailback所有transcription必须local",
+          "errorRate": 0.02381,
+          "requestRoundTripMs": 251.981
+        },
+        {
+          "id": "mixed-tts-19",
+          "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。",
+          "hypothesis": "Sense Voice Small 對 Chinese, A, S, R,可能更快但需要測試Quality。",
+          "normalizedReference": "sensevoicesmall对chineseasr可能更快但需要测试quality",
+          "normalizedHypothesis": "sensevoicesmall对chineseasr可能更快但需要测试quality",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 288.818
+        },
+        {
+          "id": "mixed-tts-20",
+          "reference": "Whisper Small 在 English speech 上通常保持很好的 accuracy。",
+          "hypothesis": "Whispers more 在English speech 上通常保持很好的accuracy。",
+          "normalizedReference": "whispersmall在englishspeech上通常保持很好的accuracy",
+          "normalizedHypothesis": "whispersmore在englishspeech上通常保持很好的accuracy",
+          "errorRate": 0.071429,
+          "requestRoundTripMs": 266.528
+        },
+        {
+          "id": "mixed-tts-21",
+          "reference": "我们要测试 punctuation numbers proper nouns 和 mixed language。",
+          "hypothesis": "我们要测试 punctuation numbers proper nouns 和 mic's language。",
+          "normalizedReference": "我们要测试punctuationnumberspropernouns和mixedlanguage",
+          "normalizedHypothesis": "我们要测试punctuationnumberspropernouns和micslanguage",
+          "errorRate": 0.0625,
+          "requestRoundTripMs": 263.141
+        },
+        {
+          "id": "mixed-tts-22",
+          "reference": "把 meeting notes 导出为 UTF eight encoded text file。",
+          "hypothesis": "Fanmeeting notes.ua, u, t, f, it encoded text file.",
+          "normalizedReference": "把meetingnotes导出为utfeightencodedtextfile",
+          "normalizedHypothesis": "fanmeetingnotesuautfitencodedtextfile",
+          "errorRate": 0.230769,
+          "requestRoundTripMs": 270.396
+        },
+        {
+          "id": "mixed-tts-23",
+          "reference": "如果 runtime handshake 失败就返回 stable error code。",
+          "hypothesis": "如果 runtime handshake 失敗就返回 stable error code",
+          "normalizedReference": "如果runtimehandshake失败就返回stableerrorcode",
+          "normalizedHypothesis": "如果runtimehandshake失败就返回stableerrorcode",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 257.866
+        },
+        {
+          "id": "mixed-tts-24",
+          "reference": "selected model identity 必须和 installed manifest 完全一致。",
+          "hypothesis": "Selected Model Identity必須和Installed Manifest完全一致",
+          "normalizedReference": "selectedmodelidentity必须和installedmanifest完全一致",
+          "normalizedHypothesis": "selectedmodelidentity必须和installedmanifest完全一致",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 265.567
+        },
+        {
+          "id": "mixed-tts-25",
+          "reference": "请运行 thirty cold trials 和 one hundred warm trials。",
+          "hypothesis": "Qingyun Xing 30 cold drills and 100 warm drills",
+          "normalizedReference": "请运行thirtycoldtrials和onehundredwarmtrials",
+          "normalizedHypothesis": "qingyunxing30colddrillsand100warmdrills",
+          "errorRate": 0.625,
+          "requestRoundTripMs": 240.408
+        },
+        {
+          "id": "mixed-tts-26",
+          "reference": "在 M one Max MacBook Pro 上测量 resident set size。",
+          "hypothesis": "在 M1 Max MacBook Pro 上侧两 Resident Set Size",
+          "normalizedReference": "在monemaxmacbookpro上测量residentsetsize",
+          "normalizedHypothesis": "在m1maxmacbookpro上侧两residentsetsize",
+          "errorRate": 0.138889,
+          "requestRoundTripMs": 250.937
+        },
+        {
+          "id": "mixed-tts-27",
+          "reference": "这个 release candidate 不能在 architecture approval 以前发布。",
+          "hypothesis": "這個 Release Candidate 不能在 Architecture Approval 以前發佈。",
+          "normalizedReference": "这个releasecandidate不能在architectureapproval以前发布",
+          "normalizedHypothesis": "这个releasecandidate不能在architectureapproval以前发布",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 262.129
+        },
+        {
+          "id": "mixed-tts-28",
+          "reference": "请把 transcript 插入当前 active text field 的 cursor position。",
+          "hypothesis": "请把 Transcript 插入当前 Active Text Field 的 cursor position。",
+          "normalizedReference": "请把transcript插入当前activetextfield的cursorposition",
+          "normalizedHypothesis": "请把transcript插入当前activetextfield的cursorposition",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 293.859
+        },
+        {
+          "id": "mixed-tts-29",
+          "reference": "今天我们测试 Wi Fi settings OpenAI API 和 local database。",
+          "hypothesis": "今天我们测试WiFi Settings Open IAPI和Local Database",
+          "normalizedReference": "今天我们测试wifisettingsopenaiapi和localdatabase",
+          "normalizedHypothesis": "今天我们测试wifisettingsopeniapi和localdatabase",
+          "errorRate": 0.02439,
+          "requestRoundTripMs": 267.991
+        },
+        {
+          "id": "mixed-tts-30",
+          "reference": "最终设计应该 evidence driven 而不是先假设 Node 或 Python。",
+          "hypothesis": "最終設計應該 evidence driven 而不是先假設 Note或 Pism",
+          "normalizedReference": "最终设计应该evidencedriven而不是先假设node或python",
+          "normalizedHypothesis": "最终设计应该evidencedriven而不是先假设note或pism",
+          "errorRate": 0.162162,
+          "requestRoundTripMs": 260.99
+        }
+      ]
+    },
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/mixed-sherpa-int8-auto.json",
+      "backend": "sherpa-int8",
+      "language": "auto",
+      "metric": "CER-after-T2S",
+      "clipCount": 30,
+      "corpusErrorRate": 0.24721,
+      "rawScriptCorpusErrorRate": null,
+      "macroClipErrorRate": 0.251309,
+      "emptyHypotheses": 0,
+      "operational": {
+        "spawnToReadyMs": {
+          "count": 0
+        },
+        "firstRequestMs": {
+          "count": 0
+        },
+        "coldEndToEndMs": {
+          "count": 0
+        },
+        "warmRequestMs": {
+          "count": 30,
+          "min": 1058.762,
+          "median": 1104.772,
+          "p95": 1201.725,
+          "max": 1317.285,
+          "mean": 1117.707
+        },
+        "maxSampledRssBytes": 1192935424
+      },
+      "perClip": [
+        {
+          "id": "mixed-tts-01",
+          "reference": "请打开 AutoByteus settings 然后选择 Luna Medium 模型。",
+          "hypothesis": "請打開「Autobi-Gear Settings」然後選Luna Medium模型。",
+          "normalizedReference": "请打开autobyteussettings然后选择lunamedium模型",
+          "normalizedHypothesis": "请打开autobigearsettings然后选lunamedium模型",
+          "errorRate": 0.135135,
+          "requestRoundTripMs": 921.279
+        },
+        {
+          "id": "mixed-tts-02",
+          "reference": "今天的 sprint review 安排在下午三点，请提前准备 demo。",
+          "hypothesis": "今天的SprintReview安排在下午3點,請提前準備demo。",
+          "normalizedReference": "今天的sprintreview安排在下午三点请提前准备demo",
+          "normalizedHypothesis": "今天的sprintreview安排在下午3点请提前准备demo",
+          "errorRate": 0.032258,
+          "requestRoundTripMs": 878.07
+        },
+        {
+          "id": "mixed-tts-03",
+          "reference": "把这个 markdown file 保存到 local workspace 里面。",
+          "hypothesis": "把這個 markdown file 保存到 local workspace 裡面",
+          "normalizedReference": "把这个markdownfile保存到localworkspace里面",
+          "normalizedHypothesis": "把这个markdownfile保存到localworkspace里面",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 674.164
+        },
+        {
+          "id": "mixed-tts-04",
+          "reference": "我们需要检查 backend logs 才能找到 performance bottleneck。",
+          "hypothesis": "我们需要查背的才能找到\"表现\"的Botonic",
+          "normalizedReference": "我们需要检查backendlogs才能找到performancebottleneck",
+          "normalizedHypothesis": "我们需要查背的才能找到表现的botonic",
+          "errorRate": 0.666667,
+          "requestRoundTripMs": 1165.626
+        },
+        {
+          "id": "mixed-tts-05",
+          "reference": "请使用 Codex runtime 运行这个 software engineering team。",
+          "hypothesis": "請使用Codx Runtime運行這個software engineering team",
+          "normalizedReference": "请使用codexruntime运行这个softwareengineeringteam",
+          "normalizedHypothesis": "请使用codxruntime运行这个softwareengineeringteam",
+          "errorRate": 0.02381,
+          "requestRoundTripMs": 891.146
+        },
+        {
+          "id": "mixed-tts-06",
+          "reference": "点击 architecture reviewer 发送的 reference file。",
+          "hypothesis": "the reference file",
+          "normalizedReference": "点击architecturereviewer发送的referencefile",
+          "normalizedHypothesis": "thereferencefile",
+          "errorRate": 0.605263,
+          "requestRoundTripMs": 391.343
+        },
+        {
+          "id": "mixed-tts-07",
+          "reference": "这个 WebSocket stream 每秒发送很多 content delta events。",
+          "hypothesis": "This web-soccered stream every second presents a lot of content-delta events.",
+          "normalizedReference": "这个websocketstream每秒发送很多contentdeltaevents",
+          "normalizedHypothesis": "thiswebsocceredstreameverysecondpresentsalotofcontentdeltaevents",
+          "errorRate": 0.804878,
+          "requestRoundTripMs": 932.247
+        },
+        {
+          "id": "mixed-tts-08",
+          "reference": "我想比较 MLX Whisper 和 sherpa ONNX 的 latency。",
+          "hypothesis": "我想比較M,L,X,Whisperer和Sherpa,O,N,N,X,The Latency。",
+          "normalizedReference": "我想比较mlxwhisper和sherpaonnx的latency",
+          "normalizedHypothesis": "我想比较mlxwhisperer和sherpaonnxthelatency",
+          "errorRate": 0.151515,
+          "requestRoundTripMs": 1389.608
+        },
+        {
+          "id": "mixed-tts-09",
+          "reference": "Mandarin Chinese output 应该统一转换成 simplified Chinese。",
+          "hypothesis": "Mandarin Chinese output should be replaced with simplified Chinese.",
+          "normalizedReference": "mandarinchineseoutput应该统一转换成simplifiedchinese",
+          "normalizedHypothesis": "mandarinchineseoutputshouldbereplacedwithsimplifiedchinese",
+          "errorRate": 0.444444,
+          "requestRoundTripMs": 601.949
+        },
+        {
+          "id": "mixed-tts-10",
+          "reference": "请把 voice input language mode 设置成 auto detect。",
+          "hypothesis": "請把 Voice Input Language Mode 設置成 AutoDirect",
+          "normalizedReference": "请把voiceinputlanguagemode设置成autodetect",
+          "normalizedHypothesis": "请把voiceinputlanguagemode设置成autodirect",
+          "errorRate": 0.054054,
+          "requestRoundTripMs": 682.409
+        },
+        {
+          "id": "mixed-tts-11",
+          "reference": "明天上午十点进行 API end to end testing。",
+          "hypothesis": "明天上午10點進行API End to End Testing",
+          "normalizedReference": "明天上午十点进行apiendtoendtesting",
+          "normalizedHypothesis": "明天上午10点进行apiendtoendtesting",
+          "errorRate": 0.076923,
+          "requestRoundTripMs": 743.133
+        },
+        {
+          "id": "mixed-tts-12",
+          "reference": "这个 pull request 需要 code review 和 regression tests。",
+          "hypothesis": "This pool request needs to code review and regression tests.",
+          "normalizedReference": "这个pullrequest需要codereview和regressiontests",
+          "normalizedHypothesis": "thispoolrequestneedstocodereviewandregressiontests",
+          "errorRate": 0.390244,
+          "requestRoundTripMs": 703.063
+        },
+        {
+          "id": "mixed-tts-13",
+          "reference": "请记录 cold start warm inference 和 peak memory。",
+          "hypothesis": "Please record Cold Start Born Inference and Peak Memory.",
+          "normalizedReference": "请记录coldstartwarminference和peakmemory",
+          "normalizedHypothesis": "pleaserecordcoldstartborninferenceandpeakmemory",
+          "errorRate": 0.5,
+          "requestRoundTripMs": 612.541
+        },
+        {
+          "id": "mixed-tts-14",
+          "reference": "Electron app 不应该在 renderer thread 里面运行模型。",
+          "hypothesis": "Election App不應該在Renderer Thread裡面運行模型",
+          "normalizedReference": "electronapp不应该在rendererthread里面运行模型",
+          "normalizedHypothesis": "electionapp不应该在rendererthread里面运行模型",
+          "errorRate": 0.028571,
+          "requestRoundTripMs": 790.556
+        },
+        {
+          "id": "mixed-tts-15",
+          "reference": "我们先优化 voice runtime 然后再修改 AutoByteus Web。",
+          "hypothesis": "我们先化 Boys Runtime 然后再改 Autobi-Cheers Web",
+          "normalizedReference": "我们先优化voiceruntime然后再修改autobyteusweb",
+          "normalizedHypothesis": "我们先化boysruntime然后再改autobicheersweb",
+          "errorRate": 0.314286,
+          "requestRoundTripMs": 985.166
+        },
+        {
+          "id": "mixed-tts-16",
+          "reference": "这个 model package 的 SHA two five six 必须能够验证。",
+          "hypothesis": "這個model package的Cell 256必能夠",
+          "normalizedReference": "这个modelpackage的shatwofivesix必须能够验证",
+          "normalizedHypothesis": "这个modelpackage的cell256必能够",
+          "errorRate": 0.470588,
+          "requestRoundTripMs": 809.787
+        },
+        {
+          "id": "mixed-tts-17",
+          "reference": "用户说 start recording 以后应该立即显示 loading state。",
+          "hypothesis": "用说Start Recording以后应该立即示Loading State。",
+          "normalizedReference": "用户说startrecording以后应该立即显示loadingstate",
+          "normalizedHypothesis": "用说startrecording以后应该立即示loadingstate",
+          "errorRate": 0.054054,
+          "requestRoundTripMs": 923.236
+        },
+        {
+          "id": "mixed-tts-18",
+          "reference": "请不要使用 network fallback 所有 transcription 必须 local。",
+          "hypothesis": "请不要使用 Network, Failback 所有 Transcription 必 Local。",
+          "normalizedReference": "请不要使用networkfallback所有transcription必须local",
+          "normalizedHypothesis": "请不要使用networkfailback所有transcription必local",
+          "errorRate": 0.047619,
+          "requestRoundTripMs": 846.644
+        },
+        {
+          "id": "mixed-tts-19",
+          "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。",
+          "hypothesis": "Sense Voice Small 對 Chinese(A、S、R)可能更快但需要試Quality",
+          "normalizedReference": "sensevoicesmall对chineseasr可能更快但需要测试quality",
+          "normalizedHypothesis": "sensevoicesmall对chineseasr可能更快但需要试quality",
+          "errorRate": 0.02381,
+          "requestRoundTripMs": 1133.153
+        },
+        {
+          "id": "mixed-tts-20",
+          "reference": "Whisper Small 在 English speech 上通常保持很好的 accuracy。",
+          "hypothesis": "Whispers more 在英文上通常保持很好的 Accuracy",
+          "normalizedReference": "whispersmall在englishspeech上通常保持很好的accuracy",
+          "normalizedHypothesis": "whispersmore在英文上通常保持很好的accuracy",
+          "errorRate": 0.380952,
+          "requestRoundTripMs": 895.867
+        },
+        {
+          "id": "mixed-tts-21",
+          "reference": "我们要测试 punctuation numbers proper nouns 和 mixed language。",
+          "hypothesis": "我們要試 punctuation numbers proper nouns 和 mic's language",
+          "normalizedReference": "我们要测试punctuationnumberspropernouns和mixedlanguage",
+          "normalizedHypothesis": "我们要试punctuationnumberspropernouns和micslanguage",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 799.167
+        },
+        {
+          "id": "mixed-tts-22",
+          "reference": "把 meeting notes 导出为 UTF eight encoded text file。",
+          "hypothesis": "\"FAMI-jin notes.ua.u.t.f.it encoded text file\"",
+          "normalizedReference": "把meetingnotes导出为utfeightencodedtextfile",
+          "normalizedHypothesis": "famijinnotesuautfitencodedtextfile",
+          "errorRate": 0.307692,
+          "requestRoundTripMs": 979.659
+        },
+        {
+          "id": "mixed-tts-23",
+          "reference": "如果 runtime handshake 失败就返回 stable error code。",
+          "hypothesis": "如果Round Time Hand Shake 失就回Stable Error Code。",
+          "normalizedReference": "如果runtimehandshake失败就返回stableerrorcode",
+          "normalizedHypothesis": "如果roundtimehandshake失就回stableerrorcode",
+          "errorRate": 0.105263,
+          "requestRoundTripMs": 881.591
+        },
+        {
+          "id": "mixed-tts-24",
+          "reference": "selected model identity 必须和 installed manifest 完全一致。",
+          "hypothesis": "Selected Model Identity 必和Institut Manifest完全一",
+          "normalizedReference": "selectedmodelidentity必须和installedmanifest完全一致",
+          "normalizedHypothesis": "selectedmodelidentity必和institutmanifest完全一",
+          "errorRate": 0.155556,
+          "requestRoundTripMs": 906.338
+        },
+        {
+          "id": "mixed-tts-25",
+          "reference": "请运行 thirty cold trials 和 one hundred warm trials。",
+          "hypothesis": "Qingyun行 30 cold trails and 100 warm trails",
+          "normalizedReference": "请运行thirtycoldtrials和onehundredwarmtrials",
+          "normalizedHypothesis": "qingyun行30coldtrailsand100warmtrails",
+          "errorRate": 0.575,
+          "requestRoundTripMs": 580.105
+        },
+        {
+          "id": "mixed-tts-26",
+          "reference": "在 M one Max MacBook Pro 上测量 resident set size。",
+          "hypothesis": "In M1 Max MacBook, the box is on the side-to-side, two-resident set size.",
+          "normalizedReference": "在monemaxmacbookpro上测量residentsetsize",
+          "normalizedHypothesis": "inm1maxmacbooktheboxisonthesidetosidetworesidentsetsize",
+          "errorRate": 0.833333,
+          "requestRoundTripMs": 1056.247
+        },
+        {
+          "id": "mixed-tts-27",
+          "reference": "这个 release candidate 不能在 architecture approval 以前发布。",
+          "hypothesis": "這個 Release Candidate 不能在 Architecture Approval 以前發",
+          "normalizedReference": "这个releasecandidate不能在architectureapproval以前发布",
+          "normalizedHypothesis": "这个releasecandidate不能在architectureapproval以前发",
+          "errorRate": 0.022222,
+          "requestRoundTripMs": 761.034
+        },
+        {
+          "id": "mixed-tts-28",
+          "reference": "请把 transcript 插入当前 active text field 的 cursor position。",
+          "hypothesis": "請把 Transcript 入當前 Active Text Field 的 cursor position。",
+          "normalizedReference": "请把transcript插入当前activetextfield的cursorposition",
+          "normalizedHypothesis": "请把transcript入当前activetextfield的cursorposition",
+          "errorRate": 0.021739,
+          "requestRoundTripMs": 815.171
+        },
+        {
+          "id": "mixed-tts-29",
+          "reference": "今天我们测试 Wi Fi settings OpenAI API 和 local database。",
+          "hypothesis": "今天我们WiFi Settings Open AI, AI, P, AI, Local Database。",
+          "normalizedReference": "今天我们测试wifisettingsopenaiapi和localdatabase",
+          "normalizedHypothesis": "今天我们wifisettingsopenaiaipailocaldatabase",
+          "errorRate": 0.121951,
+          "requestRoundTripMs": 1073.064
+        },
+        {
+          "id": "mixed-tts-30",
+          "reference": "最终设计应该 evidence driven 而不是先假设 Node 或 Python。",
+          "hypothesis": "最終設計應該Evidence driven而不是先假設Note或Person",
+          "normalizedReference": "最终设计应该evidencedriven而不是先假设node或python",
+          "normalizedHypothesis": "最终设计应该evidencedriven而不是先假设note或person",
+          "errorRate": 0.108108,
+          "requestRoundTripMs": 832.091
+        }
+      ]
+    },
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/mixed-sensevoice-int8-auto.json",
+      "backend": "sensevoice-int8",
+      "language": "auto",
+      "metric": "CER-after-T2S",
+      "clipCount": 30,
+      "corpusErrorRate": 0.166524,
+      "rawScriptCorpusErrorRate": null,
+      "macroClipErrorRate": 0.170724,
+      "emptyHypotheses": 0,
+      "operational": {
+        "spawnToReadyMs": {
+          "count": 0
+        },
+        "firstRequestMs": {
+          "count": 0
+        },
+        "coldEndToEndMs": {
+          "count": 0
+        },
+        "warmRequestMs": {
+          "count": 30,
+          "min": 94.607,
+          "median": 97.471,
+          "p95": 110.504,
+          "max": 166.447,
+          "mean": 101.029
+        },
+        "maxSampledRssBytes": 788496384
+      },
+      "perClip": [
+        {
+          "id": "mixed-tts-01",
+          "reference": "请打开 AutoByteus settings 然后选择 Luna Medium 模型。",
+          "hypothesis": "请打开autobyte settings，然后选择lunar medium模型。",
+          "normalizedReference": "请打开autobyteussettings然后选择lunamedium模型",
+          "normalizedHypothesis": "请打开autobytesettings然后选择lunarmedium模型",
+          "errorRate": 0.081081,
+          "requestRoundTripMs": 79.632
+        },
+        {
+          "id": "mixed-tts-02",
+          "reference": "今天的 sprint review 安排在下午三点，请提前准备 demo。",
+          "hypothesis": "今天的spprint review安排在下午3点，请提前准备d。",
+          "normalizedReference": "今天的sprintreview安排在下午三点请提前准备demo",
+          "normalizedHypothesis": "今天的spprintreview安排在下午3点请提前准备d",
+          "errorRate": 0.16129,
+          "requestRoundTripMs": 85.85
+        },
+        {
+          "id": "mixed-tts-03",
+          "reference": "把这个 markdown file 保存到 local workspace 里面。",
+          "hypothesis": "把这个markdown file保存到local workspace里面。",
+          "normalizedReference": "把这个markdownfile保存到localworkspace里面",
+          "normalizedHypothesis": "把这个markdownfile保存到localworkspace里面",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 67.662
+        },
+        {
+          "id": "mixed-tts-04",
+          "reference": "我们需要检查 backend logs 才能找到 performance bottleneck。",
+          "hypothesis": "我们需要检查backend locks才能找到performance bottleneck。",
+          "normalizedReference": "我们需要检查backendlogs才能找到performancebottleneck",
+          "normalizedHypothesis": "我们需要检查backendlocks才能找到performancebottleneck",
+          "errorRate": 0.047619,
+          "requestRoundTripMs": 72.431
+        },
+        {
+          "id": "mixed-tts-05",
+          "reference": "请使用 Codex runtime 运行这个 software engineering team。",
+          "hypothesis": "请使用cardex runtime运行这个software engineering team。",
+          "normalizedReference": "请使用codexruntime运行这个softwareengineeringteam",
+          "normalizedHypothesis": "请使用cardexruntime运行这个softwareengineeringteam",
+          "errorRate": 0.047619,
+          "requestRoundTripMs": 83.77
+        },
+        {
+          "id": "mixed-tts-06",
+          "reference": "点击 architecture reviewer 发送的 reference file。",
+          "hypothesis": "NT architecture Reviewer Fa the reference file.",
+          "normalizedReference": "点击architecturereviewer发送的referencefile",
+          "normalizedHypothesis": "ntarchitecturereviewerfathereferencefile",
+          "errorRate": 0.184211,
+          "requestRoundTripMs": 107.977
+        },
+        {
+          "id": "mixed-tts-07",
+          "reference": "这个 WebSocket stream 每秒发送很多 content delta events。",
+          "hypothesis": "这个wescket stream每秒发送很多 content de to events。",
+          "normalizedReference": "这个websocketstream每秒发送很多contentdeltaevents",
+          "normalizedHypothesis": "这个wescketstream每秒发送很多contentdetoevents",
+          "errorRate": 0.097561,
+          "requestRoundTripMs": 83.184
+        },
+        {
+          "id": "mixed-tts-08",
+          "reference": "我想比较 MLX Whisper 和 sherpa ONNX 的 latency。",
+          "hypothesis": "我想比较MLX whisper和 shirtONNX的 latency。",
+          "normalizedReference": "我想比较mlxwhisper和sherpaonnx的latency",
+          "normalizedHypothesis": "我想比较mlxwhisper和shirtonnx的latency",
+          "errorRate": 0.090909,
+          "requestRoundTripMs": 118.646
+        },
+        {
+          "id": "mixed-tts-09",
+          "reference": "Mandarin Chinese output 应该统一转换成 simplified Chinese。",
+          "hypothesis": "Mdanderarin Chinese output应该统一转换成 simplified Chinese.",
+          "normalizedReference": "mandarinchineseoutput应该统一转换成simplifiedchinese",
+          "normalizedHypothesis": "mdanderarinchineseoutput应该统一转换成simplifiedchinese",
+          "errorRate": 0.066667,
+          "requestRoundTripMs": 92.497
+        },
+        {
+          "id": "mixed-tts-10",
+          "reference": "请把 voice input language mode 设置成 auto detect。",
+          "hypothesis": "Qing把 voiceice input language mode设置成aude.",
+          "normalizedReference": "请把voiceinputlanguagemode设置成autodetect",
+          "normalizedHypothesis": "qing把voiceiceinputlanguagemode设置成aude",
+          "errorRate": 0.351351,
+          "requestRoundTripMs": 114.65
+        },
+        {
+          "id": "mixed-tts-11",
+          "reference": "明天上午十点进行 API end to end testing。",
+          "hypothesis": "明天上午10点进行dayI and to interesting。",
+          "normalizedReference": "明天上午十点进行apiendtoendtesting",
+          "normalizedHypothesis": "明天上午10点进行dayiandtointeresting",
+          "errorRate": 0.346154,
+          "requestRoundTripMs": 86.982
+        },
+        {
+          "id": "mixed-tts-12",
+          "reference": "这个 pull request 需要 code review 和 regression tests。",
+          "hypothesis": "这个 pool request需要 code review和 regression tests.",
+          "normalizedReference": "这个pullrequest需要codereview和regressiontests",
+          "normalizedHypothesis": "这个poolrequest需要codereview和regressiontests",
+          "errorRate": 0.04878,
+          "requestRoundTripMs": 70.96
+        },
+        {
+          "id": "mixed-tts-13",
+          "reference": "请记录 cold start warm inference 和 peak memory。",
+          "hypothesis": "Qing Jilu cold startwarm influence her peak memory.",
+          "normalizedReference": "请记录coldstartwarminference和peakmemory",
+          "normalizedHypothesis": "qingjilucoldstartwarminfluenceherpeakmemory",
+          "errorRate": 0.361111,
+          "requestRoundTripMs": 67.241
+        },
+        {
+          "id": "mixed-tts-14",
+          "reference": "Electron app 不应该在 renderer thread 里面运行模型。",
+          "hypothesis": "electron app不应该在re threat里面运行模型。",
+          "normalizedReference": "electronapp不应该在rendererthread里面运行模型",
+          "normalizedHypothesis": "electronapp不应该在rethreat里面运行模型",
+          "errorRate": 0.2,
+          "requestRoundTripMs": 72.684
+        },
+        {
+          "id": "mixed-tts-15",
+          "reference": "我们先优化 voice runtime 然后再修改 AutoByteus Web。",
+          "hypothesis": "我们先优化voice run time，然后再修改auto by cheer。",
+          "normalizedReference": "我们先优化voiceruntime然后再修改autobyteusweb",
+          "normalizedHypothesis": "我们先优化voiceruntime然后再修改autobycheer",
+          "errorRate": 0.171429,
+          "requestRoundTripMs": 79.312
+        },
+        {
+          "id": "mixed-tts-16",
+          "reference": "这个 model package 的 SHA two five six 必须能够验证。",
+          "hypothesis": "这个model package的 cell to five six必须能够验证。",
+          "normalizedReference": "这个modelpackage的shatwofivesix必须能够验证",
+          "normalizedHypothesis": "这个modelpackage的celltofivesix必须能够验证",
+          "errorRate": 0.147059,
+          "requestRoundTripMs": 62.808
+        },
+        {
+          "id": "mixed-tts-17",
+          "reference": "用户说 start recording 以后应该立即显示 loading state。",
+          "hypothesis": "用户说start recording以后应该立即显示loading state。",
+          "normalizedReference": "用户说startrecording以后应该立即显示loadingstate",
+          "normalizedHypothesis": "用户说startrecording以后应该立即显示loadingstate",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 70.935
+        },
+        {
+          "id": "mixed-tts-18",
+          "reference": "请不要使用 network fallback 所有 transcription 必须 local。",
+          "hypothesis": "请不要使用networkfellback所有 transcriptionscription必须local。",
+          "normalizedReference": "请不要使用networkfallback所有transcription必须local",
+          "normalizedHypothesis": "请不要使用networkfellback所有transcriptionscription必须local",
+          "errorRate": 0.238095,
+          "requestRoundTripMs": 79.668
+        },
+        {
+          "id": "mixed-tts-19",
+          "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。",
+          "hypothesis": "since voice more对chineese ASR可能更快，但需要测试 qualityality。",
+          "normalizedReference": "sensevoicesmall对chineseasr可能更快但需要测试quality",
+          "normalizedHypothesis": "sincevoicemore对chineeseasr可能更快但需要测试qualityality",
+          "errorRate": 0.285714,
+          "requestRoundTripMs": 96.743
+        },
+        {
+          "id": "mixed-tts-20",
+          "reference": "Whisper Small 在 English speech 上通常保持很好的 accuracy。",
+          "hypothesis": "with far small在engglish speech上通常保持很好的 accuracy。",
+          "normalizedReference": "whispersmall在englishspeech上通常保持很好的accuracy",
+          "normalizedHypothesis": "withfarsmall在engglishspeech上通常保持很好的accuracy",
+          "errorRate": 0.142857,
+          "requestRoundTripMs": 74.934
+        },
+        {
+          "id": "mixed-tts-21",
+          "reference": "我们要测试 punctuation numbers proper nouns 和 mixed language。",
+          "hypothesis": "我们要测试 punctuation numbers pro pronouns和m language。",
+          "normalizedReference": "我们要测试punctuationnumberspropernouns和mixedlanguage",
+          "normalizedHypothesis": "我们要测试punctuationnumberspropronouns和mlanguage",
+          "errorRate": 0.125,
+          "requestRoundTripMs": 76.337
+        },
+        {
+          "id": "mixed-tts-22",
+          "reference": "把 meeting notes 导出为 UTF eight encoded text file。",
+          "hypothesis": "F me Jo Chhuwei, UTF it encoded text file.",
+          "normalizedReference": "把meetingnotes导出为utfeightencodedtextfile",
+          "normalizedHypothesis": "fmejochhuweiutfitencodedtextfile",
+          "errorRate": 0.410256,
+          "requestRoundTripMs": 82.283
+        },
+        {
+          "id": "mixed-tts-23",
+          "reference": "如果 runtime handshake 失败就返回 stable error code。",
+          "hypothesis": "如果rontime handshake失败，就返回stable error code。",
+          "normalizedReference": "如果runtimehandshake失败就返回stableerrorcode",
+          "normalizedHypothesis": "如果rontimehandshake失败就返回stableerrorcode",
+          "errorRate": 0.026316,
+          "requestRoundTripMs": 72.598
+        },
+        {
+          "id": "mixed-tts-24",
+          "reference": "selected model identity 必须和 installed manifest 完全一致。",
+          "hypothesis": "selected model identity必须和inststate manifest完全一致。",
+          "normalizedReference": "selectedmodelidentity必须和installedmanifest完全一致",
+          "normalizedHypothesis": "selectedmodelidentity必须和inststatemanifest完全一致",
+          "errorRate": 0.111111,
+          "requestRoundTripMs": 75.933
+        },
+        {
+          "id": "mixed-tts-25",
+          "reference": "请运行 thirty cold trials 和 one hundred warm trials。",
+          "hypothesis": "Qing Yunxing 30 cold trails和 100 warm trails.",
+          "normalizedReference": "请运行thirtycoldtrials和onehundredwarmtrials",
+          "normalizedHypothesis": "qingyunxing30coldtrails和100warmtrails",
+          "errorRate": 0.65,
+          "requestRoundTripMs": 71.497
+        },
+        {
+          "id": "mixed-tts-26",
+          "reference": "在 M one Max MacBook Pro 上测量 resident set size。",
+          "hypothesis": "在 M1 max Macbook pro上ang侧iliang resident set size.",
+          "normalizedReference": "在monemaxmacbookpro上测量residentsetsize",
+          "normalizedHypothesis": "在m1maxmacbookpro上ang侧iliangresidentsetsize",
+          "errorRate": 0.361111,
+          "requestRoundTripMs": 75.008
+        },
+        {
+          "id": "mixed-tts-27",
+          "reference": "这个 release candidate 不能在 architecture approval 以前发布。",
+          "hypothesis": "这个release candidate不能在architecture approval以前发布。",
+          "normalizedReference": "这个releasecandidate不能在architectureapproval以前发布",
+          "normalizedHypothesis": "这个releasecandidate不能在architectureapproval以前发布",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 74.091
+        },
+        {
+          "id": "mixed-tts-28",
+          "reference": "请把 transcript 插入当前 active text field 的 cursor position。",
+          "hypothesis": "请ing把 transcript插入当前 active text field the cursor position.",
+          "normalizedReference": "请把transcript插入当前activetextfield的cursorposition",
+          "normalizedHypothesis": "请ing把transcript插入当前activetextfieldthecursorposition",
+          "errorRate": 0.130435,
+          "requestRoundTripMs": 86.413
+        },
+        {
+          "id": "mixed-tts-29",
+          "reference": "今天我们测试 Wi Fi settings OpenAI API 和 local database。",
+          "hypothesis": "今天我们测试wifi settings openen IAPI和local database。",
+          "normalizedReference": "今天我们测试wifisettingsopenaiapi和localdatabase",
+          "normalizedHypothesis": "今天我们测试wifisettingsopeneniapi和localdatabase",
+          "errorRate": 0.04878,
+          "requestRoundTripMs": 107.563
+        },
+        {
+          "id": "mixed-tts-30",
+          "reference": "最终设计应该 evidence driven 而不是先假设 Node 或 Python。",
+          "hypothesis": "最终设计应该evidence driven，而不是先假设note或。",
+          "normalizedReference": "最终设计应该evidencedriven而不是先假设node或python",
+          "normalizedHypothesis": "最终设计应该evidencedriven而不是先假设note或",
+          "errorRate": 0.189189,
+          "requestRoundTripMs": 73.339
+        }
+      ]
+    }
+  ]
+}

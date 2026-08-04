@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 2,
+  "decision": "pass",
+  "failureCategory": null,
+  "releaseMatrixSha256": "f3f57336d2598bc7c78ba0d8a10e6ad4da77c16b10274533986f29571d6de76d",
+  "qualificationSetSha256": "c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003",
+  "projectionSha256": "bcc3b1c2f3afc42fa0861adcdd3558ad0779ecf7f3c77c370501679a50bbeddd",
+  "assetSetSha256": "47d79c0fdf23e7f67aa209d278f5f86364f53692801a3968b7943701f35aae05"
+}

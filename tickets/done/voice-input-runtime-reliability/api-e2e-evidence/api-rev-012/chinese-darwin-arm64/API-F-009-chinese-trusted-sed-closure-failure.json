@@ -1,0 +1,50 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-009",
+  "apiRevisionId": "API-REV-012",
+  "scenarioId": "API-VOICE-004",
+  "acceptanceCriteria": [
+    "AC-006",
+    "AC-017",
+    "AC-019"
+  ],
+  "reviewedSourceCommit": "2e9399b214adbfe9d0cc245b256c152b2c0de7e4",
+  "executionMode": "canonical Chinese darwin-arm64 package construction under the pinned deny-network Seatbelt profile after passing exact M1 Functional Preflight 2 and outside-Seatbelt trusted native-environment creation",
+  "expected": "After preserving authenticated ranlib semantics, the closed trusted native tool directory contains every authenticated build-time executable required by the exact locked Chinese source, allowing native construction to continue to an archive.",
+  "observed": "The ranlib boundary passed and libggml-base.a was built. At 6%, locked llama.cpp Metal embedding invoked bare sed through /bin/sh; the closed trusted PATH had no sed entry, so /bin/sh reported sed: command not found and make exited 127 before archive creation.",
+  "exitCode": 1,
+  "inputManifestSha256": "4c896afe9e75d665e57f95c1e0d71353aed3bcd98dcd58aba77cc6bcd573f03e",
+  "preflightSha256": "a4420be29a6030eaa1f41b741c46b407254a747232f4e23f1c0a1c0c5ac2e9f6",
+  "nativeBuildEnvironmentSha256": "90ffb547949f18b1da7d8f8dd14a299a65430ad904033e93a098e701bfa6c59a",
+  "buildLogSha256": "9ed1b738d188b2083ea06322c1a328964bb94f4ebde554e28145e5aa788f85e7",
+  "sourceProof": {
+    "path": "llama-cpp-source/ggml/src/ggml-metal/CMakeLists.txt",
+    "sourceSha256": "e0caad0073256a0cf9f445eb440cf935c569de81fac1af2127b6af5786b1c80d",
+    "bareSedCommandLines": [
+      45,
+      46
+    ]
+  },
+  "hostSedIdentity": {
+    "path": "/usr/bin/sed",
+    "sha256": "abd2eb945442a8ab1d210e58edb153f34870ee6d7c359f0f6d8385b1f7fc50fc"
+  },
+  "preliminaryClassification": "Local Fix / implementation defect",
+  "preliminaryOrigin": "The preflight/native-environment/trusted-tool closure authenticates and materializes Node, CMake, compilers, ar, ranlib, ld, libtool, make, sh, and tar, but omits the required /usr/bin/sed identity and closed-PATH entry.",
+  "stopPolicy": "Fail closed: no PATH injection, sed override, source edit, build retry, unsandboxed build, provider/model/threshold substitution, or release action.",
+  "remainingNotTested": [
+    "second Chinese construction",
+    "Chinese package verifier",
+    "Chinese reproducibility proof",
+    "Chinese compliance and 200-WAV/30-30-100/lifecycle/resource qualification",
+    "current-source English full rerun",
+    "Qualification Set 2",
+    "Branch Catalog Projection 2"
+  ],
+  "evidenceFiles": [
+    "build-primary.log",
+    "build-primary.exit-code",
+    "native-build-environment.json",
+    "create-native-build-environment.log"
+  ]
+}

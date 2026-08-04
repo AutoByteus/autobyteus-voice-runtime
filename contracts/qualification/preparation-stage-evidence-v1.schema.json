@@ -1,0 +1,197 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "diagnosticContract",
+    "stageEvidenceSchema",
+    "qualificationClock",
+    "attempts"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "artifactKind": { "const": "preparation-stage-evidence" },
+    "diagnosticContract": { "$ref": "#/$defs/diagnosticContract" },
+    "stageEvidenceSchema": { "$ref": "#/$defs/stageSchema" },
+    "qualificationClock": { "const": "qualification-attempt-monotonic-v1" },
+    "attempts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/attempt" }
+    }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "diagnosticContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contractId", "fileName", "sha256"],
+      "properties": {
+        "contractId": {
+          "const": "autobyteus-voice-preparation-diagnostics-v1"
+        },
+        "fileName": { "const": "preparation-diagnostics-v1.json" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "stageSchema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": { "const": "preparation-stage-evidence-v1.schema.json" },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "stage": {
+      "enum": [
+        "manifest-verification",
+        "encoder-load",
+        "language-model-load",
+        "context-create",
+        "normalizer-load"
+      ]
+    },
+    "offset": { "type": "integer", "minimum": 0 },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["elapsedUs", "event", "sequence", "stage"],
+      "properties": {
+        "elapsedUs": { "$ref": "#/$defs/offset" },
+        "event": { "enum": ["start", "complete"] },
+        "sequence": { "type": "integer", "minimum": 0, "maximum": 9 },
+        "stage": { "$ref": "#/$defs/stage" }
+      }
+    },
+    "receivedRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["record", "receivedAtUs"],
+      "properties": {
+        "record": { "$ref": "#/$defs/record" },
+        "receivedAtUs": { "$ref": "#/$defs/offset" }
+      }
+    },
+    "rssObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sequence", "startedAtUs", "completedAtUs", "rssBytes"],
+      "properties": {
+        "sequence": { "type": "integer", "minimum": 0 },
+        "startedAtUs": { "$ref": "#/$defs/offset" },
+        "completedAtUs": { "$ref": "#/$defs/offset" },
+        "rssBytes": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "coverage": { "enum": ["contained", "boundary-overlap", "unavailable"] },
+    "completedStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "workerStartElapsedUs",
+        "workerCompleteElapsedUs",
+        "workerDurationUs",
+        "receivedStartAtUs",
+        "receivedCompleteAtUs",
+        "receiptSpanUs",
+        "rssCoverage",
+        "overlappingRssSampleSequences",
+        "maxOverlappingRssBytes"
+      ],
+      "properties": {
+        "stage": { "$ref": "#/$defs/stage" },
+        "workerStartElapsedUs": { "$ref": "#/$defs/offset" },
+        "workerCompleteElapsedUs": { "$ref": "#/$defs/offset" },
+        "workerDurationUs": { "$ref": "#/$defs/offset" },
+        "receivedStartAtUs": { "$ref": "#/$defs/offset" },
+        "receivedCompleteAtUs": { "$ref": "#/$defs/offset" },
+        "receiptSpanUs": { "$ref": "#/$defs/offset" },
+        "rssCoverage": { "$ref": "#/$defs/coverage" },
+        "overlappingRssSampleSequences": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 },
+          "uniqueItems": true
+        },
+        "maxOverlappingRssBytes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "partialStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stage",
+        "workerStartElapsedUs",
+        "receivedStartAtUs",
+        "rssCoverage",
+        "overlappingRssSampleSequences",
+        "maxOverlappingRssBytes"
+      ],
+      "properties": {
+        "stage": { "$ref": "#/$defs/stage" },
+        "workerStartElapsedUs": { "$ref": "#/$defs/offset" },
+        "receivedStartAtUs": { "$ref": "#/$defs/offset" },
+        "rssCoverage": { "$ref": "#/$defs/coverage" },
+        "overlappingRssSampleSequences": {
+          "type": "array",
+          "items": { "type": "integer", "minimum": 0 },
+          "uniqueItems": true
+        },
+        "maxOverlappingRssBytes": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "attempt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "attemptSequence",
+        "outcome",
+        "diagnosticValidation",
+        "privacyDecision",
+        "redactedLineCount",
+        "failureCodes",
+        "receivedRecords",
+        "rssObservations",
+        "completedStages",
+        "partialStage",
+        "maxRssBytes"
+      ],
+      "properties": {
+        "attemptSequence": { "type": "integer", "minimum": 0 },
+        "outcome": { "enum": ["success", "failure"] },
+        "diagnosticValidation": { "enum": ["pass", "fail"] },
+        "privacyDecision": { "enum": ["pass", "fail"] },
+        "redactedLineCount": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1024
+        },
+        "failureCodes": {
+          "type": "array",
+          "items": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+          "uniqueItems": true
+        },
+        "receivedRecords": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/receivedRecord" },
+          "maxItems": 10
+        },
+        "rssObservations": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/rssObservation" }
+        },
+        "completedStages": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/completedStage" },
+          "maxItems": 5
+        },
+        "partialStage": {
+          "oneOf": [{ "$ref": "#/$defs/partialStage" }, { "type": "null" }]
+        },
+        "maxRssBytes": { "type": "integer", "minimum": 0 }
+      }
+    }
+  }
+}

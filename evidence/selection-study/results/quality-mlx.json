@@ -1,0 +1,986 @@
+{
+  "schemaVersion": 1,
+  "reports": [
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/controlled-mlx-fp16-en.json",
+      "backend": "mlx-fp16",
+      "language": "en",
+      "metric": "WER",
+      "clipCount": 50,
+      "corpusErrorRate": 0.07007,
+      "rawScriptCorpusErrorRate": null,
+      "macroClipErrorRate": 0.074161,
+      "emptyHypotheses": 0,
+      "operational": {
+        "spawnToReadyMs": {
+          "count": 30,
+          "min": 986.656,
+          "median": 1261.153,
+          "p95": 1624.454,
+          "max": 1932.816,
+          "mean": 1275.932
+        },
+        "firstRequestMs": {
+          "count": 30,
+          "min": 396.806,
+          "median": 535.932,
+          "p95": 949.4,
+          "max": 1016.277,
+          "mean": 600.963
+        },
+        "coldEndToEndMs": {
+          "count": 30,
+          "min": 1396.612,
+          "median": 1782.784,
+          "p95": 2489.196,
+          "max": 2949.093,
+          "mean": 1876.895
+        },
+        "warmRequestMs": {
+          "count": 100,
+          "min": 192.017,
+          "median": 200.29,
+          "p95": 243.484,
+          "max": 679.931,
+          "mean": 211.56
+        },
+        "maxSampledRssBytes": 872628224
+      },
+      "perClip": [
+        {
+          "id": "fleurs-en-1660",
+          "reference": "romanticism had a large element of cultural determinism drawn from writers such as goethe fichte and schlegel",
+          "hypothesis": "Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.",
+          "normalizedReference": "romanticism had a large element of cultural determinism drawn from writers such as goethe fichte and schlegel",
+          "normalizedHypothesis": "romanticism had a large element of cultural determinism drawn from writers such as goeth fitcht and schlegel",
+          "errorRate": 0.117647,
+          "requestRoundTripMs": 250.281
+        },
+        {
+          "id": "fleurs-en-1662",
+          "reference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
+          "hypothesis": "Alloys are basically a mixture of two or more metals. Don't forget there are many elements on the periodic table.",
+          "normalizedReference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
+          "normalizedHypothesis": "alloys are basically a mixture of two or more metals don't forget there are many elements on the periodic table",
+          "errorRate": 0.047619,
+          "requestRoundTripMs": 249.221
+        },
+        {
+          "id": "fleurs-en-1673",
+          "reference": "during the revolutionary war the thirteen states first formed a weak central government-with the congress being its only component-under the articles of confederation",
+          "hypothesis": "During the Revolutionary War, the 13 states first formed a weak central government, with the Congress being its only component under the Articles of Confederation.",
+          "normalizedReference": "during the revolutionary war the thirteen states first formed a weak central government with the congress being its only component under the articles of confederation",
+          "normalizedHypothesis": "during the revolutionary war the 13 states first formed a weak central government with the congress being its only component under the articles of confederation",
+          "errorRate": 0.04,
+          "requestRoundTripMs": 285.133
+        },
+        {
+          "id": "fleurs-en-1675",
+          "reference": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+          "hypothesis": "All Nouns alongside the words C for you always begin with a capital letter even in the middle of a sentence.",
+          "normalizedReference": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+          "normalizedHypothesis": "all nouns alongside the words c for you always begin with a capital letter even in the middle of a sentence",
+          "errorRate": 0.095238,
+          "requestRoundTripMs": 244.675
+        },
+        {
+          "id": "fleurs-en-1687",
+          "reference": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+          "hypothesis": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+          "normalizedReference": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+          "normalizedHypothesis": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 247.274
+        },
+        {
+          "id": "fleurs-en-1689",
+          "reference": "europe is a continent that is relatively small but with many independent countries under normal circumstances travelling through multiple countries would mean having to go through visa applications and passport control multiple times",
+          "hypothesis": "European is the continent that is relatively small but with many independent countries and our normal circumstances traveling through multiple countries would mean having to go through visa application and passport control multiple times.",
+          "normalizedReference": "europe is a continent that is relatively small but with many independent countries under normal circumstances travelling through multiple countries would mean having to go through visa applications and passport control multiple times",
+          "normalizedHypothesis": "european is the continent that is relatively small but with many independent countries and our normal circumstances traveling through multiple countries would mean having to go through visa application and passport control multiple times",
+          "errorRate": 0.181818,
+          "requestRoundTripMs": 302.128
+        },
+        {
+          "id": "fleurs-en-1701",
+          "reference": "goats seem to have been first domesticated roughly 10,000 years ago in the zagros mountains of iran",
+          "hypothesis": "Goats seem to have been first domesticated roughly 10,000 years ago in the Zachrose Mountains of Iran.",
+          "normalizedReference": "goats seem to have been first domesticated roughly 10 000 years ago in the zagros mountains of iran",
+          "normalizedHypothesis": "goats seem to have been first domesticated roughly 10 000 years ago in the zachrose mountains of iran",
+          "errorRate": 0.055556,
+          "requestRoundTripMs": 235.493
+        },
+        {
+          "id": "fleurs-en-1704",
+          "reference": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+          "hypothesis": "In 1990, it was added to the list of World Heritage sites in danger due to the threat of desert sands.",
+          "normalizedReference": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+          "normalizedHypothesis": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 239.606
+        },
+        {
+          "id": "fleurs-en-1714",
+          "reference": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+          "hypothesis": "The satellite was sent into space by a rocket. Scientists use telescopes in space because the Earth's atmosphere distorts some of our light and view.",
+          "normalizedReference": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+          "normalizedHypothesis": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 477.831
+        },
+        {
+          "id": "fleurs-en-1720",
+          "reference": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+          "hypothesis": "The hot chocolate is up to Belgian standards. Fruit juices are pricey but excellent.",
+          "normalizedReference": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+          "normalizedHypothesis": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 235.134
+        },
+        {
+          "id": "fleurs-en-1731",
+          "reference": "in the archipelagos and lakes you do not necessarily need a yacht",
+          "hypothesis": "In the Archipelagos and lakes, you do not necessarily need a yacht.",
+          "normalizedReference": "in the archipelagos and lakes you do not necessarily need a yacht",
+          "normalizedHypothesis": "in the archipelagos and lakes you do not necessarily need a yacht",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 358.18
+        },
+        {
+          "id": "fleurs-en-1737",
+          "reference": "lions are the most social cats living in large groups called prides",
+          "hypothesis": "I enter the most social cat's living in large groups called Pride.",
+          "normalizedReference": "lions are the most social cats living in large groups called prides",
+          "normalizedHypothesis": "i enter the most social cat's living in large groups called pride",
+          "errorRate": 0.333333,
+          "requestRoundTripMs": 368.189
+        },
+        {
+          "id": "fleurs-en-1745",
+          "reference": "plants look their best when in a natural environment so resist the temptation to remove even just one specimen",
+          "hypothesis": "Planets look their best when in a natural environment, so resist the temptation to remove even just one specimen.",
+          "normalizedReference": "plants look their best when in a natural environment so resist the temptation to remove even just one specimen",
+          "normalizedHypothesis": "planets look their best when in a natural environment so resist the temptation to remove even just one specimen",
+          "errorRate": 0.052632,
+          "requestRoundTripMs": 257.617
+        },
+        {
+          "id": "fleurs-en-1755",
+          "reference": "one bomb exploded outside the governor general's office",
+          "hypothesis": "One bomb exploded outside the Governor's General's office.",
+          "normalizedReference": "one bomb exploded outside the governor general's office",
+          "normalizedHypothesis": "one bomb exploded outside the governor's general's office",
+          "errorRate": 0.125,
+          "requestRoundTripMs": 199.799
+        },
+        {
+          "id": "fleurs-en-1756",
+          "reference": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced us troops would be leaving syria",
+          "hypothesis": "Late on Sunday, the United States President Donald Trump, in a statement delivered via the press secretary, announced U.S. troops would be leaving Syria.",
+          "normalizedReference": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced us troops would be leaving syria",
+          "normalizedHypothesis": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced u s troops would be leaving syria",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 279.751
+        },
+        {
+          "id": "fleurs-en-1768",
+          "reference": "most of the buildings on the edges of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+          "hypothesis": "Most of the buildings on the edge of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared.",
+          "normalizedReference": "most of the buildings on the edges of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+          "normalizedHypothesis": "most of the buildings on the edge of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+          "errorRate": 0.038462,
+          "requestRoundTripMs": 264.855
+        },
+        {
+          "id": "fleurs-en-1772",
+          "reference": "so it is likely that the notation was added simply as a label",
+          "hypothesis": "So it is likely that the notation was added simply as a label.",
+          "normalizedReference": "so it is likely that the notation was added simply as a label",
+          "normalizedHypothesis": "so it is likely that the notation was added simply as a label",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 197.529
+        },
+        {
+          "id": "fleurs-en-1781",
+          "reference": "madagascar is by far the biggest and a continent on its own when it comes to wildlife",
+          "hypothesis": "Madden Gascar is by far the biggest and the continent on its own when it comes to wildlife.",
+          "normalizedReference": "madagascar is by far the biggest and a continent on its own when it comes to wildlife",
+          "normalizedHypothesis": "madden gascar is by far the biggest and the continent on its own when it comes to wildlife",
+          "errorRate": 0.176471,
+          "requestRoundTripMs": 243.056
+        },
+        {
+          "id": "fleurs-en-1782",
+          "reference": "also between each dynasty was an unstable age of divided provinces the best-known of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+          "hypothesis": "Also, between each dynasty was an unstable age of dividend provinces. The best sign of these periods was the Three Kingdoms epoch, taking place for 60 years between the Han and the Jin Dynasty.",
+          "normalizedReference": "also between each dynasty was an unstable age of divided provinces the best known of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+          "normalizedHypothesis": "also between each dynasty was an unstable age of dividend provinces the best sign of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+          "errorRate": 0.058824,
+          "requestRoundTripMs": 418.502
+        },
+        {
+          "id": "fleurs-en-1793",
+          "reference": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+          "hypothesis": "If you're not used to driving on country roads, keep your wits about you. Steep grades, narrow lanes, and sharp curves predominate.",
+          "normalizedReference": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+          "normalizedHypothesis": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 285.364
+        },
+        {
+          "id": "fleurs-en-1799",
+          "reference": "beyond wednesday's event carpanedo competed in two individual races at the championships",
+          "hypothesis": "Beyond Wednesday's event, Carpigneto competed in two individual races at the championships.",
+          "normalizedReference": "beyond wednesday's event carpanedo competed in two individual races at the championships",
+          "normalizedHypothesis": "beyond wednesday's event carpigneto competed in two individual races at the championships",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 226.533
+        },
+        {
+          "id": "fleurs-en-1802",
+          "reference": "the internet combines elements of both mass and interpersonal communication",
+          "hypothesis": "The internet combines elements of both mass and interpersonal communication.",
+          "normalizedReference": "the internet combines elements of both mass and interpersonal communication",
+          "normalizedHypothesis": "the internet combines elements of both mass and interpersonal communication",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 194.82
+        },
+        {
+          "id": "fleurs-en-1813",
+          "reference": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+          "hypothesis": "Barcelona's official languages are Catalan and Spanish. About a half prefer to speak Catalan, a vast majority understands it and virtually everyone knows Spanish.",
+          "normalizedReference": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+          "normalizedHypothesis": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 268.28
+        },
+        {
+          "id": "fleurs-en-1817",
+          "reference": "the schengen zone however works somewhat like one country in this respect",
+          "hypothesis": "The Sheningeng Zone however works somewhat like one country in this respect.",
+          "normalizedReference": "the schengen zone however works somewhat like one country in this respect",
+          "normalizedHypothesis": "the sheningeng zone however works somewhat like one country in this respect",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 336.898
+        },
+        {
+          "id": "fleurs-en-1828",
+          "reference": "a search of the internet for hostile environment course' will probably provide the address of a local company",
+          "hypothesis": "A search of the Internet for a hostile environment course will probably provide the address of a local company.",
+          "normalizedReference": "a search of the internet for hostile environment course' will probably provide the address of a local company",
+          "normalizedHypothesis": "a search of the internet for a hostile environment course will probably provide the address of a local company",
+          "errorRate": 0.111111,
+          "requestRoundTripMs": 243.707
+        },
+        {
+          "id": "fleurs-en-1839",
+          "reference": "think of the skiing route as of a similar hiking route",
+          "hypothesis": "Think of the scheme route as of a similar hiking route.",
+          "normalizedReference": "think of the skiing route as of a similar hiking route",
+          "normalizedHypothesis": "think of the scheme route as of a similar hiking route",
+          "errorRate": 0.090909,
+          "requestRoundTripMs": 207.476
+        },
+        {
+          "id": "fleurs-en-1840",
+          "reference": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+          "hypothesis": "In many other cities of Italy and in the rest of the world, particularly in Poland, similar setups were made which were viewed by a great number of people.",
+          "normalizedReference": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+          "normalizedHypothesis": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 285.192
+        },
+        {
+          "id": "fleurs-en-1851",
+          "reference": "rip currents are the returning flow from waves breaking off the beach often at a reef or similar",
+          "hypothesis": "Roup currents are the returning flow from waves breaking off the sea often at a reef or similar.",
+          "normalizedReference": "rip currents are the returning flow from waves breaking off the beach often at a reef or similar",
+          "normalizedHypothesis": "roup currents are the returning flow from waves breaking off the sea often at a reef or similar",
+          "errorRate": 0.111111,
+          "requestRoundTripMs": 231.226
+        },
+        {
+          "id": "fleurs-en-1857",
+          "reference": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+          "hypothesis": "He added that they should not however be asked to take on obligations that go beyond their development stage, responsibility and capabilities.",
+          "normalizedReference": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+          "normalizedHypothesis": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 254.971
+        },
+        {
+          "id": "fleurs-en-1866",
+          "reference": "first most riders wear riding boots with a heel and a smooth quite narrow sole",
+          "hypothesis": "First, most riders were riding boots with a heel and a smooth, quite narrow sole.",
+          "normalizedReference": "first most riders wear riding boots with a heel and a smooth quite narrow sole",
+          "normalizedHypothesis": "first most riders were riding boots with a heel and a smooth quite narrow sole",
+          "errorRate": 0.066667,
+          "requestRoundTripMs": 222.361
+        },
+        {
+          "id": "fleurs-en-1873",
+          "reference": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it ok!",
+          "hypothesis": "Be firm in turning down men and don't be afraid to stand your ground, cultural differences or not, it doesn't make it okay.",
+          "normalizedReference": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it ok",
+          "normalizedHypothesis": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it okay",
+          "errorRate": 0.043478,
+          "requestRoundTripMs": 319.38
+        },
+        {
+          "id": "fleurs-en-1881",
+          "reference": "sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes",
+          "hypothesis": "Sharing a field trip virtually is also a great way to reflect on a trip and share experiences with future classes.",
+          "normalizedReference": "sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes",
+          "normalizedHypothesis": "sharing a field trip virtually is also a great way to reflect on a trip and share experiences with future classes",
+          "errorRate": 0.045455,
+          "requestRoundTripMs": 303.724
+        },
+        {
+          "id": "fleurs-en-1889",
+          "reference": "it has brought us the train the car and many other transportation devices",
+          "hypothesis": "It has brought us to train the car and many other transportation devices.",
+          "normalizedReference": "it has brought us the train the car and many other transportation devices",
+          "normalizedHypothesis": "it has brought us to train the car and many other transportation devices",
+          "errorRate": 0.076923,
+          "requestRoundTripMs": 273.163
+        },
+        {
+          "id": "fleurs-en-1893",
+          "reference": "the sundarbans are the largest littoral mangrove belt in the world stretching 80 km 50 mi into the bangladeshi and indian hinterland from the coast",
+          "hypothesis": "The Sundarbans are the largest littoral mangrove bell in the world, stretching 80 kilometers, 50 miles, into the Bangladeshi and Indian hinterland from the coast.",
+          "normalizedReference": "the sundarbans are the largest littoral mangrove belt in the world stretching 80 km 50 mi into the bangladeshi and indian hinterland from the coast",
+          "normalizedHypothesis": "the sundarbans are the largest littoral mangrove bell in the world stretching 80 kilometers 50 miles into the bangladeshi and indian hinterland from the coast",
+          "errorRate": 0.12,
+          "requestRoundTripMs": 338.959
+        },
+        {
+          "id": "fleurs-en-1902",
+          "reference": "he was initially hospitalised in the james paget hospital in great yarmouth",
+          "hypothesis": "He was initially hospitalized in the James Pageant Hospital in Great Yarmouth.",
+          "normalizedReference": "he was initially hospitalised in the james paget hospital in great yarmouth",
+          "normalizedHypothesis": "he was initially hospitalized in the james pageant hospital in great yarmouth",
+          "errorRate": 0.166667,
+          "requestRoundTripMs": 226.801
+        },
+        {
+          "id": "fleurs-en-1909",
+          "reference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
+          "hypothesis": "Virtual teams are held to the same standard of excellent and conventional teams, but there are subtle differences.",
+          "normalizedReference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
+          "normalizedHypothesis": "virtual teams are held to the same standard of excellent and conventional teams but there are subtle differences",
+          "errorRate": 0.166667,
+          "requestRoundTripMs": 230.067
+        },
+        {
+          "id": "fleurs-en-1912",
+          "reference": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+          "hypothesis": "Most of the smaller islands are independent nations or associated with France and known as luxury beach resorts.",
+          "normalizedReference": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+          "normalizedHypothesis": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 234.515
+        },
+        {
+          "id": "fleurs-en-1922",
+          "reference": "there are of course christian theological explanations for this tradition but it may well be a pre-christian spring and fertility ritual",
+          "hypothesis": "There are of course Christian theological explanations for this tradition, but it may well be a pre-Christian spring infertility ritual.",
+          "normalizedReference": "there are of course christian theological explanations for this tradition but it may well be a pre christian spring and fertility ritual",
+          "normalizedHypothesis": "there are of course christian theological explanations for this tradition but it may well be a pre christian spring infertility ritual",
+          "errorRate": 0.090909,
+          "requestRoundTripMs": 262.68
+        },
+        {
+          "id": "fleurs-en-1938",
+          "reference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+          "hypothesis": "The hospital has followed protocol for infection control, including separating the patient from others to prevent possible infection of others.",
+          "normalizedReference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+          "normalizedHypothesis": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 257.188
+        },
+        {
+          "id": "fleurs-en-1939",
+          "reference": "also after the revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed",
+          "hypothesis": "Also, after Revolution, occupants were open to all male applicants, allowing the most ambitious and successful to succeed.",
+          "normalizedReference": "also after the revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed",
+          "normalizedHypothesis": "also after revolution occupants were open to all male applicants allowing the most ambitious and successful to succeed",
+          "errorRate": 0.105263,
+          "requestRoundTripMs": 258.734
+        },
+        {
+          "id": "fleurs-en-1951",
+          "reference": "in 2002 goma was destroyed by lava from the nyiragongo volcano which buried most of the town's streets particularly the town centre",
+          "hypothesis": "In 2002, Goma was destroyed by lava from the Nairungogo volcano which buried most of the town streets, particularly the town center.",
+          "normalizedReference": "in 2002 goma was destroyed by lava from the nyiragongo volcano which buried most of the town's streets particularly the town centre",
+          "normalizedHypothesis": "in 2002 goma was destroyed by lava from the nairungogo volcano which buried most of the town streets particularly the town center",
+          "errorRate": 0.136364,
+          "requestRoundTripMs": 268.551
+        },
+        {
+          "id": "fleurs-en-1952",
+          "reference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+          "hypothesis": "Anyone who is going to drive at high latitudes or over mountain passes should consider the possibility of snow, ice, or freezing temperatures.",
+          "normalizedReference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+          "normalizedHypothesis": "anyone who is going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+          "errorRate": 0.090909,
+          "requestRoundTripMs": 287.922
+        },
+        {
+          "id": "fleurs-en-1964",
+          "reference": "the 25 dunlap broadsides still known to exist are the oldest surviving copies of the document the original handwritten copy has not survived",
+          "hypothesis": "The 25 Dunlap broad sides, still known to exist, are the oldest surviving copies of the document. The original handwriting copying has not survived.",
+          "normalizedReference": "the 25 dunlap broadsides still known to exist are the oldest surviving copies of the document the original handwritten copy has not survived",
+          "normalizedHypothesis": "the 25 dunlap broad sides still known to exist are the oldest surviving copies of the document the original handwriting copying has not survived",
+          "errorRate": 0.173913,
+          "requestRoundTripMs": 320.819
+        },
+        {
+          "id": "fleurs-en-1969",
+          "reference": "it states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally see example",
+          "hypothesis": "It states that the most effective place for the main subject is at the intersection of lines dividing the images into thirds vertically and horizontally. See example.",
+          "normalizedReference": "it states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally see example",
+          "normalizedHypothesis": "it states that the most effective place for the main subject is at the intersection of lines dividing the images into thirds vertically and horizontally see example",
+          "errorRate": 0.037037,
+          "requestRoundTripMs": 738.584
+        },
+        {
+          "id": "fleurs-en-1977",
+          "reference": "prides are made up of one to three related adult males along with as many as thirty females and cubs",
+          "hypothesis": "Brides are made up of 1-3 related adult males, along with as many as 30 females and cubs.",
+          "normalizedReference": "prides are made up of one to three related adult males along with as many as thirty females and cubs",
+          "normalizedHypothesis": "brides are made up of 1 3 related adult males along with as many as 30 females and cubs",
+          "errorRate": 0.25,
+          "requestRoundTripMs": 240.732
+        },
+        {
+          "id": "fleurs-en-1981",
+          "reference": "if you only go ashore using shipboard excursions you will not need a separate visa as of 2009",
+          "hypothesis": "If you only go ashore using ship or excursions, you will not need a separate visa as of 2009.",
+          "normalizedReference": "if you only go ashore using shipboard excursions you will not need a separate visa as of 2009",
+          "normalizedHypothesis": "if you only go ashore using ship or excursions you will not need a separate visa as of 2009",
+          "errorRate": 0.111111,
+          "requestRoundTripMs": 237.239
+        },
+        {
+          "id": "fleurs-en-1992",
+          "reference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
+          "hypothesis": "The turn safari in popular use refers to overland travel to view the stunning African wildlife particularly on Savannah.",
+          "normalizedReference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
+          "normalizedHypothesis": "the turn safari in popular use refers to overland travel to view the stunning african wildlife particularly on savannah",
+          "errorRate": 0.105263,
+          "requestRoundTripMs": 235.807
+        },
+        {
+          "id": "fleurs-en-1995",
+          "reference": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been to challenging for the student to handle alone",
+          "hypothesis": "Virtual scaffolds are internalized in the software and are meant to question, prompt, and explain procedures that may have been too challenging for the student to handle alone.",
+          "normalizedReference": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been to challenging for the student to handle alone",
+          "normalizedHypothesis": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been too challenging for the student to handle alone",
+          "errorRate": 0.035714,
+          "requestRoundTripMs": 269.413
+        },
+        {
+          "id": "fleurs-en-2009",
+          "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "hypothesis": "The most readily accessible plant resources would have been the proteins accessible in leaves and legumes, but these are hard for primates like us to digest unless they are cooked.",
+          "normalizedReference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "normalizedHypothesis": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 383.39
+        },
+        {
+          "id": "fleurs-en-2009",
+          "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "hypothesis": "The most readily accessible plant resources would have been the proteins accessible in leaves and legumes, but these are hard for primates like us to digest unless they are cooked.",
+          "normalizedReference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "normalizedHypothesis": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 382.707
+        }
+      ]
+    },
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/controlled-mlx-fp16-zh.json",
+      "backend": "mlx-fp16",
+      "language": "zh",
+      "metric": "CER-after-T2S",
+      "clipCount": 50,
+      "corpusErrorRate": 0.120543,
+      "rawScriptCorpusErrorRate": 0.207697,
+      "macroClipErrorRate": 0.108225,
+      "emptyHypotheses": 0,
+      "operational": {
+        "spawnToReadyMs": {
+          "count": 0
+        },
+        "firstRequestMs": {
+          "count": 0
+        },
+        "coldEndToEndMs": {
+          "count": 0
+        },
+        "warmRequestMs": {
+          "count": 100,
+          "min": 241.793,
+          "median": 252.161,
+          "p95": 295.97,
+          "max": 440.099,
+          "mean": 261.138
+        },
+        "maxSampledRssBytes": 874528768
+      },
+      "perClip": [
+        {
+          "id": "fleurs-zh-1660",
+          "reference": "浪 漫 主 义 具 有 很 强 的 文 化 决 定 论 色 彩 这 源 于 歌 德 费 希 特 和 施 莱 格 尔 等 作 家",
+          "hypothesis": "浪漫主義具有很強的文化決定論色彩,這源於戈德、費希特和史萊格爾等作家。",
+          "normalizedReference": "浪漫主义具有很强的文化决定论色彩这源于歌德费希特和施莱格尔等作家",
+          "normalizedHypothesis": "浪漫主义具有很强的文化决定论色彩这源于戈德费希特和史莱格尔等作家",
+          "errorRate": 0.0625,
+          "requestRoundTripMs": 347.338
+        },
+        {
+          "id": "fleurs-zh-1662",
+          "reference": "合 金 基 本 上 由 两 种 或 以 上 金 属 混 合 而 成 不 要 忘 记 一 点 元 素 周 期 表 上 有 很 多 元 素",
+          "hypothesis": "合金基本上有两种或以上技术混合而成不要忘记一点元素周期表上有很多元素",
+          "normalizedReference": "合金基本上由两种或以上金属混合而成不要忘记一点元素周期表上有很多元素",
+          "normalizedHypothesis": "合金基本上有两种或以上技术混合而成不要忘记一点元素周期表上有很多元素",
+          "errorRate": 0.088235,
+          "requestRoundTripMs": 282.062
+        },
+        {
+          "id": "fleurs-zh-1673",
+          "reference": "在 独 立 战 争 期 间 十 三 个 州 最 初 根 据 联 邦 条 例 组 成 了 弱 小 的 中 央 政 府 国 会 是 其 唯 一 的 组 成 部 分",
+          "hypothesis": "在獨立戰爭期間,13個州最初根據聯邦條例組成了弱小的中央政府,國會是其唯一的組成部分。",
+          "normalizedReference": "在独立战争期间十三个州最初根据联邦条例组成了弱小的中央政府国会是其唯一的组成部分",
+          "normalizedHypothesis": "在独立战争期间13个州最初根据联邦条例组成了弱小的中央政府国会是其唯一的组成部分",
+          "errorRate": 0.05,
+          "requestRoundTripMs": 390.799
+        },
+        {
+          "id": "fleurs-zh-1675",
+          "reference": "除 去 表 示 您 的 sie 之 外 的 所 有 名 词 都 应 以 大 写 字 母 开 头 即 使 在 句 子 中 间 也 应 如 此",
+          "hypothesis": "出去表示您的SIE之外的所有名词都应以大写字幕开头即使在句子中间也应如此",
+          "normalizedReference": "除去表示您的sie之外的所有名词都应以大写字母开头即使在句子中间也应如此",
+          "normalizedHypothesis": "出去表示您的sie之外的所有名词都应以大写字幕开头即使在句子中间也应如此",
+          "errorRate": 0.055556,
+          "requestRoundTripMs": 325.365
+        },
+        {
+          "id": "fleurs-zh-1689",
+          "reference": "欧 洲 是 片 面 积 相 对 较 小 但 有 着 许 多 独 立 国 家 的 大 陆 在 通 常 情 况 下 穿 越 多 个 国 家 旅 行 意 味 着 必 须 多 次 经 历 签 证 申 请 和 护 照 检 查",
+          "hypothesis": "欧洲视片面积相对较小,但有着许多独立国家的大陆,在通常情况下,穿越多个国家旅行,意味着必须多次经历签证申请和护照检查。",
+          "normalizedReference": "欧洲是片面积相对较小但有着许多独立国家的大陆在通常情况下穿越多个国家旅行意味着必须多次经历签证申请和护照检查",
+          "normalizedHypothesis": "欧洲视片面积相对较小但有着许多独立国家的大陆在通常情况下穿越多个国家旅行意味着必须多次经历签证申请和护照检查",
+          "errorRate": 0.018519,
+          "requestRoundTripMs": 420.271
+        },
+        {
+          "id": "fleurs-zh-1693",
+          "reference": "但 在 队 长 输 掉 三 柱 门 后 印 度 在 结 束 这 一 局 的 比 赛 时 只 得 了 36 分 输 掉 7 个 三 柱 门",
+          "hypothesis": "但在对领掌输掉三注门后印度在结束这一局的比赛时值得了36分输掉了7个三注门",
+          "normalizedReference": "但在队长输掉三柱门后印度在结束这一局的比赛时只得了36分输掉7个三柱门",
+          "normalizedHypothesis": "但在对领掌输掉三注门后印度在结束这一局的比赛时值得了36分输掉了7个三注门",
+          "errorRate": 0.2,
+          "requestRoundTripMs": 329.413
+        },
+        {
+          "id": "fleurs-zh-1703",
+          "reference": "昨 天 马 尔 泰 利 在 由 9 名 成 员 组 成 的 新 临 时 选 举 委 员 会 cep 中 宣 誓 就 职",
+          "hypothesis": "昨天馬爾泰利在由9名成員組成的新臨時選舉會中宣誓就職",
+          "normalizedReference": "昨天马尔泰利在由9名成员组成的新临时选举委员会cep中宣誓就职",
+          "normalizedHypothesis": "昨天马尔泰利在由9名成员组成的新临时选举会中宣誓就职",
+          "errorRate": 0.16129,
+          "requestRoundTripMs": 260.764
+        },
+        {
+          "id": "fleurs-zh-1707",
+          "reference": "它 是 南 非 的 主 要 景 点 之 一 被 认 为 是 南 非 国 家 公 园 体 系 sanparks 的 主 打 景 点",
+          "hypothesis": "他是南非的主要景点之一被认为是南非国家公园体系的主打景点",
+          "normalizedReference": "它是南非的主要景点之一被认为是南非国家公园体系sanparks的主打景点",
+          "normalizedHypothesis": "他是南非的主要景点之一被认为是南非国家公园体系的主打景点",
+          "errorRate": 0.25,
+          "requestRoundTripMs": 283.161
+        },
+        {
+          "id": "fleurs-zh-1720",
+          "reference": "热 巧 克 力 达 到 了 比 利 时 的 标 准 果 汁 价 格 昂 贵 但 品 质 很 好",
+          "hypothesis": "热巧克力达到了比利时的标准果汁价格昂贵但品质很好",
+          "normalizedReference": "热巧克力达到了比利时的标准果汁价格昂贵但品质很好",
+          "normalizedHypothesis": "热巧克力达到了比利时的标准果汁价格昂贵但品质很好",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 313.974
+        },
+        {
+          "id": "fleurs-zh-1726",
+          "reference": "实 地 考 察 是 任 何 教 学 活 动 的 重 要 组 成 部 分 通 常 老 师 会 很 乐 意 带 学 生 去 那 些 公 交 车 无 法 到 达 的 地 方",
+          "hypothesis": "实际考察是任何教学活动的重要组成部分通常老师会很乐意带学生去那些公交车无法到达的地方",
+          "normalizedReference": "实地考察是任何教学活动的重要组成部分通常老师会很乐意带学生去那些公交车无法到达的地方",
+          "normalizedHypothesis": "实际考察是任何教学活动的重要组成部分通常老师会很乐意带学生去那些公交车无法到达的地方",
+          "errorRate": 0.02381,
+          "requestRoundTripMs": 316.988
+        },
+        {
+          "id": "fleurs-zh-1736",
+          "reference": "罗 兰 多 门 多 萨 rolando mendoza 架 起 他 的 m16 步 枪 对 游 客 扫 射",
+          "hypothesis": "羅蘭多 溫朵薩 架起他的M16步槍對遊客掃射",
+          "normalizedReference": "罗兰多门多萨rolandomendoza架起他的m16步枪对游客扫射",
+          "normalizedHypothesis": "罗兰多温朵萨架起他的m16步枪对游客扫射",
+          "errorRate": 0.470588,
+          "requestRoundTripMs": 255.183
+        },
+        {
+          "id": "fleurs-zh-1745",
+          "reference": "植 物 在 自 然 环 境 中 状 态 最 好 因 此 要 抵 住 诱 惑 不 去 摘 掉 植 物 哪 怕 只 是 一 株",
+          "hypothesis": "植物在自然环境中状态最好因此要抵住诱惑不要摘掉植物哪怕只有一株",
+          "normalizedReference": "植物在自然环境中状态最好因此要抵住诱惑不去摘掉植物哪怕只是一株",
+          "normalizedHypothesis": "植物在自然环境中状态最好因此要抵住诱惑不要摘掉植物哪怕只有一株",
+          "errorRate": 0.064516,
+          "requestRoundTripMs": 322.994
+        },
+        {
+          "id": "fleurs-zh-1747",
+          "reference": "其 他 摔 跤 选 手 也 纷 纷 悼 念 露 娜 luna",
+          "hypothesis": "其他摔跤选手也纷纷悼念露娜",
+          "normalizedReference": "其他摔跤选手也纷纷悼念露娜luna",
+          "normalizedHypothesis": "其他摔跤选手也纷纷悼念露娜",
+          "errorRate": 0.235294,
+          "requestRoundTripMs": 232.455
+        },
+        {
+          "id": "fleurs-zh-1760",
+          "reference": "沧 龙 是 那 个 时 代 的 顶 级 掠 食 者 除 了 同 类 它 什 么 都 不 怕",
+          "hypothesis": "昌隆是那个时代的顶级掠视者,除了同类他什么都不怕",
+          "normalizedReference": "沧龙是那个时代的顶级掠食者除了同类它什么都不怕",
+          "normalizedHypothesis": "昌隆是那个时代的顶级掠视者除了同类他什么都不怕",
+          "errorRate": 0.173913,
+          "requestRoundTripMs": 256.974
+        },
+        {
+          "id": "fleurs-zh-1761",
+          "reference": "两 位 摄 影 师 其 后 顶 替 一 位 需 要 上 洗 手 间 的 老 妇 门 多 萨 则 被 击 毙",
+          "hypothesis": "兩位攝影師,其後頂替一位需要上洗手間的老傅,門多大則被擊斃。",
+          "normalizedReference": "两位摄影师其后顶替一位需要上洗手间的老妇门多萨则被击毙",
+          "normalizedHypothesis": "两位摄影师其后顶替一位需要上洗手间的老傅门多大则被击毙",
+          "errorRate": 0.074074,
+          "requestRoundTripMs": 276.493
+        },
+        {
+          "id": "fleurs-zh-1772",
+          "reference": "因 此 很 可 能 这 个 符 号 只 是 作 为 一 个 标 签 添 加 的",
+          "hypothesis": "因此很可能这个符号只是作为一个标签添加的",
+          "normalizedReference": "因此很可能这个符号只是作为一个标签添加的",
+          "normalizedHypothesis": "因此很可能这个符号只是作为一个标签添加的",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 275.901
+        },
+        {
+          "id": "fleurs-zh-1774",
+          "reference": "在 外 围 岛 屿 可 能 无 法 使 用 信 用 卡 但 可 以 使 用 英 美 货 币 请 事 先 与 房 主 联 系 确 认 可 接 受 的 付 款 方 式",
+          "hypothesis": "在外围岛屿无法使用信用卡但可以使用英美货币请事先与房主联系确定可接受的付款方式",
+          "normalizedReference": "在外围岛屿可能无法使用信用卡但可以使用英美货币请事先与房主联系确认可接受的付款方式",
+          "normalizedHypothesis": "在外围岛屿无法使用信用卡但可以使用英美货币请事先与房主联系确定可接受的付款方式",
+          "errorRate": 0.073171,
+          "requestRoundTripMs": 423.397
+        },
+        {
+          "id": "fleurs-zh-1787",
+          "reference": "写 博 客 是 一 种 能 够 激 发 合 作 的 工 具 还 能 鼓 励 学 生 把 学 习 延 伸 到 传 统 的 学 校 授 课 之 外",
+          "hypothesis": "写博客是一种能够激发合作的工具还能鼓励学生把学习延伸到传统的学校授课之外",
+          "normalizedReference": "写博客是一种能够激发合作的工具还能鼓励学生把学习延伸到传统的学校授课之外",
+          "normalizedHypothesis": "写博客是一种能够激发合作的工具还能鼓励学生把学习延伸到传统的学校授课之外",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 436.026
+        },
+        {
+          "id": "fleurs-zh-1789",
+          "reference": "其 他 提 名 包 括 最 佳 影 片 最 佳 导 演 最 佳 摄 影 最 佳 服 装 设 计 最 佳 电 影 剪 辑 最 佳 原 创 配 乐 最 佳 艺 术 指 导 最 佳 音 效 剪 辑 最 佳 混 音 和 最 佳 原 创 剧 本",
+          "hypothesis": "其他提名包括最佳影片最佳導演最佳攝影最佳服裝設計最佳電影剪輯最佳原創配樂最佳藝術指導最佳音效剪輯最佳混音和最佳原創劇本",
+          "normalizedReference": "其他提名包括最佳影片最佳导演最佳摄影最佳服装设计最佳电影剪辑最佳原创配乐最佳艺术指导最佳音效剪辑最佳混音和最佳原创剧本",
+          "normalizedHypothesis": "其他提名包括最佳影片最佳导演最佳摄影最佳服装设计最佳电影剪辑最佳原创配乐最佳艺术指导最佳音效剪辑最佳混音和最佳原创剧本",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 590.422
+        },
+        {
+          "id": "fleurs-zh-1800",
+          "reference": "大 桥 预 计 将 于 2017 年 9 月 全 面 投 入 使 用 届 时 巴 西 海 关 检 查 站 预 计 也 将 完 工",
+          "hypothesis": "大橋預計將於2017年9月全面投入使用屆時巴西海關檢查站預計也將完工",
+          "normalizedReference": "大桥预计将于2017年9月全面投入使用届时巴西海关检查站预计也将完工",
+          "normalizedHypothesis": "大桥预计将于2017年9月全面投入使用届时巴西海关检查站预计也将完工",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 334.511
+        },
+        {
+          "id": "fleurs-zh-1804",
+          "reference": "海 地 正 义 与 民 主 研 究 所 haitian institute for justice and democracy 引 用 的 独 立 研 究 表 明 是 尼 泊 尔 的 联 合 国 维 和 部 队 在 不 知 情 的 情 况 下 将 这 种 疾 病 带 到 了 海 地",
+          "hypothesis": "海地正义与民主研究所引用的独立研究表明是尼泊尔的联合国维合部队在不执行的情况下将这种疾病带到了海地",
+          "normalizedReference": "海地正义与民主研究所haitianinstituteforjusticeanddemocracy引用的独立研究表明是尼泊尔的联合国维和部队在不知情的情况下将这种疾病带到了海地",
+          "normalizedHypothesis": "海地正义与民主研究所引用的独立研究表明是尼泊尔的联合国维合部队在不执行的情况下将这种疾病带到了海地",
+          "errorRate": 0.471264,
+          "requestRoundTripMs": 458.262
+        },
+        {
+          "id": "fleurs-zh-1813",
+          "reference": "巴 塞 罗 那 的 官 方 语 言 为 加 泰 罗 尼 亚 语 和 西 班 牙 语 大 约 一 半 的 当 地 人 更 愿 意 说 加 泰 罗 尼 亚 语 绝 大 多 数 人 都 听 懂 加 泰 罗 尼 亚 语 至 于 西 班 牙 语 几 乎 每 个 人 都 能 听 懂",
+          "hypothesis": "巴塞罗娜的官方语言为加太罗尼亚语和西班牙语大约一半的当地人更愿意说加太罗尼亚语觉得多数人都能听懂加太罗尼亚语至于西班牙语几乎每个人都能听懂",
+          "normalizedReference": "巴塞罗那的官方语言为加泰罗尼亚语和西班牙语大约一半的当地人更愿意说加泰罗尼亚语绝大多数人都听懂加泰罗尼亚语至于西班牙语几乎每个人都能听懂",
+          "normalizedHypothesis": "巴塞罗娜的官方语言为加太罗尼亚语和西班牙语大约一半的当地人更愿意说加太罗尼亚语觉得多数人都能听懂加太罗尼亚语至于西班牙语几乎每个人都能听懂",
+          "errorRate": 0.102941,
+          "requestRoundTripMs": 649.647
+        },
+        {
+          "id": "fleurs-zh-1818",
+          "reference": "人 们 可 能 想 不 到 旅 行 者 在 回 程 中 也 需 要 耐 心 和 理 解",
+          "hypothesis": "人們可能想不到,呂星澤在回程中也需要耐心和理解。",
+          "normalizedReference": "人们可能想不到旅行者在回程中也需要耐心和理解",
+          "normalizedHypothesis": "人们可能想不到吕星泽在回程中也需要耐心和理解",
+          "errorRate": 0.136364,
+          "requestRoundTripMs": 258.609
+        },
+        {
+          "id": "fleurs-zh-1825",
+          "reference": "如 果 想 近 距 离 观 看 演 出 你 得 早 点 到 在 靠 近 舞 台 的 地 方 占 好 营 地",
+          "hypothesis": "如果想进去的观看演出你得早点到在高级舞台的地方站好营地",
+          "normalizedReference": "如果想近距离观看演出你得早点到在靠近舞台的地方占好营地",
+          "normalizedHypothesis": "如果想进去的观看演出你得早点到在高级舞台的地方站好营地",
+          "errorRate": 0.222222,
+          "requestRoundTripMs": 289.739
+        },
+        {
+          "id": "fleurs-zh-1831",
+          "reference": "普 利 特 维 茨 湖 国 家 公 园 森 林 茂 密 主 要 树 种 有 山 毛 榉 云 杉 和 冷 杉 并 以 高 山 和 地 中 海 植 被 混 合 为 特 色",
+          "hypothesis": "普利特维治湖国家公园森林报社主要数总有山毛举云山和冷山并以高山和地中海之辈混合为特色",
+          "normalizedReference": "普利特维茨湖国家公园森林茂密主要树种有山毛榉云杉和冷杉并以高山和地中海植被混合为特色",
+          "normalizedHypothesis": "普利特维治湖国家公园森林报社主要数总有山毛举云山和冷山并以高山和地中海之辈混合为特色",
+          "errorRate": 0.238095,
+          "requestRoundTripMs": 365.938
+        },
+        {
+          "id": "fleurs-zh-1834",
+          "reference": "也 可 以 到 北 部 参 观 法 蒂 玛 圣 母 院 圣 地 它 是 举 世 闻 名 的 圣 母 玛 丽 亚 显 现 之 地",
+          "hypothesis": "也可以到北部參觀法帝馬聖母院聖地它是舉世文明的聖母瑪利亞顯現之地",
+          "normalizedReference": "也可以到北部参观法蒂玛圣母院圣地它是举世闻名的圣母玛丽亚显现之地",
+          "normalizedHypothesis": "也可以到北部参观法帝马圣母院圣地它是举世文明的圣母玛利亚显现之地",
+          "errorRate": 0.15625,
+          "requestRoundTripMs": 299.193
+        },
+        {
+          "id": "fleurs-zh-1847",
+          "reference": "他 受 到 了 新 加 坡 副 总 理 黄 根 成 的 欢 迎 并 与 新 加 坡 总 理 李 显 龙 探 讨 了 贸 易 和 恐 怖 主 义 问 题",
+          "hypothesis": "他受到了新加坡副总理黄耕辰的欢迎并因新加坡总理李显龙探讨了贸易和恐怖主义问题",
+          "normalizedReference": "他受到了新加坡副总理黄根成的欢迎并与新加坡总理李显龙探讨了贸易和恐怖主义问题",
+          "normalizedHypothesis": "他受到了新加坡副总理黄耕辰的欢迎并因新加坡总理李显龙探讨了贸易和恐怖主义问题",
+          "errorRate": 0.078947,
+          "requestRoundTripMs": 334.858
+        },
+        {
+          "id": "fleurs-zh-1850",
+          "reference": "它 能 向 后 兼 容 802.11a 802.11b 和 802.11g 前 提 是 基 站 要 有 双 无 线 电",
+          "hypothesis": "它能向後兼容802.11A 802.11B和802.11G前提式機帶要有雙無線電",
+          "normalizedReference": "它能向后兼容80211a80211b和80211g前提是基站要有双无线电",
+          "normalizedHypothesis": "它能向后兼容80211a80211b和80211g前提式机带要有双无线电",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 285.519
+        },
+        {
+          "id": "fleurs-zh-1862",
+          "reference": "美 国 联 邦 航 空 局 faa 称 新 一 代 航 空 运 输 系 统 nextgen 可 以 使 飞 机 缩 短 飞 行 航 线 每 年 节 省 数 百 万 加 仑 的 燃 料 并 减 少 碳 排 放",
+          "hypothesis": "美国联邦航空局称新一代的航空运输系统可以使飞机缩短飞行航线每年节省数百万加伦的燃料并减少碳排放",
+          "normalizedReference": "美国联邦航空局faa称新一代航空运输系统nextgen可以使飞机缩短飞行航线每年节省数百万加仑的燃料并减少碳排放",
+          "normalizedHypothesis": "美国联邦航空局称新一代的航空运输系统可以使飞机缩短飞行航线每年节省数百万加伦的燃料并减少碳排放",
+          "errorRate": 0.214286,
+          "requestRoundTripMs": 425.772
+        },
+        {
+          "id": "fleurs-zh-1871",
+          "reference": "在 中 东 温 暖 的 气 候 中 房 子 并 不 是 多 重 要",
+          "hypothesis": "在中弄温暖的气候中房子并不是多重要",
+          "normalizedReference": "在中东温暖的气候中房子并不是多重要",
+          "normalizedHypothesis": "在中弄温暖的气候中房子并不是多重要",
+          "errorRate": 0.058824,
+          "requestRoundTripMs": 230.487
+        },
+        {
+          "id": "fleurs-zh-1878",
+          "reference": "教 会 中 央 集 权 制 在 罗 马 存 在 了 一 千 多 年 这 种 权 力 和 金 钱 的 集 中 让 许 多 人 开 始 质 疑 他 们 是 否 遵 守 了 这 一 信 条",
+          "hypothesis": "教会中央集权制在罗马存在了一千多年这种权力和金钱的集中让许多人开始质疑他们是否遵守了这一信条",
+          "normalizedReference": "教会中央集权制在罗马存在了一千多年这种权力和金钱的集中让许多人开始质疑他们是否遵守了这一信条",
+          "normalizedHypothesis": "教会中央集权制在罗马存在了一千多年这种权力和金钱的集中让许多人开始质疑他们是否遵守了这一信条",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 366.449
+        },
+        {
+          "id": "fleurs-zh-1885",
+          "reference": "山 区 夏 令 时 晚 上 10 点 到 11 点 之 间 院 子 里 的 犯 人 们 引 发 了 一 场 火 灾",
+          "hypothesis": "山巨孝令时晚上10点到11点之间院子里的犯人们引发了一场火灾",
+          "normalizedReference": "山区夏令时晚上10点到11点之间院子里的犯人们引发了一场火灾",
+          "normalizedHypothesis": "山巨孝令时晚上10点到11点之间院子里的犯人们引发了一场火灾",
+          "errorRate": 0.066667,
+          "requestRoundTripMs": 286.32
+        },
+        {
+          "id": "fleurs-zh-1895",
+          "reference": "随 着 希 腊 知 识 的 衰 落 西 方 脱 离 了 其 希 腊 哲 学 和 科 学 根 源",
+          "hypothesis": "随着希腊知识的衰落,西方脱离了其希腊哲学和科学根源",
+          "normalizedReference": "随着希腊知识的衰落西方脱离了其希腊哲学和科学根源",
+          "normalizedHypothesis": "随着希腊知识的衰落西方脱离了其希腊哲学和科学根源",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 271.769
+        },
+        {
+          "id": "fleurs-zh-1901",
+          "reference": "人 工 智 能 有 很 强 的 科 幻 色 彩 但 它 其 实 是 计 算 机 科 学 非 常 重 要 的 一 个 分 支 研 究 的 是 机 器 的 行 为 学 习 和 智 能 适 应",
+          "hypothesis": "人工智能有很强的科幻色彩但它其实是计算即可学非常重要的一个分支研究的是机器的行为学习和智能适应",
+          "normalizedReference": "人工智能有很强的科幻色彩但它其实是计算机科学非常重要的一个分支研究的是机器的行为学习和智能适应",
+          "normalizedHypothesis": "人工智能有很强的科幻色彩但它其实是计算即可学非常重要的一个分支研究的是机器的行为学习和智能适应",
+          "errorRate": 0.042553,
+          "requestRoundTripMs": 350.865
+        },
+        {
+          "id": "fleurs-zh-1910",
+          "reference": "巴 黎 人 是 出 了 名 的 以 自 我 中 心 粗 鲁 和 傲 慢",
+          "hypothesis": "巴黎人是出了名的以自我为中心,粗鲁和傲慢。",
+          "normalizedReference": "巴黎人是出了名的以自我中心粗鲁和傲慢",
+          "normalizedHypothesis": "巴黎人是出了名的以自我为中心粗鲁和傲慢",
+          "errorRate": 0.055556,
+          "requestRoundTripMs": 248.491
+        },
+        {
+          "id": "fleurs-zh-1911",
+          "reference": "同 理 有 了 申 根 签 证 你 就 不 必 分 别 向 每 个 申 根 成 员 国 申 请 签 证 从 而 节 省 了 时 间 金 钱 和 手 续",
+          "hypothesis": "同理,有了生根签证,你就不必分别向每个生根成员国申请签证,从而节省了时间、金钱和手续。",
+          "normalizedReference": "同理有了申根签证你就不必分别向每个申根成员国申请签证从而节省了时间金钱和手续",
+          "normalizedHypothesis": "同理有了生根签证你就不必分别向每个生根成员国申请签证从而节省了时间金钱和手续",
+          "errorRate": 0.052632,
+          "requestRoundTripMs": 320.674
+        },
+        {
+          "id": "fleurs-zh-1920",
+          "reference": "他 们 通 常 会 提 供 特 别 的 食 品 饮 料 和 娱 乐 活 动 让 客 人 保 持 愉 悦 留 在 赌 场",
+          "hypothesis": "他们通常会提供特别的食品、饮料和娱乐活动,让客人保持愉悦,留在赌场。",
+          "normalizedReference": "他们通常会提供特别的食品饮料和娱乐活动让客人保持愉悦留在赌场",
+          "normalizedHypothesis": "他们通常会提供特别的食品饮料和娱乐活动让客人保持愉悦留在赌场",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 315.846
+        },
+        {
+          "id": "fleurs-zh-1931",
+          "reference": "该 服 务 经 常 用 于 航 运 包 括 游 艇 以 及 有 远 程 数 据 和 语 音 需 求 的 探 险",
+          "hypothesis": "该服务经常用于航运,包括游艇以及有远程数据和语音需求的探浅。",
+          "normalizedReference": "该服务经常用于航运包括游艇以及有远程数据和语音需求的探险",
+          "normalizedHypothesis": "该服务经常用于航运包括游艇以及有远程数据和语音需求的探浅",
+          "errorRate": 0.035714,
+          "requestRoundTripMs": 297.581
+        },
+        {
+          "id": "fleurs-zh-1934",
+          "reference": "平 时 你 总 能 在 这 里 听 到 游 客 和 小 摊 贩 的 声 音 声 光 交 织 就 像 在 讲 述 一 个 动 人 的 故 事",
+          "hypothesis": "平时你总能在这里听到游客和小探贩的声音声光交織就像在讲述一个动人的故事",
+          "normalizedReference": "平时你总能在这里听到游客和小摊贩的声音声光交织就像在讲述一个动人的故事",
+          "normalizedHypothesis": "平时你总能在这里听到游客和小探贩的声音声光交织就像在讲述一个动人的故事",
+          "errorRate": 0.028571,
+          "requestRoundTripMs": 291.177
+        },
+        {
+          "id": "fleurs-zh-1948",
+          "reference": "三 国 是 中 国 古 代 历 史 上 最 血 腥 的 时 代 之 一 成 千 上 万 的 人 为 了 争 夺 西 安 豪 华 宫 殿 最 高 的 权 力 而 死 去",
+          "hypothesis": "三國是中國古代歷史上最血腥的時代之一,成千上萬的人為了爭奪西安豪華宮殿最高的權力而死去。",
+          "normalizedReference": "三国是中国古代历史上最血腥的时代之一成千上万的人为了争夺西安豪华宫殿最高的权力而死去",
+          "normalizedHypothesis": "三国是中国古代历史上最血腥的时代之一成千上万的人为了争夺西安豪华宫殿最高的权力而死去",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 322.328
+        },
+        {
+          "id": "fleurs-zh-1953",
+          "reference": "他 随 后 被 转 送 到 剑 桥 的 阿 登 布 鲁 克 医 院",
+          "hypothesis": "他隨後被轉送到建橋的阿登布魯克醫院",
+          "normalizedReference": "他随后被转送到剑桥的阿登布鲁克医院",
+          "normalizedHypothesis": "他随后被转送到建桥的阿登布鲁克医院",
+          "errorRate": 0.058824,
+          "requestRoundTripMs": 227.913
+        },
+        {
+          "id": "fleurs-zh-1957",
+          "reference": "他 把 谣 言 称 为 政 治 碎 碎 念 和 愚 蠢 行 为",
+          "hypothesis": "他把謠言稱為政治碎碎念和愚蠢行為",
+          "normalizedReference": "他把谣言称为政治碎碎念和愚蠢行为",
+          "normalizedHypothesis": "他把谣言称为政治碎碎念和愚蠢行为",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 227.104
+        },
+        {
+          "id": "fleurs-zh-1967",
+          "reference": "莱 顿 layton 在 与 首 相 会 面 期 间 要 求 修 改 保 守 党 的 环 境 法 案 他 要 求 ' 彻 底 重 写 ' 保 守 党 的 环 境 法 案",
+          "hypothesis": "来论在与首相会面期间要求修改保守党的环境法案他要求彻底冲写保守党的环境法案",
+          "normalizedReference": "莱顿layton在与首相会面期间要求修改保守党的环境法案他要求彻底重写保守党的环境法案",
+          "normalizedHypothesis": "来论在与首相会面期间要求修改保守党的环境法案他要求彻底冲写保守党的环境法案",
+          "errorRate": 0.209302,
+          "requestRoundTripMs": 321.25
+        },
+        {
+          "id": "fleurs-zh-1970",
+          "reference": "它 的 舌 头 有 可 能 是 分 叉 的 对 此 我 们 尚 不 确 定 它 的 食 物 包 括 海 龟 大 型 鱼 类 其 他 沧 龙 甚 至 会 吃 人",
+          "hypothesis": "他們的舌頭有可能是分岔的,對此我們尚不確定,他的食物包括海龜、大型魚類,其他蒼龍甚至會吃人",
+          "normalizedReference": "它的舌头有可能是分叉的对此我们尚不确定它的食物包括海龟大型鱼类其他沧龙甚至会吃人",
+          "normalizedHypothesis": "他们的舌头有可能是分岔的对此我们尚不确定他的食物包括海龟大型鱼类其他苍龙甚至会吃人",
+          "errorRate": 0.125,
+          "requestRoundTripMs": 313.779
+        },
+        {
+          "id": "fleurs-zh-1979",
+          "reference": "福 克 兰 群 岛 的 官 方 货 币 是 福 克 兰 英 镑 与 英 镑 等 值",
+          "hypothesis": "福克兰群岛的官方货币是福克兰英邦与英邦等值",
+          "normalizedReference": "福克兰群岛的官方货币是福克兰英镑与英镑等值",
+          "normalizedHypothesis": "福克兰群岛的官方货币是福克兰英邦与英邦等值",
+          "errorRate": 0.095238,
+          "requestRoundTripMs": 269.841
+        },
+        {
+          "id": "fleurs-zh-1987",
+          "reference": "坠 机 发 生 在 高 海 拔 山 区 据 称 是 敌 方 火 力 所 致",
+          "hypothesis": "这击发生在高海拔禅区,据说是敌方火力所致。",
+          "normalizedReference": "坠机发生在高海拔山区据称是敌方火力所致",
+          "normalizedHypothesis": "这击发生在高海拔禅区据说是敌方火力所致",
+          "errorRate": 0.210526,
+          "requestRoundTripMs": 257.234
+        },
+        {
+          "id": "fleurs-zh-1994",
+          "reference": "毋 庸 置 疑 的 是 如 果 你 会 讲 一 门 罗 曼 语 那 么 学 习 葡 萄 牙 语 会 更 加 容 易",
+          "hypothesis": "毋庸置疑的是,如果你会讲一门罗曼语,那么学习普特雅语会更加容易。",
+          "normalizedReference": "毋庸置疑的是如果你会讲一门罗曼语那么学习葡萄牙语会更加容易",
+          "normalizedHypothesis": "毋庸置疑的是如果你会讲一门罗曼语那么学习普特雅语会更加容易",
+          "errorRate": 0.103448,
+          "requestRoundTripMs": 307.942
+        },
+        {
+          "id": "fleurs-zh-1998",
+          "reference": "它 们 脚 上 有 鳞 片 和 爪 子 会 产 卵 还 像 霸 王 龙 一 样 用 两 条 后 腿 走 路",
+          "hypothesis": "它们脚上有林片和爪子会缠软,还像霸王龙一辆用两条后腿走路",
+          "normalizedReference": "它们脚上有鳞片和爪子会产卵还像霸王龙一样用两条后腿走路",
+          "normalizedHypothesis": "它们脚上有林片和爪子会缠软还像霸王龙一辆用两条后腿走路",
+          "errorRate": 0.148148,
+          "requestRoundTripMs": 300.696
+        },
+        {
+          "id": "fleurs-zh-2009",
+          "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+          "hypothesis": "最容易獲得的植物性資源應該是葉子和豆科植物中的蛋白質但像我們的像我們這樣的領長類食物領長類動物很難消化這種蛋白質除非是主熟的",
+          "normalizedReference": "最容易获得的植物性资源应该是叶子和豆科植物中的蛋白质但像我们这样的灵长类动物很难消化这种蛋白质除非是煮熟的",
+          "normalizedHypothesis": "最容易获得的植物性资源应该是叶子和豆科植物中的蛋白质但像我们的像我们这样的领长类食物领长类动物很难消化这种蛋白质除非是主熟的",
+          "errorRate": 0.207547,
+          "requestRoundTripMs": 563.369
+        },
+        {
+          "id": "fleurs-zh-2009",
+          "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+          "hypothesis": "最容易獲得的植物性資源應該是葉子和豆科植物中的蛋白質但像我們的像我們這樣的領長類食物領長類動物很難消化這種蛋白質除非是主熟的",
+          "normalizedReference": "最容易获得的植物性资源应该是叶子和豆科植物中的蛋白质但像我们这样的灵长类动物很难消化这种蛋白质除非是煮熟的",
+          "normalizedHypothesis": "最容易获得的植物性资源应该是叶子和豆科植物中的蛋白质但像我们的像我们这样的领长类食物领长类动物很难消化这种蛋白质除非是主熟的",
+          "errorRate": 0.207547,
+          "requestRoundTripMs": 874.336
+        }
+      ]
+    }
+  ]
+}

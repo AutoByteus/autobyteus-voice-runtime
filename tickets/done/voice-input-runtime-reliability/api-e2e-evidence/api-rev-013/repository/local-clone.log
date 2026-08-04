@@ -1,0 +1,41 @@
+source_worktree=/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime
+reviewed_source=eaa0855bf300ee7805048343d4d022a9b625af60
+HEAD is now at eaa0855 Close authenticated native sed tool chain
+head=eaa0855bf300ee7805048343d4d022a9b625af60
+status_begin
+status_end
+changed_from_api_rev_012_source_begin
+M	benchmark/darwin-arm64-runner-preflight.mjs
+M	build/native-tool-identities.mjs
+M	build/trusted-native-environment.mjs
+M	contracts/build/native-build-environment-v1.schema.json
+M	contracts/qualification/darwin-arm64-preflight-v2.schema.json
+M	tests/build/trusted-native-environment.test.mjs
+A	tests/build/trusted-native-sed-closure.test.mjs
+M	tests/fixtures/passing-darwin-preflight.mjs
+M	tickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/SHA256SUMS.txt
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/chinese-darwin-arm64/API-F-009-chinese-trusted-sed-closure-analysis.json
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/chinese-darwin-arm64/API-F-009-chinese-trusted-sed-closure-failure.json
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/chinese-darwin-arm64/API-VOICE-004-chinese-input-SHA256SUMS.json
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/chinese-darwin-arm64/API-VOICE-004-chinese-input-provenance-v1.json
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/chinese-darwin-arm64/build-primary.exit-code
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/chinese-darwin-arm64/build-primary.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/chinese-darwin-arm64/create-native-build-environment.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/chinese-darwin-arm64/native-build-environment.json
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/environment/cleanup-and-process-scan.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/environment/darwin-arm64-preflight-v2.json
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/environment/functional-preflight-v2.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/environment/voice-caffeinate.pid
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/inputs/corpus-validation.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/inputs/materialization.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/repository/API-VOICE-002-013-authority-impact.json
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/repository/focused-trusted-native-environment.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/repository/local-clone.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/repository/npm-ci.log
+A	tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-012/repository/npm-run-check.log
+M	tickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md
+M	tickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md
+M	tickets/in-progress/voice-input-runtime-reliability/implementation-handoff.md
+M	tickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md
+changed_from_api_rev_012_source_end

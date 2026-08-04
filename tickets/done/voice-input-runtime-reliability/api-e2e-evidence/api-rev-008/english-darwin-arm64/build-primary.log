@@ -1,0 +1,26 @@
+[API-REV-008] primary exact English package build (inside pinned deny-network Seatbelt)
+node:internal/errors:983
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /private/tmp/autobyteus-go1.26.5-v1/go/bin/go run ./packaging/cmd/provider-package-tool build --root /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-GG2P8H/package --output /private/tmp/autobyteus-voice-api-e2e-r8-20260803/output/assets/voice-english-darwin-arm64-1.0.0.zip --report /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-GG2P8H/archive-report.json
+manifest paths invalid or unsorted
+exit status 1
+
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at ChildProcess.exithandler (node:child_process:417:12)
+    at ChildProcess.emit (node:events:519:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at Socket.<anonymous> (node:internal/child_process:456:11)
+    at Socket.emit (node:events:519:28)
+    at Pipe.<anonymous> (node:net:347:12) {
+  code: 1,
+  killed: false,
+  signal: null,
+  cmd: '/private/tmp/autobyteus-go1.26.5-v1/go/bin/go run ./packaging/cmd/provider-package-tool build --root /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-GG2P8H/package --output /private/tmp/autobyteus-voice-api-e2e-r8-20260803/output/assets/voice-english-darwin-arm64-1.0.0.zip --report /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-GG2P8H/archive-report.json',
+  stdout: '',
+  stderr: 'manifest paths invalid or unsorted\nexit status 1\n'
+}
+
+Node.js v22.23.1

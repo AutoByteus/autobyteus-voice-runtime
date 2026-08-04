@@ -1,0 +1,1405 @@
+{
+  "schemaVersion": 1,
+  "results": [
+    {
+      "clipId": "fleurs-zh-1660-r235",
+      "audioSha256": "f24a03299a08b700c7096fdb5f9c9debaf35cad48f04d343126dcc84c9e7f865",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 32
+    },
+    {
+      "clipId": "fleurs-zh-1662-r188",
+      "audioSha256": "c57cd9818f7dcdf0de80e37150c13be5e5b0b8c20ff817cf2ea3181a74752a1a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1662-r318",
+      "audioSha256": "9eac0d4cab9c610abc5a0fa94e8332f84d20fb46103489615c33da7a5792f0d8",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1664-r683",
+      "audioSha256": "d286ef47a4c97aa6f27d0e2dd94ef31d183390005ff446e621c91fcb566fda7d",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 26
+    },
+    {
+      "clipId": "fleurs-zh-1666-r790",
+      "audioSha256": "42ade59209eac28fab40913dc92f7ea11be6327b03749300a9f9a2a75f54e178",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 35
+    },
+    {
+      "clipId": "fleurs-zh-1667-r491",
+      "audioSha256": "06d9bb4fb8ca1313b78721744a8ea1e26e5ceb9e50734302c71367b8a9f17076",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 46
+    },
+    {
+      "clipId": "fleurs-zh-1669-r209",
+      "audioSha256": "a02535bfccb92518cd7fb99eed110cba27f88700abedf1567a56ddc26eaacd52",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 25
+    },
+    {
+      "clipId": "fleurs-zh-1671-r707",
+      "audioSha256": "61db21f5d4e61e5b110a032f209d092d451e21a1fbb96f27b903c8c3b19a26c6",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 46
+    },
+    {
+      "clipId": "fleurs-zh-1673-r776",
+      "audioSha256": "f2b6236e64ae75602643d7e2732f4b9b17fd4ce641d60e11da6cd6e1996228bb",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 40
+    },
+    {
+      "clipId": "fleurs-zh-1674-r822",
+      "audioSha256": "6535cc4d543d436bcfd77ffd4258f8122110a353bc1b5fab7727afab2a8a9ee6",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1676-r434",
+      "audioSha256": "94e22533c409aa587ace6019bc858f4385674897ed1e90a8f5a7cb4b8b3712d0",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 26
+    },
+    {
+      "clipId": "fleurs-zh-1679-r333",
+      "audioSha256": "751173590f690519010a63648586c791249673552ee98e8941157e95db021e1e",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-zh-1683-r868",
+      "audioSha256": "33b6996a0472be831f8fceee842d7681b89d4f1bd9d2fdfea2febedfb5fe6b62",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 59
+    },
+    {
+      "clipId": "fleurs-zh-1684-r746",
+      "audioSha256": "af883b013861e807a25c0afc3f861adddbbff7a7eefe9a6e2e1851e4f9fe954e",
+      "outcome": "transcript",
+      "errors": 7,
+      "units": 33
+    },
+    {
+      "clipId": "fleurs-zh-1687-r182",
+      "audioSha256": "b7303a700ec62c0165588a91e735d0d9f95ad314e7364b698fbd44aa6aa537f3",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-zh-1688-r240",
+      "audioSha256": "b9d15ab3a8f5d3380a2ed147324b664978e37c31e60fb6c1d8db36ff9a49133c",
+      "outcome": "transcript",
+      "errors": 3,
+      "units": 46
+    },
+    {
+      "clipId": "fleurs-zh-1689-r891",
+      "audioSha256": "7b10b290fc04056884e31a6082aaa9d522ddf892c6585e2d0fe2aacce7c0d391",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 54
+    },
+    {
+      "clipId": "fleurs-zh-1692-r437",
+      "audioSha256": "d78435cd8a0a2ebe7ecb154b01c9761327a39ca9e9ceb6266dc715d5336e06b4",
+      "outcome": "transcript",
+      "errors": 3,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-zh-1694-r101",
+      "audioSha256": "6aa400b32df56b1bf2e4a5e0da55e1b7e6591899b296def1b7a63406027b0c4f",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 27
+    },
+    {
+      "clipId": "fleurs-zh-1695-r137",
+      "audioSha256": "583920906662c58dd281e51b92c60eb624120f7be6478e0d0502c1cabe1b78c7",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 51
+    },
+    {
+      "clipId": "fleurs-zh-1697-r37",
+      "audioSha256": "3e2483e97704d6b42d55f4533c98d606d901186319e187fa27a8187bee9a2d0a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1698-r438",
+      "audioSha256": "610a0913a2d4110df6a17d300af8b19a2ba1e996959271a49f92d2daa23a5f44",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 32
+    },
+    {
+      "clipId": "fleurs-zh-1700-r548",
+      "audioSha256": "aa4650a61213efbb72b967f927b3f92556a24139c206fb011d884a9414db982f",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-zh-1701-r502",
+      "audioSha256": "f37e181e3baf69abf0fbddb4078325e02623be5887c2187fe8f4b17eb5767751",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 27
+    },
+    {
+      "clipId": "fleurs-zh-1704-r917",
+      "audioSha256": "5bc1a9175bee6e1e0dac88746d763aefcfca7b2e5ed2130682820122108629b9",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 25
+    },
+    {
+      "clipId": "fleurs-zh-1705-r706",
+      "audioSha256": "65b069d69ecf6e4b80c54064d28cdbddb6b8e093a10c71cd18909de851f88dc9",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 30
+    },
+    {
+      "clipId": "fleurs-zh-1707-r515",
+      "audioSha256": "ba5cf81289dc2f642f6fea1cf51d8cb265a12224efc0699a52f1ca20f7a84e50",
+      "outcome": "transcript",
+      "errors": 8,
+      "units": 36
+    },
+    {
+      "clipId": "fleurs-zh-1708-r110",
+      "audioSha256": "a85700ee19a901fc89635ac9df010990f805cf7acc1485421f4a31623ff204c6",
+      "outcome": "transcript",
+      "errors": 20,
+      "units": 67
+    },
+    {
+      "clipId": "fleurs-zh-1709-r863",
+      "audioSha256": "d1c7c2f51b27fb7d84f0206698de48e5be04bd42ef5477ca530cde1074087801",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 41
+    },
+    {
+      "clipId": "fleurs-zh-1712-r31",
+      "audioSha256": "9022a7a6e4207a6e2712e11c490247b1d86bea00b73a746d62cfb25e9f09ca9f",
+      "outcome": "transcript",
+      "errors": 3,
+      "units": 52
+    },
+    {
+      "clipId": "fleurs-zh-1714-r158",
+      "audioSha256": "9e8f663db6e5392e6db1c2f38ec5382e3ece59ef08de13d8553775eaeb4f901e",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 45
+    },
+    {
+      "clipId": "fleurs-zh-1719-r512",
+      "audioSha256": "a9ebb914837db1301444bd677c5bfedc9b40b2bb8046671cce0bbdee46838da3",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 36
+    },
+    {
+      "clipId": "fleurs-zh-1720-r192",
+      "audioSha256": "a891257fccbd76e1c0c63714dd120d6dc79df897adcb21f77872693c29e5b525",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-zh-1721-r617",
+      "audioSha256": "cffe882a617219438e4f41414d41955c555eaa911ca8813bd4bdf200a3c1dc46",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-1723-r47",
+      "audioSha256": "c2ba48e500a781518c0b9d43d0bbb0bfd5395f22deea771bb67a035a3685cec6",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 48
+    },
+    {
+      "clipId": "fleurs-zh-1726-r96",
+      "audioSha256": "62d540c69b97f725675a96411ce0da91614996b17c76f5597844c4bd9109c913",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 42
+    },
+    {
+      "clipId": "fleurs-zh-1728-r57",
+      "audioSha256": "b83721c427658fe5180e03ed784543e07e44b23e8a7c384b847e284cbeb9f729",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-zh-1728-r99",
+      "audioSha256": "6a7bb17dba9226f0ddf34b0607d59b89a4793fabd9f8f9ca9ad903e51c24d03f",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-zh-1732-r480",
+      "audioSha256": "25d8ec0d192060931dbce01e0a9af4c7810233136c3b2fa9e4f1561e0f22bdce",
+      "outcome": "transcript",
+      "errors": 10,
+      "units": 45
+    },
+    {
+      "clipId": "fleurs-zh-1734-r713",
+      "audioSha256": "9d51454464828ac80e6ad927137ef20e097a59eb5060ef1c81bbb76ecce12f0d",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-1737-r155",
+      "audioSha256": "caf6e7a93647a109e31744e43237605184058ec863f01fd3661db9d848f462cd",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1737-r410",
+      "audioSha256": "148b218ece63605203c23fac3a43f708891d6635282514153901298fae89a3b7",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1739-r594",
+      "audioSha256": "873033a018809d840d8b7a03662322c04160b24ef779034c3f5080891ace3b55",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1741-r197",
+      "audioSha256": "eea80b72a988a6a26d873f552ff1a747f556d2ea48fa4fff9dac2c499e5b90fc",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-zh-1744-r380",
+      "audioSha256": "0fbb154020507665c68a10f6a7ff83099cbb5769187e3f1bd146f8b74cac6978",
+      "outcome": "transcript",
+      "errors": 3,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-zh-1744-r385",
+      "audioSha256": "464b2e727657619acd4d1c9d5d02a8ee9a96efcef41dffaa33d07c1031b23055",
+      "outcome": "transcript",
+      "errors": 3,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-zh-1746-r558",
+      "audioSha256": "fd779df8d74c8beb66b8053eb77e317af42873359f3a467f138dd981b3e6efa6",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-zh-1748-r847",
+      "audioSha256": "b8df7f3c6a9d54d070cc37eaa639ff7c0215ded41131acb6173b66eceef365be",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-zh-1750-r711",
+      "audioSha256": "341c0dfe112566adc2bd6ce9a411169ca22578b8741e9ad972e8ecd22be10c1a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-zh-1752-r425",
+      "audioSha256": "48a777b52f7976b5471a650450d9e6aa19be76554383ce4d94e3823ee75a1b3a",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 25
+    },
+    {
+      "clipId": "fleurs-zh-1752-r577",
+      "audioSha256": "4b08eca8d56248acebab031a0f12172403c3efffb482656a0427af3c9f897ac8",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 25
+    },
+    {
+      "clipId": "fleurs-zh-1755-r666",
+      "audioSha256": "d7017184c9ed3c6071cc701232d584b27e033aa36524a0486d0c9a09af21ba4b",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 13
+    },
+    {
+      "clipId": "fleurs-zh-1757-r599",
+      "audioSha256": "58a603d744349207c18ba64acfbca7eb1b645f2cd55b418fc31ac37f68ef4095",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 35
+    },
+    {
+      "clipId": "fleurs-zh-1758-r819",
+      "audioSha256": "e6029441aee287307dc68988e05f56e872cf253eb29e7ab6d6f6f166ec3ce680",
+      "outcome": "transcript",
+      "errors": 17,
+      "units": 55
+    },
+    {
+      "clipId": "fleurs-zh-1760-r487",
+      "audioSha256": "9a9b0448509fef3f1ec1d82486d8ea7a48879ad81576711a097220d2defd26d0",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-zh-1762-r181",
+      "audioSha256": "9b92663ee571692e8ab9e2cad7d4f67a985e4544d69c052f61bb5202e1d031fb",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 17
+    },
+    {
+      "clipId": "fleurs-zh-1764-r62",
+      "audioSha256": "414ab87d7fbb16866a4cfddba1706d0213e3583660f7b6c9a34b9f8f1e8177f9",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-1765-r356",
+      "audioSha256": "5f2c0461ffcacd21bf7b38c9e996426504fed6e07e03cbf961d00636ba4cb610",
+      "outcome": "transcript",
+      "errors": 7,
+      "units": 44
+    },
+    {
+      "clipId": "fleurs-zh-1765-r635",
+      "audioSha256": "50fc844075f7c9bb5cdbe6ff3d3538515f2c7928cc8e9b68516c7a4ba639a2eb",
+      "outcome": "transcript",
+      "errors": 8,
+      "units": 44
+    },
+    {
+      "clipId": "fleurs-zh-1767-r932",
+      "audioSha256": "6d06aaeef53042086521e359bc0fb1760c3127b5d59a2212af8f3b7a8162d7b7",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 36
+    },
+    {
+      "clipId": "fleurs-zh-1770-r170",
+      "audioSha256": "322f5a230db71cbd2189e38adfafa696c61aeffe184eb0f00233a1e2553a3906",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-zh-1771-r206",
+      "audioSha256": "9195370f457c30cd848c6495ff131cea6d292b23ddaab0af3317bbaf65015d8f",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 37
+    },
+    {
+      "clipId": "fleurs-zh-1772-r939",
+      "audioSha256": "fddc09736ad7c116ffd261a694b92794f1f01f8b4cff58274c79cc35b88fe80a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-zh-1775-r644",
+      "audioSha256": "d8422f012445384e6ee81b3bf831db2bc1ff8f863d12e06755a27a236f5c7afa",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1776-r261",
+      "audioSha256": "87d50fc3dd1e766e73337e217e4baa2f1174bdd811e0e9f7f8442d2f463e2cb0",
+      "outcome": "transcript",
+      "errors": 23,
+      "units": 46
+    },
+    {
+      "clipId": "fleurs-zh-1778-r115",
+      "audioSha256": "9d7daa91cc8a026e2610c0eda013b203f25ccb646d22019838c8ffbe394b1778",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 15
+    },
+    {
+      "clipId": "fleurs-zh-1778-r743",
+      "audioSha256": "6ab3c8d915108d765982096b42c83c8481f910ade82db1e8844f5b29e9422927",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 15
+    },
+    {
+      "clipId": "fleurs-zh-1780-r179",
+      "audioSha256": "a22c24fd440e0d7edc8ae8559498a1c38b6e8ed7272d657c449e596943b159a5",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 38
+    },
+    {
+      "clipId": "fleurs-zh-1783-r844",
+      "audioSha256": "58a8bba9b192a46830f666cecd9e01e4876df31d9b095c5fcea7c63e56e6b90a",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1785-r578",
+      "audioSha256": "2c909cde3f8571972b7e9b13a3c87b39d0309ae8d61cad1410c342b773f535c4",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 40
+    },
+    {
+      "clipId": "fleurs-zh-1787-r288",
+      "audioSha256": "7a8633a4e538cd96106c3b15031ece5d11ee478a5ff82c825e4e15f9f0773d6d",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 36
+    },
+    {
+      "clipId": "fleurs-zh-1789-r538",
+      "audioSha256": "e15558014ecd6969d59f7934a74b3fdf4d632a4952c4acf6c05fc32c4246e106",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 59
+    },
+    {
+      "clipId": "fleurs-zh-1791-r565",
+      "audioSha256": "e29a0a068420418d40de75b9a6c3c5209e1c211df9cbb6362655083fd34af26a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-zh-1792-r291",
+      "audioSha256": "7b4eec5537dce78385ba4c23e6f9d733e76856a3a9b14b6e6a848acaa2414c58",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 26
+    },
+    {
+      "clipId": "fleurs-zh-1794-r378",
+      "audioSha256": "c306263a7a445c0303a454965a27ff3d62ed5de4f3a5965b870eb3da9196d21b",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 27
+    },
+    {
+      "clipId": "fleurs-zh-1797-r474",
+      "audioSha256": "2a9735da7d346f7ef5aa9959d9df6ca32fcfffdc4c23a5dc6419652596e72f58",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1798-r203",
+      "audioSha256": "5c7b3f14bbe75f23a6f767b0805dfddf9e340f098a9e00f5adaa901f8dffe398",
+      "outcome": "transcript",
+      "errors": 7,
+      "units": 59
+    },
+    {
+      "clipId": "fleurs-zh-1799-r591",
+      "audioSha256": "dc4748cab882f31d71797e8abbcf8b2e9f4ac5d1de4c6ef112f608054ddbd5b0",
+      "outcome": "transcript",
+      "errors": 9,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1800-r749",
+      "audioSha256": "534dc9ee0dcf483e6ae6390d2dffbd523f01ed5db3969ac46f69ad8056b23e89",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1802-r756",
+      "audioSha256": "51d2186598da838b91cfd845ffc251848bb914b59364d63b965fd6e3b4880ac9",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-zh-1803-r569",
+      "audioSha256": "466fda78331414c9d4672d84496797989d2033dfe67ff5836a1ce21a22e6b979",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1805-r8",
+      "audioSha256": "987999403e932323c6ec3196d0eaf0aa62dcd9d9c52b95266fb927b46ba82db5",
+      "outcome": "transcript",
+      "errors": 9,
+      "units": 37
+    },
+    {
+      "clipId": "fleurs-zh-1807-r222",
+      "audioSha256": "cb5e35ae2391da4f8ae7a51a01e848b735d3fd904fa5b5a8f94a617c28019523",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 35
+    },
+    {
+      "clipId": "fleurs-zh-1808-r439",
+      "audioSha256": "69ab42b666e7cb9ea90c542226aded0554bdf64793ab9884ce7ecfef2bab26dd",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-zh-1810-r703",
+      "audioSha256": "e14549325c7d989d91d243d93c3c7dabcffb9889f80d3b5e1b2e42ef35214cbb",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 39
+    },
+    {
+      "clipId": "fleurs-zh-1812-r139",
+      "audioSha256": "77d12151226811f71a4d9d4cc2e8619a01aea4d4d8541db8899fb78de688c3a2",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 49
+    },
+    {
+      "clipId": "fleurs-zh-1812-r367",
+      "audioSha256": "7ec66e10be14832bec01fd5975d1262d7dbfda5c1164a5aefea60922056820ac",
+      "outcome": "transcript",
+      "errors": 3,
+      "units": 49
+    },
+    {
+      "clipId": "fleurs-zh-1815-r414",
+      "audioSha256": "33fd621c106bbb5e7cf6138b028a3a31b12af462d421d3f10e92807fd6e24f01",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1817-r142",
+      "audioSha256": "18a2a3f15bc0999f5eb2627b324b1fe2df6bacdb527b4343fdb63e71de9510c1",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 16
+    },
+    {
+      "clipId": "fleurs-zh-1817-r340",
+      "audioSha256": "9372c54079146d771cda677b8d41921c1f6d721f42aced5bed4f2b5e51074cc4",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 16
+    },
+    {
+      "clipId": "fleurs-zh-1819-r539",
+      "audioSha256": "1227abea2e3cd12e3a9e44b647f20518fca823078cdecdb95b72687d727ef315",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 41
+    },
+    {
+      "clipId": "fleurs-zh-1821-r384",
+      "audioSha256": "2ff46762eea4e68e1497a6748078c8a9486051af8f4b752d4d9b5bbf746fc2dd",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 27
+    },
+    {
+      "clipId": "fleurs-zh-1823-r89",
+      "audioSha256": "d54caee69f4f28a7e642db33e68555e07ed4c53d23b6923dfc0f9896dc48b25c",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 33
+    },
+    {
+      "clipId": "fleurs-zh-1823-r836",
+      "audioSha256": "0fdd65be15abc0c8469d89946363803405605456307b07651796ad884fcee1ee",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 33
+    },
+    {
+      "clipId": "fleurs-zh-1826-r118",
+      "audioSha256": "3633428ca450ab03012cdf41952baea49cb34a797603a4c8c63156229575b245",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 21
+    },
+    {
+      "clipId": "fleurs-zh-1827-r643",
+      "audioSha256": "d7868458e94f92849fcca5585e670c46a373487432b21594256812f232953866",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-zh-1829-r638",
+      "audioSha256": "9c4bef443652beab05d5d46a459a7a0a0a44fc810f39fce250448edb8d4a0443",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 43
+    },
+    {
+      "clipId": "fleurs-zh-1829-r768",
+      "audioSha256": "f1db9d1da4c0fc1c018b9b4d4a6747f51df1b958c9b7a995eae2491d91477865",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 43
+    },
+    {
+      "clipId": "fleurs-zh-1830-r518",
+      "audioSha256": "2a7e29b81ce61d8b126ba6005720a4b3277eac3564e4e12d10d80451b3b158b0",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 30
+    },
+    {
+      "clipId": "fleurs-zh-1832-r542",
+      "audioSha256": "dfe8b33f02f12cec542e8fe55e47cbc9c95c8237af68713796a691731f5e3a00",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 40
+    },
+    {
+      "clipId": "fleurs-zh-1836-r133",
+      "audioSha256": "eaa350c6652cf3b0d6224e9c4fca17666cfd36ff183a649968700ff06f1cac7d",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 55
+    },
+    {
+      "clipId": "fleurs-zh-1836-r488",
+      "audioSha256": "fd2e9374f85efee7d9600093043863596ed42a6152d48fb5c51dca2a4cf9c0e3",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 55
+    },
+    {
+      "clipId": "fleurs-zh-1839-r361",
+      "audioSha256": "9ad1c49630a12fe38d776bac8a09f0e9c875330c5b84c85af4b01dbd5cac1d31",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 15
+    },
+    {
+      "clipId": "fleurs-zh-1840-r613",
+      "audioSha256": "119eca52d5c3a9bf63a42289df038c757f45b45a5e62cccce79449f3a04d122c",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 41
+    },
+    {
+      "clipId": "fleurs-zh-1842-r445",
+      "audioSha256": "f42f44fe4cb5930e887a58cbce1850932e41487d3d5556dce29dc44d03ec8e3e",
+      "outcome": "transcript",
+      "errors": 7,
+      "units": 60
+    },
+    {
+      "clipId": "fleurs-zh-1843-r555",
+      "audioSha256": "3d75ac32eb37107b53aed773b1d85f7b28a3a8c1e1e298f9016523ac8bc9275f",
+      "outcome": "transcript",
+      "errors": 18,
+      "units": 67
+    },
+    {
+      "clipId": "fleurs-zh-1846-r615",
+      "audioSha256": "0f835f242343e3f50437a2b6cb6b071f2bd1d24bc5d58a0baab0435973aca704",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 27
+    },
+    {
+      "clipId": "fleurs-zh-1848-r786",
+      "audioSha256": "43152a6023793c6b8335243be132be24748be811db176f815d6af2c3c564fee8",
+      "outcome": "transcript",
+      "errors": 13,
+      "units": 56
+    },
+    {
+      "clipId": "fleurs-zh-1850-r930",
+      "audioSha256": "0bcca52b9aae637ed4e623856c31401fb8da2d1680cb49fbfd015b68734da585",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 36
+    },
+    {
+      "clipId": "fleurs-zh-1851-r86",
+      "audioSha256": "d77d460826c420a99bcd080341b8f51f4ac9bacbf3391cb7d4c8d5afa80644d6",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 32
+    },
+    {
+      "clipId": "fleurs-zh-1854-r762",
+      "audioSha256": "9f464d6b175c5c6414ac7a7c3199f0ebc96ba5dfc1c5ea43ebdd95b9faa83fe5",
+      "outcome": "transcript",
+      "errors": 11,
+      "units": 26
+    },
+    {
+      "clipId": "fleurs-zh-1856-r278",
+      "audioSha256": "93cbfdbcd6ebd1a8dddf65d4ca5677493f444b180da4e353a91321b4749dd78e",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 41
+    },
+    {
+      "clipId": "fleurs-zh-1856-r309",
+      "audioSha256": "c6fe6a6a06c2c71cf819186b8fe3e063cd4de747f9c43b9e1b786b28cd7d1c69",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 41
+    },
+    {
+      "clipId": "fleurs-zh-1860-r98",
+      "audioSha256": "29cf8fc4e22eab358529c23bfb29a8e48390c01e93aa2a53a406685202329316",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 17
+    },
+    {
+      "clipId": "fleurs-zh-1860-r791",
+      "audioSha256": "351accd5ea4e2927f477e830632b9cd8b09a718292541782757aa45b4e78e377",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 17
+    },
+    {
+      "clipId": "fleurs-zh-1863-r399",
+      "audioSha256": "791d000fd6975b17e2da6fbdc735c4549c3c9c0721a13b146be7749cf191a6d8",
+      "outcome": "transcript",
+      "errors": 3,
+      "units": 42
+    },
+    {
+      "clipId": "fleurs-zh-1863-r731",
+      "audioSha256": "a279fc9be13e052ffa6743f884a67e2137717f939cf707db2897ffd1d22fba74",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 42
+    },
+    {
+      "clipId": "fleurs-zh-1865-r889",
+      "audioSha256": "7987e61df5f0aa1aeacccc856cc1ef4ba77d06098dc87db2d28f584fc1995e32",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 33
+    },
+    {
+      "clipId": "fleurs-zh-1866-r652",
+      "audioSha256": "d349a38c05f23ae9e39d1f738a24bbd329c29f2b461a466d4a752c00cba40bbf",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 25
+    },
+    {
+      "clipId": "fleurs-zh-1870-r521",
+      "audioSha256": "b03a05776cca14afd1a734a81c50a999cea0fd830a323a68ab4adc0f09865849",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-zh-1871-r61",
+      "audioSha256": "9470674fd179514bcb2b4ee0b4a1a308dcae70deb005a2c3876a1d33ab221440",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 17
+    },
+    {
+      "clipId": "fleurs-zh-1875-r297",
+      "audioSha256": "26a7f3bdf07a76bdb843c72e2e2a58f595be8d4591423f59a2dbc59b0009d41a",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-zh-1878-r611",
+      "audioSha256": "ae6d025a045eeb6914397c2b7ea85c19129d096477d271203bb3954b0b01e032",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 46
+    },
+    {
+      "clipId": "fleurs-zh-1880-r51",
+      "audioSha256": "caf510f7281f92f2048fd511b7d0b5f59400c3f49d925bdbad864eeecad215f1",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 17
+    },
+    {
+      "clipId": "fleurs-zh-1882-r452",
+      "audioSha256": "80f8916f7e15b45115dc66b9d468e09f7074b0671fbfb3ce557d631971c56c2b",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 40
+    },
+    {
+      "clipId": "fleurs-zh-1884-r24",
+      "audioSha256": "6e4a396802945aa3bac5e9fad3416b064c3181f2d281d8a208a519d1bf4a66ed",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1885-r216",
+      "audioSha256": "240d543d531335e12181706a40bc58add0e9856e67b67fb99545570e2c38efe6",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 30
+    },
+    {
+      "clipId": "fleurs-zh-1885-r672",
+      "audioSha256": "f9d1e91381b02ee9f43c15318ec27fcd12c8761cc3d5102044f15d056870dbf3",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 30
+    },
+    {
+      "clipId": "fleurs-zh-1888-r145",
+      "audioSha256": "934dceceafca36ff690dc4c39c5ca0fa0b167b974f11be141249d57464cd0697",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 33
+    },
+    {
+      "clipId": "fleurs-zh-1889-r911",
+      "audioSha256": "6a5b92b8a310ad379f7aa25a609ae3b336ba56dc5496efec53bbd0210610ca1a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 21
+    },
+    {
+      "clipId": "fleurs-zh-1894-r229",
+      "audioSha256": "1003f4e56ef54dfa09b1cb720c04c89ae262023899948ae8897a1f133be5860a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 26
+    },
+    {
+      "clipId": "fleurs-zh-1894-r877",
+      "audioSha256": "63eb307ed162448689c6459816c9e55be5120c0b9858ba55c51bf0bfbc7a4868",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 26
+    },
+    {
+      "clipId": "fleurs-zh-1895-r616",
+      "audioSha256": "1ff9800877fc63892c7235e8ef3f2dce4f655a36dae34de202d772d78ca1022b",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-zh-1900-r227",
+      "audioSha256": "a842ae9c904ebe1b17b396c1617ddc18b60c26b1d217a8dba51df5b419c3629d",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-1901-r249",
+      "audioSha256": "74e1e8d9efbc2d4861a72d0e6db9fa1a1e41ee8cbc893960e35bf40cb765f3c7",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 47
+    },
+    {
+      "clipId": "fleurs-zh-1903-r351",
+      "audioSha256": "317d31604f9934108d3a4243175082c4de3621b31d9514dda6d63f11a162cfcb",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 38
+    },
+    {
+      "clipId": "fleurs-zh-1905-r18",
+      "audioSha256": "d3df3ab75576f763943875a8e95ef3c2378a7adac6fee2cb95d3090914c938aa",
+      "outcome": "transcript",
+      "errors": 4,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-1906-r0",
+      "audioSha256": "681c67b1a8d38544a59fee58a96cb72364df7f643c6593e19e07fed4c18506fe",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-zh-1906-r360",
+      "audioSha256": "c168bfcb69f01c274d44d0449f267cd380f1b18e73e5e7ed607b962fc05f85b3",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-zh-1908-r436",
+      "audioSha256": "6ce6700c9ab51e685ccd3d41f2fc0b1bd1449428c3aa8b6ac3249be024f75520",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 18
+    },
+    {
+      "clipId": "fleurs-zh-1909-r806",
+      "audioSha256": "04324d8bf258925ef735d6483e227a3886f2323a1129dc3f1d65a9ceb3faad9e",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1911-r143",
+      "audioSha256": "fbb3b621f1c966fdbf5b472fc34930c0e5883d89390e1446fa482b210a154a91",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 38
+    },
+    {
+      "clipId": "fleurs-zh-1913-r347",
+      "audioSha256": "ecf639a322d97fa9f59f033b4a954c8e57dfa09909e282b33171d81f9b85ee84",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1914-r554",
+      "audioSha256": "a602c076d270f99d1cb377a54767acb311ea3c097f8dff335a783146a3f33948",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 22
+    },
+    {
+      "clipId": "fleurs-zh-1916-r849",
+      "audioSha256": "16d17944bf680de08e120a69cc5d3ebc55529bbe98afcc15654c3d82fececf8a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 37
+    },
+    {
+      "clipId": "fleurs-zh-1916-r851",
+      "audioSha256": "8d68f2a1dc94ff8fd644596f597d5f45c9fa775ff775d57ea8f5c3c14f58b0d2",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 37
+    },
+    {
+      "clipId": "fleurs-zh-1918-r557",
+      "audioSha256": "32086bde2f8c1374745fe9546b62f0461ed1257011fffc33712a489acbec31c4",
+      "outcome": "transcript",
+      "errors": 10,
+      "units": 55
+    },
+    {
+      "clipId": "fleurs-zh-1920-r481",
+      "audioSha256": "1422dc44439e9bc7293ec4145e1074b69c6932eca1f3e28b141b176ea9c070be",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 30
+    },
+    {
+      "clipId": "fleurs-zh-1921-r266",
+      "audioSha256": "ed172fe2989a6c75aad7b6e01f09e74e7ca8deab05ff26f3d3cbb5edc2b5008b",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-1925-r589",
+      "audioSha256": "df8b9460715d8ff8d2780ac6bf752bd3c1eca680dec08cbab382d20bbe5314f7",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1926-r827",
+      "audioSha256": "6388504d79641aa869f6fa4e28452c8bdaef1158f321075760a2f2f641b1e56d",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1927-r327",
+      "audioSha256": "5496c133458681cb15007b012368d8b63c58197d485f07ead2f9d12c93a3b887",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 34
+    },
+    {
+      "clipId": "fleurs-zh-1930-r585",
+      "audioSha256": "b9563a88e86d28e3f2e906903f115b7c7aaede53f6b22a8de676fe7a32cf9f4a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 28
+    },
+    {
+      "clipId": "fleurs-zh-1934-r341",
+      "audioSha256": "34cae341dfc30172d01c5e71d4cb544313e7e7f8ef1b07d99fbf866c82fda237",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 35
+    },
+    {
+      "clipId": "fleurs-zh-1939-r913",
+      "audioSha256": "5712a25e610a4beceeccac8a1bacb8fc8d5f55f72d12f3967a18ee2454028558",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 38
+    },
+    {
+      "clipId": "fleurs-zh-1940-r264",
+      "audioSha256": "7fc31d30bd4082c8c80e154f68c571afd9102f49abc78f5b9c69fc0d89aff59b",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 51
+    },
+    {
+      "clipId": "fleurs-zh-1941-r871",
+      "audioSha256": "9a0ad8db01fb9b36e94e246a887a5bf8610052173ceedd31231fe82dbd8dbea1",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-zh-1943-r797",
+      "audioSha256": "806dca31b4071665f1cf98193741185c382c09707aff3272814410f3066bbf69",
+      "outcome": "transcript",
+      "errors": 6,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-1944-r771",
+      "audioSha256": "bbddbdd8a635b8492cc8ae6eb900add72cafc5ccc156baa081002971c77712d7",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-1945-r872",
+      "audioSha256": "32b5eaf576809896b4a62a77fae655ce249250881bb351f6a016a66ead18bf63",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-zh-1947-r813",
+      "audioSha256": "29ac1d94dde08d673bd67d793066b49dc232526b32b37dea70627358542da07b",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-1948-r679",
+      "audioSha256": "8e83fe48a718c2a8d24a341953f16ff7eef6f1874e079470fad2dc84f5af945f",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 42
+    },
+    {
+      "clipId": "fleurs-zh-1949-r765",
+      "audioSha256": "2e10799332d931489265a6eeb277613d69c677a19f7622e3178ae33e86b01c9c",
+      "outcome": "transcript",
+      "errors": 4,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-zh-1950-r496",
+      "audioSha256": "f8d2b749b715301c438d4614da12a7948f978ea4b4f8374eeb4d550194fa2948",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 41
+    },
+    {
+      "clipId": "fleurs-zh-1952-r404",
+      "audioSha256": "ffd23f5d23ee0a285ecbdd480fca207b462368ca902ea55733051335f418cbd0",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 39
+    },
+    {
+      "clipId": "fleurs-zh-1955-r90",
+      "audioSha256": "644ed5ec145fb464fa0d602ecce0205f4e46b26f59b4088b893e6d664e0a2db9",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-1956-r624",
+      "audioSha256": "18a1458363a29e36e93f44c7b08e8062a22f948e52611fcb300a7ba9be458655",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 24
+    },
+    {
+      "clipId": "fleurs-zh-1958-r25",
+      "audioSha256": "f16ff4b9117bbb7db53b8da07db04d65e4c26f8ea7b085dbb67c0061147f6d6b",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 37
+    },
+    {
+      "clipId": "fleurs-zh-1959-r321",
+      "audioSha256": "e6a3227b3473a647f4ed32e79941f688521bba69eaf2d842de4b1b0821fcba20",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 32
+    },
+    {
+      "clipId": "fleurs-zh-1962-r23",
+      "audioSha256": "d0ddbe222c7d1b9774f91ef7e095a0289cbec4512b1e787147df5b9ab2f61fef",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-zh-1962-r265",
+      "audioSha256": "0d6bd68d9085802c8772c49edd2e65a2b36c85a33b33e203e07a8011bf22205e",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 23
+    },
+    {
+      "clipId": "fleurs-zh-1965-r9",
+      "audioSha256": "c8d2c668c7f886ca94214cbeed107bbe2098a3ec44201368d52c6b4750b483ea",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-1965-r346",
+      "audioSha256": "52e59f575b2c493f4fa5a62729d85099fa28e183161226db5fbb3e8167a00a23",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-1969-r878",
+      "audioSha256": "499911a9715c3a239ac1593c53f6a867dea16a8b91658e94775a5c4c9fe1d716",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 37
+    },
+    {
+      "clipId": "fleurs-zh-1970-r174",
+      "audioSha256": "54af8bdd2fdc6866173f4e48be1c3c38b5561f996c33f7be9f00cefc9782a872",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 40
+    },
+    {
+      "clipId": "fleurs-zh-1972-r190",
+      "audioSha256": "0ee0a3a0262f9074d1b1516c7f2db8735b7974a68c13e081ba300f3a401a67a6",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-zh-1972-r442",
+      "audioSha256": "73d205e26747c16f136501119452d3a9937193a03224556c7d6365c1726d7a84",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 20
+    },
+    {
+      "clipId": "fleurs-zh-1973-r940",
+      "audioSha256": "896df4cbbd0f01e034a812417633de9ca42acd466512487717aad5e56bd7fa9a",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 46
+    },
+    {
+      "clipId": "fleurs-zh-1975-r691",
+      "audioSha256": "9c7ab8a68be2dadaafa32d9ae04a55058858565da590a8ec48c63807906184c4",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 35
+    },
+    {
+      "clipId": "fleurs-zh-1978-r191",
+      "audioSha256": "f8ce46b61d670dfbc07f0be2aa260d5f8da777c92bc4773014b90d178acfcaa1",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 9
+    },
+    {
+      "clipId": "fleurs-zh-1979-r660",
+      "audioSha256": "4778ce3b6841b194a173a52afa04a2494d93ffb6a5d9fcd2bdf85a9d0cbecd34",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 21
+    },
+    {
+      "clipId": "fleurs-zh-1980-r268",
+      "audioSha256": "2771036be00f17928e6e4083405213a846eab61f58e998b09d93db9213dd1c64",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 33
+    },
+    {
+      "clipId": "fleurs-zh-1981-r582",
+      "audioSha256": "a343aed0935d33d43e9ed40a3bc278ccbfe2db0f75fee2d830418ba4c4f39b0c",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 33
+    },
+    {
+      "clipId": "fleurs-zh-1985-r253",
+      "audioSha256": "4c4d304d868f88cbe203b2e872d5b684dec08883282ea460c255583f79706770",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 61
+    },
+    {
+      "clipId": "fleurs-zh-1987-r676",
+      "audioSha256": "3a4cd65b1bc2f13ec864d1695e6acfeca734eb0ceea579828dea23925de672bb",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 19
+    },
+    {
+      "clipId": "fleurs-zh-1988-r148",
+      "audioSha256": "aac409f306051c18b6ac59157e08c370b2316d3a6a68151db000b72881a36713",
+      "outcome": "transcript",
+      "errors": 4,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-1990-r610",
+      "audioSha256": "b966166c6e25c03fc7d08298008381da533831139190f7a6ad0159b3deff62da",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 52
+    },
+    {
+      "clipId": "fleurs-zh-1990-r637",
+      "audioSha256": "22023924cefbe3697637753f1ca3b41c4d117ef1d50fc1bba5f3b54329161a2a",
+      "outcome": "transcript",
+      "errors": 1,
+      "units": 52
+    },
+    {
+      "clipId": "fleurs-zh-1991-r689",
+      "audioSha256": "fc6c0047826fa05e52f406905f8d7abad04b32e5db3fc6bd3c9229481b4f3604",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 32
+    },
+    {
+      "clipId": "fleurs-zh-1993-r850",
+      "audioSha256": "9f8e930665efb2e14a60c07a258004e10ec0529d9cba27f70e6fcc3fb4c916cb",
+      "outcome": "transcript",
+      "errors": 5,
+      "units": 39
+    },
+    {
+      "clipId": "fleurs-zh-1994-r925",
+      "audioSha256": "553e32eedb05ce8bcacbf68bb544604fa4a4f9ebd62f270927d729beee988f9a",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-1998-r760",
+      "audioSha256": "a9c004417f1e879c472ca7bfeaa7bb206300da1ad3b45feece7fe917b45ac6a4",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 27
+    },
+    {
+      "clipId": "fleurs-zh-2000-r920",
+      "audioSha256": "3104b3db4f9d698c214bff55f5eea6833afa177d82f7c8d57a332f0bc495f26e",
+      "outcome": "transcript",
+      "errors": 2,
+      "units": 49
+    },
+    {
+      "clipId": "fleurs-zh-2001-r581",
+      "audioSha256": "430bbcbbdde20f670c3889150e5d554ab96093e522da1c9139ae9e84cb0e89a5",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-2002-r32",
+      "audioSha256": "cb9098ac8de70c284b38299f31e8c47db135cfa204fd4581163bbe6495b60722",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-2003-r400",
+      "audioSha256": "389fcc5481b42d77af030d7a007581e87ac41b044e0ad546bfe143a0ff729e85",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 29
+    },
+    {
+      "clipId": "fleurs-zh-2004-r772",
+      "audioSha256": "db76b7f4f1e638a85754769ea15e96b9c4f0765af450db753a9022ad7e559670",
+      "outcome": "transcript",
+      "errors": 4,
+      "units": 31
+    },
+    {
+      "clipId": "fleurs-zh-2006-r601",
+      "audioSha256": "ca4963dad768a318f6dcc2504193dfec7b2f11ce4e0d938e4cbfeaed8f926134",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 21
+    },
+    {
+      "clipId": "fleurs-zh-2009-r574",
+      "audioSha256": "0e5dfa3578a91e502a823337be26388e2b9a266d58d71a58a1d9203176d2cc58",
+      "outcome": "transcript",
+      "errors": 0,
+      "units": 53
+    },
+    {
+      "clipId": "fleurs-zh-2009-r828",
+      "audioSha256": "50d19926125893fb75503f1e21380e395fcb63dad0b0f76a0c20ac0198c210aa",
+      "outcome": "transcript",
+      "errors": 9,
+      "units": 53
+    }
+  ]
+}

@@ -1,0 +1,22 @@
+[2026-08-03T13:48:09Z] english primary build begin
+node:internal/child_process:420
+    throw new ErrnoException(err, 'spawn');
+          ^
+
+Error: spawn EPERM
+    at ChildProcess.spawn (node:internal/child_process:420:11)
+    at spawn (node:child_process:787:9)
+    at execFile (node:child_process:349:17)
+    at execFile (node:child_process:245:21)
+    at executeProbe (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:76:10)
+    at captureExecuteOnlySystemCommandIdentity (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:27:26)
+    at async capturePinnedSudoIdentity (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:49:20)
+    at async verifyPinnedSudoIdentity (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/system-command-identity.mjs:65:18)
+    at async assertPassingDarwinArm64Preflight (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/benchmark/darwin-arm64-preflight-contract.mjs:55:3)
+    at async createTrustedNativeBuildEnvironment (file:///private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/build/trusted-native-environment.mjs:90:3) {
+  errno: -1,
+  code: 'EPERM',
+  syscall: 'spawn'
+}
+
+Node.js v22.23.1

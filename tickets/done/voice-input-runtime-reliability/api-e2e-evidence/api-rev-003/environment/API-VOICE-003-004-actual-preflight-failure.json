@@ -1,0 +1,79 @@
+{
+  "schema": "api-voice-actual-m1-preflight-failure-v1",
+  "apiRevision": "API-REV-003",
+  "scenario": "API-VOICE-003/API-VOICE-004 prerequisite",
+  "reviewedSourceCommit": "b7342bc8e06d587bfe640faa4209c62ac2f4bae9",
+  "host": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "cpuModel": "Apple M1 Max",
+    "totalMemoryBytes": 68719476736
+  },
+  "preflight": {
+    "schemaVersion": 1,
+    "target": "darwin-arm64",
+    "status": "blocked",
+    "checkedAt": "2026-08-03T08:52:44.802Z",
+    "host": {
+      "platform": "darwin",
+      "architecture": "arm64",
+      "cpuModel": "Apple M1 Max",
+      "totalMemoryBytes": 68719476736
+    },
+    "power": {
+      "acConnected": false,
+      "lowPowerModeOff": true,
+      "caffeinateActive": true,
+      "thermalNormal": false,
+      "memoryPressureNormal": true
+    },
+    "quiescence": {},
+    "tools": {},
+    "sandbox": {},
+    "purge": {},
+    "failureCategory": "runner-power-or-pressure"
+  },
+  "preflightExitCode": 1,
+  "preflightSource": {
+    "path": "benchmark/darwin-arm64-runner-preflight.mjs",
+    "sha256": "4154f2d138626c783125d4250aa473283dc649ccf9a5fa574a05286ff8f552df",
+    "thermalPredicate": "!/(warning|performance warning|CPU_Speed_Limit\\s+[0-9](?!00))/i.test(thermal)"
+  },
+  "actualHostOutputs": {
+    "pmsetTherm": "Note: No thermal warning level has been recorded\nNote: No performance warning level has been recorded\nNote: No CPU power status has been recorded",
+    "pmsetBatt": "Now drawing from 'Battery Power'\n -InternalBattery-0 (id=21692515)\t100%; discharging; 4:28 remaining present: true",
+    "pmsetCustom": "Battery Power:\n Sleep On Power Button 1\n lowpowermode         1\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         0\n womp                 0\n networkoversleep     0\n sleep                1\n lessbright           0\n tcpkeepalive         1\n disksleep            10\nAC Power:\n Sleep On Power Button 1\n lowpowermode         0\n standby              1\n ttyskeepawake        1\n hibernatemode        3\n powernap             1\n hibernatefile        /var/vm/sleepimage\n displaysleep         0\n womp                 1\n networkoversleep     0\n sleep                0\n tcpkeepalive         1\n disksleep            10",
+    "pmsetThermSha256": "96de6076213225f787270bff80efd2011e0ad142953c37697dc547f77d302892"
+  },
+  "focusedFinding": {
+    "id": "API-F-001",
+    "classification": "Local Fix candidate / implementation defect",
+    "summary": "The production thermal predicate treats normal pmset sentences containing \u201cNo ... warning ... recorded\u201d as a warning, so a healthy actual host is always marked thermalNormal=false for this output shape.",
+    "actualNormalPhrasePresent": true,
+    "productionRegexMatchesNormalOutput": true,
+    "productionThermalNormal": false,
+    "independentOfAcPower": true,
+    "requiredResolution": "Parse affirmative warning state rather than the bare word warning; add actual-output regression; re-review before API/E2E rerun."
+  },
+  "separateEnvironmentPrerequisites": {
+    "acConnected": false,
+    "observedPowerSource": "Battery Power",
+    "sudoNonInteractivePurgeExitCode": 1,
+    "sudoNonInteractivePurgeStderr": "sudo: a password is required",
+    "note": "Even after source repair, the user/runner must connect AC power and provision least-privilege noninteractive permission for exactly /usr/sbin/purge."
+  },
+  "gatingDecision": {
+    "result": "Fail",
+    "reason": "A production implementation defect is directly reproduced at the mandatory preflight boundary; downstream package construction and qualification stop fail-closed.",
+    "notExecuted": [
+      "input materialization",
+      "package double builds",
+      "English 49 inference",
+      "Chinese 200 inference",
+      "30/30/100 trials",
+      "compliance",
+      "Qualification Set 1",
+      "Branch Catalog Projection 1"
+    ]
+  }
+}

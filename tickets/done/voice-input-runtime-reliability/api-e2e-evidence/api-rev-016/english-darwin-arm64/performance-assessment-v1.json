@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "performance-assessment",
+  "packageId": "voice.english.whisper-small-fp16.darwin-arm64",
+  "profileId": "english",
+  "target": "darwin-arm64",
+  "qualificationSummary": {
+    "fileName": "qualification-summary-v2.json",
+    "sha256": "6df8c85e6b5a4e0aa1b52ffb7cce1e5c8b58cd9ff219717df0d3bdf0334954de"
+  },
+  "preflight": {
+    "fileName": "darwin-arm64-preflight-v2.json",
+    "sha256": "bab3cc54e01b20fc47a89ab95dbed0f3a4fd3286e4e667c679e1099b8210ce0d"
+  },
+  "performanceSamples": {
+    "fileName": "performance-samples-v1.json",
+    "sha256": "664ae06e43e627c3eaf0c804200ea6df1f91cbe3a47795e08b105361cfb27428"
+  },
+  "qualificationAttempts": {
+    "fileName": "qualification-attempts-v1.json",
+    "sha256": "6b27bff6d52355c5096ae996b26e3736f541ab8e61e3b4ac27fb05655e36e556"
+  },
+  "preparationStageEvidence": null,
+  "preparationEvidence": null,
+  "performanceEnvironment": "loaded-host",
+  "attempts": {
+    "started": 160,
+    "succeeded": 160,
+    "failed": 0,
+    "timedOut": 0,
+    "excluded": 0
+  },
+  "hardDeadlines": {
+    "helloMs": 2000,
+    "preparationMs": 30000,
+    "requestMs": 30000,
+    "gracefulShutdownMs": 2000,
+    "forcedShutdownMs": 2000,
+    "violations": 0
+  },
+  "resourcePolicy": {
+    "policyId": "voice-runtime-profile-resource-policy-v1",
+    "sha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+    "row": {
+      "profileId": "english",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "hardProcessTreeRssCeilingBytes": 2684354560,
+      "assessmentOptimizationTargetBytes": 2684354560
+    },
+    "observedPeakProcessTreeRssBytes": 1770749952,
+    "hardCeilingMet": true
+  },
+  "resourceOptimization": {
+    "targetBytes": 2684354560,
+    "observedPeakProcessTreeRssBytes": 1770749952,
+    "targetMet": true
+  },
+  "metrics": {
+    "handshake": {
+      "sampleCount": 30,
+      "p50Ms": 421.3460829999822,
+      "p95Ms": 626.802125000002,
+      "maxMs": 1128.028083000001,
+      "referenceTargetMs": 1000,
+      "referenceMet": true
+    },
+    "coldPreparation": {
+      "sampleCount": 30,
+      "p50Ms": 4890.727125000005,
+      "p95Ms": 5199.455042000001,
+      "maxMs": 28209.216917,
+      "referenceTargetMs": 20000,
+      "referenceMet": true
+    },
+    "warmPreparation": {
+      "sampleCount": 30,
+      "p50Ms": 3957.4642079999903,
+      "p95Ms": 4188.780625000014,
+      "maxMs": 4426.179917000001,
+      "referenceTargetMs": 10000,
+      "referenceMet": true
+    },
+    "coldResult": {
+      "sampleCount": 30,
+      "p50Ms": 8244.13395800002,
+      "p95Ms": 8722.594666000005,
+      "maxMs": 34010.693625,
+      "referenceTargetMs": 25000,
+      "referenceMet": true
+    },
+    "warmRequest": {
+      "sampleCount": 100,
+      "p50Ms": 162.6884999999893,
+      "p95Ms": 213.09820899995975,
+      "maxMs": 369.15850000001956,
+      "referenceTargetMs": 10000,
+      "referenceMet": true
+    }
+  },
+  "peakProcessTreeRssBytes": 1770749952,
+  "extractedSizeBytes": 1195561364,
+  "assessment": "loaded-host-observation"
+}

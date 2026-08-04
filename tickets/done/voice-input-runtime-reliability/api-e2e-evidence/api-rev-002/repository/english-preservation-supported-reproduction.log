@@ -1,0 +1,6 @@
+$ npm run check:evidence
+
+> @autobyteus/voice-input-runtime@1.0.0 check:evidence
+> node tooling/verify-english-preservation.mjs
+
+English preservation v2 authority reproduced byte-identically.

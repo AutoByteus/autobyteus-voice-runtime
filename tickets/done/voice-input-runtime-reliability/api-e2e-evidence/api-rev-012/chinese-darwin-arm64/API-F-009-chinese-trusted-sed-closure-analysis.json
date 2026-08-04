@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-009",
+  "apiRevisionId": "API-REV-012",
+  "facts": {
+    "priorRanlibFailureResolvedAtRuntimeBoundary": true,
+    "libggmlBaseBuilt": true,
+    "failurePercent": 6,
+    "failingCommand": "sed",
+    "shellError": "/bin/sh: sed: command not found",
+    "makeExit": 127,
+    "lockedSourceUsesBareSedTwice": true,
+    "trustedToolEntries": [
+      "node",
+      "cmake",
+      "cc",
+      "c++",
+      "ar",
+      "ranlib",
+      "ld",
+      "libtool",
+      "make",
+      "sh",
+      "tar"
+    ],
+    "trustedToolEntriesContainSed": false,
+    "preflightCommandPathsContainSed": false,
+    "actualHostSed": {
+      "path": "/usr/bin/sed",
+      "sha256": "abd2eb945442a8ab1d210e58edb153f34870ee6d7c359f0f6d8385b1f7fc50fc",
+      "mode": "0o755"
+    }
+  },
+  "inference": "The real package boundary requires one more authenticated closed native-tool identity. This is not evidence that the sandbox, host, input tree, model, corpus, quality threshold, or permission is invalid.",
+  "recommendedReviewQuestion": "Confirm whether the bounded correction is to add exact /usr/bin/sed capture/schema/live verification and a sed link in the closed trusted tool directory, with source-shaped negative coverage and no generic PATH expansion."
+}

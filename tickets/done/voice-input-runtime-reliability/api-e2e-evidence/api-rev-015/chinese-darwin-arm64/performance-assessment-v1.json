@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "performance-assessment",
+  "packageId": "voice.chinese.fun-asr-nano-0.6b-gguf-q8.darwin-arm64",
+  "profileId": "chinese",
+  "target": "darwin-arm64",
+  "qualificationSummary": {
+    "fileName": "qualification-summary-v2.json",
+    "sha256": "50249ab55eb9fb1c1a244e9c5a5d50630dad0a6fafcbb60a73e035cdbdb8b904"
+  },
+  "preflight": {
+    "fileName": "darwin-arm64-preflight-v2.json",
+    "sha256": "64548fa7df89140f45ab3abcd6251d3cea211f5fbb7038cbefe041d183509ad3"
+  },
+  "performanceSamples": {
+    "fileName": "performance-samples-v1.json",
+    "sha256": "cf0366747fe367f25a233560d425185dfb42d54342c79d72ea315441a15b8ff8"
+  },
+  "qualificationAttempts": {
+    "fileName": "qualification-attempts-v1.json",
+    "sha256": "32830f3e9f179c5cc6cec15dea9d260988723e36f5990cd34f9bab3cec24c489"
+  },
+  "performanceEnvironment": "controlled",
+  "attempts": {
+    "started": 22,
+    "succeeded": 21,
+    "failed": 1,
+    "timedOut": 1,
+    "excluded": 0
+  },
+  "hardDeadlines": {
+    "helloMs": 2000,
+    "preparationMs": 30000,
+    "requestMs": 30000,
+    "gracefulShutdownMs": 2000,
+    "forcedShutdownMs": 2000,
+    "violations": 1
+  },
+  "resourcePolicy": {
+    "policyId": "voice-runtime-profile-resource-policy-v1",
+    "sha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+    "row": {
+      "profileId": "chinese",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "hardProcessTreeRssCeilingBytes": 4294967296,
+      "assessmentOptimizationTargetBytes": 2684354560
+    },
+    "observedPeakProcessTreeRssBytes": 3944415232,
+    "hardCeilingMet": true
+  },
+  "resourceOptimization": {
+    "targetBytes": 2684354560,
+    "observedPeakProcessTreeRssBytes": 3944415232,
+    "targetMet": false
+  },
+  "metrics": {
+    "handshake": {
+      "sampleCount": 21,
+      "p50Ms": 486.10458300000755,
+      "p95Ms": 674.8957079999964,
+      "maxMs": 1114.7793330000022,
+      "referenceTargetMs": 1000,
+      "referenceMet": true
+    },
+    "coldPreparation": {
+      "sampleCount": 21,
+      "p50Ms": 10686.30608400001,
+      "p95Ms": 26989.163500000024,
+      "maxMs": 29460.149333999958,
+      "referenceTargetMs": 20000,
+      "referenceMet": false
+    },
+    "warmPreparation": {
+      "sampleCount": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "maxMs": 0,
+      "referenceTargetMs": 10000,
+      "referenceMet": false
+    },
+    "coldResult": {
+      "sampleCount": 21,
+      "p50Ms": 14807.887457999983,
+      "p95Ms": 34540.84887499997,
+      "maxMs": 38254.84924999997,
+      "referenceTargetMs": 25000,
+      "referenceMet": false
+    },
+    "warmRequest": {
+      "sampleCount": 0,
+      "p50Ms": 0,
+      "p95Ms": 0,
+      "maxMs": 0,
+      "referenceTargetMs": 10000,
+      "referenceMet": false
+    }
+  },
+  "peakProcessTreeRssBytes": 3944415232,
+  "extractedSizeBytes": 1285163754,
+  "assessment": "controlled-miss"
+}

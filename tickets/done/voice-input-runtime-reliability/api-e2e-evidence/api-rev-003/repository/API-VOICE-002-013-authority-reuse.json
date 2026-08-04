@@ -1,0 +1,114 @@
+{
+  "schema": "api-voice-authority-reuse-v1",
+  "apiRevision": "API-REV-003",
+  "priorRevision": "API-REV-002",
+  "priorEvidenceCommit": "e8cf3c7",
+  "reviewedSourceCommit": "b7342bc8e06d587bfe640faa4209c62ac2f4bae9",
+  "gitDiffNameStatus": [],
+  "allRelevantPathsUnchanged": true,
+  "workingTreeMatchesReviewedSource": true,
+  "apiVoice002ReuseDecision": "reusable only for exact English-v2 authority/corpus/baseline proof",
+  "apiVoice013ReuseDecision": "reusable; durable production-validator test and owner bytes unchanged",
+  "durableCoverageChangeThisRound": false,
+  "files": [
+    {
+      "path": "benchmark/baseline/english-preservation-authority.mjs",
+      "size": 6214,
+      "workingTreeSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "baseSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "sourceSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "benchmark/baseline/trusted-baseline.mjs",
+      "size": 7196,
+      "workingTreeSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "baseSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "sourceSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "benchmark/corpus/validate-corpus.mjs",
+      "size": 1921,
+      "workingTreeSha256": "d8700e103e8295eb970d24299c8d1f5df671089071fb21d1847c867d3cd3557c",
+      "baseSha256": "d8700e103e8295eb970d24299c8d1f5df671089071fb21d1847c867d3cd3557c",
+      "sourceSha256": "d8700e103e8295eb970d24299c8d1f5df671089071fb21d1847c867d3cd3557c",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/authority.json",
+      "size": 5791,
+      "workingTreeSha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8",
+      "baseSha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8",
+      "sourceSha256": "f7de556e1b99266f08485b1c3e3990785d14f8c773438270ac2929e2ac389fc8",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/controlled-mlx-fp16-en-unique-v2.json",
+      "size": 104292,
+      "workingTreeSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "baseSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "sourceSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/derive_english_preservation_v2.py",
+      "size": 19544,
+      "workingTreeSha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49",
+      "baseSha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49",
+      "sourceSha256": "775cabbd1e84dae9d49959fd9bd319c76a15027e2ed940b10055e8f65a14ee49",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "evidence/selection-study/derived/english-preservation-unique-v2/quality-mlx-en-unique-v2.json",
+      "size": 38132,
+      "workingTreeSha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "baseSha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "sourceSha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "release/evidence/baselines/english-v2.json",
+      "size": 8932,
+      "workingTreeSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "baseSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "sourceSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "release/evidence/qualification-corpora/english-v2.json",
+      "size": 20750,
+      "workingTreeSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "baseSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "sourceSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "tests/release/trusted-baseline.test.mjs",
+      "size": 8237,
+      "workingTreeSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "baseSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "sourceSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    },
+    {
+      "path": "tooling/verify-english-preservation.mjs",
+      "size": 549,
+      "workingTreeSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "baseSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "sourceSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "unchangedBaseToSource": true,
+      "workingTreeMatchesSource": true
+    }
+  ]
+}

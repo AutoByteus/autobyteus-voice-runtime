@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 2,
+  "profileId": "chinese",
+  "targets": ["darwin-arm64"],
+  "baselineId": "chinese-promoted-baseline-v2",
+  "baseline": {
+    "fileName": "chinese-v2.baseline.json",
+    "sha256": "6172f4407c4930152c781dc5e6d4498d53b9af18e7e2f413b76fcdca86763f58"
+  },
+  "corpus": {
+    "fileName": "chinese-v2.corpus.json",
+    "sha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+    "sampleCount": 200
+  },
+  "scoringContract": {
+    "id": "autobyteus-chinese-cer-selection-comparable-v1",
+    "fileName": "chinese-cer-scoring-contract-v1.json",
+    "sha256": "7ca1743cad4e209d9c04068c334ab4fa2e9e5932d093f7b82f888f7a67207af5",
+    "mappingFileName": "opencc-t2s-scoring-map-v1.json",
+    "mappingSha256": "f4b8969d9f7d1814e1fa3aee13e7c65d526ddc52c79efb14f265a9cf76b0f369"
+  },
+  "source": {
+    "promotedResultSha256": "84568c53e908e1538ab55b5aa046804e2e7444386225b791de11a148239f8b48",
+    "promotedQualitySha256": "c7229574bad3ee199d43e1ee146c61e65514fa2c2ba514d7358ff40134f64089",
+    "selectionCorpusManifestSha256": "a0326dabce226f00f9bd7a5a5bc11797eaeab1891b70f09de5fabf53f54eaaf1",
+    "derivationSha256": "ad31e98adac60147163359a6b24758a72a767d7deefcedc6aca69c2aa53e91fe"
+  },
+  "providerId": "autobyteus.voice.funasr-nano-q8",
+  "modelId": "fun-asr-nano-gguf-q8",
+  "configurationDigest": "7b2ed57eca281a71bfdeb134b31bbf5e8a17384dcb975daa3eb8627aa0afb688",
+  "metric": "CER",
+  "errors": 343,
+  "units": 6580,
+  "value": 0.052127659574468084,
+  "sampleCount": 200,
+  "replacement": {
+    "supersedes": "chinese-promoted-baseline-v1",
+    "reason": "v1 did not bind the scoring contract that produced its stored counts",
+    "historicalBytesPreserved": true,
+    "countsAndValueChanged": false
+  }
+}

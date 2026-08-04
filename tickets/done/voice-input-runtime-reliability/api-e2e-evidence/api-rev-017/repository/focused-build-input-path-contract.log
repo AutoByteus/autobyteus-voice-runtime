@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: Build Input path policy accepts the exact current Chinese source path set
+ok 1 - Build Input path policy accepts the exact current Chinese source path set
+  ---
+  duration_ms: 10.134834
+  type: 'test'
+  ...
+# Subtest: Build Input path policy rejects aliases, unsafe syntax, and collisions
+ok 2 - Build Input path policy rejects aliases, unsafe syntax, and collisions
+  ---
+  duration_ms: 0.527208
+  type: 'test'
+  ...
+# Subtest: aggregate verifier accepts the exact retained API-REV-016 Chinese manifest
+ok 3 - aggregate verifier accepts the exact retained API-REV-016 Chinese manifest
+  ---
+  duration_ms: 10.092291
+  type: 'test'
+  ...
+# Subtest: aggregate verifier retains canonical unsafe-path and record rejection
+ok 4 - aggregate verifier retains canonical unsafe-path and record rejection
+  ---
+  duration_ms: 0.274875
+  type: 'test'
+  ...
+# Subtest: package verification rejects an unsafe Build Input manifest record
+ok 5 - package verification rejects an unsafe Build Input manifest record
+  ---
+  duration_ms: 2.43925
+  type: 'test'
+  ...
+# Subtest: materialized current Chinese routing paths pass the package verifier unchanged
+ok 6 - materialized current Chinese routing paths pass the package verifier unchanged
+  ---
+  duration_ms: 588.927292
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 706.65825

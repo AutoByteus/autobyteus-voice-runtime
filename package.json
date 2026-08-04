@@ -1,0 +1,31 @@
+{
+  "name": "@autobyteus/voice-input-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Hermetic language-profile Voice Input provider packages",
+  "license": "SEE LICENSES AND THIRD_PARTY_NOTICES.json",
+  "engines": {
+    "node": "22.23.1"
+  },
+  "scripts": {
+    "test": "node --test tests/**/*.test.mjs",
+    "check:js": "node tooling/check-source.mjs",
+    "check:python": "python3 -m unittest discover -s tests/providers -p '*_test.py' && python3 -m compileall -q providers",
+    "check:go": "node tooling/check-go.mjs",
+    "check:evidence": "node tooling/verify-english-preservation.mjs && node tooling/verify-chinese-qualification.mjs",
+    "check": "npm run check:js && npm run check:python && npm run check:go && npm run check:evidence && npm test",
+    "build:package": "node build/package-assembler.mjs",
+    "verify:package": "node build/package-verifier.mjs",
+    "materialize:inputs": "node build/materialize-release-inputs.mjs",
+    "preflight:darwin-arm64": "node benchmark/darwin-arm64-runner-preflight.mjs",
+    "qualify:profile": "node benchmark/run-profile-qualification.mjs",
+    "qualify:set": "node release/evidence/qualification-set.mjs",
+    "qualify:release": "node release/qualify-release.mjs"
+  },
+  "devDependencies": {
+    "ajv": "8.20.0",
+    "ajv-formats": "3.0.1",
+    "opencc-js": "1.4.1",
+    "prettier": "3.6.2"
+  }
+}

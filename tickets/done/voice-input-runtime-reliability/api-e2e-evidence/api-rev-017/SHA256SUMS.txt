@@ -1,0 +1,16 @@
+6038d3dbc8147526ebd7dedbdd8c67541bd53b914470e59d9c81ffb9bd824cc5  ./aggregate/API-F-014-resolution.json
+bcc3b1c2f3afc42fa0861adcdd3558ad0779ecf7f3c77c370501679a50bbeddd  ./aggregate/branch-catalog-projection-v2.json
+a78c59fa085a95a6af28cdd3adc6065f87c216caceb304f6edcf034cd5e96c27  ./aggregate/branch-catalog-projection-verification-v2.json
+9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  ./aggregate/branch-catalog-projection.exit-code
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./aggregate/branch-catalog-projection.log
+c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003  ./aggregate/qualification-set-v2.json
+9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  ./aggregate/qualification-set.exit-code
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./aggregate/qualification-set.log
+9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa  ./aggregate/verify-branch-catalog-projection.exit-code
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  ./aggregate/verify-branch-catalog-projection.log
+02e962da503f5c9c52b293b24b158d1c8fc770f1d38ae181b493b92aef3e523a  ./repository/API-VOICE-012-aggregate-only-reuse-impact.json
+c4662fcda9d7aaccccf47740bfeacfedacbccf9a16ed3de820224115325d05c6  ./repository/api-rev-016-retained-checksums.log
+577006c0bdddaf471428281dd398138fe81925d37a4b96dc1dd7afb256765fff  ./repository/correction-scope-and-source-integrity.log
+73c07edc42c76591a7a0d180e78069bc1f2e263328e1b11b9201170cab748bd3  ./repository/focused-build-input-path-contract.log
+ffae67910f2de1fbf115442fee7e54033725c87c07a5c26c8434f529fb61ad10  ./repository/json-parse.log
+6b7d7f033714318d88590defecd0850e1980eb42110d89f79f507bfa4f328f42  ./repository/retained-profile-and-asset-identity.log

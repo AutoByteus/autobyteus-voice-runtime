@@ -1,0 +1,83 @@
+{
+  "schema": "api-voice-m1-quiescence-block-v1",
+  "apiRevision": "API-REV-004",
+  "reviewedSourceCommit": "23d766873fa1be357c657fab8203913fec09e65b",
+  "priorFailureResolution": {
+    "id": "API-F-001",
+    "status": "resolved-directly",
+    "productionThermalNormal": true,
+    "sourceReview": "CRR-013"
+  },
+  "preflight": {
+    "schemaVersion": 1,
+    "target": "darwin-arm64",
+    "status": "blocked",
+    "checkedAt": "2026-08-03T10:57:38.739Z",
+    "host": {
+      "platform": "darwin",
+      "architecture": "arm64",
+      "cpuModel": "Apple M1 Max",
+      "totalMemoryBytes": 68719476736
+    },
+    "power": {
+      "acConnected": true,
+      "lowPowerModeOff": true,
+      "caffeinateActive": true,
+      "thermalNormal": true,
+      "memoryPressureNormal": true
+    },
+    "quiescence": {
+      "passed": false,
+      "samples": [
+        73.94,
+        71.42,
+        69.93,
+        66.3,
+        67.73,
+        68.51
+      ],
+      "averageIdlePercent": 0,
+      "competingProcesses": [
+        "detected"
+      ]
+    },
+    "tools": {},
+    "sandbox": {},
+    "purge": {},
+    "failureCategory": "runner-not-quiescent"
+  },
+  "computedAverageIdlePercent": 69.63833333333334,
+  "requiredAverageIdlePercent": 80,
+  "actualPowerAndCapability": {
+    "acConnected": true,
+    "lowPowerModeOff": true,
+    "thermalNormal": true,
+    "memoryPressureNormal": true,
+    "sudoNonInteractivePurgeExitCodeAfterRun": 0
+  },
+  "blocker": {
+    "classification": "environment dependency",
+    "failureCategory": "runner-not-quiescent",
+    "summary": "The dedicated M1 did not sustain the required six-sample >=80% average CPU idle within the 15-minute preflight window. Actual samples averaged 69.638333%.",
+    "observedMajorConsumers": [
+      "Virtualization.VirtualMachine",
+      "Docker Desktop Helper (Renderer)",
+      "WindowServer",
+      "WeChat wxplayer",
+      "AutoByteus renderer processes"
+    ],
+    "requiredUserAction": "Quit Docker Desktop/its VM and other CPU-heavy applications, leave the Mac on AC, then confirm readiness for a fresh preflight. API/E2E will not terminate user-owned processes."
+  },
+  "gatingDecision": {
+    "result": "Blocked",
+    "notExecuted": [
+      "input materialization",
+      "package builds",
+      "English/Chinese inference",
+      "30/30/100 trials",
+      "compliance",
+      "Qualification Set",
+      "Branch Catalog Projection"
+    ]
+  }
+}

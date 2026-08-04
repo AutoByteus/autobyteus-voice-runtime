@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-010",
+  "apiRevisionId": "API-REV-013",
+  "facts": {
+    "priorSedFailureResolvedAtRuntimeBoundary": true,
+    "priorRanlibFailureRemainsResolved": true,
+    "finalLinkReached": true,
+    "missingSymbolFamilies": [
+      "std::__1",
+      "std::runtime_error",
+      "__cxa",
+      "__gxx_personality_v0"
+    ],
+    "clangPlusPlusAlias": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++",
+      "linkTarget": "clang",
+      "targetSha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+    },
+    "preflightCxxIdentity": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+      "sha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+    },
+    "nativeEnvironmentCxxIdentity": {
+      "path": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+      "sha256": "d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+    },
+    "explicitCmakeCxxCompiler": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang",
+    "probeAliasExit": 0,
+    "probeCanonicalExit": 1
+  },
+  "inference": "The build compiles C++ but canonical clang invocation does not add the C++ standard library at final link; exact clang++ argv[0]/driver semantics are required despite identical target bytes.",
+  "recommendedReviewQuestion": "Confirm whether C++ compiler identity needs a strict specialized clang++ -> clang invocation/target record, live topology verification, exact c++ closed-tool alias, and CMAKE_CXX_COMPILER/resolved-cache binding, without generic symlink support or explicit -lc++ workaround."
+}

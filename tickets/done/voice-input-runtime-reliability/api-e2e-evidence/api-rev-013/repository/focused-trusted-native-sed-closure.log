@@ -1,0 +1,64 @@
+TAP version 13
+# Subtest: native build overrides are rejected case-insensitively before use
+ok 1 - native build overrides are rejected case-insensitively before use
+  ---
+  duration_ms: 0.796375
+  type: 'test'
+  ...
+# Subtest: the production environment owner accepts the preflight CMake symlink
+ok 2 - the production environment owner accepts the preflight CMake symlink
+  ---
+  duration_ms: 198.906834
+  type: 'test'
+  ...
+# Subtest: the Xcode ranlib alias retains invocation semantics and authenticated topology
+ok 3 - the Xcode ranlib alias retains invocation semantics and authenticated topology
+  ---
+  duration_ms: 230.086875
+  type: 'test'
+  ...
+# Subtest: the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn
+ok 4 - the canonical sandboxed package entry consumes outside-authorized preflight without sudo spawn
+  ---
+  duration_ms: 580.469625
+  type: 'test'
+  ...
+# Subtest: the trusted PATH is closed and rechecks every selected tool
+ok 5 - the trusted PATH is closed and rechecks every selected tool
+  ---
+  duration_ms: 13.342041
+  type: 'test'
+  ...
+# Subtest: trusted executable bytes and explicit CMake configuration are bound
+ok 6 - trusted executable bytes and explicit CMake configuration are bound
+  ---
+  duration_ms: 1.78575
+  type: 'test'
+  ...
+# Subtest: resolved CMake selection must match the bound environment
+ok 7 - resolved CMake selection must match the bound environment
+  ---
+  duration_ms: 1.663625
+  type: 'test'
+  ...
+# Subtest: every current package builder consumes the trusted owner
+ok 8 - every current package builder consumes the trusted owner
+  ---
+  duration_ms: 0.861042
+  type: 'test'
+  ...
+# Subtest: the locked Metal sed pipeline runs through only the authenticated closed PATH
+ok 9 - the locked Metal sed pipeline runs through only the authenticated closed PATH
+  ---
+  duration_ms: 359.791917
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1160.27375

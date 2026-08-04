@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-014",
+  "scenarioId": "API-VOICE-012",
+  "acceptanceCriteria": [
+    "AC-006",
+    "AC-019",
+    "AC-021",
+    "AC-023"
+  ],
+  "sourceCommit": "32829080938911f0f46390a3fd2af823e105bd32",
+  "result": "fail",
+  "preliminaryClassification": "Local Fix",
+  "expected": "Qualification Set 2 independently accepts the same canonical Build Input Path 1 grammar already used by materialization, package assembly, and mandatory package verification, then retains exactly two passing profile rows.",
+  "observed": "Both exact current-source profiles passed all runtime/package qualifications, but Qualification Set 2 recomputation marks Chinese fail / qualification-verification-failed because release/evidence/bindings.mjs uses the obsolete /^[A-Za-z0-9._/-]+$/ path predicate and rejects ten authenticated paths containing (), [], or +.",
+  "profiles": {
+    "english": {
+      "functionalDecision": "pass",
+      "attempts": {
+        "started": 160,
+        "succeeded": 160,
+        "failed": 0,
+        "timedOut": 0,
+        "excluded": 0
+      },
+      "quality": {
+        "metric": "WER",
+        "value": 0.07223942208462332,
+        "baselineValue": 0.07223942208462332,
+        "sampleCount": 49
+      },
+      "resource": {
+        "policyId": "voice-runtime-profile-resource-policy-v1",
+        "sha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+        "row": {
+          "profileId": "english",
+          "platform": "darwin",
+          "architecture": "arm64",
+          "hardProcessTreeRssCeilingBytes": 2684354560,
+          "assessmentOptimizationTargetBytes": 2684354560
+        },
+        "observedPeakProcessTreeRssBytes": 1770749952,
+        "hardCeilingMet": true
+      },
+      "performanceAssessment": "loaded-host-observation",
+      "archive": {
+        "fileName": "voice-english-darwin-arm64-1.0.0.zip",
+        "sha256": "9e4d1d5981ba9389f63bdf98094078a6152fbac05ff42d52c287138baafa46f8",
+        "compressedSizeBytes": 645513268,
+        "extractedSizeBytes": 1195561364,
+        "entryCount": 6502
+      },
+      "runtimeOutcomes": {
+        "relocation": true,
+        "offline": true,
+        "noPackageMutation": true,
+        "recovery": true
+      }
+    },
+    "chinese": {
+      "functionalDecision": "pass",
+      "attempts": {
+        "started": 260,
+        "succeeded": 260,
+        "failed": 0,
+        "timedOut": 0,
+        "excluded": 0
+      },
+      "quality": {
+        "metric": "CER",
+        "value": 0.05197568389057751,
+        "baselineValue": 0.052127659574468084,
+        "sampleCount": 200
+      },
+      "resource": {
+        "policyId": "voice-runtime-profile-resource-policy-v1",
+        "sha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+        "row": {
+          "profileId": "chinese",
+          "platform": "darwin",
+          "architecture": "arm64",
+          "hardProcessTreeRssCeilingBytes": 4294967296,
+          "assessmentOptimizationTargetBytes": 2684354560
+        },
+        "observedPeakProcessTreeRssBytes": 2105065472,
+        "hardCeilingMet": true
+      },
+      "performanceAssessment": "loaded-host-observation",
+      "archive": {
+        "fileName": "voice-chinese-darwin-arm64-1.0.0.zip",
+        "sha256": "84783c61b8a08e0e0848a4906139210868cf552ee0104d5179be7144be432cc3",
+        "compressedSizeBytes": 1068528640,
+        "extractedSizeBytes": 1285167443,
+        "entryCount": 22
+      },
+      "runtimeOutcomes": {
+        "relocation": true,
+        "offline": true,
+        "noPackageMutation": true,
+        "recovery": true
+      }
+    }
+  },
+  "qualificationSet": {
+    "functionalDecision": "fail",
+    "performanceAssessment": "loaded-host-observation",
+    "profileDecisions": [
+      {
+        "profileId": "english",
+        "functionalDecision": "pass",
+        "failureCategory": null
+      },
+      {
+        "profileId": "chinese",
+        "functionalDecision": "fail",
+        "failureCategory": "qualification-verification-failed"
+      }
+    ]
+  },
+  "manifest": {
+    "fileCount": 3152,
+    "oldPredicateRejectedCount": 10,
+    "oldPredicateRejectedPaths": [
+      "llama-cpp-source/tools/ui/src/routes/(chat)/+layout.svelte",
+      "llama-cpp-source/tools/ui/src/routes/(chat)/+page.svelte",
+      "llama-cpp-source/tools/ui/src/routes/(chat)/+page.ts",
+      "llama-cpp-source/tools/ui/src/routes/(chat)/chat/[id]/+page.svelte",
+      "llama-cpp-source/tools/ui/src/routes/(chat)/chat/[id]/+page.ts",
+      "llama-cpp-source/tools/ui/src/routes/+error.svelte",
+      "llama-cpp-source/tools/ui/src/routes/+layout.svelte",
+      "llama-cpp-source/tools/ui/src/routes/mcp-servers/+page.svelte",
+      "llama-cpp-source/tools/ui/src/routes/settings/+layout.svelte",
+      "llama-cpp-source/tools/ui/src/routes/settings/[[section]]/+page.svelte"
+    ],
+    "sha256": "f7bfb8f17fdf52c76d036c082690bda5d488118f491add5793b9e6b6becc2478"
+  },
+  "directEvidence": {
+    "profileVerifierProbe": "aggregate/API-VOICE-012-profile-verifier-probe.log",
+    "qualificationSetLog": "aggregate/qualification-set.log",
+    "qualificationSet": "aggregate/qualification-set-v2.json",
+    "sourceLocation": "release/evidence/bindings.mjs:131-142"
+  },
+  "stopDecision": "Fail closed after QSet 2 failure. Branch Catalog Projection 2, Catalog 3, tag, release, and publication were not produced. No source workaround, path renaming, input exclusion, provider/model/threshold change, or runtime retry occurred.",
+  "recommendedCorrection": "Make the profile/QSet verifier consume the canonical Build Input Path 1 owner and add an exact regression for the ten retained Chinese paths; do not introduce another regex or mutate/omit input paths."
+}

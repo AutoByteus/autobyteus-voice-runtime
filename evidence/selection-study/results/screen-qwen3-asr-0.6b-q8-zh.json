@@ -1,0 +1,1615 @@
+{
+  "schemaVersion": 1,
+  "backend": "qwen3-asr-0.6b-q8",
+  "language": "zh",
+  "threads": null,
+  "command": [
+    "/Applications/Xcode.app/Contents/Developer/usr/bin/python3",
+    "/tmp/autobyteus-voice-backend-study-20260802/harness/qwen3_asr_llama_server_worker.py",
+    "--server",
+    "/tmp/autobyteus-voice-backend-study-20260802/upstream/llama.cpp-latest/build/bin/llama-server",
+    "--model",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/qwen3-asr-0.6b-q8_0/Qwen3-ASR-0.6B-Q8_0.gguf",
+    "--mmproj",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/qwen3-asr-0.6b-q8_0/mmproj-Qwen3-ASR-0.6B-Q8_0.gguf",
+    "--source-commit",
+    "f5919bf458ef190468b5c329bb293f8a54a1e69c",
+    "--threads",
+    "4",
+    "--ctx-size",
+    "4096"
+  ],
+  "corpusId": "fleurs-simplified-mandarin-profile-v2-screen-50",
+  "coldClip": {
+    "id": "fleurs-zh-1949-r765",
+    "durationMs": 6060,
+    "reference": "昆 虫 学 家 们 用 虫 子 bug 一 词 来 正 式 称 呼 这 一 类 的 昆 虫"
+  },
+  "coldRuns": [
+    {
+      "index": 0,
+      "ready": {
+        "type": "ready",
+        "backend": "llama.cpp/Qwen3-ASR",
+        "sourceCommit": "f5919bf458ef190468b5c329bb293f8a54a1e69c",
+        "model": "Qwen3-ASR-0.6B-Q8_0",
+        "threads": 4,
+        "contextSize": 4096,
+        "gpuLayers": 999,
+        "flashAttention": true,
+        "modelLoadMs": 1082.378,
+        "serverPid": 49348,
+        "rssBytes": 1608990720,
+        "spawnToReadyMs": 1150.925,
+        "sampledRssBytes": 1625718784
+      },
+      "first": {
+        "type": "result",
+        "requestId": "e44ccc72178e4a1b96f85a6042511f57",
+        "ok": true,
+        "text": "昆虫学家们用“虫子”一词来正式称呼这一类的昆虫。",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 101,
+          "prompt_ms": 74.108,
+          "prompt_per_token_ms": 0.7337425742574257,
+          "prompt_per_second": 1362.87580288228,
+          "predicted_n": 22,
+          "predicted_ms": 101.861,
+          "predicted_per_token_ms": 4.630045454545455,
+          "predicted_per_second": 215.98060101510885
+        },
+        "transcribeMs": 187.201,
+        "serverRssBytes": 1617625088,
+        "requestRoundTripMs": 192.521,
+        "sampledRssBytes": 1635270656
+      },
+      "shutdown": {
+        "type": "stopped"
+      }
+    }
+  ],
+  "warmSession": {
+    "ready": {
+      "type": "ready",
+      "backend": "llama.cpp/Qwen3-ASR",
+      "sourceCommit": "f5919bf458ef190468b5c329bb293f8a54a1e69c",
+      "model": "Qwen3-ASR-0.6B-Q8_0",
+      "threads": 4,
+      "contextSize": 4096,
+      "gpuLayers": 999,
+      "flashAttention": true,
+      "modelLoadMs": 698.672,
+      "serverPid": 49360,
+      "rssBytes": 1620951040,
+      "spawnToReadyMs": 769.796,
+      "sampledRssBytes": 1637777408
+    },
+    "warmup": {
+      "type": "result",
+      "requestId": "f4f2f614cbf84f8c8047f9b2ada4bc0b",
+      "ok": true,
+      "text": "昆虫学家们用“虫子”一词来正式称呼这一类的昆虫。",
+      "timings": {
+        "cache_n": 0,
+        "prompt_n": 101,
+        "prompt_ms": 73.305,
+        "prompt_per_token_ms": 0.7257920792079209,
+        "prompt_per_second": 1377.8050610463133,
+        "predicted_n": 22,
+        "predicted_ms": 102.961,
+        "predicted_per_token_ms": 4.680045454545454,
+        "predicted_per_second": 213.67313837278192
+      },
+      "transcribeMs": 185.902,
+      "serverRssBytes": 1629487104,
+      "requestRoundTripMs": 191.534,
+      "sampledRssBytes": 1647067136
+    },
+    "quality": [
+      {
+        "id": "fleurs-zh-1660-r235",
+        "category": "mandarin",
+        "reference": "浪 漫 主 义 具 有 很 强 的 文 化 决 定 论 色 彩 这 源 于 歌 德 费 希 特 和 施 莱 格 尔 等 作 家",
+        "durationMs": 9600,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "2b857b0a24d44c718608d738c67ff3e2",
+          "ok": true,
+          "text": "浪漫主义具有很强的文化决定论色彩，植源于歌德、费希特和施莱格尔等作家。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 136,
+            "prompt_ms": 86.207,
+            "prompt_per_token_ms": 0.633875,
+            "prompt_per_second": 1577.598106882272,
+            "predicted_n": 28,
+            "predicted_ms": 131.153,
+            "predicted_per_token_ms": 4.684035714285714,
+            "predicted_per_second": 213.49111343240338
+          },
+          "transcribeMs": 233.19,
+          "serverRssBytes": 1647378432,
+          "requestRoundTripMs": 239.185,
+          "sampledRssBytes": 1665581056
+        }
+      },
+      {
+        "id": "fleurs-zh-1666-r790",
+        "category": "mandarin",
+        "reference": "你 也 可 以 咨 询 除 贵 国 以 外 其 他 政 府 的 建 议 但 他 们 的 建 议 是 为 他 们 的 公 民 而 制 定 的",
+        "durationMs": 7140,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "75eabd0a49154f4ebc372270df929a2e",
+          "ok": true,
+          "text": "你也可以咨询除贵国以外其他政府的建议，但是他们的建议是为他们的公民而制定的。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 110,
+            "prompt_ms": 66.723,
+            "prompt_per_token_ms": 0.6065727272727273,
+            "prompt_per_second": 1648.6069271465612,
+            "predicted_n": 27,
+            "predicted_ms": 125.141,
+            "predicted_per_token_ms": 4.6348518518518524,
+            "predicted_per_second": 215.75662652527947
+          },
+          "transcribeMs": 205.687,
+          "serverRssBytes": 1666940928,
+          "requestRoundTripMs": 211.279,
+          "sampledRssBytes": 1686093824
+        }
+      },
+      {
+        "id": "fleurs-zh-1673-r776",
+        "category": "mandarin",
+        "reference": "在 独 立 战 争 期 间 十 三 个 州 最 初 根 据 联 邦 条 例 组 成 了 弱 小 的 中 央 政 府 国 会 是 其 唯 一 的 组 成 部 分",
+        "durationMs": 8580,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "153a05f0e16949adbfcbca768d144c60",
+          "ok": true,
+          "text": "在独立战争期间，十三个州根据联邦条例组成了弱小的中央政府，国会是其唯一的组成部分。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 160.546,
+            "prompt_per_token_ms": 1.3052520325203252,
+            "prompt_per_second": 766.1355623933327,
+            "predicted_n": 29,
+            "predicted_ms": 138.239,
+            "predicted_per_token_ms": 4.7668620689655175,
+            "predicted_per_second": 209.78161011002683
+          },
+          "transcribeMs": 314.194,
+          "serverRssBytes": 1684832256,
+          "requestRoundTripMs": 320.552,
+          "sampledRssBytes": 1704181760
+        }
+      },
+      {
+        "id": "fleurs-zh-1683-r868",
+        "category": "mandarin",
+        "reference": "还 是 有 许 多 男 女 在 这 里 幸 存 了 下 来 他 们 如 今 仍 然 健 在 而 更 多 人 的 亲 人 有 的 在 那 里 被 屠 杀 有 的 一 直 做 苦 工 到 死 犹 太 人 和 非 犹 太 人 都 是 如 此",
+        "durationMs": 11700,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c7d1fac357104ea2a2054bbb9d88e6bc",
+          "ok": true,
+          "text": "还是有许多男女在这里幸存了下来，他们如今仍然健在。而更多人的亲人，有的在那里被屠杀，有的一直做苦工到死。犹太人和非犹太人都是如此。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 162,
+            "prompt_ms": 93.893,
+            "prompt_per_token_ms": 0.5795864197530864,
+            "prompt_per_second": 1725.3682383138255,
+            "predicted_n": 47,
+            "predicted_ms": 229.386,
+            "predicted_per_token_ms": 4.880553191489361,
+            "predicted_per_second": 204.8948061346377
+          },
+          "transcribeMs": 342.262,
+          "serverRssBytes": 1704427520,
+          "requestRoundTripMs": 350.67,
+          "sampledRssBytes": 1724104704
+        }
+      },
+      {
+        "id": "fleurs-zh-1689-r891",
+        "category": "mandarin",
+        "reference": "欧 洲 是 片 面 积 相 对 较 小 但 有 着 许 多 独 立 国 家 的 大 陆 在 通 常 情 况 下 穿 越 多 个 国 家 旅 行 意 味 着 必 须 多 次 经 历 签 证 申 请 和 护 照 检 查",
+        "durationMs": 12360,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "028dd5bf76614cce9172b0e31bd7da36",
+          "ok": true,
+          "text": "欧洲是片面积相对较小但有着许多独立国家的大陆。在通常情况下，穿越多个国家旅行意味着必须多次经历签证申请和护照检查。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 175,
+            "prompt_ms": 96.622,
+            "prompt_per_token_ms": 0.5521257142857143,
+            "prompt_per_second": 1811.1817184492143,
+            "predicted_n": 35,
+            "predicted_ms": 165.209,
+            "predicted_per_token_ms": 4.720257142857143,
+            "predicted_per_second": 211.8528651586778
+          },
+          "transcribeMs": 284.345,
+          "serverRssBytes": 1730412544,
+          "requestRoundTripMs": 291.175,
+          "sampledRssBytes": 1750089728
+        }
+      },
+      {
+        "id": "fleurs-zh-1697-r37",
+        "category": "mandarin",
+        "reference": "他 一 直 无 法 用 药 物 来 缓 解 疼 痛 因 为 比 赛 禁 止 参 赛 者 服 用 这 些 药 物",
+        "durationMs": 9780,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "b7911a5cabca4267ba7360e04bd2cb38",
+          "ok": true,
+          "text": "他一直无法用药物来缓解疼痛，因为比赛禁止参赛者服用这些药物。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 136,
+            "prompt_ms": 83.896,
+            "prompt_per_token_ms": 0.6168823529411764,
+            "prompt_per_second": 1621.0546390769523,
+            "predicted_n": 22,
+            "predicted_ms": 102.25,
+            "predicted_per_token_ms": 4.6477272727272725,
+            "predicted_per_second": 215.15892420537898
+          },
+          "transcribeMs": 203.174,
+          "serverRssBytes": 1756151808,
+          "requestRoundTripMs": 208.383,
+          "sampledRssBytes": 1775828992
+        }
+      },
+      {
+        "id": "fleurs-zh-1704-r917",
+        "category": "mandarin",
+        "reference": "1990 年 由 于 沙 漠 的 威 胁 它 被 列 入 了 濒 危 世 界 遗 产 名 录",
+        "durationMs": 5880,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "733a47d5b26d45db9a9f4b9b2f5d4cda",
+          "ok": true,
+          "text": "一九九零年，由于沙漠的威胁，它被列入了濒危世界遗产名录。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 84,
+            "prompt_ms": 56.406,
+            "prompt_per_token_ms": 0.6715,
+            "prompt_per_second": 1489.203276247208,
+            "predicted_n": 24,
+            "predicted_ms": 113.433,
+            "predicted_per_token_ms": 4.726375,
+            "predicted_per_second": 211.5786411361773
+          },
+          "transcribeMs": 182.359,
+          "serverRssBytes": 1774698496,
+          "requestRoundTripMs": 188.608,
+          "sampledRssBytes": 1794375680
+        }
+      },
+      {
+        "id": "fleurs-zh-1709-r863",
+        "category": "mandarin",
+        "reference": "该 报 告 对 行 政 当 局 目 前 对 伊 拉 克 政 策 的 几 乎 每 一 个 方 面 都 提 出 了 严 厉 批 评 并 敦 促 立 即 改 变 方 向",
+        "durationMs": 11700,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "6dd97d28bfd048cc8d72490f1aec08aa",
+          "ok": true,
+          "text": "该报告对行政当局目前对伊拉克政策的几乎每一个方面都提出了严厉批评，并敦促立即改变方向。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 162,
+            "prompt_ms": 96.431,
+            "prompt_per_token_ms": 0.595253086419753,
+            "prompt_per_second": 1679.9576899544754,
+            "predicted_n": 28,
+            "predicted_ms": 135.204,
+            "predicted_per_token_ms": 4.828714285714286,
+            "predicted_per_second": 207.09446466080882
+          },
+          "transcribeMs": 249.646,
+          "serverRssBytes": 1775812608,
+          "requestRoundTripMs": 255.521,
+          "sampledRssBytes": 1795883008
+        }
+      },
+      {
+        "id": "fleurs-zh-1720-r192",
+        "category": "mandarin",
+        "reference": "热 巧 克 力 达 到 了 比 利 时 的 标 准 果 汁 价 格 昂 贵 但 品 质 很 好",
+        "durationMs": 6900,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "ef73c5b3dfb74fcda74af6b761a983dc",
+          "ok": true,
+          "text": "但巧克力达到了比利时的标准，果汁价格昂贵，但品质很好。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 97,
+            "prompt_ms": 61.554,
+            "prompt_per_token_ms": 0.6345773195876289,
+            "prompt_per_second": 1575.8520973454204,
+            "predicted_n": 18,
+            "predicted_ms": 84.663,
+            "predicted_per_token_ms": 4.7035,
+            "predicted_per_second": 212.60763261401084
+          },
+          "transcribeMs": 160.242,
+          "serverRssBytes": 1798012928,
+          "requestRoundTripMs": 166.973,
+          "sampledRssBytes": 1818083328
+        }
+      },
+      {
+        "id": "fleurs-zh-1728-r99",
+        "category": "mandarin",
+        "reference": "卷 心 菜 汁 的 颜 色 将 根 据 化 学 物 质 的 酸 碱 性 发 生 变 化",
+        "durationMs": 8700,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "7d961f7085034f0eb60de137f0d91868",
+          "ok": true,
+          "text": "卷心菜汁的颜色将根据化学物质的酸碱性发生变化。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 88.491,
+            "prompt_per_token_ms": 0.7194390243902439,
+            "prompt_per_second": 1389.9718615452418,
+            "predicted_n": 19,
+            "predicted_ms": 88.631,
+            "predicted_per_token_ms": 4.664789473684211,
+            "predicted_per_second": 214.37194661010255
+          },
+          "transcribeMs": 191.173,
+          "serverRssBytes": 1811791872,
+          "requestRoundTripMs": 197.76,
+          "sampledRssBytes": 1831862272
+        }
+      },
+      {
+        "id": "fleurs-zh-1737-r410",
+        "category": "mandarin",
+        "reference": "狮 子 是 群 居 属 性 最 明 显 的 猫 科 动 物 生 活 在 称 为 狮 群 的 大 型 群 体 中",
+        "durationMs": 13280,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "a0b42a56d4524da3a29c0609d0e11fc1",
+          "ok": true,
+          "text": "狮子是群居属性最明显的猫科动物，生活在称为狮群的大型群体中。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 188,
+            "prompt_ms": 100.271,
+            "prompt_per_token_ms": 0.5333563829787235,
+            "prompt_per_second": 1874.9189695924044,
+            "predicted_n": 24,
+            "predicted_ms": 110.506,
+            "predicted_per_token_ms": 4.604416666666666,
+            "predicted_per_second": 217.18277740575172
+          },
+          "transcribeMs": 231.763,
+          "serverRssBytes": 1831337984,
+          "requestRoundTripMs": 237.848,
+          "sampledRssBytes": 1851604992
+        }
+      },
+      {
+        "id": "fleurs-zh-1744-r385",
+        "category": "mandarin",
+        "reference": "罗 斯 贝 数 越 小 恒 星 在 磁 场 倒 转 方 面 就 越 不 活 跃",
+        "durationMs": 8160,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "cd6e746c08d542be9a85b3b48a226cfc",
+          "ok": true,
+          "text": "罗斯倍数越小，恒星在磁场倒转方面就越不活跃。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 79.959,
+            "prompt_per_token_ms": 0.6500731707317073,
+            "prompt_per_second": 1538.2883727910553,
+            "predicted_n": 21,
+            "predicted_ms": 98.301,
+            "predicted_per_token_ms": 4.681,
+            "predicted_per_second": 213.62956633198036
+          },
+          "transcribeMs": 193.517,
+          "serverRssBytes": 1856028672,
+          "requestRoundTripMs": 198.785,
+          "sampledRssBytes": 1876295680
+        }
+      },
+      {
+        "id": "fleurs-zh-1752-r425",
+        "category": "mandarin",
+        "reference": "结 果 两 种 鱼 类 灭 绝 另 外 两 种 鱼 类 濒 临 灭 绝 其 中 包 括 弓 背 鲑",
+        "durationMs": 6720,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9a42a9ee64ae413eb9316030d52270c4",
+          "ok": true,
+          "text": "结果，两种鱼类灭绝，另外两种鱼类濒临灭绝，其中包括弓背蛙。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 97,
+            "prompt_ms": 63.975,
+            "prompt_per_token_ms": 0.6595360824742268,
+            "prompt_per_second": 1516.2172723720203,
+            "predicted_n": 23,
+            "predicted_ms": 107.083,
+            "predicted_per_token_ms": 4.655782608695652,
+            "predicted_per_second": 214.7866608145084
+          },
+          "transcribeMs": 186.943,
+          "serverRssBytes": 1873068032,
+          "requestRoundTripMs": 192.546,
+          "sampledRssBytes": 1893335040
+        }
+      },
+      {
+        "id": "fleurs-zh-1758-r819",
+        "category": "mandarin",
+        "reference": "该 群 岛 位 于 南 极 半 岛 以 北 120 公 里 处 最 大 的 岛 屿 是 乔 治 国 王 岛 这 里 是 繁 星 村 villa las estrellas 的 定 居 点",
+        "durationMs": 8040,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "3a5ef6039c9945efab75572e05c774ed",
+          "ok": true,
+          "text": "该群岛位于南极半岛以北120公里处，最大的岛屿是乔治国王岛，这里是繁星村的定居点。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 81.401,
+            "prompt_per_token_ms": 0.6617967479674797,
+            "prompt_per_second": 1511.0379479367577,
+            "predicted_n": 32,
+            "predicted_ms": 152.001,
+            "predicted_per_token_ms": 4.75003125,
+            "predicted_per_second": 210.5249307570345
+          },
+          "transcribeMs": 248.405,
+          "serverRssBytes": 1887207424,
+          "requestRoundTripMs": 253.781,
+          "sampledRssBytes": 1907490816
+        }
+      },
+      {
+        "id": "fleurs-zh-1765-r356",
+        "category": "mandarin",
+        "reference": "自从 1537 年亚松森asunción建成以来巴拉圭一直设法保留了这座城的许多本土特色和特性",
+        "durationMs": 13140,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "d46487faff054349a1576dc2cb90f2d9",
+          "ok": true,
+          "text": "自从自从1537年亚松森建成以来，巴拉圭一直设法保留了这座城的许多本土特色和特性。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 188,
+            "prompt_ms": 99.757,
+            "prompt_per_token_ms": 0.5306223404255319,
+            "prompt_per_second": 1884.5795282536562,
+            "predicted_n": 33,
+            "predicted_ms": 154.778,
+            "predicted_per_token_ms": 4.690242424242424,
+            "predicted_per_second": 213.2085955368334
+          },
+          "transcribeMs": 274.795,
+          "serverRssBytes": 1905606656,
+          "requestRoundTripMs": 280.156,
+          "sampledRssBytes": 1926135808
+        }
+      },
+      {
+        "id": "fleurs-zh-1771-r206",
+        "category": "mandarin",
+        "reference": "记 住 虽 然 主 舞 台 上 的 音 乐 可 能 已 经 结 束 但 节 日 的 其 他 部 分 可 能 会 一 直 演 奏 音 乐 到 深 夜",
+        "durationMs": 8940,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "b7859555607f4deaa5873dbc258f8f01",
+          "ok": true,
+          "text": "记住：虽然主舞台上的音乐可能已经结束，但节目的其他部分可能会一直演奏到音乐到深夜。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 76.485,
+            "prompt_per_token_ms": 0.6218292682926829,
+            "prompt_per_second": 1608.1584624436164,
+            "predicted_n": 28,
+            "predicted_ms": 131.508,
+            "predicted_per_token_ms": 4.696714285714286,
+            "predicted_per_second": 212.9148036621346
+          },
+          "transcribeMs": 224.577,
+          "serverRssBytes": 1932148736,
+          "requestRoundTripMs": 229.675,
+          "sampledRssBytes": 1952677888
+        }
+      },
+      {
+        "id": "fleurs-zh-1778-r115",
+        "category": "mandarin",
+        "reference": "电 视 报 道 显 示 有 白 烟 从 工 厂 里 冒 出",
+        "durationMs": 4860,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "07f68f4bed544170a6974a9f0c362925",
+          "ok": true,
+          "text": "电视报道显示，有白烟从工厂里冒出。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 71,
+            "prompt_ms": 53.613,
+            "prompt_per_token_ms": 0.755112676056338,
+            "prompt_per_second": 1324.305672131759,
+            "predicted_n": 16,
+            "predicted_ms": 72.383,
+            "predicted_per_token_ms": 4.5239375,
+            "predicted_per_second": 221.04637829324565
+          },
+          "transcribeMs": 136.76,
+          "serverRssBytes": 1949843456,
+          "requestRoundTripMs": 141.393,
+          "sampledRssBytes": 1970372608
+        }
+      },
+      {
+        "id": "fleurs-zh-1785-r578",
+        "category": "mandarin",
+        "reference": "支 架 式 教 学 不 是 一 种 学 习 方 法 而 是 一 种 辅 助 刚 学 习 使 用 新 电 脑 程 序 或 启 动 新 项 目 的 人 的 手 段",
+        "durationMs": 9780,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "92504b7a89324e138c9da8e60bd70fc8",
+          "ok": true,
+          "text": "支架式教学不是一种学习方法，而是一种辅助刚学习、使用新电脑程序或启动新项目的人的手段。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 136,
+            "prompt_ms": 85.386,
+            "prompt_per_token_ms": 0.6278382352941176,
+            "prompt_per_second": 1592.7669641393204,
+            "predicted_n": 30,
+            "predicted_ms": 140.214,
+            "predicted_per_token_ms": 4.6738,
+            "predicted_per_second": 213.95866318627242
+          },
+          "transcribeMs": 242.214,
+          "serverRssBytes": 1960198144,
+          "requestRoundTripMs": 247.023,
+          "sampledRssBytes": 1980727296
+        }
+      },
+      {
+        "id": "fleurs-zh-1792-r291",
+        "category": "mandarin",
+        "reference": "这 被 称 为 化 学 物 质 的 ph 值 你 可 以 使 用 红 甘 蓝 汁 制 作 指 示 剂",
+        "durationMs": 9960,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "2bedb8bda5a743088e22090010124313",
+          "ok": true,
+          "text": "这被称为化学物质的pH值。你可以使用红甘蓝汁制作指示剂。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 136,
+            "prompt_ms": 82.84,
+            "prompt_per_token_ms": 0.6091176470588235,
+            "prompt_per_second": 1641.7189763399324,
+            "predicted_n": 23,
+            "predicted_ms": 106.758,
+            "predicted_per_token_ms": 4.641652173913044,
+            "predicted_per_second": 215.4405290470035
+          },
+          "transcribeMs": 206.573,
+          "serverRssBytes": 1980678144,
+          "requestRoundTripMs": 211.631,
+          "sampledRssBytes": 2001207296
+        }
+      },
+      {
+        "id": "fleurs-zh-1799-r591",
+        "category": "mandarin",
+        "reference": "除 了 周 三 的 比 赛 卡 帕 内 多 carpanedo 还 参 加 了 锦 标 赛 的 两 项 个 人 竞 赛",
+        "durationMs": 14000,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "2c598aef4587469f9598e20c27f6195a",
+          "ok": true,
+          "text": "除了周三的比赛，卡帕内多还参加了锦标赛的两项个人竞赛。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 201,
+            "prompt_ms": 105.301,
+            "prompt_per_token_ms": 0.5238855721393035,
+            "prompt_per_second": 1908.8137814455704,
+            "predicted_n": 20,
+            "predicted_ms": 92.78,
+            "predicted_per_token_ms": 4.639,
+            "predicted_per_second": 215.5636990730761
+          },
+          "transcribeMs": 220.221,
+          "serverRssBytes": 2002976768,
+          "requestRoundTripMs": 225.179,
+          "sampledRssBytes": 2023636992
+        }
+      },
+      {
+        "id": "fleurs-zh-1805-r8",
+        "category": "mandarin",
+        "reference": "scotturb 403 路 公 共 汽 车 定 期 发 车 前 往 辛 特 拉 sintra 在 罗 卡 角 停 靠",
+        "durationMs": 7620,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "59459289fc314b60bcd6a4bbd6197e7e",
+          "ok": true,
+          "text": "Scotturb四零三路，公交汽车定期发车，前往新特拉，在罗卡角停靠。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 110,
+            "prompt_ms": 64.856,
+            "prompt_per_token_ms": 0.5895999999999999,
+            "prompt_per_second": 1696.06512890095,
+            "predicted_n": 28,
+            "predicted_ms": 133.221,
+            "predicted_per_token_ms": 4.757892857142857,
+            "predicted_per_second": 210.17707418500086
+          },
+          "transcribeMs": 214.628,
+          "serverRssBytes": 2030108672,
+          "requestRoundTripMs": 219.355,
+          "sampledRssBytes": 2050768896
+        }
+      },
+      {
+        "id": "fleurs-zh-1812-r139",
+        "category": "mandarin",
+        "reference": "虽 然 有 一 种 实 验 性 疫 苗 看 似 能 够 降 低 埃 博 拉 病 毒 的 死 亡 率 但 迄 今 为 止 还 没 明 确 证 明 任 何 药 物 适 合 治 疗 现 有 的 感 染",
+        "durationMs": 11280,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "3a226f7843fb4d1ba27ec2ea59d0d301",
+          "ok": true,
+          "text": "虽然有一种实验性疫苗看似能够降低埃博拉病毒的死亡率，但迄今为止，还没明确证明任何药物适合治疗现有的感染。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 162,
+            "prompt_ms": 87.094,
+            "prompt_per_token_ms": 0.5376172839506173,
+            "prompt_per_second": 1860.05924633155,
+            "predicted_n": 33,
+            "predicted_ms": 154.448,
+            "predicted_per_token_ms": 4.680242424242424,
+            "predicted_per_second": 213.6641458613902
+          },
+          "transcribeMs": 260.016,
+          "serverRssBytes": 2046312448,
+          "requestRoundTripMs": 266.228,
+          "sampledRssBytes": 2066972672
+        }
+      },
+      {
+        "id": "fleurs-zh-1817-r340",
+        "category": "mandarin",
+        "reference": "然 而 在 这 方 面 申 根 区 有 点 像 一 个 国 家",
+        "durationMs": 10840,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "6fa2cc6a299e4d1ca9fa537a3d0ed77c",
+          "ok": true,
+          "text": "然而在这方面，深根区有点像一个国家。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 149,
+            "prompt_ms": 90.932,
+            "prompt_per_token_ms": 0.6102818791946308,
+            "prompt_per_second": 1638.5870760568334,
+            "predicted_n": 15,
+            "predicted_ms": 67.695,
+            "predicted_per_token_ms": 4.513,
+            "predicted_per_second": 221.58209616662978
+          },
+          "transcribeMs": 179.48,
+          "serverRssBytes": 2069069824,
+          "requestRoundTripMs": 184.619,
+          "sampledRssBytes": 2089746432
+        }
+      },
+      {
+        "id": "fleurs-zh-1823-r836",
+        "category": "mandarin",
+        "reference": "交 通 流 量 研 究 的 是 驾 驶 员 和 车 辆 在 两 点 之 间 的 运 动 以 及 它 们 之 间 的 相 互 作 用",
+        "durationMs": 7620,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "1705fd925fd64261ad9a85683365331f",
+          "ok": true,
+          "text": "交通流量研究是驾驶员和车辆在两点之间的运动，以及它们之间的相互作用。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 110,
+            "prompt_ms": 62.073,
+            "prompt_per_token_ms": 0.5643,
+            "prompt_per_second": 1772.10703526493,
+            "predicted_n": 22,
+            "predicted_ms": 101.54,
+            "predicted_per_token_ms": 4.615454545454546,
+            "predicted_per_second": 216.6633838881229
+          },
+          "transcribeMs": 177.375,
+          "serverRssBytes": 2088714240,
+          "requestRoundTripMs": 182.028,
+          "sampledRssBytes": 2109407232
+        }
+      },
+      {
+        "id": "fleurs-zh-1829-r768",
+        "category": "mandarin",
+        "reference": "前 往 课 征 重 税 的 国 家 地 区 的 旅 客 有 时 可 以 省 下 一 大 笔 钱 在 这 些 地 方 购 买 酒 水 和 烟 草 等 产 品 特 别 划 算",
+        "durationMs": 10260,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "62b8c9dd45fa4b8faf70b4b8d7b731ad",
+          "ok": true,
+          "text": "前往苛征重税的国家地区的旅客有时可以省下一大笔钱，在这些地方购买酒水和烟草等产品特别划算。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 149,
+            "prompt_ms": 87.138,
+            "prompt_per_token_ms": 0.5848187919463088,
+            "prompt_per_second": 1709.9313732240812,
+            "predicted_n": 33,
+            "predicted_ms": 156.672,
+            "predicted_per_token_ms": 4.747636363636364,
+            "predicted_per_second": 210.6311274509804
+          },
+          "transcribeMs": 260.505,
+          "serverRssBytes": 2104262656,
+          "requestRoundTripMs": 265.57,
+          "sampledRssBytes": 2124955648
+        }
+      },
+      {
+        "id": "fleurs-zh-1839-r361",
+        "category": "mandarin",
+        "reference": "把 滑 雪 路 线 想 象 成 类 似 的 徒 步 路 线",
+        "durationMs": 6240,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "1d9c442ac63c4738b0d846bd1c53df56",
+          "ok": true,
+          "text": "把滑雪路线想象成类似的徒步路线。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 97,
+            "prompt_ms": 57.099,
+            "prompt_per_token_ms": 0.5886494845360825,
+            "prompt_per_second": 1698.8038319410148,
+            "predicted_n": 13,
+            "predicted_ms": 58.204,
+            "predicted_per_token_ms": 4.477230769230769,
+            "predicted_per_second": 223.35234691773763
+          },
+          "transcribeMs": 127.894,
+          "serverRssBytes": 2125529088,
+          "requestRoundTripMs": 132.951,
+          "sampledRssBytes": 2146238464
+        }
+      },
+      {
+        "id": "fleurs-zh-1846-r615",
+        "category": "mandarin",
+        "reference": "因 此 这 种 格 式 的 宽 高 比 除 以 12 得 到 最 简 单 的 整 数 比 便 是 3:2",
+        "durationMs": 8700,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f6d9b78419fb43319fed849266ad70e4",
+          "ok": true,
+          "text": "因此，这种格式的宽高比除以十二，得到最简单的整数比，便是三比二。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 82.356,
+            "prompt_per_token_ms": 0.669560975609756,
+            "prompt_per_second": 1493.515955121667,
+            "predicted_n": 28,
+            "predicted_ms": 127.71,
+            "predicted_per_token_ms": 4.561071428571428,
+            "predicted_per_second": 219.24673087463788
+          },
+          "transcribeMs": 224.206,
+          "serverRssBytes": 2138521600,
+          "requestRoundTripMs": 229.373,
+          "sampledRssBytes": 2159230976
+        }
+      },
+      {
+        "id": "fleurs-zh-1854-r762",
+        "category": "mandarin",
+        "reference": "当 天 格 林 尼 治 时 间 gmt 约 12 时 许 该 车 辆 被 拖 离 事 故 现 场",
+        "durationMs": 6660,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "cd6bad9653dc4718a7e1ce063028c62a",
+          "ok": true,
+          "text": "当天格林尼治时间约十二时许，该车辆被拖离车库现场。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 97,
+            "prompt_ms": 56.306,
+            "prompt_per_token_ms": 0.5804742268041236,
+            "prompt_per_second": 1722.7293716477818,
+            "predicted_n": 21,
+            "predicted_ms": 98.015,
+            "predicted_per_token_ms": 4.667380952380952,
+            "predicted_per_second": 214.25292047135642
+          },
+          "transcribeMs": 167.064,
+          "serverRssBytes": 2156707840,
+          "requestRoundTripMs": 172.607,
+          "sampledRssBytes": 2177417216
+        }
+      },
+      {
+        "id": "fleurs-zh-1860-r791",
+        "category": "mandarin",
+        "reference": "州 长 办 公 室 表 示 伤 者 中 有 十 九 人 是 警 察",
+        "durationMs": 5880,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "3a6d622ac6a141dc8315e75ea8f19816",
+          "ok": true,
+          "text": "州长办公室表示，伤者中有十九人是警察。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 84,
+            "prompt_ms": 56.29,
+            "prompt_per_token_ms": 0.6701190476190476,
+            "prompt_per_second": 1492.2721620181205,
+            "predicted_n": 17,
+            "predicted_ms": 79.191,
+            "predicted_per_token_ms": 4.658294117647059,
+            "predicted_per_second": 214.6708590622672
+          },
+          "transcribeMs": 146.649,
+          "serverRssBytes": 2170617856,
+          "requestRoundTripMs": 151.627,
+          "sampledRssBytes": 2191327232
+        }
+      },
+      {
+        "id": "fleurs-zh-1866-r652",
+        "category": "mandarin",
+        "reference": "首 先 大 多 数 骑 马 人 会 穿 带 跟 马 靴 而 且 鞋 底 光 滑 及 相 当 狭 窄",
+        "durationMs": 8280,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "302309f7fae44599a13eca53cc2bccda",
+          "ok": true,
+          "text": "首先，大多数骑马人会穿带跟马靴，而且鞋底光滑及相当狭窄。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 80.981,
+            "prompt_per_token_ms": 0.6583821138211382,
+            "prompt_per_second": 1518.8747977920748,
+            "predicted_n": 25,
+            "predicted_ms": 116.521,
+            "predicted_per_token_ms": 4.66084,
+            "predicted_per_second": 214.5535997802971
+          },
+          "transcribeMs": 212.234,
+          "serverRssBytes": 2182610944,
+          "requestRoundTripMs": 217.153,
+          "sampledRssBytes": 2203320320
+        }
+      },
+      {
+        "id": "fleurs-zh-1878-r611",
+        "category": "mandarin",
+        "reference": "教 会 中 央 集 权 制 在 罗 马 存 在 了 一 千 多 年 这 种 权 力 和 金 钱 的 集 中 让 许 多 人 开 始 质 疑 他 们 是 否 遵 守 了 这 一 信 条",
+        "durationMs": 10800,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "46769751bed3429aa01b298868949b06",
+          "ok": true,
+          "text": "教会中央集权制在罗马存在了一千多年。这种权力和金钱的集中，让许多人开始质疑他们是否遵守了这一信条。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 149,
+            "prompt_ms": 87.731,
+            "prompt_per_token_ms": 0.5887986577181208,
+            "prompt_per_second": 1698.3734369835067,
+            "predicted_n": 35,
+            "predicted_ms": 162.802,
+            "predicted_per_token_ms": 4.651485714285714,
+            "predicted_per_second": 214.98507389344113
+          },
+          "transcribeMs": 268.95,
+          "serverRssBytes": 2201812992,
+          "requestRoundTripMs": 274.182,
+          "sampledRssBytes": 2222522368
+        }
+      },
+      {
+        "id": "fleurs-zh-1885-r216",
+        "category": "mandarin",
+        "reference": "山 区 夏 令 时 晚 上 10 点 到 11 点 之 间 院 子 里 的 犯 人 们 引 发 了 一 场 火 灾",
+        "durationMs": 7020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "61e708969938461f990857dc5eea0528",
+          "ok": true,
+          "text": "山区下令时，晚上十点到十一点之间，院子里的犯人们引发了一场火灾。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 110,
+            "prompt_ms": 67.441,
+            "prompt_per_token_ms": 0.6131,
+            "prompt_per_second": 1631.055292774425,
+            "predicted_n": 24,
+            "predicted_ms": 116.105,
+            "predicted_per_token_ms": 4.8377083333333335,
+            "predicted_per_second": 206.70944403772444
+          },
+          "transcribeMs": 197.309,
+          "serverRssBytes": 2223374336,
+          "requestRoundTripMs": 203.741,
+          "sampledRssBytes": 2244083712
+        }
+      },
+      {
+        "id": "fleurs-zh-1894-r229",
+        "category": "mandarin",
+        "reference": "咖 喱 饭 菜 是 一 道 以 香 草 和 香 料 为 主 的 菜 肴 并 配 以 肉 类 或 蔬 菜",
+        "durationMs": 5760,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "1b2c3d98bc484c148698304fbf4a07a2",
+          "ok": true,
+          "text": "咖喱饭菜是一道以香草和香料为主的菜肴，并配以肉类或蔬菜。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 84,
+            "prompt_ms": 61.476,
+            "prompt_per_token_ms": 0.7318571428571429,
+            "prompt_per_second": 1366.3868826859261,
+            "predicted_n": 24,
+            "predicted_ms": 112.158,
+            "predicted_per_token_ms": 4.67325,
+            "predicted_per_second": 213.9838442197614
+          },
+          "transcribeMs": 186.447,
+          "serverRssBytes": 2239119360,
+          "requestRoundTripMs": 191.67,
+          "sampledRssBytes": 2259828736
+        }
+      },
+      {
+        "id": "fleurs-zh-1901-r249",
+        "category": "mandarin",
+        "reference": "人 工 智 能 有 很 强 的 科 幻 色 彩 但 它 其 实 是 计 算 机 科 学 非 常 重 要 的 一 个 分 支 研 究 的 是 机 器 的 行 为 学 习 和 智 能 适 应",
+        "durationMs": 11160,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "14e82ea0af0d469d92f27113973c8d5b",
+          "ok": true,
+          "text": "人工智能有很强的科幻色彩，但它其实是计算机科学非常重要的一个分支，研究的是机器的行为、学习和智能适应。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 162,
+            "prompt_ms": 93.937,
+            "prompt_per_token_ms": 0.579858024691358,
+            "prompt_per_second": 1724.5600774987493,
+            "predicted_n": 30,
+            "predicted_ms": 147.035,
+            "predicted_per_token_ms": 4.901166666666667,
+            "predicted_per_second": 204.03305335464344
+          },
+          "transcribeMs": 258.05,
+          "serverRssBytes": 2251882496,
+          "requestRoundTripMs": 262.998,
+          "sampledRssBytes": 2272591872
+        }
+      },
+      {
+        "id": "fleurs-zh-1906-r360",
+        "category": "mandarin",
+        "reference": "这 并 不 是 告 别 这 是 一 个 篇 章 的 结 束 也 是 新 篇 章 的 开 始",
+        "durationMs": 5580,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "05c858dcd3f74059ba54e77009365315",
+          "ok": true,
+          "text": "这并不是告别，这是一个篇章的结束，也是新篇章的开始。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 84,
+            "prompt_ms": 57.405,
+            "prompt_per_token_ms": 0.6833928571428571,
+            "prompt_per_second": 1463.2871701071335,
+            "predicted_n": 19,
+            "predicted_ms": 85.932,
+            "predicted_per_token_ms": 4.522736842105263,
+            "predicted_per_second": 221.10505981473722
+          },
+          "transcribeMs": 156.993,
+          "serverRssBytes": 2274279424,
+          "requestRoundTripMs": 162.264,
+          "sampledRssBytes": 2294988800
+        }
+      },
+      {
+        "id": "fleurs-zh-1913-r347",
+        "category": "mandarin",
+        "reference": "老 虎 的 咆 哮 不 像 狮 子 的 咆 哮 那 样 深 沉 而 更 像 一 句 生 气 嘶 吼 的 话 语",
+        "durationMs": 11660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "16e5603018c44576b5374c8bef1d96b7",
+          "ok": true,
+          "text": "老虎的咆哮不像狮子的咆哮那样深沉，而更像一句生气嘶吼的话语。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 162,
+            "prompt_ms": 95.901,
+            "prompt_per_token_ms": 0.5919814814814814,
+            "prompt_per_second": 1689.2420308443081,
+            "predicted_n": 26,
+            "predicted_ms": 121.453,
+            "predicted_per_token_ms": 4.671269230769231,
+            "predicted_per_second": 214.07458029031807
+          },
+          "transcribeMs": 236.285,
+          "serverRssBytes": 2287943680,
+          "requestRoundTripMs": 241.888,
+          "sampledRssBytes": 2308653056
+        }
+      },
+      {
+        "id": "fleurs-zh-1918-r557",
+        "category": "mandarin",
+        "reference": "孙 德 尔 本 斯 sundarbans 已 经 被 联 合 国 教 科 文 组 织 宣 布 为 世 界 遗 产 印 度 境 内 的 这 部 分 森 林 被 称 为 孙 德 尔 本 斯 国 家 公 园",
+        "durationMs": 12060,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9b6b9e0c91924522a096bdf083f54181",
+          "ok": true,
+          "text": "孙德尔本斯已经被联合国教科文组织宣布为世界遗产。印度境内的这部分森林被称为“孙德尔本斯国家公园”。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 175,
+            "prompt_ms": 100.6,
+            "prompt_per_token_ms": 0.5748571428571428,
+            "prompt_per_second": 1739.5626242544731,
+            "predicted_n": 33,
+            "predicted_ms": 159.458,
+            "predicted_per_token_ms": 4.832060606060606,
+            "predicted_per_second": 206.95104667059664
+          },
+          "transcribeMs": 280.603,
+          "serverRssBytes": 2310307840,
+          "requestRoundTripMs": 288.57,
+          "sampledRssBytes": 2331017216
+        }
+      },
+      {
+        "id": "fleurs-zh-1926-r827",
+        "category": "mandarin",
+        "reference": "亚 里 士 多 德 就 所 有 科 学 领 域 的 问 题 包 括 心 理 学 在 内 所 发 表 的 观 点 都 被 一 一 接 纳",
+        "durationMs": 8220,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "b328794190b449089483b1d836d295b5",
+          "ok": true,
+          "text": "亚里士多德就所有科学领域的问题，包括心理学在内，所发表的观点都被一一接纳。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 84.708,
+            "prompt_per_token_ms": 0.6886829268292682,
+            "prompt_per_second": 1452.0470321575294,
+            "predicted_n": 27,
+            "predicted_ms": 128.546,
+            "predicted_per_token_ms": 4.760962962962963,
+            "predicted_per_second": 210.04154154932866
+          },
+          "transcribeMs": 231.502,
+          "serverRssBytes": 2335391744,
+          "requestRoundTripMs": 239.07,
+          "sampledRssBytes": 2356101120
+        }
+      },
+      {
+        "id": "fleurs-zh-1939-r913",
+        "category": "mandarin",
+        "reference": "此 外 在 革 命 之 后 官 职 面 向 全 体 男 性 开 放 申 请 这 使 得 最 有 抱 负 最 成 功 之 人 有 机 会 飞 黄 腾 达",
+        "durationMs": 12120,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c46bec0cd0874b07a7d17566bb3bad9c",
+          "ok": true,
+          "text": "此外，在革命之后，官职面官职面向全体男性开放申请，这使得最有抱负、最成功之人有机会飞黄腾达。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 175,
+            "prompt_ms": 102.815,
+            "prompt_per_token_ms": 0.5875142857142857,
+            "prompt_per_second": 1702.0862714584448,
+            "predicted_n": 35,
+            "predicted_ms": 169.418,
+            "predicted_per_token_ms": 4.840514285714286,
+            "predicted_per_second": 206.5896185765385
+          },
+          "transcribeMs": 292.748,
+          "serverRssBytes": 2354741248,
+          "requestRoundTripMs": 298.834,
+          "sampledRssBytes": 2375450624
+        }
+      },
+      {
+        "id": "fleurs-zh-1944-r771",
+        "category": "mandarin",
+        "reference": "这 些 海 滩 有 时 挤 满 了 度 假 的 家 庭 沿 岸 排 列 着 各 种 各 样 的 商 店 游 泳 很 安 全",
+        "durationMs": 12880,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c85ff63c3b98402ab29d5d5f6c0eb94a",
+          "ok": true,
+          "text": "这些海滩又是挤满了度假的家庭，沿岸排列着各种各样的商店，游泳很安全。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 175,
+            "prompt_ms": 97.031,
+            "prompt_per_token_ms": 0.5544628571428571,
+            "prompt_per_second": 1803.5473199286826,
+            "predicted_n": 25,
+            "predicted_ms": 121.212,
+            "predicted_per_token_ms": 4.84848,
+            "predicted_per_second": 206.25020625020625
+          },
+          "transcribeMs": 241.595,
+          "serverRssBytes": 2379202560,
+          "requestRoundTripMs": 253.909,
+          "sampledRssBytes": 2399911936
+        }
+      },
+      {
+        "id": "fleurs-zh-1949-r765",
+        "category": "mandarin",
+        "reference": "昆 虫 学 家 们 用 虫 子 bug 一 词 来 正 式 称 呼 这 一 类 的 昆 虫",
+        "durationMs": 6060,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "dc3a3a0ad1b2481fbf019cf534000f04",
+          "ok": true,
+          "text": "昆虫学家们用“虫子”一词来正式称呼这一类的昆虫。",
+          "timings": {
+            "cache_n": 100,
+            "prompt_n": 1,
+            "prompt_ms": 7.461,
+            "prompt_per_token_ms": 7.461,
+            "prompt_per_second": 134.03029084573112,
+            "predicted_n": 22,
+            "predicted_ms": 111.495,
+            "predicted_per_token_ms": 5.067954545454546,
+            "predicted_per_second": 197.31826539306695
+          },
+          "transcribeMs": 133.879,
+          "serverRssBytes": 2402959360,
+          "requestRoundTripMs": 138.852,
+          "sampledRssBytes": 2423668736
+        }
+      },
+      {
+        "id": "fleurs-zh-1958-r25",
+        "category": "mandarin",
+        "reference": "这 座 城 市 与 该 国 其 他 城 市 形 成 了 鲜 明 对 比 因 为 它 更 多 的 是 阿 拉 伯 风 格 而 不 是 非 洲 风 格",
+        "durationMs": 9660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "4c9b3892b304444e96a1d9fdc40ac2cf",
+          "ok": true,
+          "text": "这座城市与该国其他城市形成了鲜明的对比，因为它更多的是阿拉伯风格，而不是非洲风格。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 136,
+            "prompt_ms": 87.602,
+            "prompt_per_token_ms": 0.6441323529411765,
+            "prompt_per_second": 1552.475970868245,
+            "predicted_n": 24,
+            "predicted_ms": 110.892,
+            "predicted_per_token_ms": 4.6205,
+            "predicted_per_second": 216.42679363705224
+          },
+          "transcribeMs": 213.328,
+          "serverRssBytes": 2403401728,
+          "requestRoundTripMs": 217.942,
+          "sampledRssBytes": 2424111104
+        }
+      },
+      {
+        "id": "fleurs-zh-1965-r9",
+        "category": "mandarin",
+        "reference": "这 里 几 乎 都 是 沙 滩 游 泳 很 安 全 大 部 分 地 方 都 有 新 西 兰 圣 诞 树 的 树 荫",
+        "durationMs": 6840,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "a81608fd70fe43c6bdce0a4bf050c8f3",
+          "ok": true,
+          "text": "这里几乎都是沙滩，游泳很安全。大部分地方都有新西兰圣诞树的树荫。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 97,
+            "prompt_ms": 62.014,
+            "prompt_per_token_ms": 0.639319587628866,
+            "prompt_per_second": 1564.1629309510754,
+            "predicted_n": 23,
+            "predicted_ms": 109.214,
+            "predicted_per_token_ms": 4.748434782608696,
+            "predicted_per_second": 210.5957111725603
+          },
+          "transcribeMs": 184.927,
+          "serverRssBytes": 2422128640,
+          "requestRoundTripMs": 190.618,
+          "sampledRssBytes": 2442838016
+        }
+      },
+      {
+        "id": "fleurs-zh-1972-r190",
+        "category": "mandarin",
+        "reference": "很 多 人 认 为 它 们 并 非 恐 龙 因 为 它 们 有 羽 毛 会 飞",
+        "durationMs": 8340,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "deec7906c2254b268a26f12631109689",
+          "ok": true,
+          "text": "很多人认为它们并非恐龙，因为它们有羽毛，会飞。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 123,
+            "prompt_ms": 85.505,
+            "prompt_per_token_ms": 0.6951626016260162,
+            "prompt_per_second": 1438.5123676977955,
+            "predicted_n": 18,
+            "predicted_ms": 82.274,
+            "predicted_per_token_ms": 4.570777777777778,
+            "predicted_per_second": 218.78114592702434
+          },
+          "transcribeMs": 182.985,
+          "serverRssBytes": 2436268032,
+          "requestRoundTripMs": 188.173,
+          "sampledRssBytes": 2456977408
+        }
+      },
+      {
+        "id": "fleurs-zh-1978-r191",
+        "category": "mandarin",
+        "reference": "跳 羚 队 以 五 连 败 收 官",
+        "durationMs": 7340,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "938866e9cb654bb7b025e87281450fb5",
+          "ok": true,
+          "text": "跳羚队以五连败收官。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 110,
+            "prompt_ms": 63.507,
+            "prompt_per_token_ms": 0.5773363636363636,
+            "prompt_per_second": 1732.092525233439,
+            "predicted_n": 13,
+            "predicted_ms": 58.418,
+            "predicted_per_token_ms": 4.493692307692307,
+            "predicted_per_second": 222.5341504330857
+          },
+          "transcribeMs": 136.275,
+          "serverRssBytes": 2453241856,
+          "requestRoundTripMs": 141.87,
+          "sampledRssBytes": 2473951232
+        }
+      },
+      {
+        "id": "fleurs-zh-1985-r253",
+        "category": "mandarin",
+        "reference": "这 项 活 动 与 阿 尔 卑 斯 式 滑 雪 旅 行 或 登 山 运 动 相 关 但 通 常 不 会 进 行 这 两 项 活 动 这 两 项 活 动 要 在 陡 峭 的 地 形 上 进 行 而 且 需 要 更 硬 的 滑 雪 板 和 靴 子",
+        "durationMs": 12000,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "5b31195ba1bc4c4ea339fc7b55a3d239",
+          "ok": true,
+          "text": "这项活动与阿尔卑斯式的滑雪旅行或登山运动相关，但通常不会进行这两项运动。这两项活动要在陡峭的地形上进行，而且需要更硬的滑雪板和靴子。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 175,
+            "prompt_ms": 101.72,
+            "prompt_per_token_ms": 0.5812571428571428,
+            "prompt_per_second": 1720.408965788439,
+            "predicted_n": 48,
+            "predicted_ms": 225.5,
+            "predicted_per_token_ms": 4.697916666666667,
+            "predicted_per_second": 212.86031042128604
+          },
+          "transcribeMs": 348.929,
+          "serverRssBytes": 2470772736,
+          "requestRoundTripMs": 354.336,
+          "sampledRssBytes": 2491482112
+        }
+      },
+      {
+        "id": "fleurs-zh-1990-r637",
+        "category": "mandarin",
+        "reference": "博 客 还 能 帮 助 学 生 提 高 写 作 能 力 尽 管 学 生 们 开 始 写 博 客 时 用 的 语 法 和 拼 写 往 往 都 很 马 虎 读 者 的 出 现 通 常 会 改 变 这 一 状 况",
+        "durationMs": 11160,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "3decab3a29fe4cd7a687029f58d62fc5",
+          "ok": true,
+          "text": "博客还能帮助学生提高写作能力。尽管学生开始写博客时用的语法和拼写往往都很马虎，读者的出现通常会改变这一状况。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 162,
+            "prompt_ms": 94.208,
+            "prompt_per_token_ms": 0.5815308641975309,
+            "prompt_per_second": 1719.5991847826087,
+            "predicted_n": 38,
+            "predicted_ms": 178.454,
+            "predicted_per_token_ms": 4.696157894736842,
+            "predicted_per_second": 212.9400293633093
+          },
+          "transcribeMs": 294.685,
+          "serverRssBytes": 2498953216,
+          "requestRoundTripMs": 300.834,
+          "sampledRssBytes": 2519662592
+        }
+      },
+      {
+        "id": "fleurs-zh-1998-r760",
+        "category": "mandarin",
+        "reference": "它 们 脚 上 有 鳞 片 和 爪 子 会 产 卵 还 像 霸 王 龙 一 样 用 两 条 后 腿 走 路",
+        "durationMs": 6300,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "959e7c29dcef465d8772d0186cbd2366",
+          "ok": true,
+          "text": "它们脚上有鳞片和爪子，会产卵，还像霸王龙一样用两条后腿走路。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 97,
+            "prompt_ms": 60.4,
+            "prompt_per_token_ms": 0.622680412371134,
+            "prompt_per_second": 1605.9602649006624,
+            "predicted_n": 28,
+            "predicted_ms": 129.794,
+            "predicted_per_token_ms": 4.6355,
+            "predicted_per_second": 215.72645885017795
+          },
+          "transcribeMs": 203.543,
+          "serverRssBytes": 2522284032,
+          "requestRoundTripMs": 208.765,
+          "sampledRssBytes": 2542993408
+        }
+      },
+      {
+        "id": "fleurs-zh-2003-r400",
+        "category": "mandarin",
+        "reference": "若 想 从 最 佳 角 度 欣 赏 香 港 的 美 景 可 以 离 开 该 岛 前 往 对 面 的 九 龙 海 滨",
+        "durationMs": 12320,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "7b71de7bba284700bb650f3bac6a6913",
+          "ok": true,
+          "text": "若想从最佳角度欣赏香港的美景，可以离开该岛，前往对面的九龙海滨。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 175,
+            "prompt_ms": 102.194,
+            "prompt_per_token_ms": 0.5839657142857143,
+            "prompt_per_second": 1712.4293011331388,
+            "predicted_n": 25,
+            "predicted_ms": 117.675,
+            "predicted_per_token_ms": 4.707,
+            "predicted_per_second": 212.44954323348205
+          },
+          "transcribeMs": 240.421,
+          "serverRssBytes": 2536996864,
+          "requestRoundTripMs": 245.867,
+          "sampledRssBytes": 2557706240
+        }
+      },
+      {
+        "id": "fleurs-zh-2009-r828",
+        "category": "mandarin",
+        "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+        "durationMs": 14220,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e9cd342506d546ee97dcd6672ca8c1d2",
+          "ok": true,
+          "text": "最容易获得植物性资源应该是叶子和豆科植物中的蛋白质。但像我们的像我们这样的灵长类食物，灵长类动物很难消化这种蛋白质，除非是煮熟的。",
+          "timings": {
+            "cache_n": 4,
+            "prompt_n": 201,
+            "prompt_ms": 107.625,
+            "prompt_per_token_ms": 0.5354477611940298,
+            "prompt_per_second": 1867.595818815331,
+            "predicted_n": 44,
+            "predicted_ms": 209.183,
+            "predicted_per_token_ms": 4.7541590909090905,
+            "predicted_per_second": 210.342140613721
+          },
+          "transcribeMs": 340.517,
+          "serverRssBytes": 2560327680,
+          "requestRoundTripMs": 345.826,
+          "sampledRssBytes": 2581037056
+        }
+      }
+    ],
+    "performance": [
+      {
+        "type": "result",
+        "requestId": "8c5807b287864166b4edd0ce61be0c5d",
+        "ok": true,
+        "text": "昆虫学家们用“虫子”一词来正式称呼这一类的昆虫。",
+        "timings": {
+          "cache_n": 100,
+          "prompt_n": 1,
+          "prompt_ms": 7.382,
+          "prompt_per_token_ms": 7.382,
+          "prompt_per_second": 135.464643727987,
+          "predicted_n": 22,
+          "predicted_ms": 107.191,
+          "predicted_per_token_ms": 4.872318181818182,
+          "predicted_per_second": 205.24111166049389
+        },
+        "transcribeMs": 130.091,
+        "serverRssBytes": 2588803072,
+        "requestRoundTripMs": 135.606,
+        "sampledRssBytes": 2609512448
+      },
+      {
+        "type": "result",
+        "requestId": "8a868916856747298abc90336759e5fe",
+        "ok": true,
+        "text": "昆虫学家们用“虫子”一词来正式称呼这一类的昆虫。",
+        "timings": {
+          "cache_n": 100,
+          "prompt_n": 1,
+          "prompt_ms": 7.255,
+          "prompt_per_token_ms": 7.255,
+          "prompt_per_second": 137.83597518952448,
+          "predicted_n": 22,
+          "predicted_ms": 106.381,
+          "predicted_per_token_ms": 4.8355,
+          "predicted_per_second": 206.80384655154586
+        },
+        "transcribeMs": 123.124,
+        "serverRssBytes": 2588803072,
+        "requestRoundTripMs": 128.209,
+        "sampledRssBytes": 2609512448
+      },
+      {
+        "type": "result",
+        "requestId": "642ce4d38c8343c7936d7e8d5147a029",
+        "ok": true,
+        "text": "昆虫学家们用“虫子”一词来正式称呼这一类的昆虫。",
+        "timings": {
+          "cache_n": 100,
+          "prompt_n": 1,
+          "prompt_ms": 7.897,
+          "prompt_per_token_ms": 7.897,
+          "prompt_per_second": 126.63036596175762,
+          "predicted_n": 22,
+          "predicted_ms": 108.494,
+          "predicted_per_token_ms": 4.9315454545454545,
+          "predicted_per_second": 202.77619038840857
+        },
+        "transcribeMs": 126.052,
+        "serverRssBytes": 2588803072,
+        "requestRoundTripMs": 131.373,
+        "sampledRssBytes": 2609512448
+      }
+    ],
+    "shutdown": {
+      "type": "stopped"
+    }
+  },
+  "summaries": {
+    "spawnToReadyMs": {
+      "count": 1,
+      "min": 1150.925,
+      "median": 1150.925,
+      "p95": 1150.925,
+      "max": 1150.925,
+      "mean": 1150.925
+    },
+    "firstRequestMs": {
+      "count": 1,
+      "min": 192.521,
+      "median": 192.521,
+      "p95": 192.521,
+      "max": 192.521,
+      "mean": 192.521
+    },
+    "coldEndToEndMs": {
+      "count": 1,
+      "min": 1343.446,
+      "median": 1343.446,
+      "p95": 1343.446,
+      "max": 1343.446,
+      "mean": 1343.446
+    },
+    "warmRequestMs": {
+      "count": 3,
+      "min": 128.209,
+      "median": 131.373,
+      "p95": 135.183,
+      "max": 135.606,
+      "mean": 131.729
+    },
+    "maxSampledRssBytes": 2609512448
+  }
+}

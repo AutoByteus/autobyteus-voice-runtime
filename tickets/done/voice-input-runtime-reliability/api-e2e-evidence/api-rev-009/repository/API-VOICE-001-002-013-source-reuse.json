@@ -1,0 +1,137 @@
+{
+  "schemaVersion": 1,
+  "apiRevision": "API-REV-009",
+  "reviewedSourceCommit": "1d712683c70c338d8bf5074f27c8b0c9da47a8cb",
+  "priorFailedSourceCommit": "24a994a51256f0eef5840ecdc977febec71ea491",
+  "repositoryClean": true,
+  "authorityAndExecutionRecords": [
+    {
+      "path": "release/evidence/qualification-corpora/english-v2.json",
+      "priorSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "currentSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "unchanged": true
+    },
+    {
+      "path": "release/evidence/baselines/english-v2.json",
+      "priorSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "currentSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "unchanged": true
+    },
+    {
+      "path": "benchmark/baseline/trusted-baseline.mjs",
+      "priorSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "currentSha256": "d9aee9095f4b0fbc24aa5e2219253e885c2056463020ea344f039a3a53a40d8c",
+      "unchanged": true
+    },
+    {
+      "path": "benchmark/baseline/english-preservation-authority.mjs",
+      "priorSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "currentSha256": "0bd34ce8b1b0d50a4a4e83985db7061fad8cb2aa96e755d68fbe729e53bcf61f",
+      "unchanged": true
+    },
+    {
+      "path": "tooling/verify-english-preservation.mjs",
+      "priorSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "currentSha256": "8b87701754afe9167e0537767cf00583bbab351c5ec05a278931f506f35e8722",
+      "unchanged": true
+    },
+    {
+      "path": "tests/release/trusted-baseline.test.mjs",
+      "priorSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "currentSha256": "f40534e23f1f6fe40442db2db94d1d66f4e45d9654dd5c0fe365dcd4529fae39",
+      "unchanged": true
+    },
+    {
+      "path": "build/input-recipes/english-darwin-arm64-v1.json",
+      "priorSha256": "8cae5d57e8a3718c395f878cb80b3211570c8a6f0a5156067e4cc428469af2e4",
+      "currentSha256": "8cae5d57e8a3718c395f878cb80b3211570c8a6f0a5156067e4cc428469af2e4",
+      "unchanged": true
+    },
+    {
+      "path": "build/input-recipes/chinese-darwin-arm64-v1.json",
+      "priorSha256": "bdac349ab81dc0bdc8b9a43c7dc57f16ea550f1d7facf0b36f666db0f204371d",
+      "currentSha256": "bdac349ab81dc0bdc8b9a43c7dc57f16ea550f1d7facf0b36f666db0f204371d",
+      "unchanged": true
+    },
+    {
+      "path": "contracts/catalog/current-release-matrix-v1.json",
+      "priorSha256": "c52b409cfe1cdcd8f104f4894b40134c6f78236198cb3aa1792fb5f97e6aa7f6",
+      "currentSha256": "c52b409cfe1cdcd8f104f4894b40134c6f78236198cb3aa1792fb5f97e6aa7f6",
+      "unchanged": true
+    },
+    {
+      "path": "benchmark/darwin-arm64-runner-preflight.mjs",
+      "priorSha256": "aa131e85ea8f79f8cd7eb35d382e54969e6ad0f69392fc41cdd1bad21c90bb42",
+      "currentSha256": "aa131e85ea8f79f8cd7eb35d382e54969e6ad0f69392fc41cdd1bad21c90bb42",
+      "unchanged": true
+    },
+    {
+      "path": "benchmark/run-profile-qualification.mjs",
+      "priorSha256": "7dc589c91649ee9eca3a4e43d8213f6ff649f88b688e3e033d3e6341305f4363",
+      "currentSha256": "7dc589c91649ee9eca3a4e43d8213f6ff649f88b688e3e033d3e6341305f4363",
+      "unchanged": true
+    },
+    {
+      "path": "build/package-assembler.mjs",
+      "priorSha256": "c96a17296cbd8e0229c9e7798e30d72995a99f3591db39a6f13c8cb09150b764",
+      "currentSha256": "c96a17296cbd8e0229c9e7798e30d72995a99f3591db39a6f13c8cb09150b764",
+      "unchanged": true
+    },
+    {
+      "path": "packaging/archive/pathpolicy.go",
+      "priorSha256": "260f58daacc573cfdd4294d225b4051270a012e872b958856bbf50ac06627c07",
+      "currentSha256": "260f58daacc573cfdd4294d225b4051270a012e872b958856bbf50ac06627c07",
+      "unchanged": true
+    },
+    {
+      "path": "packaging/archive/json.go",
+      "priorSha256": "a30538b18e85c44beccef7170b627f244f0a073b143b1823eadd05c47edb4d5c",
+      "currentSha256": "a30538b18e85c44beccef7170b627f244f0a073b143b1823eadd05c47edb4d5c",
+      "unchanged": true
+    }
+  ],
+  "allListedAuthoritiesUnchanged": true,
+  "sourceDiffNameStatus": [
+    "M\tbuild/python/materialize-runtime.mjs",
+    "A\tbuild/python/runtime-closure.mjs",
+    "A\tpackaging/archive/runtime_closure_manifest_test.go",
+    "M\ttests/build/python-archive-link-normalization.test.mjs",
+    "A\ttests/build/python-runtime-closure.test.mjs",
+    "A\ttests/fixtures/python-runtime-closure/api-rev-008-package-paths.txt.gz",
+    "M\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-coverage-investigation.md",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/SHA256SUMS.txt",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/environment/API-VOICE-003-004-ac-power-block.json",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/environment/cleanup-and-power.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/environment/darwin-arm64-preflight-v2.json",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/environment/functional-preflight-v2.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/environment/voice-caffeinate.pid",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/repository/API-VOICE-002-013-authority-reuse.json",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/repository/focused-build-functional-authority.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/repository/npm-ci.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-007/repository/npm-run-check.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/SHA256SUMS.txt",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/API-F-004-focused-manifest-analysis.json",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/API-F-004-focused-manifest-probe.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/API-F-004-package-manifest-path-policy-failure.json",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/API-F-004-probe-package-files-v1.json",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/build-primary.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/create-native-build-environment.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/environment/cleanup-and-process-scan.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/environment/darwin-arm64-preflight-v2.json",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/environment/functional-preflight-v2.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/environment/voice-caffeinate.pid",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/inputs/corpus-validation.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/inputs/materialization.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/repository/API-VOICE-001-002-013-source-reuse.json",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/repository/focused-build-functional-authority.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/repository/npm-ci.log",
+    "A\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/repository/npm-run-check.log",
+    "M\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md",
+    "M\ttickets/in-progress/voice-input-runtime-reliability/api-e2e-revision-record.md",
+    "M\ttickets/in-progress/voice-input-runtime-reliability/implementation-handoff.md",
+    "M\ttickets/in-progress/voice-input-runtime-reliability/implementation-revision-record.md"
+  ],
+  "expectedRuntimeClosurePathsPresent": true,
+  "durableApiE2eCoverageChanged": false,
+  "note": "IR-016 source changes are bounded to Python runtime closure and its implementation-owned regression coverage; API-VOICE-002/API-VOICE-013 and core package/preflight/profile/path-policy owners remain byte-identical."
+}

@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "profileId": "english",
+  "components": [
+    {
+      "componentId": "go",
+      "versionOrRevision": "Go 1.26.5",
+      "licenseIdentity": "BSD-3-Clause",
+      "licensePath": "licenses/GO-LICENSE.txt",
+      "source": "https://go.dev/LICENSE",
+      "redistribution": "approved",
+      "attributionRequired": true
+    },
+    {
+      "componentId": "python-build-standalone",
+      "versionOrRevision": "CPython 3.12.13 release 20260718",
+      "licenseIdentity": "MPL-2.0 plus bundled notices",
+      "licensePath": "licenses/PYTHON-BUILD-STANDALONE-LICENSE.txt",
+      "source": "https://github.com/astral-sh/python-build-standalone",
+      "redistribution": "approved",
+      "attributionRequired": true
+    },
+    {
+      "componentId": "mlx-wheelhouse",
+      "versionOrRevision": "darwin-arm64 lock v1",
+      "licenseIdentity": "mixed; see exact package metadata index",
+      "licensePath": "licenses/PYTHON-WHEEL-LICENSE-INDEX.json",
+      "source": "https://pypi.org/",
+      "redistribution": "approved",
+      "attributionRequired": true
+    },
+    {
+      "componentId": "whisper-small-mlx",
+      "versionOrRevision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+      "licenseIdentity": "MIT",
+      "licensePath": "licenses/MIT-LICENSE.txt",
+      "source": "https://huggingface.co/mlx-community/whisper-small-mlx",
+      "redistribution": "approved",
+      "attributionRequired": true
+    }
+  ]
+}

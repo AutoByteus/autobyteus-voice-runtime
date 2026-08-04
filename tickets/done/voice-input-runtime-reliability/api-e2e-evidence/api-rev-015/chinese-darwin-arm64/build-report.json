@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "af008705488a029b95007e25c7c00484387d3ffe",
+  "packageVersion": "1.0.0",
+  "buildInputManifestFileName": "voice-chinese-darwin-arm64-1.0.0.zip.inputs.json",
+  "buildInputManifestSha256": "f57c43af870cd21dc39a3d5900b544fc6ba6b9df1861c5991a5f223b7bfc7456",
+  "buildInputProvenanceFileName": "voice-chinese-darwin-arm64-1.0.0.zip.provenance.json",
+  "buildInputProvenanceSha256": "8d3c35448d5256a6e1a1dd7f92e6ba64aed26ae22cf166b3961e7c4179e87b39",
+  "buildInputRecipeSha256": "aa9f9b437f3155f1767431107acf61b11eab843ccf03369b456de8fd04a0ba70",
+  "nativeBuildEnvironmentFileName": "voice-chinese-darwin-arm64-1.0.0.zip.build-environment.json",
+  "nativeBuildEnvironmentSha256": "b24fb9c5334039717c39b07be2e005012fe7b90d839d75c44a1aa7784ee96f21",
+  "releaseMatrixId": "voice-runtime-darwin-arm64-v1",
+  "releaseMatrixSha256": "f3f57336d2598bc7c78ba0d8a10e6ad4da77c16b10274533986f29571d6de76d",
+  "repositoryBuildLockSha256": "742618f8859bb5c7c4300f2e5fec54a80afa0fe31a1392230eb24480a078680f",
+  "goToolchainHost": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "goToolchainArchiveSha256": "efb87ff28af9a188d0536ef5d42e63dd52ba8263cd7344a993cc48dd11dedb6a",
+  "goToolchainRootManifestSha256": "675d0ddbda6f6994975a17821aae5d6628aca94ca5fb6210ef1d00a850a6bce9",
+  "goToolchainRootTreeSha256": "27fd7f0918282550923f1820c890432b262feb7e574cb6bfd3c9f4962cdbb9ee",
+  "goToolchainRootFileCount": 15026,
+  "goToolchainRootSizeBytes": 228637077,
+  "packageId": "voice.chinese.fun-asr-nano-0.6b-gguf-q8.darwin-arm64",
+  "profileId": "chinese",
+  "languageMode": "zh",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "providerId": "autobyteus.voice.funasr-nano-q8",
+  "modelId": "fun-asr-nano-gguf-q8",
+  "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+  "descriptorSha256": "fdd5575345cb5f19692d3889b42bc235704e218321dbf908103ce2a736cec480",
+  "fileManifestSha256": "4c4bf1d6cb0d6aad363f166ac93609e4f1fe598692ed0f441a6afb1d5e95d73b",
+  "launcherSha256": "8e00c10bad094d90271800f36a2e592cd5200235a744627d2e588c98df110008",
+  "launcherPlanSha256": "9bb2559dfec737855d141307a155d4402fa061da3c446a5901e6375b2387b62b",
+  "hostSha256": "a55737d7b758f72c375f0cb7ae92889681b76610f47406e456c8c58c362e3fc0",
+  "engineConfigurationSha256": "ad42cf319e1970e62594c1fe10b12ace2dcd8917755b8f38883ffedcc3c781ef",
+  "modelSha256": "2d0eb9783bacb9603719f22db5bdedc9d124447025c30bb87c38a3c5c9edfa9c",
+  "normalizerSha256": "ccf955183f8569c0dc3eda6e47df2a8dbc76f6eae354618643b6238874b9e7ec",
+  "protocolSha256": "8ad5b79320f01bc2b01821b2a592b337f8b62521929adf0f4ad281b34cbb7b27",
+  "noticeInventorySha256": "1d794497c64ba28c1158b51d215159651657cf660e2910cfaaa276dfe1ab2a1a",
+  "archive": {
+    "compressedSizeBytes": 1068524833,
+    "entryCount": 21,
+    "extractedSizeBytes": 1285163754,
+    "schemaVersion": 1,
+    "sha256": "e867796b0b362f27e3800f593ffac1201e710d3f2b87af883cd1437660ad66c0"
+  }
+}

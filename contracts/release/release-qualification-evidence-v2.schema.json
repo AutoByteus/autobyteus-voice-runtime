@@ -1,0 +1,746 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "intendedRelease",
+    "sourceCommit",
+    "runnerCommit",
+    "testCommit",
+    "releaseMatrix",
+    "profileResourcePolicy",
+    "qualificationSet",
+    "mainReachability",
+    "selectionStudy",
+    "candidateHistory",
+    "profileQualifications",
+    "expectedProviderArchives",
+    "limitations",
+    "functionalDecision",
+    "performanceAssessment"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "artifactKind": {
+      "const": "release-qualification-evidence"
+    },
+    "intendedRelease": {
+      "$ref": "#/$defs/intended"
+    },
+    "sourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "runnerCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "testCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "releaseMatrix": {
+      "$ref": "#/$defs/matrix"
+    },
+    "qualificationSet": {
+      "$ref": "#/$defs/file"
+    },
+    "mainReachability": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["maintainedMainCommit", "releaseCommit", "reachable"],
+      "properties": {
+        "maintainedMainCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "releaseCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "reachable": {
+          "const": true
+        }
+      }
+    },
+    "selectionStudy": {
+      "$ref": "#/$defs/digest"
+    },
+    "candidateHistory": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object"
+      }
+    },
+    "profileQualifications": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/profile"
+      }
+    },
+    "expectedProviderArchives": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "items"],
+      "properties": {
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/archiveItem"
+          }
+        }
+      }
+    },
+    "limitations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "functionalDecision": {
+      "const": "pass"
+    },
+    "performanceAssessment": {
+      "enum": ["controlled-pass", "controlled-miss", "loaded-host-observation"]
+    },
+    "profileResourcePolicy": {
+      "$ref": "#/$defs/policyIdentity"
+    }
+  },
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40}$)[a-f0-9]{40}$"
+    },
+    "matrix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["matrixId", "sha256"],
+      "properties": {
+        "matrixId": {
+          "const": "voice-runtime-darwin-arm64-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "languageMode",
+        "platform",
+        "architecture",
+        "packageId",
+        "providerId",
+        "modelId",
+        "candidateDecision",
+        "recipeSha256",
+        "provenanceSha256",
+        "nativeBuildEnvironmentSha256",
+        "qualificationAttemptsSha256",
+        "attempts",
+        "repositoryBuildLockSha256",
+        "goToolchainRootTreeSha256",
+        "buildReportSha256",
+        "reproducibilityProofSha256",
+        "archive",
+        "descriptorSha256",
+        "fileManifestSha256",
+        "launcherSha256",
+        "launcherPlanSha256",
+        "hostSha256",
+        "engineConfigurationSha256",
+        "modelSha256",
+        "normalizerSha256",
+        "protocolSha256",
+        "capabilityDigest",
+        "noticeInventorySha256",
+        "generatedComplianceSha256",
+        "preflightSha256",
+        "sandboxProfileSha256",
+        "corpusManifestSha256",
+        "baselineSha256",
+        "rawResultsSha256",
+        "resultIndexSha256",
+        "runtimeConformanceSha256",
+        "performance",
+        "quality",
+        "limitations",
+        "outcomes",
+        "qualificationSummary",
+        "performanceAssessment",
+        "resourcePolicy",
+        "functionalDecision",
+        "preparationStageEvidenceSha256",
+        "preparationEvidence"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "languageMode": {
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "packageId": {
+          "type": "string"
+        },
+        "providerId": {
+          "type": "string"
+        },
+        "modelId": {
+          "type": "string"
+        },
+        "candidateDecision": {
+          "enum": ["preserve", "select"]
+        },
+        "recipeSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "provenanceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "repositoryBuildLockSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "goToolchainRootTreeSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "buildReportSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "reproducibilityProofSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "archive": {
+          "$ref": "#/$defs/archive"
+        },
+        "descriptorSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "fileManifestSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "launcherSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "launcherPlanSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "hostSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "engineConfigurationSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "modelSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "normalizerSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "protocolSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "capabilityDigest": {
+          "$ref": "#/$defs/sha"
+        },
+        "noticeInventorySha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "generatedComplianceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "preflightSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "sandboxProfileSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "corpusManifestSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "baselineSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "rawResultsSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "resultIndexSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "runtimeConformanceSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "performance": {
+          "$ref": "#/$defs/performance"
+        },
+        "quality": {
+          "type": "object"
+        },
+        "limitations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "outcomes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "actualPlatform",
+            "normalizationFixtures",
+            "relocation",
+            "offline",
+            "noPackageMutation",
+            "recovery",
+            "licenseApproved"
+          ],
+          "properties": {
+            "actualPlatform": {
+              "const": true
+            },
+            "normalizationFixtures": {
+              "const": true
+            },
+            "relocation": {
+              "const": true
+            },
+            "offline": {
+              "const": true
+            },
+            "noPackageMutation": {
+              "const": true
+            },
+            "recovery": {
+              "const": true
+            },
+            "licenseApproved": {
+              "const": true
+            }
+          }
+        },
+        "nativeBuildEnvironmentSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "qualificationAttemptsSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "attempts": {
+          "$ref": "#/$defs/attemptCounts"
+        },
+        "qualificationSummary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fileName", "sha256"],
+          "properties": {
+            "fileName": {
+              "const": "qualification-summary-v2.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            }
+          }
+        },
+        "performanceAssessment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "fileName",
+            "sha256",
+            "classification",
+            "resourcePolicySha256"
+          ],
+          "properties": {
+            "fileName": {
+              "const": "performance-assessment-v1.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            },
+            "classification": {
+              "enum": [
+                "controlled-pass",
+                "controlled-miss",
+                "loaded-host-observation"
+              ]
+            },
+            "resourcePolicySha256": {
+              "$ref": "#/$defs/sha"
+            }
+          }
+        },
+        "functionalDecision": {
+          "const": "pass"
+        },
+        "resourcePolicy": {
+          "$ref": "#/$defs/resourcePolicy"
+        },
+        "preparationStageEvidenceSha256": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/sha"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "preparationEvidence": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/preparationEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "profileId": {
+                "const": "chinese"
+              }
+            },
+            "required": ["profileId"]
+          },
+          "then": {
+            "properties": {
+              "preparationStageEvidenceSha256": {
+                "$ref": "#/$defs/sha"
+              },
+              "preparationEvidence": {
+                "$ref": "#/$defs/preparationEvidence"
+              }
+            }
+          },
+          "else": {
+            "properties": {
+              "preparationStageEvidenceSha256": {
+                "type": "null"
+              },
+              "preparationEvidence": {
+                "type": "null"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "intended": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtimeVersion", "releaseTag"],
+      "properties": {
+        "runtimeVersion": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+        },
+        "releaseTag": {
+          "type": "string",
+          "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+        }
+      }
+    },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "qualification-set-v2.json"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "sha256"],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "archiveItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "archive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileName",
+        "sizeBytes",
+        "sha256",
+        "extractedSizeBytes",
+        "entryCount"
+      ],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+\\.zip$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "extractedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "entryCount": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "performance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "coldCount",
+        "warmPreparationCount",
+        "warmRequestCount",
+        "failures",
+        "timeouts",
+        "samplesSha256"
+      ],
+      "properties": {
+        "coldCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warmPreparationCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "warmRequestCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failures": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timeouts": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "samplesSha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "attemptCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["started", "succeeded", "failed", "timedOut", "excluded"],
+      "properties": {
+        "started": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "succeeded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timedOut": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excluded": {
+          "const": 0
+        }
+      }
+    },
+    "policyIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "fileName", "sha256"],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-profile-resource-policy-v1"
+        },
+        "fileName": {
+          "const": "profile-resource-policy-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "resourcePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyId",
+        "sha256",
+        "row",
+        "observedPeakProcessTreeRssBytes",
+        "hardCeilingMet"
+      ],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-profile-resource-policy-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "row": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "profileId",
+            "platform",
+            "architecture",
+            "hardProcessTreeRssCeilingBytes",
+            "assessmentOptimizationTargetBytes"
+          ],
+          "properties": {
+            "profileId": {
+              "enum": ["english", "chinese"]
+            },
+            "platform": {
+              "const": "darwin"
+            },
+            "architecture": {
+              "const": "arm64"
+            },
+            "hardProcessTreeRssCeilingBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "assessmentOptimizationTargetBytes": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "observedPeakProcessTreeRssBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hardCeilingMet": {
+          "type": "boolean"
+        }
+      }
+    },
+    "diagnosticContractIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contractId", "fileName", "sha256"],
+      "properties": {
+        "contractId": {
+          "const": "autobyteus-voice-preparation-diagnostics-v1"
+        },
+        "fileName": {
+          "const": "preparation-diagnostics-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "stageEvidenceSchemaIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "preparation-stage-evidence-v1.schema.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "preparationEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diagnosticContract",
+        "stageEvidenceSchema",
+        "qualificationClock",
+        "attemptCount",
+        "validAttemptCount",
+        "privacyDecision"
+      ],
+      "properties": {
+        "diagnosticContract": {
+          "$ref": "#/$defs/diagnosticContractIdentity"
+        },
+        "stageEvidenceSchema": {
+          "$ref": "#/$defs/stageEvidenceSchemaIdentity"
+        },
+        "qualificationClock": {
+          "const": "qualification-attempt-monotonic-v1"
+        },
+        "attemptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "validAttemptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "privacyDecision": {
+          "enum": ["pass", "fail"]
+        }
+      }
+    }
+  }
+}

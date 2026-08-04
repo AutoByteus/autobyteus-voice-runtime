@@ -1,0 +1,3 @@
+Chinese production qualification completed successfully: runner exit 0, functionalDecision pass, 260/260 succeeded.
+The outer temporary API/E2E harness then checked obsolete field decision instead of functionalDecision and exited before English. This did not rerun or invalidate Chinese evidence.
+Disposition: preserve the checkpoint and resume serially at English using the same exact source, current assets root, and preflight identity.

@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "purpose": "build-time bytecode priming for provider-imported modules only",
+  "root": "/private/tmp/autobyteus-voice-trimmed-provider-proof-20260802",
+  "ready": {
+    "type": "ready",
+    "backend": "mlx-whisper-fp16",
+    "pid": 21309,
+    "importMs": 3437.279,
+    "modelLoadMs": 170.375,
+    "workerReadyMs": 3629.552,
+    "maxRssBytes": 860749824,
+    "controllerReadyMs": 4020.334
+  },
+  "shutdown": {
+    "type": "shutdown-complete",
+    "maxRssBytes": 860749824
+  },
+  "exitCode": 0,
+  "stderr": ""
+}

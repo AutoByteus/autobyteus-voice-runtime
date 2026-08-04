@@ -1,0 +1,49 @@
+[2026-08-03T14:24:23Z] corrected English primary build begin
+node:internal/errors:983
+  const err = new Error(message);
+              ^
+
+Error: Command failed: /Users/normy/.hermes/node/bin/node /private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/mlx.mjs --target darwin-arm64 --inputs /private/tmp/autobyteus-voice-api-e2e-r6-20260803/output/inputs/english-darwin-arm64 --stage /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/package --build-environment /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/native-build-environment-v1.json --trusted-tools /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/trusted-native-tools
+file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:24
+        throw new Error("Symbolic links are forbidden.");
+              ^
+
+Error: Symbolic links are forbidden.
+    at visit (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:24:15)
+    at async visit (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:25:32)
+    at async regularFiles (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:31:3)
+    at async prune (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/python/materialize-runtime.mjs:109:26)
+    at async materializePythonRuntime (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/python/materialize-runtime.mjs:80:5)
+    at async copyPythonProvider (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/common.mjs:104:24)
+    at async file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/mlx.mjs:45:1
+
+Node.js v22.23.1
+
+    at genericNodeError (node:internal/errors:983:15)
+    at wrappedFn (node:internal/errors:537:14)
+    at ChildProcess.exithandler (node:child_process:417:12)
+    at ChildProcess.emit (node:events:519:28)
+    at maybeClose (node:internal/child_process:1101:16)
+    at ChildProcess._handle.onexit (node:internal/child_process:304:5) {
+  code: 1,
+  killed: false,
+  signal: null,
+  cmd: '/Users/normy/.hermes/node/bin/node /private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/mlx.mjs --target darwin-arm64 --inputs /private/tmp/autobyteus-voice-api-e2e-r6-20260803/output/inputs/english-darwin-arm64 --stage /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/package --build-environment /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/native-build-environment-v1.json --trusted-tools /var/folders/7w/9r4_s1_s42z3f7c136bpjf0r0000gn/T/voice-provider-package-gmhXQd/trusted-native-tools',
+  stdout: '',
+  stderr: 'file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:24\n' +
+    '        throw new Error("Symbolic links are forbidden.");\n' +
+    '              ^\n' +
+    '\n' +
+    'Error: Symbolic links are forbidden.\n' +
+    '    at visit (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:24:15)\n' +
+    '    at async visit (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:25:32)\n' +
+    '    at async regularFiles (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/lib/files.mjs:31:3)\n' +
+    '    at async prune (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/python/materialize-runtime.mjs:109:26)\n' +
+    '    at async materializePythonRuntime (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/python/materialize-runtime.mjs:80:5)\n' +
+    '    at async copyPythonProvider (file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/common.mjs:104:24)\n' +
+    '    at async file:///private/tmp/autobyteus-voice-api-e2e-r6-20260803/repository/build/profile-builders/mlx.mjs:45:1\n' +
+    '\n' +
+    'Node.js v22.23.1\n'
+}
+
+Node.js v22.23.1

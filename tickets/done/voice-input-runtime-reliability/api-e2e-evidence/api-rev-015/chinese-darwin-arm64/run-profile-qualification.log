@@ -1,0 +1,10 @@
+file:///private/tmp/autobyteus-voice-api-e2e-r15-20260804-v1/repository/benchmark/provider-process-session.mjs:312
+      const error = new Error(`${kind.toUpperCase()}_TIMEOUT`);
+                    ^
+
+Error: READY_TIMEOUT
+    at Timeout.<anonymous> (file:///private/tmp/autobyteus-voice-api-e2e-r15-20260804-v1/repository/benchmark/provider-process-session.mjs:312:21)
+    at listOnTimeout (node:internal/timers:585:17)
+    at process.processTimers (node:internal/timers:521:7)
+
+Node.js v22.23.1

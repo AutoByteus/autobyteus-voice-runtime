@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "policyId": "voice-runtime-profile-resource-policy-v1",
+  "matrixId": "voice-runtime-darwin-arm64-v1",
+  "rows": [
+    {
+      "profileId": "english",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "hardProcessTreeRssCeilingBytes": 2684354560,
+      "assessmentOptimizationTargetBytes": 2684354560
+    },
+    {
+      "profileId": "chinese",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "hardProcessTreeRssCeilingBytes": 4294967296,
+      "assessmentOptimizationTargetBytes": 2684354560
+    }
+  ]
+}

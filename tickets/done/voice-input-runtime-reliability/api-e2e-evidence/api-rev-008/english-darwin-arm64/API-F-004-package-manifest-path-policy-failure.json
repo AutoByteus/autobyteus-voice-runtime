@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "apiRevision": "API-REV-008",
+  "findingId": "API-F-004",
+  "scenarioIds": [
+    "API-VOICE-003"
+  ],
+  "acceptanceCriteria": [
+    "AC-006",
+    "AC-017"
+  ],
+  "result": "fail",
+  "preliminaryClassification": "Local Fix / implementation defect in package assembly closure/path-policy integration",
+  "reviewedSourceCommit": "24a994a51256f0eef5840ecdc977febec71ea491",
+  "host": {
+    "model": "MacBookPro18,4",
+    "chip": "Apple M1 Max",
+    "architecture": "darwin-arm64",
+    "memoryGiB": 64
+  },
+  "preflight": {
+    "status": "pass",
+    "performanceClassification": "loaded-host",
+    "averageIdlePercent": 69.83666666666667,
+    "note": "Functional Preflight 2 passed on AC; loaded-host classification is non-blocking and not controlled performance."
+  },
+  "command": "/usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb node build/package-assembler.mjs --profile english --target darwin-arm64 --inputs <exact materialized English inputs> --output <primary archive> --go <authenticated Go 1.26.5> --preflight <passing Functional Preflight 2> --build-environment <trusted native environment> --source-commit 24a994a51256f0eef5840ecdc977febec71ea491 --version 1.0.0",
+  "expected": "Construct the canonical exact English darwin-arm64 archive so a second byte-identical construction, package verification, and full 49-WAV qualification can continue.",
+  "observed": {
+    "exitCode": 1,
+    "stderr": "manifest paths invalid or unsorted",
+    "archiveCreated": false,
+    "manifestRecordCount": 19003,
+    "invalidPathCount": 2,
+    "invalidPaths": [
+      "host/python/lib/python3.12/site-packages/scipy/io/tests/data/Transparent Busy.ani",
+      "host/python/lib/python3.12/site-packages/torch/include/c10/util/C++17.h"
+    ],
+    "caseCollisionCount": 0,
+    "lexicographicInversionCount": 0
+  },
+  "originEvidence": "The package assembler generated a 19,003-record manifest that is sorted and collision-free, but retained two dependency files rejected by the archive owner ASCII path policy: one path contains a space and one contains plus signs. Exact production Go validation then failed before archive creation.",
+  "priorFailureResolution": {
+    "API-F-003": "resolved at the direct full construction boundary: symlink normalization completed and assembly advanced to final manifest/archive validation",
+    "API-F-002": "remains resolved: trusted native environment was created outside Seatbelt and no sudo process was launched inside Seatbelt"
+  },
+  "safety": {
+    "fallbackUsed": false,
+    "thresholdChanged": false,
+    "providerOrModelChanged": false,
+    "unsandboxedQualificationUsed": false,
+    "releaseActionUsed": false,
+    "userStateMutated": false
+  },
+  "stopReason": "First required English archive did not exist. Per fail-closed ordering, repeat construction, package verification, English/Chinese inference, exact 30/30/100, compliance, Qualification Set 2, and Branch Catalog Projection 2 were not executed.",
+  "evidence": {
+    "buildLog": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/build-primary.log",
+    "buildLogSha256": "b5f8b3a723dde3d59fdc534be621e87f5f9b6b8d477f0e9edb25ace5982349ba",
+    "manifestProbeAnalysis": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/API-F-004-focused-manifest-analysis.json",
+    "manifestProbeAnalysisSha256": "15660edd642d27c01dcb7e3c457f68c69ce4e06d1a9863232d960eaad5e3ca26",
+    "capturedManifest": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-008/english-darwin-arm64/API-F-004-probe-package-files-v1.json",
+    "capturedManifestSha256": "f386c37cea8a8e639affc306279bebf44d1a259ee086cce1ed3129f7e76c3905"
+  },
+  "recommendedOwner": "Implementation Engineer after focused failure-origin review by Code Reviewer"
+}

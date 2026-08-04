@@ -1,0 +1,14 @@
+owned-caffeinate-pid=75084
+$ node benchmark/darwin-arm64-runner-preflight.mjs --go /private/tmp/autobyteus-go1.26.5-v1/go/bin/go --cmake /opt/homebrew/bin/cmake --output .../darwin-arm64-preflight-v1.json
+file:///Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/benchmark/darwin-arm64-runner-preflight.mjs:150
+    const error = new Error(
+                  ^
+
+Error: M1 qualification preflight blocked: runner-power-or-pressure
+    at runDarwinArm64Preflight (file:///Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/benchmark/darwin-arm64-runner-preflight.mjs:150:19)
+    at async file:///Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/benchmark/darwin-arm64-runner-preflight.mjs:318:3 {
+  code: 'PREFLIGHT_BLOCKED'
+}
+
+Node.js v22.23.1
+preflight-exit=1

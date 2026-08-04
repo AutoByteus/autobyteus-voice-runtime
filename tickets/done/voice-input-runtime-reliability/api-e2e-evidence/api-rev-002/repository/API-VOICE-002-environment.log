@@ -1,0 +1,7 @@
+API-VOICE-002 round-2 exact English-v2 validation
+worktree=/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime
+stagedRoot=/private/tmp/autobyteus-voice-api-e2e-r2-20260802/corpora/english
+node=v22.23.1
+python=Python 3.9.6
+stagedWavs=49
+stagedBytes=15794176

@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "status": "experimental-packaging-proof-only",
+  "providerId": "autobyteus.mlx-whisper-small.fp16.macos-arm64",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "launcher": "provider-launch",
+  "privateHost": {
+    "kind": "bundled-python",
+    "implementation": "python-build-standalone",
+    "version": "3.12.13+20260718"
+  },
+  "engine": {"kind": "mlx-whisper", "version": "0.4.3"},
+  "model": {"family": "whisper", "size": "small", "precision": "fp16", "path": "models/whisper-small-mlx"}
+}

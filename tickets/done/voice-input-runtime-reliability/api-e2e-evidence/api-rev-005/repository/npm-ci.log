@@ -1,0 +1,12 @@
+$ node --version
+v22.23.1
+$ npm --version
+10.9.8
+$ npm ci --ignore-scripts
+
+added 8 packages, and audited 9 packages in 691ms
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities

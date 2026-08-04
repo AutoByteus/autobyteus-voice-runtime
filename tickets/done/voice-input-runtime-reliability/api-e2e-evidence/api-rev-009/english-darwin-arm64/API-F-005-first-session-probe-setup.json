@@ -1,0 +1,7 @@
+{
+  "packageRoot": "/private/tmp/autobyteus-voice-api-e2e-r9-20260803/focused-first-session-probe/relocated package – voice",
+  "launcher": "/private/tmp/autobyteus-voice-api-e2e-r9-20260803/focused-first-session-probe/relocated package – voice/bin/voice-provider",
+  "sessionConfig": "/private/tmp/autobyteus-voice-api-e2e-r9-20260803/focused-first-session-probe/focused-session.json",
+  "sessionId": "9faea997-6b16-4fd3-bf15-c18725ba5051",
+  "packageId": "voice.english.whisper-small-fp16.darwin-arm64"
+}

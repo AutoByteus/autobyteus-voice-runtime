@@ -1,0 +1,34 @@
+{
+  "schemaVersion": 1,
+  "capturedAt": "2026-08-02",
+  "source": "https://github.com/ggml-org/whisper.cpp",
+  "sourceCommit": "2ca53bb45e38748d07b310eeb36245a7157ac882",
+  "sourceDescribe": "2ca53bb",
+  "build": {
+    "cmakeType": "Release",
+    "GGML_METAL": true,
+    "CoreML": false,
+    "architecture": "arm64"
+  },
+  "binary": {
+    "file": "whisper-server",
+    "bytes": 1238640,
+    "sha256": "f5b939f3c3fce89fb7cc6de33df28cb25ce17cc7a038de6bd19496790a0876d7"
+  },
+  "model": {
+    "source": "ggerganov/whisper.cpp ggml-small.bin",
+    "family": "OpenAI Whisper multilingual Small",
+    "format": "whisper.cpp ggml F16",
+    "bytes": 487601967,
+    "sha256": "1be3a9b2063867b937e64e2ec7483364a79917e157fa98c5d94b5c1fffea987b"
+  },
+  "experiment": {
+    "hardware": "MacBookPro18,4 Apple M1 Max 10-core 64GB",
+    "threads": 4,
+    "beamSize": 5,
+    "language": "zh",
+    "screenCorpus": "fleurs-simplified-mandarin-profile-v2-screen-50",
+    "screenClipCount": 50,
+    "host": "persistent loopback whisper-server adapter"
+  }
+}

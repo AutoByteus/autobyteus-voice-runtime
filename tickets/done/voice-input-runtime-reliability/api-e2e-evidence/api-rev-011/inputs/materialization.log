@@ -1,0 +1,8 @@
+### materialize english
+### materialize chinese
+0b31e4571fca70518134e139ec37037ced7bee892e198483291048a30812f862  /private/tmp/autobyteus-voice-api-e2e-r11-20260803/output/inputs/english-darwin-arm64/input-provenance-v1.json
+cc259c889a7fdc9ba30b5ece7bc2c01efd0b5ec1c4b4172e174e4c04572357c8  /private/tmp/autobyteus-voice-api-e2e-r11-20260803/output/inputs/english-darwin-arm64/SHA256SUMS.json
+d1ee283b10a66e94f88a29136ed271d356e13fa2b91239a5da94a809b353ab56  /private/tmp/autobyteus-voice-api-e2e-r11-20260803/output/inputs/chinese-darwin-arm64/input-provenance-v1.json
+176317cc4a286eb8fe88f69b80ae1ca8437fc928e99f5231e4a3eed8e9603ff2  /private/tmp/autobyteus-voice-api-e2e-r11-20260803/output/inputs/chinese-darwin-arm64/SHA256SUMS.json
+687M	/private/tmp/autobyteus-voice-api-e2e-r11-20260803/output/inputs/english-darwin-arm64
+1.3G	/private/tmp/autobyteus-voice-api-e2e-r11-20260803/output/inputs/chinese-darwin-arm64

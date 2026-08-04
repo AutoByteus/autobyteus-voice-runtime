@@ -1,0 +1,605 @@
+{
+  "schemaVersion": 1,
+  "backend": "mlx-fp16",
+  "language": "auto",
+  "threads": null,
+  "command": [
+    "/Users/normy/.autobyteus/extensions/voice-input/runtime/.venv/bin/python",
+    "/tmp/autobyteus-voice-backend-study-20260802/harness/mlx_whisper_worker.py",
+    "--model",
+    "/Users/normy/.autobyteus/extensions/voice-input/models/whisper-small-mlx"
+  ],
+  "corpusId": "ascend-real-mandarin-english-control-v1",
+  "coldClip": {
+    "id": "ascend-validation-00119",
+    "durationMs": 6220,
+    "reference": "然后在 the the difference uh for environment field it the difference between Hong Kong and mainland"
+  },
+  "coldRuns": [],
+  "warmSession": {
+    "ready": {
+      "type": "ready",
+      "backend": "mlx-whisper-fp16",
+      "pid": 99942,
+      "importMs": 1558.11,
+      "modelLoadMs": 260.684,
+      "workerReadyMs": 1824.684,
+      "maxRssBytes": 820330496,
+      "spawnToReadyMs": 1863.733,
+      "sampledRssBytes": 820330496
+    },
+    "warmup": {
+      "type": "result",
+      "requestId": "97e002dde50f49b2ab8629a2cfb69efc",
+      "ok": true,
+      "text": "the difference for environment field is the difference between Hong Kong and the mainland.",
+      "detectedLanguage": "en",
+      "transcribeMs": 1207.647,
+      "maxRssBytes": 860717056,
+      "requestRoundTripMs": 1208.008,
+      "sampledRssBytes": 860717056
+    },
+    "quality": [
+      {
+        "id": "ascend-test-00361",
+        "category": "mixed-real",
+        "reference": "mistake is because我当初其实原本是想要往US去走但我那时候是在the third i remember third year",
+        "durationMs": 9140,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "9fb3bf49d6a3406e895c601dfa7bfa38",
+          "ok": true,
+          "text": "Mixed Egg is because我當初其實原本是想要往US去走到了那時候是在The ThirdI remember it's Third Year",
+          "detectedLanguage": "zh",
+          "transcribeMs": 1421.507,
+          "maxRssBytes": 862044160,
+          "requestRoundTripMs": 1422.49,
+          "sampledRssBytes": 862044160
+        }
+      },
+      {
+        "id": "ascend-test-00362",
+        "category": "mixed-real",
+        "reference": "对再说apply for the fourth year i will我觉得我去exchange是在第四年的时候但是我apply是在third years的时候apply",
+        "durationMs": 7820,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "6c6d5b9ffd7242c7af31dab5ef2c1512",
+          "ok": true,
+          "text": "對,那時候Apply for the fourth year我去Exchange是在第四年的時候但是Apply的時候在Third year的時候Apply",
+          "detectedLanguage": "zh",
+          "transcribeMs": 1233.507,
+          "maxRssBytes": 862781440,
+          "requestRoundTripMs": 1234.186,
+          "sampledRssBytes": 862781440
+        }
+      },
+      {
+        "id": "ascend-test-00364",
+        "category": "mixed-real",
+        "reference": "activities different kind of activities对有时候去忙一些那个舞会啊party呀有时候忙一些领队啊就是the low summer camp for students so i have lots of different kinds of",
+        "durationMs": 11200,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "dfe54ba0ef9d42af96e137cb215f4049",
+          "ok": true,
+          "text": "有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活",
+          "detectedLanguage": "zh",
+          "transcribeMs": 2603.098,
+          "maxRssBytes": 870203392,
+          "requestRoundTripMs": 2603.767,
+          "sampledRssBytes": 870203392
+        }
+      },
+      {
+        "id": "ascend-test-00369",
+        "category": "mixed-real",
+        "reference": "就是美国学校的exchange的话托福toefl toefl score need to be like over one hundred and five",
+        "durationMs": 7290,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "920bdb28a9e14999ab26a04c169e074f",
+          "ok": true,
+          "text": "就是美國學校的交易的話12 score 需要像是 105",
+          "detectedLanguage": "zh",
+          "transcribeMs": 779.551,
+          "maxRssBytes": 872235008,
+          "requestRoundTripMs": 780.092,
+          "sampledRssBytes": 872235008
+        }
+      },
+      {
+        "id": "ascend-test-00675",
+        "category": "mixed-real",
+        "reference": "就是说as a beginner you can play well at the first time",
+        "durationMs": 4200,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "b66ef9a6e1b04e29a62ad7cb56dc5c51",
+          "ok": true,
+          "text": "To say as a beginner, you can play wear at first time.",
+          "detectedLanguage": "en",
+          "transcribeMs": 749.089,
+          "maxRssBytes": 873447424,
+          "requestRoundTripMs": 749.481,
+          "sampledRssBytes": 873447424
+        }
+      },
+      {
+        "id": "ascend-test-00701",
+        "category": "mixed-real",
+        "reference": "就是he's faster stronger and more scared for than the other players",
+        "durationMs": 6440,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "751785d7150d4d458886ccb543c59622",
+          "ok": true,
+          "text": "He is faster, stronger, and more scared for other players.",
+          "detectedLanguage": "en",
+          "transcribeMs": 703.686,
+          "maxRssBytes": 873873408,
+          "requestRoundTripMs": 704.077,
+          "sampledRssBytes": 873873408
+        }
+      },
+      {
+        "id": "ascend-validation-00383",
+        "category": "mixed-real",
+        "reference": "嗯actually i also like the iron man um best",
+        "durationMs": 5430,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "57eaa25225fd42209b7fb3310456232a",
+          "ok": true,
+          "text": "Actually, I also like the airman best.",
+          "detectedLanguage": "en",
+          "transcribeMs": 752.717,
+          "maxRssBytes": 874053632,
+          "requestRoundTripMs": 753.094,
+          "sampledRssBytes": 874053632
+        }
+      },
+      {
+        "id": "ascend-validation-00394",
+        "category": "mixed-real",
+        "reference": "呃do you have a hobby of collecting the movie's ticket",
+        "durationMs": 4780,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "41efef09dd2e40aba25dd366ab6d9aab",
+          "ok": true,
+          "text": "Do you have a hobby of collecting the movies ticket?",
+          "detectedLanguage": "en",
+          "transcribeMs": 694.408,
+          "maxRssBytes": 874430464,
+          "requestRoundTripMs": 694.726,
+          "sampledRssBytes": 874430464
+        }
+      },
+      {
+        "id": "ascend-validation-00395",
+        "category": "mixed-real",
+        "reference": "呃i with this habit only when i came to Hong Kong",
+        "durationMs": 4790,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "5041d6814514482e95d7bdfb1670cf21",
+          "ok": true,
+          "text": "I risked this habit only when I came to Hong Kong.",
+          "detectedLanguage": "en",
+          "transcribeMs": 741.495,
+          "maxRssBytes": 874594304,
+          "requestRoundTripMs": 741.886,
+          "sampledRssBytes": 874594304
+        }
+      },
+      {
+        "id": "ascend-validation-00654",
+        "category": "mixed-real",
+        "reference": "um you mentioned that you think呃swimming is the best sport for diet and i can't agree anymore",
+        "durationMs": 8260,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "5163bdb9f40843f591b111b2d62dbd70",
+          "ok": true,
+          "text": "You mentioned that swimming is the best sport for the LJN account of Korea anymore.",
+          "detectedLanguage": "en",
+          "transcribeMs": 835.452,
+          "maxRssBytes": 874921984,
+          "requestRoundTripMs": 835.833,
+          "sampledRssBytes": 874921984
+        }
+      },
+      {
+        "id": "ascend-validation-00660",
+        "category": "mixed-real",
+        "reference": "呃do you think man can do better sports than woman",
+        "durationMs": 4790,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "09aee8443ff048a5818ca8689beba2f3",
+          "ok": true,
+          "text": "Do you think men can do better sports than women?",
+          "detectedLanguage": "en",
+          "transcribeMs": 806.944,
+          "maxRssBytes": 875298816,
+          "requestRoundTripMs": 807.528,
+          "sampledRssBytes": 875298816
+        }
+      },
+      {
+        "id": "ascend-validation-00671",
+        "category": "mixed-real",
+        "reference": "呃actually I like swimming from the bottom bottom of my heart but I think呃我的身体是其实对游泳是抗拒的因为我特别的怕水",
+        "durationMs": 12100,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "17501cedc7b643518917ce862e2b1919",
+          "ok": true,
+          "text": "其实我从我的手下的肩膀里面的女士我喜欢但是我认为我的身体是对游泳是抗拒的因为我特别地怕水",
+          "detectedLanguage": "zh",
+          "transcribeMs": 1032.195,
+          "maxRssBytes": 875888640,
+          "requestRoundTripMs": 1032.736,
+          "sampledRssBytes": 875888640
+        }
+      },
+      {
+        "id": "ascend-validation-00119",
+        "category": "mixed-real",
+        "reference": "然后在 the the difference uh for environment field it the difference between Hong Kong and mainland",
+        "durationMs": 6220,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "c99f92c1f85d4cc792b93660df577548",
+          "ok": true,
+          "text": "the difference for environment field is the difference between Hong Kong and the mainland.",
+          "detectedLanguage": "en",
+          "transcribeMs": 762.815,
+          "maxRssBytes": 875921408,
+          "requestRoundTripMs": 763.171,
+          "sampledRssBytes": 875921408
+        }
+      },
+      {
+        "id": "ascend-validation-00196",
+        "category": "mixed-real",
+        "reference": "嗯we in my major we have嗯over eighty students and half is the local students",
+        "durationMs": 7690,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "40ea42a6f5204293a191a6a66ad66460",
+          "ok": true,
+          "text": "In my major, we have over 80 students and half is the local student.",
+          "detectedLanguage": "en",
+          "transcribeMs": 711.611,
+          "maxRssBytes": 876183552,
+          "requestRoundTripMs": 712.001,
+          "sampledRssBytes": 876183552
+        }
+      },
+      {
+        "id": "ascend-validation-00478",
+        "category": "mixed-real",
+        "reference": "所以呃and the interesting for this um lecture is we only have eight students",
+        "durationMs": 5490,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "5c4262044d2040759d4f2de1d38ec678",
+          "ok": true,
+          "text": "So the interesting for this lecture is we only have eight students.",
+          "detectedLanguage": "en",
+          "transcribeMs": 705.515,
+          "maxRssBytes": 876363776,
+          "requestRoundTripMs": 705.921,
+          "sampledRssBytes": 876363776
+        }
+      },
+      {
+        "id": "ascend-validation-00484",
+        "category": "mixed-real",
+        "reference": "呃 if China should er develop the hydro hydraulic fracturing technology to exploit the natural gas",
+        "durationMs": 7380,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "e5a735ec04cd471aabf4474fe52f7c14",
+          "ok": true,
+          "text": "if China should develop the hydraulic forcing technology to exploit the natural gas.",
+          "detectedLanguage": "en",
+          "transcribeMs": 734.586,
+          "maxRssBytes": 876609536,
+          "requestRoundTripMs": 734.964,
+          "sampledRssBytes": 876609536
+        }
+      },
+      {
+        "id": "ascend-validation-00694",
+        "category": "mixed-real",
+        "reference": "然后我再告诉它what i want to listen to music the name is blah blah blah blah blah",
+        "durationMs": 5340,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "34d302420abe4a5b93285ff6bfd2061b",
+          "ok": true,
+          "text": "然後我再告訴他,我希望聽聽音樂,音樂,等等等等等等",
+          "detectedLanguage": "zh",
+          "transcribeMs": 793.161,
+          "maxRssBytes": 876789760,
+          "requestRoundTripMs": 793.611,
+          "sampledRssBytes": 876789760
+        }
+      },
+      {
+        "id": "ascend-validation-00752",
+        "category": "mixed-real",
+        "reference": "and i think uh even though some people say there will be another呃",
+        "durationMs": 5630,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "5ababdfbf21042d59295d92788f01666",
+          "ok": true,
+          "text": "And I think even though some people say there will be another...",
+          "detectedLanguage": "en",
+          "transcribeMs": 1035.281,
+          "maxRssBytes": 876969984,
+          "requestRoundTripMs": 1036.04,
+          "sampledRssBytes": 876969984
+        }
+      },
+      {
+        "id": "ascend-test-00009",
+        "category": "mixed-real",
+        "reference": "no我专业是那个i s m information systems management",
+        "durationMs": 4030,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "00ac2906dac049b58c8e60ba2b04e981",
+          "ok": true,
+          "text": "那我专案是那个ISM Information Systems Management",
+          "detectedLanguage": "zh",
+          "transcribeMs": 807.713,
+          "maxRssBytes": 877133824,
+          "requestRoundTripMs": 808.465,
+          "sampledRssBytes": 877133824
+        }
+      },
+      {
+        "id": "ascend-test-00607",
+        "category": "mixed-real",
+        "reference": "and嗯and I eat for dinner eat for lunch eat for eat breakfast and then study and go to bed so",
+        "durationMs": 11850,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "3f8ad32ddaf84ada9eebc8c580e19ba9",
+          "ok": true,
+          "text": "And then it's for dinner, it's for lunch, it's for breakfast, and then study and go to bed.",
+          "detectedLanguage": "en",
+          "transcribeMs": 942.537,
+          "maxRssBytes": 877166592,
+          "requestRoundTripMs": 943.19,
+          "sampledRssBytes": 877166592
+        }
+      },
+      {
+        "id": "ascend-test-00773",
+        "category": "mixed-real",
+        "reference": "那我呃嗯Why you choose Hong Kong instead of other other foreign countries like US or Australia",
+        "durationMs": 8040,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "116f4ae4648b488fbe49a031fef1ee4e",
+          "ok": true,
+          "text": "Now, why you choose Hong Kong instead of other foreign countries like US or Australia?",
+          "detectedLanguage": "en",
+          "transcribeMs": 878.046,
+          "maxRssBytes": 877428736,
+          "requestRoundTripMs": 879.741,
+          "sampledRssBytes": 877428736
+        }
+      },
+      {
+        "id": "ascend-test-00968",
+        "category": "mixed-real",
+        "reference": "那种关于呃着装啊还有关于那些关于interview skills的东西所以you need to have um to dress formal",
+        "durationMs": 10890,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "4b118ba707144b48b2fbd685e48067ac",
+          "ok": true,
+          "text": "那種關於著裝的還有關於那些Interview Skewers的東西所以你需要穿上衣服",
+          "detectedLanguage": "zh",
+          "transcribeMs": 892.753,
+          "maxRssBytes": 878100480,
+          "requestRoundTripMs": 893.187,
+          "sampledRssBytes": 878100480
+        }
+      },
+      {
+        "id": "ascend-test-01094",
+        "category": "mixed-real",
+        "reference": "so you will walk slowly and slowly and then you you you should呃",
+        "durationMs": 4860,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "55de550bd6fd4545af69f04f6bf79ce5",
+          "ok": true,
+          "text": "So it will work slowly and slowly and then you should...",
+          "detectedLanguage": "en",
+          "transcribeMs": 719.238,
+          "maxRssBytes": 878264320,
+          "requestRoundTripMs": 719.694,
+          "sampledRssBytes": 878264320
+        }
+      },
+      {
+        "id": "ascend-test-01096",
+        "category": "mixed-real",
+        "reference": "but for iphone you will be more呃",
+        "durationMs": 3620,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "fca36cb675ba4a2088a4cfacfebf51eb",
+          "ok": true,
+          "text": "but for iPhone it will be more...",
+          "detectedLanguage": "en",
+          "transcribeMs": 868.95,
+          "maxRssBytes": 878395392,
+          "requestRoundTripMs": 870.442,
+          "sampledRssBytes": 878395392
+        }
+      },
+      {
+        "id": "ascend-validation-00001",
+        "category": "mixed-real",
+        "reference": "小朋友我回想一下when i was in elementary school",
+        "durationMs": 4600,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "260dda14947047a889d9c04872f34049",
+          "ok": true,
+          "text": "小朋友我回想一下Huanaweson Almond School",
+          "detectedLanguage": "zh",
+          "transcribeMs": 774.842,
+          "maxRssBytes": 878542848,
+          "requestRoundTripMs": 775.279,
+          "sampledRssBytes": 878542848
+        }
+      },
+      {
+        "id": "ascend-validation-00265",
+        "category": "mixed-real",
+        "reference": "an program leader when i was in呃university",
+        "durationMs": 4530,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "410d23c53b9d481cb11cd2be75f41af9",
+          "ok": true,
+          "text": "and program leader when I was in university.",
+          "detectedLanguage": "en",
+          "transcribeMs": 765.833,
+          "maxRssBytes": 878690304,
+          "requestRoundTripMs": 766.216,
+          "sampledRssBytes": 878690304
+        }
+      },
+      {
+        "id": "ascend-validation-00575",
+        "category": "mixed-real",
+        "reference": "但至于这个bedtimes是不是一定要用来睡觉呢我觉得只有depends on students themselves",
+        "durationMs": 8770,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "e339362aedab46bb9e6f7516c0e49bb1",
+          "ok": true,
+          "text": "但至於這個bad times是不是一定要用來睡覺呢我覺得就depends on students themselves",
+          "detectedLanguage": "zh",
+          "transcribeMs": 735.256,
+          "maxRssBytes": 878985216,
+          "requestRoundTripMs": 735.69,
+          "sampledRssBytes": 878985216
+        }
+      },
+      {
+        "id": "ascend-validation-00821",
+        "category": "mixed-real",
+        "reference": "so uh for me I think呃one another sport is yoga",
+        "durationMs": 5750,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "7c5881f75e7c457c8657c7a279d29e37",
+          "ok": true,
+          "text": "So for me, I think one another sport is yoga.",
+          "detectedLanguage": "en",
+          "transcribeMs": 673.964,
+          "maxRssBytes": 879181824,
+          "requestRoundTripMs": 674.449,
+          "sampledRssBytes": 879181824
+        }
+      },
+      {
+        "id": "ascend-validation-00829",
+        "category": "mixed-real",
+        "reference": "because in many Olympic Games there are many women嗯do better when man",
+        "durationMs": 7260,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "1be523c8b6b14ff289c2621eb9084801",
+          "ok": true,
+          "text": "because in many Olympic Games, there are many women who do better than men.",
+          "detectedLanguage": "en",
+          "transcribeMs": 699.507,
+          "maxRssBytes": 879443968,
+          "requestRoundTripMs": 699.888,
+          "sampledRssBytes": 879443968
+        }
+      },
+      {
+        "id": "ascend-validation-00850",
+        "category": "mixed-real",
+        "reference": "very little money to呃to it so I don't have any special feelings but",
+        "durationMs": 7160,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "9edaf1fafa7d4680b1363c5529580c56",
+          "ok": true,
+          "text": "very little money to do it so I don't have any special feelings but",
+          "detectedLanguage": "en",
+          "transcribeMs": 692.49,
+          "maxRssBytes": 879689728,
+          "requestRoundTripMs": 692.831,
+          "sampledRssBytes": 879689728
+        }
+      }
+    ],
+    "performance": [],
+    "shutdown": {
+      "type": "shutdown-complete",
+      "maxRssBytes": 879689728
+    }
+  },
+  "summaries": {
+    "spawnToReadyMs": {
+      "count": 0
+    },
+    "firstRequestMs": {
+      "count": 0
+    },
+    "coldEndToEndMs": {
+      "count": 0
+    },
+    "warmRequestMs": {
+      "count": 0
+    },
+    "maxSampledRssBytes": 879689728
+  }
+}

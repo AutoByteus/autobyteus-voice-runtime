@@ -1,0 +1,859 @@
+{
+  "schemaVersion": 1,
+  "backend": "paraformer-int8",
+  "language": "auto",
+  "threads": null,
+  "command": [
+    "node",
+    "/tmp/autobyteus-voice-backend-study-20260802/harness/sherpa_paraformer_worker.cjs",
+    "--sherpa-package",
+    "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/node_modules/sherpa-onnx-node",
+    "--model",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-paraformer-zh-2024-03-09/model.int8.onnx",
+    "--tokens",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-paraformer-zh-2024-03-09/tokens.txt",
+    "--precision",
+    "int8",
+    "--threads",
+    "4"
+  ],
+  "corpusId": "ascend-real-mandarin-english-control-v1",
+  "coldClip": {
+    "id": "ascend-validation-00119",
+    "durationMs": 6220,
+    "reference": "然后在 the the difference uh for environment field it the difference between Hong Kong and mainland"
+  },
+  "coldRuns": [
+    {
+      "index": 0,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 23394,
+        "importMs": 9.186,
+        "modelLoadMs": 1016.181,
+        "workerReadyMs": 1025.56,
+        "rssBytes": 605978624,
+        "threads": 4,
+        "spawnToReadyMs": 1058.882,
+        "sampledRssBytes": 607404032
+      },
+      "first": {
+        "type": "result",
+        "requestId": "c4576749f3a44f98af96cff2732b634d",
+        "ok": true,
+        "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+        "detectedLanguage": "zh-en",
+        "readMs": 2.603,
+        "decodeMs": 115.795,
+        "transcribeMs": 122.219,
+        "rssBytes": 610910208,
+        "requestRoundTripMs": 123.652,
+        "sampledRssBytes": 610926592
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 610926592
+      }
+    },
+    {
+      "index": 1,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 23676,
+        "importMs": 8.66,
+        "modelLoadMs": 943.478,
+        "workerReadyMs": 952.372,
+        "rssBytes": 631160832,
+        "threads": 4,
+        "spawnToReadyMs": 990.439,
+        "sampledRssBytes": 632537088
+      },
+      "first": {
+        "type": "result",
+        "requestId": "88e906991bb54c3289be9ae51287853b",
+        "ok": true,
+        "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.784,
+        "decodeMs": 83.214,
+        "transcribeMs": 87.525,
+        "rssBytes": 636502016,
+        "requestRoundTripMs": 89.385,
+        "sampledRssBytes": 636518400
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 636518400
+      }
+    },
+    {
+      "index": 2,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 23705,
+        "importMs": 7.55,
+        "modelLoadMs": 1022.558,
+        "workerReadyMs": 1030.274,
+        "rssBytes": 610287616,
+        "threads": 4,
+        "spawnToReadyMs": 1067.501,
+        "sampledRssBytes": 611680256
+      },
+      "first": {
+        "type": "result",
+        "requestId": "9fdb36c175254fbba238cc910b229226",
+        "ok": true,
+        "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.552,
+        "decodeMs": 90.486,
+        "transcribeMs": 94.58,
+        "rssBytes": 615694336,
+        "requestRoundTripMs": 95.627,
+        "sampledRssBytes": 615710720
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 615710720
+      }
+    }
+  ],
+  "warmSession": {
+    "ready": {
+      "type": "ready",
+      "backend": "sherpa-onnx-paraformer-int8",
+      "pid": 23711,
+      "importMs": 8.59,
+      "modelLoadMs": 966.214,
+      "workerReadyMs": 974.964,
+      "rssBytes": 603865088,
+      "threads": 4,
+      "spawnToReadyMs": 1014.521,
+      "sampledRssBytes": 605290496
+    },
+    "warmup": {
+      "type": "result",
+      "requestId": "900bf9ce8daf4700a9dac379ce37f01e",
+      "ok": true,
+      "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+      "detectedLanguage": "zh-en",
+      "readMs": 0.416,
+      "decodeMs": 105.161,
+      "transcribeMs": 109.211,
+      "rssBytes": 608206848,
+      "requestRoundTripMs": 110.037,
+      "sampledRssBytes": 608223232
+    },
+    "quality": [
+      {
+        "id": "ascend-test-00361",
+        "category": "mixed-real",
+        "reference": "mistake is because我当初其实原本是想要往US去走但我那时候是在the third i remember third year",
+        "durationMs": 9140,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "fcf232a90f5d4d4c94bde44d99901fdb",
+          "ok": true,
+          "text": "mistake is because 我当初其实原本是想要往 us 去走到那时候是在 the third i remember third year",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.276,
+          "decodeMs": 143.053,
+          "transcribeMs": 150.677,
+          "rssBytes": 609566720,
+          "requestRoundTripMs": 151.19,
+          "sampledRssBytes": 609566720
+        }
+      },
+      {
+        "id": "ascend-test-00362",
+        "category": "mixed-real",
+        "reference": "对再说apply for the fourth year i will我觉得我去exchange是在第四年的时候但是我apply是在third years的时候apply",
+        "durationMs": 7820,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "5634e86d399742778789feaa7cf08441",
+          "ok": true,
+          "text": "对他说 apply for the fourth 还有我觉得我去虽然是在第四年的时候但是我 apply 就是在 thirty years 所 apply",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.177,
+          "decodeMs": 146.454,
+          "transcribeMs": 152.964,
+          "rssBytes": 610172928,
+          "requestRoundTripMs": 153.509,
+          "sampledRssBytes": 610729984
+        }
+      },
+      {
+        "id": "ascend-test-00364",
+        "category": "mixed-real",
+        "reference": "activities different kind of activities对有时候去忙一些那个舞会啊party呀有时候忙一些领队啊就是the low summer camp for students so i have lots of different kinds of",
+        "durationMs": 11200,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "21117f414d2540cd836dc889b0439530",
+          "ok": true,
+          "text": "activities different kind of activities 对有时候去忙一些老舞会啊 party 啊有时候忙了些些队啊就是是 the susummer came for students so i lots of different kattle",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.229,
+          "decodeMs": 136.768,
+          "transcribeMs": 144.38,
+          "rssBytes": 613515264,
+          "requestRoundTripMs": 145.096,
+          "sampledRssBytes": 613515264
+        }
+      },
+      {
+        "id": "ascend-test-00369",
+        "category": "mixed-real",
+        "reference": "就是美国学校的exchange的话托福toefl toefl score need to be like over one hundred and five",
+        "durationMs": 7290,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "fb2779225c304753b68db64695b0ed81",
+          "ok": true,
+          "text": "就是美国学校的 exchange 的话 twelve twve twelve ore need to be like a boall farget and five",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.121,
+          "decodeMs": 98.364,
+          "transcribeMs": 104.176,
+          "rssBytes": 613793792,
+          "requestRoundTripMs": 104.697,
+          "sampledRssBytes": 613810176
+        }
+      },
+      {
+        "id": "ascend-test-00675",
+        "category": "mixed-real",
+        "reference": "就是说as a beginner you can play well at the first time",
+        "durationMs": 4200,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "5cb501b54999428b97cffd86e18acfbe",
+          "ok": true,
+          "text": "就是说 as a beginner you can play well at first time",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.28,
+          "decodeMs": 52.709,
+          "transcribeMs": 57.692,
+          "rssBytes": 614219776,
+          "requestRoundTripMs": 58.038,
+          "sampledRssBytes": 614219776
+        }
+      },
+      {
+        "id": "ascend-test-00701",
+        "category": "mixed-real",
+        "reference": "就是he's faster stronger and more scared for than the other players",
+        "durationMs": 6440,
+        "speakerId": "ascend-speaker-3",
+        "response": {
+          "type": "result",
+          "requestId": "d20984bbc31a462e9466efb5f4a6736a",
+          "ok": true,
+          "text": "to his faster stronger and more careful than other players",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.101,
+          "decodeMs": 72.402,
+          "transcribeMs": 78.347,
+          "rssBytes": 614727680,
+          "requestRoundTripMs": 78.714,
+          "sampledRssBytes": 614727680
+        }
+      },
+      {
+        "id": "ascend-validation-00383",
+        "category": "mixed-real",
+        "reference": "嗯actually i also like the iron man um best",
+        "durationMs": 5430,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "b87651d5973f478aa2748732b9c95e2c",
+          "ok": true,
+          "text": "嗯 actually i also like the airman um based",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.728,
+          "decodeMs": 75.766,
+          "transcribeMs": 80.225,
+          "rssBytes": 615137280,
+          "requestRoundTripMs": 80.89,
+          "sampledRssBytes": 615153664
+        }
+      },
+      {
+        "id": "ascend-validation-00394",
+        "category": "mixed-real",
+        "reference": "呃do you have a hobby of collecting the movie's ticket",
+        "durationMs": 4780,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "4cca625cecac4998b6a5f06b2b508478",
+          "ok": true,
+          "text": "ah do you have a hobby of collecting the movies ticket",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.315,
+          "decodeMs": 76.434,
+          "transcribeMs": 81.557,
+          "rssBytes": 615350272,
+          "requestRoundTripMs": 82.092,
+          "sampledRssBytes": 615350272
+        }
+      },
+      {
+        "id": "ascend-validation-00395",
+        "category": "mixed-real",
+        "reference": "呃i with this habit only when i came to Hong Kong",
+        "durationMs": 4790,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "2088b23def3d421b897ebfa715751e65",
+          "ok": true,
+          "text": "ah i raise this habit only when i came to huncom",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.012,
+          "decodeMs": 62.134,
+          "transcribeMs": 67.173,
+          "rssBytes": 615989248,
+          "requestRoundTripMs": 67.584,
+          "sampledRssBytes": 616005632
+        }
+      },
+      {
+        "id": "ascend-validation-00654",
+        "category": "mixed-real",
+        "reference": "um you mentioned that you think呃swimming is the best sport for diet and i can't agree anymore",
+        "durationMs": 8260,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "f4b1367991f34bc7b8ee77a10b8aac5e",
+          "ok": true,
+          "text": "um you mention that you think um swimming is the best spots for that and i can't agree and any more",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.083,
+          "decodeMs": 97.864,
+          "transcribeMs": 103.45,
+          "rssBytes": 617299968,
+          "requestRoundTripMs": 103.825,
+          "sampledRssBytes": 617299968
+        }
+      },
+      {
+        "id": "ascend-validation-00660",
+        "category": "mixed-real",
+        "reference": "呃do you think man can do better sports than woman",
+        "durationMs": 4790,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "2d3c0d88ab9e46c28307e021af219978",
+          "ok": true,
+          "text": "um then do you think man can do better sports than women",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.198,
+          "decodeMs": 63.877,
+          "transcribeMs": 67.731,
+          "rssBytes": 617480192,
+          "requestRoundTripMs": 68.093,
+          "sampledRssBytes": 617480192
+        }
+      },
+      {
+        "id": "ascend-validation-00671",
+        "category": "mixed-real",
+        "reference": "呃actually I like swimming from the bottom bottom of my heart but I think呃我的身体是其实对游泳是抗拒的因为我特别的怕水",
+        "durationMs": 12100,
+        "speakerId": "ascend-speaker-7",
+        "response": {
+          "type": "result",
+          "requestId": "1aad1a72be1548e08aec0e16dca850ad",
+          "ok": true,
+          "text": "嗯 actually i loves swimming from the botbottom of my heart but i think 嗯我的身体是是对游泳是抗拒的因为我特别的怕水",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.38,
+          "decodeMs": 138.672,
+          "transcribeMs": 146.729,
+          "rssBytes": 619495424,
+          "requestRoundTripMs": 147.239,
+          "sampledRssBytes": 619511808
+        }
+      },
+      {
+        "id": "ascend-validation-00119",
+        "category": "mixed-real",
+        "reference": "然后在 the the difference uh for environment field it the difference between Hong Kong and mainland",
+        "durationMs": 6220,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "e67dceb7f7b642f2988be2a6211943ed",
+          "ok": true,
+          "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.479,
+          "decodeMs": 74.972,
+          "transcribeMs": 78.978,
+          "rssBytes": 619724800,
+          "requestRoundTripMs": 79.724,
+          "sampledRssBytes": 619724800
+        }
+      },
+      {
+        "id": "ascend-validation-00196",
+        "category": "mixed-real",
+        "reference": "嗯we in my major we have嗯over eighty students and half is the local students",
+        "durationMs": 7690,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "95f1cdc7715640a4b8870bd5cf50ecad",
+          "ok": true,
+          "text": "we in mamajor if we have a over eight accident and half is the accident",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.302,
+          "decodeMs": 89.509,
+          "transcribeMs": 95.299,
+          "rssBytes": 620756992,
+          "requestRoundTripMs": 95.791,
+          "sampledRssBytes": 620756992
+        }
+      },
+      {
+        "id": "ascend-validation-00478",
+        "category": "mixed-real",
+        "reference": "所以呃and the interesting for this um lecture is we only have eight students",
+        "durationMs": 5490,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "51fb58c4534945cf8bca35116e399935",
+          "ok": true,
+          "text": "所以 uh and the interesting for this 呃 lecture is we only have eight student",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.98,
+          "decodeMs": 65.934,
+          "transcribeMs": 70.588,
+          "rssBytes": 620986368,
+          "requestRoundTripMs": 71.043,
+          "sampledRssBytes": 621002752
+        }
+      },
+      {
+        "id": "ascend-validation-00484",
+        "category": "mixed-real",
+        "reference": "呃 if China should er develop the hydro hydraulic fracturing technology to exploit the natural gas",
+        "durationMs": 7380,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "87dc0d9ceaaa42ddbd3944e47485e954",
+          "ok": true,
+          "text": "uh if china should 呃 develop the hydolic force in technology to exploit the natural gas",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.094,
+          "decodeMs": 84.977,
+          "transcribeMs": 90.122,
+          "rssBytes": 621887488,
+          "requestRoundTripMs": 90.464,
+          "sampledRssBytes": 621887488
+        }
+      },
+      {
+        "id": "ascend-validation-00694",
+        "category": "mixed-real",
+        "reference": "然后我再告诉它what i want to listen to music the name is blah blah blah blah blah",
+        "durationMs": 5340,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "c76e284d562b49dfb5d6588ada825304",
+          "ok": true,
+          "text": "然后我再告诉他 what i want to listen to music and name 八八八八八",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.725,
+          "decodeMs": 68.061,
+          "transcribeMs": 71.758,
+          "rssBytes": 622116864,
+          "requestRoundTripMs": 72.187,
+          "sampledRssBytes": 622116864
+        }
+      },
+      {
+        "id": "ascend-validation-00752",
+        "category": "mixed-real",
+        "reference": "and i think uh even though some people say there will be another呃",
+        "durationMs": 5630,
+        "speakerId": "ascend-speaker-12",
+        "response": {
+          "type": "result",
+          "requestId": "6ac675c982444e91aed0e38d313b937b",
+          "ok": true,
+          "text": "and i think uh even of some to say there will be another uh",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.116,
+          "decodeMs": 68.773,
+          "transcribeMs": 74.015,
+          "rssBytes": 622968832,
+          "requestRoundTripMs": 75.089,
+          "sampledRssBytes": 622968832
+        }
+      },
+      {
+        "id": "ascend-test-00009",
+        "category": "mixed-real",
+        "reference": "no我专业是那个i s m information systems management",
+        "durationMs": 4030,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "e725ceb0bd24461384f9d88355562f64",
+          "ok": true,
+          "text": "那我穿的是那个 i s m information systems management",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.03,
+          "decodeMs": 55.218,
+          "transcribeMs": 58.577,
+          "rssBytes": 623263744,
+          "requestRoundTripMs": 59.002,
+          "sampledRssBytes": 623263744
+        }
+      },
+      {
+        "id": "ascend-test-00607",
+        "category": "mixed-real",
+        "reference": "and嗯and I eat for dinner eat for lunch eat for eat breakfast and then study and go to bed so",
+        "durationMs": 11850,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "bec922bb2e314a68b7df1d339bb24f47",
+          "ok": true,
+          "text": "and and then and and eat for dinner for llunch for if breakfast and then study and go to bed so",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.457,
+          "decodeMs": 132.026,
+          "transcribeMs": 140.06,
+          "rssBytes": 624607232,
+          "requestRoundTripMs": 140.817,
+          "sampledRssBytes": 624607232
+        }
+      },
+      {
+        "id": "ascend-test-00773",
+        "category": "mixed-real",
+        "reference": "那我呃嗯Why you choose Hong Kong instead of other other foreign countries like US or Australia",
+        "durationMs": 8040,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "197bc6ad77b7484cbfedbf1e23f18984",
+          "ok": true,
+          "text": "now um why you choose homecong instead of other other foreign countries like u s or australia",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.097,
+          "decodeMs": 100.372,
+          "transcribeMs": 106.479,
+          "rssBytes": 625213440,
+          "requestRoundTripMs": 106.871,
+          "sampledRssBytes": 625213440
+        }
+      },
+      {
+        "id": "ascend-test-00968",
+        "category": "mixed-real",
+        "reference": "那种关于呃着装啊还有关于那些关于interview skills的东西所以you need to have um to dress formal",
+        "durationMs": 10890,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "db076ef184d245e6af231be2a59ca776",
+          "ok": true,
+          "text": "那种关于呃着装啊还有关于那些 interview skills 的东西所以 you need to have a to dress from",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.442,
+          "decodeMs": 118.23,
+          "transcribeMs": 126.609,
+          "rssBytes": 626802688,
+          "requestRoundTripMs": 126.989,
+          "sampledRssBytes": 626802688
+        }
+      },
+      {
+        "id": "ascend-test-01094",
+        "category": "mixed-real",
+        "reference": "so you will walk slowly and slowly and then you you you should呃",
+        "durationMs": 4860,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "97b3e00847fb424f8c63e6949507e8e4",
+          "ok": true,
+          "text": "so you will work slowly and slowly and and you you you uh",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.835,
+          "decodeMs": 60.394,
+          "transcribeMs": 63.921,
+          "rssBytes": 626982912,
+          "requestRoundTripMs": 64.277,
+          "sampledRssBytes": 626982912
+        }
+      },
+      {
+        "id": "ascend-test-01096",
+        "category": "mixed-real",
+        "reference": "but for iphone you will be more呃",
+        "durationMs": 3620,
+        "speakerId": "ascend-speaker-17",
+        "response": {
+          "type": "result",
+          "requestId": "5759fde637b44fc48cb99daf1ada83df",
+          "ok": true,
+          "text": "for iphone it will be more uh",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.141,
+          "decodeMs": 46.677,
+          "transcribeMs": 50.318,
+          "rssBytes": 627163136,
+          "requestRoundTripMs": 50.624,
+          "sampledRssBytes": 627163136
+        }
+      },
+      {
+        "id": "ascend-validation-00001",
+        "category": "mixed-real",
+        "reference": "小朋友我回想一下when i was in elementary school",
+        "durationMs": 4600,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "b86f571694f3421b8abff5a95bcf05a1",
+          "ok": true,
+          "text": "小朋友我回想一下回来我 sing i'm am to school",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.133,
+          "decodeMs": 55.198,
+          "transcribeMs": 59.478,
+          "rssBytes": 627376128,
+          "requestRoundTripMs": 59.947,
+          "sampledRssBytes": 627376128
+        }
+      },
+      {
+        "id": "ascend-validation-00265",
+        "category": "mixed-real",
+        "reference": "an program leader when i was in呃university",
+        "durationMs": 4530,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "a23df7f2c0bb487d98a3e18ed58ef271",
+          "ok": true,
+          "text": "and program leader when i was in university",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.104,
+          "decodeMs": 54.863,
+          "transcribeMs": 58.488,
+          "rssBytes": 627605504,
+          "requestRoundTripMs": 58.895,
+          "sampledRssBytes": 627621888
+        }
+      },
+      {
+        "id": "ascend-validation-00575",
+        "category": "mixed-real",
+        "reference": "但至于这个bedtimes是不是一定要用来睡觉呢我觉得只有depends on students themselves",
+        "durationMs": 8770,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "0c7b367775df4734b7f7bac9b51e86f7",
+          "ok": true,
+          "text": "但至于这个 bad times 是不是一定要用来睡觉呢我觉得就 depend on students themselves",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.869,
+          "decodeMs": 103.537,
+          "transcribeMs": 110.073,
+          "rssBytes": 628490240,
+          "requestRoundTripMs": 110.479,
+          "sampledRssBytes": 628490240
+        }
+      },
+      {
+        "id": "ascend-validation-00821",
+        "category": "mixed-real",
+        "reference": "so uh for me I think呃one another sport is yoga",
+        "durationMs": 5750,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "1f6094a7317c4e90975c10749a3bd2c6",
+          "ok": true,
+          "text": "so a for me i think one another sport is yoga",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.099,
+          "decodeMs": 75.05,
+          "transcribeMs": 80.34,
+          "rssBytes": 628932608,
+          "requestRoundTripMs": 80.728,
+          "sampledRssBytes": 628932608
+        }
+      },
+      {
+        "id": "ascend-validation-00829",
+        "category": "mixed-real",
+        "reference": "because in many Olympic Games there are many women嗯do better when man",
+        "durationMs": 7260,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "9a50fcd1ccff439a9c15f55fd04eba5f",
+          "ok": true,
+          "text": "because in many olpink games there are many women um do better lemit",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.291,
+          "decodeMs": 84.557,
+          "transcribeMs": 90.597,
+          "rssBytes": 630226944,
+          "requestRoundTripMs": 91.078,
+          "sampledRssBytes": 630226944
+        }
+      },
+      {
+        "id": "ascend-validation-00850",
+        "category": "mixed-real",
+        "reference": "very little money to呃to it so I don't have any special feelings but",
+        "durationMs": 7160,
+        "speakerId": "ascend-speaker-20",
+        "response": {
+          "type": "result",
+          "requestId": "f8ba2f79927a426cbd2be0642b26e24c",
+          "ok": true,
+          "text": "very little too uh do it so i don't have any special feelings but",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.135,
+          "decodeMs": 126.379,
+          "transcribeMs": 131.372,
+          "rssBytes": 630521856,
+          "requestRoundTripMs": 131.842,
+          "sampledRssBytes": 630521856
+        }
+      }
+    ],
+    "performance": [
+      {
+        "type": "result",
+        "requestId": "5dc861aaedc44125ab051dfb0ffe98fa",
+        "ok": true,
+        "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.323,
+        "decodeMs": 127.633,
+        "transcribeMs": 131.345,
+        "rssBytes": 630718464,
+        "requestRoundTripMs": 132.027,
+        "sampledRssBytes": 630734848
+      },
+      {
+        "type": "result",
+        "requestId": "d0673fedfae24f71a1f169b6b30cc528",
+        "ok": true,
+        "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.352,
+        "decodeMs": 102.37,
+        "transcribeMs": 106.107,
+        "rssBytes": 630931456,
+        "requestRoundTripMs": 107.7,
+        "sampledRssBytes": 630931456
+      },
+      {
+        "type": "result",
+        "requestId": "b2931568dad74c378bc1c487ff3497c4",
+        "ok": true,
+        "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.273,
+        "decodeMs": 99.565,
+        "transcribeMs": 104.141,
+        "rssBytes": 631193600,
+        "requestRoundTripMs": 104.699,
+        "sampledRssBytes": 631193600
+      },
+      {
+        "type": "result",
+        "requestId": "6232ee0cfe23481e909789062ee22045",
+        "ok": true,
+        "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.27,
+        "decodeMs": 90.54,
+        "transcribeMs": 94.568,
+        "rssBytes": 631455744,
+        "requestRoundTripMs": 95.576,
+        "sampledRssBytes": 631455744
+      },
+      {
+        "type": "result",
+        "requestId": "6e554c6f7ad14a8d88351366d82c7bec",
+        "ok": true,
+        "text": "然后在 the the difference uh for environment field the difference between the hongline and milland",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.287,
+        "decodeMs": 110.11,
+        "transcribeMs": 114.296,
+        "rssBytes": 632045568,
+        "requestRoundTripMs": 114.812,
+        "sampledRssBytes": 632045568
+      }
+    ],
+    "shutdown": {
+      "type": "shutdown-complete",
+      "rssBytes": 632045568
+    }
+  },
+  "summaries": {
+    "spawnToReadyMs": {
+      "count": 3,
+      "min": 990.439,
+      "median": 1058.882,
+      "p95": 1066.639,
+      "max": 1067.501,
+      "mean": 1038.941
+    },
+    "firstRequestMs": {
+      "count": 3,
+      "min": 89.385,
+      "median": 95.627,
+      "p95": 120.85,
+      "max": 123.652,
+      "mean": 102.888
+    },
+    "coldEndToEndMs": {
+      "count": 3,
+      "min": 1079.824,
+      "median": 1163.128,
+      "p95": 1180.593,
+      "max": 1182.534,
+      "mean": 1141.829
+    },
+    "warmRequestMs": {
+      "count": 5,
+      "min": 95.576,
+      "median": 107.7,
+      "p95": 128.584,
+      "max": 132.027,
+      "mean": 110.963
+    },
+    "maxSampledRssBytes": 636518400
+  }
+}

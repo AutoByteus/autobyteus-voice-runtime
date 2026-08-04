@@ -1,0 +1,30 @@
+{
+  "schemaVersion": 1,
+  "method": "paired nonparametric clip bootstrap; corpus-weighted edit rate within each resample",
+  "seed": 20260802,
+  "iterations": 100000,
+  "language": "en",
+  "metric": "WER",
+  "clipCount": 50,
+  "left": {
+    "backend": "funasr-nano-gguf-q8",
+    "source": "tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/results/quality-funasr-nano-q8-en.json",
+    "errorRate": 0.04504504504504504
+  },
+  "right": {
+    "backend": "mlx-fp16",
+    "source": "tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/results/quality-mlx.json",
+    "errorRate": 0.07007007007007007
+  },
+  "differenceLeftMinusRight": -0.02502502502502503,
+  "difference95PercentBootstrapInterval": [
+    -0.041456016177957536,
+    -0.009708737864077673
+  ],
+  "bootstrapOutcomeProbability": {
+    "leftLowerError": 0.99924,
+    "rightLowerError": 0.00048,
+    "equal": 0.00028
+  },
+  "limitation": "50 FLEURS clips; this quantifies uncertainty for this locked sample, not all user speech."
+}

@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Source-side selected provider and build-tool notice inventory; every built package ships a target-resolved, input-manifest-locked subset plus all transitive notices.",
+  "components": [
+    {
+      "id": "go",
+      "use": "native public launcher build input",
+      "license": "BSD-3-Clause",
+      "licensePath": "licenses/GO-LICENSE.txt"
+    },
+    {
+      "id": "python-build-standalone",
+      "use": "hermetic Python host input",
+      "license": "MPL-2.0 plus component notices",
+      "licensePath": "licenses/PYTHON-BUILD-STANDALONE-LICENSE.txt"
+    },
+    {
+      "id": "mlx-whisper",
+      "use": "English darwin-arm64 private engine",
+      "license": "MIT",
+      "packageNoticeRequired": true
+    },
+    {
+      "id": "whisper-small",
+      "use": "English model",
+      "license": "MIT",
+      "packageNoticeRequired": true
+    },
+    {
+      "id": "faster-whisper-and-ctranslate2",
+      "use": "English non-Apple private engine",
+      "license": "MIT",
+      "packageNoticeRequired": true
+    },
+    {
+      "id": "funasr",
+      "use": "Chinese native provider source",
+      "license": "MIT",
+      "licensePath": "licenses/FUNASR-LICENSE.txt"
+    },
+    {
+      "id": "llama.cpp",
+      "use": "Fun-ASR native dependency",
+      "license": "MIT",
+      "packageNoticeRequired": true
+    },
+    {
+      "id": "fun-asr-nano-gguf",
+      "use": "Chinese model",
+      "license": "model-card governed; redistribution approval required",
+      "packageNoticeRequired": true
+    },
+    {
+      "id": "opencc-js",
+      "use": "normalization mapping generator",
+      "license": "MIT",
+      "licensePath": "licenses/OPENCC-JS-LICENSE.txt"
+    },
+    {
+      "id": "opencc-data",
+      "use": "pinned Traditional-to-Simplified mapping data",
+      "license": "Apache-2.0",
+      "licensePath": "licenses/OPENCC-DATA-APACHE-2.0.txt"
+    },
+    {
+      "id": "utf8proc",
+      "use": "native NFKC normalization",
+      "license": "MIT",
+      "licensePath": "licenses/UTF8PROC-LICENSE.md"
+    },
+    {
+      "id": "nlohmann-json",
+      "use": "native protocol JSON parsing via pinned llama.cpp source",
+      "license": "MIT",
+      "packageNoticeRequired": true
+    }
+  ]
+}

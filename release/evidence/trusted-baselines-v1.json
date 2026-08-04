@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "baselines": [
+    {
+      "profileId": "english",
+      "targets": ["darwin-arm64", "darwin-x64", "linux-x64", "win32-x64"],
+      "baselineId": "english-promoted-baseline-unique-v2",
+      "evidencePath": "release/evidence/baselines/english-v2.json",
+      "evidenceSha256": "c52613457644700e18d0caf4e1d1a32a7a00c679968866b06be4305ce8b58dba",
+      "promotedResultPath": "evidence/selection-study/derived/english-preservation-unique-v2/controlled-mlx-fp16-en-unique-v2.json",
+      "promotedResultSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10",
+      "corpusManifestPath": "release/evidence/qualification-corpora/english-v2.json",
+      "corpusManifestSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+      "providerId": "autobyteus.voice.mlx-whisper-small",
+      "modelId": "whisper-small-mlx-fp16",
+      "configurationDigest": "442f9ad4c7669a60de86b118558fe6c97e73f7874cab680f64cf1eb69c4bde87",
+      "metric": "WER",
+      "sampleCount": 49,
+      "value": 0.07223942208462332,
+      "promotedQualityPath": "evidence/selection-study/derived/english-preservation-unique-v2/quality-mlx-en-unique-v2.json",
+      "promotedQualitySha256": "73e76890bf92d018a190058c1ca4ea0083678fe9f362572e06c415936d71558c",
+      "configuration": {
+        "providerId": "autobyteus.voice.mlx-whisper-small",
+        "modelId": "whisper-small-mlx-fp16",
+        "engine": "mlx-whisper",
+        "engineVersion": "0.4.3",
+        "precision": "fp16",
+        "language": "en",
+        "temperature": 0,
+        "conditionOnPreviousText": false,
+        "promotedResultSha256": "3937d59f935dff8b7ff59a4ae0a6574240218a3703d25374919199faafb1fd10"
+      }
+    },
+    {
+      "schemaVersion": 2,
+      "profileId": "chinese",
+      "targets": ["darwin-arm64"],
+      "baselineId": "chinese-promoted-baseline-v2",
+      "baseline": {
+        "fileName": "chinese-v2.baseline.json",
+        "sha256": "6172f4407c4930152c781dc5e6d4498d53b9af18e7e2f413b76fcdca86763f58"
+      },
+      "corpus": {
+        "fileName": "chinese-v2.corpus.json",
+        "sha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+        "sampleCount": 200
+      },
+      "scoringContract": {
+        "id": "autobyteus-chinese-cer-selection-comparable-v1",
+        "fileName": "chinese-cer-scoring-contract-v1.json",
+        "sha256": "7ca1743cad4e209d9c04068c334ab4fa2e9e5932d093f7b82f888f7a67207af5",
+        "mappingFileName": "opencc-t2s-scoring-map-v1.json",
+        "mappingSha256": "f4b8969d9f7d1814e1fa3aee13e7c65d526ddc52c79efb14f265a9cf76b0f369"
+      },
+      "source": {
+        "promotedResultSha256": "84568c53e908e1538ab55b5aa046804e2e7444386225b791de11a148239f8b48",
+        "promotedQualitySha256": "c7229574bad3ee199d43e1ee146c61e65514fa2c2ba514d7358ff40134f64089",
+        "selectionCorpusManifestSha256": "a0326dabce226f00f9bd7a5a5bc11797eaeab1891b70f09de5fabf53f54eaaf1",
+        "derivationSha256": "ad31e98adac60147163359a6b24758a72a767d7deefcedc6aca69c2aa53e91fe"
+      },
+      "providerId": "autobyteus.voice.funasr-nano-q8",
+      "modelId": "fun-asr-nano-gguf-q8",
+      "configurationDigest": "7b2ed57eca281a71bfdeb134b31bbf5e8a17384dcb975daa3eb8627aa0afb688",
+      "metric": "CER",
+      "errors": 343,
+      "units": 6580,
+      "value": 0.052127659574468084,
+      "sampleCount": 200,
+      "replacement": {
+        "supersedes": "chinese-promoted-baseline-v1",
+        "reason": "v1 did not bind the scoring contract that produced its stored counts",
+        "historicalBytesPreserved": true,
+        "countsAndValueChanged": false
+      }
+    }
+  ]
+}

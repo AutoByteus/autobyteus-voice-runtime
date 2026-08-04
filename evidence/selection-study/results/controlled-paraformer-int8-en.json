@@ -1,0 +1,1259 @@
+{
+  "schemaVersion": 1,
+  "backend": "paraformer-int8",
+  "language": "en",
+  "threads": null,
+  "command": [
+    "node",
+    "/tmp/autobyteus-voice-backend-study-20260802/harness/sherpa_paraformer_worker.cjs",
+    "--sherpa-package",
+    "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/node_modules/sherpa-onnx-node",
+    "--model",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-paraformer-zh-2024-03-09/model.int8.onnx",
+    "--tokens",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-paraformer-zh-2024-03-09/tokens.txt",
+    "--precision",
+    "int8",
+    "--threads",
+    "4"
+  ],
+  "corpusId": "fleurs-controlled-mandarin-english-v1",
+  "coldClip": {
+    "id": "fleurs-en-1772",
+    "durationMs": 5860,
+    "reference": "so it is likely that the notation was added simply as a label"
+  },
+  "coldRuns": [
+    {
+      "index": 0,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 22683,
+        "importMs": 7.344,
+        "modelLoadMs": 935.938,
+        "workerReadyMs": 943.443,
+        "rssBytes": 613728256,
+        "threads": 4,
+        "spawnToReadyMs": 976.797,
+        "sampledRssBytes": 615153664
+      },
+      "first": {
+        "type": "result",
+        "requestId": "118cb7dbb5394316b90f788cf475e962",
+        "ok": true,
+        "text": "so it's likely that the notation was added simply as a label",
+        "detectedLanguage": "zh-en",
+        "readMs": 2.143,
+        "decodeMs": 66.654,
+        "transcribeMs": 71.919,
+        "rssBytes": 618217472,
+        "requestRoundTripMs": 72.621,
+        "sampledRssBytes": 618217472
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 618217472
+      }
+    },
+    {
+      "index": 1,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 22687,
+        "importMs": 7.071,
+        "modelLoadMs": 934.13,
+        "workerReadyMs": 941.396,
+        "rssBytes": 616218624,
+        "threads": 4,
+        "spawnToReadyMs": 974.22,
+        "sampledRssBytes": 617644032
+      },
+      "first": {
+        "type": "result",
+        "requestId": "f4a0ad8fdced490b8a5a2f9fa4f084e2",
+        "ok": true,
+        "text": "so it's likely that the notation was added simply as a label",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.334,
+        "decodeMs": 74.686,
+        "transcribeMs": 78.123,
+        "rssBytes": 620036096,
+        "requestRoundTripMs": 78.937,
+        "sampledRssBytes": 620036096
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 620036096
+      }
+    },
+    {
+      "index": 2,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-int8",
+        "pid": 22693,
+        "importMs": 8.623,
+        "modelLoadMs": 925.69,
+        "workerReadyMs": 934.493,
+        "rssBytes": 619249664,
+        "threads": 4,
+        "spawnToReadyMs": 968.86,
+        "sampledRssBytes": 620625920
+      },
+      "first": {
+        "type": "result",
+        "requestId": "243cfb50339e41849a393ef64d4d59ea",
+        "ok": true,
+        "text": "so it's likely that the notation was added simply as a label",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.316,
+        "decodeMs": 68.832,
+        "transcribeMs": 72.183,
+        "rssBytes": 622460928,
+        "requestRoundTripMs": 72.885,
+        "sampledRssBytes": 622460928
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 622477312
+      }
+    }
+  ],
+  "warmSession": {
+    "ready": {
+      "type": "ready",
+      "backend": "sherpa-onnx-paraformer-int8",
+      "pid": 22696,
+      "importMs": 7.907,
+      "modelLoadMs": 940.844,
+      "workerReadyMs": 948.918,
+      "rssBytes": 621363200,
+      "threads": 4,
+      "spawnToReadyMs": 981.684,
+      "sampledRssBytes": 622788608
+    },
+    "warmup": {
+      "type": "result",
+      "requestId": "568d51737e254a0a8777dc7034674d07",
+      "ok": true,
+      "text": "so it's likely that the notation was added simply as a label",
+      "detectedLanguage": "zh-en",
+      "readMs": 0.303,
+      "decodeMs": 77.159,
+      "transcribeMs": 80.86,
+      "rssBytes": 624738304,
+      "requestRoundTripMs": 81.64,
+      "sampledRssBytes": 624738304
+    },
+    "quality": [
+      {
+        "id": "fleurs-en-1660",
+        "category": "english",
+        "reference": "romanticism had a large element of cultural determinism drawn from writers such as goethe fichte and schlegel",
+        "durationMs": 10680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "11b525af6bfc463eba9eb67767dc71ab",
+          "ok": true,
+          "text": "romanticism had a large element of cultural determinism drawn from wrders such as golth fiitched and legal",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.436,
+          "decodeMs": 134.559,
+          "transcribeMs": 143.282,
+          "rssBytes": 628572160,
+          "requestRoundTripMs": 143.822,
+          "sampledRssBytes": 628572160
+        }
+      },
+      {
+        "id": "fleurs-en-1662",
+        "category": "english",
+        "reference": "alloys are basically a mixture of two or more metals don't forget that there are many elements on the periodic table",
+        "durationMs": 8380,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "132d39099f1e47f79ed232ae539256ca",
+          "ok": true,
+          "text": "our ways are basically in mixture of two or more medals don't forget there are many elements on the periodic table",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.501,
+          "decodeMs": 131.661,
+          "transcribeMs": 139.235,
+          "rssBytes": 629964800,
+          "requestRoundTripMs": 140.252,
+          "sampledRssBytes": 629964800
+        }
+      },
+      {
+        "id": "fleurs-en-1673",
+        "category": "english",
+        "reference": "during the revolutionary war the thirteen states first formed a weak central government-with the congress being its only component-under the articles of confederation",
+        "durationMs": 10680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "3238c319f5dc477a98d244061ebfa2b3",
+          "ok": true,
+          "text": "during the revolutionary war the thirteen states first formed a weak central government with the congress being is only component under the articles of confederation",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.432,
+          "decodeMs": 128.078,
+          "transcribeMs": 135.966,
+          "rssBytes": 631390208,
+          "requestRoundTripMs": 136.532,
+          "sampledRssBytes": 631390208
+        }
+      },
+      {
+        "id": "fleurs-en-1675",
+        "category": "english",
+        "reference": "all nouns alongside the word sie for you always begin with a capital letter even in the middle of a sentence",
+        "durationMs": 8760,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "6474a2d75f514475873eaf9b6bc4b4c4",
+          "ok": true,
+          "text": "all nounes alongthe the worsea for you always become with the capital letter even in the middle of sentence",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.606,
+          "decodeMs": 76.024,
+          "transcribeMs": 81.896,
+          "rssBytes": 631603200,
+          "requestRoundTripMs": 82.374,
+          "sampledRssBytes": 631603200
+        }
+      },
+      {
+        "id": "fleurs-en-1687",
+        "category": "english",
+        "reference": "segregation and recombination shuffle variation back and forth between the two pools with each generation",
+        "durationMs": 11220,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "4cad6a4de74644c88eef9b83071a5aac",
+          "ok": true,
+          "text": "segregration and recombination sharple variation back and force between the two pols with each generation",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.538,
+          "decodeMs": 122.041,
+          "transcribeMs": 131.917,
+          "rssBytes": 631767040,
+          "requestRoundTripMs": 132.426,
+          "sampledRssBytes": 631783424
+        }
+      },
+      {
+        "id": "fleurs-en-1689",
+        "category": "english",
+        "reference": "europe is a continent that is relatively small but with many independent countries under normal circumstances travelling through multiple countries would mean having to go through visa applications and passport control multiple times",
+        "durationMs": 13020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "b714dcdb2845415689e278cc5a1de592",
+          "ok": true,
+          "text": "european is the continent that is relative smobal with many independent countries under normal circumstances traveling to multiple countries would mean having to go through reseapplication and pspfor control multiple times",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.407,
+          "decodeMs": 181.701,
+          "transcribeMs": 190.127,
+          "rssBytes": 634748928,
+          "requestRoundTripMs": 190.617,
+          "sampledRssBytes": 634748928
+        }
+      },
+      {
+        "id": "fleurs-en-1701",
+        "category": "english",
+        "reference": "goats seem to have been first domesticated roughly 10,000 years ago in the zagros mountains of iran",
+        "durationMs": 10620,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "66cfb85e3cd44ef896c6bfd6dfca02bc",
+          "ok": true,
+          "text": "goatds seem to have been first domesticated roughly ten thousand years ago in the zargro's mttons of iran",
+          "detectedLanguage": "zh-en",
+          "readMs": 3.931,
+          "decodeMs": 90.461,
+          "transcribeMs": 101.767,
+          "rssBytes": 635174912,
+          "requestRoundTripMs": 102.56,
+          "sampledRssBytes": 635191296
+        }
+      },
+      {
+        "id": "fleurs-en-1704",
+        "category": "english",
+        "reference": "in 1990 it was added to the list of world heritage sites in danger due to the threat of desert sands",
+        "durationMs": 7320,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "06edc640c1724ae28e331cfbe043fe95",
+          "ok": true,
+          "text": "in nineand ninety it was added to the list of world heroted sites and danger due to the threat of desert scanes",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.43,
+          "decodeMs": 114.779,
+          "transcribeMs": 122.834,
+          "rssBytes": 635699200,
+          "requestRoundTripMs": 123.543,
+          "sampledRssBytes": 635715584
+        }
+      },
+      {
+        "id": "fleurs-en-1714",
+        "category": "english",
+        "reference": "the satellite was sent into space by a rocket scientists use telescopes in space because the earth's atmosphere distorts some of our light and view",
+        "durationMs": 10840,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "a827772077e14b2abb513bf10642c128",
+          "ok": true,
+          "text": "stelllight was sentento space by a rocket scientists you teteleschools in space because he urged atmosphere to to sort some of our light and view",
+          "detectedLanguage": "zh-en",
+          "readMs": 3.26,
+          "decodeMs": 125.871,
+          "transcribeMs": 134.841,
+          "rssBytes": 636223488,
+          "requestRoundTripMs": 135.275,
+          "sampledRssBytes": 636223488
+        }
+      },
+      {
+        "id": "fleurs-en-1720",
+        "category": "english",
+        "reference": "the hot chocolate is up to belgian standards fruit juices are pricey but excellent",
+        "durationMs": 6420,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "8456e0e9d19d4e29bb1e9bd41978b1bf",
+          "ok": true,
+          "text": "the hard chocolate is ultibelan standards fruchooses are prizy by excellent",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.555,
+          "decodeMs": 80.475,
+          "transcribeMs": 86.979,
+          "rssBytes": 636895232,
+          "requestRoundTripMs": 87.47,
+          "sampledRssBytes": 636895232
+        }
+      },
+      {
+        "id": "fleurs-en-1731",
+        "category": "english",
+        "reference": "in the archipelagos and lakes you do not necessarily need a yacht",
+        "durationMs": 7480,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "5b15ce57ce474696aa2a554f773cbcea",
+          "ok": true,
+          "text": "in the archard pollogles and lags you do not necessarily need a a yard",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.092,
+          "decodeMs": 79.818,
+          "transcribeMs": 84.854,
+          "rssBytes": 637255680,
+          "requestRoundTripMs": 85.175,
+          "sampledRssBytes": 637255680
+        }
+      },
+      {
+        "id": "fleurs-en-1737",
+        "category": "english",
+        "reference": "lions are the most social cats living in large groups called prides",
+        "durationMs": 4140,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "872426d4172c4443a6a6ec7b6e8ad9fe",
+          "ok": true,
+          "text": "i enter the most social cats living a large groups called priate",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.001,
+          "decodeMs": 51.062,
+          "transcribeMs": 55.625,
+          "rssBytes": 637616128,
+          "requestRoundTripMs": 56.011,
+          "sampledRssBytes": 637616128
+        }
+      },
+      {
+        "id": "fleurs-en-1745",
+        "category": "english",
+        "reference": "plants look their best when in a natural environment so resist the temptation to remove even just one specimen",
+        "durationMs": 9660,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "df26d7320385405fb0b666939f01d754",
+          "ok": true,
+          "text": "pllilike their best when in a natural environment so resistentation to remove even just onespecimen",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.647,
+          "decodeMs": 108.238,
+          "transcribeMs": 115.936,
+          "rssBytes": 638107648,
+          "requestRoundTripMs": 116.283,
+          "sampledRssBytes": 638124032
+        }
+      },
+      {
+        "id": "fleurs-en-1755",
+        "category": "english",
+        "reference": "one bomb exploded outside the governor general's office",
+        "durationMs": 6640,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "05846d9bf39440dcbe27d5753bd1127f",
+          "ok": true,
+          "text": "one bomb exploited outside the governorgenerer's office",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.167,
+          "decodeMs": 59.06,
+          "transcribeMs": 63,
+          "rssBytes": 638353408,
+          "requestRoundTripMs": 63.532,
+          "sampledRssBytes": 638353408
+        }
+      },
+      {
+        "id": "fleurs-en-1756",
+        "category": "english",
+        "reference": "late on sunday the united states president donald trump in a statement delivered via the press secretary announced us troops would be leaving syria",
+        "durationMs": 9960,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "98a6dcc8d59f455dae557d7d169c4a49",
+          "ok": true,
+          "text": "late on sunday the united state's president donald trump in a statement delivered via the press secretary announce to u s troops would be leaving syria",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.659,
+          "decodeMs": 148.279,
+          "transcribeMs": 157.073,
+          "rssBytes": 639696896,
+          "requestRoundTripMs": 157.389,
+          "sampledRssBytes": 639696896
+        }
+      },
+      {
+        "id": "fleurs-en-1768",
+        "category": "english",
+        "reference": "most of the buildings on the edges of the complex have been rebuilt in order to give tourists a better idea of how they originally appeared",
+        "durationMs": 7620,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "09b4ace5d3df4ac99b7ef874c022ad2f",
+          "ok": true,
+          "text": "most of the buildings on the edge of the complex have been rebuilt in order to give tourists the better idea of how they are originally appeared",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.211,
+          "decodeMs": 100.513,
+          "transcribeMs": 106.312,
+          "rssBytes": 640040960,
+          "requestRoundTripMs": 106.651,
+          "sampledRssBytes": 640040960
+        }
+      },
+      {
+        "id": "fleurs-en-1772",
+        "category": "english",
+        "reference": "so it is likely that the notation was added simply as a label",
+        "durationMs": 5860,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9c77a3afaa30443894d1be8d4b8e4ce5",
+          "ok": true,
+          "text": "so it's likely that the notation was added simply as a label",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.247,
+          "decodeMs": 67.888,
+          "transcribeMs": 71.205,
+          "rssBytes": 640319488,
+          "requestRoundTripMs": 71.586,
+          "sampledRssBytes": 640319488
+        }
+      },
+      {
+        "id": "fleurs-en-1781",
+        "category": "english",
+        "reference": "madagascar is by far the biggest and a continent on its own when it comes to wildlife",
+        "durationMs": 8880,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "2521ab7894154b49aebe720dd9197dd5",
+          "ok": true,
+          "text": "marigasscar is by for for the biggest and accontined on eits own when it comes wide life",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.271,
+          "decodeMs": 109.232,
+          "transcribeMs": 115.523,
+          "rssBytes": 640663552,
+          "requestRoundTripMs": 115.86,
+          "sampledRssBytes": 640663552
+        }
+      },
+      {
+        "id": "fleurs-en-1782",
+        "category": "english",
+        "reference": "also between each dynasty was an unstable age of divided provinces the best-known of these periods was the three kingdoms epoch taking place for 60 years between the han and the jin dynasty",
+        "durationMs": 11760,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f2c2b1b8c6184df7afdf8aa42b415a2d",
+          "ok": true,
+          "text": "also between each dynasy was an unstable age of dividal provvinces the best one of these periods was a three kingdoms epoch taking place for sixty years between the hunt and the gin dynasty",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.796,
+          "decodeMs": 136.59,
+          "transcribeMs": 144.572,
+          "rssBytes": 641155072,
+          "requestRoundTripMs": 144.945,
+          "sampledRssBytes": 641155072
+        }
+      },
+      {
+        "id": "fleurs-en-1793",
+        "category": "english",
+        "reference": "if you're not used to driving on country roads keep your wits about you steep grades narrow lanes and sharp curves predominate",
+        "durationMs": 11100,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "8d48e4dc588a433897b1bbea431656a8",
+          "ok": true,
+          "text": "if you're not used to driving on country roads keeyour with about you steep grades nearrolines and sharpcurves predominate",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.182,
+          "decodeMs": 103.312,
+          "transcribeMs": 110.222,
+          "rssBytes": 641548288,
+          "requestRoundTripMs": 110.599,
+          "sampledRssBytes": 641548288
+        }
+      },
+      {
+        "id": "fleurs-en-1799",
+        "category": "english",
+        "reference": "beyond wednesday's event carpanedo competed in two individual races at the championships",
+        "durationMs": 5700,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "bb891969132a492285e7227eb13a387b",
+          "ok": true,
+          "text": "beyond wednesy's event carpinado competed in two individual races at the championships",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.124,
+          "decodeMs": 95.434,
+          "transcribeMs": 102.048,
+          "rssBytes": 641908736,
+          "requestRoundTripMs": 102.56,
+          "sampledRssBytes": 641908736
+        }
+      },
+      {
+        "id": "fleurs-en-1802",
+        "category": "english",
+        "reference": "the internet combines elements of both mass and interpersonal communication",
+        "durationMs": 5760,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c8600cef673b4c018569a58d972653b2",
+          "ok": true,
+          "text": "the internet combines oments of both mass in interpersonal communication",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.178,
+          "decodeMs": 74.369,
+          "transcribeMs": 78.956,
+          "rssBytes": 642334720,
+          "requestRoundTripMs": 79.365,
+          "sampledRssBytes": 642334720
+        }
+      },
+      {
+        "id": "fleurs-en-1813",
+        "category": "english",
+        "reference": "barcelona's official languages are catalan and spanish about a half prefer to speak catalan a vast majority understands it and virtually everyone knows spanish",
+        "durationMs": 10260,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "b87af7a75e0343a29beabefc297086c2",
+          "ok": true,
+          "text": "barce along as official languages are catalen is spanish about a half prefer to speak catalan of vast majority understand that evirtually everyone knows spanish",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.684,
+          "decodeMs": 143.999,
+          "transcribeMs": 152.03,
+          "rssBytes": 642711552,
+          "requestRoundTripMs": 152.437,
+          "sampledRssBytes": 642711552
+        }
+      },
+      {
+        "id": "fleurs-en-1817",
+        "category": "english",
+        "reference": "the schengen zone however works somewhat like one country in this respect",
+        "durationMs": 6800,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f5d8efc4126a40f19d4a60f1b323ba88",
+          "ok": true,
+          "text": "the shaggain zone however works somewhat like one country in this respect",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.013,
+          "decodeMs": 65.105,
+          "transcribeMs": 68.679,
+          "rssBytes": 643121152,
+          "requestRoundTripMs": 69.047,
+          "sampledRssBytes": 643121152
+        }
+      },
+      {
+        "id": "fleurs-en-1828",
+        "category": "english",
+        "reference": "a search of the internet for hostile environment course' will probably provide the address of a local company",
+        "durationMs": 7200,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "1dd88d3e9d42490ab411683f7aa21729",
+          "ok": true,
+          "text": "a search of the internet for hostile environment course will probably provide the address of the local company",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.47,
+          "decodeMs": 137.192,
+          "transcribeMs": 145.024,
+          "rssBytes": 643481600,
+          "requestRoundTripMs": 145.433,
+          "sampledRssBytes": 643481600
+        }
+      },
+      {
+        "id": "fleurs-en-1839",
+        "category": "english",
+        "reference": "think of the skiing route as of a similar hiking route",
+        "durationMs": 4940,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "882d413ce38d4c0aba08b5df8470b2e5",
+          "ok": true,
+          "text": "think of the skin route as of a similar hiking route",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.117,
+          "decodeMs": 84.991,
+          "transcribeMs": 90.072,
+          "rssBytes": 643956736,
+          "requestRoundTripMs": 90.577,
+          "sampledRssBytes": 643956736
+        }
+      },
+      {
+        "id": "fleurs-en-1840",
+        "category": "english",
+        "reference": "in many other cities of italy and in the rest of the world particularly in poland similar setups were made which were viewed by a great number of people",
+        "durationMs": 8400,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e4aae303c9684bc181e773ec5f513a20",
+          "ok": true,
+          "text": "in many other seds of italy in the rest of the world particularly pwen similar setts were made which reviewed by great number of people",
+          "detectedLanguage": "zh-en",
+          "readMs": 3.176,
+          "decodeMs": 134.287,
+          "transcribeMs": 148.149,
+          "rssBytes": 644743168,
+          "requestRoundTripMs": 149.835,
+          "sampledRssBytes": 644743168
+        }
+      },
+      {
+        "id": "fleurs-en-1851",
+        "category": "english",
+        "reference": "rip currents are the returning flow from waves breaking off the beach often at a reef or similar",
+        "durationMs": 4980,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "4201907b6c2949fb908a09774cc689de",
+          "ok": true,
+          "text": "ropcranes are the returning flow from waves breaking off the sea often at a reef or similar",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.113,
+          "decodeMs": 78.248,
+          "transcribeMs": 82.131,
+          "rssBytes": 644923392,
+          "requestRoundTripMs": 82.495,
+          "sampledRssBytes": 644939776
+        }
+      },
+      {
+        "id": "fleurs-en-1857",
+        "category": "english",
+        "reference": "he added that they should not however be asked to take on obligations that go beyond their development stage responsibility and capabilities",
+        "durationMs": 10260,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "2346678f68b149beb9addb8ef30d639a",
+          "ok": true,
+          "text": "he added that that they should not however be as to take on obligations that go beyond their development stage responsibility and capabilities",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.399,
+          "decodeMs": 121.53,
+          "transcribeMs": 129.473,
+          "rssBytes": 645349376,
+          "requestRoundTripMs": 129.798,
+          "sampledRssBytes": 645349376
+        }
+      },
+      {
+        "id": "fleurs-en-1866",
+        "category": "english",
+        "reference": "first most riders wear riding boots with a heel and a smooth quite narrow sole",
+        "durationMs": 4680,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "4329de3ac2424088bf65b53434ae98da",
+          "ok": true,
+          "text": "first most writers for reading boots with the hill on is smooth quite narrow soul",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.194,
+          "decodeMs": 58.06,
+          "transcribeMs": 62.856,
+          "rssBytes": 645529600,
+          "requestRoundTripMs": 63.235,
+          "sampledRssBytes": 645529600
+        }
+      },
+      {
+        "id": "fleurs-en-1873",
+        "category": "english",
+        "reference": "be firm in turning down men and don't be afraid to stand your ground cultural differences or not it doesn't make it ok!",
+        "durationMs": 10980,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c9833793e6c243919a7b7a6fc0e38b2c",
+          "ok": true,
+          "text": "be firm in turning down man and don't be afraid to stand your ground cultural differences or not it doesn't make it okay",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.683,
+          "decodeMs": 105.2,
+          "transcribeMs": 113.158,
+          "rssBytes": 645857280,
+          "requestRoundTripMs": 113.887,
+          "sampledRssBytes": 645857280
+        }
+      },
+      {
+        "id": "fleurs-en-1881",
+        "category": "english",
+        "reference": "sharing a field trip virtually is also a great way to reflect a on a trip and share experiences with future classes",
+        "durationMs": 7740,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "cfe0caffa1f54554abefcc93d2435cf3",
+          "ok": true,
+          "text": "sharing a future virtually is also a great way to reflect a only trip and share experiences with future classes",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.391,
+          "decodeMs": 94.562,
+          "transcribeMs": 100.837,
+          "rssBytes": 646184960,
+          "requestRoundTripMs": 101.174,
+          "sampledRssBytes": 646184960
+        }
+      },
+      {
+        "id": "fleurs-en-1889",
+        "category": "english",
+        "reference": "it has brought us the train the car and many other transportation devices",
+        "durationMs": 6780,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "39004b076e8b46f1861de25ad6a81854",
+          "ok": true,
+          "text": "it has brought the train the car and many other transportation devices",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.779,
+          "decodeMs": 93.359,
+          "transcribeMs": 100.713,
+          "rssBytes": 646414336,
+          "requestRoundTripMs": 101.11,
+          "sampledRssBytes": 646414336
+        }
+      },
+      {
+        "id": "fleurs-en-1893",
+        "category": "english",
+        "reference": "the sundarbans are the largest littoral mangrove belt in the world stretching 80 km 50 mi into the bangladeshi and indian hinterland from the coast",
+        "durationMs": 12240,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "ebb426c48d004b358a9e697fe1eb313e",
+          "ok": true,
+          "text": "the sun darbans are the largest the toral man grow belin in the strestrechging dty kilometers fifty miles into the bangladsi an an indian hinter land from the coast",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.549,
+          "decodeMs": 149.11,
+          "transcribeMs": 159.307,
+          "rssBytes": 647168000,
+          "requestRoundTripMs": 159.935,
+          "sampledRssBytes": 647168000
+        }
+      },
+      {
+        "id": "fleurs-en-1902",
+        "category": "english",
+        "reference": "he was initially hospitalised in the james paget hospital in great yarmouth",
+        "durationMs": 7500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "86816623fa724913bfa19148b2b3a5d6",
+          "ok": true,
+          "text": "he was initially hospitalized in the james paggant hospital in great yard mouth",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.119,
+          "decodeMs": 91.207,
+          "transcribeMs": 96.253,
+          "rssBytes": 647413760,
+          "requestRoundTripMs": 96.607,
+          "sampledRssBytes": 647430144
+        }
+      },
+      {
+        "id": "fleurs-en-1909",
+        "category": "english",
+        "reference": "virtual teams are held to the same standards of excellence as conventional teams but there are subtle differences",
+        "durationMs": 5640,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "f2a541641c9348f799fa4e9d426cde37",
+          "ok": true,
+          "text": "racuteams are health the same standard of excellent as commentional teams but there are sebtle differences",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.871,
+          "decodeMs": 82.986,
+          "transcribeMs": 87.895,
+          "rssBytes": 647659520,
+          "requestRoundTripMs": 88.33,
+          "sampledRssBytes": 647659520
+        }
+      },
+      {
+        "id": "fleurs-en-1912",
+        "category": "english",
+        "reference": "most of the smaller islands are independent nations or associated with france and known as luxury beach resorts",
+        "durationMs": 10520,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "d3f2c9cb43c140bd874ce70d4dc4841a",
+          "ok": true,
+          "text": "most of the smaller islands are independent nations or associate with france unknown as luxury bease resorts",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.923,
+          "decodeMs": 148.812,
+          "transcribeMs": 157.375,
+          "rssBytes": 648101888,
+          "requestRoundTripMs": 157.901,
+          "sampledRssBytes": 648101888
+        }
+      },
+      {
+        "id": "fleurs-en-1922",
+        "category": "english",
+        "reference": "there are of course christian theological explanations for this tradition but it may well be a pre-christian spring and fertility ritual",
+        "durationMs": 9060,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "2d12f647bf144cc6b5c0005c53c0c1c5",
+          "ok": true,
+          "text": "there are of course christian theological explanations for this tradition but it may well be a prechristian spring and fertility ritual",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.31,
+          "decodeMs": 126.948,
+          "transcribeMs": 133.648,
+          "rssBytes": 648675328,
+          "requestRoundTripMs": 134.028,
+          "sampledRssBytes": 648675328
+        }
+      },
+      {
+        "id": "fleurs-en-1938",
+        "category": "english",
+        "reference": "the hospital has followed protocol for infection control including separating the patient from others to prevent possible infection of others",
+        "durationMs": 11420,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e60c69389e374660a9fcbbaaca630975",
+          "ok": true,
+          "text": "the houseital has follow protocol for infection control including separating the patient from others to prevent possible infection of others",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.809,
+          "decodeMs": 123.807,
+          "transcribeMs": 131.793,
+          "rssBytes": 649297920,
+          "requestRoundTripMs": 132.222,
+          "sampledRssBytes": 649297920
+        }
+      },
+      {
+        "id": "fleurs-en-1939",
+        "category": "english",
+        "reference": "also after the revolution occupations were open to all male applicants allowing the most ambitious and successful to succeed",
+        "durationMs": 7020,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e617cbbfb5424b8ab83a1d29be037c04",
+          "ok": true,
+          "text": "also acter revolution occupants were open to all mal applicallowing the most ambitious and successful to succeed",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.349,
+          "decodeMs": 123.531,
+          "transcribeMs": 130.431,
+          "rssBytes": 649691136,
+          "requestRoundTripMs": 130.834,
+          "sampledRssBytes": 649707520
+        }
+      },
+      {
+        "id": "fleurs-en-1951",
+        "category": "english",
+        "reference": "in 2002 goma was destroyed by lava from the nyiragongo volcano which buried most of the town's streets particularly the town centre",
+        "durationMs": 9600,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "e857f7acfaf74c7296053acd082c7b21",
+          "ok": true,
+          "text": "and two doesn't two gma was destroyed by lover from the nyon gogle volcano which vary most of the town streets particularly the towncenter",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.377,
+          "decodeMs": 113.65,
+          "transcribeMs": 120.509,
+          "rssBytes": 650051584,
+          "requestRoundTripMs": 120.888,
+          "sampledRssBytes": 650051584
+        }
+      },
+      {
+        "id": "fleurs-en-1952",
+        "category": "english",
+        "reference": "anyone who's going to drive at high latitudes or over mountain passes should consider the possibility of snow ice or freezing temperatures",
+        "durationMs": 11320,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "acd316bdcf694318801ade1c9eef8620",
+          "ok": true,
+          "text": "anyone he is going to drive at high attitudes or over mmelent passes she consider a possibly of snow ice or freezing temperatures",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.793,
+          "decodeMs": 126.348,
+          "transcribeMs": 134.37,
+          "rssBytes": 650461184,
+          "requestRoundTripMs": 134.73,
+          "sampledRssBytes": 650461184
+        }
+      },
+      {
+        "id": "fleurs-en-1964",
+        "category": "english",
+        "reference": "the 25 dunlap broadsides still known to exist are the oldest surviving copies of the document the original handwritten copy has not survived",
+        "durationMs": 9840,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "060a21b69491457c824039fba191c820",
+          "ok": true,
+          "text": "the twenty five downwabbbroad sites still known to exist are the oldest surviving copies of the document the original handreading copying has not survived",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.473,
+          "decodeMs": 140.688,
+          "transcribeMs": 149.845,
+          "rssBytes": 651853824,
+          "requestRoundTripMs": 150.191,
+          "sampledRssBytes": 651853824
+        }
+      },
+      {
+        "id": "fleurs-en-1969",
+        "category": "english",
+        "reference": "it states that the most effective place for the main subject is at the intersection of lines dividing the image into thirds vertically and horizontally see example",
+        "durationMs": 12800,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "9791cb7e6ed64e8eab6508f89288f22c",
+          "ok": true,
+          "text": "it states at the most effective place for the main subject is at the intersection of lines dividing images into the thirds vertically and horizonally see example",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.702,
+          "decodeMs": 130.602,
+          "transcribeMs": 137.665,
+          "rssBytes": 652738560,
+          "requestRoundTripMs": 138.153,
+          "sampledRssBytes": 652738560
+        }
+      },
+      {
+        "id": "fleurs-en-1977",
+        "category": "english",
+        "reference": "prides are made up of one to three related adult males along with as many as thirty females and cubs",
+        "durationMs": 6780,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "7c46db330b5940288be6e6f4dadb213c",
+          "ok": true,
+          "text": "rights are up of one of to three related adulmeals among with does many as thirty females and comes",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.154,
+          "decodeMs": 80.04,
+          "transcribeMs": 85.56,
+          "rssBytes": 653000704,
+          "requestRoundTripMs": 85.979,
+          "sampledRssBytes": 653000704
+        }
+      },
+      {
+        "id": "fleurs-en-1981",
+        "category": "english",
+        "reference": "if you only go ashore using shipboard excursions you will not need a separate visa as of 2009",
+        "durationMs": 9260,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "97a149d8bb564f5f9a473977bd6bfa4f",
+          "ok": true,
+          "text": "if you only go assure using ship or exclusions you will not need a separate visa as a two thousand nine",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.254,
+          "decodeMs": 109.851,
+          "transcribeMs": 116.883,
+          "rssBytes": 654508032,
+          "requestRoundTripMs": 117.282,
+          "sampledRssBytes": 654508032
+        }
+      },
+      {
+        "id": "fleurs-en-1992",
+        "category": "english",
+        "reference": "the term safari in popular use refers to overland travel to view the stunning african wildlife particularly on savanna",
+        "durationMs": 9500,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "d86ae474e0274f8bb1d065608addf161",
+          "ok": true,
+          "text": "the terms of farry in popular use refers to overland travelled to view the suny african wildlife particularly on savana",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.267,
+          "decodeMs": 107.29,
+          "transcribeMs": 115.07,
+          "rssBytes": 655097856,
+          "requestRoundTripMs": 115.423,
+          "sampledRssBytes": 655097856
+        }
+      },
+      {
+        "id": "fleurs-en-1995",
+        "category": "english",
+        "reference": "virtual scaffolds are internalized in the software and are meant to question prompt and explain procedures that may have been to challenging for the student to handle alone",
+        "durationMs": 9720,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "0083030c0d11485888947d679795092a",
+          "ok": true,
+          "text": "virtual scafles are internalized in the software and are meant to question prompt and explain procedures that may have been too challenging for the student to handle along",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.772,
+          "decodeMs": 122.413,
+          "transcribeMs": 135.037,
+          "rssBytes": 655523840,
+          "requestRoundTripMs": 135.563,
+          "sampledRssBytes": 655523840
+        }
+      },
+      {
+        "id": "fleurs-en-2009",
+        "category": "english",
+        "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+        "durationMs": 13860,
+        "speakerId": "fleurs-gender-0-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "c305bc1a4d0547ebbd1a4de02da188d6",
+          "ok": true,
+          "text": "the most readdely accessible plant resources would have been approtees accessible in leaves and legons but these are hard for primies like us to digest unless they are cooked",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.101,
+          "decodeMs": 126.434,
+          "transcribeMs": 134.266,
+          "rssBytes": 656080896,
+          "requestRoundTripMs": 134.601,
+          "sampledRssBytes": 656080896
+        }
+      },
+      {
+        "id": "fleurs-en-2009",
+        "category": "english",
+        "reference": "the most readily accessible plant resources would have been the proteins accessible in leaves and legumes but these are hard for primates like us to digest unless they are cooked",
+        "durationMs": 11040,
+        "speakerId": "fleurs-gender-1-unknown-speaker",
+        "response": {
+          "type": "result",
+          "requestId": "8a51e5ae9de74d399ae541659f161bb0",
+          "ok": true,
+          "text": "the most readdely accessible plant resources would have been approtees accessible in leaves and legons but these are hard for primies like us to digest unless they are cooked",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.406,
+          "decodeMs": 132.136,
+          "transcribeMs": 138.826,
+          "rssBytes": 656556032,
+          "requestRoundTripMs": 139.16,
+          "sampledRssBytes": 656556032
+        }
+      }
+    ],
+    "performance": [
+      {
+        "type": "result",
+        "requestId": "5ce8b3248f57425dbd8f7ef0700584ff",
+        "ok": true,
+        "text": "so it's likely that the notation was added simply as a label",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.247,
+        "decodeMs": 70.949,
+        "transcribeMs": 74.783,
+        "rssBytes": 656785408,
+        "requestRoundTripMs": 75.094,
+        "sampledRssBytes": 656801792
+      },
+      {
+        "type": "result",
+        "requestId": "72118b76f7674f63ab805bd0770d72da",
+        "ok": true,
+        "text": "so it's likely that the notation was added simply as a label",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.242,
+        "decodeMs": 68.524,
+        "transcribeMs": 72.122,
+        "rssBytes": 657031168,
+        "requestRoundTripMs": 72.542,
+        "sampledRssBytes": 657031168
+      },
+      {
+        "type": "result",
+        "requestId": "cf8d4ba5c2b64693b2054e99ac5f894c",
+        "ok": true,
+        "text": "so it's likely that the notation was added simply as a label",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.291,
+        "decodeMs": 129.49,
+        "transcribeMs": 132.997,
+        "rssBytes": 657244160,
+        "requestRoundTripMs": 134.168,
+        "sampledRssBytes": 657244160
+      },
+      {
+        "type": "result",
+        "requestId": "80fb5bc9c61d47fda3a17dfd5fd5958d",
+        "ok": true,
+        "text": "so it's likely that the notation was added simply as a label",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.443,
+        "decodeMs": 87.362,
+        "transcribeMs": 92.626,
+        "rssBytes": 623591424,
+        "requestRoundTripMs": 93.144,
+        "sampledRssBytes": 623591424
+      },
+      {
+        "type": "result",
+        "requestId": "23295b92b7c444d0b27422ca88f936d4",
+        "ok": true,
+        "text": "so it's likely that the notation was added simply as a label",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.302,
+        "decodeMs": 74.209,
+        "transcribeMs": 78.373,
+        "rssBytes": 623591424,
+        "requestRoundTripMs": 78.949,
+        "sampledRssBytes": 623591424
+      }
+    ],
+    "shutdown": {
+      "type": "shutdown-complete",
+      "rssBytes": 623591424
+    }
+  },
+  "summaries": {
+    "spawnToReadyMs": {
+      "count": 3,
+      "min": 968.86,
+      "median": 974.22,
+      "p95": 976.539,
+      "max": 976.797,
+      "mean": 973.292
+    },
+    "firstRequestMs": {
+      "count": 3,
+      "min": 72.621,
+      "median": 72.885,
+      "p95": 78.332,
+      "max": 78.937,
+      "mean": 74.814
+    },
+    "coldEndToEndMs": {
+      "count": 3,
+      "min": 1041.745,
+      "median": 1049.418,
+      "p95": 1052.783,
+      "max": 1053.157,
+      "mean": 1048.107
+    },
+    "warmRequestMs": {
+      "count": 5,
+      "min": 72.542,
+      "median": 78.949,
+      "p95": 125.963,
+      "max": 134.168,
+      "mean": 90.779
+    },
+    "maxSampledRssBytes": 657244160
+  }
+}

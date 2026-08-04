@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 2,
+  "target": "darwin-arm64",
+  "status": "blocked",
+  "checkedAt": "2026-08-03T15:07:52.030Z",
+  "host": {
+    "platform": "darwin",
+    "architecture": "arm64",
+    "cpuModel": "Apple M1 Max",
+    "totalMemoryBytes": 68719476736
+  },
+  "power": {
+    "acConnected": false,
+    "lowPowerModeOff": true,
+    "caffeinateActive": true,
+    "thermalNormal": true,
+    "memoryPressureNormal": true
+  },
+  "performanceEnvironment": {},
+  "tools": {},
+  "sandbox": {},
+  "purge": {},
+  "failureCategory": "runner-power-or-pressure"
+}

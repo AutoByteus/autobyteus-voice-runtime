@@ -1,0 +1,11 @@
+[API-REV-008 cleanup]
+timestampUtc=2026-08-03T15:33:31Z
+ownedCaffeinatePid=48740
+ownedCaffeinateAbsent=true
+taskOwnedProcessScan:
+powerAtCleanup:
+Now drawing from 'AC Power'
+ -InternalBattery-0 (id=21692515)	100%; finishing charge; 0:20 remaining present: true
+cleanReviewedSourceStatus:
+cleanReviewedSourceCommit:
+24a994a51256f0eef5840ecdc977febec71ea491

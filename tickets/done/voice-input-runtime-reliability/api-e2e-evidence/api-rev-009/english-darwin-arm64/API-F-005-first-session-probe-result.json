@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "apiRevision": "API-REV-009",
+  "probe": "exact extracted public launcher start under qualification Seatbelt",
+  "command": [
+    "/usr/bin/sandbox-exec",
+    "-f",
+    "/private/tmp/autobyteus-voice-api-e2e-r9-20260803/repository/benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+    "/private/tmp/autobyteus-voice-api-e2e-r9-20260803/focused-first-session-probe/relocated package \u2013 voice/bin/voice-provider",
+    "--session-config",
+    "/private/tmp/autobyteus-voice-api-e2e-r9-20260803/focused-first-session-probe/focused-session.json"
+  ],
+  "exitCode": 1,
+  "timedOut": false,
+  "elapsedMs": 792.1125,
+  "stdout": "",
+  "stderr": "Traceback (most recent call last):\n  File \"/private/tmp/autobyteus-voice-api-e2e-r9-20260803/focused-first-session-probe/relocated package \u2013 voice/worker/worker.py\", line 1, in <module>\n    from autobyteus_voice_provider.bootstrap import main\nModuleNotFoundError: No module named 'autobyteus_voice_provider'\n",
+  "setupSha256": "d733898b91a46383fc207e8428f6757f4d09e5efd2c0344ecdd43bb1f4719a55"
+}

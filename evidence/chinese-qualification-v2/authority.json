@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "authorityId": "chinese-qualification-authority-v2",
+  "findings": ["CR-F-031", "API-F-011"],
+  "decision": "replace-active-trust-record-with-scoring-bound-v2",
+  "currentAuthority": {
+    "corpus": {"fileName": "chinese-v2.corpus.json", "sha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787"},
+    "baseline": {"fileName": "chinese-v2.baseline.json", "sha256": "6172f4407c4930152c781dc5e6d4498d53b9af18e7e2f413b76fcdca86763f58"},
+    "trustedBaselineRecord": {"fileName": "chinese-v2.trusted-baseline-record.json", "sha256": "1dcb33bd6d3307f4c4cf52e2cc25995e9323c809e6fbcbd7320d9332563f15b2"},
+    "scoringContract": {"fileName": "chinese-cer-scoring-contract-v1.json", "sha256": "7ca1743cad4e209d9c04068c334ab4fa2e9e5932d093f7b82f888f7a67207af5"},
+    "scoringMap": {"fileName": "opencc-t2s-scoring-map-v1.json", "sha256": "f4b8969d9f7d1814e1fa3aee13e7c65d526ddc52c79efb14f265a9cf76b0f369"},
+    "derivation": {"fileName": "derive_chinese_qualification_v2.mjs", "sha256": "ad31e98adac60147163359a6b24758a72a767d7deefcedc6aca69c2aa53e91fe"},
+    "validation": {"fileName": "validation.json", "sha256": "00d5e38645b1391875cacd2bd64fccf5c7cd70d7efe5db6c01e98d16ccdfe569"}
+  },
+  "experimentEvidence": {
+    "fileName": "api-rev-014-comparable-rescore.json",
+    "sha256": "8399096280a448ce665656f3629fdc306ad395da92b87bd3892881be9966dd16",
+    "authorityRole": "design evidence only; API/E2E must rerun current source after implementation"
+  },
+  "immutableHistory": {
+    "promotedRawSha256": "84568c53e908e1538ab55b5aa046804e2e7444386225b791de11a148239f8b48",
+    "promotedQualitySha256": "c7229574bad3ee199d43e1ee146c61e65514fa2c2ba514d7358ff40134f64089",
+    "legacyBaselineId": "chinese-promoted-baseline-v1",
+    "legacyBaselineSha256": "9e1b0f2a3b7566467e87919b2d478908a722b791012fe6b0200f7b115d676b57",
+    "preserveUnmodified": true,
+    "activeTrustEligible": false
+  },
+  "transition": {
+    "removeActiveLegacyBaselinePath": "release/evidence/baselines/chinese-v1.json",
+    "addActiveBaselinePath": "release/evidence/baselines/chinese-v2.json",
+    "replaceChineseTrustedRecord": true,
+    "retainHistoricalSelectionEvidence": true,
+    "compatibilityAlias": false,
+    "recomputeBaselineAndCandidateWithSameContract": true
+  }
+}

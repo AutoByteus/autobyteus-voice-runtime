@@ -1,0 +1,53 @@
+{
+  "schemaVersion": 1,
+  "fixtures": [
+    {
+      "id": "traditional-simplified",
+      "profileId": "chinese",
+      "raw": "請使用軟體。",
+      "normalized": "请使用软件。"
+    },
+    {
+      "id": "decimal-percent",
+      "profileId": "chinese",
+      "raw": "版本 3.5%,完成.",
+      "normalized": "版本 3.5%，完成。"
+    },
+    {
+      "id": "currency-date",
+      "profileId": "chinese",
+      "raw": "價格是$12.50,日期2026-08-02.",
+      "normalized": "价格是$12.50，日期2026-08-02。"
+    },
+    {
+      "id": "latin-span",
+      "profileId": "chinese",
+      "raw": "請打開 AutoByteus WebSocket API。",
+      "normalized": "请打开 AutoByteus WebSocket API。"
+    },
+    {
+      "id": "han-spacing",
+      "profileId": "chinese",
+      "raw": "你 好 , 世 界 !",
+      "normalized": "你好，世界！"
+    },
+    {
+      "id": "english-conservative",
+      "profileId": "english",
+      "raw": "  Hello,   AutoByteus 3.5%.  ",
+      "normalized": "Hello, AutoByteus 3.5%."
+    },
+    {
+      "id": "auto-english",
+      "profileId": "auto",
+      "raw": "  Open GitHub.  ",
+      "normalized": "Open GitHub."
+    },
+    {
+      "id": "auto-chinese",
+      "profileId": "auto",
+      "raw": "請打開 GitHub。",
+      "normalized": "请打开 GitHub。"
+    }
+  ]
+}

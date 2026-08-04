@@ -1,0 +1,139 @@
+{
+  "schemaVersion": 1,
+  "findingId": "API-F-002",
+  "scenarioId": "API-VOICE-003",
+  "acceptanceCriteria": [
+    "AC-006",
+    "AC-017"
+  ],
+  "result": "fail",
+  "classification": "preliminary-local-fix-implementation-defect",
+  "sourceCommit": "628bef9d9b1f40f263cb1f41e711649b8ca7dfe6",
+  "observedAt": "2026-08-03T13:48:09Z",
+  "expected": "The canonical Seatbelt network-denied workflow command consumes a passing Functional Preflight 2 record and begins deterministic English package construction.",
+  "observed": {
+    "command": "/usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb node build/package-assembler.mjs --profile english --target darwin-arm64 ...",
+    "exitCode": 1,
+    "error": "Error: spawn EPERM",
+    "syscall": "spawn",
+    "callPath": [
+      "package-assembler.mjs",
+      "createTrustedNativeBuildEnvironment()",
+      "assertPassingDarwinArm64Preflight()",
+      "verifyPinnedSudoIdentity()",
+      "capturePinnedSudoIdentity()",
+      "execFile(/usr/bin/sudo, [-V])"
+    ],
+    "archiveProduced": false
+  },
+  "prerequisites": {
+    "functionalPreflight2": {
+      "status": "pass",
+      "sha256": "f6e02714a848b6d9bb5045954bd566989736628444a351662072df45a5005d08",
+      "performanceEnvironment": {
+        "classification": "loaded-host",
+        "cpuIdleSamples": [
+          79.6,
+          80.4,
+          77.59,
+          74.14,
+          74.5,
+          64.8
+        ],
+        "averageIdlePercent": 75.17166666666667,
+        "taskOwnedCompetingProcesses": {
+          "detected": false,
+          "processNames": []
+        },
+        "topConsumerProcessNames": [
+          "AudioComponentRe",
+          "KonaSynthesizer",
+          "MacinTalkAUSP",
+          "MauiAUSP",
+          "SiriAUSP",
+          "WardaSynthesizer",
+          "amsondevicestora",
+          "axassetsd",
+          "intelligentrouti",
+          "voicebankingd"
+        ]
+      },
+      "purge": {
+        "command": "/usr/bin/sudo -n /usr/sbin/purge",
+        "nonInteractivePass": true,
+        "sudoExecutableIdentitySha256": "7dc34a43d0637fcb2d0b97feb483ba6c32f15594b2a7b1758c43561b65a5818a"
+      }
+    },
+    "closedInputMaterialization": {
+      "english": {
+        "status": "pass",
+        "provenanceSha256": "377d0dfbda89357620e33d51783254ef6094ad8df60a9358beaadbfa63aa1d6a"
+      },
+      "chinese": {
+        "status": "pass",
+        "provenanceSha256": "a1e31eead4d6f9f7eabba3175da02104582900e2ee7ff4e2bb5b4434a1af9442"
+      }
+    },
+    "corpora": {
+      "english": {
+        "repositoryManifest": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/release/evidence/qualification-corpora/english-v2.json",
+        "stagedManifest": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/corpora/english/corpus-v1.json",
+        "manifestSha256": "03fe5e7ba88b4f84e0d18ec9444663a481168bb521c415bcc226e747e98deffd",
+        "clipCount": 49,
+        "uniqueIds": true,
+        "uniquePaths": true,
+        "uniqueAudioHashes": true,
+        "totalAudioBytes": 13920622,
+        "audioSource": "/private/tmp/autobyteus-voice-backend-study-20260802/corpus/fleurs-controlled-v1",
+        "allAudioHashesMatch": true,
+        "manifestByteIdentical": true
+      },
+      "chinese": {
+        "repositoryManifest": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/repository/release/evidence/qualification-corpora/chinese-v1.json",
+        "stagedManifest": "/private/tmp/autobyteus-voice-api-e2e-r5-20260803/corpora/chinese/corpus-v1.json",
+        "manifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+        "clipCount": 200,
+        "uniqueIds": true,
+        "uniquePaths": true,
+        "uniqueAudioHashes": true,
+        "totalAudioBytes": 60221040,
+        "audioSource": "/private/tmp/autobyteus-voice-backend-study-20260802/corpus/fleurs-zh-profile-v2",
+        "allAudioHashesMatch": true,
+        "manifestByteIdentical": true
+      }
+    }
+  },
+  "focusedReproduction": {
+    "outsideSandboxSudoVersion": {
+      "exitCode": 0,
+      "stdoutSha256": "6d0e9e583743268ef44261a4a9db95d4b4f27109c0a5f1182de74aaa553a3c1d",
+      "stderrSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "insideSandboxDirectSudoVersion": {
+      "exitCode": 71,
+      "error": "sandbox-exec: execvp() of '/usr/bin/sudo' failed: Operation not permitted"
+    },
+    "insideSandboxNodeChildSudoVersion": {
+      "exitCode": 1,
+      "error": "spawn EPERM"
+    }
+  },
+  "mechanism": "The workflow places package-assembler inside the pinned Seatbelt profile. Package assembly then live-revalidates the preflight sudo identity by spawning the setuid /usr/bin/sudo -V binary. macOS denies that spawn from the sandbox, although the same probe and exact purge capability pass outside it.",
+  "downstreamDisposition": {
+    "stoppedFailClosed": true,
+    "englishSecondBuild": "not-tested-after-fail",
+    "chineseBuild": "not-tested-after-fail",
+    "realInference": "not-tested-after-fail",
+    "performance30100": "not-tested-after-fail",
+    "complianceLifecycleQualificationSetProjection": "not-tested-after-fail"
+  },
+  "workaroundUsed": false,
+  "releaseActionUsed": false,
+  "evidence": {
+    "productionBuildLog": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/english-darwin-arm64/build-primary.log",
+    "focusedProbeLog": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/english-darwin-arm64/API-VOICE-003-sandbox-sudo-entry-probe.log",
+    "preflight": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/environment/darwin-arm64-preflight-v2.json",
+    "inputMaterializationLog": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/inputs/materialization.log",
+    "corpusStaging": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-005/inputs/corpus-staging.json"
+  }
+}

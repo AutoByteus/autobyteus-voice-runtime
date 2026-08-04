@@ -1,0 +1,134 @@
+{
+  "artifactKind": "api-e2e-failure-analysis",
+  "failureId": "API-F-013",
+  "apiRevision": "API-REV-015",
+  "scenarioId": "API-VOICE-004",
+  "acceptanceCriteria": [
+    "AC-003",
+    "AC-008",
+    "AC-011",
+    "AC-017",
+    "AC-020",
+    "AC-023"
+  ],
+  "sourceCommit": "af008705488a029b95007e25c7c00484387d3ffe",
+  "host": {
+    "model": "MacBookPro18,4",
+    "soc": "Apple M1 Max",
+    "memoryBytes": 68719476736,
+    "platform": "darwin",
+    "architecture": "arm64",
+    "preflightStatus": "pass",
+    "performanceEnvironment": "controlled",
+    "cpuIdleSamples": [72.31, 79.23, 82.38, 85.29, 84.1, 82.88],
+    "cpuIdleAveragePercent": 81.03166666666668,
+    "taskOwnedCompetingProcessesDetected": false
+  },
+  "expected": {
+    "coldAttempts": 30,
+    "allStartedAttemptsMustSucceed": true,
+    "preparationDeadlineMs": 30000,
+    "behavior": "Each filesystem-cold public-package process must emit inference-ready within the hard preparation deadline, and qualification may continue only with zero failure/timeout attempts."
+  },
+  "observed": {
+    "decision": "fail",
+    "failureCategory": "timeout",
+    "attemptCounts": {
+      "started": 22,
+      "succeeded": 21,
+      "failed": 1,
+      "timedOut": 1,
+      "excluded": 0
+    },
+    "hardDeadlineViolations": 1,
+    "failedAttempt": {
+      "sequence": 21,
+      "phase": "cold",
+      "index": 21,
+      "performanceCounted": true,
+      "qualityCounted": false,
+      "audioSha256": "610a0913a2d4110df6a17d300af8b19a2ba1e996959271a49f92d2daa23a5f44",
+      "status": "failed",
+      "outcome": null,
+      "failureCategory": "timeout",
+      "timeout": true,
+      "timings": {
+        "handshakeMs": 943.5505830000038,
+        "resultMs": 34884.23620799999
+      }
+    },
+    "successfulColdPreparations": {
+      "sampleCount": 21,
+      "minimumMs": 10189.946457999999,
+      "maximumMs": 29460.149333999958,
+      "meanMs": 14565.124781809529,
+      "lastFiveMs": [
+        21018.18308400002, 21069.624540999997, 23315.95208300004,
+        26989.163500000024, 29460.149333999958
+      ]
+    },
+    "runnerError": "READY_TIMEOUT",
+    "runnerExitCode": 1
+  },
+  "packageBoundary": {
+    "archiveSha256": "e867796b0b362f27e3800f593ffac1201e710d3f2b87af883cd1437660ad66c0",
+    "compressedSizeBytes": 1068524833,
+    "extractedSizeBytes": 1285163754,
+    "twoBuildReproducibilityPassed": true,
+    "packageVerificationSha256": "3d34b7c35e289d35c40ab44e1a436cb103fd1ae149b8814e7799ad089eb5732b",
+    "complianceDecision": "pass"
+  },
+  "resolvedPriorResourceFinding": {
+    "priorFailureId": "API-F-012",
+    "policyId": "voice-runtime-profile-resource-policy-v1",
+    "policySha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+    "hardCeilingBytes": 4294967296,
+    "optimizationTargetBytes": 2684354560,
+    "observedPeakBytes": 3944415232,
+    "hardCeilingMet": true,
+    "optimizationTargetMet": false
+  },
+  "priorQualityFindingRecheck": {
+    "priorFailureId": "API-F-011",
+    "authorityId": "autobyteus-chinese-cer-selection-comparable-v1",
+    "authoritySha256": "7ca1743cad4e209d9c04068c334ab4fa2e9e5932d093f7b82f888f7a67207af5",
+    "mappingSha256": "f4b8969d9f7d1814e1fa3aee13e7c65d526ddc52c79efb14f265a9cf76b0f369",
+    "baselineId": "chinese-promoted-baseline-v2",
+    "executionCompleted": false,
+    "reason": "The hard cold-preparation timeout stopped execution before warm quality attempts; scorer identity propagation is present, but 200-WAV non-regression is not requalified."
+  },
+  "postFailureHostObservation": {
+    "acPower": true,
+    "thermalWarningsRecorded": false,
+    "performanceWarningsRecorded": false,
+    "memoryFreePercent": 93,
+    "cpuIdleSnapshotPercent": 81.8,
+    "evidenceFile": "../environment/post-failure-host-observation.log"
+  },
+  "terminalEvidence": {
+    "attemptLedger": {
+      "fileName": "qualification-attempts-v1.json",
+      "sha256": "32830f3e9f179c5cc6cec15dea9d260988723e36f5990cd34f9bab3cec24c489",
+      "decision": "fail",
+      "failureCategory": "timeout"
+    },
+    "summary": {
+      "fileName": "qualification-summary-v2.json",
+      "sha256": "50249ab55eb9fb1c1a244e9c5a5d50630dad0a6fafcbb60a73e035cdbdb8b904",
+      "decision": "fail",
+      "failureCategory": "timeout"
+    },
+    "assessment": {
+      "fileName": "performance-assessment-v1.json",
+      "sha256": "3d831d65ee68d995f44ff3b6ca78e99b7310c5184d831ab76198709e7b36cfec",
+      "assessment": "controlled-miss"
+    },
+    "runnerLog": {
+      "fileName": "run-profile-qualification.log",
+      "sha256": "5934daf95d40090f4be5f1fc77e32108d43f949e82fee9ca3d38c07e1afde7fa"
+    }
+  },
+  "stopDecision": "Fail closed. English current-source qualification, Qualification Set 2, Branch Catalog Projection 2, and release actions were not started.",
+  "preliminaryClassification": "Unclear: directly reproduced packaged-provider cold-start reliability failure under a controlled actual-M1 run; focused source/runtime failure-origin review is required before choosing implementation or design ownership.",
+  "prohibitedSubstitutionsObserved": false
+}

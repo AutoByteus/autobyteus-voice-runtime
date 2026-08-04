@@ -1,0 +1,1833 @@
+{
+  "schemaVersion": 1,
+  "reports": [
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/profile-v2-sensevoice-int8-zh.json",
+      "backend": "sensevoice-int8",
+      "language": "zh",
+      "metric": "CER-after-T2S",
+      "clipCount": 200,
+      "corpusErrorRate": 0.063982,
+      "rawScriptCorpusErrorRate": 0.063982,
+      "macroClipErrorRate": 0.056681,
+      "emptyHypotheses": 0,
+      "operational": {
+        "spawnToReadyMs": {
+          "count": 0
+        },
+        "firstRequestMs": {
+          "count": 0
+        },
+        "coldEndToEndMs": {
+          "count": 0
+        },
+        "warmRequestMs": {
+          "count": 0
+        },
+        "maxSampledRssBytes": 763576320
+      },
+      "perClip": [
+        {
+          "id": "fleurs-zh-1660-r235",
+          "reference": "浪 漫 主 义 具 有 很 强 的 文 化 决 定 论 色 彩 这 源 于 歌 德 费 希 特 和 施 莱 格 尔 等 作 家",
+          "hypothesis": "浪漫主义具有很强的文化决定论色彩，致源于歌德、费希特和施莱格尔等作家。",
+          "normalizedReference": "浪漫主义具有很强的文化决定论色彩这源于歌德费希特和施莱格尔等作家",
+          "normalizedHypothesis": "浪漫主义具有很强的文化决定论色彩致源于歌德费希特和施莱格尔等作家",
+          "errorRate": 0.03125,
+          "requestRoundTripMs": 143.198
+        },
+        {
+          "id": "fleurs-zh-1662-r188",
+          "reference": "合 金 基 本 上 由 两 种 或 以 上 金 属 混 合 而 成 不 要 忘 记 一 点 元 素 周 期 表 上 有 很 多 元 素",
+          "hypothesis": "合金基本上由两种或以上金属混合而成，不要忘记一点元素周期表上有很多元素。",
+          "normalizedReference": "合金基本上由两种或以上金属混合而成不要忘记一点元素周期表上有很多元素",
+          "normalizedHypothesis": "合金基本上由两种或以上金属混合而成不要忘记一点元素周期表上有很多元素",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 110.337
+        },
+        {
+          "id": "fleurs-zh-1662-r318",
+          "reference": "合 金 基 本 上 由 两 种 或 以 上 金 属 混 合 而 成 不 要 忘 记 一 点 元 素 周 期 表 上 有 很 多 元 素",
+          "hypothesis": "合金基本上由两种或以上金属混合而成，不要忘记一点元素周期表上有很多元素。",
+          "normalizedReference": "合金基本上由两种或以上金属混合而成不要忘记一点元素周期表上有很多元素",
+          "normalizedHypothesis": "合金基本上由两种或以上金属混合而成不要忘记一点元素周期表上有很多元素",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 148.621
+        },
+        {
+          "id": "fleurs-zh-1664-r683",
+          "reference": "搅 动 两 种 干 粉 使 其 混 合 然 后 用 干 净 的 湿 手 把 它 们 揉 成 一 个 球",
+          "hypothesis": "搅动两种干粉实其混合，然后用干净的湿手把它们揉成一个球。",
+          "normalizedReference": "搅动两种干粉使其混合然后用干净的湿手把它们揉成一个球",
+          "normalizedHypothesis": "搅动两种干粉实其混合然后用干净的湿手把它们揉成一个球",
+          "errorRate": 0.038462,
+          "requestRoundTripMs": 121.819
+        },
+        {
+          "id": "fleurs-zh-1666-r790",
+          "reference": "你 也 可 以 咨 询 除 贵 国 以 外 其 他 政 府 的 建 议 但 他 们 的 建 议 是 为 他 们 的 公 民 而 制 定 的",
+          "hypothesis": "你也可以咨询除贵国以外，其他政府的建议，但是他们的建议是为他们的公民而制定的。",
+          "normalizedReference": "你也可以咨询除贵国以外其他政府的建议但他们的建议是为他们的公民而制定的",
+          "normalizedHypothesis": "你也可以咨询除贵国以外其他政府的建议但是他们的建议是为他们的公民而制定的",
+          "errorRate": 0.028571,
+          "requestRoundTripMs": 107.289
+        },
+        {
+          "id": "fleurs-zh-1667-r491",
+          "reference": "一 般 来 说 当 管 理 者 开 始 领 导 过 去 的 同 事 时 会 出 现 两 种 行 为 一 种 情 况 是 他 们 会 努 力 与 团 队 成 员 保 持 亲 密 关 系",
+          "hypothesis": "一般来说，当管理者开始领导过去的同时时，会出现两种行为。一种情况是他们会努力与团队成员保持亲密关系。",
+          "normalizedReference": "一般来说当管理者开始领导过去的同事时会出现两种行为一种情况是他们会努力与团队成员保持亲密关系",
+          "normalizedHypothesis": "一般来说当管理者开始领导过去的同时时会出现两种行为一种情况是他们会努力与团队成员保持亲密关系",
+          "errorRate": 0.021739,
+          "requestRoundTripMs": 156.319
+        },
+        {
+          "id": "fleurs-zh-1669-r209",
+          "reference": "警 察 局 长 钱 德 拉 谢 卡 尔 索 兰 基 说 被 告 人 出 庭 时 都 蒙 住 了 脸",
+          "hypothesis": "警察局长钱德拉谢卡尔索兰基说，被告人出庭时都蒙住了脸。",
+          "normalizedReference": "警察局长钱德拉谢卡尔索兰基说被告人出庭时都蒙住了脸",
+          "normalizedHypothesis": "警察局长钱德拉谢卡尔索兰基说被告人出庭时都蒙住了脸",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 105.387
+        },
+        {
+          "id": "fleurs-zh-1671-r707",
+          "reference": "国 会 从 2005 财 年 开 始 资 助 该 扫 黄 倡 议 并 规 定 联 邦 调 查 局 fbi 必 须 指 派 10 名 探 员 专 门 打 击 成 人 色 情",
+          "hypothesis": "国会从2005财年开始资助该扫黄倡议，并规定联邦调查局FB必须指派10名探员，专门打击成人色情。",
+          "normalizedReference": "国会从2005财年开始资助该扫黄倡议并规定联邦调查局fbi必须指派10名探员专门打击成人色情",
+          "normalizedHypothesis": "国会从2005财年开始资助该扫黄倡议并规定联邦调查局fb必须指派10名探员专门打击成人色情",
+          "errorRate": 0.021739,
+          "requestRoundTripMs": 206.864
+        },
+        {
+          "id": "fleurs-zh-1673-r776",
+          "reference": "在 独 立 战 争 期 间 十 三 个 州 最 初 根 据 联 邦 条 例 组 成 了 弱 小 的 中 央 政 府 国 会 是 其 唯 一 的 组 成 部 分",
+          "hypothesis": "在独立战争期间，是三个州根据联邦条例组成了弱小的中央政府，国会是其唯一的组成部分。",
+          "normalizedReference": "在独立战争期间十三个州最初根据联邦条例组成了弱小的中央政府国会是其唯一的组成部分",
+          "normalizedHypothesis": "在独立战争期间是三个州根据联邦条例组成了弱小的中央政府国会是其唯一的组成部分",
+          "errorRate": 0.075,
+          "requestRoundTripMs": 125.538
+        },
+        {
+          "id": "fleurs-zh-1674-r822",
+          "reference": "在 某 些 地 区 水 煮 一 分 钟 就 足 够 了 在 其 他 地 区 则 需 要 几 分 钟 的 时 间",
+          "hypothesis": "在某些地区，水煮一分钟就足够了，在其他地区则需要几分钟的时间。",
+          "normalizedReference": "在某些地区水煮一分钟就足够了在其他地区则需要几分钟的时间",
+          "normalizedHypothesis": "在某些地区水煮一分钟就足够了在其他地区则需要几分钟的时间",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 143.378
+        },
+        {
+          "id": "fleurs-zh-1676-r434",
+          "reference": "与 所 有 南 非 国 家 公 园 一 样 该 公 园 每 天 都 收 取 养 护 费 和 门 票 费",
+          "hypothesis": "和所有南非国家公园一样，该公园每天都收取养护费和门票费。",
+          "normalizedReference": "与所有南非国家公园一样该公园每天都收取养护费和门票费",
+          "normalizedHypothesis": "和所有南非国家公园一样该公园每天都收取养护费和门票费",
+          "errorRate": 0.038462,
+          "requestRoundTripMs": 116.549
+        },
+        {
+          "id": "fleurs-zh-1679-r333",
+          "reference": "空 中 铁 匠 乐 队 已 经 取 消 了 他 们 巡 回 演 唱 会 的 剩 余 场 次",
+          "hypothesis": "空中铁匠乐队已经取消了他们巡回演唱会的剩余场次。",
+          "normalizedReference": "空中铁匠乐队已经取消了他们巡回演唱会的剩余场次",
+          "normalizedHypothesis": "空中铁匠乐队已经取消了他们巡回演唱会的剩余场次",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 82.512
+        },
+        {
+          "id": "fleurs-zh-1683-r868",
+          "reference": "还 是 有 许 多 男 女 在 这 里 幸 存 了 下 来 他 们 如 今 仍 然 健 在 而 更 多 人 的 亲 人 有 的 在 那 里 被 屠 杀 有 的 一 直 做 苦 工 到 死 犹 太 人 和 非 犹 太 人 都 是 如 此",
+          "hypothesis": "还是有许多男女在这里幸存了下来，他们如今仍然健在，而更多人的亲人有的在那里被屠杀，有的一直做苦工，到死。犹太人和非犹太人都是如此。",
+          "normalizedReference": "还是有许多男女在这里幸存了下来他们如今仍然健在而更多人的亲人有的在那里被屠杀有的一直做苦工到死犹太人和非犹太人都是如此",
+          "normalizedHypothesis": "还是有许多男女在这里幸存了下来他们如今仍然健在而更多人的亲人有的在那里被屠杀有的一直做苦工到死犹太人和非犹太人都是如此",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 170.86
+        },
+        {
+          "id": "fleurs-zh-1684-r746",
+          "reference": "阿 皮 亚 是 萨 摩 亚 的 首 都 该 城 镇 位 于 乌 波 卢 upolu 岛 上 人 口 数 量 不 足 4 万",
+          "hypothesis": "阿RP亚是萨摩亚的首都，该城镇位于乌波鲁岛上，人口数量不足4万。",
+          "normalizedReference": "阿皮亚是萨摩亚的首都该城镇位于乌波卢upolu岛上人口数量不足4万",
+          "normalizedHypothesis": "阿rp亚是萨摩亚的首都该城镇位于乌波鲁岛上人口数量不足4万",
+          "errorRate": 0.242424,
+          "requestRoundTripMs": 228.023
+        },
+        {
+          "id": "fleurs-zh-1687-r182",
+          "reference": "由 于 分 离 和 重 组 变 异 在 每 一 代 的 两 个 库 之 间 来 回 变 动",
+          "hypothesis": "由于分力和重组，便异在每一代的两库之间来回变动。",
+          "normalizedReference": "由于分离和重组变异在每一代的两个库之间来回变动",
+          "normalizedHypothesis": "由于分力和重组便异在每一代的两库之间来回变动",
+          "errorRate": 0.130435,
+          "requestRoundTripMs": 117.483
+        },
+        {
+          "id": "fleurs-zh-1688-r240",
+          "reference": "从 传 统 意 义 上 讲 海 军 的 任 务 是 确 保 国 家 保 持 运 输 人 员 和 货 物 的 能 力 同 时 干 扰 敌 人 运 输 其 人 员 和 货 物 的 能 力",
+          "hypothesis": "从传统意义上讲，海军的任务是确保国家运输人员和货物的能力，同时干扰敌人运输及其人员和货物的能力。",
+          "normalizedReference": "从传统意义上讲海军的任务是确保国家保持运输人员和货物的能力同时干扰敌人运输其人员和货物的能力",
+          "normalizedHypothesis": "从传统意义上讲海军的任务是确保国家运输人员和货物的能力同时干扰敌人运输及其人员和货物的能力",
+          "errorRate": 0.065217,
+          "requestRoundTripMs": 182.215
+        },
+        {
+          "id": "fleurs-zh-1689-r891",
+          "reference": "欧 洲 是 片 面 积 相 对 较 小 但 有 着 许 多 独 立 国 家 的 大 陆 在 通 常 情 况 下 穿 越 多 个 国 家 旅 行 意 味 着 必 须 多 次 经 历 签 证 申 请 和 护 照 检 查",
+          "hypothesis": "欧洲事片面积相对较小，但有着许多国独立国家的大陆。在通常情况下，穿越多个国家旅行，意味着必须多次经历签证申请和护照检查。",
+          "normalizedReference": "欧洲是片面积相对较小但有着许多独立国家的大陆在通常情况下穿越多个国家旅行意味着必须多次经历签证申请和护照检查",
+          "normalizedHypothesis": "欧洲事片面积相对较小但有着许多国独立国家的大陆在通常情况下穿越多个国家旅行意味着必须多次经历签证申请和护照检查",
+          "errorRate": 0.037037,
+          "requestRoundTripMs": 177.26
+        },
+        {
+          "id": "fleurs-zh-1692-r437",
+          "reference": "日 本 原 子 能 机 构 表 示 核 电 站 检 测 出 了 放 射 性 物 质 铯 和 碘",
+          "hypothesis": "日本原子能机构表示，核电站检测出了放射性物质验核碘。",
+          "normalizedReference": "日本原子能机构表示核电站检测出了放射性物质铯和碘",
+          "normalizedHypothesis": "日本原子能机构表示核电站检测出了放射性物质验核碘",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 157.197
+        },
+        {
+          "id": "fleurs-zh-1694-r101",
+          "reference": "孩 子 们 因 为 各 种 原 因 被 寄 养 原 因 有 被 忽 视 被 虐 待 甚 至 是 被 勒 索",
+          "hypothesis": "孩子们因为各种原因被寄养，原因有被护士被虐待，甚至被勒索。",
+          "normalizedReference": "孩子们因为各种原因被寄养原因有被忽视被虐待甚至是被勒索",
+          "normalizedHypothesis": "孩子们因为各种原因被寄养原因有被护士被虐待甚至被勒索",
+          "errorRate": 0.111111,
+          "requestRoundTripMs": 168.543
+        },
+        {
+          "id": "fleurs-zh-1695-r137",
+          "reference": "pa amb oli 是 一 种 在 夏 天 尤 为 流 行 的 简 单 晚 餐 面 包 搭 配 橄 榄 油 番 茄 手 头 上 任 何 佐 料 都 可 加 入 比 如 奶 酪 金 枪 鱼 等",
+          "hypothesis": "paom oil是一种在夏天尤为流行的简单晚餐，面包搭配橄榄油、番茄手上任何佐料都可加入，比如奶料、金枪鱼等。",
+          "normalizedReference": "paamboli是一种在夏天尤为流行的简单晚餐面包搭配橄榄油番茄手头上任何佐料都可加入比如奶酪金枪鱼等",
+          "normalizedHypothesis": "paomoil是一种在夏天尤为流行的简单晚餐面包搭配橄榄油番茄手上任何佐料都可加入比如奶料金枪鱼等",
+          "errorRate": 0.117647,
+          "requestRoundTripMs": 189.938
+        },
+        {
+          "id": "fleurs-zh-1697-r37",
+          "reference": "他 一 直 无 法 用 药 物 来 缓 解 疼 痛 因 为 比 赛 禁 止 参 赛 者 服 用 这 些 药 物",
+          "hypothesis": "他一直无法用药物来缓解疼痛，因为比赛禁止参赛者服用这些药物。",
+          "normalizedReference": "他一直无法用药物来缓解疼痛因为比赛禁止参赛者服用这些药物",
+          "normalizedHypothesis": "他一直无法用药物来缓解疼痛因为比赛禁止参赛者服用这些药物",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 142.865
+        },
+        {
+          "id": "fleurs-zh-1698-r438",
+          "reference": "宇 宙 中 的 一 切 都 由 物 质 构 成 而 所 有 的 物 质 都 由 被 称 为 原 子 的 微 小 粒 子 组 成",
+          "hypothesis": "宇宙中的一切都由物质构成，而所有的物质都由被称为原子的微小粒子组成。",
+          "normalizedReference": "宇宙中的一切都由物质构成而所有的物质都由被称为原子的微小粒子组成",
+          "normalizedHypothesis": "宇宙中的一切都由物质构成而所有的物质都由被称为原子的微小粒子组成",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 205.294
+        },
+        {
+          "id": "fleurs-zh-1700-r548",
+          "reference": "阴 暗 面 下 面 的 地 壳 薄 一 些 高 地 下 的 地 壳 厚 一 些",
+          "hypothesis": "阴暗面下面的地壳薄一些，高地下的地壳厚一些。",
+          "normalizedReference": "阴暗面下面的地壳薄一些高地下的地壳厚一些",
+          "normalizedHypothesis": "阴暗面下面的地壳薄一些高地下的地壳厚一些",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 80.77
+        },
+        {
+          "id": "fleurs-zh-1701-r502",
+          "reference": "山 羊 似 乎 是 1 万 年 前 左 右 在 伊 朗 的 扎 格 罗 斯 山 脉 首 次 被 驯 养 的",
+          "hypothesis": "山羊似乎是一万年前左右，在伊朗的扎格罗斯山脉首次被驯养的。",
+          "normalizedReference": "山羊似乎是1万年前左右在伊朗的扎格罗斯山脉首次被驯养的",
+          "normalizedHypothesis": "山羊似乎是一万年前左右在伊朗的扎格罗斯山脉首次被驯养的",
+          "errorRate": 0.037037,
+          "requestRoundTripMs": 190.374
+        },
+        {
+          "id": "fleurs-zh-1704-r917",
+          "reference": "1990 年 由 于 沙 漠 的 威 胁 它 被 列 入 了 濒 危 世 界 遗 产 名 录",
+          "hypothesis": "1990年，由于沙漠的威胁，他被列入了濒危世界遗产名录。",
+          "normalizedReference": "1990年由于沙漠的威胁它被列入了濒危世界遗产名录",
+          "normalizedHypothesis": "1990年由于沙漠的威胁他被列入了濒危世界遗产名录",
+          "errorRate": 0.04,
+          "requestRoundTripMs": 89.323
+        },
+        {
+          "id": "fleurs-zh-1705-r706",
+          "reference": "1940 年 8 月 15 日 盟 军 攻 入 法 国 南 部 这 次 进 攻 被 称 为 龙 骑 兵 行 动",
+          "hypothesis": "1940年8月15日，盟军攻入法国南部，这次行动被称为龙骑兵行动。",
+          "normalizedReference": "1940年8月15日盟军攻入法国南部这次进攻被称为龙骑兵行动",
+          "normalizedHypothesis": "1940年8月15日盟军攻入法国南部这次行动被称为龙骑兵行动",
+          "errorRate": 0.066667,
+          "requestRoundTripMs": 153.861
+        },
+        {
+          "id": "fleurs-zh-1707-r515",
+          "reference": "它 是 南 非 的 主 要 景 点 之 一 被 认 为 是 南 非 国 家 公 园 体 系 sanparks 的 主 打 景 点",
+          "hypothesis": "它是南非的主要景点之一，被认为是南非国家公园体系的主打景点。",
+          "normalizedReference": "它是南非的主要景点之一被认为是南非国家公园体系sanparks的主打景点",
+          "normalizedHypothesis": "它是南非的主要景点之一被认为是南非国家公园体系的主打景点",
+          "errorRate": 0.222222,
+          "requestRoundTripMs": 98.749
+        },
+        {
+          "id": "fleurs-zh-1708-r110",
+          "reference": "胡 纳 已 经 辞 职 他 在 内 阁 中 的 位 置 将 由 国 会 议 员 埃 德 戴 维 ed davey 接 替 预 计 国 会 议 员 诺 曼 兰 姆 norman lamb 将 接 替 戴 维 空 出 的 商 务 部 长 一 职",
+          "hypothesis": "胡娜已经辞职，他在内阁中的位置将由国会议员艾德代维解体。预计国会议员诺曼兰姆将解替艾维空出的商务部长一职。",
+          "normalizedReference": "胡纳已经辞职他在内阁中的位置将由国会议员埃德戴维eddavey接替预计国会议员诺曼兰姆normanlamb将接替戴维空出的商务部长一职",
+          "normalizedHypothesis": "胡娜已经辞职他在内阁中的位置将由国会议员艾德代维解体预计国会议员诺曼兰姆将解替艾维空出的商务部长一职",
+          "errorRate": 0.358209,
+          "requestRoundTripMs": 183.947
+        },
+        {
+          "id": "fleurs-zh-1709-r863",
+          "reference": "该 报 告 对 行 政 当 局 目 前 对 伊 拉 克 政 策 的 几 乎 每 一 个 方 面 都 提 出 了 严 厉 批 评 并 敦 促 立 即 改 变 方 向",
+          "hypothesis": "该报告对行政当局目前对伊拉克政策的几乎每一个方面都提出了严厉批评，并敦促立即改变方向。",
+          "normalizedReference": "该报告对行政当局目前对伊拉克政策的几乎每一个方面都提出了严厉批评并敦促立即改变方向",
+          "normalizedHypothesis": "该报告对行政当局目前对伊拉克政策的几乎每一个方面都提出了严厉批评并敦促立即改变方向",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 166.598
+        },
+        {
+          "id": "fleurs-zh-1712-r31",
+          "reference": "自 1966 年 以 来 孙 德 尔 本 斯 一 直 是 野 生 动 物 保 护 区 据 估 计 目 前 该 区 生 活 着 400 只 皇 家 孟 加 拉 虎 和 大 约 3 万 只 梅 花 鹿",
+          "hypothesis": "自1966年以来，孙德尔本斯一直是野生动物保护区。据估计，目前该区生活镇400只皇家孟加拉虎和大约3万只梅花鹿。",
+          "normalizedReference": "自1966年以来孙德尔本斯一直是野生动物保护区据估计目前该区生活着400只皇家孟加拉虎和大约3万只梅花鹿",
+          "normalizedHypothesis": "自1966年以来孙德尔本斯一直是野生动物保护区据估计目前该区生活镇400只皇家孟加拉虎和大约3万只梅花鹿",
+          "errorRate": 0.019231,
+          "requestRoundTripMs": 172.625
+        },
+        {
+          "id": "fleurs-zh-1714-r158",
+          "reference": "卫 星 是 由 火 箭 发 射 到 太 空 的 科 学 家 在 太 空 中 使 用 望 远 镜 是 因 为 地 球 的 大 气 层 让 某 些 光 线 和 视 野 产 生 扭 曲",
+          "hypothesis": "卫星是由火箭发射到太空的，科学家在太空中使用望远镜，是因为地球的大气层，让某些光线和视野产生扭曲。",
+          "normalizedReference": "卫星是由火箭发射到太空的科学家在太空中使用望远镜是因为地球的大气层让某些光线和视野产生扭曲",
+          "normalizedHypothesis": "卫星是由火箭发射到太空的科学家在太空中使用望远镜是因为地球的大气层让某些光线和视野产生扭曲",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 151.887
+        },
+        {
+          "id": "fleurs-zh-1719-r512",
+          "reference": "恶 劣 天 气 是 任 何 危 险 天 气 现 象 的 总 称 这 种 天 气 会 造 成 破 坏 严 重 社 会 混 乱 或 人 员 伤 亡",
+          "hypothesis": "恶劣天气是任何危险天气现象的总称，这种天气会造成破坏、严重社会混乱或人员伤亡。",
+          "normalizedReference": "恶劣天气是任何危险天气现象的总称这种天气会造成破坏严重社会混乱或人员伤亡",
+          "normalizedHypothesis": "恶劣天气是任何危险天气现象的总称这种天气会造成破坏严重社会混乱或人员伤亡",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 165.082
+        },
+        {
+          "id": "fleurs-zh-1720-r192",
+          "reference": "热 巧 克 力 达 到 了 比 利 时 的 标 准 果 汁 价 格 昂 贵 但 品 质 很 好",
+          "hypothesis": "但巧克力达到了比利时的标准，果汁价格昂贵，但品质很好。",
+          "normalizedReference": "热巧克力达到了比利时的标准果汁价格昂贵但品质很好",
+          "normalizedHypothesis": "但巧克力达到了比利时的标准果汁价格昂贵但品质很好",
+          "errorRate": 0.041667,
+          "requestRoundTripMs": 104.107
+        },
+        {
+          "id": "fleurs-zh-1721-r617",
+          "reference": "1963 年 大 坝 建 成 后 季 节 性 洪 水 被 控 制 住 了 沉 积 物 不 再 冲 散 到 河 流 里",
+          "hypothesis": "1963年大坝建成后，季节性洪水被控制住了，沉积物不再冲三到河流里。",
+          "normalizedReference": "1963年大坝建成后季节性洪水被控制住了沉积物不再冲散到河流里",
+          "normalizedHypothesis": "1963年大坝建成后季节性洪水被控制住了沉积物不再冲三到河流里",
+          "errorRate": 0.032258,
+          "requestRoundTripMs": 200.788
+        },
+        {
+          "id": "fleurs-zh-1723-r47",
+          "reference": "该 海 湾 曾 在 1889 年 发 生 过 一 场 臭 名 昭 著 的 海 军 对 峙 当 时 来 自 德 国 美 国 和 英 国 的 七 艘 舰 船 拒 绝 驶 离 这 个 海 湾",
+          "hypothesis": "该海湾曾在1889年发生过一场臭名昭著的海军对峙。当时来自德国、美国和英国的7艘舰船拒绝驶离这个海湾。",
+          "normalizedReference": "该海湾曾在1889年发生过一场臭名昭著的海军对峙当时来自德国美国和英国的七艘舰船拒绝驶离这个海湾",
+          "normalizedHypothesis": "该海湾曾在1889年发生过一场臭名昭著的海军对峙当时来自德国美国和英国的7艘舰船拒绝驶离这个海湾",
+          "errorRate": 0.020833,
+          "requestRoundTripMs": 176.833
+        },
+        {
+          "id": "fleurs-zh-1726-r96",
+          "reference": "实 地 考 察 是 任 何 教 学 活 动 的 重 要 组 成 部 分 通 常 老 师 会 很 乐 意 带 学 生 去 那 些 公 交 车 无 法 到 达 的 地 方",
+          "hypothesis": "实地考察是任何教学活动的重要组成部分，通常老师会很乐意带学生去那些公交车无法到达的地方。",
+          "normalizedReference": "实地考察是任何教学活动的重要组成部分通常老师会很乐意带学生去那些公交车无法到达的地方",
+          "normalizedHypothesis": "实地考察是任何教学活动的重要组成部分通常老师会很乐意带学生去那些公交车无法到达的地方",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 193.39
+        },
+        {
+          "id": "fleurs-zh-1728-r57",
+          "reference": "卷 心 菜 汁 的 颜 色 将 根 据 化 学 物 质 的 酸 碱 性 发 生 变 化",
+          "hypothesis": "卷心菜汁的颜色将根据化学物质的酸碱性发生变化。",
+          "normalizedReference": "卷心菜汁的颜色将根据化学物质的酸碱性发生变化",
+          "normalizedHypothesis": "卷心菜汁的颜色将根据化学物质的酸碱性发生变化",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 79.518
+        },
+        {
+          "id": "fleurs-zh-1728-r99",
+          "reference": "卷 心 菜 汁 的 颜 色 将 根 据 化 学 物 质 的 酸 碱 性 发 生 变 化",
+          "hypothesis": "卷心菜汁的颜色将根据化学物质的酸碱性发生变化。",
+          "normalizedReference": "卷心菜汁的颜色将根据化学物质的酸碱性发生变化",
+          "normalizedHypothesis": "卷心菜汁的颜色将根据化学物质的酸碱性发生变化",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 129.021
+        },
+        {
+          "id": "fleurs-zh-1732-r480",
+          "reference": "事 件 发 生 的 时 代 通 常 被 称 为 欧 洲 史 的 中 世 纪 盛 时 即 的 11 12 和 13 世 纪 时 期 公 元 1000-1300 年",
+          "hypothesis": "事件发生的时代，通常被称为欧洲史的中世纪盛世。吉德1112和13世纪时期，公元1000到1300年。",
+          "normalizedReference": "事件发生的时代通常被称为欧洲史的中世纪盛时即的1112和13世纪时期公元10001300年",
+          "normalizedHypothesis": "事件发生的时代通常被称为欧洲史的中世纪盛世吉德1112和13世纪时期公元1000到1300年",
+          "errorRate": 0.088889,
+          "requestRoundTripMs": 208.733
+        },
+        {
+          "id": "fleurs-zh-1734-r713",
+          "reference": "科 学 家 们 可 以 得 出 结 论 暗 物 质 对 其 他 暗 物 质 的 影 响 方 式 与 普 通 物 质 相 同",
+          "hypothesis": "科学不家们可以得出结论，暗物质对其他暗物质的影响方式与普通物质相同。",
+          "normalizedReference": "科学家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同",
+          "normalizedHypothesis": "科学不家们可以得出结论暗物质对其他暗物质的影响方式与普通物质相同",
+          "errorRate": 0.032258,
+          "requestRoundTripMs": 98.647
+        },
+        {
+          "id": "fleurs-zh-1737-r155",
+          "reference": "狮 子 是 群 居 属 性 最 明 显 的 猫 科 动 物 生 活 在 称 为 狮 群 的 大 型 群 体 中",
+          "hypothesis": "狮子是群居属性最为明显的猫科动物生活在称为狮群的大型群体中。",
+          "normalizedReference": "狮子是群居属性最明显的猫科动物生活在称为狮群的大型群体中",
+          "normalizedHypothesis": "狮子是群居属性最为明显的猫科动物生活在称为狮群的大型群体中",
+          "errorRate": 0.035714,
+          "requestRoundTripMs": 120.977
+        },
+        {
+          "id": "fleurs-zh-1737-r410",
+          "reference": "狮 子 是 群 居 属 性 最 明 显 的 猫 科 动 物 生 活 在 称 为 狮 群 的 大 型 群 体 中",
+          "hypothesis": "狮子是群居属性最明显的猫科动物，生活在称为狮群的大型群体中。",
+          "normalizedReference": "狮子是群居属性最明显的猫科动物生活在称为狮群的大型群体中",
+          "normalizedHypothesis": "狮子是群居属性最明显的猫科动物生活在称为狮群的大型群体中",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 185.234
+        },
+        {
+          "id": "fleurs-zh-1739-r594",
+          "reference": "该 洞 穴 坐 落 在 麦 加 mecca 北 部 的 一 座 山 顶 上 与 外 界 完 全 隔 绝",
+          "hypothesis": "该洞穴坐落在卖家北部的一座山顶上，与外界完全隔绝。",
+          "normalizedReference": "该洞穴坐落在麦加mecca北部的一座山顶上与外界完全隔绝",
+          "normalizedHypothesis": "该洞穴坐落在卖家北部的一座山顶上与外界完全隔绝",
+          "errorRate": 0.25,
+          "requestRoundTripMs": 125.392
+        },
+        {
+          "id": "fleurs-zh-1741-r197",
+          "reference": "再 往 北 的 广 袤 地 区 人 烟 稀 少 有 些 地 方 是 杳 无 人 烟 的 荒 野",
+          "hypothesis": "再往北的广袤地区，人烟稀稀少，有些地方是养湖人烟的荒野。",
+          "normalizedReference": "再往北的广袤地区人烟稀少有些地方是杳无人烟的荒野",
+          "normalizedHypothesis": "再往北的广袤地区人烟稀稀少有些地方是养湖人烟的荒野",
+          "errorRate": 0.125,
+          "requestRoundTripMs": 127.79
+        },
+        {
+          "id": "fleurs-zh-1744-r380",
+          "reference": "罗 斯 贝 数 越 小 恒 星 在 磁 场 倒 转 方 面 就 越 不 活 跃",
+          "hypothesis": "都丝倍数越小，恒星在磁场倒转方面就越不活跃。",
+          "normalizedReference": "罗斯贝数越小恒星在磁场倒转方面就越不活跃",
+          "normalizedHypothesis": "都丝倍数越小恒星在磁场倒转方面就越不活跃",
+          "errorRate": 0.15,
+          "requestRoundTripMs": 74.12
+        },
+        {
+          "id": "fleurs-zh-1744-r385",
+          "reference": "罗 斯 贝 数 越 小 恒 星 在 磁 场 倒 转 方 面 就 越 不 活 跃",
+          "hypothesis": "螺丝倍数越小，恒星在磁场倒转方面就越不活跃。",
+          "normalizedReference": "罗斯贝数越小恒星在磁场倒转方面就越不活跃",
+          "normalizedHypothesis": "螺丝倍数越小恒星在磁场倒转方面就越不活跃",
+          "errorRate": 0.15,
+          "requestRoundTripMs": 122.125
+        },
+        {
+          "id": "fleurs-zh-1746-r558",
+          "reference": "植 物 通 过 光 合 作 用 从 阳 光 中 获 取 养 分 它 们 还 能 提 供 荫 凉",
+          "hypothesis": "植物通过光合作用，从阳光获取养分，它们还能提供阴凉。",
+          "normalizedReference": "植物通过光合作用从阳光中获取养分它们还能提供荫凉",
+          "normalizedHypothesis": "植物通过光合作用从阳光获取养分它们还能提供阴凉",
+          "errorRate": 0.083333,
+          "requestRoundTripMs": 94.378
+        },
+        {
+          "id": "fleurs-zh-1748-r847",
+          "reference": "消 防 救 援 人 员 最 终 在 晚 上 11 点 35 分 扑 灭 了 大 火",
+          "hypothesis": "消防救援人员最终在晚上11点35分扑灭了大火。",
+          "normalizedReference": "消防救援人员最终在晚上11点35分扑灭了大火",
+          "normalizedHypothesis": "消防救援人员最终在晚上11点35分扑灭了大火",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 107.993
+        },
+        {
+          "id": "fleurs-zh-1750-r711",
+          "reference": "这 一 发 现 也 有 助 于 深 入 了 解 鸟 类 羽 毛 的 进 化",
+          "hypothesis": "这里发现也有助于深入了解鸟类羽毛的进化。",
+          "normalizedReference": "这一发现也有助于深入了解鸟类羽毛的进化",
+          "normalizedHypothesis": "这里发现也有助于深入了解鸟类羽毛的进化",
+          "errorRate": 0.052632,
+          "requestRoundTripMs": 109.781
+        },
+        {
+          "id": "fleurs-zh-1752-r425",
+          "reference": "结 果 两 种 鱼 类 灭 绝 另 外 两 种 鱼 类 濒 临 灭 绝 其 中 包 括 弓 背 鲑",
+          "hypothesis": "结果两种鱼类灭绝，另外两种鱼类濒临灭绝，其中包括弓贝蛙。",
+          "normalizedReference": "结果两种鱼类灭绝另外两种鱼类濒临灭绝其中包括弓背鲑",
+          "normalizedHypothesis": "结果两种鱼类灭绝另外两种鱼类濒临灭绝其中包括弓贝蛙",
+          "errorRate": 0.08,
+          "requestRoundTripMs": 101.913
+        },
+        {
+          "id": "fleurs-zh-1752-r577",
+          "reference": "结 果 两 种 鱼 类 灭 绝 另 外 两 种 鱼 类 濒 临 灭 绝 其 中 包 括 弓 背 鲑",
+          "hypothesis": "结果两种鱼类灭绝，另外两种鱼类濒临灭绝，其中包括弓贝龟。",
+          "normalizedReference": "结果两种鱼类灭绝另外两种鱼类濒临灭绝其中包括弓背鲑",
+          "normalizedHypothesis": "结果两种鱼类灭绝另外两种鱼类濒临灭绝其中包括弓贝龟",
+          "errorRate": 0.08,
+          "requestRoundTripMs": 125.027
+        },
+        {
+          "id": "fleurs-zh-1755-r666",
+          "reference": "一 枚 炸 弹 在 总 督 办 公 室 外 爆 炸",
+          "hypothesis": "一枚炸弹在总督办公室外爆炸。",
+          "normalizedReference": "一枚炸弹在总督办公室外爆炸",
+          "normalizedHypothesis": "一枚炸弹在总督办公室外爆炸",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 162.144
+        },
+        {
+          "id": "fleurs-zh-1757-r599",
+          "reference": "只 有 生 殖 细 胞 的 突 变 才 会 遗 传 给 孩 子 而 其 他 细 胞 的 突 变 则 会 导 致 细 胞 死 亡 或 癌 症",
+          "hypothesis": "只有生殖细胞的突变才会遗传给孩子，而其他细胞的突变则会导致细胞死亡或癌症。",
+          "normalizedReference": "只有生殖细胞的突变才会遗传给孩子而其他细胞的突变则会导致细胞死亡或癌症",
+          "normalizedHypothesis": "只有生殖细胞的突变才会遗传给孩子而其他细胞的突变则会导致细胞死亡或癌症",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 141.126
+        },
+        {
+          "id": "fleurs-zh-1758-r819",
+          "reference": "该 群 岛 位 于 南 极 半 岛 以 北 120 公 里 处 最 大 的 岛 屿 是 乔 治 国 王 岛 这 里 是 繁 星 村 villa las estrellas 的 定 居 点",
+          "hypothesis": "该群岛位于南极半岛以北120公里处，最大的岛屿是乔治国王岛，这里是繁星村的定居点。",
+          "normalizedReference": "该群岛位于南极半岛以北120公里处最大的岛屿是乔治国王岛这里是繁星村villalasestrellas的定居点",
+          "normalizedHypothesis": "该群岛位于南极半岛以北120公里处最大的岛屿是乔治国王岛这里是繁星村的定居点",
+          "errorRate": 0.309091,
+          "requestRoundTripMs": 119.726
+        },
+        {
+          "id": "fleurs-zh-1760-r487",
+          "reference": "沧 龙 是 那 个 时 代 的 顶 级 掠 食 者 除 了 同 类 它 什 么 都 不 怕",
+          "hypothesis": "苍龙是那个时代的顶级掠食者，除了同类，他什么都不怕。",
+          "normalizedReference": "沧龙是那个时代的顶级掠食者除了同类它什么都不怕",
+          "normalizedHypothesis": "苍龙是那个时代的顶级掠食者除了同类他什么都不怕",
+          "errorRate": 0.086957,
+          "requestRoundTripMs": 85.358
+        },
+        {
+          "id": "fleurs-zh-1762-r181",
+          "reference": "猪 携 带 该 疾 病 然 后 通 过 蚊 子 传 染 给 人 类",
+          "hypothesis": "猪携带该疾病，然后通过文字传染给人类。",
+          "normalizedReference": "猪携带该疾病然后通过蚊子传染给人类",
+          "normalizedHypothesis": "猪携带该疾病然后通过文字传染给人类",
+          "errorRate": 0.117647,
+          "requestRoundTripMs": 231.773
+        },
+        {
+          "id": "fleurs-zh-1764-r62",
+          "reference": "对 于 在 圣 彼 得 广 场 举 行 的 葬 礼 出 席 者 太 多 了 因 此 不 可 能 每 个 人 都 能 进 入",
+          "hypothesis": "对于在圣彼得广场举行的葬礼，出席者太多了，因此不可能每个人都进入。",
+          "normalizedReference": "对于在圣彼得广场举行的葬礼出席者太多了因此不可能每个人都能进入",
+          "normalizedHypothesis": "对于在圣彼得广场举行的葬礼出席者太多了因此不可能每个人都进入",
+          "errorRate": 0.032258,
+          "requestRoundTripMs": 107.349
+        },
+        {
+          "id": "fleurs-zh-1765-r356",
+          "reference": "自从 1537 年亚松森asunción建成以来巴拉圭一直设法保留了这座城的许多本土特色和特性",
+          "hypothesis": "自从自从1537年亚松森建成以来，巴拉圭一直设法保留了这座城的许多本土特色和特性。",
+          "normalizedReference": "自从1537年亚松森asuncin建成以来巴拉圭一直设法保留了这座城的许多本土特色和特性",
+          "normalizedHypothesis": "自从自从1537年亚松森建成以来巴拉圭一直设法保留了这座城的许多本土特色和特性",
+          "errorRate": 0.204545,
+          "requestRoundTripMs": 191.501
+        },
+        {
+          "id": "fleurs-zh-1765-r635",
+          "reference": "自从 1537 年亚松森asunción建成以来巴拉圭一直设法保留了这座城的许多本土特色和特性",
+          "hypothesis": "自从1537年亚松森建成以来，巴拉圭一直设法保留了这座城的许多本土特色和特性。",
+          "normalizedReference": "自从1537年亚松森asuncin建成以来巴拉圭一直设法保留了这座城的许多本土特色和特性",
+          "normalizedHypothesis": "自从1537年亚松森建成以来巴拉圭一直设法保留了这座城的许多本土特色和特性",
+          "errorRate": 0.159091,
+          "requestRoundTripMs": 123.515
+        },
+        {
+          "id": "fleurs-zh-1767-r932",
+          "reference": "这 提 供 了 一 个 可 以 看 到 北 极 光 的 绝 佳 机 会 因 为 天 空 将 或 多 或 少 连 续 一 整 天 都 是 暗 的",
+          "hypothesis": "这提供了一个可以看到北极光的绝佳机会，因为天空或多或少连续一整天都是暗的。",
+          "normalizedReference": "这提供了一个可以看到北极光的绝佳机会因为天空将或多或少连续一整天都是暗的",
+          "normalizedHypothesis": "这提供了一个可以看到北极光的绝佳机会因为天空或多或少连续一整天都是暗的",
+          "errorRate": 0.027778,
+          "requestRoundTripMs": 130.451
+        },
+        {
+          "id": "fleurs-zh-1770-r170",
+          "reference": "这 似 乎 是 合 理 的 因 为 地 球 感 觉 不 到 自 己 在 移 动 不 是 吗",
+          "hypothesis": "这似乎是合理的，因为地球感觉不到自己在移动，不是吗？",
+          "normalizedReference": "这似乎是合理的因为地球感觉不到自己在移动不是吗",
+          "normalizedHypothesis": "这似乎是合理的因为地球感觉不到自己在移动不是吗",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 106.232
+        },
+        {
+          "id": "fleurs-zh-1771-r206",
+          "reference": "记 住 虽 然 主 舞 台 上 的 音 乐 可 能 已 经 结 束 但 节 日 的 其 他 部 分 可 能 会 一 直 演 奏 音 乐 到 深 夜",
+          "hypothesis": "记住虽然主舞台上的音乐可能已经结束，但节日的其他部分可能会一直演奏到音乐到深夜。",
+          "normalizedReference": "记住虽然主舞台上的音乐可能已经结束但节日的其他部分可能会一直演奏音乐到深夜",
+          "normalizedHypothesis": "记住虽然主舞台上的音乐可能已经结束但节日的其他部分可能会一直演奏到音乐到深夜",
+          "errorRate": 0.027027,
+          "requestRoundTripMs": 134.009
+        },
+        {
+          "id": "fleurs-zh-1772-r939",
+          "reference": "因 此 很 可 能 这 个 符 号 只 是 作 为 一 个 标 签 添 加 的",
+          "hypothesis": "因此，很可能这个符号只是作为一个标签添加的。",
+          "normalizedReference": "因此很可能这个符号只是作为一个标签添加的",
+          "normalizedHypothesis": "因此很可能这个符号只是作为一个标签添加的",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 165.27
+        },
+        {
+          "id": "fleurs-zh-1775-r644",
+          "reference": "录 像 的 使 用 为 阐 释 微 表 情 持 续 几 毫 秒 的 面 部 运 动 带 来 了 重 大 发 现",
+          "hypothesis": "录像的使用为残试微表情持续几毫秒的面部运动带来了重大发现。",
+          "normalizedReference": "录像的使用为阐释微表情持续几毫秒的面部运动带来了重大发现",
+          "normalizedHypothesis": "录像的使用为残试微表情持续几毫秒的面部运动带来了重大发现",
+          "errorRate": 0.071429,
+          "requestRoundTripMs": 122.559
+        },
+        {
+          "id": "fleurs-zh-1776-r261",
+          "reference": "一夜之间印刷了 150 到 200 份就是现在众所周知的 邓拉普宽边”dunlap broadsides 版",
+          "hypothesis": "一夜之间印刷了150到200分，就是现在众所周知的邓拉普快编版。",
+          "normalizedReference": "一夜之间印刷了150到200份就是现在众所周知的邓拉普宽边dunlapbroadsides版",
+          "normalizedHypothesis": "一夜之间印刷了150到200分就是现在众所周知的邓拉普快编版",
+          "errorRate": 0.413043,
+          "requestRoundTripMs": 194.126
+        },
+        {
+          "id": "fleurs-zh-1778-r115",
+          "reference": "电 视 报 道 显 示 有 白 烟 从 工 厂 里 冒 出",
+          "hypothesis": "电视报道显示，有白烟从工厂里冒出。",
+          "normalizedReference": "电视报道显示有白烟从工厂里冒出",
+          "normalizedHypothesis": "电视报道显示有白烟从工厂里冒出",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 73.428
+        },
+        {
+          "id": "fleurs-zh-1778-r743",
+          "reference": "电 视 报 道 显 示 有 白 烟 从 工 厂 里 冒 出",
+          "hypothesis": "电视报道显示，有白烟从工厂里冒出。",
+          "normalizedReference": "电视报道显示有白烟从工厂里冒出",
+          "normalizedHypothesis": "电视报道显示有白烟从工厂里冒出",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 95.856
+        },
+        {
+          "id": "fleurs-zh-1780-r179",
+          "reference": "在 昆 达 里 尼 瑜 伽 中 昆 达 里 尼 能 量 启 迪 能 量 通 过 瑜 伽 姿 势 呼 吸 练 习 念 语 和 视 觉 形 象 被 唤 醒",
+          "hypothesis": "在坤达李宁瑜伽中，坤达李宁能量取低能量，通过瑜伽姿势呼吸练习、谚语和视觉形象被唤醒。",
+          "normalizedReference": "在昆达里尼瑜伽中昆达里尼能量启迪能量通过瑜伽姿势呼吸练习念语和视觉形象被唤醒",
+          "normalizedHypothesis": "在坤达李宁瑜伽中坤达李宁能量取低能量通过瑜伽姿势呼吸练习谚语和视觉形象被唤醒",
+          "errorRate": 0.236842,
+          "requestRoundTripMs": 164.812
+        },
+        {
+          "id": "fleurs-zh-1783-r844",
+          "reference": "区 域 性 和 季 节 性 的 恶 劣 天 气 现 象 包 括 暴 风 雪 雪 暴 冰 暴 和 沙 尘 暴 等",
+          "hypothesis": "区域性和季节性的恶劣天气现象，包括暴风雪、雪暴、沙暴和沙尘暴等。",
+          "normalizedReference": "区域性和季节性的恶劣天气现象包括暴风雪雪暴冰暴和沙尘暴等",
+          "normalizedHypothesis": "区域性和季节性的恶劣天气现象包括暴风雪雪暴沙暴和沙尘暴等",
+          "errorRate": 0.035714,
+          "requestRoundTripMs": 142.642
+        },
+        {
+          "id": "fleurs-zh-1785-r578",
+          "reference": "支 架 式 教 学 不 是 一 种 学 习 方 法 而 是 一 种 辅 助 刚 学 习 使 用 新 电 脑 程 序 或 启 动 新 项 目 的 人 的 手 段",
+          "hypothesis": "支架式教学不是一种学习方法，而是一种辅助刚学习使用新电脑程序或启动新项目的人的手段。",
+          "normalizedReference": "支架式教学不是一种学习方法而是一种辅助刚学习使用新电脑程序或启动新项目的人的手段",
+          "normalizedHypothesis": "支架式教学不是一种学习方法而是一种辅助刚学习使用新电脑程序或启动新项目的人的手段",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 144.378
+        },
+        {
+          "id": "fleurs-zh-1787-r288",
+          "reference": "写 博 客 是 一 种 能 够 激 发 合 作 的 工 具 还 能 鼓 励 学 生 把 学 习 延 伸 到 传 统 的 学 校 授 课 之 外",
+          "hypothesis": "写博客是一种能够激发合作的工具，还能鼓励学生把学习延伸到传统的学校授课之外。",
+          "normalizedReference": "写博客是一种能够激发合作的工具还能鼓励学生把学习延伸到传统的学校授课之外",
+          "normalizedHypothesis": "写博客是一种能够激发合作的工具还能鼓励学生把学习延伸到传统的学校授课之外",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 142.42
+        },
+        {
+          "id": "fleurs-zh-1789-r538",
+          "reference": "其 他 提 名 包 括 最 佳 影 片 最 佳 导 演 最 佳 摄 影 最 佳 服 装 设 计 最 佳 电 影 剪 辑 最 佳 原 创 配 乐 最 佳 艺 术 指 导 最 佳 音 效 剪 辑 最 佳 混 音 和 最 佳 原 创 剧 本",
+          "hypothesis": "其他提名包括最佳影片、最佳导演、最佳摄影、最佳服装设计、最佳电影剪辑、最佳原创配乐、最佳艺术指导、最佳音效剪辑、最佳混音和最佳原创剧本。",
+          "normalizedReference": "其他提名包括最佳影片最佳导演最佳摄影最佳服装设计最佳电影剪辑最佳原创配乐最佳艺术指导最佳音效剪辑最佳混音和最佳原创剧本",
+          "normalizedHypothesis": "其他提名包括最佳影片最佳导演最佳摄影最佳服装设计最佳电影剪辑最佳原创配乐最佳艺术指导最佳音效剪辑最佳混音和最佳原创剧本",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 176.732
+        },
+        {
+          "id": "fleurs-zh-1791-r565",
+          "reference": "切 勿 在 建 筑 物 上 做 标 记 或 涂 鸦 以 免 破 坏 遗 址",
+          "hypothesis": "切勿在建筑物上做标记或涂鸦，以免破坏遗址。",
+          "normalizedReference": "切勿在建筑物上做标记或涂鸦以免破坏遗址",
+          "normalizedHypothesis": "切勿在建筑物上做标记或涂鸦以免破坏遗址",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 77.815
+        },
+        {
+          "id": "fleurs-zh-1792-r291",
+          "reference": "这 被 称 为 化 学 物 质 的 ph 值 你 可 以 使 用 红 甘 蓝 汁 制 作 指 示 剂",
+          "hypothesis": "这被称为化学物质的PH值，你可以使用红甘蓝汁制作指示剂。",
+          "normalizedReference": "这被称为化学物质的ph值你可以使用红甘蓝汁制作指示剂",
+          "normalizedHypothesis": "这被称为化学物质的ph值你可以使用红甘蓝汁制作指示剂",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 152.319
+        },
+        {
+          "id": "fleurs-zh-1794-r378",
+          "reference": "文 明 是 一 种 由 共 同 生 活 合 作 工 作 的 人 群 社 会 所 共 享 的 单 一 文 化",
+          "hypothesis": "文明是一种由共同生活合作工作的人群社会所共享的单一文化。",
+          "normalizedReference": "文明是一种由共同生活合作工作的人群社会所共享的单一文化",
+          "normalizedHypothesis": "文明是一种由共同生活合作工作的人群社会所共享的单一文化",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 116.204
+        },
+        {
+          "id": "fleurs-zh-1797-r474",
+          "reference": "每 个 人 都 是 社 会 的 一 份 子 都 会 使 用 交 通 系 统 而 几 乎 每 个 人 都 对 交 通 系 统 有 怨 言",
+          "hypothesis": "每个人都是社会的一份子，都会使用交通系统，而几乎每个人都对交通系统有怨言。",
+          "normalizedReference": "每个人都是社会的一份子都会使用交通系统而几乎每个人都对交通系统有怨言",
+          "normalizedHypothesis": "每个人都是社会的一份子都会使用交通系统而几乎每个人都对交通系统有怨言",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 119.659
+        },
+        {
+          "id": "fleurs-zh-1798-r203",
+          "reference": "早 年 该 节 目 仅 在 运 营 已 久 的 互 联 网 广 播 网 站 toginet radio 上 播 出 toginet radio 是 一 个 专 注 于 谈 话 广 播 的 网 站",
+          "hypothesis": "早年，该节目仅在运营已久的互联网广播网站上推进n radio上播出。推gnet radioio是一个专注于谈话广播的网站。",
+          "normalizedReference": "早年该节目仅在运营已久的互联网广播网站toginetradio上播出toginetradio是一个专注于谈话广播的网站",
+          "normalizedHypothesis": "早年该节目仅在运营已久的互联网广播网站上推进nradio上播出推gnetradioio是一个专注于谈话广播的网站",
+          "errorRate": 0.186441,
+          "requestRoundTripMs": 150.345
+        },
+        {
+          "id": "fleurs-zh-1799-r591",
+          "reference": "除 了 周 三 的 比 赛 卡 帕 内 多 carpanedo 还 参 加 了 锦 标 赛 的 两 项 个 人 竞 赛",
+          "hypothesis": "除了周三的比赛，卡帕内多还参加了锦标赛的两项个人竞赛。",
+          "normalizedReference": "除了周三的比赛卡帕内多carpanedo还参加了锦标赛的两项个人竞赛",
+          "normalizedHypothesis": "除了周三的比赛卡帕内多还参加了锦标赛的两项个人竞赛",
+          "errorRate": 0.264706,
+          "requestRoundTripMs": 202.578
+        },
+        {
+          "id": "fleurs-zh-1800-r749",
+          "reference": "大 桥 预 计 将 于 2017 年 9 月 全 面 投 入 使 用 届 时 巴 西 海 关 检 查 站 预 计 也 将 完 工",
+          "hypothesis": "大桥预计将于2017年9月全面投入试用。吉市巴西海关检查站预计也将完工。",
+          "normalizedReference": "大桥预计将于2017年9月全面投入使用届时巴西海关检查站预计也将完工",
+          "normalizedHypothesis": "大桥预计将于2017年9月全面投入试用吉市巴西海关检查站预计也将完工",
+          "errorRate": 0.088235,
+          "requestRoundTripMs": 124.295
+        },
+        {
+          "id": "fleurs-zh-1802-r756",
+          "reference": "互 联 网 结 合 了 大 众 传 播 和 人 际 传 播 的 要 素",
+          "hypothesis": "互联网结合了大众传播和人际传播的要素。",
+          "normalizedReference": "互联网结合了大众传播和人际传播的要素",
+          "normalizedHypothesis": "互联网结合了大众传播和人际传播的要素",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 77.819
+        },
+        {
+          "id": "fleurs-zh-1803-r569",
+          "reference": "你 手 上 的 水 分 会 与 外 层 发 生 反 应 这 样 会 形 成 一 层 类 似 外 壳 的 东 西 感 觉 十 分 有 趣",
+          "hypothesis": "你手上的水分会与外层发生反应，这样会形成一层类似外壳的东西，感觉十分有趣。",
+          "normalizedReference": "你手上的水分会与外层发生反应这样会形成一层类似外壳的东西感觉十分有趣",
+          "normalizedHypothesis": "你手上的水分会与外层发生反应这样会形成一层类似外壳的东西感觉十分有趣",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 207.821
+        },
+        {
+          "id": "fleurs-zh-1805-r8",
+          "reference": "scotturb 403 路 公 共 汽 车 定 期 发 车 前 往 辛 特 拉 sintra 在 罗 卡 角 停 靠",
+          "hypothesis": "scool tube403路公交汽车定期发车前往新特拉，在罗卡角停靠。",
+          "normalizedReference": "scotturb403路公共汽车定期发车前往辛特拉sintra在罗卡角停靠",
+          "normalizedHypothesis": "scooltube403路公交汽车定期发车前往新特拉在罗卡角停靠",
+          "errorRate": 0.324324,
+          "requestRoundTripMs": 130.662
+        },
+        {
+          "id": "fleurs-zh-1807-r222",
+          "reference": "意 大 利 语 也 是 大 部 分 在 该 国 工 作 的 人 日 常 使 用 的 语 言 拉 丁 语 则 常 使 用 于 宗 教 仪 式",
+          "hypothesis": "意大利语也是大部分人在该国工作的人日常使用的语言，拉丁语则常使用于宗教仪式。",
+          "normalizedReference": "意大利语也是大部分在该国工作的人日常使用的语言拉丁语则常使用于宗教仪式",
+          "normalizedHypothesis": "意大利语也是大部分人在该国工作的人日常使用的语言拉丁语则常使用于宗教仪式",
+          "errorRate": 0.028571,
+          "requestRoundTripMs": 160.475
+        },
+        {
+          "id": "fleurs-zh-1808-r439",
+          "reference": "战 争 结 束 两 年 后 曾 经 的 盟 友 如 今 成 了 敌 人 冷 战 随 即 开 始",
+          "hypothesis": "战争结束两年后，曾经的盟友如今成了敌人，冷战随即开始。",
+          "normalizedReference": "战争结束两年后曾经的盟友如今成了敌人冷战随即开始",
+          "normalizedHypothesis": "战争结束两年后曾经的盟友如今成了敌人冷战随即开始",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 123.734
+        },
+        {
+          "id": "fleurs-zh-1810-r703",
+          "reference": "加 利 福 尼 亚 州 长 阿 诺 德 施 瓦 辛 格 签 署 了 一 项 法 案 禁 止 向 未 成 年 人 出 售 或 出 租 暴 力 电 子 游 戏",
+          "hypothesis": "加利福尼亚州州长阿诺德施瓦辛格签署了一项法案，禁止向未成年人出售或出租暴力电子游戏。",
+          "normalizedReference": "加利福尼亚州长阿诺德施瓦辛格签署了一项法案禁止向未成年人出售或出租暴力电子游戏",
+          "normalizedHypothesis": "加利福尼亚州州长阿诺德施瓦辛格签署了一项法案禁止向未成年人出售或出租暴力电子游戏",
+          "errorRate": 0.025641,
+          "requestRoundTripMs": 207.472
+        },
+        {
+          "id": "fleurs-zh-1812-r139",
+          "reference": "虽 然 有 一 种 实 验 性 疫 苗 看 似 能 够 降 低 埃 博 拉 病 毒 的 死 亡 率 但 迄 今 为 止 还 没 明 确 证 明 任 何 药 物 适 合 治 疗 现 有 的 感 染",
+          "hypothesis": "虽然有一种实验性疫苗看似能够降低埃博拉病毒的死亡率，但迄今为止还没明确证明任何药物适合治疗现有的感染。",
+          "normalizedReference": "虽然有一种实验性疫苗看似能够降低埃博拉病毒的死亡率但迄今为止还没明确证明任何药物适合治疗现有的感染",
+          "normalizedHypothesis": "虽然有一种实验性疫苗看似能够降低埃博拉病毒的死亡率但迄今为止还没明确证明任何药物适合治疗现有的感染",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 180.553
+        },
+        {
+          "id": "fleurs-zh-1812-r367",
+          "reference": "虽 然 有 一 种 实 验 性 疫 苗 看 似 能 够 降 低 埃 博 拉 病 毒 的 死 亡 率 但 迄 今 为 止 还 没 明 确 证 明 任 何 药 物 适 合 治 疗 现 有 的 感 染",
+          "hypothesis": "虽然有一种试验性疫苗看似能够降低埃博拉病毒的死亡率，但至今为止还没有明确证明任何药物都适合治疗现有的感染。",
+          "normalizedReference": "虽然有一种实验性疫苗看似能够降低埃博拉病毒的死亡率但迄今为止还没明确证明任何药物适合治疗现有的感染",
+          "normalizedHypothesis": "虽然有一种试验性疫苗看似能够降低埃博拉病毒的死亡率但至今为止还没有明确证明任何药物都适合治疗现有的感染",
+          "errorRate": 0.081633,
+          "requestRoundTripMs": 165.273
+        },
+        {
+          "id": "fleurs-zh-1815-r414",
+          "reference": "裂 变 原 子 弹 的 工 作 原 理 如 下 把 一 个 原 子 核 和 许 多 质 子 及 中 子 聚 在 一 起 需 要 能 量",
+          "hypothesis": "裂变原子弹的工作原理如下，把一个原子核和许多质子及中子聚集在一起，需要能量。",
+          "normalizedReference": "裂变原子弹的工作原理如下把一个原子核和许多质子及中子聚在一起需要能量",
+          "normalizedHypothesis": "裂变原子弹的工作原理如下把一个原子核和许多质子及中子聚集在一起需要能量",
+          "errorRate": 0.029412,
+          "requestRoundTripMs": 122.198
+        },
+        {
+          "id": "fleurs-zh-1817-r142",
+          "reference": "然 而 在 这 方 面 申 根 区 有 点 像 一 个 国 家",
+          "hypothesis": "然而，在这方面，深根区有点像一个国家。",
+          "normalizedReference": "然而在这方面申根区有点像一个国家",
+          "normalizedHypothesis": "然而在这方面深根区有点像一个国家",
+          "errorRate": 0.0625,
+          "requestRoundTripMs": 66.765
+        },
+        {
+          "id": "fleurs-zh-1817-r340",
+          "reference": "然 而 在 这 方 面 申 根 区 有 点 像 一 个 国 家",
+          "hypothesis": "然而，在这方面，深根区有点像一个国家。",
+          "normalizedReference": "然而在这方面申根区有点像一个国家",
+          "normalizedHypothesis": "然而在这方面深根区有点像一个国家",
+          "errorRate": 0.0625,
+          "requestRoundTripMs": 153.756
+        },
+        {
+          "id": "fleurs-zh-1819-r539",
+          "reference": "中 国 古 代 的 不 同 时 期 各 有 特 点 中 国 的 每 个 时 期 或 每 个 执 掌 天 下 的 家 族 都 是 一 个 特 点 鲜 明 的 王 朝",
+          "hypothesis": "中国古代的不同时期各有特点，中国的每个时期或每个执掌天下的家族都是一个特点鲜明的王朝。",
+          "normalizedReference": "中国古代的不同时期各有特点中国的每个时期或每个执掌天下的家族都是一个特点鲜明的王朝",
+          "normalizedHypothesis": "中国古代的不同时期各有特点中国的每个时期或每个执掌天下的家族都是一个特点鲜明的王朝",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 148.153
+        },
+        {
+          "id": "fleurs-zh-1821-r384",
+          "reference": "大 脑 病 理 和 行 为 之 间 的 相 关 性 可 以 为 科 学 家 们 的 研 究 提 供 支 持",
+          "hypothesis": "大脑病理和行为之间的相关性可以为科学家们提的研究提供支持。",
+          "normalizedReference": "大脑病理和行为之间的相关性可以为科学家们的研究提供支持",
+          "normalizedHypothesis": "大脑病理和行为之间的相关性可以为科学家们提的研究提供支持",
+          "errorRate": 0.037037,
+          "requestRoundTripMs": 103.204
+        },
+        {
+          "id": "fleurs-zh-1823-r89",
+          "reference": "交 通 流 量 研 究 的 是 驾 驶 员 和 车 辆 在 两 点 之 间 的 运 动 以 及 它 们 之 间 的 相 互 作 用",
+          "hypothesis": "交通流量研究的是驾驶员和车辆在两点之间的运动，以及它们的相互作用。",
+          "normalizedReference": "交通流量研究的是驾驶员和车辆在两点之间的运动以及它们之间的相互作用",
+          "normalizedHypothesis": "交通流量研究的是驾驶员和车辆在两点之间的运动以及它们的相互作用",
+          "errorRate": 0.060606,
+          "requestRoundTripMs": 134.703
+        },
+        {
+          "id": "fleurs-zh-1823-r836",
+          "reference": "交 通 流 量 研 究 的 是 驾 驶 员 和 车 辆 在 两 点 之 间 的 运 动 以 及 它 们 之 间 的 相 互 作 用",
+          "hypothesis": "交通流量研究是驾驶员和车辆在两点之间的运动以及他们之间的相互作用。",
+          "normalizedReference": "交通流量研究的是驾驶员和车辆在两点之间的运动以及它们之间的相互作用",
+          "normalizedHypothesis": "交通流量研究是驾驶员和车辆在两点之间的运动以及他们之间的相互作用",
+          "errorRate": 0.060606,
+          "requestRoundTripMs": 112.641
+        },
+        {
+          "id": "fleurs-zh-1826-r118",
+          "reference": "事 故 发 生 后 吉 布 森 被 送 往 医 院 但 很 快 就 一 命 呜 呼",
+          "hypothesis": "事故发生后，吉布森被送往医院，但很快就一命呜呼。",
+          "normalizedReference": "事故发生后吉布森被送往医院但很快就一命呜呼",
+          "normalizedHypothesis": "事故发生后吉布森被送往医院但很快就一命呜呼",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 108.752
+        },
+        {
+          "id": "fleurs-zh-1827-r643",
+          "reference": "地 壳 近 侧 厚 约 70 公 里 远 侧 厚 约 100 公 里",
+          "hypothesis": "地壳近侧后约70公里，远侧后约100公里。",
+          "normalizedReference": "地壳近侧厚约70公里远侧厚约100公里",
+          "normalizedHypothesis": "地壳近侧后约70公里远侧后约100公里",
+          "errorRate": 0.105263,
+          "requestRoundTripMs": 75.765
+        },
+        {
+          "id": "fleurs-zh-1829-r638",
+          "reference": "前 往 课 征 重 税 的 国 家 地 区 的 旅 客 有 时 可 以 省 下 一 大 笔 钱 在 这 些 地 方 购 买 酒 水 和 烟 草 等 产 品 特 别 划 算",
+          "hypothesis": "前往客征重税的国家地区的旅客有时可以省下一大笔钱，在这些地方购买酒水和烟草等产品特别划算。",
+          "normalizedReference": "前往课征重税的国家地区的旅客有时可以省下一大笔钱在这些地方购买酒水和烟草等产品特别划算",
+          "normalizedHypothesis": "前往客征重税的国家地区的旅客有时可以省下一大笔钱在这些地方购买酒水和烟草等产品特别划算",
+          "errorRate": 0.023256,
+          "requestRoundTripMs": 141.095
+        },
+        {
+          "id": "fleurs-zh-1829-r768",
+          "reference": "前 往 课 征 重 税 的 国 家 地 区 的 旅 客 有 时 可 以 省 下 一 大 笔 钱 在 这 些 地 方 购 买 酒 水 和 烟 草 等 产 品 特 别 划 算",
+          "hypothesis": "前往科征重税的国家地区的旅客有时可以省下一大笔钱，在这些地方购买酒水和烟草等产品特别划算。",
+          "normalizedReference": "前往课征重税的国家地区的旅客有时可以省下一大笔钱在这些地方购买酒水和烟草等产品特别划算",
+          "normalizedHypothesis": "前往科征重税的国家地区的旅客有时可以省下一大笔钱在这些地方购买酒水和烟草等产品特别划算",
+          "errorRate": 0.023256,
+          "requestRoundTripMs": 146.087
+        },
+        {
+          "id": "fleurs-zh-1830-r518",
+          "reference": "执 政 党 西 南 非 洲 人 民 组 织 swapo 也 在 议 会 选 举 中 保 持 了 多 数 席 位",
+          "hypothesis": "执政党、西南非洲人民组织也在议会选举中保持了多数席位。",
+          "normalizedReference": "执政党西南非洲人民组织swapo也在议会选举中保持了多数席位",
+          "normalizedHypothesis": "执政党西南非洲人民组织也在议会选举中保持了多数席位",
+          "errorRate": 0.166667,
+          "requestRoundTripMs": 170.458
+        },
+        {
+          "id": "fleurs-zh-1832-r542",
+          "reference": "流 行 的 运 动 项 目 包 括 足 球 篮 球 排 球 水 球 击 剑 橄 榄 球 自 行 车 冰 球 轮 滑 曲 棍 球 和 一 级 方 程 式 赛 车",
+          "hypothesis": "流行的运动项目包括足球、篮球、排球、水球、击毽、橄榄球、自行车、冰球、轮滑曲棍球和一级方程式赛车。",
+          "normalizedReference": "流行的运动项目包括足球篮球排球水球击剑橄榄球自行车冰球轮滑曲棍球和一级方程式赛车",
+          "normalizedHypothesis": "流行的运动项目包括足球篮球排球水球击毽橄榄球自行车冰球轮滑曲棍球和一级方程式赛车",
+          "errorRate": 0.025,
+          "requestRoundTripMs": 149.495
+        },
+        {
+          "id": "fleurs-zh-1836-r133",
+          "reference": "人 们 自 古 以 来 就 知 道 金 银 铜 等 基 本 化 学 元 素 因 为 这 些 元 素 都 能 以 自 然 形 态 在 自 然 界 中 发 现 而 且 比 较 容 易 使 用 原 始 工 具 进 行 开 采",
+          "hypothesis": "人们自古以来就知道金银铜等基本化学元素，因为这些元素都能以自然形态在自然界中发现，并且比较容易使用原始工具进行开采。",
+          "normalizedReference": "人们自古以来就知道金银铜等基本化学元素因为这些元素都能以自然形态在自然界中发现而且比较容易使用原始工具进行开采",
+          "normalizedHypothesis": "人们自古以来就知道金银铜等基本化学元素因为这些元素都能以自然形态在自然界中发现并且比较容易使用原始工具进行开采",
+          "errorRate": 0.018182,
+          "requestRoundTripMs": 168.486
+        },
+        {
+          "id": "fleurs-zh-1836-r488",
+          "reference": "人 们 自 古 以 来 就 知 道 金 银 铜 等 基 本 化 学 元 素 因 为 这 些 元 素 都 能 以 自 然 形 态 在 自 然 界 中 发 现 而 且 比 较 容 易 使 用 原 始 工 具 进 行 开 采",
+          "hypothesis": "人们自古以来就知道金银铜等基本化学元素，因为这些元素都能以自然形态在自然界中发现，而且比较容易使用原始工具进行开采。",
+          "normalizedReference": "人们自古以来就知道金银铜等基本化学元素因为这些元素都能以自然形态在自然界中发现而且比较容易使用原始工具进行开采",
+          "normalizedHypothesis": "人们自古以来就知道金银铜等基本化学元素因为这些元素都能以自然形态在自然界中发现而且比较容易使用原始工具进行开采",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 182.585
+        },
+        {
+          "id": "fleurs-zh-1839-r361",
+          "reference": "把 滑 雪 路 线 想 象 成 类 似 的 徒 步 路 线",
+          "hypothesis": "把滑雪路线想象成类似的徒步路线。",
+          "normalizedReference": "把滑雪路线想象成类似的徒步路线",
+          "normalizedHypothesis": "把滑雪路线想象成类似的徒步路线",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 93.218
+        },
+        {
+          "id": "fleurs-zh-1840-r613",
+          "reference": "在 意 大 利 很 多 其 他 城 市 以 及 世 界 上 其 他 地 方 尤 其 是 波 兰 都 设 置 了 类 似 的 设 施 以 供 大 量 群 众 观 看",
+          "hypothesis": "在意大利许多城其他城市以及世界上的其他地方，尤其是波兰都设置了类似的设施，以供大量群众观看。",
+          "normalizedReference": "在意大利很多其他城市以及世界上其他地方尤其是波兰都设置了类似的设施以供大量群众观看",
+          "normalizedHypothesis": "在意大利许多城其他城市以及世界上的其他地方尤其是波兰都设置了类似的设施以供大量群众观看",
+          "errorRate": 0.073171,
+          "requestRoundTripMs": 137.532
+        },
+        {
+          "id": "fleurs-zh-1842-r445",
+          "reference": "恐 龙 的 羽 毛 并 没 有 发 育 良 好 的 主 干 这 称 为 羽 轴 但 还 是 有 羽 毛 的 其 他 特 征 比 如 羽 枝 和 羽 小 枝 研 究 人 员 推 断 羽 轴 的 进 化 可 能 比 这 些 其 他 特 征 晚",
+          "hypothesis": "恐龙的羽毛并没有发育良好的主干，这被称为羽轴，但还是有羽毛的其他特征。比如羽织和羽小织研究人员推断，宇宙的进化可能比其他这些特征晚。",
+          "normalizedReference": "恐龙的羽毛并没有发育良好的主干这称为羽轴但还是有羽毛的其他特征比如羽枝和羽小枝研究人员推断羽轴的进化可能比这些其他特征晚",
+          "normalizedHypothesis": "恐龙的羽毛并没有发育良好的主干这被称为羽轴但还是有羽毛的其他特征比如羽织和羽小织研究人员推断宇宙的进化可能比其他这些特征晚",
+          "errorRate": 0.15,
+          "requestRoundTripMs": 293.394
+        },
+        {
+          "id": "fleurs-zh-1843-r555",
+          "reference": "邓 迪 大 学 university of dundee 的 pamela ferguson 教 授 指 出 记 者 如 果 公 布 嫌 疑 人 的 照 片 等 信 息 的 话 似 乎 确 实 存 在 危 害 性",
+          "hypothesis": "邓迪大学的帕mela佛guson教授指出，记者如果公布嫌疑人的照片等信息的话，似乎确实存在危害性。",
+          "normalizedReference": "邓迪大学universityofdundee的pamelaferguson教授指出记者如果公布嫌疑人的照片等信息的话似乎确实存在危害性",
+          "normalizedHypothesis": "邓迪大学的帕mela佛guson教授指出记者如果公布嫌疑人的照片等信息的话似乎确实存在危害性",
+          "errorRate": 0.343284,
+          "requestRoundTripMs": 160.662
+        },
+        {
+          "id": "fleurs-zh-1846-r615",
+          "reference": "因 此 这 种 格 式 的 宽 高 比 除 以 12 得 到 最 简 单 的 整 数 比 便 是 3:2",
+          "hypothesis": "因此，这种格式的宽高比除以12，得到最简单的整数比便是3比2。",
+          "normalizedReference": "因此这种格式的宽高比除以12得到最简单的整数比便是32",
+          "normalizedHypothesis": "因此这种格式的宽高比除以12得到最简单的整数比便是3比2",
+          "errorRate": 0.037037,
+          "requestRoundTripMs": 124.963
+        },
+        {
+          "id": "fleurs-zh-1848-r786",
+          "reference": "昨 日 上 午 土 耳 其 加 齐 安 泰 普 gaziantep 的 警 察 总 部 发 生 了 一 起 汽 车 炸 弹 爆 炸 事 件 该 事 件 导 致 两 名 警 察 死 亡 20 余 人 受 伤",
+          "hypothesis": "昨日上午，土耳其加及安纳普的警察总部发生了一起汽车爆炸弹爆炸事件。该事件导致两名警察死亡20余人受伤。",
+          "normalizedReference": "昨日上午土耳其加齐安泰普gaziantep的警察总部发生了一起汽车炸弹爆炸事件该事件导致两名警察死亡20余人受伤",
+          "normalizedHypothesis": "昨日上午土耳其加及安纳普的警察总部发生了一起汽车爆炸弹爆炸事件该事件导致两名警察死亡20余人受伤",
+          "errorRate": 0.214286,
+          "requestRoundTripMs": 172.452
+        },
+        {
+          "id": "fleurs-zh-1850-r930",
+          "reference": "它 能 向 后 兼 容 802.11a 802.11b 和 802.11g 前 提 是 基 站 要 有 双 无 线 电",
+          "hypothesis": "它能向后兼容802.11A802.11B和802.11G，前提是鸡蛋要有双无线电。",
+          "normalizedReference": "它能向后兼容80211a80211b和80211g前提是基站要有双无线电",
+          "normalizedHypothesis": "它能向后兼容80211a80211b和80211g前提是鸡蛋要有双无线电",
+          "errorRate": 0.055556,
+          "requestRoundTripMs": 142.14
+        },
+        {
+          "id": "fleurs-zh-1851-r86",
+          "reference": "离 岸 流 是 海 浪 从 海 滩 快 速 回 流 到 海 中 的 回 流 通 常 发 生 在 暗 礁 或 类 似 的 地 方",
+          "hypothesis": "离岸流是海浪从海滩快速回流到海中的回流，通常发生在暗礁或类似的地方。",
+          "normalizedReference": "离岸流是海浪从海滩快速回流到海中的回流通常发生在暗礁或类似的地方",
+          "normalizedHypothesis": "离岸流是海浪从海滩快速回流到海中的回流通常发生在暗礁或类似的地方",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 157.303
+        },
+        {
+          "id": "fleurs-zh-1854-r762",
+          "reference": "当 天 格 林 尼 治 时 间 gmt 约 12 时 许 该 车 辆 被 拖 离 事 故 现 场",
+          "hypothesis": "当天，格离尼治时间约12时许，该车辆被脱离车库现场。",
+          "normalizedReference": "当天格林尼治时间gmt约12时许该车辆被拖离事故现场",
+          "normalizedHypothesis": "当天格离尼治时间约12时许该车辆被脱离车库现场",
+          "errorRate": 0.269231,
+          "requestRoundTripMs": 104.145
+        },
+        {
+          "id": "fleurs-zh-1856-r278",
+          "reference": "芬 兰 是 绝 佳 的 帆 船 运 动 圣 地 素 有 千 湖 之 乡 的 美 誉 在 其 湖 泊 和 沿 海 群 岛 范 围 内 也 含 有 数 千 座 岛 屿",
+          "hypothesis": "芬兰是绝佳的帆船运动圣地，拥有千湖之乡的美誉，在其湖泊和沿海群岛范围内也含有数千座岛屿。",
+          "normalizedReference": "芬兰是绝佳的帆船运动圣地素有千湖之乡的美誉在其湖泊和沿海群岛范围内也含有数千座岛屿",
+          "normalizedHypothesis": "芬兰是绝佳的帆船运动圣地拥有千湖之乡的美誉在其湖泊和沿海群岛范围内也含有数千座岛屿",
+          "errorRate": 0.02439,
+          "requestRoundTripMs": 138.382
+        },
+        {
+          "id": "fleurs-zh-1856-r309",
+          "reference": "芬 兰 是 绝 佳 的 帆 船 运 动 圣 地 素 有 千 湖 之 乡 的 美 誉 在 其 湖 泊 和 沿 海 群 岛 范 围 内 也 含 有 数 千 座 岛 屿",
+          "hypothesis": "芬兰是绝佳的帆船运动圣地，素有千湖之乡的美誉，在其湖泊和沿海群岛范围内，也含有数千座岛屿。",
+          "normalizedReference": "芬兰是绝佳的帆船运动圣地素有千湖之乡的美誉在其湖泊和沿海群岛范围内也含有数千座岛屿",
+          "normalizedHypothesis": "芬兰是绝佳的帆船运动圣地素有千湖之乡的美誉在其湖泊和沿海群岛范围内也含有数千座岛屿",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 192.938
+        },
+        {
+          "id": "fleurs-zh-1860-r98",
+          "reference": "州 长 办 公 室 表 示 伤 者 中 有 十 九 人 是 警 察",
+          "hypothesis": "州长办公室表示，伤者中有19人是警察。",
+          "normalizedReference": "州长办公室表示伤者中有十九人是警察",
+          "normalizedHypothesis": "州长办公室表示伤者中有19人是警察",
+          "errorRate": 0.117647,
+          "requestRoundTripMs": 102.803
+        },
+        {
+          "id": "fleurs-zh-1860-r791",
+          "reference": "州 长 办 公 室 表 示 伤 者 中 有 十 九 人 是 警 察",
+          "hypothesis": "州长办公室表示，伤者中有19人是警察。",
+          "normalizedReference": "州长办公室表示伤者中有十九人是警察",
+          "normalizedHypothesis": "州长办公室表示伤者中有19人是警察",
+          "errorRate": 0.117647,
+          "requestRoundTripMs": 87.094
+        },
+        {
+          "id": "fleurs-zh-1863-r399",
+          "reference": "西 藏 冥 想 的 核 心 活 动 是 天 瑜 伽 通 过 把 不 同 的 神 形 象 化 净 化 能 量 通 道 激 活 轮 穴 从 而 达 到 顿 悟 的 境 界",
+          "hypothesis": "西藏冥想的核心活动是天瑜伽，通过把不同的神形象化净化能量通道激活冷血，从而达到静物的动物的境界。",
+          "normalizedReference": "西藏冥想的核心活动是天瑜伽通过把不同的神形象化净化能量通道激活轮穴从而达到顿悟的境界",
+          "normalizedHypothesis": "西藏冥想的核心活动是天瑜伽通过把不同的神形象化净化能量通道激活冷血从而达到静物的动物的境界",
+          "errorRate": 0.166667,
+          "requestRoundTripMs": 138.258
+        },
+        {
+          "id": "fleurs-zh-1863-r731",
+          "reference": "西 藏 冥 想 的 核 心 活 动 是 天 瑜 伽 通 过 把 不 同 的 神 形 象 化 净 化 能 量 通 道 激 活 轮 穴 从 而 达 到 顿 悟 的 境 界",
+          "hypothesis": "西藏冥想的核心活动是天瑜伽，通过把不同的神形象化净化能量通道激活轮却，从而达到动悟的境界。",
+          "normalizedReference": "西藏冥想的核心活动是天瑜伽通过把不同的神形象化净化能量通道激活轮穴从而达到顿悟的境界",
+          "normalizedHypothesis": "西藏冥想的核心活动是天瑜伽通过把不同的神形象化净化能量通道激活轮却从而达到动悟的境界",
+          "errorRate": 0.047619,
+          "requestRoundTripMs": 158.591
+        },
+        {
+          "id": "fleurs-zh-1865-r889",
+          "reference": "圣 彼 得 堡 游 轮 包 括 城 内 观 光 活 动 游 轮 乘 客 可 获 豁 免 签 证 详 情 请 参 阅 服 务 条 款",
+          "hypothesis": "圣彼得堡游轮包括城内观光活动，游轮乘客可豁免签证，详情请参与服务条款。",
+          "normalizedReference": "圣彼得堡游轮包括城内观光活动游轮乘客可获豁免签证详情请参阅服务条款",
+          "normalizedHypothesis": "圣彼得堡游轮包括城内观光活动游轮乘客可豁免签证详情请参与服务条款",
+          "errorRate": 0.060606,
+          "requestRoundTripMs": 216.226
+        },
+        {
+          "id": "fleurs-zh-1866-r652",
+          "reference": "首 先 大 多 数 骑 马 人 会 穿 带 跟 马 靴 而 且 鞋 底 光 滑 及 相 当 狭 窄",
+          "hypothesis": "首先，大多数骑马人会穿带跟马靴，而且鞋底光滑及相脏狭窄。",
+          "normalizedReference": "首先大多数骑马人会穿带跟马靴而且鞋底光滑及相当狭窄",
+          "normalizedHypothesis": "首先大多数骑马人会穿带跟马靴而且鞋底光滑及相脏狭窄",
+          "errorRate": 0.04,
+          "requestRoundTripMs": 123.968
+        },
+        {
+          "id": "fleurs-zh-1870-r521",
+          "reference": "场 景 在 金 字 塔 上 展 示 不 同 的 金 字 塔 被 点 亮",
+          "hypothesis": "场景在金字塔上展示，不同的金字塔被点亮。",
+          "normalizedReference": "场景在金字塔上展示不同的金字塔被点亮",
+          "normalizedHypothesis": "场景在金字塔上展示不同的金字塔被点亮",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 74.327
+        },
+        {
+          "id": "fleurs-zh-1871-r61",
+          "reference": "在 中 东 温 暖 的 气 候 中 房 子 并 不 是 多 重 要",
+          "hypothesis": "在中东温暖的气候中，房子并不是多重要。",
+          "normalizedReference": "在中东温暖的气候中房子并不是多重要",
+          "normalizedHypothesis": "在中东温暖的气候中房子并不是多重要",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 105.629
+        },
+        {
+          "id": "fleurs-zh-1875-r297",
+          "reference": "亚 马 逊 河 占 全 世 界 所 有 河 流 的 入 海 流 量 的 20%",
+          "hypothesis": "亚马逊河占全世界所有河流的入海流量的20%。",
+          "normalizedReference": "亚马逊河占全世界所有河流的入海流量的20",
+          "normalizedHypothesis": "亚马逊河占全世界所有河流的入海流量的20",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 118.249
+        },
+        {
+          "id": "fleurs-zh-1878-r611",
+          "reference": "教 会 中 央 集 权 制 在 罗 马 存 在 了 一 千 多 年 这 种 权 力 和 金 钱 的 集 中 让 许 多 人 开 始 质 疑 他 们 是 否 遵 守 了 这 一 信 条",
+          "hypothesis": "教会中央集权制在罗马存在了1000多年，这种权力和金钱的集中，让许多人开始质疑他们是否遵守了这一信条。",
+          "normalizedReference": "教会中央集权制在罗马存在了一千多年这种权力和金钱的集中让许多人开始质疑他们是否遵守了这一信条",
+          "normalizedHypothesis": "教会中央集权制在罗马存在了1000多年这种权力和金钱的集中让许多人开始质疑他们是否遵守了这一信条",
+          "errorRate": 0.086957,
+          "requestRoundTripMs": 153.543
+        },
+        {
+          "id": "fleurs-zh-1880-r51",
+          "reference": "因 此 铅 笔 一 问 世 就 成 了 许 多 人 的 心 头 好",
+          "hypothesis": "因此，铅笔一问是就成了许多人的心头号。",
+          "normalizedReference": "因此铅笔一问世就成了许多人的心头好",
+          "normalizedHypothesis": "因此铅笔一问是就成了许多人的心头号",
+          "errorRate": 0.117647,
+          "requestRoundTripMs": 143.102
+        },
+        {
+          "id": "fleurs-zh-1882-r452",
+          "reference": "科 学 家 希 望 了 解 自 从 彗 星 很 久 以 前 与 地 球 相 撞 以 来 行 星 是 如 何 形 成 的 尤 其 是 地 球 的 形 成 方 式",
+          "hypothesis": "科学家希望了解，自彗星很久以前与地球相撞以来，行星是如何形成的，尤其是地球的形成方式。",
+          "normalizedReference": "科学家希望了解自从彗星很久以前与地球相撞以来行星是如何形成的尤其是地球的形成方式",
+          "normalizedHypothesis": "科学家希望了解自彗星很久以前与地球相撞以来行星是如何形成的尤其是地球的形成方式",
+          "errorRate": 0.025,
+          "requestRoundTripMs": 201.856
+        },
+        {
+          "id": "fleurs-zh-1884-r24",
+          "reference": "具 体 说 来 据 说 可 以 通 过 正 确 解 读 微 表 情 来 判 断 一 个 人 是 否 在 撒 谎",
+          "hypothesis": "具体说来，据说可以通过正确解读微表情来判断一个人是否在撒谎。",
+          "normalizedReference": "具体说来据说可以通过正确解读微表情来判断一个人是否在撒谎",
+          "normalizedHypothesis": "具体说来据说可以通过正确解读微表情来判断一个人是否在撒谎",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 103.704
+        },
+        {
+          "id": "fleurs-zh-1885-r216",
+          "reference": "山 区 夏 令 时 晚 上 10 点 到 11 点 之 间 院 子 里 的 犯 人 们 引 发 了 一 场 火 灾",
+          "hypothesis": "山区下令时晚上10点到11点之间，院子里的犯人们引发了一场火灾。",
+          "normalizedReference": "山区夏令时晚上10点到11点之间院子里的犯人们引发了一场火灾",
+          "normalizedHypothesis": "山区下令时晚上10点到11点之间院子里的犯人们引发了一场火灾",
+          "errorRate": 0.033333,
+          "requestRoundTripMs": 102.888
+        },
+        {
+          "id": "fleurs-zh-1885-r672",
+          "reference": "山 区 夏 令 时 晚 上 10 点 到 11 点 之 间 院 子 里 的 犯 人 们 引 发 了 一 场 火 灾",
+          "hypothesis": "山区下令时晚上10点到11点之间，院子里的犯人们引发了一场火灾。",
+          "normalizedReference": "山区夏令时晚上10点到11点之间院子里的犯人们引发了一场火灾",
+          "normalizedHypothesis": "山区下令时晚上10点到11点之间院子里的犯人们引发了一场火灾",
+          "errorRate": 0.033333,
+          "requestRoundTripMs": 163.185
+        },
+        {
+          "id": "fleurs-zh-1888-r145",
+          "reference": "重 返 家 园 的 冲 击 比 文 化 冲 击 来 得 更 快 蜜 月 期 更 短 持 续 时 间 更 长 也 可 能 更 严 重",
+          "hypothesis": "重返家园的冲击比文化冲击来得更快，命月期更短，持续时间更长也可能更严重。",
+          "normalizedReference": "重返家园的冲击比文化冲击来得更快蜜月期更短持续时间更长也可能更严重",
+          "normalizedHypothesis": "重返家园的冲击比文化冲击来得更快命月期更短持续时间更长也可能更严重",
+          "errorRate": 0.030303,
+          "requestRoundTripMs": 150.411
+        },
+        {
+          "id": "fleurs-zh-1889-r911",
+          "reference": "有 了 它 我 们 才 有 了 火 车 汽 车 和 许 多 其 他 交 通 工 具",
+          "hypothesis": "有了它，我们才有了火车、汽车和许多其他交通工具。",
+          "normalizedReference": "有了它我们才有了火车汽车和许多其他交通工具",
+          "normalizedHypothesis": "有了它我们才有了火车汽车和许多其他交通工具",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 180.015
+        },
+        {
+          "id": "fleurs-zh-1894-r229",
+          "reference": "咖 喱 饭 菜 是 一 道 以 香 草 和 香 料 为 主 的 菜 肴 并 配 以 肉 类 或 蔬 菜",
+          "hypothesis": "咖喱饭菜是一道以香草和香料为主的菜肴，并配以肉类或蔬菜。",
+          "normalizedReference": "咖喱饭菜是一道以香草和香料为主的菜肴并配以肉类或蔬菜",
+          "normalizedHypothesis": "咖喱饭菜是一道以香草和香料为主的菜肴并配以肉类或蔬菜",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 89.12
+        },
+        {
+          "id": "fleurs-zh-1894-r877",
+          "reference": "咖 喱 饭 菜 是 一 道 以 香 草 和 香 料 为 主 的 菜 肴 并 配 以 肉 类 或 蔬 菜",
+          "hypothesis": "咖喱饭菜是一道以香草和香料为主的菜肴，并配肉类或蔬菜。",
+          "normalizedReference": "咖喱饭菜是一道以香草和香料为主的菜肴并配以肉类或蔬菜",
+          "normalizedHypothesis": "咖喱饭菜是一道以香草和香料为主的菜肴并配肉类或蔬菜",
+          "errorRate": 0.038462,
+          "requestRoundTripMs": 175.454
+        },
+        {
+          "id": "fleurs-zh-1895-r616",
+          "reference": "随 着 希 腊 知 识 的 衰 落 西 方 脱 离 了 其 希 腊 哲 学 和 科 学 根 源",
+          "hypothesis": "随着希腊知识的衰落，西方脱离了其希腊哲学和科学根源。",
+          "normalizedReference": "随着希腊知识的衰落西方脱离了其希腊哲学和科学根源",
+          "normalizedHypothesis": "随着希腊知识的衰落西方脱离了其希腊哲学和科学根源",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 92.136
+        },
+        {
+          "id": "fleurs-zh-1900-r227",
+          "reference": "事 实 上 即 使 知 道 它 的 存 在 也 不 容 易 找 到 一 旦 进 入 洞 穴 就 完 全 与 世 隔 绝 了",
+          "hypothesis": "事实上，即使知道它的存在，也不容易找到，一旦进入洞穴，就完全与世隔绝了。",
+          "normalizedReference": "事实上即使知道它的存在也不容易找到一旦进入洞穴就完全与世隔绝了",
+          "normalizedHypothesis": "事实上即使知道它的存在也不容易找到一旦进入洞穴就完全与世隔绝了",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 108.806
+        },
+        {
+          "id": "fleurs-zh-1901-r249",
+          "reference": "人 工 智 能 有 很 强 的 科 幻 色 彩 但 它 其 实 是 计 算 机 科 学 非 常 重 要 的 一 个 分 支 研 究 的 是 机 器 的 行 为 学 习 和 智 能 适 应",
+          "hypothesis": "人工智能有很强的科幻色彩，但它其实是计算机科学非常重要的一个分支，研究的是机器的行为、学习和智能适应。",
+          "normalizedReference": "人工智能有很强的科幻色彩但它其实是计算机科学非常重要的一个分支研究的是机器的行为学习和智能适应",
+          "normalizedHypothesis": "人工智能有很强的科幻色彩但它其实是计算机科学非常重要的一个分支研究的是机器的行为学习和智能适应",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 162.496
+        },
+        {
+          "id": "fleurs-zh-1903-r351",
+          "reference": "当 所 有 可 用 的 资 源 在 一 个 组 织 的 职 能 部 门 之 间 得 到 有 效 利 用 时 创 造 力 和 独 创 性 就 会 发 生",
+          "hypothesis": "当所有可用的资源在一个组织的职能部门之间得到有效利用时，创造力和独创性就会发生。",
+          "normalizedReference": "当所有可用的资源在一个组织的职能部门之间得到有效利用时创造力和独创性就会发生",
+          "normalizedHypothesis": "当所有可用的资源在一个组织的职能部门之间得到有效利用时创造力和独创性就会发生",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 151.374
+        },
+        {
+          "id": "fleurs-zh-1905-r18",
+          "reference": "摩 尔 多 瓦 的 首 都 是 基 希 讷 乌 当 地 语 言 是 罗 马 尼 亚 语 但 俄 语 也 被 广 泛 使 用",
+          "hypothesis": "摩尔多瓦的首都是新基那乌，当地的语言是罗马尼亚语，但俄语也被广泛使用。",
+          "normalizedReference": "摩尔多瓦的首都是基希讷乌当地语言是罗马尼亚语但俄语也被广泛使用",
+          "normalizedHypothesis": "摩尔多瓦的首都是新基那乌当地的语言是罗马尼亚语但俄语也被广泛使用",
+          "errorRate": 0.129032,
+          "requestRoundTripMs": 115.514
+        },
+        {
+          "id": "fleurs-zh-1906-r0",
+          "reference": "这 并 不 是 告 别 这 是 一 个 篇 章 的 结 束 也 是 新 篇 章 的 开 始",
+          "hypothesis": "这并不是告别，这是一个篇章的结束，也是新篇章的开始。",
+          "normalizedReference": "这并不是告别这是一个篇章的结束也是新篇章的开始",
+          "normalizedHypothesis": "这并不是告别这是一个篇章的结束也是新篇章的开始",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 149.77
+        },
+        {
+          "id": "fleurs-zh-1906-r360",
+          "reference": "这 并 不 是 告 别 这 是 一 个 篇 章 的 结 束 也 是 新 篇 章 的 开 始",
+          "hypothesis": "这并不是告别，这是一个篇章的结束，也是新篇章的开始。",
+          "normalizedReference": "这并不是告别这是一个篇章的结束也是新篇章的开始",
+          "normalizedHypothesis": "这并不是告别这是一个篇章的结束也是新篇章的开始",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 84.089
+        },
+        {
+          "id": "fleurs-zh-1908-r436",
+          "reference": "这 是 区 分 某 些 动 词 和 宾 语 的 一 个 重 要 方 法",
+          "hypothesis": "这是区分某些动词和宾语的一个重要方法。",
+          "normalizedReference": "这是区分某些动词和宾语的一个重要方法",
+          "normalizedHypothesis": "这是区分某些动词和宾语的一个重要方法",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 151.627
+        },
+        {
+          "id": "fleurs-zh-1909-r806",
+          "reference": "虚 拟 团 队 需 要 坚 持 与 传 统 团 队 同 样 的 质 量 标 准 但 也 有 细 微 的 差 别",
+          "hypothesis": "虚拟团队需要坚持与传统团队同样的质量标准，但也有细微的差别。",
+          "normalizedReference": "虚拟团队需要坚持与传统团队同样的质量标准但也有细微的差别",
+          "normalizedHypothesis": "虚拟团队需要坚持与传统团队同样的质量标准但也有细微的差别",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 95.094
+        },
+        {
+          "id": "fleurs-zh-1911-r143",
+          "reference": "同 理 有 了 申 根 签 证 你 就 不 必 分 别 向 每 个 申 根 成 员 国 申 请 签 证 从 而 节 省 了 时 间 金 钱 和 手 续",
+          "hypothesis": "同理，有了生耕签证，你就不必分别向每个生耕成员国申请签证，从而节省了时间、金钱和手续。",
+          "normalizedReference": "同理有了申根签证你就不必分别向每个申根成员国申请签证从而节省了时间金钱和手续",
+          "normalizedHypothesis": "同理有了生耕签证你就不必分别向每个生耕成员国申请签证从而节省了时间金钱和手续",
+          "errorRate": 0.105263,
+          "requestRoundTripMs": 148.681
+        },
+        {
+          "id": "fleurs-zh-1913-r347",
+          "reference": "老 虎 的 咆 哮 不 像 狮 子 的 咆 哮 那 样 深 沉 而 更 像 一 句 生 气 嘶 吼 的 话 语",
+          "hypothesis": "老虎的咆哮不像狮子的咆哮那样深沉，而更像一句生气嘶吼的话语。",
+          "normalizedReference": "老虎的咆哮不像狮子的咆哮那样深沉而更像一句生气嘶吼的话语",
+          "normalizedHypothesis": "老虎的咆哮不像狮子的咆哮那样深沉而更像一句生气嘶吼的话语",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 175.2
+        },
+        {
+          "id": "fleurs-zh-1914-r554",
+          "reference": "二 十 世 纪 的 研 究 表 明 基 因 变 异 有 两 种 库 显 性 和 隐 性",
+          "hypothesis": "20世纪的研究表明，基因变异有两种库显性和隐性。",
+          "normalizedReference": "二十世纪的研究表明基因变异有两种库显性和隐性",
+          "normalizedHypothesis": "20世纪的研究表明基因变异有两种库显性和隐性",
+          "errorRate": 0.090909,
+          "requestRoundTripMs": 95.457
+        },
+        {
+          "id": "fleurs-zh-1916-r849",
+          "reference": "许 多 德 国 烘 焙 食 品 也 以 杏 仁 榛 子 和 其 他 坚 果 为 特 色 受 欢 迎 的 蛋 糕 与 浓 咖 啡 往 往 是 绝 配",
+          "hypothesis": "许多德国烘焙食品也以杏仁榛子和其他坚果为特色，受欢迎的蛋糕与浓咖啡往往是绝配。",
+          "normalizedReference": "许多德国烘焙食品也以杏仁榛子和其他坚果为特色受欢迎的蛋糕与浓咖啡往往是绝配",
+          "normalizedHypothesis": "许多德国烘焙食品也以杏仁榛子和其他坚果为特色受欢迎的蛋糕与浓咖啡往往是绝配",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 135.214
+        },
+        {
+          "id": "fleurs-zh-1916-r851",
+          "reference": "许 多 德 国 烘 焙 食 品 也 以 杏 仁 榛 子 和 其 他 坚 果 为 特 色 受 欢 迎 的 蛋 糕 与 浓 咖 啡 往 往 是 绝 配",
+          "hypothesis": "许多德国烘焙食品也以杏仁、榛子和其他坚果为特色，受欢迎的蛋糕与浓咖啡往往是绝配。",
+          "normalizedReference": "许多德国烘焙食品也以杏仁榛子和其他坚果为特色受欢迎的蛋糕与浓咖啡往往是绝配",
+          "normalizedHypothesis": "许多德国烘焙食品也以杏仁榛子和其他坚果为特色受欢迎的蛋糕与浓咖啡往往是绝配",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 151.395
+        },
+        {
+          "id": "fleurs-zh-1918-r557",
+          "reference": "孙 德 尔 本 斯 sundarbans 已 经 被 联 合 国 教 科 文 组 织 宣 布 为 世 界 遗 产 印 度 境 内 的 这 部 分 森 林 被 称 为 孙 德 尔 本 斯 国 家 公 园",
+          "hypothesis": "孙德尔本斯已经被联合国教科文组织宣布为世界遗产。印度境内的这部分森林被称为孙德尔本斯国家公园。",
+          "normalizedReference": "孙德尔本斯sundarbans已经被联合国教科文组织宣布为世界遗产印度境内的这部分森林被称为孙德尔本斯国家公园",
+          "normalizedHypothesis": "孙德尔本斯已经被联合国教科文组织宣布为世界遗产印度境内的这部分森林被称为孙德尔本斯国家公园",
+          "errorRate": 0.181818,
+          "requestRoundTripMs": 186.415
+        },
+        {
+          "id": "fleurs-zh-1920-r481",
+          "reference": "他 们 通 常 会 提 供 特 别 的 食 品 饮 料 和 娱 乐 活 动 让 客 人 保 持 愉 悦 留 在 赌 场",
+          "hypothesis": "他们通常会提供特别的食品、饮料和娱乐活动，让客人保持愉悦，留在赌场。",
+          "normalizedReference": "他们通常会提供特别的食品饮料和娱乐活动让客人保持愉悦留在赌场",
+          "normalizedHypothesis": "他们通常会提供特别的食品饮料和娱乐活动让客人保持愉悦留在赌场",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 177.62
+        },
+        {
+          "id": "fleurs-zh-1921-r266",
+          "reference": "另 一 方 面 冰 雪 天 气 在 很 多 国 家 都 十 分 常 见 全 年 交 通 也 几 乎 不 会 中 断",
+          "hypothesis": "另一方面，冰雪天气在很多国家都十分常见，全年交通也几乎不会中断。",
+          "normalizedReference": "另一方面冰雪天气在很多国家都十分常见全年交通也几乎不会中断",
+          "normalizedHypothesis": "另一方面冰雪天气在很多国家都十分常见全年交通也几乎不会中断",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 131.564
+        },
+        {
+          "id": "fleurs-zh-1925-r589",
+          "reference": "完 成 的 工 作 大 多 是 理 论 性 的 但 编 写 程 序 的 目 的 是 为 了 模 拟 对 人 马 座 星 系 的 观 测",
+          "hypothesis": "完成的工作大多是理论性的，但编写程序的目的是为了模拟对人马做信息的观测。",
+          "normalizedReference": "完成的工作大多是理论性的但编写程序的目的是为了模拟对人马座星系的观测",
+          "normalizedHypothesis": "完成的工作大多是理论性的但编写程序的目的是为了模拟对人马做信息的观测",
+          "errorRate": 0.088235,
+          "requestRoundTripMs": 151.927
+        },
+        {
+          "id": "fleurs-zh-1926-r827",
+          "reference": "亚 里 士 多 德 就 所 有 科 学 领 域 的 问 题 包 括 心 理 学 在 内 所 发 表 的 观 点 都 被 一 一 接 纳",
+          "hypothesis": "亚里士多德就所有科学领域的问题，包括心理学在内所发表的观点都被一一接纳。",
+          "normalizedReference": "亚里士多德就所有科学领域的问题包括心理学在内所发表的观点都被一一接纳",
+          "normalizedHypothesis": "亚里士多德就所有科学领域的问题包括心理学在内所发表的观点都被一一接纳",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 143.671
+        },
+        {
+          "id": "fleurs-zh-1927-r327",
+          "reference": "天 使 2006 将 连 续 体 方 案 解 释 为 可 以 帮 助 组 织 达 到 更 高 绩 效 水 平 的 一 种 方 法",
+          "hypothesis": "天使2006将连续体方案解释为可以帮助组织达到更高绩效水平的一种方法。",
+          "normalizedReference": "天使2006将连续体方案解释为可以帮助组织达到更高绩效水平的一种方法",
+          "normalizedHypothesis": "天使2006将连续体方案解释为可以帮助组织达到更高绩效水平的一种方法",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 151.019
+        },
+        {
+          "id": "fleurs-zh-1930-r585",
+          "reference": "六 名 人 质 包 括 儿 童 和 老 人 在 内 以 及 那 些 菲 律 宾 摄 影 师 被 提 前 释 放",
+          "hypothesis": "6名人质包括儿童和老人在内，以及那些菲律宾摄影师被提前释放。",
+          "normalizedReference": "六名人质包括儿童和老人在内以及那些菲律宾摄影师被提前释放",
+          "normalizedHypothesis": "6名人质包括儿童和老人在内以及那些菲律宾摄影师被提前释放",
+          "errorRate": 0.035714,
+          "requestRoundTripMs": 140.099
+        },
+        {
+          "id": "fleurs-zh-1934-r341",
+          "reference": "平 时 你 总 能 在 这 里 听 到 游 客 和 小 摊 贩 的 声 音 声 光 交 织 就 像 在 讲 述 一 个 动 人 的 故 事",
+          "hypothesis": "平时你总能在这里听到游客和小摊贩的声音，声光交织，就像在讲述一个动人的故事。",
+          "normalizedReference": "平时你总能在这里听到游客和小摊贩的声音声光交织就像在讲述一个动人的故事",
+          "normalizedHypothesis": "平时你总能在这里听到游客和小摊贩的声音声光交织就像在讲述一个动人的故事",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 217.614
+        },
+        {
+          "id": "fleurs-zh-1939-r913",
+          "reference": "此 外 在 革 命 之 后 官 职 面 向 全 体 男 性 开 放 申 请 这 使 得 最 有 抱 负 最 成 功 之 人 有 机 会 飞 黄 腾 达",
+          "hypothesis": "此外，在革命之后，官职面官职面向全体男性开放申请，这使得自有报负，遂成功之人有机会飞黄腾达。",
+          "normalizedReference": "此外在革命之后官职面向全体男性开放申请这使得最有抱负最成功之人有机会飞黄腾达",
+          "normalizedHypothesis": "此外在革命之后官职面官职面向全体男性开放申请这使得自有报负遂成功之人有机会飞黄腾达",
+          "errorRate": 0.157895,
+          "requestRoundTripMs": 177.345
+        },
+        {
+          "id": "fleurs-zh-1940-r264",
+          "reference": "综 上 所 述 如 果 我 们 的 祖 先 解 决 蛋 白 质 问 题 的 途 径 与 如 今 热 带 草 原 上 的 黑 猩 猩 所 使 用 的 方 法 无 异 我 们 也 不 应 该 感 到 惊 讶",
+          "hypothesis": "综上所述，如果我们的祖先解决蛋白质问题的途径与如今热带草原上的黑猩猩所使用的方法无异，我们也不应该感到惊讶。",
+          "normalizedReference": "综上所述如果我们的祖先解决蛋白质问题的途径与如今热带草原上的黑猩猩所使用的方法无异我们也不应该感到惊讶",
+          "normalizedHypothesis": "综上所述如果我们的祖先解决蛋白质问题的途径与如今热带草原上的黑猩猩所使用的方法无异我们也不应该感到惊讶",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 156.009
+        },
+        {
+          "id": "fleurs-zh-1941-r871",
+          "reference": "这 些 夫 妇 可 能 会 为 他 们 的 孩 子 制 定 收 养 计 划",
+          "hypothesis": "这些夫妇可能会为他们的孩子制定收养计划。",
+          "normalizedReference": "这些夫妇可能会为他们的孩子制定收养计划",
+          "normalizedHypothesis": "这些夫妇可能会为他们的孩子制定收养计划",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 96.988
+        },
+        {
+          "id": "fleurs-zh-1943-r797",
+          "reference": "压 力 越 小 生 命 力 就 表 现 得 越 积 极 每 个 人 都 有 可 能 找 到 绝 对 的 平 静 和 满 足",
+          "hypothesis": "压力越小，生命的表现力就越激起，每个人都有可能找到绝对的平静和满足。",
+          "normalizedReference": "压力越小生命力就表现得越积极每个人都有可能找到绝对的平静和满足",
+          "normalizedHypothesis": "压力越小生命的表现力就越激起每个人都有可能找到绝对的平静和满足",
+          "errorRate": 0.193548,
+          "requestRoundTripMs": 112.025
+        },
+        {
+          "id": "fleurs-zh-1944-r771",
+          "reference": "这 些 海 滩 有 时 挤 满 了 度 假 的 家 庭 沿 岸 排 列 着 各 种 各 样 的 商 店 游 泳 很 安 全",
+          "hypothesis": "这些海滩又是挤满了度假的家庭，沿岸排列着各种各样的商店，游泳很安全。",
+          "normalizedReference": "这些海滩有时挤满了度假的家庭沿岸排列着各种各样的商店游泳很安全",
+          "normalizedHypothesis": "这些海滩又是挤满了度假的家庭沿岸排列着各种各样的商店游泳很安全",
+          "errorRate": 0.064516,
+          "requestRoundTripMs": 188.894
+        },
+        {
+          "id": "fleurs-zh-1945-r872",
+          "reference": "卡 萨 布 兰 卡 是 全 摩 洛 哥 最 无 趣 的 购 物 地 之 一",
+          "hypothesis": "卡萨布兰卡是全摩洛哥最无趣的购物地之一。",
+          "normalizedReference": "卡萨布兰卡是全摩洛哥最无趣的购物地之一",
+          "normalizedHypothesis": "卡萨布兰卡是全摩洛哥最无趣的购物地之一",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 73.884
+        },
+        {
+          "id": "fleurs-zh-1947-r813",
+          "reference": "在 军 队 到 来 之 前 海 地 自 19 世 纪 初 以 来 从 未 遇 到 过 与 该 疾 病 有 关 的 问 题",
+          "hypothesis": "在军队到来之前，海蒂自19世纪初以来从未遇到与被疾棍该疾病有关的问题。",
+          "normalizedReference": "在军队到来之前海地自19世纪初以来从未遇到过与该疾病有关的问题",
+          "normalizedHypothesis": "在军队到来之前海蒂自19世纪初以来从未遇到与被疾棍该疾病有关的问题",
+          "errorRate": 0.16129,
+          "requestRoundTripMs": 121.474
+        },
+        {
+          "id": "fleurs-zh-1948-r679",
+          "reference": "三 国 是 中 国 古 代 历 史 上 最 血 腥 的 时 代 之 一 成 千 上 万 的 人 为 了 争 夺 西 安 豪 华 宫 殿 最 高 的 权 力 而 死 去",
+          "hypothesis": "三国是中国古代历史上最血腥的时代之一，成千上万的人为了争夺西安豪华宫殿最高的权利而死去。",
+          "normalizedReference": "三国是中国古代历史上最血腥的时代之一成千上万的人为了争夺西安豪华宫殿最高的权力而死去",
+          "normalizedHypothesis": "三国是中国古代历史上最血腥的时代之一成千上万的人为了争夺西安豪华宫殿最高的权利而死去",
+          "errorRate": 0.02381,
+          "requestRoundTripMs": 180.066
+        },
+        {
+          "id": "fleurs-zh-1949-r765",
+          "reference": "昆 虫 学 家 们 用 虫 子 bug 一 词 来 正 式 称 呼 这 一 类 的 昆 虫",
+          "hypothesis": "昆虫学家们用虫子一词来正式称呼这一类的昆虫。",
+          "normalizedReference": "昆虫学家们用虫子bug一词来正式称呼这一类的昆虫",
+          "normalizedHypothesis": "昆虫学家们用虫子一词来正式称呼这一类的昆虫",
+          "errorRate": 0.125,
+          "requestRoundTripMs": 87.471
+        },
+        {
+          "id": "fleurs-zh-1950-r496",
+          "reference": "向 北 可 轻 松 抵 达 浪 漫 迷 人 的 辛 特 拉 镇 它 是 拜 伦 勋 爵 笔 下 为 人 称 道 的 乐 土 并 因 此 为 外 国 人 所 熟 知",
+          "hypothesis": "向北可轻松抵达浪漫迷人的新特拉镇，它是拜伦勋爵笔下为人称道的乐土，并因此为外国人所熟知。",
+          "normalizedReference": "向北可轻松抵达浪漫迷人的辛特拉镇它是拜伦勋爵笔下为人称道的乐土并因此为外国人所熟知",
+          "normalizedHypothesis": "向北可轻松抵达浪漫迷人的新特拉镇它是拜伦勋爵笔下为人称道的乐土并因此为外国人所熟知",
+          "errorRate": 0.02439,
+          "requestRoundTripMs": 149.129
+        },
+        {
+          "id": "fleurs-zh-1952-r404",
+          "reference": "任 何 在 高 纬 度 地 区 开 车 或 翻 越 山 口 的 人 都 应 该 考 虑 到 可 能 遭 遇 下 雪 结 冰 或 冻 结 温 度 的 情 况",
+          "hypothesis": "任何在高纬度地区开车或翻越山口的人都应该考虑到可能遭遇下雪、结冰或冻结温度的情况。",
+          "normalizedReference": "任何在高纬度地区开车或翻越山口的人都应该考虑到可能遭遇下雪结冰或冻结温度的情况",
+          "normalizedHypothesis": "任何在高纬度地区开车或翻越山口的人都应该考虑到可能遭遇下雪结冰或冻结温度的情况",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 127.143
+        },
+        {
+          "id": "fleurs-zh-1955-r90",
+          "reference": "多 发 性 硬 化 是 一 种 影 响 中 枢 神 经 系 统 由 脑 脊 髓 和 视 神 经 组 成 的 疾 病",
+          "hypothesis": "多发性硬化是一种影响中树神经系统由脑脊髓和视神经组成的疾病。",
+          "normalizedReference": "多发性硬化是一种影响中枢神经系统由脑脊髓和视神经组成的疾病",
+          "normalizedHypothesis": "多发性硬化是一种影响中树神经系统由脑脊髓和视神经组成的疾病",
+          "errorRate": 0.034483,
+          "requestRoundTripMs": 194.668
+        },
+        {
+          "id": "fleurs-zh-1956-r624",
+          "reference": "迄 今 为 止 船 运 是 跨 洋 运 输 大 量 人 员 和 货 物 的 最 有 效 方 式",
+          "hypothesis": "迄今为止，船运是跨洋运输大量人员和货物的最有效方式。",
+          "normalizedReference": "迄今为止船运是跨洋运输大量人员和货物的最有效方式",
+          "normalizedHypothesis": "迄今为止船运是跨洋运输大量人员和货物的最有效方式",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 95.29
+        },
+        {
+          "id": "fleurs-zh-1958-r25",
+          "reference": "这 座 城 市 与 该 国 其 他 城 市 形 成 了 鲜 明 对 比 因 为 它 更 多 的 是 阿 拉 伯 风 格 而 不 是 非 洲 风 格",
+          "hypothesis": "这座城市与该国其他城市形成了鲜明的对比，因为它更多的是阿拉伯风格，而不是非洲风格。",
+          "normalizedReference": "这座城市与该国其他城市形成了鲜明对比因为它更多的是阿拉伯风格而不是非洲风格",
+          "normalizedHypothesis": "这座城市与该国其他城市形成了鲜明的对比因为它更多的是阿拉伯风格而不是非洲风格",
+          "errorRate": 0.027027,
+          "requestRoundTripMs": 150.46
+        },
+        {
+          "id": "fleurs-zh-1959-r321",
+          "reference": "尽 管 如 此 还 是 要 听 从 有 关 部 门 的 建 议 遵 守 所 有 的 标 志 并 密 切 注 意 安 全 警 告",
+          "hypothesis": "尽管如此，还是要听从有关部门的建议，遵守所有的标志，并密切注意安全警告。",
+          "normalizedReference": "尽管如此还是要听从有关部门的建议遵守所有的标志并密切注意安全警告",
+          "normalizedHypothesis": "尽管如此还是要听从有关部门的建议遵守所有的标志并密切注意安全警告",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 135.348
+        },
+        {
+          "id": "fleurs-zh-1962-r23",
+          "reference": "ph 值 以 被 测 化 学 品 中 的 氢 ph 中 的 h 离 子 数 量 表 示",
+          "hypothesis": "phH值被测化学品中的氢phH中的H离子数量表示。",
+          "normalizedReference": "ph值以被测化学品中的氢ph中的h离子数量表示",
+          "normalizedHypothesis": "phh值被测化学品中的氢phh中的h离子数量表示",
+          "errorRate": 0.130435,
+          "requestRoundTripMs": 132.216
+        },
+        {
+          "id": "fleurs-zh-1962-r265",
+          "reference": "ph 值 以 被 测 化 学 品 中 的 氢 ph 中 的 h 离 子 数 量 表 示",
+          "hypothesis": "PH值已被测化学品中的氢phH中的H离子数量表示。",
+          "normalizedReference": "ph值以被测化学品中的氢ph中的h离子数量表示",
+          "normalizedHypothesis": "ph值已被测化学品中的氢phh中的h离子数量表示",
+          "errorRate": 0.086957,
+          "requestRoundTripMs": 154.608
+        },
+        {
+          "id": "fleurs-zh-1965-r9",
+          "reference": "这 里 几 乎 都 是 沙 滩 游 泳 很 安 全 大 部 分 地 方 都 有 新 西 兰 圣 诞 树 的 树 荫",
+          "hypothesis": "这里几乎都是沙滩，游泳很安全，大部分地方都有新西兰圣诞树的树荫。",
+          "normalizedReference": "这里几乎都是沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫",
+          "normalizedHypothesis": "这里几乎都是沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 104.771
+        },
+        {
+          "id": "fleurs-zh-1965-r346",
+          "reference": "这 里 几 乎 都 是 沙 滩 游 泳 很 安 全 大 部 分 地 方 都 有 新 西 兰 圣 诞 树 的 树 荫",
+          "hypothesis": "这里几乎都是海沙滩，游泳很安全，大部分地方都有新西兰圣诞树的树荫。",
+          "normalizedReference": "这里几乎都是沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫",
+          "normalizedHypothesis": "这里几乎都是海沙滩游泳很安全大部分地方都有新西兰圣诞树的树荫",
+          "errorRate": 0.034483,
+          "requestRoundTripMs": 140.303
+        },
+        {
+          "id": "fleurs-zh-1969-r878",
+          "reference": "它 指 出 对 主 体 来 说 最 有 效 的 位 置 是 将 图 像 垂 直 和 水 平 分 为 三 部 分 的 线 的 交 叉 点 见 示 例",
+          "hypothesis": "他指出，对主体来说，最有效的位置是将图像垂直和水平分成三部分的线的交叉点见实例。",
+          "normalizedReference": "它指出对主体来说最有效的位置是将图像垂直和水平分为三部分的线的交叉点见示例",
+          "normalizedHypothesis": "他指出对主体来说最有效的位置是将图像垂直和水平分成三部分的线的交叉点见实例",
+          "errorRate": 0.081081,
+          "requestRoundTripMs": 207.57
+        },
+        {
+          "id": "fleurs-zh-1970-r174",
+          "reference": "它 的 舌 头 有 可 能 是 分 叉 的 对 此 我 们 尚 不 确 定 它 的 食 物 包 括 海 龟 大 型 鱼 类 其 他 沧 龙 甚 至 会 吃 人",
+          "hypothesis": "它的舌头有可能是分叉的。对此我们尚不确定它的食物包括海龟、大型鱼类，其他苍龙会甚至会吃人。",
+          "normalizedReference": "它的舌头有可能是分叉的对此我们尚不确定它的食物包括海龟大型鱼类其他沧龙甚至会吃人",
+          "normalizedHypothesis": "它的舌头有可能是分叉的对此我们尚不确定它的食物包括海龟大型鱼类其他苍龙会甚至会吃人",
+          "errorRate": 0.05,
+          "requestRoundTripMs": 137.814
+        },
+        {
+          "id": "fleurs-zh-1972-r190",
+          "reference": "很 多 人 认 为 它 们 并 非 恐 龙 因 为 它 们 有 羽 毛 会 飞",
+          "hypothesis": "很多人认为他们并非恐龙，因为他们有羽毛会飞。",
+          "normalizedReference": "很多人认为它们并非恐龙因为它们有羽毛会飞",
+          "normalizedHypothesis": "很多人认为他们并非恐龙因为他们有羽毛会飞",
+          "errorRate": 0.1,
+          "requestRoundTripMs": 126.911
+        },
+        {
+          "id": "fleurs-zh-1972-r442",
+          "reference": "很 多 人 认 为 它 们 并 非 恐 龙 因 为 它 们 有 羽 毛 会 飞",
+          "hypothesis": "很多人认为他们并非恐龙，因为他们有羽毛会飞。",
+          "normalizedReference": "很多人认为它们并非恐龙因为它们有羽毛会飞",
+          "normalizedHypothesis": "很多人认为他们并非恐龙因为他们有羽毛会飞",
+          "errorRate": 0.1,
+          "requestRoundTripMs": 74.796
+        },
+        {
+          "id": "fleurs-zh-1973-r940",
+          "reference": "但 由 于 处 在 赤 道 以 北 几 度 的 高 热 带 你 将 需 要 同 时 应 对 高 温 终 年 和 强 烈 的 阳 光 天 气 晴 朗 时 这 种 情 况 相 对 较 少",
+          "hypothesis": "但由于处在赤到以北几度的高热带，你需要同时应对高温、中年和强烈的阳光。天气晴朗时这种情况相对较少。",
+          "normalizedReference": "但由于处在赤道以北几度的高热带你将需要同时应对高温终年和强烈的阳光天气晴朗时这种情况相对较少",
+          "normalizedHypothesis": "但由于处在赤到以北几度的高热带你需要同时应对高温中年和强烈的阳光天气晴朗时这种情况相对较少",
+          "errorRate": 0.065217,
+          "requestRoundTripMs": 148.43
+        },
+        {
+          "id": "fleurs-zh-1975-r691",
+          "reference": "梵 蒂 冈 城 的 人 口 大 约 有 800 人 它 是 世 界 上 最 小 的 独 立 国 家 也 是 人 口 最 少 的 国 家",
+          "hypothesis": "梵蒂冈城的人口大约有800人，它是世界上最小的独立国家，也是人口最少的国家。",
+          "normalizedReference": "梵蒂冈城的人口大约有800人它是世界上最小的独立国家也是人口最少的国家",
+          "normalizedHypothesis": "梵蒂冈城的人口大约有800人它是世界上最小的独立国家也是人口最少的国家",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 149.566
+        },
+        {
+          "id": "fleurs-zh-1978-r191",
+          "reference": "跳 羚 队 以 五 连 败 收 官",
+          "hypothesis": "跳羚队以五连败收官。",
+          "normalizedReference": "跳羚队以五连败收官",
+          "normalizedHypothesis": "跳羚队以五连败收官",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 109.654
+        },
+        {
+          "id": "fleurs-zh-1979-r660",
+          "reference": "福 克 兰 群 岛 的 官 方 货 币 是 福 克 兰 英 镑 与 英 镑 等 值",
+          "hypothesis": "福克兰群岛的官方货币是福克兰英镑与英镑等值。",
+          "normalizedReference": "福克兰群岛的官方货币是福克兰英镑与英镑等值",
+          "normalizedHypothesis": "福克兰群岛的官方货币是福克兰英镑与英镑等值",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 173.323
+        },
+        {
+          "id": "fleurs-zh-1980-r268",
+          "reference": "遗 憾 的 是 研 究 车 流 很 困 难 因 为 不 能 对 驾 驶 员 的 行 为 进 行 百 分 之 百 确 定 的 预 测",
+          "hypothesis": "遗憾的是，研究车流很困难，因为不能对驾驶员的行为进行百分之百的确定的预测。",
+          "normalizedReference": "遗憾的是研究车流很困难因为不能对驾驶员的行为进行百分之百确定的预测",
+          "normalizedHypothesis": "遗憾的是研究车流很困难因为不能对驾驶员的行为进行百分之百的确定的预测",
+          "errorRate": 0.030303,
+          "requestRoundTripMs": 104.501
+        },
+        {
+          "id": "fleurs-zh-1981-r582",
+          "reference": "如 果 只 是 在 乘 船 游 览 的 情 况 下 登 岸 则 不 需 要 单 独 的 签 证 规 定 截 至 2009 年",
+          "hypothesis": "如果只是在乘船游览的情况下登岸，则不需要单独的签证规定截止2009年。",
+          "normalizedReference": "如果只是在乘船游览的情况下登岸则不需要单独的签证规定截至2009年",
+          "normalizedHypothesis": "如果只是在乘船游览的情况下登岸则不需要单独的签证规定截止2009年",
+          "errorRate": 0.030303,
+          "requestRoundTripMs": 149.265
+        },
+        {
+          "id": "fleurs-zh-1985-r253",
+          "reference": "这 项 活 动 与 阿 尔 卑 斯 式 滑 雪 旅 行 或 登 山 运 动 相 关 但 通 常 不 会 进 行 这 两 项 活 动 这 两 项 活 动 要 在 陡 峭 的 地 形 上 进 行 而 且 需 要 更 硬 的 滑 雪 板 和 靴 子",
+          "hypothesis": "这项活动与阿尔卑斯市的滑雪旅行或登山运动相关，但通常不会进行这两项运动。这两项活动要在陡峭的地形上进行，而且需要更硬的滑雪板和靴子。",
+          "normalizedReference": "这项活动与阿尔卑斯式滑雪旅行或登山运动相关但通常不会进行这两项活动这两项活动要在陡峭的地形上进行而且需要更硬的滑雪板和靴子",
+          "normalizedHypothesis": "这项活动与阿尔卑斯市的滑雪旅行或登山运动相关但通常不会进行这两项运动这两项活动要在陡峭的地形上进行而且需要更硬的滑雪板和靴子",
+          "errorRate": 0.04918,
+          "requestRoundTripMs": 208.756
+        },
+        {
+          "id": "fleurs-zh-1987-r676",
+          "reference": "坠 机 发 生 在 高 海 拔 山 区 据 称 是 敌 方 火 力 所 致",
+          "hypothesis": "坠机发生在高海拔山区，据称是敌方火力所致。",
+          "normalizedReference": "坠机发生在高海拔山区据称是敌方火力所致",
+          "normalizedHypothesis": "坠机发生在高海拔山区据称是敌方火力所致",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 75.656
+        },
+        {
+          "id": "fleurs-zh-1988-r148",
+          "reference": "在 20 世 纪 20 年 代 大 多 市 民 的 主 流 态 度 是 和 平 主 义 的 分 离 主 义 的",
+          "hypothesis": "在20世纪20年代，大多市民的主流态度是和平主义的、分离主义的。",
+          "normalizedReference": "在20世纪20年代大多市民的主流态度是和平主义的分离主义的",
+          "normalizedHypothesis": "在20世纪20年代大多市民的主流态度是和平主义的分离主义的",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 129.757
+        },
+        {
+          "id": "fleurs-zh-1990-r610",
+          "reference": "博 客 还 能 帮 助 学 生 提 高 写 作 能 力 尽 管 学 生 们 开 始 写 博 客 时 用 的 语 法 和 拼 写 往 往 都 很 马 虎 读 者 的 出 现 通 常 会 改 变 这 一 状 况",
+          "hypothesis": "博客还能帮助学生提高写作能力。尽管学生们开始写博客时用的语法和拼写往往都很马虎，读者的出现通常会改变这一状况。",
+          "normalizedReference": "博客还能帮助学生提高写作能力尽管学生们开始写博客时用的语法和拼写往往都很马虎读者的出现通常会改变这一状况",
+          "normalizedHypothesis": "博客还能帮助学生提高写作能力尽管学生们开始写博客时用的语法和拼写往往都很马虎读者的出现通常会改变这一状况",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 175.006
+        },
+        {
+          "id": "fleurs-zh-1990-r637",
+          "reference": "博 客 还 能 帮 助 学 生 提 高 写 作 能 力 尽 管 学 生 们 开 始 写 博 客 时 用 的 语 法 和 拼 写 往 往 都 很 马 虎 读 者 的 出 现 通 常 会 改 变 这 一 状 况",
+          "hypothesis": "博客还能帮助学生提高写作能力。尽管学生开始写博客时用的语法和拼写往往都很马虎，读者的出现通常会改变这一状况。",
+          "normalizedReference": "博客还能帮助学生提高写作能力尽管学生们开始写博客时用的语法和拼写往往都很马虎读者的出现通常会改变这一状况",
+          "normalizedHypothesis": "博客还能帮助学生提高写作能力尽管学生开始写博客时用的语法和拼写往往都很马虎读者的出现通常会改变这一状况",
+          "errorRate": 0.019231,
+          "requestRoundTripMs": 159.93
+        },
+        {
+          "id": "fleurs-zh-1991-r689",
+          "reference": "在 欧 洲 历 史 上 的 这 段 时 期 已 然 富 有 而 强 大 起 来 的 天 主 教 会 受 到 了 密 切 监 督",
+          "hypothesis": "在欧洲历史上的这段时期，已然富有而强大起来的天主教会受到了密切监督。",
+          "normalizedReference": "在欧洲历史上的这段时期已然富有而强大起来的天主教会受到了密切监督",
+          "normalizedHypothesis": "在欧洲历史上的这段时期已然富有而强大起来的天主教会受到了密切监督",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 113.405
+        },
+        {
+          "id": "fleurs-zh-1993-r850",
+          "reference": "亚 热 带 风 暴 杰 瑞 jerry 今 天 在 大 西 洋 形 成 这 是 大 西 洋 飓 风 季 节 中 第 十 个 被 命 名 的 风 暴",
+          "hypothesis": "亚热带风暴杰瑞今天在大西洋形成，这是大西洋飓风季节中第1个被命名的风暴。",
+          "normalizedReference": "亚热带风暴杰瑞jerry今天在大西洋形成这是大西洋飓风季节中第十个被命名的风暴",
+          "normalizedHypothesis": "亚热带风暴杰瑞今天在大西洋形成这是大西洋飓风季节中第1个被命名的风暴",
+          "errorRate": 0.153846,
+          "requestRoundTripMs": 125.827
+        },
+        {
+          "id": "fleurs-zh-1994-r925",
+          "reference": "毋 庸 置 疑 的 是 如 果 你 会 讲 一 门 罗 曼 语 那 么 学 习 葡 萄 牙 语 会 更 加 容 易",
+          "hypothesis": "毋庸置疑的是，如果你会讲一门罗曼语，那么学习葡萄牙语会更加容易。",
+          "normalizedReference": "毋庸置疑的是如果你会讲一门罗曼语那么学习葡萄牙语会更加容易",
+          "normalizedHypothesis": "毋庸置疑的是如果你会讲一门罗曼语那么学习葡萄牙语会更加容易",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 127.131
+        },
+        {
+          "id": "fleurs-zh-1998-r760",
+          "reference": "它 们 脚 上 有 鳞 片 和 爪 子 会 产 卵 还 像 霸 王 龙 一 样 用 两 条 后 腿 走 路",
+          "hypothesis": "他们脚上有鳞片和爪子会产卵哈像霸王龙一样用两条后腿走路。",
+          "normalizedReference": "它们脚上有鳞片和爪子会产卵还像霸王龙一样用两条后腿走路",
+          "normalizedHypothesis": "他们脚上有鳞片和爪子会产卵哈像霸王龙一样用两条后腿走路",
+          "errorRate": 0.074074,
+          "requestRoundTripMs": 93.791
+        },
+        {
+          "id": "fleurs-zh-2000-r920",
+          "reference": "如 果 在 冬 天 穿 越 北 波 罗 的 海 要 检 查 客 舱 的 位 置 因 为 在 冰 面 上 航 行 会 给 那 些 受 影 响 最 严 重 的 人 带 来 非 常 可 怕 的 噪 音",
+          "hypothesis": "如果在冬天穿越北波罗地海，要检查客舱的位置，因为在冰面上航行会给那些受影响最严重的人带来可怕的噪音。",
+          "normalizedReference": "如果在冬天穿越北波罗的海要检查客舱的位置因为在冰面上航行会给那些受影响最严重的人带来非常可怕的噪音",
+          "normalizedHypothesis": "如果在冬天穿越北波罗地海要检查客舱的位置因为在冰面上航行会给那些受影响最严重的人带来可怕的噪音",
+          "errorRate": 0.061224,
+          "requestRoundTripMs": 161.86
+        },
+        {
+          "id": "fleurs-zh-2001-r581",
+          "reference": "强 烈 建 议 旅 客 注 意 所 在 地 的 恶 劣 天 气 风 险 它 们 可 能 会 影 响 旅 行 计 划",
+          "hypothesis": "强烈建议旅客注意所在地的恶劣天气风险，他们可能会影响旅行计划。",
+          "normalizedReference": "强烈建议旅客注意所在地的恶劣天气风险它们可能会影响旅行计划",
+          "normalizedHypothesis": "强烈建议旅客注意所在地的恶劣天气风险他们可能会影响旅行计划",
+          "errorRate": 0.034483,
+          "requestRoundTripMs": 134.385
+        },
+        {
+          "id": "fleurs-zh-2002-r32",
+          "reference": "它 让 玩 家 可 以 通 过 在 空 中 移 动 设 备 来 控 制 电 子 游 戏 中 的 运 动 和 操 作",
+          "hypothesis": "他让玩家可以通过在空中移动设备来控制电子游戏中的运动和操作。",
+          "normalizedReference": "它让玩家可以通过在空中移动设备来控制电子游戏中的运动和操作",
+          "normalizedHypothesis": "他让玩家可以通过在空中移动设备来控制电子游戏中的运动和操作",
+          "errorRate": 0.034483,
+          "requestRoundTripMs": 99.299
+        },
+        {
+          "id": "fleurs-zh-2003-r400",
+          "reference": "若 想 从 最 佳 角 度 欣 赏 香 港 的 美 景 可 以 离 开 该 岛 前 往 对 面 的 九 龙 海 滨",
+          "hypothesis": "若想从最佳角度欣赏香港的美景，可以离开该岛前往对面的九龙海滨。",
+          "normalizedReference": "若想从最佳角度欣赏香港的美景可以离开该岛前往对面的九龙海滨",
+          "normalizedHypothesis": "若想从最佳角度欣赏香港的美景可以离开该岛前往对面的九龙海滨",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 174.298
+        },
+        {
+          "id": "fleurs-zh-2004-r772",
+          "reference": "同 一 个 月 又 有 一 架 客 机 冲 出 马 什 哈 德 的 跑 道 撞 上 一 堵 墙 造 成 17 人 死 亡",
+          "hypothesis": "同一个月，又有一架飞机冲出马哈哈德的跑道，撞上一堵墙，造成17人死亡。",
+          "normalizedReference": "同一个月又有一架客机冲出马什哈德的跑道撞上一堵墙造成17人死亡",
+          "normalizedHypothesis": "同一个月又有一架飞机冲出马哈哈德的跑道撞上一堵墙造成17人死亡",
+          "errorRate": 0.064516,
+          "requestRoundTripMs": 128.559
+        },
+        {
+          "id": "fleurs-zh-2006-r601",
+          "reference": "钙 钾 等 元 素 属 于 金 属 银 和 金 等 元 素 当 然 也 是 金 属",
+          "hypothesis": "钙钾等元素属于金属、银和金等元素，当然也是金属。",
+          "normalizedReference": "钙钾等元素属于金属银和金等元素当然也是金属",
+          "normalizedHypothesis": "钙钾等元素属于金属银和金等元素当然也是金属",
+          "errorRate": 0.0,
+          "requestRoundTripMs": 187.338
+        },
+        {
+          "id": "fleurs-zh-2009-r574",
+          "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+          "hypothesis": "最容易获得的植物性资源应该是叶子和豆科植类植物中的蛋白质。但像我们这样的灵长类动物很难消化这种蛋白质，除非是煮熟的。",
+          "normalizedReference": "最容易获得的植物性资源应该是叶子和豆科植物中的蛋白质但像我们这样的灵长类动物很难消化这种蛋白质除非是煮熟的",
+          "normalizedHypothesis": "最容易获得的植物性资源应该是叶子和豆科植类植物中的蛋白质但像我们这样的灵长类动物很难消化这种蛋白质除非是煮熟的",
+          "errorRate": 0.037736,
+          "requestRoundTripMs": 167.234
+        },
+        {
+          "id": "fleurs-zh-2009-r828",
+          "reference": "最 容 易 获 得 的 植 物 性 资 源 应 该 是 叶 子 和 豆 科 植 物 中 的 蛋 白 质 但 像 我 们 这 样 的 灵 长 类 动 物 很 难 消 化 这 种 蛋 白 质 除 非 是 煮 熟 的",
+          "hypothesis": "最容易获得的植物性资源应该是叶子和豆科植物中的蛋白质。但像我们的像我们这样的灵长类食物，灵长类动物很难消化这种蛋白质，除非是煮熟的。",
+          "normalizedReference": "最容易获得的植物性资源应该是叶子和豆科植物中的蛋白质但像我们这样的灵长类动物很难消化这种蛋白质除非是煮熟的",
+          "normalizedHypothesis": "最容易获得的植物性资源应该是叶子和豆科植物中的蛋白质但像我们的像我们这样的灵长类食物灵长类动物很难消化这种蛋白质除非是煮熟的",
+          "errorRate": 0.169811,
+          "requestRoundTripMs": 206.552
+        }
+      ]
+    }
+  ]
+}

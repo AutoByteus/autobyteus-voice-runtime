@@ -1,0 +1,7 @@
+checkedAtUtc=2026-08-04T04:43:29.515538+00:00
+knownOwnedPidFiles:
+voice-caffeinate.pid=63634
+voice-caffeinate-resume.pid=94120
+remainingTaskOwnedProcesses:
+none
+cleanupResult=Pass; owned caffeinate/build/package/qualification processes absent; no unrelated process stopped

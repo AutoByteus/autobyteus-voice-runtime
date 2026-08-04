@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "platform": "darwin",
+  "arch": "arm64",
+  "buildCommit": "89348070ae36d3075d25fadd708ff596c6e5a76f",
+  "archiveSha256": "f24fc90c830b99df1791e12fb8d669027c5ebf8fb3279e1507ee4cc84a505787",
+  "runtimeDescriptorSha256": "79d2df33c000a50e429f501357d7c55a768ac18c93a55b89dda618f36b069363",
+  "hostExecutableSha256": "2e3f1286a7eb3736346ed1803e458a0ff909e2b2d5bc746144dcb76970e9b99d",
+  "entrypointSha256": "74b334d6a5b12a98ebee75d2b430c9d86396138ad1e5ccda1f1ce31d5a7c8704"
+}

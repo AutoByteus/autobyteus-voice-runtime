@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "revisionId": "API-REV-011",
+  "scenarioId": "API-VOICE-004",
+  "findingId": "API-F-008",
+  "sourceCommit": "8680c6a9693f3b55021c9317e0163281c946ca96",
+  "apiF007ProductionResolution": {
+    "status": "pass",
+    "inputManifestSha256": "176317cc4a286eb8fe88f69b80ae1ca8437fc928e99f5231e4a3eed8e9603ff2",
+    "recordCount": 3149,
+    "formerlyRejectedRoutingPathCount": 10,
+    "productionBuildAdvancedThroughManifestVerification": true,
+    "advancedToNativeBuildPercent": 5
+  },
+  "trustedNativeEnvironment": {
+    "preflightStatus": "pass",
+    "performanceEnvironment": "loaded-host",
+    "preflightRanlibPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+    "preflightRanlibSha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6",
+    "recordRanlibPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+    "recordRanlibSha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6",
+    "cmakeRanlibPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool"
+  },
+  "aliasSemantics": {
+    "xcodeAliasPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib",
+    "canonicalTargetPath": "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool",
+    "sameTargetBytesSha256": "d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6",
+    "aliasInvocationExitCode": 0,
+    "canonicalTargetInvocationExitCode": 1,
+    "canonicalError": "no output file specified (specify with -o output)",
+    "conclusion": "The authenticated ranlib alias and canonical libtool target have identical target bytes, but argv[0]/path semantics differ. Canonicalizing CMAKE_RANLIB to libtool destroys required ranlib behavior."
+  },
+  "result": "fail",
+  "failureCategory": "trusted-native-ranlib-alias-loss",
+  "preliminaryClassification": "Local Fix / implementation defect in trusted native tool identity and resolved CMake configuration: semantic tool aliases are canonicalized to target paths even when the alias name controls behavior.",
+  "noWorkaroundApplied": true
+}

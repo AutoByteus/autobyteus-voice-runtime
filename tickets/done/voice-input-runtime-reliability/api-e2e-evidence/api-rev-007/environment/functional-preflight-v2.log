@@ -1,0 +1,11 @@
+file:///private/tmp/autobyteus-voice-api-e2e-r7-20260803/repository/benchmark/darwin-arm64-runner-preflight.mjs:153
+    const error = new Error(
+                  ^
+
+Error: M1 qualification preflight blocked: runner-power-or-pressure
+    at runDarwinArm64Preflight (file:///private/tmp/autobyteus-voice-api-e2e-r7-20260803/repository/benchmark/darwin-arm64-runner-preflight.mjs:153:19)
+    at async file:///private/tmp/autobyteus-voice-api-e2e-r7-20260803/repository/benchmark/darwin-arm64-runner-preflight.mjs:307:3 {
+  code: 'PREFLIGHT_BLOCKED'
+}
+
+Node.js v22.23.1

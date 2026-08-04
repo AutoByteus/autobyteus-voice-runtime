@@ -1,0 +1,77 @@
+TAP version 13
+# Subtest: the exact locked topology becomes a closed relocatable reproducible tree
+ok 1 - the exact locked topology becomes a closed relocatable reproducible tree
+  ---
+  duration_ms: 56.458458
+  type: 'test'
+  ...
+# Subtest: unsafe, incomplete, and unexpected archive entries fail closed
+    # Subtest: absolute link
+    ok 1 - absolute link
+      ---
+      duration_ms: 8.892625
+      type: 'test'
+      ...
+    # Subtest: escaping link
+    ok 2 - escaping link
+      ---
+      duration_ms: 8.728208
+      type: 'test'
+      ...
+    # Subtest: dangling link
+    ok 3 - dangling link
+      ---
+      duration_ms: 6.822584
+      type: 'test'
+      ...
+    # Subtest: cyclic link
+    ok 4 - cyclic link
+      ---
+      duration_ms: 7.971625
+      type: 'test'
+      ...
+    # Subtest: unexpected link
+    ok 5 - unexpected link
+      ---
+      duration_ms: 7.549125
+      type: 'test'
+      ...
+    # Subtest: missing approved link
+    ok 6 - missing approved link
+      ---
+      duration_ms: 7.024167
+      type: 'test'
+      ...
+    # Subtest: special entry
+    ok 7 - special entry
+      ---
+      duration_ms: 11.281458
+      type: 'test'
+      ...
+    1..7
+ok 2 - unsafe, incomplete, and unexpected archive entries fail closed
+  ---
+  duration_ms: 59.854834
+  type: 'test'
+  ...
+# Subtest: Python closure excludes dependency tests and development headers coherently
+ok 3 - Python closure excludes dependency tests and development headers coherently
+  ---
+  duration_ms: 14.372417
+  type: 'test'
+  ...
+# Subtest: the complete observed staged manifest passes the canonical Go validator after closure
+ok 4 - the complete observed staged manifest passes the canonical Go validator after closure
+  ---
+  duration_ms: 2633.24425
+  type: 'test'
+  ...
+1..4
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 2699.477708

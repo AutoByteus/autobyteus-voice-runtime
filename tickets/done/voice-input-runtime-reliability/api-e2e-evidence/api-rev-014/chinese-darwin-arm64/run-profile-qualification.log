@@ -1,0 +1,9 @@
+file:///private/tmp/autobyteus-voice-api-e2e-r14-20260803/repository/benchmark/profile-qualification-evidence.mjs:231
+    throw new Error(`Profile qualification decision: ${decision}/${category}`);
+          ^
+
+Error: Profile qualification decision: fail/functional-gate-failed
+    at assertPassingProfileQualification (file:///private/tmp/autobyteus-voice-api-e2e-r14-20260803/repository/benchmark/profile-qualification-evidence.mjs:231:11)
+    at file:///private/tmp/autobyteus-voice-api-e2e-r14-20260803/repository/benchmark/run-profile-qualification.mjs:160:3
+
+Node.js v22.23.1

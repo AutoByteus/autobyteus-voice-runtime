@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packageId",
+    "profileId",
+    "target",
+    "decision",
+    "failureCategory",
+    "attempts"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packageId": { "type": "string", "minLength": 1 },
+    "profileId": { "enum": ["english", "chinese"] },
+    "target": { "const": "darwin-arm64" },
+    "decision": { "enum": ["in-progress", "pass", "fail", "blocked"] },
+    "failureCategory": { "type": ["string", "null"] },
+    "attempts": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/attempt" }
+    }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "attempt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sequence",
+        "phase",
+        "index",
+        "performanceCounted",
+        "qualityCounted",
+        "audioSha256",
+        "status",
+        "outcome",
+        "failureCategory",
+        "timeout",
+        "timings"
+      ],
+      "properties": {
+        "sequence": { "type": "integer", "minimum": 0 },
+        "phase": {
+          "enum": ["cold", "warm-preparation", "warm-request"]
+        },
+        "index": { "type": "integer", "minimum": 0 },
+        "performanceCounted": { "type": "boolean" },
+        "qualityCounted": { "type": "boolean" },
+        "audioSha256": {
+          "oneOf": [{ "$ref": "#/$defs/sha" }, { "type": "null" }]
+        },
+        "status": { "enum": ["started", "succeeded", "failed"] },
+        "outcome": {
+          "type": ["string", "null"],
+          "enum": ["transcript", "no-speech", "request-error", null]
+        },
+        "failureCategory": { "type": ["string", "null"] },
+        "timeout": { "type": "boolean" },
+        "timings": {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "handshakeMs": { "type": "number", "minimum": 0 },
+            "preparationMs": { "type": "number", "minimum": 0 },
+            "resultMs": { "type": "number", "minimum": 0 },
+            "requestMs": { "type": "number", "minimum": 0 }
+          }
+        }
+      }
+    }
+  }
+}

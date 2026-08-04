@@ -1,0 +1,859 @@
+{
+  "schemaVersion": 1,
+  "backend": "paraformer-fp32",
+  "language": "auto",
+  "threads": null,
+  "command": [
+    "node",
+    "/tmp/autobyteus-voice-backend-study-20260802/harness/sherpa_paraformer_worker.cjs",
+    "--sherpa-package",
+    "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/node_modules/sherpa-onnx-node",
+    "--model",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-paraformer-zh-2024-03-09/model.onnx",
+    "--tokens",
+    "/tmp/autobyteus-voice-backend-study-20260802/assets/sherpa-onnx-paraformer-zh-2024-03-09/tokens.txt",
+    "--precision",
+    "fp32",
+    "--threads",
+    "4"
+  ],
+  "corpusId": "macos-tingting-mandarin-english-code-switch-v1",
+  "coldClip": {
+    "id": "mixed-tts-19",
+    "durationMs": 6399,
+    "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。"
+  },
+  "coldRuns": [
+    {
+      "index": 0,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-fp32",
+        "pid": 30218,
+        "importMs": 12.166,
+        "modelLoadMs": 1403.661,
+        "workerReadyMs": 1416.004,
+        "rssBytes": 1052033024,
+        "threads": 4,
+        "spawnToReadyMs": 1452.357,
+        "sampledRssBytes": 1053409280
+      },
+      "first": {
+        "type": "result",
+        "requestId": "28e5fd03256648f9871a0823a3b6ff74",
+        "ok": true,
+        "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+        "detectedLanguage": "zh-en",
+        "readMs": 1.532,
+        "decodeMs": 165.482,
+        "transcribeMs": 170.76,
+        "rssBytes": 1056129024,
+        "requestRoundTripMs": 171.688,
+        "sampledRssBytes": 1056129024
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1056145408
+      }
+    },
+    {
+      "index": 1,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-fp32",
+        "pid": 30227,
+        "importMs": 6.818,
+        "modelLoadMs": 1487.888,
+        "workerReadyMs": 1494.899,
+        "rssBytes": 1059323904,
+        "threads": 4,
+        "spawnToReadyMs": 1527.565,
+        "sampledRssBytes": 1060716544
+      },
+      "first": {
+        "type": "result",
+        "requestId": "4929139cb14748cb9f40ed36f80ece78",
+        "ok": true,
+        "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.426,
+        "decodeMs": 155.132,
+        "transcribeMs": 159.253,
+        "rssBytes": 1063092224,
+        "requestRoundTripMs": 160.108,
+        "sampledRssBytes": 1063092224
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1063108608
+      }
+    },
+    {
+      "index": 2,
+      "ready": {
+        "type": "ready",
+        "backend": "sherpa-onnx-paraformer-fp32",
+        "pid": 30232,
+        "importMs": 6.486,
+        "modelLoadMs": 1344.483,
+        "workerReadyMs": 1351.127,
+        "rssBytes": 1051967488,
+        "threads": 4,
+        "spawnToReadyMs": 1386.115,
+        "sampledRssBytes": 1053376512
+      },
+      "first": {
+        "type": "result",
+        "requestId": "ccb9d31c827c4ba784a991ad81dd1b2b",
+        "ok": true,
+        "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.336,
+        "decodeMs": 159.933,
+        "transcribeMs": 163.743,
+        "rssBytes": 1057619968,
+        "requestRoundTripMs": 164.376,
+        "sampledRssBytes": 1057619968
+      },
+      "shutdown": {
+        "type": "shutdown-complete",
+        "rssBytes": 1057636352
+      }
+    }
+  ],
+  "warmSession": {
+    "ready": {
+      "type": "ready",
+      "backend": "sherpa-onnx-paraformer-fp32",
+      "pid": 30235,
+      "importMs": 7.278,
+      "modelLoadMs": 1407.118,
+      "workerReadyMs": 1414.593,
+      "rssBytes": 1052852224,
+      "threads": 4,
+      "spawnToReadyMs": 1450.193,
+      "sampledRssBytes": 1054294016
+    },
+    "warmup": {
+      "type": "result",
+      "requestId": "1bd5c27d6de94586b03d3e9e7d79bb73",
+      "ok": true,
+      "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+      "detectedLanguage": "zh-en",
+      "readMs": 0.417,
+      "decodeMs": 159.22,
+      "transcribeMs": 163.378,
+      "rssBytes": 1057079296,
+      "requestRoundTripMs": 164.246,
+      "sampledRssBytes": 1057079296
+    },
+    "quality": [
+      {
+        "id": "mixed-tts-01",
+        "category": "mixed",
+        "reference": "请打开 AutoByteus settings 然后选择 Luna Medium 模型。",
+        "durationMs": 4847,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "7389f12bf90e44b99f47c70d8a729008",
+          "ok": true,
+          "text": "请打开 autobiters settings 然后选择 luna medium 模型",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.108,
+          "decodeMs": 118.767,
+          "transcribeMs": 123.656,
+          "rssBytes": 1057538048,
+          "requestRoundTripMs": 124.148,
+          "sampledRssBytes": 1057538048
+        }
+      },
+      {
+        "id": "mixed-tts-02",
+        "category": "mixed",
+        "reference": "今天的 sprint review 安排在下午三点，请提前准备 demo。",
+        "durationMs": 5381,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "d06c304773ac4902beb7429a60e667e6",
+          "ok": true,
+          "text": "今天的 sprint review 安排在下午三点请提前准备 demo",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.021,
+          "decodeMs": 131.833,
+          "transcribeMs": 136.077,
+          "rssBytes": 1058701312,
+          "requestRoundTripMs": 136.606,
+          "sampledRssBytes": 1059258368
+        }
+      },
+      {
+        "id": "mixed-tts-03",
+        "category": "mixed",
+        "reference": "把这个 markdown file 保存到 local workspace 里面。",
+        "durationMs": 4098,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "84bd18b1ef1044b0a2f37a95c7fb9c68",
+          "ok": true,
+          "text": "把这个 markdown file 保存到 local workspace 里面",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.894,
+          "decodeMs": 105.787,
+          "transcribeMs": 110.204,
+          "rssBytes": 1059454976,
+          "requestRoundTripMs": 110.756,
+          "sampledRssBytes": 1059454976
+        }
+      },
+      {
+        "id": "mixed-tts-04",
+        "category": "mixed",
+        "reference": "我们需要检查 backend logs 才能找到 performance bottleneck。",
+        "durationMs": 4648,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "0ac1c8ecb57649bd8acf8394cc91fb84",
+          "ok": true,
+          "text": "我们需要检查 bacant logs 才能找到 performance bottneck",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.029,
+          "decodeMs": 118.5,
+          "transcribeMs": 122.292,
+          "rssBytes": 1060093952,
+          "requestRoundTripMs": 122.656,
+          "sampledRssBytes": 1060093952
+        }
+      },
+      {
+        "id": "mixed-tts-05",
+        "category": "mixed",
+        "reference": "请使用 Codex runtime 运行这个 software engineering team。",
+        "durationMs": 4626,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "c00a8a2e4ee4443f90c273ad752ec4a0",
+          "ok": true,
+          "text": "请使用 code x rong time 运行这个 software engineering team",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.972,
+          "decodeMs": 115.85,
+          "transcribeMs": 119.564,
+          "rssBytes": 1060618240,
+          "requestRoundTripMs": 119.913,
+          "sampledRssBytes": 1060634624
+        }
+      },
+      {
+        "id": "mixed-tts-06",
+        "category": "mixed",
+        "reference": "点击 architecture reviewer 发送的 reference file。",
+        "durationMs": 3895,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "890ba412cfdb40f39a6b6cb214c169a5",
+          "ok": true,
+          "text": "点击 architecture reviewer 发送的 reference file",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.029,
+          "decodeMs": 99.263,
+          "transcribeMs": 102.661,
+          "rssBytes": 1060798464,
+          "requestRoundTripMs": 103.011,
+          "sampledRssBytes": 1060798464
+        }
+      },
+      {
+        "id": "mixed-tts-07",
+        "category": "mixed",
+        "reference": "这个 WebSocket stream 每秒发送很多 content delta events。",
+        "durationMs": 4619,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "5ed8b782dd5e4120a8e5b3f658f510e2",
+          "ok": true,
+          "text": "这个 web socket stream 每秒发送很多 content dell to events",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.067,
+          "decodeMs": 135.857,
+          "transcribeMs": 139.521,
+          "rssBytes": 1061486592,
+          "requestRoundTripMs": 140.259,
+          "sampledRssBytes": 1061502976
+        }
+      },
+      {
+        "id": "mixed-tts-08",
+        "category": "mixed",
+        "reference": "我想比较 MLX Whisper 和 sherpa ONNX 的 latency。",
+        "durationMs": 6807,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "d7e31d63d526463b98e97651ba3e01c9",
+          "ok": true,
+          "text": "我想比较 ml x whisper 和 shirper o n n x w atency",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.254,
+          "decodeMs": 170.037,
+          "transcribeMs": 175.04,
+          "rssBytes": 1062912000,
+          "requestRoundTripMs": 175.628,
+          "sampledRssBytes": 1062912000
+        }
+      },
+      {
+        "id": "mixed-tts-09",
+        "category": "mixed",
+        "reference": "Mandarin Chinese output 应该统一转换成 simplified Chinese。",
+        "durationMs": 5124,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "08853c79ede8402e850ebd774784f89c",
+          "ok": true,
+          "text": "mandering chinese output 应该统一转换成 simplifight chinese",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.446,
+          "decodeMs": 121.745,
+          "transcribeMs": 126.122,
+          "rssBytes": 1063534592,
+          "requestRoundTripMs": 126.542,
+          "sampledRssBytes": 1063534592
+        }
+      },
+      {
+        "id": "mixed-tts-10",
+        "category": "mixed",
+        "reference": "请把 voice input language mode 设置成 auto detect。",
+        "durationMs": 3987,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "9d58f21b415e418e953d444ca3d812e0",
+          "ok": true,
+          "text": "请把 voice input language mode 设置成 auto detect",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.039,
+          "decodeMs": 99.485,
+          "transcribeMs": 102.776,
+          "rssBytes": 1063976960,
+          "requestRoundTripMs": 103.223,
+          "sampledRssBytes": 1063976960
+        }
+      },
+      {
+        "id": "mixed-tts-11",
+        "category": "mixed",
+        "reference": "明天上午十点进行 API end to end testing。",
+        "durationMs": 4938,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "48532206af3241bb847d71fc0bf5527a",
+          "ok": true,
+          "text": "明天上午十点进行 a p i and to intetesting",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.472,
+          "decodeMs": 123.843,
+          "transcribeMs": 128.04,
+          "rssBytes": 1064386560,
+          "requestRoundTripMs": 128.483,
+          "sampledRssBytes": 1064402944
+        }
+      },
+      {
+        "id": "mixed-tts-12",
+        "category": "mixed",
+        "reference": "这个 pull request 需要 code review 和 regression tests。",
+        "durationMs": 4051,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "9bfa0d0722da4841901bc9d0ed75c3b1",
+          "ok": true,
+          "text": "这个 pull request 需要 code review 和 regression tests",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.247,
+          "decodeMs": 187.51,
+          "transcribeMs": 194.862,
+          "rssBytes": 1064730624,
+          "requestRoundTripMs": 195.283,
+          "sampledRssBytes": 1064730624
+        }
+      },
+      {
+        "id": "mixed-tts-13",
+        "category": "mixed",
+        "reference": "请记录 cold start warm inference 和 peak memory。",
+        "durationMs": 3709,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "a18c1a747db04a49bcd3c682589e9eaf",
+          "ok": true,
+          "text": "请记录 cold start form influence 和 peak memory",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.806,
+          "decodeMs": 157.457,
+          "transcribeMs": 162.174,
+          "rssBytes": 1065222144,
+          "requestRoundTripMs": 162.662,
+          "sampledRssBytes": 1065222144
+        }
+      },
+      {
+        "id": "mixed-tts-14",
+        "category": "mixed",
+        "reference": "Electron app 不应该在 renderer thread 里面运行模型。",
+        "durationMs": 4344,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "86173703ffe14ea2a0d92c5e24658f9f",
+          "ok": true,
+          "text": "electron app 不应该在 renderal threat 里面运行模型",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.263,
+          "decodeMs": 118.176,
+          "transcribeMs": 122.646,
+          "rssBytes": 1065779200,
+          "requestRoundTripMs": 123.33,
+          "sampledRssBytes": 1065779200
+        }
+      },
+      {
+        "id": "mixed-tts-15",
+        "category": "mixed",
+        "reference": "我们先优化 voice runtime 然后再修改 AutoByteus Web。",
+        "durationMs": 4543,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "804caf0a14a44e09a9535e78be1c401e",
+          "ok": true,
+          "text": "我们先优化 voice wruntime 然后再修改 auto biite sweb",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.617,
+          "decodeMs": 123.725,
+          "transcribeMs": 129.006,
+          "rssBytes": 1066172416,
+          "requestRoundTripMs": 129.314,
+          "sampledRssBytes": 1066172416
+        }
+      },
+      {
+        "id": "mixed-tts-16",
+        "category": "mixed",
+        "reference": "这个 model package 的 SHA two five six 必须能够验证。",
+        "durationMs": 3900,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "b8a49d2600ff4155a72ef133e7d70bcc",
+          "ok": true,
+          "text": "这个 model package 的 satto five sifs 必须能够验证",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.822,
+          "decodeMs": 112.368,
+          "transcribeMs": 115.314,
+          "rssBytes": 1066467328,
+          "requestRoundTripMs": 115.719,
+          "sampledRssBytes": 1066467328
+        }
+      },
+      {
+        "id": "mixed-tts-17",
+        "category": "mixed",
+        "reference": "用户说 start recording 以后应该立即显示 loading state。",
+        "durationMs": 4589,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "56cd9c54dfe646b0a8ea53667a8e50cf",
+          "ok": true,
+          "text": "用户说 start recording 以后应该立即显示 loading state",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.183,
+          "decodeMs": 113.428,
+          "transcribeMs": 117.218,
+          "rssBytes": 1066926080,
+          "requestRoundTripMs": 117.574,
+          "sampledRssBytes": 1066926080
+        }
+      },
+      {
+        "id": "mixed-tts-18",
+        "category": "mixed",
+        "reference": "请不要使用 network fallback 所有 transcription 必须 local。",
+        "durationMs": 4765,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "571ac8433b19488b8e7b8a8e20ce9d43",
+          "ok": true,
+          "text": "请不要使用 network fell back 所有 trscription 必须 local",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.198,
+          "decodeMs": 119.594,
+          "transcribeMs": 124.542,
+          "rssBytes": 1067450368,
+          "requestRoundTripMs": 124.889,
+          "sampledRssBytes": 1067450368
+        }
+      },
+      {
+        "id": "mixed-tts-19",
+        "category": "mixed",
+        "reference": "SenseVoice Small 对 Chinese ASR 可能更快但需要测试 quality。",
+        "durationMs": 6399,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "f45ff2fbed454a45b9553e2b9ee8bc4b",
+          "ok": true,
+          "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.316,
+          "decodeMs": 152.974,
+          "transcribeMs": 156.801,
+          "rssBytes": 1068466176,
+          "requestRoundTripMs": 157.138,
+          "sampledRssBytes": 1068466176
+        }
+      },
+      {
+        "id": "mixed-tts-20",
+        "category": "mixed",
+        "reference": "Whisper Small 在 English speech 上通常保持很好的 accuracy。",
+        "durationMs": 4868,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "79aa84bd9f9e4262a2c957ea394b2b6b",
+          "ok": true,
+          "text": "whispers more 在 english speech 上通常保持很好的 accuracy",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.037,
+          "decodeMs": 121.256,
+          "transcribeMs": 126,
+          "rssBytes": 1069006848,
+          "requestRoundTripMs": 126.347,
+          "sampledRssBytes": 1069006848
+        }
+      },
+      {
+        "id": "mixed-tts-21",
+        "category": "mixed",
+        "reference": "我们要测试 punctuation numbers proper nouns 和 mixed language。",
+        "durationMs": 4799,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "c5f5e65d0be0462d8c6ae6a051c16c4d",
+          "ok": true,
+          "text": "我们要测试 punctuation numbers proper announce 和 mix language",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.252,
+          "decodeMs": 120.91,
+          "transcribeMs": 126.031,
+          "rssBytes": 1069285376,
+          "requestRoundTripMs": 126.363,
+          "sampledRssBytes": 1069285376
+        }
+      },
+      {
+        "id": "mixed-tts-22",
+        "category": "mixed",
+        "reference": "把 meeting notes 导出为 UTF eight encoded text file。",
+        "durationMs": 5364,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "4f06862bb56f4075ad10d08a9d583ff5",
+          "ok": true,
+          "text": "bmaaching notes 导出为 u t f it encoted text file",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.052,
+          "decodeMs": 127.285,
+          "transcribeMs": 132.336,
+          "rssBytes": 1069875200,
+          "requestRoundTripMs": 132.667,
+          "sampledRssBytes": 1069875200
+        }
+      },
+      {
+        "id": "mixed-tts-23",
+        "category": "mixed",
+        "reference": "如果 runtime handshake 失败就返回 stable error code。",
+        "durationMs": 4511,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "dea1b34770764c29a30c5a956c428735",
+          "ok": true,
+          "text": "如果 runtime hand shake 失败就返回 stable air coat",
+          "detectedLanguage": "zh-en",
+          "readMs": 0.977,
+          "decodeMs": 112.477,
+          "transcribeMs": 116.259,
+          "rssBytes": 1070055424,
+          "requestRoundTripMs": 116.569,
+          "sampledRssBytes": 1070055424
+        }
+      },
+      {
+        "id": "mixed-tts-24",
+        "category": "mixed",
+        "reference": "selected model identity 必须和 installed manifest 完全一致。",
+        "durationMs": 4924,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "08239b05072c418eaa469ee1ffa12b9e",
+          "ok": true,
+          "text": "selepted model identity 必须和 instate mani fast 完全一致",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.889,
+          "decodeMs": 121.543,
+          "transcribeMs": 126.459,
+          "rssBytes": 1070972928,
+          "requestRoundTripMs": 126.793,
+          "sampledRssBytes": 1070972928
+        }
+      },
+      {
+        "id": "mixed-tts-25",
+        "category": "mixed",
+        "reference": "请运行 thirty cold trials 和 one hundred warm trials。",
+        "durationMs": 4394,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "a0805e5030e147d4aa8064fe7b42a664",
+          "ok": true,
+          "text": "请运行 thirty code drals 和 one hundred warm drals",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.982,
+          "decodeMs": 103.999,
+          "transcribeMs": 108.452,
+          "rssBytes": 1071333376,
+          "requestRoundTripMs": 108.763,
+          "sampledRssBytes": 1071333376
+        }
+      },
+      {
+        "id": "mixed-tts-26",
+        "category": "mixed",
+        "reference": "在 M one Max MacBook Pro 上测量 resident set size。",
+        "durationMs": 4410,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "41aaf4a9a6cf4928b02bfffed0532f2f",
+          "ok": true,
+          "text": "在 m one max maacbook apol 测量 resisisetiscies",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.268,
+          "decodeMs": 119.377,
+          "transcribeMs": 124.221,
+          "rssBytes": 1071923200,
+          "requestRoundTripMs": 124.6,
+          "sampledRssBytes": 1071923200
+        }
+      },
+      {
+        "id": "mixed-tts-27",
+        "category": "mixed",
+        "reference": "这个 release candidate 不能在 architecture approval 以前发布。",
+        "durationMs": 4666,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "01077e0dbd6f4d2ab1114f3859ba8b48",
+          "ok": true,
+          "text": "这个 release candidate 不能在 architecture approval 以前发布",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.949,
+          "decodeMs": 138.924,
+          "transcribeMs": 143.825,
+          "rssBytes": 1072480256,
+          "requestRoundTripMs": 144.196,
+          "sampledRssBytes": 1072480256
+        }
+      },
+      {
+        "id": "mixed-tts-28",
+        "category": "mixed",
+        "reference": "请把 transcript 插入当前 active text field 的 cursor position。",
+        "durationMs": 5160,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "b4c4c231b2b641298543b7bb53a7115d",
+          "ok": true,
+          "text": "请把 transcript 插入当前 active text field the curser position",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.032,
+          "decodeMs": 141.22,
+          "transcribeMs": 145.377,
+          "rssBytes": 1073070080,
+          "requestRoundTripMs": 145.779,
+          "sampledRssBytes": 1073070080
+        }
+      },
+      {
+        "id": "mixed-tts-29",
+        "category": "mixed",
+        "reference": "今天我们测试 Wi Fi settings OpenAI API 和 local database。",
+        "durationMs": 6553,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "cc4dc8d0afef400ab768265311f782ce",
+          "ok": true,
+          "text": "今天我们测试 wifi settings open i a p i 和 local database",
+          "detectedLanguage": "zh-en",
+          "readMs": 1.225,
+          "decodeMs": 151.952,
+          "transcribeMs": 156.796,
+          "rssBytes": 1074872320,
+          "requestRoundTripMs": 157.107,
+          "sampledRssBytes": 1074872320
+        }
+      },
+      {
+        "id": "mixed-tts-30",
+        "category": "mixed",
+        "reference": "最终设计应该 evidence driven 而不是先假设 Node 或 Python。",
+        "durationMs": 4695,
+        "speakerId": "macos-tingting-tts",
+        "response": {
+          "type": "result",
+          "requestId": "2217f0925c144eb282886a92aa4f1b09",
+          "ok": true,
+          "text": "最终设计应该 evident driven 而不是先假设 note 或 testen",
+          "detectedLanguage": "zh-en",
+          "readMs": 2.014,
+          "decodeMs": 118.266,
+          "transcribeMs": 122.908,
+          "rssBytes": 1075298304,
+          "requestRoundTripMs": 123.237,
+          "sampledRssBytes": 1075298304
+        }
+      }
+    ],
+    "performance": [
+      {
+        "type": "result",
+        "requestId": "c122c450a7e74b0fb461bb6353db62a4",
+        "ok": true,
+        "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.271,
+        "decodeMs": 148,
+        "transcribeMs": 151.923,
+        "rssBytes": 1075986432,
+        "requestRoundTripMs": 152.245,
+        "sampledRssBytes": 1075986432
+      },
+      {
+        "type": "result",
+        "requestId": "d5352f0f2dca41268ba9f96fed1105e4",
+        "ok": true,
+        "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.303,
+        "decodeMs": 149.095,
+        "transcribeMs": 152.851,
+        "rssBytes": 1076215808,
+        "requestRoundTripMs": 153.202,
+        "sampledRssBytes": 1076215808
+      },
+      {
+        "type": "result",
+        "requestId": "8da9b583e29e46a6847c630412258cf0",
+        "ok": true,
+        "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.325,
+        "decodeMs": 155.141,
+        "transcribeMs": 159.012,
+        "rssBytes": 1077280768,
+        "requestRoundTripMs": 159.366,
+        "sampledRssBytes": 1077280768
+      },
+      {
+        "type": "result",
+        "requestId": "be9557ddef47423c8c88a7891b2e1a9f",
+        "ok": true,
+        "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.294,
+        "decodeMs": 150.322,
+        "transcribeMs": 154.3,
+        "rssBytes": 1077919744,
+        "requestRoundTripMs": 154.668,
+        "sampledRssBytes": 1077919744
+      },
+      {
+        "type": "result",
+        "requestId": "0e094ab36d4447d49e13d729bd2b56ff",
+        "ok": true,
+        "text": "sense voice small 对 chinese asr 可能更快但需要测试 quality",
+        "detectedLanguage": "zh-en",
+        "readMs": 0.287,
+        "decodeMs": 157.894,
+        "transcribeMs": 162.229,
+        "rssBytes": 1078575104,
+        "requestRoundTripMs": 162.624,
+        "sampledRssBytes": 1078575104
+      }
+    ],
+    "shutdown": {
+      "type": "shutdown-complete",
+      "rssBytes": 1078575104
+    }
+  },
+  "summaries": {
+    "spawnToReadyMs": {
+      "count": 3,
+      "min": 1386.115,
+      "median": 1452.357,
+      "p95": 1520.044,
+      "max": 1527.565,
+      "mean": 1455.346
+    },
+    "firstRequestMs": {
+      "count": 3,
+      "min": 160.108,
+      "median": 164.376,
+      "p95": 170.957,
+      "max": 171.688,
+      "mean": 165.391
+    },
+    "coldEndToEndMs": {
+      "count": 3,
+      "min": 1550.491,
+      "median": 1624.045,
+      "p95": 1681.31,
+      "max": 1687.673,
+      "mean": 1620.736
+    },
+    "warmRequestMs": {
+      "count": 5,
+      "min": 152.245,
+      "median": 154.668,
+      "p95": 161.972,
+      "max": 162.624,
+      "mean": 156.421
+    },
+    "maxSampledRssBytes": 1078575104
+  }
+}

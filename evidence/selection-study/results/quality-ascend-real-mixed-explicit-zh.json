@@ -1,0 +1,937 @@
+{
+  "schemaVersion": 1,
+  "corpusId": "ascend-real-mandarin-english-control-explicit-zh-v1",
+  "scoring": "NFKC + Traditional-to-Simplified; Han characters and contiguous lowercase English/alphanumeric words are edit units; multiset English-word recall reported separately.",
+  "reports": [
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/ascend-mlx-fp16-zh.json",
+      "backend": "mlx-fp16",
+      "clipCount": 30,
+      "speakerCount": 5,
+      "durationSeconds": 205.35,
+      "mixedErrorRate": 1.401421,
+      "mandarinCharacterErrorRate": 3.767677,
+      "embeddedEnglishWordErrorRate": 0.887671,
+      "embeddedEnglishWordRecall": {
+        "found": 43,
+        "total": 365,
+        "recall": 0.117808
+      },
+      "perSpeaker": {
+        "ascend-speaker-12": {
+          "mixedErrorRate": 0.883495,
+          "referenceUnits": 103
+        },
+        "ascend-speaker-17": {
+          "mixedErrorRate": 0.775701,
+          "referenceUnits": 107
+        },
+        "ascend-speaker-20": {
+          "mixedErrorRate": 0.777778,
+          "referenceUnits": 90
+        },
+        "ascend-speaker-3": {
+          "mixedErrorRate": 1.462963,
+          "referenceUnits": 162
+        },
+        "ascend-speaker-7": {
+          "mixedErrorRate": 3.118812,
+          "referenceUnits": 101
+        }
+      },
+      "emptyHypotheses": 0,
+      "perClip": [
+        {
+          "id": "ascend-test-00361",
+          "speakerId": "ascend-speaker-3",
+          "reference": "mistake is because我当初其实原本是想要往US去走但我那时候是在the third i remember third year",
+          "hypothesis": "Mixed Egg is because我當初其實原本是想要往US去走到了那時候是在The ThirdI remember it's Third Year",
+          "mixedErrorRate": 0.233333,
+          "embeddedEnglishRecall": 0.7,
+          "requestRoundTripMs": 350.686
+        },
+        {
+          "id": "ascend-test-00362",
+          "speakerId": "ascend-speaker-3",
+          "reference": "对再说apply for the fourth year i will我觉得我去exchange是在第四年的时候但是我apply是在third years的时候apply",
+          "hypothesis": "對,那時候Apply for the fourth year我去Exchange是在第四年的時候但是Apply的時候在Third year的時候Apply",
+          "mixedErrorRate": 0.361111,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 338.351
+        },
+        {
+          "id": "ascend-test-00364",
+          "speakerId": "ascend-speaker-3",
+          "reference": "activities different kind of activities对有时候去忙一些那个舞会啊party呀有时候忙一些领队啊就是the low summer camp for students so i have lots of different kinds of",
+          "hypothesis": "有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活動,有些活",
+          "mixedErrorRate": 3.888889,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1397.975
+        },
+        {
+          "id": "ascend-test-00369",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是美国学校的exchange的话托福toefl toefl score need to be like over one hundred and five",
+          "hypothesis": "就是美國學校的交易的話12 score 需要像是 105",
+          "mixedErrorRate": 0.625,
+          "embeddedEnglishRecall": 0.076923,
+          "requestRoundTripMs": 461.325
+        },
+        {
+          "id": "ascend-test-00675",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是说as a beginner you can play well at the first time",
+          "hypothesis": "比如说,当初,你可以玩游戏第一次",
+          "mixedErrorRate": 0.928571,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 432.68
+        },
+        {
+          "id": "ascend-test-00701",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是he's faster stronger and more scared for than the other players",
+          "hypothesis": "他更快、強、更害怕他還有其他玩家",
+          "mixedErrorRate": 1.076923,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 444.858
+        },
+        {
+          "id": "ascend-validation-00383",
+          "speakerId": "ascend-speaker-7",
+          "reference": "嗯actually i also like the iron man um best",
+          "hypothesis": "其实我也喜欢Aerman",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 493.985
+        },
+        {
+          "id": "ascend-validation-00394",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃do you have a hobby of collecting the movie's ticket",
+          "hypothesis": "有颜色的设备吗?",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 447.42
+        },
+        {
+          "id": "ascend-validation-00395",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃i with this habit only when i came to Hong Kong",
+          "hypothesis": "我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只认为我来香港是因为我只�",
+          "mixedErrorRate": 20.333333,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1892.377
+        },
+        {
+          "id": "ascend-validation-00654",
+          "speakerId": "ascend-speaker-7",
+          "reference": "um you mentioned that you think呃swimming is the best sport for diet and i can't agree anymore",
+          "hypothesis": "你認為 swimming 最好運動 而且我無法再跟隨",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.055556,
+          "requestRoundTripMs": 489.968
+        },
+        {
+          "id": "ascend-validation-00660",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃do you think man can do better sports than woman",
+          "hypothesis": "嗯,你觉得男人可以比女人更好玩吗?",
+          "mixedErrorRate": 1.363636,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 415.565
+        },
+        {
+          "id": "ascend-validation-00671",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃actually I like swimming from the bottom bottom of my heart but I think呃我的身体是其实对游泳是抗拒的因为我特别的怕水",
+          "hypothesis": "其实我从我的手下的肩膀里面的女士我喜欢但是我认为我的身体是对游泳是抗拒的因为我特别地怕水",
+          "mixedErrorRate": 0.710526,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 679.66
+        },
+        {
+          "id": "ascend-validation-00119",
+          "speakerId": "ascend-speaker-12",
+          "reference": "然后在 the the difference uh for environment field it the difference between Hong Kong and mainland",
+          "hypothesis": "現在的分別是香港和美蘭的分別",
+          "mixedErrorRate": 0.944444,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 511.163
+        },
+        {
+          "id": "ascend-validation-00196",
+          "speakerId": "ascend-speaker-12",
+          "reference": "嗯we in my major we have嗯over eighty students and half is the local students",
+          "hypothesis": "我认为我们有80学生,半是国家学生",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 465.859
+        },
+        {
+          "id": "ascend-validation-00478",
+          "speakerId": "ascend-speaker-12",
+          "reference": "所以呃and the interesting for this um lecture is we only have eight students",
+          "hypothesis": "所以, and the interesting for this lecture is we only have eight students.",
+          "mixedErrorRate": 0.125,
+          "embeddedEnglishRecall": 0.923077,
+          "requestRoundTripMs": 446.82
+        },
+        {
+          "id": "ascend-validation-00484",
+          "speakerId": "ascend-speaker-12",
+          "reference": "呃 if China should er develop the hydro hydraulic fracturing technology to exploit the natural gas",
+          "hypothesis": "如果中國應該用蜘蛛蜘蜘的技術去探索自然的技術",
+          "mixedErrorRate": 1.375,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 571.582
+        },
+        {
+          "id": "ascend-validation-00694",
+          "speakerId": "ascend-speaker-12",
+          "reference": "然后我再告诉它what i want to listen to music the name is blah blah blah blah blah",
+          "hypothesis": "然後我再告訴他,我希望聽聽音樂,音樂,等等等等等等",
+          "mixedErrorRate": 0.727273,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 555.637
+        },
+        {
+          "id": "ascend-validation-00752",
+          "speakerId": "ascend-speaker-12",
+          "reference": "and i think uh even though some people say there will be another呃",
+          "hypothesis": "我也认为,有些人会说,这些人会是另一个…",
+          "mixedErrorRate": 1.214286,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 540.615
+        },
+        {
+          "id": "ascend-test-00009",
+          "speakerId": "ascend-speaker-17",
+          "reference": "no我专业是那个i s m information systems management",
+          "hypothesis": "那我专案是那个ISM Information Systems Management",
+          "mixedErrorRate": 0.384615,
+          "embeddedEnglishRecall": 0.428571,
+          "requestRoundTripMs": 454.23
+        },
+        {
+          "id": "ascend-test-00607",
+          "speakerId": "ascend-speaker-17",
+          "reference": "and嗯and I eat for dinner eat for lunch eat for eat breakfast and then study and go to bed so",
+          "hypothesis": "然後吃飯、吃午餐、吃早餐然後學習,去寶寶",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 498.625
+        },
+        {
+          "id": "ascend-test-00773",
+          "speakerId": "ascend-speaker-17",
+          "reference": "那我呃嗯Why you choose Hong Kong instead of other other foreign countries like US or Australia",
+          "hypothesis": "現在為何你選擇香港而不是其他國內的國家例如美國或澳洲",
+          "mixedErrorRate": 1.368421,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 520.291
+        },
+        {
+          "id": "ascend-test-00968",
+          "speakerId": "ascend-speaker-17",
+          "reference": "那种关于呃着装啊还有关于那些关于interview skills的东西所以you need to have um to dress formal",
+          "hypothesis": "那種關於著裝的還有關於那些Interview Skewers的東西所以你需要穿上衣服",
+          "mixedErrorRate": 0.451613,
+          "embeddedEnglishRecall": 0.1,
+          "requestRoundTripMs": 565.099
+        },
+        {
+          "id": "ascend-test-01094",
+          "speakerId": "ascend-speaker-17",
+          "reference": "so you will walk slowly and slowly and then you you you should呃",
+          "hypothesis": "所以它會慢慢地做然後你應該",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 424.213
+        },
+        {
+          "id": "ascend-test-01096",
+          "speakerId": "ascend-speaker-17",
+          "reference": "but for iphone you will be more呃",
+          "hypothesis": "iPhone 會更…",
+          "mixedErrorRate": 0.875,
+          "embeddedEnglishRecall": 0.142857,
+          "requestRoundTripMs": 398.052
+        },
+        {
+          "id": "ascend-validation-00001",
+          "speakerId": "ascend-speaker-20",
+          "reference": "小朋友我回想一下when i was in elementary school",
+          "hypothesis": "小朋友我回想一下Huanaweson Almond School",
+          "mixedErrorRate": 0.357143,
+          "embeddedEnglishRecall": 0.166667,
+          "requestRoundTripMs": 457.591
+        },
+        {
+          "id": "ascend-validation-00265",
+          "speakerId": "ascend-speaker-20",
+          "reference": "an program leader when i was in呃university",
+          "hypothesis": "我从学校开始做专业专业",
+          "mixedErrorRate": 1.222222,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 462.228
+        },
+        {
+          "id": "ascend-validation-00575",
+          "speakerId": "ascend-speaker-20",
+          "reference": "但至于这个bedtimes是不是一定要用来睡觉呢我觉得只有depends on students themselves",
+          "hypothesis": "但至於這個bad times是不是一定要用來睡覺呢我覺得就depends on students themselves",
+          "mixedErrorRate": 0.153846,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 519.085
+        },
+        {
+          "id": "ascend-validation-00821",
+          "speakerId": "ascend-speaker-20",
+          "reference": "so uh for me I think呃one another sport is yoga",
+          "hypothesis": "所以我认为一个是 another sport是 yoga",
+          "mixedErrorRate": 0.75,
+          "embeddedEnglishRecall": 0.272727,
+          "requestRoundTripMs": 613.63
+        },
+        {
+          "id": "ascend-validation-00829",
+          "speakerId": "ascend-speaker-20",
+          "reference": "because in many Olympic Games there are many women嗯do better when man",
+          "hypothesis": "因為在很多奧林匹克賽賽很多女士都會做得更好",
+          "mixedErrorRate": 1.5,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 545.237
+        },
+        {
+          "id": "ascend-validation-00850",
+          "speakerId": "ascend-speaker-20",
+          "reference": "very little money to呃to it so I don't have any special feelings but",
+          "hypothesis": "但是我还没有钱去做这个所以我没有特别的充分",
+          "mixedErrorRate": 1.4,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 494.721
+        }
+      ]
+    },
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/ascend-sherpa-int8-zh.json",
+      "backend": "sherpa-int8",
+      "clipCount": 30,
+      "speakerCount": 5,
+      "durationSeconds": 205.35,
+      "mixedErrorRate": 0.788632,
+      "mandarinCharacterErrorRate": 1.717172,
+      "embeddedEnglishWordErrorRate": 0.920548,
+      "embeddedEnglishWordRecall": {
+        "found": 34,
+        "total": 365,
+        "recall": 0.093151
+      },
+      "perSpeaker": {
+        "ascend-speaker-12": {
+          "mixedErrorRate": 0.932039,
+          "referenceUnits": 103
+        },
+        "ascend-speaker-17": {
+          "mixedErrorRate": 0.766355,
+          "referenceUnits": 107
+        },
+        "ascend-speaker-20": {
+          "mixedErrorRate": 0.755556,
+          "referenceUnits": 90
+        },
+        "ascend-speaker-3": {
+          "mixedErrorRate": 0.697531,
+          "referenceUnits": 162
+        },
+        "ascend-speaker-7": {
+          "mixedErrorRate": 0.841584,
+          "referenceUnits": 101
+        }
+      },
+      "emptyHypotheses": 0,
+      "perClip": [
+        {
+          "id": "ascend-test-00361",
+          "speakerId": "ascend-speaker-3",
+          "reference": "mistake is because我当初其实原本是想要往US去走但我那时候是在the third i remember third year",
+          "hypothesis": "錯的原因是當初我真的想要去美國去走到那時候是在第三年我記得是第三年",
+          "mixedErrorRate": 0.833333,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 2300.447
+        },
+        {
+          "id": "ascend-test-00362",
+          "speakerId": "ascend-speaker-3",
+          "reference": "对再说apply for the fourth year i will我觉得我去exchange是在第四年的时候但是我apply是在third years的时候apply",
+          "hypothesis": "Apply for the fourth year.我去Xtran是在第四年的時候,但是Apply for the third year is applied.",
+          "mixedErrorRate": 0.472222,
+          "embeddedEnglishRecall": 0.583333,
+          "requestRoundTripMs": 2016.992
+        },
+        {
+          "id": "ascend-test-00364",
+          "speakerId": "ascend-speaker-3",
+          "reference": "activities different kind of activities对有时候去忙一些那个舞会啊party呀有时候忙一些领队啊就是the low summer camp for students so i have lots of different kinds of",
+          "hypothesis": "有时候去忙一些舞会、party、、Summer Camp的学生,我会有很多不同的东西",
+          "mixedErrorRate": 0.777778,
+          "embeddedEnglishRecall": 0.15,
+          "requestRoundTripMs": 2576.274
+        },
+        {
+          "id": "ascend-test-00369",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是美国学校的exchange的话托福toefl toefl score need to be like over one hundred and five",
+          "hypothesis": "就是美國學校的交易的話12 score 需要像是 105",
+          "mixedErrorRate": 0.625,
+          "embeddedEnglishRecall": 0.076923,
+          "requestRoundTripMs": 1323.041
+        },
+        {
+          "id": "ascend-test-00675",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是说as a beginner you can play well at the first time",
+          "hypothesis": "就是說,你是一開始,你可以玩玩玩玩",
+          "mixedErrorRate": 0.857143,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1456.038
+        },
+        {
+          "id": "ascend-test-00701",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是he's faster stronger and more scared for than the other players",
+          "hypothesis": "他更快、強、更害怕其他球員",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1197.627
+        },
+        {
+          "id": "ascend-validation-00383",
+          "speakerId": "ascend-speaker-7",
+          "reference": "嗯actually i also like the iron man um best",
+          "hypothesis": "其实我也喜欢Aerman best",
+          "mixedErrorRate": 0.9,
+          "embeddedEnglishRecall": 0.111111,
+          "requestRoundTripMs": 830.217
+        },
+        {
+          "id": "ascend-validation-00394",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃do you have a hobby of collecting the movie's ticket",
+          "hypothesis": "有款?",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1067.987
+        },
+        {
+          "id": "ascend-validation-00395",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃i with this habit only when i came to Hong Kong",
+          "hypothesis": "我只为在香港来到这些",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1140.15
+        },
+        {
+          "id": "ascend-validation-00654",
+          "speakerId": "ascend-speaker-7",
+          "reference": "um you mentioned that you think呃swimming is the best sport for diet and i can't agree anymore",
+          "hypothesis": "你認為 swimming is the best sport for the LJN account of Korean animal",
+          "mixedErrorRate": 0.684211,
+          "embeddedEnglishRecall": 0.333333,
+          "requestRoundTripMs": 1379.936
+        },
+        {
+          "id": "ascend-validation-00660",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃do you think man can do better sports than woman",
+          "hypothesis": "你認為男人可以做更好的運動比女人更好嗎?",
+          "mixedErrorRate": 1.727273,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1240.382
+        },
+        {
+          "id": "ascend-validation-00671",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃actually I like swimming from the bottom bottom of my heart but I think呃我的身体是其实对游泳是抗拒的因为我特别的怕水",
+          "hypothesis": "其实我心里的血里面的血是很大的但是我为我的身体是对是的因为我特别地怕水",
+          "mixedErrorRate": 0.684211,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 3479.53
+        },
+        {
+          "id": "ascend-validation-00119",
+          "speakerId": "ascend-speaker-12",
+          "reference": "然后在 the the difference uh for environment field it the difference between Hong Kong and mainland",
+          "hypothesis": "現在的分別是香港和明的分別",
+          "mixedErrorRate": 0.944444,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1788.002
+        },
+        {
+          "id": "ascend-validation-00196",
+          "speakerId": "ascend-speaker-12",
+          "reference": "嗯we in my major we have嗯over eighty students and half is the local students",
+          "hypothesis": "我为我们有80学生和半是生",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1566.567
+        },
+        {
+          "id": "ascend-validation-00478",
+          "speakerId": "ascend-speaker-12",
+          "reference": "所以呃and the interesting for this um lecture is we only have eight students",
+          "hypothesis": "所以, 最有趣的这一是我们只有8学生",
+          "mixedErrorRate": 0.875,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1670.707
+        },
+        {
+          "id": "ascend-validation-00484",
+          "speakerId": "ascend-speaker-12",
+          "reference": "呃 if China should er develop the hydro hydraulic fracturing technology to exploit the natural gas",
+          "hypothesis": "如果中國應該建立了能力強大的技去自然的技",
+          "mixedErrorRate": 1.25,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 2081.341
+        },
+        {
+          "id": "ascend-validation-00694",
+          "speakerId": "ascend-speaker-12",
+          "reference": "然后我再告诉它what i want to listen to music the name is blah blah blah blah blah",
+          "hypothesis": "然后我再告诉他我希望听听音乐的声音,然后他会说",
+          "mixedErrorRate": 0.727273,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1670.128
+        },
+        {
+          "id": "ascend-validation-00752",
+          "speakerId": "ascend-speaker-12",
+          "reference": "and i think uh even though some people say there will be another呃",
+          "hypothesis": "甚至有些人說會有另一個",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 938.24
+        },
+        {
+          "id": "ascend-test-00009",
+          "speakerId": "ascend-speaker-17",
+          "reference": "no我专业是那个i s m information systems management",
+          "hypothesis": "那我案是那个ISM Information Systems Management",
+          "mixedErrorRate": 0.461538,
+          "embeddedEnglishRecall": 0.428571,
+          "requestRoundTripMs": 1031.791
+        },
+        {
+          "id": "ascend-test-00607",
+          "speakerId": "ascend-speaker-17",
+          "reference": "and嗯and I eat for dinner eat for lunch eat for eat breakfast and then study and go to bed so",
+          "hypothesis": "然後吃飯、吃午、吃早然後學習,去洗",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 2099.559
+        },
+        {
+          "id": "ascend-test-00773",
+          "speakerId": "ascend-speaker-17",
+          "reference": "那我呃嗯Why you choose Hong Kong instead of other other foreign countries like US or Australia",
+          "hypothesis": "現在為何選香港,而是在其他國內,如美國或洲",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 2006.176
+        },
+        {
+          "id": "ascend-test-00968",
+          "speakerId": "ascend-speaker-17",
+          "reference": "那种关于呃着装啊还有关于那些关于interview skills的东西所以you need to have um to dress formal",
+          "hypothesis": "那種關於著裝的還有關於那些interview scariest的東西所以你需要有需要上",
+          "mixedErrorRate": 0.451613,
+          "embeddedEnglishRecall": 0.1,
+          "requestRoundTripMs": 2373.984
+        },
+        {
+          "id": "ascend-test-01094",
+          "speakerId": "ascend-speaker-17",
+          "reference": "so you will walk slowly and slowly and then you you you should呃",
+          "hypothesis": "所以它會慢慢地慢慢地走然後你應該",
+          "mixedErrorRate": 1.142857,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1147.927
+        },
+        {
+          "id": "ascend-test-01096",
+          "speakerId": "ascend-speaker-17",
+          "reference": "but for iphone you will be more呃",
+          "hypothesis": "iPhone 4 會更加...",
+          "mixedErrorRate": 0.875,
+          "embeddedEnglishRecall": 0.142857,
+          "requestRoundTripMs": 866.381
+        },
+        {
+          "id": "ascend-validation-00001",
+          "speakerId": "ascend-speaker-20",
+          "reference": "小朋友我回想一下when i was in elementary school",
+          "hypothesis": "少朋友我回想一下",
+          "mixedErrorRate": 0.5,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 718.352
+        },
+        {
+          "id": "ascend-validation-00265",
+          "speakerId": "ascend-speaker-20",
+          "reference": "an program leader when i was in呃university",
+          "hypothesis": "我从学校开始",
+          "mixedErrorRate": 1.0,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1169.078
+        },
+        {
+          "id": "ascend-validation-00575",
+          "speakerId": "ascend-speaker-20",
+          "reference": "但至于这个bedtimes是不是一定要用来睡觉呢我觉得只有depends on students themselves",
+          "hypothesis": "但至於這個back times是不是一定要用來睡覺呢我覺得就depends on students themselves",
+          "mixedErrorRate": 0.153846,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 2126.939
+        },
+        {
+          "id": "ascend-validation-00821",
+          "speakerId": "ascend-speaker-20",
+          "reference": "so uh for me I think呃one another sport is yoga",
+          "hypothesis": "所以我为,一种新的是\"Yoga\"",
+          "mixedErrorRate": 0.916667,
+          "embeddedEnglishRecall": 0.090909,
+          "requestRoundTripMs": 1567.371
+        },
+        {
+          "id": "ascend-validation-00829",
+          "speakerId": "ascend-speaker-20",
+          "reference": "because in many Olympic Games there are many women嗯do better when man",
+          "hypothesis": "因為在很多運賽賽賽賽,很多女生都會做得更好",
+          "mixedErrorRate": 1.428571,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1626.804
+        },
+        {
+          "id": "ascend-validation-00850",
+          "speakerId": "ascend-speaker-20",
+          "reference": "very little money to呃to it so I don't have any special feelings but",
+          "hypothesis": "但是我真的不想做到所以我没有特别的分",
+          "mixedErrorRate": 1.2,
+          "embeddedEnglishRecall": 0.0,
+          "requestRoundTripMs": 1344.266
+        }
+      ]
+    },
+    {
+      "source": "/tmp/autobyteus-voice-backend-study-20260802/results/ascend-sensevoice-int8-zh.json",
+      "backend": "sensevoice-int8",
+      "clipCount": 30,
+      "speakerCount": 5,
+      "durationSeconds": 205.35,
+      "mixedErrorRate": 0.239787,
+      "mandarinCharacterErrorRate": 0.247475,
+      "embeddedEnglishWordErrorRate": 0.263014,
+      "embeddedEnglishWordRecall": {
+        "found": 287,
+        "total": 365,
+        "recall": 0.786301
+      },
+      "perSpeaker": {
+        "ascend-speaker-12": {
+          "mixedErrorRate": 0.300971,
+          "referenceUnits": 103
+        },
+        "ascend-speaker-17": {
+          "mixedErrorRate": 0.224299,
+          "referenceUnits": 107
+        },
+        "ascend-speaker-20": {
+          "mixedErrorRate": 0.233333,
+          "referenceUnits": 90
+        },
+        "ascend-speaker-3": {
+          "mixedErrorRate": 0.253086,
+          "referenceUnits": 162
+        },
+        "ascend-speaker-7": {
+          "mixedErrorRate": 0.178218,
+          "referenceUnits": 101
+        }
+      },
+      "emptyHypotheses": 0,
+      "perClip": [
+        {
+          "id": "ascend-test-00361",
+          "speakerId": "ascend-speaker-3",
+          "reference": "mistake is because我当初其实原本是想要往US去走但我那时候是在the third i remember third year",
+          "hypothesis": "make is because我当初其实原本是想要往US去走，到那时候是在 third remember third year。",
+          "mixedErrorRate": 0.166667,
+          "embeddedEnglishRecall": 0.7,
+          "requestRoundTripMs": 187.301
+        },
+        {
+          "id": "ascend-test-00362",
+          "speakerId": "ascend-speaker-3",
+          "reference": "对再说apply for the fourth year i will我觉得我去exchange是在第四年的时候但是我apply是在third years的时候apply",
+          "hypothesis": "对，他说apply for the fourth year，哎我就我去是在第四年的时候，但是我apply的时候在3 year的时候apply。",
+          "mixedErrorRate": 0.305556,
+          "embeddedEnglishRecall": 0.583333,
+          "requestRoundTripMs": 167.894
+        },
+        {
+          "id": "ascend-test-00364",
+          "speakerId": "ascend-speaker-3",
+          "reference": "activities different kind of activities对有时候去忙一些那个舞会啊party呀有时候忙一些领队啊就是the low summer camp for students so i have lots of different kinds of",
+          "hypothesis": "activities different kind of activitiesiv对有时候去忙一些那种舞会啊，party啊，有时候忙一些应对啊，就是lows camp for students。I have lots of different kinds。",
+          "mixedErrorRate": 0.222222,
+          "embeddedEnglishRecall": 0.7,
+          "requestRoundTripMs": 242.897
+        },
+        {
+          "id": "ascend-test-00369",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是美国学校的exchange的话托福toefl toefl score need to be like over one hundred and five",
+          "hypothesis": "就是美国的学校的exchan的话，tto toto score need to be like both1 and five。",
+          "mixedErrorRate": 0.375,
+          "embeddedEnglishRecall": 0.538462,
+          "requestRoundTripMs": 168.543
+        },
+        {
+          "id": "ascend-test-00675",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是说as a beginner you can play well at the first time",
+          "hypothesis": "就是说as a beginner,you can play well at first time。",
+          "mixedErrorRate": 0.071429,
+          "embeddedEnglishRecall": 0.909091,
+          "requestRoundTripMs": 105.156
+        },
+        {
+          "id": "ascend-test-00701",
+          "speakerId": "ascend-speaker-3",
+          "reference": "就是he's faster stronger and more scared for than the other players",
+          "hypothesis": "就 he is faster, stronger and more skillful than other players.",
+          "mixedErrorRate": 0.384615,
+          "embeddedEnglishRecall": 0.636364,
+          "requestRoundTripMs": 162.428
+        },
+        {
+          "id": "ascend-validation-00383",
+          "speakerId": "ascend-speaker-7",
+          "reference": "嗯actually i also like the iron man um best",
+          "hypothesis": "Actually, I also like the airman best.",
+          "mixedErrorRate": 0.4,
+          "embeddedEnglishRecall": 0.666667,
+          "requestRoundTripMs": 162.627
+        },
+        {
+          "id": "ascend-validation-00394",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃do you have a hobby of collecting the movie's ticket",
+          "hypothesis": "啊Do you have a hobby of collecting the movies ticket.",
+          "mixedErrorRate": 0.181818,
+          "embeddedEnglishRecall": 0.9,
+          "requestRoundTripMs": 125.353
+        },
+        {
+          "id": "ascend-validation-00395",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃i with this habit only when i came to Hong Kong",
+          "hypothesis": "I raised this habit only when I came to Hong Kong.",
+          "mixedErrorRate": 0.166667,
+          "embeddedEnglishRecall": 0.909091,
+          "requestRoundTripMs": 126.784
+        },
+        {
+          "id": "ascend-validation-00654",
+          "speakerId": "ascend-speaker-7",
+          "reference": "um you mentioned that you think呃swimming is the best sport for diet and i can't agree anymore",
+          "hypothesis": "You mentioned that you think swimming is the best sport for diet And I can't agree anymore.",
+          "mixedErrorRate": 0.105263,
+          "embeddedEnglishRecall": 0.944444,
+          "requestRoundTripMs": 235.099
+        },
+        {
+          "id": "ascend-validation-00660",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃do you think man can do better sports than woman",
+          "hypothesis": "man do you think men can do better sports than woman.",
+          "mixedErrorRate": 0.181818,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 142.167
+        },
+        {
+          "id": "ascend-validation-00671",
+          "speakerId": "ascend-speaker-7",
+          "reference": "呃actually I like swimming from the bottom bottom of my heart but I think呃我的身体是其实对游泳是抗拒的因为我特别的怕水",
+          "hypothesis": "嗯，Actually, I love swimming from the bottom of my heart, but I think嗯我的身体是是对游泳是抗拒的，因为我特别的怕水。",
+          "mixedErrorRate": 0.157895,
+          "embeddedEnglishRecall": 0.857143,
+          "requestRoundTripMs": 315.769
+        },
+        {
+          "id": "ascend-validation-00119",
+          "speakerId": "ascend-speaker-12",
+          "reference": "然后在 the the difference uh for environment field it the difference between Hong Kong and mainland",
+          "hypothesis": "然后在 the difference呃 for environment field is the difference between Hong Kong and mainland。",
+          "mixedErrorRate": 0.166667,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 197.362
+        },
+        {
+          "id": "ascend-validation-00196",
+          "speakerId": "ascend-speaker-12",
+          "reference": "嗯we in my major we have嗯over eighty students and half is the local students",
+          "hypothesis": "嗯， my major if we have over80 student and half is the local student。",
+          "mixedErrorRate": 0.470588,
+          "embeddedEnglishRecall": 0.6,
+          "requestRoundTripMs": 225.061
+        },
+        {
+          "id": "ascend-validation-00478",
+          "speakerId": "ascend-speaker-12",
+          "reference": "所以呃and the interesting for this um lecture is we only have eight students",
+          "hypothesis": "所以呃and interesting for this呃 lecture iswe only have eight students.",
+          "mixedErrorRate": 0.25,
+          "embeddedEnglishRecall": 0.692308,
+          "requestRoundTripMs": 176.867
+        },
+        {
+          "id": "ascend-validation-00484",
+          "speakerId": "ascend-speaker-12",
+          "reference": "呃 if China should er develop the hydro hydraulic fracturing technology to exploit the natural gas",
+          "hypothesis": "呃，if Chinaa should呃 develop the hydraulic force in technology to exploit the natural gas。",
+          "mixedErrorRate": 0.3125,
+          "embeddedEnglishRecall": 0.733333,
+          "requestRoundTripMs": 181.512
+        },
+        {
+          "id": "ascend-validation-00694",
+          "speakerId": "ascend-speaker-12",
+          "reference": "然后我再告诉它what i want to listen to music the name is blah blah blah blah blah",
+          "hypothesis": "然后我再告诉他，I want to listen to music name is。",
+          "mixedErrorRate": 0.363636,
+          "embeddedEnglishRecall": 0.533333,
+          "requestRoundTripMs": 132.572
+        },
+        {
+          "id": "ascend-validation-00752",
+          "speakerId": "ascend-speaker-12",
+          "reference": "and i think uh even though some people say there will be another呃",
+          "hypothesis": "AndI think呃 even though some people say there will be another呃.",
+          "mixedErrorRate": 0.214286,
+          "embeddedEnglishRecall": 0.769231,
+          "requestRoundTripMs": 140.077
+        },
+        {
+          "id": "ascend-test-00009",
+          "speakerId": "ascend-speaker-17",
+          "reference": "no我专业是那个i s m information systems management",
+          "hypothesis": "那我就按是那个ISM information systems management。",
+          "mixedErrorRate": 0.461538,
+          "embeddedEnglishRecall": 0.428571,
+          "requestRoundTripMs": 113.106
+        },
+        {
+          "id": "ascend-test-00607",
+          "speakerId": "ascend-speaker-17",
+          "reference": "and嗯and I eat for dinner eat for lunch eat for eat breakfast and then study and go to bed so",
+          "hypothesis": "And and then and then eat for dinner, eat for lunch, it for eat breakfast, and then study and go to bed, so.",
+          "mixedErrorRate": 0.181818,
+          "embeddedEnglishRecall": 0.904762,
+          "requestRoundTripMs": 286.941
+        },
+        {
+          "id": "ascend-test-00773",
+          "speakerId": "ascend-speaker-17",
+          "reference": "那我呃嗯Why you choose Hong Kong instead of other other foreign countries like US or Australia",
+          "hypothesis": "Now, why you choose Hong Kong instead of other other foreign countries like US or Australia.",
+          "mixedErrorRate": 0.210526,
+          "embeddedEnglishRecall": 1.0,
+          "requestRoundTripMs": 199.544
+        },
+        {
+          "id": "ascend-test-00968",
+          "speakerId": "ascend-speaker-17",
+          "reference": "那种关于呃着装啊还有关于那些关于interview skills的东西所以you need to have um to dress formal",
+          "hypothesis": "那种关于呃着装啊，还有关于那些interview skills的东西。所以you need to have呃 to dress for。",
+          "mixedErrorRate": 0.129032,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 261.409
+        },
+        {
+          "id": "ascend-test-01094",
+          "speakerId": "ascend-speaker-17",
+          "reference": "so you will walk slowly and slowly and then you you you should呃",
+          "hypothesis": "So it will work slowly and slowly. and then you又 you should呃。",
+          "mixedErrorRate": 0.214286,
+          "embeddedEnglishRecall": 0.769231,
+          "requestRoundTripMs": 121.64
+        },
+        {
+          "id": "ascend-test-01096",
+          "speakerId": "ascend-speaker-17",
+          "reference": "but for iphone you will be more呃",
+          "hypothesis": "For iPhonephone, it will be more呃。",
+          "mixedErrorRate": 0.375,
+          "embeddedEnglishRecall": 0.571429,
+          "requestRoundTripMs": 96.616
+        },
+        {
+          "id": "ascend-validation-00001",
+          "speakerId": "ascend-speaker-20",
+          "reference": "小朋友我回想一下when i was in elementary school",
+          "hypothesis": "小朋友，我我回想一下，when来 was in I went to school。",
+          "mixedErrorRate": 0.357143,
+          "embeddedEnglishRecall": 0.833333,
+          "requestRoundTripMs": 117.653
+        },
+        {
+          "id": "ascend-validation-00265",
+          "speakerId": "ascend-speaker-20",
+          "reference": "an program leader when i was in呃university",
+          "hypothesis": "And programme leader when I was in university.",
+          "mixedErrorRate": 0.333333,
+          "embeddedEnglishRecall": 0.75,
+          "requestRoundTripMs": 122.306
+        },
+        {
+          "id": "ascend-validation-00575",
+          "speakerId": "ascend-speaker-20",
+          "reference": "但至于这个bedtimes是不是一定要用来睡觉呢我觉得只有depends on students themselves",
+          "hypothesis": "但至于这个bed times是不是一定要用来睡觉呢？我觉得就depends on students themselves。",
+          "mixedErrorRate": 0.153846,
+          "embeddedEnglishRecall": 0.8,
+          "requestRoundTripMs": 236.415
+        },
+        {
+          "id": "ascend-validation-00821",
+          "speakerId": "ascend-speaker-20",
+          "reference": "so uh for me I think呃one another sport is yoga",
+          "hypothesis": "So for me, I think one another sport is yoga.",
+          "mixedErrorRate": 0.166667,
+          "embeddedEnglishRecall": 0.909091,
+          "requestRoundTripMs": 140.397
+        },
+        {
+          "id": "ascend-validation-00829",
+          "speakerId": "ascend-speaker-20",
+          "reference": "because in many Olympic Games there are many women嗯do better when man",
+          "hypothesis": "Because in many Olympic Game, there many women do better than men.",
+          "mixedErrorRate": 0.357143,
+          "embeddedEnglishRecall": 0.692308,
+          "requestRoundTripMs": 184.292
+        },
+        {
+          "id": "ascend-validation-00850",
+          "speakerId": "ascend-speaker-20",
+          "reference": "very little money to呃to it so I don't have any special feelings but",
+          "hypothesis": "Very little money to do it. So I don't have any special feelings, but.",
+          "mixedErrorRate": 0.133333,
+          "embeddedEnglishRecall": 0.928571,
+          "requestRoundTripMs": 174.051
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,439 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "packageId",
+    "profileId",
+    "target",
+    "qualificationSummary",
+    "preflight",
+    "performanceSamples",
+    "qualificationAttempts",
+    "preparationStageEvidence",
+    "preparationEvidence",
+    "performanceEnvironment",
+    "attempts",
+    "hardDeadlines",
+    "resourcePolicy",
+    "resourceOptimization",
+    "metrics",
+    "peakProcessTreeRssBytes",
+    "extractedSizeBytes",
+    "assessment"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "artifactKind": {
+      "const": "performance-assessment"
+    },
+    "packageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "profileId": {
+      "enum": ["english", "chinese"]
+    },
+    "target": {
+      "const": "darwin-arm64"
+    },
+    "qualificationSummary": {
+      "$ref": "#/$defs/summaryIdentity"
+    },
+    "preflight": {
+      "$ref": "#/$defs/preflightIdentity"
+    },
+    "performanceSamples": {
+      "$ref": "#/$defs/performanceIdentity"
+    },
+    "qualificationAttempts": {
+      "$ref": "#/$defs/attemptIdentity"
+    },
+    "performanceEnvironment": {
+      "enum": ["controlled", "loaded-host"]
+    },
+    "attempts": {
+      "$ref": "#/$defs/attemptCounts"
+    },
+    "hardDeadlines": {
+      "$ref": "#/$defs/hardDeadlines"
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "handshake",
+        "coldPreparation",
+        "warmPreparation",
+        "coldResult",
+        "warmRequest"
+      ],
+      "properties": {
+        "handshake": {
+          "$ref": "#/$defs/metric"
+        },
+        "coldPreparation": {
+          "$ref": "#/$defs/metric"
+        },
+        "warmPreparation": {
+          "$ref": "#/$defs/metric"
+        },
+        "coldResult": {
+          "$ref": "#/$defs/metric"
+        },
+        "warmRequest": {
+          "$ref": "#/$defs/metric"
+        }
+      }
+    },
+    "peakProcessTreeRssBytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "extractedSizeBytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "assessment": {
+      "enum": ["controlled-pass", "controlled-miss", "loaded-host-observation"]
+    },
+    "resourcePolicy": {
+      "$ref": "#/$defs/resourcePolicy"
+    },
+    "resourceOptimization": {
+      "$ref": "#/$defs/resourceOptimization"
+    },
+    "preparationStageEvidence": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/preparationStageEvidenceIdentity"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "preparationEvidence": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/preparationEvidence"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    }
+  },
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "summaryIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "qualification-summary-v2.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "preflightIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "darwin-arm64-preflight-v2.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "performanceIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "performance-samples-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "attemptIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "qualification-attempts-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "attemptCounts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["started", "succeeded", "failed", "timedOut", "excluded"],
+      "properties": {
+        "started": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "succeeded": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "failed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "timedOut": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "excluded": {
+          "const": 0
+        }
+      }
+    },
+    "hardDeadlines": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "helloMs",
+        "preparationMs",
+        "requestMs",
+        "gracefulShutdownMs",
+        "forcedShutdownMs",
+        "violations"
+      ],
+      "properties": {
+        "helloMs": {
+          "const": 2000
+        },
+        "preparationMs": {
+          "const": 30000
+        },
+        "requestMs": {
+          "const": 30000
+        },
+        "gracefulShutdownMs": {
+          "const": 2000
+        },
+        "forcedShutdownMs": {
+          "const": 2000
+        },
+        "violations": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sampleCount",
+        "p50Ms",
+        "p95Ms",
+        "maxMs",
+        "referenceTargetMs",
+        "referenceMet"
+      ],
+      "properties": {
+        "sampleCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "p50Ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "p95Ms": {
+          "type": "number",
+          "minimum": 0
+        },
+        "maxMs": {
+          "type": "number",
+          "minimum": 0
+        },
+        "referenceTargetMs": {
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "referenceMet": {
+          "type": "boolean"
+        }
+      }
+    },
+    "resourcePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "policyId",
+        "sha256",
+        "row",
+        "observedPeakProcessTreeRssBytes",
+        "hardCeilingMet"
+      ],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-profile-resource-policy-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "row": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "profileId",
+            "platform",
+            "architecture",
+            "hardProcessTreeRssCeilingBytes",
+            "assessmentOptimizationTargetBytes"
+          ],
+          "properties": {
+            "profileId": {
+              "enum": ["english", "chinese"]
+            },
+            "platform": {
+              "const": "darwin"
+            },
+            "architecture": {
+              "const": "arm64"
+            },
+            "hardProcessTreeRssCeilingBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "assessmentOptimizationTargetBytes": {
+              "type": "integer",
+              "minimum": 1
+            }
+          }
+        },
+        "observedPeakProcessTreeRssBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "hardCeilingMet": {
+          "type": "boolean"
+        }
+      }
+    },
+    "resourceOptimization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "targetBytes",
+        "observedPeakProcessTreeRssBytes",
+        "targetMet"
+      ],
+      "properties": {
+        "targetBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "observedPeakProcessTreeRssBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "targetMet": {
+          "type": "boolean"
+        }
+      }
+    },
+    "preparationStageEvidenceIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "preparation-stage-evidence-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "diagnosticContractIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["contractId", "fileName", "sha256"],
+      "properties": {
+        "contractId": {
+          "const": "autobyteus-voice-preparation-diagnostics-v1"
+        },
+        "fileName": {
+          "const": "preparation-diagnostics-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "stageEvidenceSchemaIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "preparation-stage-evidence-v1.schema.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "preparationEvidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "diagnosticContract",
+        "stageEvidenceSchema",
+        "qualificationClock",
+        "attemptCount",
+        "validAttemptCount",
+        "privacyDecision"
+      ],
+      "properties": {
+        "diagnosticContract": {
+          "$ref": "#/$defs/diagnosticContractIdentity"
+        },
+        "stageEvidenceSchema": {
+          "$ref": "#/$defs/stageEvidenceSchemaIdentity"
+        },
+        "qualificationClock": {
+          "const": "qualification-attempt-monotonic-v1"
+        },
+        "attemptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "validAttemptCount": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "privacyDecision": {
+          "enum": ["pass", "fail"]
+        }
+      }
+    }
+  }
+}

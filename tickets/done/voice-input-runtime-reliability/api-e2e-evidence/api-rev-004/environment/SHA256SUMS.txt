@@ -1,0 +1,7 @@
+783aee47be0b161577b847420dc56f6fbcf4da5acfadeb221d349670dd0022d5  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/environment/API-VOICE-003-004-quiescence-block.json
+0097390a84d30b84738a962636265a0cf1c7b54cd8b3fbd25db27a63869ef68b  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/environment/darwin-arm64-preflight-v1.json
+1084f2197c51f32ec16db526523196266697c69226e35c81d3b8a63f94b0019c  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/environment/darwin-arm64-preflight.log
+b5eb4e022a24850a406a4fb50179fd01752f61d93ab93225010125acca550708  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/environment/pmset-batt-after-preflight.txt
+f82ba35e68f370c4ed6d4fb5ac59548ac12850582724247088883855fbf18082  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/environment/top-consumers-after-preflight.txt
+e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/environment/voice-caffeinate.log
+ec109a2972069674065ea0c91b097ef7e1907cc538f3779bbc36e45640f0e7fa  tickets/in-progress/voice-input-runtime-reliability/api-e2e-evidence/api-rev-004/environment/voice-caffeinate.pid

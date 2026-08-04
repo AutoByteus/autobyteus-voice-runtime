@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-002",
+  "acceptanceCriteria": [
+    "AC-007",
+    "AC-009",
+    "AC-017"
+  ],
+  "expected": "Every final profile corpus validates before inference with unique clip IDs, resolved audio paths, and audio SHA-256 identities.",
+  "profiles": {
+    "english": {
+      "result": "Fail",
+      "manifestSha256": "30c4cc0c6d952de68e881b239e07fd47b80144e06f487bc964deb89e6144b46e",
+      "clipCount": 50,
+      "error": "Corpus duplicate or contained-path violation.",
+      "uniqueCounts": {
+        "id": 49,
+        "audioPath": 49,
+        "audioSha256": 49
+      },
+      "duplicates": {
+        "id": [
+          {
+            "value": "fleurs-en-2009",
+            "clipIds": [
+              "fleurs-en-2009",
+              "fleurs-en-2009"
+            ]
+          }
+        ],
+        "audioPath": [
+          {
+            "value": "audio/fleurs-en-2009.wav",
+            "clipIds": [
+              "fleurs-en-2009",
+              "fleurs-en-2009"
+            ]
+          }
+        ],
+        "audioSha256": [
+          {
+            "value": "d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
+            "clipIds": [
+              "fleurs-en-2009",
+              "fleurs-en-2009"
+            ]
+          }
+        ]
+      }
+    },
+    "chinese": {
+      "result": "Pass",
+      "manifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+      "clipCount": 200,
+      "corpusEvidence": {
+        "id": "fleurs-simplified-mandarin-profile-v2",
+        "manifestSha256": "f10e79f85842b153b461cb3c54309c0fdfcece54d0ec2b1219805309d5b9d787",
+        "provenanceReference": "evidence/selection-study/corpus-manifests/fleurs-simplified-mandarin-profile-v2.json",
+        "license": "CC-BY-4.0",
+        "redistributionApproved": true,
+        "consentReferenceDigest": "cf8ba68335e454c9e991233ce5bc7123a4ab7c87f82d9b6158bbe745985b7e70",
+        "uniqueIds": true,
+        "uniquePaths": true,
+        "uniqueAudioHashes": true,
+        "limitations": [
+          "FLEURS parquet does not expose speaker identity; gender labels are not speaker IDs."
+        ]
+      },
+      "duplicates": {
+        "id": [],
+        "audioPath": [],
+        "audioSha256": []
+      }
+    }
+  },
+  "englishBaseline": {
+    "path": "release/evidence/baselines/english-v1.json",
+    "sha256": "4cda09c10fa50e22981397c1be80f072b450da2154a0f604db40c940249927d1",
+    "resultCount": 50,
+    "uniqueClipIds": 49,
+    "uniqueAudioHashes": 49,
+    "duplicateResults": [
+      {
+        "identity": "fleurs-en-2009:d6b0b81a9bebf170ea3443b629cf2fa5a38ffcd6cbb2cbc99c50506ef8dc6fe7",
+        "count": 2
+      }
+    ]
+  },
+  "result": "Fail",
+  "observed": "The repository-owned English qualification corpus contains 50 rows but only 49 unique IDs, paths, and audio hashes; validateCorpus fails closed before package inference. The trusted English baseline repeats the same clip/audio identity."
+}

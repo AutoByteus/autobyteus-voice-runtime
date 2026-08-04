@@ -1,0 +1,198 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.com/voice/protocol-v1",
+  "oneOf": [
+    { "$ref": "#/$defs/hello" },
+    { "$ref": "#/$defs/lifecycle" },
+    { "$ref": "#/$defs/transcribe" },
+    { "$ref": "#/$defs/result" },
+    { "$ref": "#/$defs/requestError" },
+    { "$ref": "#/$defs/shutdown" },
+    { "$ref": "#/$defs/shutdownAck" }
+  ],
+  "$defs": {
+    "uuid": { "type": "string", "format": "uuid" },
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "platform": { "enum": ["darwin", "linux", "win32"] },
+    "architecture": { "enum": ["arm64", "x64"] },
+    "hello": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "protocolVersion",
+        "sessionId",
+        "packageId",
+        "providerId",
+        "modelId",
+        "profileId",
+        "languageMode",
+        "target",
+        "capabilityDigest"
+      ],
+      "properties": {
+        "type": { "const": "hello" },
+        "protocolVersion": { "const": 1 },
+        "sessionId": { "$ref": "#/$defs/uuid" },
+        "packageId": { "type": "string", "minLength": 1 },
+        "providerId": { "type": "string", "minLength": 1 },
+        "modelId": { "type": "string", "minLength": 1 },
+        "profileId": { "enum": ["english", "chinese", "auto"] },
+        "languageMode": { "enum": ["en", "zh", "auto"] },
+        "target": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["platform", "architecture"],
+          "properties": {
+            "platform": { "$ref": "#/$defs/platform" },
+            "architecture": { "$ref": "#/$defs/architecture" }
+          }
+        },
+        "capabilityDigest": { "$ref": "#/$defs/sha" }
+      }
+    },
+    "lifecycle": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "protocolVersion", "state"],
+          "properties": {
+            "type": { "const": "lifecycle" },
+            "protocolVersion": { "const": 1 },
+            "state": {
+              "enum": [
+                "model-preparing",
+                "inference-ready",
+                "shutting-down",
+                "stopped"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "protocolVersion", "state", "requestId"],
+          "properties": {
+            "type": { "const": "lifecycle" },
+            "protocolVersion": { "const": 1 },
+            "state": { "const": "transcribing" },
+            "requestId": { "$ref": "#/$defs/uuid" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["type", "protocolVersion", "state", "code"],
+          "properties": {
+            "type": { "const": "lifecycle" },
+            "protocolVersion": { "const": 1 },
+            "state": { "const": "failed" },
+            "code": {
+              "enum": [
+                "PACKAGE_INTEGRITY_FAILED",
+                "MODEL_PREPARATION_FAILED",
+                "INFERENCE_FAILED",
+                "PROTOCOL_INVALID",
+                "INTERNAL_FAILED"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "transcribe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "protocolVersion", "requestId", "audioPath"],
+      "properties": {
+        "type": { "const": "transcribe-file" },
+        "protocolVersion": { "const": 1 },
+        "requestId": { "$ref": "#/$defs/uuid" },
+        "audioPath": { "type": "string", "minLength": 1 }
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["audioDurationMs", "inferenceMs", "normalizationMs"],
+      "properties": {
+        "audioDurationMs": {
+          "type": "integer",
+          "minimum": 150,
+          "maximum": 30000
+        },
+        "inferenceMs": { "type": "number", "minimum": 0 },
+        "normalizationMs": { "type": "number", "minimum": 0 }
+      }
+    },
+    "result": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "type",
+        "protocolVersion",
+        "requestId",
+        "outcome",
+        "rawText",
+        "normalizedText",
+        "detectedLanguage",
+        "metrics"
+      ],
+      "properties": {
+        "type": { "const": "transcription-result" },
+        "protocolVersion": { "const": 1 },
+        "requestId": { "$ref": "#/$defs/uuid" },
+        "outcome": { "enum": ["transcript", "no-speech"] },
+        "rawText": { "type": "string" },
+        "normalizedText": { "type": "string" },
+        "detectedLanguage": { "enum": ["en", "zh", "unknown"] },
+        "metrics": { "$ref": "#/$defs/metrics" }
+      },
+      "allOf": [
+        {
+          "if": { "properties": { "outcome": { "const": "no-speech" } } },
+          "then": {
+            "properties": {
+              "rawText": { "const": "" },
+              "normalizedText": { "const": "" }
+            }
+          }
+        }
+      ]
+    },
+    "requestError": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "protocolVersion", "requestId", "code", "retryable"],
+      "properties": {
+        "type": { "const": "request-error" },
+        "protocolVersion": { "const": 1 },
+        "requestId": { "$ref": "#/$defs/uuid" },
+        "code": { "const": "INVALID_AUDIO" },
+        "retryable": { "const": false }
+      }
+    },
+    "shutdown": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "protocolVersion", "requestId"],
+      "properties": {
+        "type": { "const": "shutdown" },
+        "protocolVersion": { "const": 1 },
+        "requestId": { "$ref": "#/$defs/uuid" }
+      }
+    },
+    "shutdownAck": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "protocolVersion", "requestId"],
+      "properties": {
+        "type": { "const": "shutdown-ack" },
+        "protocolVersion": { "const": 1 },
+        "requestId": { "$ref": "#/$defs/uuid" }
+      }
+    }
+  }
+}

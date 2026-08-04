@@ -1,0 +1,84 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "performance-assessment",
+  "packageId": "voice.english.whisper-small-fp16.darwin-arm64",
+  "profileId": "english",
+  "target": "darwin-arm64",
+  "qualificationSummary": {
+    "fileName": "qualification-summary-v2.json",
+    "sha256": "6bea35cbcd556494255dbed82e2b0b99791ad63cfa35682b160f43f3f00483e2"
+  },
+  "preflight": {
+    "fileName": "darwin-arm64-preflight-v2.json",
+    "sha256": "1cdff523fdfbf26c0c7a9abc17a8882d6361d1c0934048b68b049dadadd3d877"
+  },
+  "performanceSamples": {
+    "fileName": "performance-samples-v1.json",
+    "sha256": "16a8e09628447e0fda72d0841b07d1a6774777c4153e4b16eb9a3ecdd234a7a1"
+  },
+  "qualificationAttempts": {
+    "fileName": "qualification-attempts-v1.json",
+    "sha256": "2855157412edf474fa4377e55ea451d7ec007db07221b65074c641355003c3bf"
+  },
+  "performanceEnvironment": "controlled",
+  "attempts": {
+    "started": 160,
+    "succeeded": 160,
+    "failed": 0,
+    "timedOut": 0,
+    "excluded": 0
+  },
+  "hardDeadlines": {
+    "helloMs": 2000,
+    "preparationMs": 30000,
+    "requestMs": 30000,
+    "gracefulShutdownMs": 2000,
+    "forcedShutdownMs": 2000,
+    "violations": 0
+  },
+  "metrics": {
+    "handshake": {
+      "sampleCount": 30,
+      "p50Ms": 463.89220899998327,
+      "p95Ms": 608.5852920000034,
+      "maxMs": 1078.9466250000005,
+      "referenceTargetMs": 1000,
+      "referenceMet": true
+    },
+    "coldPreparation": {
+      "sampleCount": 30,
+      "p50Ms": 4832.525208000006,
+      "p95Ms": 5790.622624999989,
+      "maxMs": 27417.873083,
+      "referenceTargetMs": 20000,
+      "referenceMet": true
+    },
+    "warmPreparation": {
+      "sampleCount": 30,
+      "p50Ms": 3974.997875000001,
+      "p95Ms": 4110.215708000003,
+      "maxMs": 4120.350000000035,
+      "referenceTargetMs": 10000,
+      "referenceMet": true
+    },
+    "coldResult": {
+      "sampleCount": 30,
+      "p50Ms": 8029.250291000004,
+      "p95Ms": 8798.928625,
+      "maxMs": 33495.669875,
+      "referenceTargetMs": 25000,
+      "referenceMet": true
+    },
+    "warmRequest": {
+      "sampleCount": 100,
+      "p50Ms": 162.7459159999853,
+      "p95Ms": 227.8650829999824,
+      "maxMs": 383.1123329999973,
+      "referenceTargetMs": 10000,
+      "referenceMet": true
+    }
+  },
+  "peakProcessTreeRssBytes": 1769275392,
+  "extractedSizeBytes": 1195561049,
+  "assessment": "controlled-pass"
+}

@@ -1,0 +1,5 @@
+# correction commit scope: retained API evidence -> verifier/test correction
+M	release/evidence/bindings.mjs
+M	tests/release/build-input-path-contract.test.mjs
+# production source after verifier/test correction -> current artifact HEAD
+# corrected production/test paths match exact correction commit

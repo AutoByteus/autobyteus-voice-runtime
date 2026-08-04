@@ -1,0 +1,11 @@
+file:///Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/benchmark/corpus/validate-corpus.mjs:29
+      throw new Error("Corpus duplicate or contained-path violation.");
+            ^
+
+Error: Corpus duplicate or contained-path violation.
+    at validateCorpus (file:///Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/benchmark/corpus/validate-corpus.mjs:29:13)
+    at async file:///Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/[eval1]:6:15
+
+Node.js v22.23.1
+exit_status=1
+exit_status=1

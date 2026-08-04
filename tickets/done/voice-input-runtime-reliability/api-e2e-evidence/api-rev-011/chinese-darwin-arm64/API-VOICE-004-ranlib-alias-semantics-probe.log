@@ -1,0 +1,33 @@
+### identities
+             275385 -rwxr-xr-x   1 root  wheel  426992 Nov  7  2025 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
+1152921500312571585 -rwxr-xr-x  78 root  wheel  118928 Jun 25 04:29 /usr/bin/ranlib
+/usr/bin/ranlib realpath= /usr/bin/ranlib
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool realpath= /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
+179301dcb41ea78accc3fa0048a7e6f6710d891945a751a34addd622020c1818  /usr/bin/ranlib
+d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
+### create archive
+warning: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib: archive library: /private/tmp/autobyteus-voice-api-e2e-r11-20260803/ranlib-alias-probe/base.a the table of contents is empty (no object file members in the library define global symbols)
+### alias invocation
+warning: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib: archive library: /private/tmp/autobyteus-voice-api-e2e-r11-20260803/ranlib-alias-probe/alias.a the table of contents is empty (no object file members in the library define global symbols)
+aliasExit=0
+### canonical invocation
+error: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool: no output file specified (specify with -o output)
+Usage: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -static [-] file [...] [-filelist listfile[,dirname]] [-arch_only arch] [-sacLT] [-no_warning_for_no_symbols]
+Usage: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool -dynamic [-] file [...] [-filelist listfile[,dirname]] [-arch_only arch] [-o output] [-install_name name] [-compatibility_version #] [-current_version #] [-seg1addr 0x#] [-segs_read_only_addr 0x#] [-segs_read_write_addr 0x#] [-seg_addr_table <filename>] [-seg_addr_table_filename <file_system_path>] [-all_load] [-noall_load]
+canonicalExit=1
+### result
+productionPreflightRanlibPath=/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
+aliasSucceeds=true
+canonicalFails=true
+### exact Xcode alias identity
+275385 -rwxr-xr-x  1 root  wheel  426992 Nov  7  2025 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
+275568 lrwxr-xr-x  1 root  wheel       7 Nov 24  2025 /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -> libtool
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib realpath= /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool realpath= /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
+d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib
+d12f4f90046f0e15261e578f5288b40f5750f3f5f606370e6252fc74099d94e6  /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/libtool
+### exact Xcode alias invocation
+warning: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib: archive library: /private/tmp/autobyteus-voice-api-e2e-r11-20260803/ranlib-alias-probe/xcode-alias.a the table of contents is empty (no object file members in the library define global symbols)
+xcodeAliasExit=0
+exactAliasAndCanonicalBytesEqual=true
+aliasPathSemanticsRequired=true
