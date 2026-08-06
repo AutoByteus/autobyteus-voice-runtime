@@ -5,154 +5,154 @@
 - Requirements: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
 - Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
 - Design: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
+- Release-pipeline authority: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/release-pipeline-ownership.md`
 - Supplemental authorities:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/benchmark-protocol.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/backend-selection-study.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/aggregate-results.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/SHA256SUMS.txt`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/english-preservation-correction.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/chinese-qualification-correction.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/chinese-qualification-v2/`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/current-platform-qualification.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/voice-runtime-contract.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/backend-selection-study.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/english-preservation-correction.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/chinese-qualification-correction.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/cold-preparation-stability-study.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/cold-preparation-stability/`
-- Revision and review authorities:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/backend-selection/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/chinese-qualification-v2/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/cold-preparation-stability/SHA256SUMS.txt`
+- Solution/review authority:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Triggering review and executable evidence:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-035-cold-preparation-resolution.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-036-api-f-014-origin.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/`
+- Historical implementation, review, API/E2E, and Delivery records:
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/docs-sync-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
   - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/release-deployment-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30881048872/failure-summary.md`
-  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30881048872/workflow.log`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30883225852/failure-summary.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30883225852/run.json`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30883225852/workflow.log`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30883225852/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-018/SHA256SUMS.txt`
 
 ## Current Implementation Summary
 
-`IR-025` is the delivery-rerouted durable-test correction after finalized-main prequalification run `30881048872` failed before preflight/build/qualification. Delivery correctly archived the ticket under `tickets/done/voice-input-runtime-reliability`, but two repository-resident tests still opened immutable retained evidence under the former `tickets/in-progress/...` location.
+`IR-026` implements the SR-015 through SR-017 release-ownership reset authorized by `ARCH-REV-018`. API/E2E now owns exact-source archive recovery and immutable candidate promotion; Delivery consumes that candidate on GitHub-hosted runners through only `pretag|publish`. The old Delivery-owned M1 build/profile/aggregate graph and `prequalify` operation are removed cleanly.
 
-The correction changes only those two literal fixture roots: the exact API-REV-016 Chinese build-input manifest regression and the exact API-REV-014 Chinese raw-result re-score now resolve the immutable bytes under the archived `tickets/done/...` path. Their existing SHA-256 assertions remain unchanged, so archival cannot silently substitute evidence. No path fallback, lifecycle probing, duplicated fixture, copied evidence, or runtime/release change was added.
+The recovery controller checks out exact qualified source `32829080938911f0f46390a3fd2af823e105bd32`, verifies the approved managed runner, closed inputs/toolchains, and network-denied command boundary, executes one build per profile without starting a provider or running qualification, and admits only the two exact API-REV-017 archive identities. It finalizes the exact eight raw files, then the raw-only checksum manifest, then a Result that binds that manifest.
 
-This branch is based on current `origin/main` `5531e83421dce859f9934c16e006c34cf5291cde`; the previously finalized release-candidate merge remains `a890d22031359f53d94c7c67bf183344fb35d904`. Runtime, provider, model, exact matrix, release workflow, loaded-host classification, and deferred x64/Linux/Windows/`auto` scope are byte-unchanged.
+The hosted promotion owner independently verifies every recovery byte, both opaque archives, accepted QSet/projection/API evidence, frozen source closures, and the exact 19-member allowlist. The final hosted release path verifies one immutable candidate pointer, computes fail-closed applicability, composes Release Evidence 2 -> Catalog 3 -> Pre-Tag Manifest 2, publishes exactly five files, re-downloads every byte, and retains tag-preserving quarantine evidence on verification failure.
 
-- Implementation cycle: `Rework / Local Fix`
-- Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision: `IR-025`
-- Related solution revisions: `SR-013`, `SR-014` (preserving prior authority through `SR-012`)
-- Related architecture revisions: `ARCH-REV-014`, `ARCH-REV-015`
-- Related code reviews: `CRR-037` source Pass; `CRR-038` API test review Not Applicable; current re-review pending
-- Related API/E2E: `API-REV-017` Pass; applicable post-fix validation pending
-- Related delivery revision: `DR-003` blocker reroute
-- Triggering finding: `N/A`; Delivery blocker from prequalification run `30881048872`
-- Current source/test correction commit: `f5c14ed9e9ad835e33eec20033f625d61d1e0173`
-- Current base: `origin/main` `5531e83421dce859f9934c16e006c34cf5291cde`
+- Implementation cycle: `Rework / Design Impact`
+- Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
+- Current implementation revision: `IR-026`
+- Related solution revisions: `SR-015`, `SR-016`, `SR-017`
+- Related architecture revisions: `ARCH-REV-016`, `ARCH-REV-017`, `ARCH-REV-018`
+- Related code reviews: prior `CRR-039`, `CRR-040`; current source review pending
+- Related API/E2E: retained `API-REV-017`, `API-REV-018`; recovery/promotion validation pending
+- Related Delivery revision: `DR-005`
+- Triggering findings: resolved `AR-F-015`, `AR-F-016`; Delivery ownership/availability blocker
+- Current implementation source commit: `b238f967cfee8be445808ac9499a91533bb7d58e`
+- Base: `origin/main` / `fd83e8681dfd4e98afdfa46cb691d31400565d70`
 - Product-iteration acceptance: `Not Required`
-- Result: `Implementation Complete — Ready for Code Re-review`
+- Result: `Implementation Complete — Ready for Code Review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior ID                                | Approved Change / Preserved Outcome                                                                                                    | Implemented Production Path / Key Files                                                                                                             | Result / Notes                                                                                                                                               |
-| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `BEH-001`, `BEH-003`                       | Runtime-only scope and bounded failure/termination behavior remain unchanged.                                                          | Existing launcher, session, protocol, recorder, and termination owners; raw stderr observation is additive and private.                             | No desktop, shared-checkout, user-state, tag, publication, provider, model, deadline, or retry change.                                                       |
-| `BEH-002`                                  | Chinese manifest verification remains mandatory before recognizer construction but no longer allocates model-sized buffers.            | `package_integrity.{h,cpp}`, `package_integrity_apple.cpp`, `session.cpp`, Apple-only `CMakeLists.txt`, refreshed Chinese input recipe.             | Fixed 1-MiB CommonCrypto reads; lowercase exact SHA-256; open/read/init/update/final failures remain fail-closed.                                            |
-| `BEH-004`, `BEH-008`                       | Preparation becomes privacy-safe and observable without changing public Protocol 1 or controlling/retrying the worker.                 | `preparation_diagnostics.{h,cpp}`, `contracts/diagnostics/preparation-diagnostics-v1.json`, exact boundaries in `main.cpp` and `funasr_engine.cpp`. | Ten canonical ASCII JSON+LF stderr records; no path, audio, transcript, identity, digest, command, or free-form error.                                       |
-| `BEH-004`, `BEH-007`, `BEH-008`            | Worker duration and qualification receipt/RSS time remain distinct and evidence joins are realizable.                                  | `preparation-diagnostics.mjs`, `rss-sampler.mjs`, `qualification-preparation.mjs`, `provider-process-session.mjs`, `run-profile-qualification.mjs`. | One pre-spawn monotonic origin; LF receipt timestamps; scan start/completion windows; boundary single flight plus periodic sampling; inclusive intersection. |
-| `BEH-007`, `BEH-009`, `BEH-010`            | Existing Summary -> Assessment -> QSet -> release chain remains acyclic and exact.                                                     | Stage Evidence schema, qualification evidence/assessment owners, QSet/release schemas, `bindings.mjs`, canonical Build Input Path 1 owner.          | Aggregate/profile verification now consumes the same path authority as materialization/package verification; all other evidence bindings are unchanged.      |
-| `BEH-004`, `BEH-010`                       | Finalized-main source verification must remain executable after required ticket archival.                                              | `tests/release/build-input-path-contract.test.mjs`, `tests/scoring/chinese-qualification.test.mjs`, immutable `tickets/done/...` evidence.          | Exact retained digest assertions pass from the durable archived location; workflow/runtime/release semantics are unchanged.                                  |
-| `BEH-005`, `BEH-006`, `BEH-011`, `BEH-012` | Exact two-package matrix, scorer/trust/resource policy, product normalization, WAV behavior, and no-context decision remain unchanged. | Existing reviewed matrix, scorer, baseline, policy, audio, normalization, and package owners.                                                       | Preserved; full-session max RSS remains hard authority and stage maxima are observational only.                                                              |
+| Behavior / Requirement                                            | Approved Change / Preserved Outcome                                                                                            | Implemented Production Path / Key Files                                                                                                                                      | Result / Notes                                                                                                                                                         |
+| ----------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| `BEH-013`, `R-022`, `AC-025`                                      | Recover only the exact already-qualified archive identities, once per profile, without retesting or a personal runner.         | `recover-qualified-voice-archives.yml`; `recover-qualified-voice-archives.mjs`; `recovery-{authority,build,evidence,raw-verifier,git-identity}.mjs`; Recovery Result schema. | Exact-source and darwin-arm64 managed-runner gates; no provider/corpus/performance command; mismatches block before candidate authority.                               |
+| `BEH-013`, `R-023`, `AC-026`                                      | Promote one immutable, independently verified 19-member candidate on hosted infrastructure.                                    | `promote-qualified-voice-candidate.yml`; `qualified-release-candidate.mjs`; candidate/promotion schemas and fixtures.                                                        | Rehashes all raw evidence and archives, requires the exact eight -> manifest -> Result order, rejects absent/extra/reverse/self members, and records no release claim. |
+| `BEH-013`, `R-024`, `AC-027`                                      | Make Relevant Source Closure the sole reuse authority and prohibit Delivery overrides.                                         | `relevant-source-closure-v1.json`; `source-closure.mjs`; `assess-qualified-candidate.mjs`; applicability schema/tests.                                                       | Canonical Git-object inventories/digests, strictest path classification, unknown fail-closed, ancestry proof, and no override option.                                  |
+| `BEH-007`, `BEH-010`, `R-008`, `R-014`, `R-017`, `R-019`, `R-020` | Preserve the acyclic runtime-first Release Evidence/Catalog/Pre-Tag/publication chain while removing Delivery requalification. | `release-voice-runtime.yml`; `evidence/assemble.mjs`; `catalog-builder.mjs`; `pretag-release-manifest.mjs`; `qualify-release.mjs`.                                           | Hosted `pretag                                                                                                                                                         | publish` only; exact five-file publication; published-byte result remains separate; quarantine never deletes or rewrites the tag. |
+| `BEH-001`–`BEH-012`                                               | Preserve all accepted runtime, provider/model, matrix, protocol, package, scoring, resource, and qualification behavior.       | Existing runtime/package/qualification source and retained API-REV-017/018 evidence.                                                                                         | No runtime/provider/model/threshold/count/deadline/package/profile source was changed or executed in this round.                                                       |
 
 ## Key Files Or Areas
 
-- Current IR-025 correction: `tests/release/build-input-path-contract.test.mjs`, `tests/scoring/chinese-qualification.test.mjs`.
-- Trigger evidence: `tickets/done/voice-input-runtime-reliability/delivery-evidence/prequalify-30881048872/`.
-- Current IR-024 verifier fix: `release/evidence/bindings.mjs`.
-- Current IR-024 focused coverage: `tests/release/build-input-path-contract.test.mjs` and immutable API-REV-016 Chinese manifest fixture.
-- Apple package integrity: `providers/chinese-funasr/src/package_integrity.{h,cpp}`, `package_integrity_apple.cpp`, `session.cpp`, `providers/chinese-funasr/CMakeLists.txt`, Chinese input recipe.
-- Worker diagnostics: `providers/chinese-funasr/src/preparation_diagnostics.{h,cpp}`, `main.cpp`, `funasr_engine.{h,cpp}`, `contracts/diagnostics/preparation-diagnostics-v1.json`.
-- Qualification clock/RSS/stage evidence: `benchmark/preparation-diagnostics.mjs`, `benchmark/rss-sampler.mjs`, `benchmark/qualification-preparation.mjs`, `benchmark/provider-process-session.mjs`, `benchmark/run-profile-qualification.mjs`, `contracts/qualification/preparation-stage-evidence-v1.schema.json`.
-- Evidence propagation: `benchmark/profile-qualification-evidence.mjs`, `benchmark/performance-assessment.mjs`, strict Summary/Assessment/QSet/Release Evidence schemas, `release/evidence/{qualification-set,bindings}.mjs`, `build/package-assembler.mjs`.
-- Focused coverage: `tests/build/chinese-preparation-runtime.test.mjs`, `tests/benchmark/preparation-diagnostics.test.mjs`, `tests/benchmark/provider-process-session.test.mjs`, and adjusted release evidence fixtures.
+- Recovery orchestration: `.github/workflows/recover-qualified-voice-archives.yml`, `release/recover-qualified-voice-archives.mjs`, `release/recovery-*.mjs`.
+- Candidate authority: `.github/workflows/promote-qualified-voice-candidate.yml`, `release/qualified-release-candidate.mjs`, candidate and promotion schemas.
+- Applicability: `contracts/release/relevant-source-closure-v1.json`, `release/source-closure.mjs`, `release/assess-qualified-candidate.mjs`.
+- Minimal Delivery: `.github/workflows/release-voice-runtime.yml`, candidate-derived Release Evidence/Catalog/Pre-Tag/qualification owners.
+- Focused validation: `tooling/check-release-pipeline.mjs` and the five new `tests/release/qualified-*`, `relevant-source-closure`, and `release-workflow-boundary` files.
+- Clean-cut stale assertions: `tests/build/trusted-native-environment.test.mjs`, `tests/release/qualification-gates.test.mjs`, and `tests/release/current-platform-contracts.test.mjs` no longer require the removed Delivery build/profile graph.
 
 ## Important Assumptions
 
-- `tickets/done/voice-input-runtime-reliability` is the finalized durable ticket location; tests must not probe both lifecycle states.
-- Retained evidence remains protected by its existing exact SHA-256 assertions after path relocation.
-- Build Input Path 1 is the sole source-input path grammar; Provider Archive 1 remains a separate output-path policy.
-- API-REV-016 profile evidence remains attributable to source/runner commit `3282908...`; a downstream aggregate-only rerun must record `5c8afe4...` as `testCommit`, not relabel profile output.
-- `elapsedUs` is worker-process monotonic duration evidence only; it is never mapped to qualification time.
-- `receivedAtUs`, `startedAtUs`, and `completedAtUs` are attempt-local safe-integer microsecond offsets and are meaningful only within their exact attempt identity.
-- A stage's overlapping RSS maximum is nonexclusive observation evidence. It cannot replace, lower, or override complete-session `maxRssBytes`.
-- The CommonCrypto backend is intentionally Apple-only for the exact current Chinese darwin-arm64 package. Unsupported current-target compilation fails rather than choosing a scalar or portable runtime fallback.
+- Organization-managed Apple Silicon recovery capacity, exact historical locked inputs/toolchains, and GitHub artifact retention are downstream operational prerequisites; there is no personal-machine fallback.
+- Archive recovery establishes exact identity only. It never creates a new functional or performance qualification decision.
+- The two archives remain opaque through candidate promotion and Delivery; verification hashes and inspects only the approved internal descriptor identity, never executes them.
+- Candidate Promotion Record `release/candidates/v1.0.0.json` is intentionally absent until API/E2E successfully uploads and verifies the exact candidate.
+- The reviewed source-closure policy remains fail-closed. The clean-cut removal of two stale workflow assertions touches paths currently categorized as aggregate authority, so downstream API/E2E must resolve the resulting `aggregate-api-renewal-required` decision before promotion; implementation does not override or relabel it.
 
 ## Known Risks And Remaining Work
 
-- Source review and applicable API/E2E validation remain required before return to Delivery.
-- Prequalification run `30881048872` remains a truthful failed historical attempt. No tag, GitHub Release, Catalog 3, release evidence, manifest, or published-byte result exists.
-- Delivery must refresh/integrate the reviewed fix and rerun the guarded finalized-main prequalification. Loaded-host performance remains observational rather than controlled certification; x64/Linux/Windows/`auto` remain deferred.
+- Code Review is required before API/E2E performs actual archive recovery or hosted candidate promotion.
+- No production recovery artifact, candidate artifact, promotion record, applicability record, pre-tag bundle, tag, GitHub Release, or published-byte result exists yet.
+- Exact archive reconstruction may fail on a managed runner if any locked input/toolchain/source byte is unavailable or differs; the implementation intentionally blocks rather than substitutes or requalifies.
+- Focused downstream review must address the truthful aggregate-impact classification of the clean-cut stale test-assertion removals before a candidate can become `reuse-permitted`.
+- Loaded-host performance remains historical observation; x64/Linux/Windows/`auto` and desktop integration remain deferred.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: `Bug Fix / Release Hardening`.
-- Reviewed root-cause classification: `Local Implementation Defect` in durable test fixture location after ticket archival.
-- Reviewed refactor decision: no; two exact lifecycle-final paths require literal correction only.
+- Reviewed change posture: `Release ownership / pipeline redesign after Delivery Design Impact`.
+- Reviewed root-cause classification: `Boundary Or Ownership Issue` plus a bounded evidence-direction invariant.
+- Reviewed refactor decision: `Refactor Needed Now` — remove Delivery requalification and introduce explicit recovery, candidate, applicability, and hosted publication owners.
 - Implementation matched the reviewed assessment: `Yes`.
-- If challenged, routed as Design Impact: `N/A`; Delivery established the exact supported workflow and both ENOENT owners.
-- Evidence / notes: no runtime owner, release boundary, contract, or evidence content changed.
+- If challenged, routed as Design Impact: `N/A`; SR-015 through SR-017 and ARCH-REV-018 already resolved the ownership/evidence design findings.
+- Evidence / notes: production spine is now managed recovery -> hosted promotion -> final-main applicability -> hosted pretag -> publish/download verification; no caller bypasses candidate/applicability authority.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`.
-- Legacy old behavior retained in scope: `No`; former `tickets/in-progress/...` fixture references are removed without fallback.
-- Dead/obsolete paths removed in scope: `Yes`; both stale test paths are gone.
-- Shared structures remain tight: `Yes`; no new abstraction was introduced for two fixed archived artifacts.
+- Legacy old behavior retained in scope: `No`; `prequalify`, the Delivery M1 profile matrix, self-hosted/personal labels, build/materialization, provider/corpus/performance execution, purge, and caffeinate paths are absent from the production release workflow.
+- Dead/obsolete paths removed in scope: `Yes`; stale tests now assert the hosted candidate boundary rather than the removed Delivery build graph.
+- Shared structures remain tight: `Yes`; raw recovery evidence, Result, candidate, promotion pointer, applicability, and release artifacts are distinct strict schemas.
 - Canonical shared design guidance reapplied: `Yes`.
-- Changed source guardrails: `Not Applicable`; only two test literals changed.
-- Notes: no dual-path lookup, filesystem fallback, copied evidence, runtime change, or release-semantic change was added.
+- Changed source guardrails: `Yes`; changed implementation files remain below 500 effective lines. The two largest orchestration owners were split into concrete Git-identity/raw-verification and build/evidence concerns.
+- Notes: no compatibility alias, `latest` lookup, fallback runner, identity relaxation, dual evidence edge, or old workflow operation remains.
 
 ## Persisted Data Transition Check
 
-- Approved decision: `Discard or Rebuild` for generated current qualification/release candidates; immutable historical evidence remains unchanged.
-- Design reference: `design-spec.md` SR-014 evidence structures, final file mapping, and change sequence.
-- Implementation follows the approved decision without an unapproved migration or runtime fallback: `Yes`.
-- Result: persisted/user/runtime data is unaffected; archived evidence bytes remain immutable and are only read from their final durable location.
+- Approved decision: `Discard or Rebuild` for generated recovery/candidate/release artifacts; retained historical evidence is immutable and directly consumed by exact identity.
+- Design reference: `design-spec.md` SR-017 persistence/data-lifecycle and clean-cut mapping sections.
+- Implementation follows the decision without migration or runtime fallback: `Yes`.
+- Result: no user/application/runtime data changes; failed or partial generated artifacts never become candidate/release authority.
 - Deviation: `None`.
 
 ## Environment Or Dependency Notes
 
-- Local Go checks used exact pinned `/tmp/autobyteus-go1.26.5-v1/go/bin/go` through `VOICE_GO` and `PATH`.
-- `npm ci` installed the exact lockfile dependencies in the isolated implementation worktree. No dependency lock, package, native toolchain, input, provider/model, shared state, profile artifact, archive, or release asset changed in IR-025.
+- No dependency or lockfile changed. `package.json` adds only the focused `check:release-pipeline` facade.
+- Full local checks used the exact pinned Go executable `/tmp/autobyteus-go1.26.5-v1/go/bin/go` through `VOICE_GO` and `PATH`.
+- Implementation did not provision a managed runner, retrieve multi-gigabyte archives, or start/build/qualify a provider.
 
 ## Local Implementation Checks Run
 
-- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — pass: source/schema guards; 7/7 Python tests plus compileall; all Go tests/guards; English-v2 and Chinese-v2 authority checks; 111/111 Node TAP tests.
-- Exact previously failing tests — `node --test tests/release/build-input-path-contract.test.mjs tests/scoring/chinese-qualification.test.mjs` passed 9/9, including the unchanged API-REV-016 manifest digest and API-REV-014 `342/6580` re-score.
-- Commit-scope proof — `f5c14ed...` changes only the two declared test literals (`2` insertions / `2` deletions); no runtime/provider/model/matrix/workflow/contract/evidence byte changed.
-- Authored-file Prettier and `git diff --check` — pass.
+- `npm run check:release-pipeline` — pass: strict schemas/source scan plus 21/21 focused Node tests. Coverage includes exact eight-member raw closure, forward-only manifest/Result order, 19-member candidate, archive/raw/member drift, promotion identity, frozen closures, path classification, workflow boundaries, and trusted recovery-builder composition.
+- `PATH=/tmp/autobyteus-go1.26.5-v1/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-v1/go/bin/go npm run check` — pass: source guards; 7/7 Python tests plus compileall; all Go tests/guards; English-v2 and Chinese-v2 evidence checks; 131/131 Node TAP tests.
+- Changed JSON parse — pass for all seven changed/new JSON documents.
+- Authored-file Prettier check, source-size guard, and `git diff --check` — pass.
 
-These are implementation-scoped checks only, not API/E2E qualification or downstream acceptance.
+These are implementation-scoped source/unit/contract checks only. They are not API/E2E recovery, candidate promotion, actual release, or publication evidence.
 
 ## Frontend Rendered-Result Check
 
-Not Applicable — runtime worker, qualification, evidence, and release-contract source only; no rendered frontend or user interaction changed.
+Not Applicable — runtime release-pipeline contracts, commands, workflows, and tests only; no rendered frontend or user interaction changed.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-- Confirm the branch is based on current origin/main `5531e83...` and the correction commit touches only the two test paths.
-- Re-run both exact tests and the full repository check from an archived-ticket checkout where no `tickets/in-progress/voice-input-runtime-reliability` directory exists.
-- Preserve loaded-host performance classification, exact two-entry darwin-arm64 matrix, deferred x64/Linux/Windows/`auto`, and runtime-only release boundary.
-- After source/API validation, return the cumulative package to Delivery for maintained-main refresh/integration and a new guarded prequalification attempt.
+- Re-review all recovery controller and workflow paths for exact source/runner/input/network boundaries and prove they never invoke provider/profile qualification.
+- Exercise exact managed-runner recovery with the approved inputs, verify all eight raw members and manifest/Result order, and reject wrong archive/source/toolchain/network identities.
+- On hosted promotion, retrieve the exact recovery artifact by ID/run/head, reject every absent/extra/reordered/drifted member, then upload one exact 19-member candidate and commit its immutable Promotion Record.
+- Recompute source closures and resolve any aggregate authority renewal before expecting `reuse-permitted`; do not add an override.
+- After source/API acceptance, Delivery should test hosted pretag/publish separation, exact five-file publication, downloaded-byte verification, and tag-preserving quarantine without any build/runtime/profile command.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-Yes. API/E2E remains paused until Code Review passes `IR-025`; no new prequalification or release pass is claimed here.
+Yes. API/E2E must not begin actual recovery/promotion until Code Review passes this source. Full provider/profile qualification is explicitly not repeated unless Relevant Source Closure later requires it.
