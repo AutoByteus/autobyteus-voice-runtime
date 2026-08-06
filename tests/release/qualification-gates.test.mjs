@@ -55,19 +55,20 @@ test("candidate history retains selected and unsuccessful improvement lanes by e
     );
   }
 });
-test("release workflow qualifies before creating a tag and has no tag trigger", async () => {
+test("release workflow verifies the promoted candidate before creating a tag and has no tag trigger", async () => {
   const workflow = await fs.readFile(
     path.join(root, ".github/workflows/release-voice-runtime.yml"),
     "utf8",
   );
   assert.match(workflow, /workflow_dispatch:/);
   assert.doesNotMatch(workflow, /tags:\s*\n/);
-  const qualify = workflow.lastIndexOf("node release/qualify-release.mjs"),
+  const applicability = workflow.lastIndexOf(
+      "node release/assess-qualified-candidate.mjs",
+    ),
+    qualify = workflow.lastIndexOf("node release/qualify-release.mjs"),
     tag = workflow.lastIndexOf("git tag -a");
-  assert.ok(qualify >= 0 && tag > qualify);
-  assert.match(
-    workflow,
-    /node build\/verify-go-toolchain\.mjs --go "\$VOICE_GO"/,
-  );
+  assert.ok(applicability >= 0 && qualify > applicability && tag > qualify);
+  assert.doesNotMatch(workflow, /node build\/verify-go-toolchain\.mjs/);
+  assert.doesNotMatch(workflow, /prequalify|self-hosted|sandbox-exec/);
   assert.doesNotMatch(workflow, /\$VOICE_GO version/);
 });

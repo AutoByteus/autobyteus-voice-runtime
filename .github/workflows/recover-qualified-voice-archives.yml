@@ -1,0 +1,78 @@
+name: Recover exact qualified voice archives
+on:
+  workflow_dispatch:
+    inputs:
+      runtime_version:
+        description: Exact already-qualified package version
+        required: true
+        default: 1.0.0
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: recover-qualified-voice-archives-v1.0.0
+  cancel-in-progress: false
+jobs:
+  recover:
+    runs-on:
+      group: voice-runtime-recovery
+      labels: [self-hosted, macOS, ARM64]
+    steps:
+      - name: Check out reviewed recovery controller
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          path: controller
+      - name: Check out exact qualified package source
+        uses: actions/checkout@v4
+        with:
+          ref: 32829080938911f0f46390a3fd2af823e105bd32
+          fetch-depth: 0
+          path: qualified-source
+      - name: Prepare exact recovery controller inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "${{ inputs.runtime_version }}" = 1.0.0
+          test "$(node --version)" = v22.23.1
+          test "$(git -C qualified-source rev-parse HEAD)" = 32829080938911f0f46390a3fd2af823e105bd32
+          test -z "$(git -C qualified-source status --porcelain)"
+          (cd controller && npm ci --ignore-scripts)
+          (cd qualified-source && npm ci --ignore-scripts)
+          PREFLIGHT="$GITHUB_WORKSPACE/controller/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/environment/darwin-arm64-preflight-v2.json"
+          node - "$GITHUB_WORKSPACE/recovery-config.json" "$PREFLIGHT" <<'NODE'
+          const fs=require('fs');
+          const [output,preflight]=process.argv.slice(2);
+          const value={
+            qualifiedSource:`${process.env.GITHUB_WORKSPACE}/qualified-source`,
+            output:`${process.env.GITHUB_WORKSPACE}/recovered`,
+            cacheRoot:process.env.VOICE_INPUT_CACHE_ROOT,
+            go:process.env.VOICE_GO,
+            cmake:process.env.VOICE_CMAKE,
+            preflight,
+            runnerGroup:'voice-runtime-recovery',
+            runnerId:`org-managed-voice-recovery-${process.env.RUNNER_NAME}`,
+            workflowRunId:process.env.GITHUB_RUN_ID,
+            controllerCommit:process.env.GITHUB_SHA
+          };
+          if(!value.cacheRoot||!value.go||!value.cmake) process.exit(1);
+          fs.writeFileSync(output,`${JSON.stringify(value,null,2)}\n`);
+          NODE
+      - name: Recover each exact archive once and finalize acyclic evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd controller
+          node release/recover-qualified-voice-archives.mjs \
+            --config "$GITHUB_WORKSPACE/recovery-config.json"
+      - name: Retain exact recovery result and opaque archives
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qualified-archive-recovery-v1.0.0-${{ github.run_id }}
+          path: |
+            recovered/recovery/
+            recovered/assets/*.zip
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0

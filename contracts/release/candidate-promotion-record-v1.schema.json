@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.org/contracts/release/candidate-promotion-record-v1.schema.json",
+  "title": "Candidate Promotion Record 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "packageVersion",
+    "repository",
+    "workflow",
+    "artifact",
+    "candidateManifest"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "packageVersion": { "const": "1.0.0" },
+    "repository": { "const": "AutoByteus/autobyteus-voice-runtime" },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "runId", "headSha", "conclusion"],
+      "properties": {
+        "path": {
+          "const": ".github/workflows/promote-qualified-voice-candidate.yml"
+        },
+        "runId": { "type": "integer", "minimum": 1 },
+        "headSha": { "$ref": "#/$defs/commit" },
+        "conclusion": { "const": "success" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "expiresAt"],
+      "properties": {
+        "id": { "type": "integer", "minimum": 1 },
+        "name": {
+          "type": "string",
+          "pattern": "^qualified-release-candidate-v1\\.0\\.0-[a-f0-9]{40}$"
+        },
+        "expiresAt": { "type": "string", "format": "date-time" }
+      }
+    },
+    "candidateManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": { "const": "qualified-release-candidate-v1.json" },
+        "sizeBytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/digest" }
+      }
+    }
+  },
+  "$defs": {
+    "digest": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    }
+  }
+}

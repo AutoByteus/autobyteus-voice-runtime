@@ -17,10 +17,6 @@ import { materializeReleaseInputs } from "../../build/materialize-release-inputs
 import { loadCurrentReleaseMatrix } from "../../release/current-release-matrix.mjs";
 import { composeBranchCatalogProjection } from "../../release/branch-catalog-projection.mjs";
 import { verifyBranchCatalogProjection } from "../../release/verify-branch-catalog-projection.mjs";
-import { buildReleaseCatalog } from "../../release/catalog-builder.mjs";
-import { assembleReleaseEvidence } from "../../release/evidence/assemble.mjs";
-import { assemblePreTagReleaseManifest } from "../../release/pretag-release-manifest.mjs";
-import { qualifyRelease } from "../../release/qualify-release.mjs";
 import { verifyPublishedAssets } from "../../release/verify-published-assets.mjs";
 import { quarantinePublishedRelease } from "../../release/quarantine-published-release.mjs";
 
@@ -282,41 +278,14 @@ test("branch projection is release-neutral, exact, and independently byte-recomp
   }
 });
 
-test("release chain is acyclic and published verification is a separate always-written result", async () => {
+test("published verification remains separate from immutable pre-tag truth", async () => {
   const fixture = await lifecycleFixture();
   try {
-    await buildReleaseCatalog({
-      qualificationSetPath: fixture.qsetPath,
-      releaseEvidencePath: fixture.evidencePath,
-      releaseTag: "v99.99.99",
-      baseUrl: "https://github.com/autobyteus/runtime/releases/download",
-      output: fixture.catalogPath,
-    });
-    await assemblePreTagReleaseManifest({
-      qualificationSetPath: fixture.qsetPath,
-      releaseEvidencePath: fixture.evidencePath,
-      catalogPath: fixture.catalogPath,
-      assets: fixture.assets,
-      output: fixture.manifestPath,
-    });
-    await qualifyRelease({
-      manifestPath: fixture.manifestPath,
-      qualificationSetPath: fixture.qsetPath,
-      releaseEvidencePath: fixture.evidencePath,
-      catalogPath: fixture.catalogPath,
-      assets: fixture.assets,
-      maintainedMainCommit: commit,
-      output: fixture.pretagProof,
-    });
+    await writePublicationFixture(fixture);
     const evidence = await readJson(fixture.evidencePath),
-      catalog = await readJson(fixture.catalogPath),
       manifest = await readJson(fixture.manifestPath);
     assert.equal(Object.hasOwn(evidence, "catalog"), false);
     assert.equal(Object.hasOwn(evidence, "publishedVerification"), false);
-    assert.equal(
-      catalog.releaseEvidence.sha256,
-      await shaFile(fixture.evidencePath),
-    );
     assert.equal(manifest.catalog.sha256, await shaFile(fixture.catalogPath));
     assert.equal(
       manifest.releaseEvidence.sha256,
@@ -382,20 +351,7 @@ test("release chain is acyclic and published verification is a separate always-w
 test("quarantine deletes only the failed GitHub Release and proves the tag is unchanged", async () => {
   const fixture = await lifecycleFixture();
   try {
-    await buildReleaseCatalog({
-      qualificationSetPath: fixture.qsetPath,
-      releaseEvidencePath: fixture.evidencePath,
-      releaseTag: "v99.99.99",
-      baseUrl: "https://github.com/autobyteus/runtime/releases/download",
-      output: fixture.catalogPath,
-    });
-    await assemblePreTagReleaseManifest({
-      qualificationSetPath: fixture.qsetPath,
-      releaseEvidencePath: fixture.evidencePath,
-      catalogPath: fixture.catalogPath,
-      assets: fixture.assets,
-      output: fixture.manifestPath,
-    });
+    await writePublicationFixture(fixture);
     await assert.rejects(
       verifyPublishedAssets({
         manifestPath: fixture.manifestPath,
@@ -406,6 +362,7 @@ test("quarantine deletes only the failed GitHub Release and proves the tag is un
       }),
     );
     const calls = [];
+    let releaseLookups = 0;
     await quarantinePublishedRelease({
       verificationPath: fixture.publishedResult,
       releaseTag: "v99.99.99",
@@ -414,7 +371,7 @@ test("quarantine deletes only the failed GitHub Release and proves the tag is un
       request: async (method, apiPath) => {
         calls.push([method, apiPath]);
         if (method === "DELETE") return null;
-        if (apiPath.includes("releases/tags") && calls.length > 3)
+        if (apiPath.includes("releases/tags") && ++releaseLookups > 1)
           throw Object.assign(new Error("absent"), { status: 404 });
         if (apiPath.includes("releases/tags"))
           return { id: 42, tag_name: "v99.99.99" };
@@ -438,29 +395,23 @@ test("quarantine deletes only the failed GitHub Release and proves the tag is un
   }
 });
 
-test("workflow derives two current jobs and preserves post-publication separation", async () => {
+test("workflow consumes a hosted candidate and preserves post-publication separation", async () => {
   const workflow = await fs.readFile(
     path.join(root, ".github/workflows/release-voice-runtime.yml"),
     "utf8",
   );
-  assert.match(
+  assert.match(workflow, /options: \[pretag, publish\]/);
+  assert.equal((workflow.match(/runs-on: ubuntu-24\.04/g) ?? []).length, 2);
+  assert.match(workflow, /release\/candidates\/v1\.0\.0\.json/);
+  assert.match(workflow, /qualified-release-candidate\.mjs --operation verify/);
+  assert.match(workflow, /release-candidate-applicability-v1\.json/);
+  assert.doesNotMatch(
     workflow,
-    /fromJSON\(needs\.current-release-matrix\.outputs\.build\)/,
+    /prequalify|self-hosted|run-profile-qualification/,
   );
-  assert.match(workflow, /max-parallel: 1/);
-  assert.match(
-    workflow,
-    /uses: actions\/upload-artifact@v4\n\s+if: always\(\)[\s\S]*?name: qualified-\$\{\{ matrix\.profile \}\}-\$\{\{ matrix\.target \}\}/,
-  );
-  assert.match(
-    workflow,
-    /aggregate-pretag:[\s\S]*?if: always\(\) && inputs\.operation == 'prequalify'/,
-  );
-  assert.match(workflow, /Retain qualification audit on pass, fail, or block/);
   assert.doesNotMatch(workflow, /darwin-x64|linux-x64|win32-x64/);
   assert.match(workflow, /pretag-release-manifest-v2\.json/);
-  assert.match(workflow, /baselines\/\$\{\{ matrix\.profile \}\}-v2\.json/);
-  assert.doesNotMatch(workflow, /chinese-v1/);
+  assert.doesNotMatch(workflow, /baselines\/|qualification-corpora\//);
   assert.doesNotMatch(workflow, /pretag-release-manifest-v1\.json/);
   assert.match(workflow, /Always record published-byte verification/);
   assert.match(
@@ -519,14 +470,6 @@ async function lifecycleFixture() {
     temp,
     "release-qualification-evidence-v2.json",
   );
-  await assembleReleaseEvidence({
-    qualificationSetPath: qsetPath,
-    assets,
-    runtimeVersion: "99.99.99",
-    releaseTag: "v99.99.99",
-    maintainedMainCommit: commit,
-    output: evidencePath,
-  });
   return {
     temp,
     assets,
@@ -543,6 +486,64 @@ async function lifecycleFixture() {
     pretagProof: path.join(temp, "pretag-proof.json"),
     publishedResult: path.join(temp, "published-result.json"),
     quarantineResult: path.join(temp, "quarantine-result.json"),
+  };
+}
+
+async function writePublicationFixture(fixture) {
+  const evidence = {
+      schemaVersion: 2,
+      intendedRelease: { releaseTag: "v99.99.99" },
+      releaseQualification: "fixture",
+    },
+    catalog = { schemaVersion: 3, entries: [] };
+  await writeJson(fixture.evidencePath, evidence);
+  await writeJson(fixture.catalogPath, catalog);
+  const matrix = await loadCurrentReleaseMatrix(),
+    qset = await readJson(fixture.qsetPath),
+    archives = qset.profiles
+      .map(({ archive }) => ({
+        fileName: archive.fileName,
+        sizeBytes: archive.sizeBytes,
+        sha256: archive.sha256,
+      }))
+      .sort((left, right) =>
+        Buffer.compare(Buffer.from(left.fileName), Buffer.from(right.fileName)),
+      ),
+    manifest = {
+      schemaVersion: 2,
+      intendedRelease: {
+        runtimeVersion: "99.99.99",
+        releaseTag: "v99.99.99",
+        sourceCommit: commit,
+      },
+      releaseMatrix: { matrixId: matrix.value.matrixId, sha256: matrix.sha256 },
+      qualificationSet: await fileIdentity(fixture.qsetPath),
+      releaseEvidence: await fileIdentity(fixture.evidencePath),
+      catalog: await fileIdentity(fixture.catalogPath),
+      providerArchives: {
+        sha256: sha256(Buffer.from(`${JSON.stringify(archives)}\n`)),
+        items: archives,
+      },
+      publishedPayloadSetSha256: sha256(
+        Buffer.from(
+          `${JSON.stringify([
+            ...(await Promise.all([
+              fileIdentity(fixture.catalogPath),
+              fileIdentity(fixture.evidencePath),
+            ])),
+            ...archives,
+          ])}\n`,
+        ),
+      ),
+    };
+  await writeJson(fixture.manifestPath, manifest);
+}
+
+async function fileIdentity(file) {
+  return {
+    fileName: path.basename(file),
+    sizeBytes: (await fs.stat(file)).size,
+    sha256: await shaFile(file),
   };
 }
 

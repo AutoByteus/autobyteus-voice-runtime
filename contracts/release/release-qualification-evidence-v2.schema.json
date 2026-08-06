@@ -9,6 +9,11 @@
     "sourceCommit",
     "runnerCommit",
     "testCommit",
+    "qualifiedSourceCommit",
+    "qualificationAuthority",
+    "candidatePromotionRecord",
+    "qualifiedCandidate",
+    "sourceClosure",
     "releaseMatrix",
     "profileResourcePolicy",
     "qualificationSet",
@@ -112,6 +117,86 @@
     },
     "profileResourcePolicy": {
       "$ref": "#/$defs/policyIdentity"
+    },
+    "qualifiedSourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "qualificationAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceCommit",
+        "runnerCommit",
+        "testCommit",
+        "apiApprovalCommit",
+        "apiRevision"
+      ],
+      "properties": {
+        "sourceCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "runnerCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "testCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "apiApprovalCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "apiRevision": {
+          "const": "API-REV-017"
+        }
+      }
+    },
+    "candidatePromotionRecord": {
+      "$ref": "#/$defs/file"
+    },
+    "qualifiedCandidate": {
+      "$ref": "#/$defs/file"
+    },
+    "sourceClosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policy", "applicability"],
+      "properties": {
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policyId", "fileName", "sha256"],
+          "properties": {
+            "policyId": {
+              "const": "voice-runtime-relevant-source-closure-v1"
+            },
+            "fileName": {
+              "const": "relevant-source-closure-v1.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            }
+          }
+        },
+        "applicability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fileName", "sizeBytes", "sha256", "decision"],
+          "properties": {
+            "fileName": {
+              "const": "release-candidate-applicability-v1.json"
+            },
+            "sizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "$ref": "#/$defs/sha"
+            },
+            "decision": {
+              "const": "reuse-permitted"
+            }
+          }
+        }
+      }
     }
   },
   "$defs": {

@@ -442,38 +442,6 @@ test("resolved CMake selection must match the bound environment", async () => {
   }
 });
 
-test("every current package builder consumes the trusted owner", async () => {
-  const assembler = await fs.readFile(
-      path.join(root, "build/package-assembler.mjs"),
-      "utf8",
-    ),
-    native = await fs.readFile(
-      path.join(root, "build/profile-builders/funasr.mjs"),
-      "utf8",
-    ),
-    python = await fs.readFile(
-      path.join(root, "build/python/materialize-runtime.mjs"),
-      "utf8",
-    ),
-    workflow = await fs.readFile(
-      path.join(root, ".github/workflows/release-voice-runtime.yml"),
-      "utf8",
-    );
-  assert.match(assembler, /assertNoUntrustedNativeBuildOverrides\(\)/);
-  assert.match(assembler, /consumeTrustedNativeBuildEnvironment/);
-  assert.doesNotMatch(assembler, /createTrustedNativeBuildEnvironment/);
-  assert.match(assembler, /--build-environment/);
-  assert.match(assembler, /materializeTrustedToolDirectory/);
-  assert.match(native, /cmakeConfigureArguments\(context\.buildEnvironment\)/);
-  assert.match(native, /env: nativeEnvironment/);
-  assert.match(python, /context\.buildEnvironment\.tools\.tar\.path/);
-  assert.doesNotMatch(python, /run\("tar"/);
-  assert.match(
-    workflow,
-    /node build\/create-native-build-environment\.mjs[\s\S]*?for OUTPUT[\s\S]*?sandbox-exec[\s\S]*?--build-environment "\$BUILD_ENVIRONMENT"/,
-  );
-});
-
 function fixtureRecord(rootPath) {
   const tool = (name) => ({
     path: path.isAbsolute(name) ? name : `${rootPath}/${name}`,

@@ -1,0 +1,390 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.org/contracts/release/qualified-archive-recovery-result-v1.schema.json",
+  "title": "Qualified Archive Recovery Result 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "repository",
+    "packageVersion",
+    "decision",
+    "qualifiedAuthority",
+    "controller",
+    "runner",
+    "closedInputs",
+    "archives",
+    "execution",
+    "evidenceManifest"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "artifactKind": {
+      "const": "qualified-archive-recovery-result"
+    },
+    "repository": {
+      "const": "AutoByteus/autobyteus-voice-runtime"
+    },
+    "packageVersion": {
+      "const": "1.0.0"
+    },
+    "decision": {
+      "enum": ["pass", "fail", "blocked"]
+    },
+    "qualifiedAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceCommit",
+        "apiRevision",
+        "qualificationSet",
+        "branchProjection",
+        "branchProjectionVerification"
+      ],
+      "properties": {
+        "sourceCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "apiRevision": {
+          "const": "API-REV-017"
+        },
+        "qualificationSet": {
+          "$ref": "#/$defs/fileIdentity"
+        },
+        "branchProjection": {
+          "$ref": "#/$defs/fileIdentity"
+        },
+        "branchProjectionVerification": {
+          "$ref": "#/$defs/fileIdentity"
+        }
+      }
+    },
+    "controller": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "commit",
+        "workflowPath",
+        "workflowSha256",
+        "recoveryOwnerSha256"
+      ],
+      "properties": {
+        "commit": {
+          "$ref": "#/$defs/commit"
+        },
+        "workflowPath": {
+          "const": ".github/workflows/recover-qualified-voice-archives.yml"
+        },
+        "workflowSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "recoveryOwnerSha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "runner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ownership",
+        "platform",
+        "architecture",
+        "runnerGroup",
+        "runnerId",
+        "environmentSha256"
+      ],
+      "properties": {
+        "ownership": {
+          "const": "organization-managed"
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "runnerGroup": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 128
+        },
+        "runnerId": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "environmentSha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "closedInputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["releaseMatrixSha256", "items"],
+      "properties": {
+        "releaseMatrixSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/$defs/closedInput"
+          },
+          "allOf": [
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "profileId": {
+                    "const": "english"
+                  }
+                },
+                "required": ["profileId"]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            },
+            {
+              "contains": {
+                "type": "object",
+                "properties": {
+                  "profileId": {
+                    "const": "chinese"
+                  }
+                },
+                "required": ["profileId"]
+              },
+              "minContains": 1,
+              "maxContains": 1
+            }
+          ]
+        }
+      }
+    },
+    "archives": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "$ref": "#/$defs/archive"
+      },
+      "allOf": [
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "profileId": {
+                "const": "english"
+              }
+            },
+            "required": ["profileId"]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        },
+        {
+          "contains": {
+            "type": "object",
+            "properties": {
+              "profileId": {
+                "const": "chinese"
+              }
+            },
+            "required": ["profileId"]
+          },
+          "minContains": 1,
+          "maxContains": 1
+        }
+      ]
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "packageBuildsPerProfile",
+        "providerStarts",
+        "inferenceRequests",
+        "corpusRuns",
+        "coldTrials",
+        "warmPreparationTrials",
+        "warmRequestTrials"
+      ],
+      "properties": {
+        "packageBuildsPerProfile": {
+          "const": 1
+        },
+        "providerStarts": {
+          "const": 0
+        },
+        "inferenceRequests": {
+          "const": 0
+        },
+        "corpusRuns": {
+          "const": 0
+        },
+        "coldTrials": {
+          "const": 0
+        },
+        "warmPreparationTrials": {
+          "const": 0
+        },
+        "warmRequestTrials": {
+          "const": 0
+        }
+      }
+    },
+    "evidenceManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256", "entryCount", "coverage"],
+      "properties": {
+        "fileName": {
+          "const": "recovery/recovery-evidence-SHA256SUMS.txt"
+        },
+        "sizeBytes": {
+          "const": 807
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "entryCount": {
+          "const": 8
+        },
+        "coverage": {
+          "const": "raw-recovery-evidence-only"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "fileIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "closedInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "recipeSha256",
+        "provenanceSha256",
+        "repositoryBuildLockSha256",
+        "nativeBuildEnvironmentSha256",
+        "goToolchainRootTreeSha256"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "recipeSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "provenanceSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "repositoryBuildLockSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "nativeBuildEnvironmentSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "goToolchainRootTreeSha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "archive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "buildCount",
+        "fileName",
+        "expectedSizeBytes",
+        "observedSizeBytes",
+        "expectedSha256",
+        "observedSha256",
+        "descriptorSha256",
+        "fileManifestSha256",
+        "descriptorSourceCommit",
+        "buildReportSha256",
+        "provenanceSha256",
+        "exactMatch"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "buildCount": {
+          "const": 1
+        },
+        "fileName": {
+          "type": "string",
+          "pattern": "^voice-(english|chinese)-darwin-arm64-1\\.0\\.0\\.zip$"
+        },
+        "expectedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "observedSizeBytes": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "expectedSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "observedSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "descriptorSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "fileManifestSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "descriptorSourceCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "buildReportSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "provenanceSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "exactMatch": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}
