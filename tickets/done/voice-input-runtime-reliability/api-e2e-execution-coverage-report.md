@@ -2,142 +2,148 @@
 
 ## Execution Round Meta
 
-- Requirements/design basis: original `requirements.md`, `investigation-notes.md`, `design-spec.md`, `benchmark-protocol.md`, current-platform/voice-runtime contracts, and accepted correction studies in `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/`.
-- Current worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix`.
-- Current ticket artifacts: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/`.
-- Upstream revisions: `SR-013`, `SR-014`, `ARCH-REV-015`, `API-REV-017`, `DR-003`, `IR-025`, `CRR-038`, `CRR-039`.
-- Preserved finalized release-candidate merge: `a890d22031359f53d94c7c67bf183344fb35d904`.
-- Current origin/main base at implementation start: `5531e83421dce859f9934c16e006c34cf5291cde`.
-- Correction commit: `f5c14ed9e9ad835e33eec20033f625d61d1e0173`.
-- Implementation artifact/current tested HEAD: `b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e`.
-- Triggering Delivery result: `DR-003`, prequalification run `30881048872`.
-- Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`.
-- API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`.
-- Current revision / round: `API-REV-018 / 18`.
-- Prior authoritative API/E2E result: `API-REV-017 — Pass / 99%`.
-- Latest authoritative result: **`API-REV-018 — Pass / 99%` for the post-archive archived-checkout source/test gate.**
+- Requirements Doc: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
+- Investigation Notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
+- Design Spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
+- Release Ownership: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/release-pipeline-ownership.md`
+- Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
+- Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
+- Architecture Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
+- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`
+- Implementation Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
+- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
+- Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+- API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+- Current API/E2E Revision ID: `API-REV-019`
+- Current Execution Round: `19`
+- Trigger: `CRR-044` Pass for reviewed source `50b7e778c5c8b783f3089803b71636ea7fb2a513`.
+- Reviewed Test Commit: `baf1e33f54446d2d1161afd38b88111e4086b76c`.
+- Prior Round Reviewed: `API-REV-018 — Pass / 99%`; retained profile/aggregate authority from `API-REV-017 — Pass / 99%`.
+- Latest Authoritative Round: **`API-REV-019 — Pass / 99%`**.
+
+## Aggregate API Renewal Current Subjects
+
+- API Revision: `API-REV-019`
+- Reviewed Source Commit: `50b7e778c5c8b783f3089803b71636ea7fb2a513`
+- Reviewed Test Commit: `baf1e33f54446d2d1161afd38b88111e4086b76c`
 
 ## Investigation And Execution Basis
 
-- Coverage investigation refreshed before execution: `Yes`.
-- Plan followed: clean archived-ticket checkout -> correction scope/layout/stale-reference proof -> immutable fixture identity/semantics -> exact closed-toolchain verification -> focused two-file tests -> full repository check -> retained-history checksum and clean-source validation -> owned checkout cleanup.
-- Material deviation: `None`.
-- Existing coverage decision: API-REV-016/017 package/profile/QSet/projection evidence remains valid because no product or authority-relevant byte changed.
-- Package/profile requalification: `Not Required` by direct impact evidence and `CRR-039` scope.
-- Repository-resident durable API/E2E coverage changed: `No`.
-- Reroute required during execution: `No`.
-
-## Compatibility / Legacy Scope Check
-
-- Former `tickets/in-progress/...` fixture behavior retained through fallback: `No`.
-- Lifecycle probing, copied fixture, duplicate authority, or dual-path read added: `No`.
-- Approved persisted-data decision: `Not Affected`.
-- User/shared state changed: `No`.
-- Compatibility-only API/E2E coverage added: `No`.
+- Investigation completed before execution: `Yes`.
+- Investigation plan followed: `Yes`.
+- Scenario: `API-VOICE-015`; `R-024`, `AC-026`, `BEH-007`, `BEH-013`.
+- Authorized scope: zero-profile Aggregate API Renewal only.
+- Profile execution count: `0`.
+- Reroute required: `No`.
+- Prohibited actions observed: `None`; no recovery, package build, provider/model startup, profile/corpus/performance execution, candidate promotion, workflow dispatch, tag, release, or publication occurred.
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario / Boundary               | Basis                          | Execution Surface                                                      | Result                                                 | Evidence                              |
-| --------------------------------- | ------------------------------ | ---------------------------------------------------------------------- | ------------------------------------------------------ | ------------------------------------- |
-| `API-VOICE-014` archived checkout | `DR-003`, `BEH-004`, `BEH-010` | clean detached checkout at `b19f51f...`, ticket only in `tickets/done` | Pass                                                   | layout/scope log                      |
-| exact correction scope            | `IR-025`, `CRR-039`            | commit and diff inspection                                             | Pass; two literals, 2 insertions/2 deletions           | layout/scope log                      |
-| API-REV-016 manifest fixture      | Build Input Path regression    | final archived path, SHA-256, record count, focused test               | Pass; `f7bfb8f...2478`, 3,152 records                  | fixture log; focused log              |
-| API-REV-014 raw-results fixture   | Chinese comparable re-score    | final archived path, SHA-256, result count, focused test               | Pass; `5e128114...20f`, 200 results, 342/6580 re-score | fixture log; focused log              |
-| source/closed-toolchain gate      | failed remote workflow step    | exact Node/Go/CMake plus `npm ci` and full `npm run check`             | Pass                                                   | toolchain/npm/full logs               |
-| historical run integrity          | `DR-003`                       | retained checksum manifest                                             | Pass; remains truthful Fail                            | DR-003 checksum log                   |
-| prior API acceptance continuity   | `API-REV-017`                  | retained checksum manifest and relevant-byte analysis                  | Pass / reusable                                        | API-REV-017 checksum log; impact JSON |
+| Scenario          | Behavior / Criteria                               | Changed Boundary                      | Execution Surface                                 | Evidence Type                       | Result       | Evidence                                                                                                                   |
+| ----------------- | ------------------------------------------------- | ------------------------------------- | ------------------------------------------------- | ----------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `API-VOICE-015-A` | Current source transition, `R-024`, `AC-026`      | Complete source closure and decision  | Production source-closure owner over real Git     | Temporary/CLI                       | Pass         | `api-e2e-evidence/api-rev-019/repository/source-closure-and-admission.json`                                                |
+| `API-VOICE-015-B` | Unchanged Profile Closure and retained subjects   | API-REV-016/017 evidence              | Exact Git-retained manifests/files                | Temporary/CLI                       | Pass         | `api-e2e-evidence/api-rev-019/repository/retained-authority-validation.log`                                                |
+| `API-VOICE-015-C` | Strict record/report/admission/candidate contract | Release-pipeline durable coverage     | Node test facade                                  | Durable execution                   | Pass — 46/46 | `api-e2e-evidence/api-rev-019/repository/check-release-pipeline.log`                                                       |
+| `API-VOICE-015-D` | Aggregate API Renewal Record 1                    | Canonical report/record Git authority | Real Git commit and independent object validation | Durable authority + temporary probe | Pass         | `release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`; committed authority validation performed after commit |
+
+## Exact Renewal Result
+
+- Current preliminary decision: `aggregate-api-renewal-required` as required; it was not changed or relabeled.
+- Accepted authority commit before renewal: `b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e`.
+- Profile Closure:
+  - inventory SHA-256: `74786fae1a642edf808c3d3692b0dd41e3e473c055321e504506300c444f6fb1`
+  - tree SHA-256: `dcbdf08695be438258d53129d586804578f22ce2b38d3f1932c8d05b2d6e0c1e`
+  - result: unchanged.
+- Proposed Qualification Authority Closure:
+  - inventory SHA-256: `3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8`
+  - tree SHA-256: `d1272eeae982173114c7dc67b62ff4876d8a2e101d2fa0ffd2fdc5c57526d1b5`
+- Retained English archive: `645513268` bytes, SHA-256 `9e4d1d5981ba9389f63bdf98094078a6152fbac05ff42d52c287138baafa46f8`.
+- Retained Chinese archive: `1068528640` bytes, SHA-256 `84783c61b8a08e0e0848a4906139210868cf552ee0104d5179be7144be432cc3`.
+- Retained English qualification summary: `15377` bytes, SHA-256 `6df8c85e6b5a4e0aa1b52ffb7cce1e5c8b58cd9ff219717df0d3bdf0334954de`.
+- Retained Chinese qualification summary: `16037` bytes, SHA-256 `3d9fae0627516e21496d6a87e1fcc4922a876ebe1e55208449efdeba402c511a`.
+- Current/prior Qualification Set 2: byte-identical, `15025` bytes, SHA-256 `c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003`.
+- Current/prior Branch Catalog Projection 2: byte-identical, `5194` bytes, SHA-256 `bcc3b1c2f3afc42fa0861adcdd3558ad0779ecf7f3c77c370501679a50bbeddd`.
+- Current/prior Projection Verification 2: byte-identical, `441` bytes, SHA-256 `a78c59fa085a95a6af28cdd3adc6065f87c216caceb304f6edcf034cd5e96c27`.
+- Canonical record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`.
+- The record commit has exactly one parent, the reviewed test commit. The reviewed source is an ancestor of that test commit. The record and report bytes, strict schema, unique three-row current-subject projection, closures, retained profiles, and current/prior aggregates pass independent real-Git validation.
 
 ## Repository Coverage Execution
 
-| Command / Action                                                                                               | Result                                                                                | Evidence                                                   |
-| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| assert clean checkout `b19f51f...`, `tickets/done` present, former ticket path absent, no stale test reference | Pass                                                                                  | `repository/archived-layout-scope-and-stale-reference.log` |
-| inspect `f5c14ed...` and compare finalized candidate/current artifact relevant paths                           | Pass; only two test literals, no product/workflow/contract or later non-ticket change | same log                                                   |
-| `shasum -a 256` plus semantic record counts for both archived fixtures                                         | Pass                                                                                  | `repository/archived-fixture-identities.log`               |
-| Node `v22.23.1`, verified complete Go `1.26.5 darwin/arm64`, CMake `4.3.3`                                     | Pass                                                                                  | `repository/closed-toolchain-verification.log`             |
-| `npm ci --ignore-scripts`                                                                                      | Pass                                                                                  | `repository/npm-ci.log`                                    |
-| `node --test tests/release/build-input-path-contract.test.mjs tests/scoring/chinese-qualification.test.mjs`    | Pass, 9/9; zero fail/skip                                                             | `repository/focused-archived-fixture-tests.log`            |
-| `PATH=<pinned-go> VOICE_GO=<pinned-go> npm run check`                                                          | Pass: 111/111 Node TAP, 7/7 Python plus compileall, all Go/source/schema/evidence     | `repository/npm-run-check.log`                             |
-| DR-003 and API-REV-017 checksum manifests                                                                      | Pass                                                                                  | retained checksum logs                                     |
-| post-execution HEAD/status/diff check                                                                          | Pass; clean exact checkout                                                            | `repository/post-execution-source-integrity.log`           |
+| Order | Command                                                            | Result       | Evidence                               |
+| ----- | ------------------------------------------------------------------ | ------------ | -------------------------------------- |
+| 1     | Production source-closure/admission computation at reviewed source | Pass         | `source-closure-and-admission.json`    |
+| 2     | `(cd api-rev-016 && shasum -a 256 -c SHA256SUMS.txt)`              | Pass         | `retained-authority-validation.log`    |
+| 3     | `(cd api-rev-017 && shasum -a 256 -c SHA256SUMS.txt)`              | Pass         | `retained-authority-validation.log`    |
+| 4     | Exact retained archive/profile/aggregate identity probe            | Pass         | `retained-authority-validation.log`    |
+| 5     | `npm run check:release-pipeline`                                   | Pass — 46/46 | `check-release-pipeline.log`           |
+| 6     | Independent committed-authority probe                              | Pass         | Exact Git objects at the record commit |
 
 ## Validation Confidence Scorecard
 
-| Category                                            | Post-Repository | Final | Evidence / Limitation                                                                |
-| --------------------------------------------------- | --------------: | ----: | ------------------------------------------------------------------------------------ |
-| Requirement and acceptance-criteria proof           |             99% |   99% | exact post-archive gate passes; prior product qualification remains immutable        |
-| Changed-boundary execution directness               |            100% |  100% | both corrected tests execute from final archived layout                              |
-| Cross-boundary integration realism and mock gap     |             99% |   99% | clean checkout and full source/test chain; remote retry intentionally Delivery-owned |
-| Environment/configuration/identity/fixture fidelity |            100% |  100% | exact commits, directory topology, toolchain, fixture hashes/counts                  |
-| Failure/edge/lifecycle/recovery evidence            |             99% |   99% | historical Fail preserved, corrected local lifecycle passes without fallback         |
-| User/browser/desktop                                |             N/A |   N/A | no runtime/UI change or claim                                                        |
-| Durable regression quality                          |            100% |  100% | direct 9/9 plus full 111/111; digest and semantic assertions unchanged               |
+| Category                                            | Post-Repository | Final | Final Evidence                                                       | Residual Uncertainty                                         |
+| --------------------------------------------------- | --------------- | ----- | -------------------------------------------------------------------- | ------------------------------------------------------------ |
+| Requirement and acceptance-criteria proof           | 97%             | 99%   | Exact AC-026 record produced and validated                           | Later admission/policy transition intentionally not executed |
+| Changed-boundary execution directness               | 97%             | 99%   | Real committed report/record and Git lineage                         | None in authorized renewal boundary                          |
+| Cross-boundary integration realism and mock gap     | 96%             | 99%   | Schema + production code + real Git objects                          | Candidate promotion remains later                            |
+| Environment/configuration/identity/fixture fidelity | 99%             | 100%  | Exact retained checksums, file sizes, hashes, closures               | None for immutable subjects                                  |
+| Failure/edge/lifecycle/recovery evidence            | 98%             | 99%   | 46/46 includes extensive fail-closed mutation and non-reuse coverage | Recovery execution intentionally excluded                    |
+| User-surface/browser/desktop-shell confidence       | N/A             | N/A   | No user surface changed                                              | Deferred scope is not part of this decision                  |
+| Durable regression coverage quality/relevance       | 98%             | 99%   | CRR-044 reviewed production-shaped coverage; focused suite rerun     | No API/E2E test edit                                         |
 
-- Overall post-repository confidence: `99%`.
-- Overall final confidence: `99%`.
-- Every critical criterion in the bounded correction scope directly proven: `Yes`.
+- Overall post-repository confidence: `97.5%`.
+- Overall final confidence: `99.2%`, reported as `99%`.
+- Every critical criterion in the authorized round directly proven: `Yes`.
 - Any applicable category below 90%: `No`.
-- Default clean-Pass target met: `Yes`.
+- Default 95% target met: `Yes`.
 
 ## Broader Validation Decision And Execution
 
-- Decision: **`Not Required` beyond the directly executed archived-checkout source/test gate.**
-- Rationale: run `30881048872` failed before preflight/build/profile qualification. The correction has no relevant production, workflow, contract, authority, archive, profile, QSet, or projection byte change. Rebuilding/requalifying would not exercise the changed boundary more directly.
-- Remote prequalification dispatch: not performed; Delivery-owned.
-- Package/profile execution: not repeated; immutable API-REV-016/017 evidence remains authoritative.
-- Browser/desktop execution: `N/A`.
+- Decision: `Required and completed`.
+- Mode: focused CLI / real Git object validation.
+- Rationale: source tests could not prove the exact future record commit, report blob/content identity, direct-parent lineage, and retained Git subjects. The post-commit probe closed that gap without performing forbidden recovery or profile work.
+- Browser/desktop validation: not applicable.
 
-## Platform / Runtime And Desktop Decision
+## Compatibility / Persisted Data / User State
 
-- Validation host: macOS arm64, Node 22.23.1, exact verified Go 1.26.5 darwin/arm64, CMake 4.3.3.
-- Product runtime/package behavior: unchanged and therefore not rerun.
-- Preserved performance classification: `loaded-host-observation`, not controlled certification.
-- Deferred scope remains darwin-x64, Linux, Windows, `auto`, and desktop integration.
+- Backward-compatibility or legacy-retention behavior added: `No`.
+- Approved persisted-data decision: `Not Affected`.
+- User/shared state accessed or changed: `No`.
+- Sudo/audio/device/network/release credentials used: `No`.
 
-## Lifecycle / Persisted Data
+## Durable Coverage Changed In The Codebase
 
-- Ticket archival lifecycle: directly exercised from a checkout with only `tickets/done/voice-input-runtime-reliability`.
-- Former in-progress fixture location: absent and not referenced under `tests/`.
-- Persisted/user/runtime data: not affected.
-- Historical workflow run `30881048872`: unchanged truthful Fail.
-- No tag, release, asset, publication, or remote run was created or altered.
+- Repository-resident durable API/E2E test coverage added, updated, or removed by API/E2E: `No`.
+- Test-code paths: `None`.
+- Proportional test-code review request: `Not Applicable`.
+- Durable non-test authority added: `release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`.
+- Canonical API artifacts updated: coverage investigation, execution report, and revision record.
 
-## Durable Coverage Changed
+## Cleanup And Deferred Work
 
-- Repository-resident durable coverage added, updated, or removed by API/E2E: `No`.
-- Paths added/updated/removed by API/E2E: none.
-- IR-025 source-owned test paths under review: `tests/release/build-input-path-contract.test.mjs`, `tests/scoring/chinese-qualification.test.mjs`.
-- Requested proportional API/E2E test-code review: `Not Applicable` because API/E2E changed no durable test code; CRR-039 already reviewed IR-025 source/test changes.
+- Temporary services/processes/data created: `None`.
+- Temporary probe source: `/tmp` only; removed after execution.
+- Current source remains `aggregate-api-renewal-required`.
+- A separate later implementation and source review must update the policy/controller to accept the exact record commit and recompute Preliminary Source Admission. Recovery remains prohibited until that decision is exactly `reuse-permitted`.
+- Archive recovery, candidate promotion, release, tag, publication, x64/Linux/Windows/auto, and desktop scope remain unexecuted and unclaimed.
 
-## Evidence
+## Result Summary
 
-- Current evidence root: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-018/`.
-- Authoritative result/impact: `repository/API-VOICE-014-post-archive-impact-and-result.json`.
-- Archived layout/scope: `repository/archived-layout-scope-and-stale-reference.log`.
-- Fixture identities: `repository/archived-fixture-identities.log`.
-- Focused/full tests: `repository/focused-archived-fixture-tests.log`, `repository/npm-run-check.log`.
-- Historical/current checksum continuity: `repository/dr-003-retained-failure-checksums.log`, `repository/api-rev-017-retained-checksums.log`.
-- Evidence checksum manifest: `SHA256SUMS.txt`.
+| Result             | Scenario                     | Summary                                                                                                                              |
+| ------------------ | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| Pass               | `API-VOICE-015`              | Zero-profile Aggregate API Renewal Record 1 is committed and exact report/record/lineage/closure/profile/aggregate authority passes. |
+| Not Tested / Later | Recovery, promotion, release | Correctly prohibited until separate reviewed policy/controller acceptance.                                                           |
 
-## Cleanup
+## Recommended Recipient
 
-- Owned clean checkout `/private/tmp/autobyteus-voice-api-e2e-r18-20260804/repository`: removed with `git worktree remove`; its ignored `node_modules` was removed with it.
-- Provider/build/preflight/qualification processes started: none.
-- User/shared state touched: none.
-- Remote workflow/tag/release/publication actions: none.
-
-## Preliminary Classification
-
-- `DR-003` stale durable-test path: resolved `Local Fix` at the exact archived-checkout source/test boundary.
-- New API/E2E failure: none.
+`code_reviewer` for proportional API/E2E test-code review recorded as `Not Applicable`, plus review of the new durable aggregate authority record before later implementation/Delivery work.
 
 ## Latest Authoritative Result
 
-- Result: **`Pass`** for IR-025's applicable post-archive source/test validation.
-- Prior current-platform product acceptance: **remains `Pass / 99%`** and reusable.
-- Final validation confidence: `99%`.
-- Default `95%` clean-Pass target met: `Yes`.
+- Result: **Pass**.
+- Final validation confidence: **99%**.
+- Default 95% target met: `Yes`.
 - Applicable category below 90%: `No`.
-- Broader validation: `Not Required` beyond executed source/test gate.
-- Required next recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable`, then Delivery.
-- Release status: still blocked/unpublished historically; Delivery owns new remote prequalification, tag, release, publication, and published-byte verification.
+- Broader validation: `Required and completed — focused real-Git CLI validation`.
+- Critical criteria lacking proof in the authorized round: `None`.
+- Release/recovery status: still blocked by the intentionally absent later `reuse-permitted` admission; no release action occurred.

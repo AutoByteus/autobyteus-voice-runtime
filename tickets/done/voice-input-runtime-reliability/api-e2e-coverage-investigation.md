@@ -26,13 +26,13 @@
 - Current Investigation Round: `19`
 - Trigger: `CRR-044` Pass for `IR-029`, reviewed source `50b7e778c5c8b783f3089803b71636ea7fb2a513`, implementation artifact HEAD `850dd5f8d34996793f5a27672933684e508c8429`.
 - Prior Investigation Reviewed: `API-REV-018 — Pass / 99%`; `API-REV-017 — Pass / 99%` remains the accepted two-profile and aggregate qualification authority.
-- Latest Authoritative Investigation: `API-REV-019 pre-execution refresh`; final result is pending the focused committed Aggregate API Renewal validation.
+- Latest Authoritative Investigation: **`API-REV-019 — Pass / 99%`**; the focused zero-profile Aggregate API Renewal and exact committed authority validation completed without recovery, profile execution, promotion, or release work.
 
 ## API-REV-019 Focused Aggregate API Renewal Pre-Execution Refresh
 
 - Scenario: `API-VOICE-015`; requirements `R-024`, `AC-026`; behavior boundaries `BEH-007`, `BEH-013`.
 - Authorized operation: one zero-profile Aggregate API Renewal. It may authenticate retained archives/profile evidence and retained aggregate bytes, create the exact current-subject report projection, and commit Aggregate API Renewal Record 1.
-- Reviewed subjects: source `50b7e778c5c8b783f3089803b71636ea7fb2a513`; API revision `API-REV-019`; reviewed test commit will be the direct parent of the record commit and will contain this investigation plus focused execution evidence.
+- Reviewed subjects: source `50b7e778c5c8b783f3089803b71636ea7fb2a513`; API revision `API-REV-019`; reviewed test commit `baf1e33f54446d2d1161afd38b88111e4086b76c`, which is the direct parent of the record commit.
 - Required report projection: exactly one `## Aggregate API Renewal Current Subjects` heading followed by exactly three ordered declarations for API revision, reviewed source commit, and reviewed test commit.
 - Required record: `release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`; `decision: pass`; `profileExecutionCount: 0`; exact report Git-blob/content identities; unchanged Profile Closure; exact retained English/Chinese archive and API-REV-016 qualification-summary identities; current/prior Qualification Set 2, Branch Catalog Projection 2, and Projection Verification 2 identities; proposed current Qualification Authority closure.
 - Current-source invariant: the preliminary decision from accepted authority `b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e` through the reviewed source/test/record must remain `aggregate-api-renewal-required`. This round must not change the closure policy or claim `reuse-permitted`.
@@ -113,39 +113,39 @@ None. CRR-044 already reviewed the necessary production-shaped durable coverage.
 
 ## Repository Coverage Execution Plan And Results
 
-| Order | Command / Operation                                                                                    | Boundary Proven                                          | Result                                                                                                                  | Evidence / Output Path                                                                  |
-| ----- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| 1     | Recompute current Preliminary Source Admission and source closures at reviewed source                  | Current transition and unchanged Profile Closure         | Pass — decision is exactly `aggregate-api-renewal-required`; Profile Closure unchanged; Qualification Authority changed | `api-e2e-evidence/api-rev-019/repository/source-closure-and-admission.json`             |
-| 2     | Verify API-REV-016 and API-REV-017 checksum manifests and exact retained profile/aggregate identities  | Reuse basis                                              | Pass — both manifests and every exact record subject pass                                                               | `api-e2e-evidence/api-rev-019/repository/retained-authority-validation.log`             |
-| 3     | `npm run check:release-pipeline`                                                                       | Strict renewal/candidate/source-closure durable boundary | Pass — 46/46                                                                                                            | `api-e2e-evidence/api-rev-019/repository/check-release-pipeline.log`                    |
-| 4     | Commit focused investigation/evidence as reviewed test commit                                          | Exact source->test subject                               | Planned                                                                                                                 | Git commit                                                                              |
-| 5     | Create final report projection and Aggregate API Renewal Record, then commit them as the record commit | Exact report/record authority                            | Planned                                                                                                                 | Canonical report and record                                                             |
-| 6     | Execute independent committed-record/report/profile/aggregate/closure/lineage probe                    | Real Git authority                                       | Planned                                                                                                                 | `api-e2e-evidence/api-rev-019/repository/committed-aggregate-authority-validation.json` |
+| Order | Command / Operation                                                                                    | Boundary Proven                                          | Result                                                                                                                  | Evidence / Output Path                                                      |
+| ----- | ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| 1     | Recompute current Preliminary Source Admission and source closures at reviewed source                  | Current transition and unchanged Profile Closure         | Pass — decision is exactly `aggregate-api-renewal-required`; Profile Closure unchanged; Qualification Authority changed | `api-e2e-evidence/api-rev-019/repository/source-closure-and-admission.json` |
+| 2     | Verify API-REV-016 and API-REV-017 checksum manifests and exact retained profile/aggregate identities  | Reuse basis                                              | Pass — both manifests and every exact record subject pass                                                               | `api-e2e-evidence/api-rev-019/repository/retained-authority-validation.log` |
+| 3     | `npm run check:release-pipeline`                                                                       | Strict renewal/candidate/source-closure durable boundary | Pass — 46/46                                                                                                            | `api-e2e-evidence/api-rev-019/repository/check-release-pipeline.log`        |
+| 4     | Commit focused investigation/evidence as reviewed test commit                                          | Exact source->test subject                               | Pass — `baf1e33f54446d2d1161afd38b88111e4086b76c`                                                                       | Git commit                                                                  |
+| 5     | Create final report projection and Aggregate API Renewal Record, then commit them as the record commit | Exact report/record authority                            | Pass                                                                                                                    | Canonical report and record                                                 |
+| 6     | Execute independent committed-record/report/profile/aggregate/closure/lineage probe                    | Real Git authority                                       | Pass                                                                                                                    | Exact committed Git objects and post-commit validation output               |
 
-## Post-Repository Confidence Scorecard (Pre-Execution)
+## Final Confidence Scorecard
 
-| Confidence Category                                 | Score | What Supports The Score                                         | Remaining Uncertainty                               | Additional Validation                            |
-| --------------------------------------------------- | ----- | --------------------------------------------------------------- | --------------------------------------------------- | ------------------------------------------------ |
-| Requirement and acceptance-criteria proof           | 95%   | Exact SR-018/AC-026 contract and reviewed implementation        | Real record not yet committed                       | Complete steps 1–6                               |
-| Changed-boundary execution directness               | 90%   | Production verifier and Git fixtures directly cover shape       | No real committed subject yet                       | Commit and probe exact bytes                     |
-| Cross-boundary integration realism and mock gap     | 90%   | Real Git object verification is available                       | Final record/report lineage pending                 | Real Git probe                                   |
-| Environment/configuration/identity/fixture fidelity | 95%   | Immutable Git-retained subjects and hashes                      | Revalidation pending                                | Exact checksum/closure checks                    |
-| Failure/edge/lifecycle/recovery evidence            | 95%   | Mutation coverage is extensive; recovery intentionally excluded | Real record negative not needed after source review | Focused facade plus fail-closed current decision |
-| User-surface/browser/desktop-shell confidence       | N/A   | No user surface in this aggregate-only round                    | N/A                                                 | None                                             |
-| Durable regression coverage quality/relevance       | 95%   | CRR-044 accepted focused tests                                  | API/E2E adds no test                                | Re-run unchanged suite                           |
+| Confidence Category                                 | Score | What Supports The Score                                              | Remaining Uncertainty                            | Additional Validation          |
+| --------------------------------------------------- | ----- | -------------------------------------------------------------------- | ------------------------------------------------ | ------------------------------ |
+| Requirement and acceptance-criteria proof           | 99%   | Exact SR-018/AC-026 record is committed and validated                | Later policy/admission is intentionally separate | Later reviewed transition only |
+| Changed-boundary execution directness               | 99%   | Exact committed report, record, parent, and Git subjects were probed | None in authorized round                         | None                           |
+| Cross-boundary integration realism and mock gap     | 99%   | Production owners plus real Git record/report/profile objects        | Candidate promotion remains later                | Later recovery/promotion stage |
+| Environment/configuration/identity/fixture fidelity | 100%  | Retained manifests, sizes, digests, and closures all pass            | None for immutable subjects                      | None                           |
+| Failure/edge/lifecycle/recovery evidence            | 99%   | 46/46 covers mutations and non-reuse; current decision stays closed  | Recovery intentionally excluded                  | Later authorized stage         |
+| User-surface/browser/desktop-shell confidence       | N/A   | No user surface in this aggregate-only round                         | N/A                                              | None                           |
+| Durable regression coverage quality/relevance       | 99%   | CRR-044 accepted focused tests and API/E2E reran 46/46 unchanged     | API/E2E adds no test                             | None                           |
 
-- Overall pre-execution confidence: `93.3%` across applicable categories.
-- Every critical acceptance criterion directly proven: `No`; exact committed record/report is pending.
+- Overall final confidence: `99.2%`, reported as `99%`.
+- Every critical acceptance criterion directly proven: `Yes` for the authorized zero-profile renewal.
 - Any applicable category below 90%: `No`.
-- Default clean target met: `No` until committed authority passes.
+- Default clean target met: `Yes`.
 
 ## Broader Validation Decision
 
-- Decision: `Required`.
+- Decision: `Required and completed`.
 - Selected mode: `CLI / real Git object validation`.
-- Gap addressed: exact committed report/record identities and direct-parent lineage cannot be proven by source tests alone.
+- Gap addressed: exact committed report/record identities and direct-parent lineage were proven against the real Git objects.
 - Browser/desktop decision: not applicable; there is no UI or runtime execution in authorized scope.
-- Expected final confidence: at least `98%` if all exact authority checks pass.
+- Final confidence: `99%`.
 
 ## Temporary Executable Validation Plan
 
@@ -168,9 +168,9 @@ None at investigation time. Any checksum, closure, schema, lineage, or report-su
 
 ## Investigation Decision
 
-- Proceed To API/E2E Execution: `Yes`.
+- Proceed To API/E2E Execution: `Completed`.
 - Repository-resident durable coverage will be added/updated/removed: `No`.
-- Pre-execution confidence: `93.3%`.
-- Broader validation: `Required — focused real-Git CLI authority probe`.
+- Final confidence: `99%`.
+- Broader validation: `Required and completed — focused real-Git CLI authority probe`.
 - Reroute required before execution: `No`.
 - Notes: scope is zero-profile and aggregate-only; current source must remain `aggregate-api-renewal-required`.
