@@ -33,6 +33,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-025`    | Delivery Engineer / `delivery-revision-record.md` / `DR-003`       | `N/A` — prequalification `30881048872` durable test path    | `Local Fix`        | `SR-013`, `SR-014`; `ARCH-REV-015`; `CRR-037`, `CRR-038`; `API-REV-017`; `DR-003`                                      | `Implementation Complete — Ready for Code Re-review` |
 | `IR-026`    | Architecture Reviewer / `design-review-report.md` / round 18       | Resolved `AR-F-015`, `AR-F-016`; Delivery ownership blocker | `Design Impact`    | `SR-015`–`SR-017`; `ARCH-REV-016`–`ARCH-REV-018`; prior `CRR-039`, `CRR-040`; `API-REV-017`, `API-REV-018`; `DR-005`   | `Implementation Complete — Ready for Code Review`    |
 | `IR-027`    | Architecture Reviewer / `design-review-report.md` / round 19       | `CR-F-035`, `CR-F-036`, `CR-F-037`                          | `Design Impact`    | `SR-018`; `ARCH-REV-019`; `CRR-041`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
+| `IR-028`    | Code Reviewer / `code-review-report.md` / `CRR-042`                | `CR-F-038`                                                  | `Local Fix`        | `SR-018`; `ARCH-REV-019`; `CRR-042`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -719,3 +720,30 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: final focused `npm run check:release-pipeline` passed 31 tests plus strict source/schema checks. Exact pinned-Go full `npm run check` passed source guards, `7/7` Python tests plus compileall, all Go tests/guards, English-v2/Chinese-v2 evidence checks, and `141` Node TAP tests. Authored Prettier, executable-mode, changed-source size, and `git diff --check` checks passed. A stale incomplete temporary Go root was rejected fail-closed before the exact locked archive was re-extracted and used for the passing full run.
 - Next recipient or routing: `code_reviewer`.
 - Remaining limitations or risks: implementation did not create the Aggregate API Renewal Record, run API/E2E, recover/build archives, start providers, run corpora/lifecycle/performance/30/30/100 qualification, promote a candidate, merge, tag, or publish. Current recovery intentionally remains blocked at `aggregate-api-renewal-required`. After source Pass, API/E2E must create and commit the zero-profile renewal record; only a separate later reviewed policy/controller commit may accept that exact Git authority and yield `reuse-permitted`.
+
+### IR-028 — Bind Aggregate API Renewal authority to every promotion subject
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-042`, with focused evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-042-qualified-recovery-rework-review.md`.
+- Triggering finding IDs: `CR-F-038`. `CR-F-035`, `CR-F-036`, and `CR-F-037` remain resolved.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-042` / `Fail — Local Fix` against `IR-027`; API/E2E paused.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-018`.
+- Related architecture-review revision IDs: `ARCH-REV-019` current Pass; `ARCH-REV-018` preserved.
+- Related code-review revision IDs: `CRR-042`; current re-review pending.
+- Related API/E2E revision IDs: retained `API-REV-017`, `API-REV-018`; focused zero-profile Aggregate API Renewal pending.
+- Related delivery revision IDs: `DR-005`.
+- Why this implementation revision is recorded: candidate promotion loaded the Aggregate API Renewal Record and recomputed a self-consistent reference, but the authority owner did not independently bind the record's declared commits, coverage report, retained profile/archive evidence, and current/prior aggregate identities to admission and the candidate inputs. Schema-valid self-consistent mutations could therefore still promote.
+- Approved behavior or requirement IDs affected: `BEH-007`, `BEH-013`; `R-023`; `AC-026`. The exact recovery/candidate closure under `R-022`–`R-024` and `AC-025`–`AC-027` remains preserved; `BEH-001`–`BEH-012` runtime/package/profile meanings remain unchanged.
+- Implementation delta:
+  - Strengthened the existing singular `release/candidate-authority.mjs` owner to Git-resolve the exact record, validate schema and bytes, recompute the immutable reference, and bind `recordCommit` / promotion commit to Preliminary Source Admission.
+  - Added exact source -> test -> record -> promotion lineage verification, including the record's sole-parent relation to the reviewed test commit.
+  - Git-resolved and verified the canonical archived API/E2E coverage report by path, Git-blob SHA-256, raw-content SHA-256, and declared API/source/test subjects.
+  - Git-resolved both retained API-REV-016 qualification summaries, compared them with record and candidate QSet subjects, and compared the record's archive identities with both candidate archives.
+  - Compared current and prior Qualification Set, Branch Projection, and Projection Verification identities and independently recomputed all byte-identity flags.
+  - Changed candidate assembly to derive semantic subjects from independently verified candidate inputs and use the aggregate owner's returned verified reference; no second parser, caller assertion, latest lookup, override, fallback, or twentieth candidate member was added.
+  - Added 12 schema-valid semantic mutation regressions and one production-shaped temporary-Git-repository success path covering committed record/report/profile evidence and commit lineage.
+- Changed files or areas: `release/candidate-authority.mjs`, `release/qualified-release-candidate.mjs`, `tests/release/qualified-candidate-fixture.mjs`, and `tests/release/qualified-release-candidate.test.mjs`; source commit `bbfa803f5b6126635c73e778fb81e0c6acb631f0`.
+- Local validation and result: focused candidate coverage passed `27/27`; `npm run check:release-pipeline` passed `45/45`; exact pinned-Go full `npm run check` passed source guards, `7/7` Python tests plus compileall, all Go tests/guards, both evidence authorities, and `155/155` Node TAP tests. Authored-file Prettier and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not create the Aggregate API Renewal Record, run API/E2E, recover/build archives, start providers, run profile qualification, promote a candidate, merge, tag, or publish. Current admission truthfully remains `aggregate-api-renewal-required`. After source Pass, focused API/E2E must create and commit the zero-profile renewal record; only a separate later reviewed policy/controller commit may accept its exact Git authority and yield `reuse-permitted`.
