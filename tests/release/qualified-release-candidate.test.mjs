@@ -9,6 +9,11 @@ import {
   writeCandidatePromotionRecord,
 } from "../../release/qualified-release-candidate.mjs";
 import { qualifiedCandidateFixture } from "./qualified-candidate-fixture.mjs";
+import {
+  preliminaryAdmissionReference,
+  verifyCandidateAdmission,
+} from "../../release/candidate-authority.mjs";
+import { canonicalObjectSha256 } from "../../release/source-closure.mjs";
 
 test("candidate assembler closes exactly 19 members and independently rehashes them", async () => {
   const fixture = await qualifiedCandidateFixture();
@@ -123,6 +128,150 @@ test("candidate rejects recovery workflow/Result and same-source disagreement", 
   }
 });
 
+test("candidate rejects a schema-valid partial non-Pass recovery", async () => {
+  const fixture = await qualifiedCandidateFixture();
+  try {
+    const resultPath = path.join(
+        fixture.candidate,
+        "recovery/qualified-archive-recovery-result-v1.json",
+      ),
+      result = JSON.parse(await fs.readFile(resultPath, "utf8"));
+    result.decision = "fail";
+    result.failure = {
+      category: "package-build-failed",
+      stage: "package-build",
+    };
+    result.profileRecoveries = [
+      {
+        profileId: "english",
+        sequence: 1,
+        outcome: "failed",
+        build: { planned: 1, attempted: 1, completed: 0 },
+        archive: { status: "unavailable" },
+        failure: result.failure,
+      },
+      {
+        profileId: "chinese",
+        sequence: 2,
+        outcome: "unattempted",
+        build: { planned: 1, attempted: 0, completed: 0 },
+        archive: { status: "unavailable" },
+        unavailability: {
+          category: "prior-profile-failed",
+          blockedByProfileId: "english",
+        },
+      },
+    ];
+    result.execution.profileBuilds = {
+      planned: 2,
+      attempted: 1,
+      completed: 0,
+      succeeded: 0,
+      failed: 1,
+      unattempted: 1,
+    };
+    await fs.writeFile(resultPath, `${JSON.stringify(result, null, 2)}\n`);
+    await assert.rejects(
+      assembleQualifiedCandidate({
+        candidate: fixture.candidate,
+        promotionInput: fixture.promotionInput,
+        authority: fixture.authority,
+      }),
+      /not Pass/,
+    );
+  } finally {
+    await fs.rm(fixture.temp, { recursive: true, force: true });
+  }
+});
+
+test("candidate rejects weak admission, aggregate authority, and raw projection bindings", async (t) => {
+  for (const [name, mutate, expected] of [
+    [
+      "preliminary admission object digest",
+      async (fixture) => {
+        const manifestPath = path.join(
+            fixture.candidate,
+            "qualified-release-candidate-v1.json",
+          ),
+          manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+        manifest.preliminarySourceAdmission.canonicalSha256 = "f".repeat(64);
+        await fs.writeFile(
+          manifestPath,
+          `${JSON.stringify(manifest, null, 2)}\n`,
+        );
+      },
+      /preliminary admission reference|recomputation/,
+    ],
+    [
+      "aggregate authority bytes",
+      async (fixture) => {
+        const manifestPath = path.join(
+            fixture.candidate,
+            "qualified-release-candidate-v1.json",
+          ),
+          manifest = JSON.parse(await fs.readFile(manifestPath, "utf8"));
+        manifest.aggregateAuthority.gitBlobSha256 = "e".repeat(64);
+        await fs.writeFile(
+          manifestPath,
+          `${JSON.stringify(manifest, null, 2)}\n`,
+        );
+      },
+      /Aggregate API authority (reference is not exact|byte identity)/,
+    ],
+    [
+      "raw profile projection",
+      async (fixture) => {
+        const target = path.join(
+            fixture.candidate,
+            "recovery/english-profile-recovery-v1.json",
+          ),
+          value = JSON.parse(await fs.readFile(target, "utf8"));
+        value.profileRecovery.build.completed = 0;
+        await fs.writeFile(target, `${JSON.stringify(value, null, 2)}\n`);
+      },
+      /does not close|archive mismatch/,
+    ],
+  ])
+    await t.test(name, async () => {
+      const fixture = await qualifiedCandidateFixture();
+      try {
+        await assembleQualifiedCandidate({
+          candidate: fixture.candidate,
+          promotionInput: fixture.promotionInput,
+          authority: fixture.authority,
+        });
+        await mutate(fixture);
+        await assert.rejects(
+          verifyQualifiedCandidate(fixture.candidate, {
+            authority: fixture.authority,
+          }),
+          expected,
+        );
+      } finally {
+        await fs.rm(fixture.temp, { recursive: true, force: true });
+      }
+    });
+});
+
+test("candidate admission recomputation rejects a changed-path omission", async () => {
+  const fixture = await qualifiedCandidateFixture();
+  try {
+    const incomplete = structuredClone(fixture.preliminarySourceAdmission);
+    incomplete.changedPaths = [];
+    incomplete.changedPathsSha256 = canonicalObjectSha256([]);
+    await assert.rejects(
+      verifyCandidateAdmission({
+        admission: incomplete,
+        reference: preliminaryAdmissionReference(incomplete),
+        expectedAdmission: fixture.preliminarySourceAdmission,
+      }),
+      /does not recompute/,
+    );
+  } finally {
+    await fs.rm(fixture.temp, { recursive: true, force: true });
+  }
+});
+
 test("promotion record is an exact immutable pointer without candidate copying", async () => {
   const fixture = await qualifiedCandidateFixture();
   try {
@@ -140,12 +289,12 @@ test("promotion record is an exact immutable pointer without candidate copying",
           workflow: {
             path: ".github/workflows/promote-qualified-voice-candidate.yml",
             runId: 999,
-            headSha: manifest.approval.apiApprovalCommit,
+            headSha: manifest.promotion.approvalCommit,
             conclusion: "success",
           },
           artifact: {
             id: 1000,
-            name: `qualified-release-candidate-v1.0.0-${manifest.approval.apiApprovalCommit}`,
+            name: `qualified-release-candidate-v1.0.0-${manifest.promotion.approvalCommit}`,
             expiresAt: "2099-01-01T00:00:00.000Z",
           },
         },

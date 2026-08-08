@@ -11,7 +11,9 @@
     "packageVersion",
     "decision",
     "archiveRecovery",
-    "approval",
+    "preliminarySourceAdmission",
+    "profileQualificationAuthority",
+    "aggregateAuthority",
     "releaseMatrix",
     "qualificationSet",
     "branchProjection",
@@ -243,38 +245,6 @@
         }
       }
     },
-    "approval": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "sourceCommit",
-        "runnerCommit",
-        "testCommit",
-        "apiApprovalCommit",
-        "apiRevision",
-        "apiDecision"
-      ],
-      "properties": {
-        "sourceCommit": {
-          "$ref": "#/$defs/commit"
-        },
-        "runnerCommit": {
-          "$ref": "#/$defs/commit"
-        },
-        "testCommit": {
-          "$ref": "#/$defs/commit"
-        },
-        "apiApprovalCommit": {
-          "$ref": "#/$defs/commit"
-        },
-        "apiRevision": {
-          "const": "API-REV-017"
-        },
-        "apiDecision": {
-          "const": "pass"
-        }
-      }
-    },
     "releaseMatrix": {
       "type": "object",
       "additionalProperties": false,
@@ -472,13 +442,151 @@
     "promotion": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["workflowPath", "workflowSha256"],
+      "required": ["approvalCommit", "workflowPath", "workflowSha256"],
       "properties": {
         "workflowPath": {
           "const": ".github/workflows/promote-qualified-voice-candidate.yml"
         },
         "workflowSha256": {
           "$ref": "#/$defs/digest"
+        },
+        "approvalCommit": {
+          "$ref": "#/$defs/commit"
+        }
+      }
+    },
+    "preliminarySourceAdmission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileName",
+        "jsonPointer",
+        "canonicalSha256",
+        "policy",
+        "acceptedAuthorityCommit",
+        "reviewedControllerCommit",
+        "decision"
+      ],
+      "properties": {
+        "fileName": {
+          "const": "recovery/recovery-run-v1.json"
+        },
+        "jsonPointer": {
+          "const": "/preliminarySourceAdmission"
+        },
+        "canonicalSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policyId", "fileName", "sha256"],
+          "properties": {
+            "policyId": {
+              "const": "voice-runtime-relevant-source-closure-v1"
+            },
+            "fileName": {
+              "const": "contracts/release/relevant-source-closure-v1.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/digest"
+            }
+          }
+        },
+        "acceptedAuthorityCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "reviewedControllerCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "decision": {
+          "const": "reuse-permitted"
+        }
+      }
+    },
+    "profileQualificationAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceCommit",
+        "runnerCommit",
+        "testCommit",
+        "apiApprovalCommit",
+        "apiRevision",
+        "apiDecision"
+      ],
+      "properties": {
+        "sourceCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "runnerCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "testCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "apiApprovalCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "apiRevision": {
+          "const": "API-REV-017"
+        },
+        "apiDecision": {
+          "const": "pass"
+        }
+      }
+    },
+    "aggregateAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recordPath",
+        "recordCommit",
+        "gitBlobSha256",
+        "canonicalContentSha256",
+        "apiRevision",
+        "decision",
+        "testedCommit",
+        "qualificationAuthority"
+      ],
+      "properties": {
+        "recordPath": {
+          "const": "release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json"
+        },
+        "recordCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "gitBlobSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "canonicalContentSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "apiRevision": {
+          "type": "string",
+          "pattern": "^API-REV-[0-9]{3,}$"
+        },
+        "decision": {
+          "const": "pass"
+        },
+        "testedCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "qualificationAuthority": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/closure"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "closureId": {
+                  "const": "qualification-authority-closure-v1"
+                }
+              },
+              "required": ["closureId"]
+            }
+          ]
         }
       }
     }

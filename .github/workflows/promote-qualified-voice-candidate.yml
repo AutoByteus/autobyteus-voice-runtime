@@ -9,7 +9,10 @@ on:
         description: Exact immutable recovery artifact ID
         required: true
       api_approval_commit:
-        description: Exact reviewed API approval commit
+        description: Exact reviewed promotion commit
+        required: true
+      aggregate_record_commit:
+        description: Exact commit containing Aggregate API Renewal Record 1
         required: true
 permissions:
   contents: read
@@ -30,6 +33,7 @@ jobs:
           [[ "${{ inputs.recovery_run_id }}" =~ ^[1-9][0-9]*$ ]]
           [[ "${{ inputs.recovery_artifact_id }}" =~ ^[1-9][0-9]*$ ]]
           [[ "${{ inputs.api_approval_commit }}" =~ ^[a-f0-9]{40}$ ]]
+          [[ "${{ inputs.aggregate_record_commit }}" =~ ^[a-f0-9]{40}$ ]]
           test "${{ inputs.api_approval_commit }}" = "$GITHUB_SHA"
           RUN=$(gh api "/repos/$GITHUB_REPOSITORY/actions/runs/${{ inputs.recovery_run_id }}")
           test "$(jq -r .path <<<"$RUN")" = .github/workflows/recover-qualified-voice-archives.yml
@@ -62,9 +66,12 @@ jobs:
           done
           node --input-type=module - "$GITHUB_WORKSPACE/promotion-input.json" <<'NODE'
           import fs from 'node:fs';
-          import {loadSourceClosurePolicy,verifyFrozenSourceClosures} from './release/source-closure.mjs';
-          const {value:policy}=await loadSourceClosurePolicy();
-          const sourceClosures=await verifyFrozenSourceClosures({policy});
+          import {execFileSync} from 'node:child_process';
+          import {aggregateAuthorityReference,AGGREGATE_AUTHORITY_PATH} from './release/candidate-authority.mjs';
+          import {PROFILE_QUALIFICATION_API_APPROVAL_COMMIT} from './release/recovery-authority.mjs';
+          const recordCommit='${{ inputs.aggregate_record_commit }}';
+          const bytes=execFileSync('git',['show',`${recordCommit}:${AGGREGATE_AUTHORITY_PATH}`]);
+          const record=JSON.parse(bytes.toString('utf8'));
           const value={
             archiveRecoveryWorkflow:{
               path:'.github/workflows/recover-qualified-voice-archives.yml',
@@ -73,8 +80,9 @@ jobs:
               artifactId:Number('${{ inputs.recovery_artifact_id }}'),
               artifactName:'${{ steps.recovery.outputs.artifact_name }}'
             },
-            apiApprovalCommit:process.env.GITHUB_SHA,
-            sourceClosures
+            promotionCommit:process.env.GITHUB_SHA,
+            profileQualificationApiApprovalCommit:PROFILE_QUALIFICATION_API_APPROVAL_COMMIT,
+            aggregateAuthority:aggregateAuthorityReference({record,bytes,recordCommit})
           };
           fs.writeFileSync(process.argv[2],`${JSON.stringify(value,null,2)}\n`);
           NODE

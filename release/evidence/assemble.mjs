@@ -97,8 +97,9 @@ export async function assembleReleaseEvidence({
       sourceCommit: qset.sourceCommit,
       runnerCommit: qset.runnerCommit,
       testCommit: qset.testCommit,
-      apiApprovalCommit: manifest.approval.apiApprovalCommit,
-      apiRevision: manifest.approval.apiRevision,
+      apiApprovalCommit:
+        manifest.profileQualificationAuthority.apiApprovalCommit,
+      apiRevision: manifest.profileQualificationAuthority.apiRevision,
     },
     candidatePromotionRecord: await fileIdentity(
       promotionRecord,
@@ -127,7 +128,7 @@ export async function assembleReleaseEvidence({
     qualificationSet: await fileIdentity(qsetPath, "qualification-set-v2.json"),
     mainReachability: {
       maintainedMainCommit,
-      releaseCommit: manifest.approval.apiApprovalCommit,
+      releaseCommit: manifest.promotion.approvalCommit,
       reachable: true,
     },
     selectionStudy: {

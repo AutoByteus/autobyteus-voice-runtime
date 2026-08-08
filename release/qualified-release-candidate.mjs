@@ -16,10 +16,16 @@ import {
   ACCEPTED_AGGREGATE,
   ACCEPTED_API_EVIDENCE,
   ACCEPTED_ARCHIVES,
+  PROFILE_QUALIFICATION_API_APPROVAL_COMMIT,
   QUALIFIED_SOURCE_COMMIT,
   RECOVERY_WORKFLOW_PATH,
   RELEASE_MATRIX,
 } from "./recovery-authority.mjs";
+import {
+  preliminaryAdmissionReference,
+  verifyAggregateAuthority,
+  verifyCandidateAdmission,
+} from "./candidate-authority.mjs";
 import {
   RECOVERY_MANIFEST_PATH,
   RECOVERY_MEMBER_ALLOWLIST,
@@ -29,12 +35,8 @@ import {
   verifyRecoveryManifest,
 } from "./recovery-evidence.mjs";
 import { verifyQualifiedArchiveRecoveryResult } from "./recover-qualified-voice-archives.mjs";
+import { validateRecoveryResult } from "./recovery-result.mjs";
 import { gitFileSha256 } from "./recovery-git-identity.mjs";
-import {
-  computeApprovedSourceClosures,
-  loadSourceClosurePolicy,
-  verifyFrozenSourceClosures,
-} from "./source-closure.mjs";
 
 export const CANDIDATE_MANIFEST_PATH = "qualified-release-candidate-v1.json";
 export const CANDIDATE_MEMBERS = Object.freeze(
@@ -83,8 +85,10 @@ export async function verifyQualifiedCandidate(
   const context = await verifyCandidateInputs(root, authority),
     expected = await candidateManifest(context, {
       archiveRecoveryWorkflow: manifest.archiveRecovery.workflow,
-      apiApprovalCommit: manifest.approval.apiApprovalCommit,
-      sourceClosures: manifest.sourceClosures,
+      promotionCommit: manifest.promotion.approvalCommit,
+      profileQualificationApiApprovalCommit:
+        manifest.profileQualificationAuthority.apiApprovalCommit,
+      aggregateAuthority: manifest.aggregateAuthority,
     });
   if (JSON.stringify(manifest) !== JSON.stringify(expected))
     throw new Error(
@@ -116,9 +120,9 @@ export async function writeCandidatePromotionRecord({
     };
   if (
     record.workflow.path !== manifest.promotion.workflowPath ||
-    record.workflow.headSha !== manifest.approval.apiApprovalCommit ||
+    record.workflow.headSha !== manifest.promotion.approvalCommit ||
     record.artifact.name !==
-      `qualified-release-candidate-v1.0.0-${manifest.approval.apiApprovalCommit}`
+      `qualified-release-candidate-v1.0.0-${manifest.promotion.approvalCommit}`
   )
     throw new Error("Candidate promotion record lineage mismatch.");
   await validate(
@@ -146,18 +150,29 @@ async function verifyCandidateInputs(root, authority) {
     projection = await readJson(projectionPath),
     projectionVerification = await readJson(verificationPath);
   for (const expected of authority.archives) {
-    const recovered = recoveryResult.archives.find(
-      (item) => item.profileId === expected.profileId,
-    );
+    const recovered = recoveryResult.profileRecoveries.find(
+        (item) => item.profileId === expected.profileId,
+      ),
+      archive = recovered?.archive,
+      rawProfile = await readJson(
+        path.join(
+          root,
+          `recovery/${expected.profileId}-profile-recovery-v1.json`,
+        ),
+      );
     if (
-      !recovered?.exactMatch ||
-      recovered.buildCount !== 1 ||
-      recovered.fileName !== expected.fileName ||
-      recovered.expectedSizeBytes !== expected.sizeBytes ||
-      recovered.observedSizeBytes !== expected.sizeBytes ||
-      recovered.expectedSha256 !== expected.sha256 ||
-      recovered.observedSha256 !== expected.sha256 ||
-      recovered.descriptorSourceCommit !== authority.sourceCommit
+      recovered?.outcome !== "succeeded" ||
+      recovered.build.attempted !== 1 ||
+      recovered.build.completed !== 1 ||
+      archive?.status !== "accepted" ||
+      !archive.exactMatch ||
+      archive.fileName !== expected.fileName ||
+      archive.expectedSizeBytes !== expected.sizeBytes ||
+      archive.observedSizeBytes !== expected.sizeBytes ||
+      archive.expectedSha256 !== expected.sha256 ||
+      archive.observedSha256 !== expected.sha256 ||
+      archive.descriptorSourceCommit !== authority.sourceCommit ||
+      JSON.stringify(rawProfile.profileRecovery) !== JSON.stringify(recovered)
     )
       throw new Error(
         `Recovery Result archive mismatch: ${expected.profileId}`,
@@ -252,6 +267,9 @@ async function verifyCandidateInputs(root, authority) {
     verificationIdentity,
     apiEvidenceManifests,
     providerArchives,
+    recoveryRun: await readJson(
+      path.join(root, "recovery/recovery-run-v1.json"),
+    ),
     authority,
   };
 }
@@ -268,6 +286,7 @@ async function candidateManifest(context, promotionInput) {
       verificationIdentity,
       apiEvidenceManifests,
       providerArchives,
+      recoveryRun,
       authority,
     } = context,
     resultIdentity = await fileIdentity(
@@ -275,21 +294,20 @@ async function candidateManifest(context, promotionInput) {
       RECOVERY_RESULT_PATH,
     );
   assertPromotionInput(promotionInput, authority, qset);
-  if (authority.production) {
-    const { value: policy } = await loadSourceClosurePolicy(),
-      frozen = await verifyFrozenSourceClosures({ policy }),
-      approved = await computeApprovedSourceClosures({
-        commit: promotionInput.apiApprovalCommit,
-        policy,
-      });
-    if (
-      JSON.stringify(approved) !== JSON.stringify(frozen) ||
-      JSON.stringify(promotionInput.sourceClosures) !== JSON.stringify(frozen)
-    )
-      throw new Error(
-        "Candidate source closures are not the frozen authority.",
-      );
-  }
+  const admission = recoveryRun.preliminarySourceAdmission,
+    admissionReference = preliminaryAdmissionReference(admission);
+  await verifyCandidateAdmission({
+    admission,
+    reference: admissionReference,
+    repository: authority.repository,
+    expectedAdmission: authority.preliminarySourceAdmission,
+  });
+  await verifyAggregateAuthority({
+    reference: promotionInput.aggregateAuthority,
+    admission,
+    repository: authority.repository,
+    fixture: authority.aggregateAuthorityFixture,
+  });
   if (
     promotionInput.archiveRecoveryWorkflow.headSha !==
     recoveryResult.controller.commit
@@ -312,14 +330,16 @@ async function candidateManifest(context, promotionInput) {
       },
       workflow: promotionInput.archiveRecoveryWorkflow,
     },
-    approval: {
+    preliminarySourceAdmission: admissionReference,
+    profileQualificationAuthority: {
       sourceCommit: qset.sourceCommit,
       runnerCommit: qset.runnerCommit,
       testCommit: qset.testCommit,
-      apiApprovalCommit: promotionInput.apiApprovalCommit,
+      apiApprovalCommit: promotionInput.profileQualificationApiApprovalCommit,
       apiRevision: "API-REV-017",
       apiDecision: "pass",
     },
+    aggregateAuthority: promotionInput.aggregateAuthority,
     releaseMatrix: authority.releaseMatrix,
     qualificationSet: qsetIdentity,
     branchProjection: projectionIdentity,
@@ -332,12 +352,13 @@ async function candidateManifest(context, promotionInput) {
       sha256: archiveListDigest(providerArchives),
       items: providerArchives,
     },
-    sourceClosures: promotionInput.sourceClosures,
+    sourceClosures: admission.closures.reviewed,
     promotion: {
+      approvalCommit: promotionInput.promotionCommit,
       workflowPath: ".github/workflows/promote-qualified-voice-candidate.yml",
       workflowSha256: authority.production
         ? await gitFileSha256(
-            promotionInput.apiApprovalCommit,
+            promotionInput.promotionCommit,
             ".github/workflows/promote-qualified-voice-candidate.yml",
           )
         : await shaFile(
@@ -353,11 +374,7 @@ async function candidateManifest(context, promotionInput) {
 async function verifyRecovery(root, authority) {
   if (authority.production) return verifyQualifiedArchiveRecoveryResult(root);
   const result = await readJson(path.join(root, RECOVERY_RESULT_PATH));
-  await validate(
-    result,
-    "contracts/release/qualified-archive-recovery-result-v1.schema.json",
-    "Recovery Result",
-  );
+  await validateRecoveryResult(result, root);
   if (result.decision !== "pass")
     throw new Error("Recovery Result is not Pass.");
   await verifyRecoveryManifest(root, result.evidenceManifest);
@@ -382,8 +399,10 @@ async function assertCandidateMembers(root, includeManifest, authority) {
 function assertPromotionInput(input, authority, qset) {
   const workflow = input?.archiveRecoveryWorkflow;
   if (
-    input?.apiApprovalCommit === undefined ||
-    !/^(?!0{40})[a-f0-9]{40}$/.test(input.apiApprovalCommit) ||
+    !/^(?!0{40})[a-f0-9]{40}$/.test(input?.promotionCommit) ||
+    !/^(?!0{40})[a-f0-9]{40}$/.test(
+      input?.profileQualificationApiApprovalCommit,
+    ) ||
     workflow?.path !== RECOVERY_WORKFLOW_PATH ||
     !Number.isSafeInteger(workflow.runId) ||
     workflow.runId < 1 ||
@@ -392,22 +411,16 @@ function assertPromotionInput(input, authority, qset) {
     workflow.artifactId < 1 ||
     workflow.artifactName !==
       `qualified-archive-recovery-v1.0.0-${workflow.runId}` ||
-    !validClosures(input.sourceClosures) ||
+    input?.aggregateAuthority?.decision !== "pass" ||
     qset.sourceCommit !== authority.sourceCommit
   )
     throw new Error("Candidate promotion input is invalid.");
-}
-
-function validClosures(value) {
-  return [
-    ["profile", "profile-closure-v1"],
-    ["qualificationAuthority", "qualification-authority-closure-v1"],
-  ].every(
-    ([key, closureId]) =>
-      value?.[key]?.closureId === closureId &&
-      /^[a-f0-9]{64}$/.test(value[key].inventorySha256) &&
-      /^[a-f0-9]{64}$/.test(value[key].treeSha256),
-  );
+  if (
+    authority.production &&
+    input.profileQualificationApiApprovalCommit !==
+      PROFILE_QUALIFICATION_API_APPROVAL_COMMIT
+  )
+    throw new Error("Historical profile qualification authority changed.");
 }
 
 async function fileIdentity(file, fileName) {
@@ -441,6 +454,7 @@ async function validate(value, schemaPath, label, formats = false) {
 function productionAuthority() {
   return {
     production: true,
+    repository: ROOT,
     sourceCommit: QUALIFIED_SOURCE_COMMIT,
     releaseMatrix: RELEASE_MATRIX,
     aggregate: ACCEPTED_AGGREGATE,

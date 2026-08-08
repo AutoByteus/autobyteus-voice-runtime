@@ -4,6 +4,7 @@ import addFormats from "ajv-formats";
 import { readJson, ROOT } from "../build/lib/files.mjs";
 
 const schemas = [
+  "contracts/release/aggregate-api-renewal-v1.schema.json",
   "contracts/release/qualified-archive-recovery-result-v1.schema.json",
   "contracts/release/qualified-release-candidate-v1.schema.json",
   "contracts/release/candidate-promotion-record-v1.schema.json",

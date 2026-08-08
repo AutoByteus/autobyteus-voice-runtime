@@ -3,14 +3,12 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import Ajv2020 from "ajv/dist/2020.js";
 import {
   parsePairs,
   readJson,
   ROOT,
   sha256,
   shaFile,
-  writeJson,
 } from "../build/lib/files.mjs";
 import {
   ACCEPTED_AGGREGATE,
@@ -19,13 +17,11 @@ import {
   QUALIFIED_SOURCE_TREE,
   RECOVERY_OWNER_PATH,
   RECOVERY_WORKFLOW_PATH,
-  RELEASE_MATRIX,
 } from "./recovery-authority.mjs";
 import {
   RECOVERY_RESULT_PATH,
   assertExactRecoveryDirectory,
   verifyRecoveryManifest,
-  writeRecoveryManifest,
 } from "./recovery-evidence.mjs";
 import { gitFileSha256 } from "./recovery-git-identity.mjs";
 import { verifyRawRecoveryAuthority } from "./recovery-raw-verifier.mjs";
@@ -33,64 +29,151 @@ import {
   executeRecoveryBuild,
   verifyRecoveryNetworkDenial,
 } from "./recovery-build.mjs";
+import { blockedRecoveries, recoveryDecision } from "./recovery-outcomes.mjs";
+import {
+  finalizeRecoveryResult,
+  unavailableRecoverySubject,
+  validateRecoveryResult,
+} from "./recovery-result.mjs";
+import {
+  assessPreliminarySourceAdmission,
+  loadSourceClosurePolicy,
+} from "./source-closure.mjs";
 
 const run = promisify(execFile);
 
-export async function recoverQualifiedArchives(config) {
+export async function recoverQualifiedArchives(
+  config,
+  dependencies = productionDependencies(),
+) {
   assertControllerConfig(config);
-  await assertControllerCheckout(config.controllerCommit);
+  await dependencies.assertControllerCheckout(config.controllerCommit);
   const output = path.resolve(config.output),
     recovery = path.join(output, "recovery"),
-    startedAt = new Date().toISOString(),
-    controller = await controllerIdentity(config.controllerCommit),
-    checkout = await checkoutIdentity(config.qualifiedSource),
-    runner = await runnerIdentity(config),
-    network = await verifyRecoveryNetworkDenial(config.qualifiedSource);
+    startedAt = new Date().toISOString();
   await assertOutputAbsent(output);
-  let observed;
-  try {
-    ({ observed } = await executeRecoveryBuild(config));
-  } catch (error) {
-    await writeFailureRawEvidence({
+  await fs.mkdir(recovery, { recursive: true });
+  const { value: policy, sha256: policySha256 } =
+      await dependencies.loadPolicy(),
+    admission = await dependencies.assessAdmission({
+      repository: ROOT,
+      acceptedAuthorityCommit:
+        policy.closures.qualificationAuthority.baseCommit,
+      reviewedControllerCommit: config.controllerCommit,
+      policy,
+      policySha256,
+    }),
+    controller = await dependencies.controllerIdentity(config.controllerCommit);
+  if (admission.decision !== "reuse-permitted")
+    return finalizeAndStop({
       output,
-      recovery,
       config,
       startedAt,
       controller,
+      admission,
+      checkout: unavailableRecoverySubject(),
+      runner: configuredUnattemptedRunner(config),
+      network: unavailableRecoverySubject(),
+      profileRecoveries: blockedRecoveries(ACCEPTED_ARCHIVES),
+      failure: terminalFailure(
+        "preliminary-source-admission-not-reuse",
+        "preliminary-source-admission",
+      ),
+    });
+
+  let checkout;
+  try {
+    checkout = await dependencies.checkoutIdentity(config.qualifiedSource);
+  } catch {
+    return finalizeAndStop(
+      blockedContext({
+        output,
+        config,
+        startedAt,
+        controller,
+        admission,
+        category: "source-checkout-invalid",
+        stage: "source-checkout",
+      }),
+    );
+  }
+  let runner;
+  try {
+    runner = await dependencies.runnerIdentity(config);
+  } catch {
+    return finalizeAndStop(
+      blockedContext({
+        output,
+        config,
+        startedAt,
+        controller,
+        admission,
+        checkout,
+        category: "runner-unapproved",
+        stage: "runner-identity",
+      }),
+    );
+  }
+  let network;
+  try {
+    network = await dependencies.verifyNetwork(config.qualifiedSource);
+  } catch {
+    return finalizeAndStop(
+      blockedContext({
+        output,
+        config,
+        startedAt,
+        controller,
+        admission,
+        checkout,
+        runner,
+        category: "network-denial-invalid",
+        stage: "network-denial",
+      }),
+    );
+  }
+  let profileRecoveries;
+  try {
+    ({ profileRecoveries } = await dependencies.executeBuild(config));
+  } catch {
+    return finalizeAndStop(
+      blockedContext({
+        output,
+        config,
+        startedAt,
+        controller,
+        admission,
+        checkout,
+        runner,
+        network,
+        category: "toolchain-invalid",
+        stage: "toolchain",
+      }),
+    );
+  }
+  const failure = profileRecoveries.find(
+      (row) => row.outcome === "failed",
+    )?.failure,
+    result = await finalizeRecoveryResult({
+      output,
+      config,
+      startedAt,
+      controller,
+      admission,
       checkout,
       runner,
       network,
-      error,
+      profileRecoveries,
+      failure,
     });
-    throw error;
-  }
-  await writeRawEvidence({
-    recovery,
-    config,
-    startedAt,
-    controller,
-    checkout,
-    runner,
-    network,
-    observed,
-  });
-  const evidenceManifest = await writeRecoveryManifest(output),
-    result = buildRecoveryResult({
-      controller,
-      runner,
-      observed,
-      evidenceManifest,
-    });
-  await validateRecoveryResult(result, output);
-  await writeJson(path.join(output, RECOVERY_RESULT_PATH), result);
+  if (result.decision !== "pass") throw terminalError(result);
   await verifyQualifiedArchiveRecoveryResult(output);
   return result;
 }
 
 export async function verifyQualifiedArchiveRecoveryResult(root) {
   const resolvedRoot = path.resolve(root),
-    resultPath = path.join(resolvedRoot, RECOVERY_RESULT_PATH),
-    result = await readJson(resultPath);
+    result = await readJson(path.join(resolvedRoot, RECOVERY_RESULT_PATH));
   await validateRecoveryResult(result, root);
   await assertExactRecoveryDirectory(resolvedRoot);
   if (result.decision !== "pass")
@@ -104,15 +187,12 @@ export async function verifyQualifiedArchiveRecoveryResult(root) {
       JSON.stringify(ACCEPTED_AGGREGATE.branchProjection) ||
     JSON.stringify(result.qualifiedAuthority.branchProjectionVerification) !==
       JSON.stringify(ACCEPTED_AGGREGATE.branchProjectionVerification) ||
+    result.runner.status !== "verified" ||
     result.runner.ownership !== "organization-managed" ||
-    result.runner.runnerGroup !== "voice-runtime-recovery" ||
-    result.execution.packageBuildsPerProfile !== 1 ||
-    Object.entries(result.execution).some(
-      ([key, value]) => key !== "packageBuildsPerProfile" && value !== 0,
-    )
+    result.runner.runnerGroup !== "voice-runtime-recovery"
   )
     throw new Error("Recovery authority does not match the approved boundary.");
-  assertArchiveRows(result.archives);
+  assertAcceptedProfileRecoveries(result.profileRecoveries);
   const expectedController = await controllerIdentity(result.controller.commit);
   if (JSON.stringify(result.controller) !== JSON.stringify(expectedController))
     throw new Error("Recovery controller Git identities do not reproduce.");
@@ -130,136 +210,45 @@ export async function verifyQualifiedArchiveRecoveryResult(root) {
   return result;
 }
 
-function buildRecoveryResult(context) {
-  const { controller, runner, observed, evidenceManifest } = context;
+async function finalizeAndStop(context) {
+  const result = await finalizeRecoveryResult(context);
+  throw terminalError(result);
+}
+
+function blockedContext(context) {
   return {
-    schemaVersion: 1,
-    artifactKind: "qualified-archive-recovery-result",
-    repository: "AutoByteus/autobyteus-voice-runtime",
-    packageVersion: "1.0.0",
-    decision: "pass",
-    qualifiedAuthority: {
-      sourceCommit: QUALIFIED_SOURCE_COMMIT,
-      apiRevision: "API-REV-017",
-      ...ACCEPTED_AGGREGATE,
-    },
-    controller,
-    runner: {
-      ownership: runner.ownership,
-      platform: runner.platform,
-      architecture: runner.architecture,
-      runnerGroup: runner.runnerGroup,
-      runnerId: runner.runnerId,
-      environmentSha256: runner.environmentSha256,
-    },
-    closedInputs: {
-      releaseMatrixSha256: RELEASE_MATRIX.sha256,
-      items: ACCEPTED_ARCHIVES.map((item) => ({
-        profileId: item.profileId,
-        recipeSha256: item.recipeSha256,
-        provenanceSha256: item.provenanceSha256,
-        repositoryBuildLockSha256: item.repositoryBuildLockSha256,
-        nativeBuildEnvironmentSha256: item.nativeBuildEnvironmentSha256,
-        goToolchainRootTreeSha256: item.goToolchainRootTreeSha256,
-      })),
-    },
-    archives: observed,
-    execution: zeroExecution(),
-    evidenceManifest,
+    output: context.output,
+    config: context.config,
+    startedAt: context.startedAt,
+    controller: context.controller,
+    admission: context.admission,
+    checkout: context.checkout ?? unavailableRecoverySubject(),
+    runner: context.runner ?? configuredUnattemptedRunner(context.config),
+    network: context.network ?? unavailableRecoverySubject(),
+    profileRecoveries: blockedRecoveries(ACCEPTED_ARCHIVES),
+    failure: terminalFailure(context.category, context.stage),
   };
 }
 
-async function writeRawEvidence(context) {
-  const {
-    recovery,
-    config,
-    startedAt,
-    controller,
-    checkout,
-    runner,
-    network,
-    observed,
-  } = context;
-  await Promise.all([
-    writeJson(path.join(recovery, "recovery-run-v1.json"), {
-      schemaVersion: 1,
-      repository: "AutoByteus/autobyteus-voice-runtime",
-      packageVersion: "1.0.0",
-      workflowRunId: config.workflowRunId,
-      controller,
-      startedAt,
-      completedAt: new Date().toISOString(),
-      commands: [
-        "materialize exact closed inputs per profile",
-        "create trusted native build environment",
-        "network-denied package assembly once per profile",
-        "verify provider archive identities",
-      ],
-      execution: zeroExecution(),
-    }),
-    writeJson(
-      path.join(recovery, "qualified-source-checkout-v1.json"),
-      checkout,
-    ),
-    writeJson(path.join(recovery, "runner-environment-v1.json"), runner),
-    writeJson(path.join(recovery, "network-denial-v1.json"), network),
-    ...observed.map((item) =>
-      writeJson(
-        path.join(recovery, `${item.profileId}-profile-recovery-v1.json`),
-        {
-          schemaVersion: 1,
-          decision: "pass",
-          qualifiedSourceCommit: QUALIFIED_SOURCE_COMMIT,
-          releaseMatrix: RELEASE_MATRIX,
-          accepted: ACCEPTED_ARCHIVES.find(
-            (expected) => expected.profileId === item.profileId,
-          ),
-          observed: item,
-        },
-      ),
-    ),
-  ]);
+function terminalFailure(category, stage) {
+  return { category, stage };
 }
 
-async function writeFailureRawEvidence(context) {
-  const { output, recovery, error } = context;
-  await fs.mkdir(recovery, { recursive: true });
-  const fallback = ACCEPTED_ARCHIVES.map((expected) => ({
-    profileId: expected.profileId,
-    buildCount: 1,
-    fileName: expected.fileName,
-    expectedSizeBytes: expected.sizeBytes,
-    observedSizeBytes: 0,
-    expectedSha256: expected.sha256,
-    observedSha256: "0".repeat(64),
-    descriptorSha256: expected.descriptorSha256,
-    fileManifestSha256: expected.fileManifestSha256,
-    descriptorSourceCommit: QUALIFIED_SOURCE_COMMIT,
-    buildReportSha256: "0".repeat(64),
-    provenanceSha256: "0".repeat(64),
-    exactMatch: false,
-  }));
-  for (const expected of ACCEPTED_ARCHIVES) {
-    const log = path.join(recovery, `${expected.profileId}-build.log`);
-    try {
-      await fs.access(log);
-    } catch {
-      await fs.writeFile(log, `recovery failed: ${safeError(error)}\n`);
-    }
-  }
-  await writeRawEvidence({ ...context, observed: fallback });
-  const evidenceManifest = await writeRecoveryManifest(output),
-    result = {
-      ...buildRecoveryResult({
-        controller: context.controller,
-        runner: context.runner,
-        observed: fallback,
-        evidenceManifest,
-      }),
-      decision: "blocked",
-    };
-  await validateRecoveryResult(result, output);
-  await writeJson(path.join(output, RECOVERY_RESULT_PATH), result);
+function terminalError(result) {
+  const error = new Error(
+    `Qualified archive recovery ended with ${result.decision}: ${result.failure.category}.`,
+  );
+  error.recoveryResult = result;
+  return error;
+}
+
+function configuredUnattemptedRunner(config) {
+  return {
+    status: "unattempted",
+    ownership: "organization-managed",
+    runnerGroup: config.runnerGroup,
+    runnerId: config.runnerId,
+  };
 }
 
 async function controllerIdentity(commit) {
@@ -289,7 +278,9 @@ async function checkoutIdentity(source) {
     ).stdout.trim(),
     clean =
       (await run("git", ["status", "--porcelain"], { cwd })).stdout === "",
-    detached = !(await run("git", ["symbolic-ref", "-q", "HEAD"], { cwd }).then(
+    detached = !(await run("git", ["symbolic-ref", "-q", "HEAD"], {
+      cwd,
+    }).then(
       () => true,
       () => false,
     ));
@@ -300,7 +291,14 @@ async function checkoutIdentity(source) {
     !detached
   )
     throw new Error("Qualified source checkout identity is not exact.");
-  return { schemaVersion: 1, headCommit, tree, clean, detached };
+  return {
+    schemaVersion: 1,
+    status: "verified",
+    headCommit,
+    tree,
+    clean,
+    detached,
+  };
 }
 
 async function runnerIdentity(config) {
@@ -317,49 +315,37 @@ async function runnerIdentity(config) {
   };
   return {
     schemaVersion: 1,
+    status: "verified",
     ownership: "organization-managed",
     platform: "darwin",
     architecture: "arm64",
     runnerGroup: config.runnerGroup,
     runnerId: config.runnerId,
-    environmentSha256: shaObject(environment),
+    environmentSha256: sha256(Buffer.from(`${JSON.stringify(environment)}\n`)),
     environment,
   };
 }
 
-async function validateRecoveryResult(result, root) {
-  const schema = await readJson(
-      path.join(
-        ROOT,
-        "contracts/release/qualified-archive-recovery-result-v1.schema.json",
-      ),
-    ),
-    validate = new Ajv2020({ allErrors: true, strict: true }).compile(schema);
-  if (!validate(result))
-    throw new Error(
-      `Recovery Result invalid: ${JSON.stringify(validate.errors)}`,
-    );
-  if (result.evidenceManifest)
-    await verifyRecoveryManifest(root, result.evidenceManifest);
-}
-
-function assertArchiveRows(rows) {
-  if (rows.length !== 2) throw new Error("Recovery must bind two archives.");
+function assertAcceptedProfileRecoveries(rows) {
+  if (recoveryDecision(rows) !== "pass")
+    throw new Error("Recovery profile set is not complete Pass.");
   for (const expected of ACCEPTED_ARCHIVES) {
-    const row = rows.find((item) => item.profileId === expected.profileId);
+    const row = rows.find((item) => item.profileId === expected.profileId),
+      archive = row?.archive;
     if (
-      !row?.exactMatch ||
-      row.buildCount !== 1 ||
-      row.fileName !== expected.fileName ||
-      row.expectedSizeBytes !== expected.sizeBytes ||
-      row.observedSizeBytes !== expected.sizeBytes ||
-      row.expectedSha256 !== expected.sha256 ||
-      row.observedSha256 !== expected.sha256 ||
-      row.descriptorSha256 !== expected.descriptorSha256 ||
-      row.fileManifestSha256 !== expected.fileManifestSha256 ||
-      row.buildReportSha256 !== expected.buildReportSha256 ||
-      row.provenanceSha256 !== expected.provenanceSha256 ||
-      row.descriptorSourceCommit !== QUALIFIED_SOURCE_COMMIT
+      row?.outcome !== "succeeded" ||
+      archive?.status !== "accepted" ||
+      !archive.exactMatch ||
+      archive.fileName !== expected.fileName ||
+      archive.expectedSizeBytes !== expected.sizeBytes ||
+      archive.observedSizeBytes !== expected.sizeBytes ||
+      archive.expectedSha256 !== expected.sha256 ||
+      archive.observedSha256 !== expected.sha256 ||
+      archive.descriptorSha256 !== expected.descriptorSha256 ||
+      archive.fileManifestSha256 !== expected.fileManifestSha256 ||
+      archive.buildReportSha256 !== expected.buildReportSha256 ||
+      archive.provenanceSha256 !== expected.provenanceSha256 ||
+      archive.descriptorSourceCommit !== QUALIFIED_SOURCE_COMMIT
     )
       throw new Error(
         `Recovery archive authority mismatch: ${expected.profileId}`,
@@ -396,26 +382,17 @@ async function assertOutputAbsent(output) {
   }
 }
 
-function zeroExecution() {
+function productionDependencies() {
   return {
-    packageBuildsPerProfile: 1,
-    providerStarts: 0,
-    inferenceRequests: 0,
-    corpusRuns: 0,
-    coldTrials: 0,
-    warmPreparationTrials: 0,
-    warmRequestTrials: 0,
+    assertControllerCheckout,
+    loadPolicy: () => loadSourceClosurePolicy(),
+    assessAdmission: assessPreliminarySourceAdmission,
+    controllerIdentity,
+    checkoutIdentity,
+    runnerIdentity,
+    verifyNetwork: verifyRecoveryNetworkDenial,
+    executeBuild: executeRecoveryBuild,
   };
-}
-
-function shaObject(value) {
-  return sha256(Buffer.from(`${JSON.stringify(value)}\n`));
-}
-
-function safeError(error) {
-  return String(error?.message ?? "unknown recovery failure")
-    .replace(/[\r\n\u0000-\u001f]+/g, " ")
-    .slice(0, 512);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {

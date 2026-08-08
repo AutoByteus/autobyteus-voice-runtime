@@ -14,7 +14,7 @@
     "controller",
     "runner",
     "closedInputs",
-    "archives",
+    "profileRecoveries",
     "execution",
     "evidenceManifest"
   ],
@@ -87,40 +87,14 @@
       }
     },
     "runner": {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "ownership",
-        "platform",
-        "architecture",
-        "runnerGroup",
-        "runnerId",
-        "environmentSha256"
-      ],
-      "properties": {
-        "ownership": {
-          "const": "organization-managed"
+      "oneOf": [
+        {
+          "$ref": "#/$defs/verifiedRunner"
         },
-        "platform": {
-          "const": "darwin"
-        },
-        "architecture": {
-          "const": "arm64"
-        },
-        "runnerGroup": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 128
-        },
-        "runnerId": {
-          "type": "string",
-          "minLength": 1,
-          "maxLength": 256
-        },
-        "environmentSha256": {
-          "$ref": "#/$defs/digest"
+        {
+          "$ref": "#/$defs/unattemptedRunner"
         }
-      }
+      ]
     },
     "closedInputs": {
       "type": "object",
@@ -134,73 +108,81 @@
           "type": "array",
           "minItems": 2,
           "maxItems": 2,
-          "items": {
-            "$ref": "#/$defs/closedInput"
-          },
-          "allOf": [
+          "prefixItems": [
             {
-              "contains": {
-                "type": "object",
-                "properties": {
-                  "profileId": {
-                    "const": "english"
-                  }
+              "allOf": [
+                {
+                  "$ref": "#/$defs/closedInput"
                 },
-                "required": ["profileId"]
-              },
-              "minContains": 1,
-              "maxContains": 1
+                {
+                  "properties": {
+                    "profileId": {
+                      "const": "english"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
             },
             {
-              "contains": {
-                "type": "object",
-                "properties": {
-                  "profileId": {
-                    "const": "chinese"
-                  }
+              "allOf": [
+                {
+                  "$ref": "#/$defs/closedInput"
                 },
-                "required": ["profileId"]
-              },
-              "minContains": 1,
-              "maxContains": 1
+                {
+                  "properties": {
+                    "profileId": {
+                      "const": "chinese"
+                    }
+                  },
+                  "type": "object"
+                }
+              ]
             }
           ]
         }
       }
     },
-    "archives": {
+    "profileRecoveries": {
       "type": "array",
       "minItems": 2,
       "maxItems": 2,
-      "items": {
-        "$ref": "#/$defs/archive"
-      },
-      "allOf": [
+      "prefixItems": [
         {
-          "contains": {
-            "type": "object",
-            "properties": {
-              "profileId": {
-                "const": "english"
-              }
+          "allOf": [
+            {
+              "$ref": "#/$defs/profileRecovery"
             },
-            "required": ["profileId"]
-          },
-          "minContains": 1,
-          "maxContains": 1
+            {
+              "properties": {
+                "profileId": {
+                  "const": "english"
+                },
+                "sequence": {
+                  "const": 1
+                }
+              },
+              "type": "object"
+            }
+          ]
         },
         {
-          "contains": {
-            "type": "object",
-            "properties": {
-              "profileId": {
-                "const": "chinese"
-              }
+          "allOf": [
+            {
+              "$ref": "#/$defs/profileRecovery"
             },
-            "required": ["profileId"]
-          },
-          "minContains": 1,
-          "maxContains": 1
+            {
+              "properties": {
+                "profileId": {
+                  "const": "chinese"
+                },
+                "sequence": {
+                  "const": 2
+                }
+              },
+              "type": "object"
+            }
+          ]
         }
       ]
     },
@@ -208,7 +190,7 @@
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "packageBuildsPerProfile",
+        "profileBuilds",
         "providerStarts",
         "inferenceRequests",
         "corpusRuns",
@@ -217,8 +199,47 @@
         "warmRequestTrials"
       ],
       "properties": {
-        "packageBuildsPerProfile": {
-          "const": 1
+        "profileBuilds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "planned",
+            "attempted",
+            "completed",
+            "succeeded",
+            "failed",
+            "unattempted"
+          ],
+          "properties": {
+            "planned": {
+              "const": 2
+            },
+            "attempted": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "completed": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "succeeded": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "failed": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            },
+            "unattempted": {
+              "type": "integer",
+              "minimum": 0,
+              "maximum": 2
+            }
+          }
         },
         "providerStarts": {
           "const": 0
@@ -261,8 +282,146 @@
           "const": "raw-recovery-evidence-only"
         }
       }
+    },
+    "failure": {
+      "$ref": "#/$defs/failure"
     }
   },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "pass"
+          }
+        },
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "failure": false,
+          "runner": {
+            "$ref": "#/$defs/verifiedRunner"
+          },
+          "profileRecoveries": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [
+              {
+                "$ref": "#/$defs/succeededRecovery"
+              },
+              {
+                "$ref": "#/$defs/succeededRecovery"
+              }
+            ]
+          },
+          "execution": {
+            "type": "object",
+            "properties": {
+              "profileBuilds": {
+                "type": "object",
+                "properties": {
+                  "attempted": {
+                    "const": 2
+                  },
+                  "completed": {
+                    "const": 2
+                  },
+                  "succeeded": {
+                    "const": 2
+                  },
+                  "failed": {
+                    "const": 0
+                  },
+                  "unattempted": {
+                    "const": 0
+                  }
+                }
+              }
+            }
+          }
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "blocked"
+          }
+        },
+        "type": "object"
+      },
+      "then": {
+        "required": ["failure"],
+        "properties": {
+          "failure": {
+            "$ref": "#/$defs/failure"
+          },
+          "profileRecoveries": {
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "prefixItems": [
+              {
+                "$ref": "#/$defs/unattemptedRecovery"
+              },
+              {
+                "$ref": "#/$defs/unattemptedRecovery"
+              }
+            ]
+          },
+          "execution": {
+            "type": "object",
+            "properties": {
+              "profileBuilds": {
+                "type": "object",
+                "properties": {
+                  "attempted": {
+                    "const": 0
+                  },
+                  "completed": {
+                    "const": 0
+                  },
+                  "succeeded": {
+                    "const": 0
+                  },
+                  "failed": {
+                    "const": 0
+                  },
+                  "unattempted": {
+                    "const": 2
+                  }
+                }
+              }
+            }
+          }
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "fail"
+          }
+        },
+        "type": "object"
+      },
+      "then": {
+        "required": ["failure"],
+        "properties": {
+          "failure": {
+            "$ref": "#/$defs/failure"
+          }
+        },
+        "type": "object"
+      }
+    }
+  ],
   "$defs": {
     "digest": {
       "type": "string",
@@ -290,6 +449,366 @@
           "$ref": "#/$defs/digest"
         }
       }
+    },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["planned", "attempted", "completed"],
+      "properties": {
+        "planned": {
+          "const": 1
+        },
+        "attempted": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "completed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "acceptedArchive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "fileName",
+        "expectedSizeBytes",
+        "observedSizeBytes",
+        "expectedSha256",
+        "observedSha256",
+        "descriptorSha256",
+        "fileManifestSha256",
+        "descriptorSourceCommit",
+        "buildReportSha256",
+        "provenanceSha256",
+        "exactMatch"
+      ],
+      "properties": {
+        "status": {
+          "const": "accepted"
+        },
+        "fileName": {
+          "type": "string",
+          "pattern": "^voice-(english|chinese)-darwin-arm64-1\\.0\\.0\\.zip$"
+        },
+        "expectedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "observedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expectedSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "observedSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "descriptorSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "fileManifestSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "descriptorSourceCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "buildReportSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "provenanceSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "exactMatch": {
+          "const": true
+        }
+      }
+    },
+    "rejectedArchive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "fileName",
+        "expectedSizeBytes",
+        "observedSizeBytes",
+        "expectedSha256",
+        "observedSha256",
+        "descriptorSha256",
+        "fileManifestSha256",
+        "descriptorSourceCommit",
+        "buildReportSha256",
+        "provenanceSha256",
+        "exactMatch"
+      ],
+      "properties": {
+        "status": {
+          "const": "rejected"
+        },
+        "fileName": {
+          "type": "string",
+          "pattern": "^voice-(english|chinese)-darwin-arm64-1\\.0\\.0\\.zip$"
+        },
+        "expectedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "observedSizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "expectedSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "observedSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "descriptorSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "fileManifestSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "descriptorSourceCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "buildReportSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "provenanceSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "exactMatch": {
+          "const": false
+        }
+      }
+    },
+    "unavailableArchive": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status"],
+      "properties": {
+        "status": {
+          "const": "unavailable"
+        }
+      }
+    },
+    "failure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["category", "stage"],
+      "properties": {
+        "category": {
+          "enum": [
+            "preliminary-source-admission-not-reuse",
+            "source-checkout-invalid",
+            "runner-unapproved",
+            "network-denial-invalid",
+            "closed-input-invalid",
+            "toolchain-invalid",
+            "capacity-invalid",
+            "materialization-failed",
+            "package-build-failed",
+            "archive-verification-failed",
+            "evidence-finalization-failed"
+          ]
+        },
+        "stage": {
+          "enum": [
+            "preliminary-source-admission",
+            "source-checkout",
+            "runner-identity",
+            "network-denial",
+            "closed-inputs",
+            "toolchain",
+            "capacity",
+            "materialization",
+            "package-build",
+            "archive-verification",
+            "evidence-finalization"
+          ]
+        }
+      }
+    },
+    "unavailability": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["category"],
+          "properties": {
+            "category": {
+              "const": "pre-build-blocked"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["category", "blockedByProfileId"],
+          "properties": {
+            "category": {
+              "const": "prior-profile-failed"
+            },
+            "blockedByProfileId": {
+              "const": "english"
+            }
+          }
+        }
+      ]
+    },
+    "succeededRecovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profileId", "sequence", "outcome", "build", "archive"],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "sequence": {
+          "enum": [1, 2]
+        },
+        "outcome": {
+          "const": "succeeded"
+        },
+        "build": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/build"
+            },
+            {
+              "properties": {
+                "attempted": {
+                  "const": 1
+                },
+                "completed": {
+                  "const": 1
+                }
+              },
+              "type": "object"
+            }
+          ]
+        },
+        "archive": {
+          "$ref": "#/$defs/acceptedArchive"
+        }
+      }
+    },
+    "failedRecovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "sequence",
+        "outcome",
+        "build",
+        "archive",
+        "failure"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "sequence": {
+          "enum": [1, 2]
+        },
+        "outcome": {
+          "const": "failed"
+        },
+        "build": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/build"
+            },
+            {
+              "properties": {
+                "attempted": {
+                  "const": 1
+                }
+              },
+              "type": "object"
+            }
+          ]
+        },
+        "archive": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/unavailableArchive"
+            },
+            {
+              "$ref": "#/$defs/rejectedArchive"
+            }
+          ]
+        },
+        "failure": {
+          "$ref": "#/$defs/failure"
+        }
+      }
+    },
+    "unattemptedRecovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "sequence",
+        "outcome",
+        "build",
+        "archive",
+        "unavailability"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "sequence": {
+          "enum": [1, 2]
+        },
+        "outcome": {
+          "const": "unattempted"
+        },
+        "build": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/build"
+            },
+            {
+              "properties": {
+                "attempted": {
+                  "const": 0
+                },
+                "completed": {
+                  "const": 0
+                }
+              },
+              "type": "object"
+            }
+          ]
+        },
+        "archive": {
+          "$ref": "#/$defs/unavailableArchive"
+        },
+        "unavailability": {
+          "$ref": "#/$defs/unavailability"
+        }
+      }
+    },
+    "profileRecovery": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/succeededRecovery"
+        },
+        {
+          "$ref": "#/$defs/failedRecovery"
+        },
+        {
+          "$ref": "#/$defs/unattemptedRecovery"
+        }
+      ]
     },
     "closedInput": {
       "type": "object",
@@ -323,66 +842,60 @@
         }
       }
     },
-    "archive": {
+    "verifiedRunner": {
       "type": "object",
       "additionalProperties": false,
       "required": [
-        "profileId",
-        "buildCount",
-        "fileName",
-        "expectedSizeBytes",
-        "observedSizeBytes",
-        "expectedSha256",
-        "observedSha256",
-        "descriptorSha256",
-        "fileManifestSha256",
-        "descriptorSourceCommit",
-        "buildReportSha256",
-        "provenanceSha256",
-        "exactMatch"
+        "status",
+        "ownership",
+        "platform",
+        "architecture",
+        "runnerGroup",
+        "runnerId",
+        "environmentSha256"
       ],
       "properties": {
-        "profileId": {
-          "enum": ["english", "chinese"]
+        "status": {
+          "const": "verified"
         },
-        "buildCount": {
-          "const": 1
+        "ownership": {
+          "const": "organization-managed"
         },
-        "fileName": {
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "runnerGroup": {
+          "const": "voice-runtime-recovery"
+        },
+        "runnerId": {
           "type": "string",
-          "pattern": "^voice-(english|chinese)-darwin-arm64-1\\.0\\.0\\.zip$"
+          "pattern": "^org-managed-voice-recovery-[A-Za-z0-9._-]+$"
         },
-        "expectedSizeBytes": {
-          "type": "integer",
-          "minimum": 1
-        },
-        "observedSizeBytes": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "expectedSha256": {
+        "environmentSha256": {
           "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "unattemptedRunner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "ownership", "runnerGroup", "runnerId"],
+      "properties": {
+        "status": {
+          "const": "unattempted"
         },
-        "observedSha256": {
-          "$ref": "#/$defs/digest"
+        "ownership": {
+          "const": "organization-managed"
         },
-        "descriptorSha256": {
-          "$ref": "#/$defs/digest"
+        "runnerGroup": {
+          "const": "voice-runtime-recovery"
         },
-        "fileManifestSha256": {
-          "$ref": "#/$defs/digest"
-        },
-        "descriptorSourceCommit": {
-          "$ref": "#/$defs/commit"
-        },
-        "buildReportSha256": {
-          "$ref": "#/$defs/digest"
-        },
-        "provenanceSha256": {
-          "$ref": "#/$defs/digest"
-        },
-        "exactMatch": {
-          "type": "boolean"
+        "runnerId": {
+          "type": "string",
+          "pattern": "^org-managed-voice-recovery-[A-Za-z0-9._-]+$"
         }
       }
     }

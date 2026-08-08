@@ -16,6 +16,19 @@ import {
   writeRecoveryManifest,
 } from "../../release/recovery-evidence.mjs";
 import { verifyRawRecoveryAuthority } from "../../release/recovery-raw-verifier.mjs";
+import { executeSequentialRecovery } from "../../release/recovery-build.mjs";
+import {
+  blockedRecoveries,
+  failedRecovery,
+  succeededRecovery,
+  summarizeProfileRecoveries,
+} from "../../release/recovery-outcomes.mjs";
+import {
+  buildRecoveryResult,
+  validateRecoveryResult,
+} from "../../release/recovery-result.mjs";
+import { ACCEPTED_ARCHIVES } from "../../release/recovery-authority.mjs";
+import { recoverQualifiedArchives } from "../../release/recover-qualified-voice-archives.mjs";
 
 const root = path.resolve(import.meta.dirname, "../..");
 
@@ -112,7 +125,7 @@ test("Recovery controller owns one build/profile and no runtime qualification co
       path.join(root, ".github/workflows/recover-qualified-voice-archives.yml"),
       "utf8",
     );
-  assert.match(controller, /for \(const expected of ACCEPTED_ARCHIVES\)/);
+  assert.match(controller, /for \(const expected of archives\)/);
   assert.match(controller, /build\/package-assembler\.mjs/);
   assert.doesNotMatch(
     `${controller}\n${workflow}`,
@@ -128,6 +141,165 @@ test("Recovery controller owns one build/profile and no runtime qualification co
       Buffer.compare(Buffer.from(left), Buffer.from(right)),
     ),
   );
+});
+
+test("blocked and sequential failures retain truthful profile/count variants", async () => {
+  const manifest = {
+      fileName: RECOVERY_MANIFEST_PATH,
+      sizeBytes: 807,
+      sha256: "a".repeat(64),
+      entryCount: 8,
+      coverage: "raw-recovery-evidence-only",
+    },
+    controller = {
+      commit: "b".repeat(40),
+      workflowPath: ".github/workflows/recover-qualified-voice-archives.yml",
+      workflowSha256: "b".repeat(64),
+      recoveryOwnerSha256: "c".repeat(64),
+    },
+    runner = {
+      status: "unattempted",
+      ownership: "organization-managed",
+      runnerGroup: "voice-runtime-recovery",
+      runnerId: "org-managed-voice-recovery-fixture",
+    },
+    blockedRows = blockedRecoveries(ACCEPTED_ARCHIVES),
+    blocked = buildRecoveryResult({
+      controller,
+      runner,
+      profileRecoveries: blockedRows,
+      evidenceManifest: manifest,
+      failure: {
+        category: "preliminary-source-admission-not-reuse",
+        stage: "preliminary-source-admission",
+      },
+    });
+  await validateRecoveryResult(blocked);
+  assert.equal(blocked.decision, "blocked");
+  assert.deepEqual(blocked.execution.profileBuilds, {
+    planned: 2,
+    attempted: 0,
+    completed: 0,
+    succeeded: 0,
+    failed: 0,
+    unattempted: 2,
+  });
+  const firstFailure = await executeSequentialRecovery({
+    recover: async (expected) => {
+      if (expected.profileId === "english") {
+        const error = new Error("fixture");
+        error.recoveryCategory = "package-build-failed";
+        error.recoveryStage = "package-build";
+        throw error;
+      }
+      throw new Error("Chinese must remain unattempted");
+    },
+  });
+  assert.deepEqual(
+    firstFailure.profileRecoveries.map((row) => row.outcome),
+    ["failed", "unattempted"],
+  );
+  assert.equal(
+    firstFailure.profileRecoveries[1].unavailability.blockedByProfileId,
+    "english",
+  );
+  assert.deepEqual(
+    summarizeProfileRecoveries(firstFailure.profileRecoveries).profileBuilds,
+    {
+      planned: 2,
+      attempted: 1,
+      completed: 0,
+      succeeded: 0,
+      failed: 1,
+      unattempted: 1,
+    },
+  );
+  const mismatch = await executeSequentialRecovery({
+    recover: async (expected) => observedArchive(expected, false),
+  });
+  assert.equal(mismatch.profileRecoveries[0].outcome, "failed");
+  assert.equal(mismatch.profileRecoveries[0].build.completed, 1);
+  assert.equal(mismatch.profileRecoveries[0].archive.status, "rejected");
+  assert.equal(mismatch.profileRecoveries[0].archive.exactMatch, false);
+});
+
+test("non-reuse preliminary admission finalizes blocked evidence before build", async () => {
+  const temp = await fs.mkdtemp(
+      path.join(os.tmpdir(), "voice-recovery-block-"),
+    ),
+    output = path.join(temp, "output"),
+    commit = "b".repeat(40),
+    digestValue = "c".repeat(64),
+    config = {
+      qualifiedSource: path.join(temp, "source"),
+      output,
+      cacheRoot: path.join(temp, "cache"),
+      go: path.join(temp, "go"),
+      cmake: path.join(temp, "cmake"),
+      preflight: path.join(temp, "preflight.json"),
+      runnerGroup: "voice-runtime-recovery",
+      runnerId: "org-managed-voice-recovery-fixture",
+      workflowRunId: 1,
+      controllerCommit: commit,
+    };
+  let buildCalled = false;
+  try {
+    await assert.rejects(
+      recoverQualifiedArchives(config, {
+        assertControllerCheckout: async () => {},
+        loadPolicy: async () => ({
+          value: {
+            closures: {
+              qualificationAuthority: { baseCommit: "a".repeat(40) },
+            },
+          },
+          sha256: digestValue,
+        }),
+        assessAdmission: async () => ({
+          schemaVersion: 1,
+          artifactKind: "preliminary-source-admission",
+          decision: "aggregate-api-renewal-required",
+        }),
+        controllerIdentity: async () => ({
+          commit,
+          workflowPath:
+            ".github/workflows/recover-qualified-voice-archives.yml",
+          workflowSha256: digestValue,
+          recoveryOwnerSha256: digestValue,
+        }),
+        checkoutIdentity: async () => {
+          throw new Error("checkout must not run");
+        },
+        runnerIdentity: async () => {
+          throw new Error("runner must not run");
+        },
+        verifyNetwork: async () => {
+          throw new Error("network must not run");
+        },
+        executeBuild: async () => {
+          buildCalled = true;
+          throw new Error("build must not run");
+        },
+      }),
+      (error) => {
+        assert.equal(error.recoveryResult.decision, "blocked");
+        assert.equal(error.recoveryResult.execution.profileBuilds.attempted, 0);
+        return true;
+      },
+    );
+    assert.equal(buildCalled, false);
+    const result = await readJson(path.join(output, RECOVERY_RESULT_PATH));
+    assert.equal(
+      result.failure.category,
+      "preliminary-source-admission-not-reuse",
+    );
+    assert.deepEqual(
+      result.profileRecoveries.map((row) => row.outcome),
+      ["unattempted", "unattempted"],
+    );
+  } finally {
+    await fs.rm(temp, { recursive: true, force: true });
+  }
 });
 
 test("raw recovery verifier cross-binds runner, profiles, and archive bytes", async () => {
@@ -183,6 +355,7 @@ test("raw recovery verifier cross-binds runner, profiles, and archive bytes", as
       },
       runner = {
         schemaVersion: 1,
+        status: "verified",
         ownership: "organization-managed",
         platform: environment.platform,
         architecture: environment.architecture,
@@ -193,23 +366,22 @@ test("raw recovery verifier cross-binds runner, profiles, and archive bytes", as
         ),
         environment,
       },
-      observed = archives.map((item) => ({
-        profileId: item.profileId,
-        buildCount: 1,
-        fileName: item.fileName,
-        expectedSizeBytes: item.sizeBytes,
-        observedSizeBytes: item.sizeBytes,
-        expectedSha256: item.sha256,
-        observedSha256: item.sha256,
-        descriptorSha256: item.descriptorSha256,
-        fileManifestSha256: item.fileManifestSha256,
-        descriptorSourceCommit: sourceCommit,
-        buildReportSha256: item.buildReportSha256,
-        provenanceSha256: item.provenanceSha256,
-        exactMatch: true,
+      observed = archives.map((item) =>
+        observedArchive(item, true, sourceCommit),
+      ),
+      profileRecoveries = archives.map((item, index) => ({
+        ...succeededRecovery(item, observed[index]),
+        sequence: index + 1,
       })),
       execution = {
-        packageBuildsPerProfile: 1,
+        profileBuilds: {
+          planned: 2,
+          attempted: 2,
+          completed: 2,
+          succeeded: 2,
+          failed: 0,
+          unattempted: 0,
+        },
         providerStarts: 0,
         inferenceRequests: 0,
         corpusRuns: 0,
@@ -230,10 +402,17 @@ test("raw recovery verifier cross-binds runner, profiles, and archive bytes", as
       },
       result = {
         controller,
-        runner: withoutEnvironment(runner),
+        runner: { status: "verified", ...withoutEnvironment(runner) },
         closedInputs,
-        archives: observed,
+        profileRecoveries,
         execution,
+      },
+      admission = {
+        schemaVersion: 1,
+        artifactKind: "preliminary-source-admission",
+        decision: "reuse-permitted",
+        changedPaths: [],
+        changedPathsSha256: sha256(Buffer.from("[]")),
       },
       raw = [
         {
@@ -241,6 +420,7 @@ test("raw recovery verifier cross-binds runner, profiles, and archive bytes", as
           packageVersion: "1.0.0",
           workflowRunId: 1,
           controller,
+          preliminarySourceAdmission: admission,
           commands: [
             "materialize exact closed inputs per profile",
             "create trusted native build environment",
@@ -250,6 +430,7 @@ test("raw recovery verifier cross-binds runner, profiles, and archive bytes", as
           execution,
         },
         {
+          status: "verified",
           headCommit: sourceCommit,
           tree: sourceTree,
           clean: true,
@@ -266,11 +447,10 @@ test("raw recovery verifier cross-binds runner, profiles, and archive bytes", as
         },
         ...archives.map((item, index) => ({
           schemaVersion: 1,
-          decision: "pass",
           qualifiedSourceCommit: sourceCommit,
           releaseMatrix: matrix,
           accepted: item,
-          observed: observed[index],
+          profileRecovery: profileRecoveries[index],
         })),
       ],
       authority = {
@@ -279,6 +459,7 @@ test("raw recovery verifier cross-binds runner, profiles, and archive bytes", as
         matrix,
         archives,
         networkProfileSha256: digest("sandbox"),
+        admission,
       };
     await verifyRawRecoveryAuthority(temp, result, raw, authority);
     raw[2].environment.runnerId = "drifted-runner";
@@ -294,4 +475,18 @@ test("raw recovery verifier cross-binds runner, profiles, and archive bytes", as
 function withoutEnvironment(runner) {
   const { schemaVersion: _, environment: __, ...result } = runner;
   return result;
+}
+
+function observedArchive(expected, exactMatch, sourceCommit = "a".repeat(40)) {
+  return {
+    profileId: expected.profileId,
+    observedSizeBytes: expected.sizeBytes,
+    observedSha256: expected.sha256,
+    descriptorSha256: expected.descriptorSha256,
+    fileManifestSha256: expected.fileManifestSha256,
+    descriptorSourceCommit: sourceCommit,
+    buildReportSha256: expected.buildReportSha256,
+    provenanceSha256: expected.provenanceSha256,
+    exactMatch,
+  };
 }

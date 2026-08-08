@@ -8,31 +8,19 @@ import {
   RELEASE_MATRIX,
 } from "./recovery-authority.mjs";
 import { gitFileSha256 } from "./recovery-git-identity.mjs";
+import {
+  assessPreliminarySourceAdmission,
+  loadSourceClosurePolicy,
+} from "./source-closure.mjs";
 
 export async function verifyRawRecoveryAuthority(root, result, raw, authority) {
   authority ??= await productionAuthority();
   const [recoveryRun, checkout, runner, network, ...profiles] = raw,
     { sourceCommit, sourceTree, matrix, archives, networkProfileSha256 } =
       authority,
-    runnerProjection = {
-      ownership: runner.ownership,
-      platform: runner.platform,
-      architecture: runner.architecture,
-      runnerGroup: runner.runnerGroup,
-      runnerId: runner.runnerId,
-      environmentSha256: runner.environmentSha256,
-    },
-    expectedInputs = {
-      releaseMatrixSha256: matrix.sha256,
-      items: archives.map((item) => ({
-        profileId: item.profileId,
-        recipeSha256: item.recipeSha256,
-        provenanceSha256: item.provenanceSha256,
-        repositoryBuildLockSha256: item.repositoryBuildLockSha256,
-        nativeBuildEnvironmentSha256: item.nativeBuildEnvironmentSha256,
-        goToolchainRootTreeSha256: item.goToolchainRootTreeSha256,
-      })),
-    };
+    runnerProjection = projectRunner(runner),
+    expectedInputs = expectedClosedInputs(matrix, archives);
+  await verifyAdmission(recoveryRun.preliminarySourceAdmission, authority);
   if (
     recoveryRun.repository !== "AutoByteus/autobyteus-voice-runtime" ||
     recoveryRun.packageVersion !== "1.0.0" ||
@@ -44,11 +32,13 @@ export async function verifyRawRecoveryAuthority(root, result, raw, authority) {
       JSON.stringify(result.execution) ||
     JSON.stringify(recoveryRun.commands) !==
       JSON.stringify(expectedCommands()) ||
+    checkout.status !== "verified" ||
     checkout.headCommit !== sourceCommit ||
     checkout.tree !== sourceTree ||
     checkout.clean !== true ||
     checkout.detached !== true ||
     JSON.stringify(runnerProjection) !== JSON.stringify(result.runner) ||
+    runner.status !== "verified" ||
     runner.environment?.platform !== "darwin" ||
     runner.environment?.architecture !== "arm64" ||
     runner.environment?.runnerGroup !== runner.runnerGroup ||
@@ -76,24 +66,17 @@ async function verifyProfile(
   matrix,
 ) {
   const profile = profiles.find(
-      (item) => item.accepted?.profileId === expected.profileId,
+      (item) => item.profileRecovery?.profileId === expected.profileId,
     ),
-    resultArchive = result.archives.find(
+    resultRow = result.profileRecoveries.find(
       (item) => item.profileId === expected.profileId,
-    ),
-    archivePath = path.join(root, "assets", expected.fileName),
-    archiveInfo = await fs.lstat(archivePath);
+    );
   if (
     profile?.schemaVersion !== 1 ||
-    profile.decision !== "pass" ||
     profile.qualifiedSourceCommit !== sourceCommit ||
     JSON.stringify(profile.releaseMatrix) !== JSON.stringify(matrix) ||
     JSON.stringify(profile.accepted) !== JSON.stringify(expected) ||
-    JSON.stringify(profile.observed) !== JSON.stringify(resultArchive) ||
-    !archiveInfo.isFile() ||
-    archiveInfo.isSymbolicLink() ||
-    archiveInfo.size !== expected.sizeBytes ||
-    (await shaFile(archivePath)) !== expected.sha256
+    JSON.stringify(profile.profileRecovery) !== JSON.stringify(resultRow)
   )
     throw new Error(
       `Raw recovery profile is inconsistent: ${expected.profileId}`,
@@ -107,10 +90,79 @@ async function verifyProfile(
     logInfo.size > 1024 * 1024
   )
     throw new Error(`Recovery build log is invalid: ${expected.profileId}`);
+  if (resultRow.outcome !== "succeeded") return;
+  const archivePath = path.join(root, "assets", expected.fileName),
+    archiveInfo = await fs.lstat(archivePath);
+  if (
+    !archiveInfo.isFile() ||
+    archiveInfo.isSymbolicLink() ||
+    archiveInfo.size !== expected.sizeBytes ||
+    (await shaFile(archivePath)) !== expected.sha256 ||
+    resultRow.archive.status !== "accepted" ||
+    resultRow.archive.exactMatch !== true
+  )
+    throw new Error(`Recovered archive is inconsistent: ${expected.profileId}`);
+}
+
+async function verifyAdmission(admission, authority) {
+  let expected;
+  if (authority.admission) expected = authority.admission;
+  else {
+    const loaded = await loadSourceClosurePolicy({
+      repository: authority.repository,
+    });
+    if (
+      admission?.policy?.policyId !== loaded.value.policyId ||
+      admission?.policy?.sha256 !== loaded.sha256
+    )
+      throw new Error("Preliminary source admission policy mismatch.");
+    expected = await assessPreliminarySourceAdmission({
+      repository: authority.repository,
+      acceptedAuthorityCommit: admission.acceptedAuthorityCommit,
+      reviewedControllerCommit: admission.reviewedControllerCommit,
+      policy: loaded.value,
+      policySha256: loaded.sha256,
+    });
+  }
+  if (
+    JSON.stringify(admission) !== JSON.stringify(expected) ||
+    admission.decision !== "reuse-permitted"
+  )
+    throw new Error(
+      "Preliminary source admission does not independently pass.",
+    );
+}
+
+function projectRunner(runner) {
+  if (runner.status === "unattempted") return runner;
+  return {
+    status: "verified",
+    ownership: runner.ownership,
+    platform: runner.platform,
+    architecture: runner.architecture,
+    runnerGroup: runner.runnerGroup,
+    runnerId: runner.runnerId,
+    environmentSha256: runner.environmentSha256,
+  };
+}
+
+function expectedClosedInputs(matrix, archives) {
+  return {
+    releaseMatrixSha256: matrix.sha256,
+    items: archives.map((item) => ({
+      profileId: item.profileId,
+      recipeSha256: item.recipeSha256,
+      provenanceSha256: item.provenanceSha256,
+      repositoryBuildLockSha256: item.repositoryBuildLockSha256,
+      nativeBuildEnvironmentSha256: item.nativeBuildEnvironmentSha256,
+      goToolchainRootTreeSha256: item.goToolchainRootTreeSha256,
+    })),
+  };
 }
 
 async function productionAuthority() {
   return {
+    repository: path.resolve(import.meta.dirname, ".."),
     sourceCommit: QUALIFIED_SOURCE_COMMIT,
     sourceTree: QUALIFIED_SOURCE_TREE,
     matrix: RELEASE_MATRIX,

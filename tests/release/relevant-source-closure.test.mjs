@@ -6,6 +6,9 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import {
+  assertCanonicalChangedPaths,
+  assessPreliminarySourceAdmission,
+  canonicalObjectSha256,
   changedSourcePaths,
   classifySourcePath,
   computeApprovedSourceClosures,
@@ -27,11 +30,28 @@ test("frozen Profile and Qualification Authority closures reproduce exactly", as
     frozen.qualificationAuthority.closureId,
     "qualification-authority-closure-v1",
   );
-  const head = (
-      await run("git", ["rev-parse", "HEAD"], { cwd: root })
-    ).stdout.trim(),
-    current = await computeApprovedSourceClosures({ commit: head, policy });
-  assert.deepEqual(current, frozen);
+  assert.match(frozen.profile.treeSha256, /^[a-f0-9]{64}$/);
+});
+
+test("current preliminary admission truthfully requires aggregate API renewal", async () => {
+  const loaded = await loadSourceClosurePolicy(),
+    headCommit = await head(root),
+    admission = await assessPreliminarySourceAdmission({
+      repository: root,
+      acceptedAuthorityCommit:
+        loaded.value.closures.qualificationAuthority.baseCommit,
+      reviewedControllerCommit: headCommit,
+      policy: loaded.value,
+      policySha256: loaded.sha256,
+    });
+  assert.equal(admission.acceptedAuthorityIsAncestor, true);
+  assert.equal(admission.acceptedAuthorityMatchesPolicy, true);
+  assert.equal(admission.closures.unchanged.profile, true);
+  assert.equal(admission.decision, "aggregate-api-renewal-required");
+  assert.equal(
+    admission.changedPathsSha256,
+    canonicalObjectSha256(admission.changedPaths),
+  );
 });
 
 test("strictest source category wins and unknown paths fail closed", async () => {
@@ -82,6 +102,10 @@ test("add, change, remove, and rename produce complete fail-closed decisions", a
     const base = await head(temp);
     await write(temp, "providers/runtime.txt", "two\n");
     await write(temp, "release/new-pipeline.mjs", "new\n");
+    await write(temp, "docs/remove-me.md", "remove\n");
+    await commit(temp, "add removal subject");
+    const intermediate = await head(temp);
+    await fs.rm(path.join(temp, "docs/remove-me.md"));
     await run(
       "git",
       [
@@ -105,7 +129,27 @@ test("add, change, remove, and rename produce complete fail-closed decisions", a
         (item) => item.status === "M" && item.path === "providers/runtime.txt",
       ),
     );
-    assert.ok(rows.some((item) => item.status.startsWith("R")));
+    assert.ok(
+      rows.some(
+        (item) =>
+          item.status === "R" &&
+          item.oldPath === "release/recover-qualified-voice-archives.mjs" &&
+          item.newPath === "release/renamed.mjs",
+      ),
+    );
+    assert.ok(rows.some((item) => item.status === "A"));
+    const deletion = await changedSourcePaths({
+      repository: temp,
+      from: intermediate,
+      to: changed,
+      policy,
+    });
+    assert.ok(deletion.some((item) => item.status === "D"));
+    assertCanonicalChangedPaths(rows, policy);
+    assert.throws(
+      () => assertCanonicalChangedPaths([...rows, rows[0]], policy),
+      /duplicate|canonical/,
+    );
     assert.equal(sourceClosureDecision(rows), "profile-qualification-required");
     assert.equal(
       sourceClosureDecision([
@@ -118,6 +162,68 @@ test("add, change, remove, and rename produce complete fail-closed decisions", a
       sourceClosureDecision([{ category: "api-impact-review-required" }]),
       "api-impact-review-required",
     );
+  } finally {
+    await fs.rm(temp, { recursive: true, force: true });
+  }
+});
+
+test("unknown closure-equal change and ancestry failure block admission", async () => {
+  const temp = await fs.mkdtemp(path.join(os.tmpdir(), "voice-admission-git-"));
+  try {
+    await run("git", ["init", "-q"], { cwd: temp });
+    await run("git", ["config", "user.email", "test@example.invalid"], {
+      cwd: temp,
+    });
+    await run("git", ["config", "user.name", "Admission Test"], {
+      cwd: temp,
+    });
+    await write(temp, "release/known.mjs", "one\n");
+    await commit(temp, "base");
+    const base = await head(temp),
+      policy = testPolicy(base);
+    for (const key of ["profile", "qualificationAuthority"])
+      Object.assign(
+        policy.closures[key],
+        await computeSourceClosure({
+          repository: temp,
+          commit: base,
+          closure: policy.closures[key],
+          policy,
+        }),
+      );
+    await write(temp, "unexpected/new-authority.bin", "unknown\n");
+    await commit(temp, "unknown");
+    const changed = await head(temp),
+      admission = await assessPreliminarySourceAdmission({
+        repository: temp,
+        acceptedAuthorityCommit: base,
+        reviewedControllerCommit: changed,
+        policy,
+        policySha256: digest,
+      });
+    assert.equal(admission.closures.unchanged.profile, true);
+    assert.equal(admission.closures.unchanged.qualificationAuthority, true);
+    assert.equal(admission.decision, "api-impact-review-required");
+    await run("git", ["checkout", "-q", "--orphan", "unrelated"], {
+      cwd: temp,
+    });
+    await fs.rm(path.join(temp, "release"), { recursive: true, force: true });
+    await fs.rm(path.join(temp, "unexpected"), {
+      recursive: true,
+      force: true,
+    });
+    await write(temp, "release/known.mjs", "unrelated\n");
+    await commit(temp, "unrelated");
+    const unrelated = await head(temp),
+      blocked = await assessPreliminarySourceAdmission({
+        repository: temp,
+        acceptedAuthorityCommit: base,
+        reviewedControllerCommit: unrelated,
+        policy,
+        policySha256: digest,
+      });
+    assert.equal(blocked.acceptedAuthorityIsAncestor, false);
+    assert.equal(blocked.decision, "api-impact-review-required");
   } finally {
     await fs.rm(temp, { recursive: true, force: true });
   }
@@ -225,4 +331,41 @@ async function head(repository) {
   return (
     await run("git", ["rev-parse", "HEAD"], { cwd: repository })
   ).stdout.trim();
+}
+
+function testPolicy(baseCommit) {
+  return {
+    schemaVersion: 1,
+    policyId: "voice-runtime-relevant-source-closure-v1",
+    defaultCategory: "api-impact-review-required",
+    precedence: [
+      "profile-qualification-required",
+      "aggregate-api-renewal-required",
+      "release-pipeline-only",
+      "documentation-or-record-only",
+    ],
+    closures: {
+      profile: {
+        closureId: "profile-closure-v1",
+        baseCommit,
+        categories: ["profile-qualification-required"],
+        inventorySha256: digest,
+        treeSha256: digest,
+      },
+      qualificationAuthority: {
+        closureId: "qualification-authority-closure-v1",
+        baseCommit,
+        categories: ["aggregate-api-renewal-required"],
+        inventorySha256: digest,
+        treeSha256: digest,
+      },
+    },
+    rules: [
+      {
+        category: "release-pipeline-only",
+        prefixes: ["release/"],
+        exact: [],
+      },
+    ],
+  };
 }

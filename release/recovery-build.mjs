@@ -8,6 +8,11 @@ import {
   QUALIFIED_SOURCE_COMMIT,
   QUALIFIED_SOURCE_TREE,
 } from "./recovery-authority.mjs";
+import {
+  failedRecovery,
+  succeededRecovery,
+  unattemptedRecovery,
+} from "./recovery-outcomes.mjs";
 
 const exec = promisify(execFile);
 const FORBIDDEN_ENV = [
@@ -26,7 +31,10 @@ const FORBIDDEN_ENV = [
   "CMAKE_TOOLCHAIN_FILE",
 ];
 
-export async function executeRecoveryBuild(config) {
+export async function executeRecoveryBuild(
+  config,
+  { recover = recoverProfile } = {},
+) {
   assertRecoveryBuildConfig(config);
   const source = path.resolve(config.qualifiedSource),
     output = path.resolve(config.output),
@@ -34,9 +42,7 @@ export async function executeRecoveryBuild(config) {
     recovery = path.join(output, "recovery"),
     inputs = path.join(output, "inputs");
   await assertQualifiedCheckout(source);
-  await fs.mkdir(output);
   await fs.mkdir(assets, { recursive: false });
-  await fs.mkdir(recovery, { recursive: false });
   await fs.mkdir(inputs, { recursive: false });
   const environmentPath = path.join(output, "native-build-environment.json");
   await runNode(source, "build/create-native-build-environment.mjs", [
@@ -47,10 +53,9 @@ export async function executeRecoveryBuild(config) {
     "--output",
     environmentPath,
   ]);
-  const observed = [];
-  for (const expected of ACCEPTED_ARCHIVES)
-    observed.push(
-      await recoverProfile({
+  const result = await executeSequentialRecovery({
+    recover: (expected) =>
+      recover({
         config,
         source,
         inputs,
@@ -59,8 +64,54 @@ export async function executeRecoveryBuild(config) {
         environmentPath,
         expected,
       }),
-    );
-  return { observed, environmentPath };
+  });
+  await writeUnattemptedBuildLogs(recovery, result.profileRecoveries);
+  return { ...result, environmentPath };
+}
+
+export async function executeSequentialRecovery({
+  archives = ACCEPTED_ARCHIVES,
+  recover,
+}) {
+  const profileRecoveries = [],
+    observed = [];
+  for (const expected of archives) {
+    if (profileRecoveries.some((item) => item.outcome === "failed")) {
+      profileRecoveries.push(
+        unattemptedRecovery(
+          expected,
+          "prior-profile-failed",
+          profileRecoveries.at(-1).profileId,
+        ),
+      );
+      continue;
+    }
+    try {
+      const item = await recover(expected);
+      observed.push(item);
+      if (item.exactMatch)
+        profileRecoveries.push(succeededRecovery(expected, item));
+      else
+        profileRecoveries.push(
+          failedRecovery(expected, {
+            category: "archive-verification-failed",
+            stage: "archive-verification",
+            completed: 1,
+            observed: item,
+          }),
+        );
+    } catch (error) {
+      profileRecoveries.push(
+        failedRecovery(expected, {
+          category: error.recoveryCategory ?? "package-build-failed",
+          stage: error.recoveryStage ?? "package-build",
+          completed: error.recoveryObserved ? 1 : 0,
+          observed: error.recoveryObserved,
+        }),
+      );
+    }
+  }
+  return { observed, profileRecoveries };
 }
 
 export async function verifyRecoveryNetworkDenial(source) {
@@ -119,67 +170,81 @@ async function recoverProfile(context) {
     );
   const lines = [];
   try {
-    await loggedNode(lines, source, "build/materialize-release-inputs.mjs", [
-      "--recipe",
-      recipe,
-      "--cache",
-      config.cacheRoot,
-      "--repository",
-      source,
-      "--destination",
-      profileInputs,
-      "--source-commit",
-      QUALIFIED_SOURCE_COMMIT,
-    ]);
-    await loggedCommand(
-      lines,
-      "/usr/bin/sandbox-exec",
-      [
-        "-f",
-        path.join(
-          source,
-          "benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
-        ),
-        process.execPath,
-        path.join(source, "build/package-assembler.mjs"),
-        "--profile",
-        expected.profileId,
-        "--target",
-        "darwin-arm64",
-        "--inputs",
+    await recoveryStage("materialization-failed", "materialization", () =>
+      loggedNode(lines, source, "build/materialize-release-inputs.mjs", [
+        "--recipe",
+        recipe,
+        "--cache",
+        config.cacheRoot,
+        "--repository",
+        source,
+        "--destination",
         profileInputs,
-        "--output",
-        archive,
-        "--go",
-        config.go,
-        "--preflight",
-        config.preflight,
-        "--build-environment",
-        environmentPath,
         "--source-commit",
         QUALIFIED_SOURCE_COMMIT,
-        "--version",
-        "1.0.0",
-      ],
-      source,
+      ]),
     );
-    await loggedNode(lines, source, "build/package-verifier.mjs", [
-      "--archive",
-      archive,
-      "--build-report",
-      buildReport,
-      "--go",
-      config.go,
-      "--output",
-      verification,
-    ]);
-    return await verifyObservedProfile({
-      expected,
-      archive,
-      buildReport,
-      verification,
-      provenance: `${archive}.provenance.json`,
-    });
+    await recoveryStage("package-build-failed", "package-build", () =>
+      loggedCommand(
+        lines,
+        "/usr/bin/sandbox-exec",
+        [
+          "-f",
+          path.join(
+            source,
+            "benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+          ),
+          process.execPath,
+          path.join(source, "build/package-assembler.mjs"),
+          "--profile",
+          expected.profileId,
+          "--target",
+          "darwin-arm64",
+          "--inputs",
+          profileInputs,
+          "--output",
+          archive,
+          "--go",
+          config.go,
+          "--preflight",
+          config.preflight,
+          "--build-environment",
+          environmentPath,
+          "--source-commit",
+          QUALIFIED_SOURCE_COMMIT,
+          "--version",
+          "1.0.0",
+        ],
+        source,
+      ),
+    );
+    await recoveryStage(
+      "archive-verification-failed",
+      "archive-verification",
+      () =>
+        loggedNode(lines, source, "build/package-verifier.mjs", [
+          "--archive",
+          archive,
+          "--build-report",
+          buildReport,
+          "--go",
+          config.go,
+          "--output",
+          verification,
+        ]),
+    );
+    return await recoveryStage(
+      "archive-verification-failed",
+      "archive-verification",
+      () =>
+        verifyObservedProfile({
+          expected,
+          archive,
+          buildReport,
+          verification,
+          provenance: `${archive}.provenance.json`,
+        }),
+    );
   } finally {
     await fs.writeFile(logPath, boundedLog(lines));
   }
@@ -191,12 +256,7 @@ async function verifyObservedProfile(paths) {
     build = await readJson(buildReport),
     verified = await readJson(verification),
     observed = {
-      profileId: expected.profileId,
-      buildCount: 1,
-      fileName: expected.fileName,
-      expectedSizeBytes: expected.sizeBytes,
       observedSizeBytes: archiveInfo.size,
-      expectedSha256: expected.sha256,
       observedSha256: await shaFile(archive),
       descriptorSha256: verified.descriptorSha256,
       fileManifestSha256: verified.fileManifestSha256,
@@ -213,9 +273,29 @@ async function verifyObservedProfile(paths) {
     observed.descriptorSourceCommit === QUALIFIED_SOURCE_COMMIT &&
     observed.buildReportSha256 === expected.buildReportSha256 &&
     observed.provenanceSha256 === expected.provenanceSha256;
-  if (!observed.exactMatch)
-    throw new Error(`Recovered ${expected.profileId} archive is not exact.`);
   return observed;
+}
+
+async function recoveryStage(category, stage, operation) {
+  try {
+    return await operation();
+  } catch (error) {
+    error.recoveryCategory = category;
+    error.recoveryStage = stage;
+    throw error;
+  }
+}
+
+async function writeUnattemptedBuildLogs(recovery, rows) {
+  for (const row of rows) {
+    if (row.outcome !== "unattempted") continue;
+    const target = path.join(recovery, `${row.profileId}-build.log`);
+    await fs.writeFile(
+      target,
+      `controller-terminal profile=${row.profileId} sequence=${row.sequence} category=${row.unavailability.category}\n`,
+      { flag: "wx" },
+    );
+  }
 }
 
 async function assertQualifiedCheckout(source) {

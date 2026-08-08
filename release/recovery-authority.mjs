@@ -1,6 +1,8 @@
 export const QUALIFIED_SOURCE_COMMIT =
   "32829080938911f0f46390a3fd2af823e105bd32";
 export const QUALIFIED_SOURCE_TREE = "e2f7632b2ebce97453a5b923ce212a1d4699d9b4";
+export const PROFILE_QUALIFICATION_API_APPROVAL_COMMIT =
+  "5333d1d00c31fc9fe6fe2dcfe86219e2b894bebe";
 export const RECOVERY_WORKFLOW_PATH =
   ".github/workflows/recover-qualified-voice-archives.yml";
 export const RECOVERY_OWNER_PATH =

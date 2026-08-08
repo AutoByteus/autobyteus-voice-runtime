@@ -21,6 +21,7 @@ import {
   computeApprovedSourceClosures,
   loadSourceClosurePolicy,
   sourceClosureDecision,
+  canonicalObjectSha256,
   verifyFrozenSourceClosures,
 } from "./source-closure.mjs";
 
@@ -36,7 +37,7 @@ export async function assessQualifiedCandidate({
   const root = path.resolve(candidate),
     manifest = await verifyQualifiedCandidate(root),
     promotion = await readJson(path.resolve(promotionRecord)),
-    approvalCommit = manifest.approval.apiApprovalCommit,
+    approvalCommit = manifest.promotion.approvalCommit,
     { value: policy, sha256: policySha256 } = await loadSourceClosurePolicy(),
     frozen = await verifyFrozenSourceClosures({ repository, policy }),
     approvalReachable = await isAncestor(
@@ -114,6 +115,7 @@ export async function assessQualifiedCandidate({
       ),
     },
     changedPaths,
+    changedPathsSha256: canonicalObjectSha256(changedPaths),
     decision,
   };
   await validate(result);
