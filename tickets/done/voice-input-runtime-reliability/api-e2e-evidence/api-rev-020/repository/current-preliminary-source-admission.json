@@ -1,0 +1,169 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-current-admission-validation",
+  "apiRevision": "API-REV-020",
+  "reviewedSourceCommit": "2e743600ef67469f3fd1bf2c9078d53c2d053979",
+  "reviewedControllerCommit": "ec0f726afd252448784855665a08d1de2ee0521c",
+  "aggregateRecordCommit": "448517cee89e6498c551bcc70aba65ec0bedf97e",
+  "policySha256": "643bd5ac7b27c9ff20be8d866269f1c0e5e65fbf9546c60ff614a0ad62999484",
+  "checks": {
+    "aggregateRecordCommitMatchesPolicy": true,
+    "acceptedProfileMatchesRecord": true,
+    "acceptedQualificationAuthorityMatchesRecord": true,
+    "acceptedAuthorityIsAncestor": true,
+    "acceptedAuthorityMatchesPolicy": true,
+    "profileClosureUnchanged": true,
+    "qualificationAuthorityClosureUnchanged": true,
+    "changedPathsPresent": true,
+    "changedPathsAllowedOnly": true,
+    "changedPathsDigestCanonical": true,
+    "decisionReusePermitted": true
+  },
+  "admission": {
+    "schemaVersion": 1,
+    "artifactKind": "preliminary-source-admission",
+    "policy": {
+      "policyId": "voice-runtime-relevant-source-closure-v1",
+      "fileName": "contracts/release/relevant-source-closure-v1.json",
+      "sha256": "643bd5ac7b27c9ff20be8d866269f1c0e5e65fbf9546c60ff614a0ad62999484"
+    },
+    "acceptedAuthorityCommit": "448517cee89e6498c551bcc70aba65ec0bedf97e",
+    "reviewedControllerCommit": "ec0f726afd252448784855665a08d1de2ee0521c",
+    "acceptedAuthorityIsAncestor": true,
+    "acceptedAuthorityMatchesPolicy": true,
+    "closures": {
+      "accepted": {
+        "profile": {
+          "closureId": "profile-closure-v1",
+          "inventorySha256": "74786fae1a642edf808c3d3692b0dd41e3e473c055321e504506300c444f6fb1",
+          "treeSha256": "dcbdf08695be438258d53129d586804578f22ce2b38d3f1932c8d05b2d6e0c1e"
+        },
+        "qualificationAuthority": {
+          "closureId": "qualification-authority-closure-v1",
+          "inventorySha256": "3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8",
+          "treeSha256": "d1272eeae982173114c7dc67b62ff4876d8a2e101d2fa0ffd2fdc5c57526d1b5"
+        }
+      },
+      "reviewed": {
+        "profile": {
+          "closureId": "profile-closure-v1",
+          "inventorySha256": "74786fae1a642edf808c3d3692b0dd41e3e473c055321e504506300c444f6fb1",
+          "treeSha256": "dcbdf08695be438258d53129d586804578f22ce2b38d3f1932c8d05b2d6e0c1e"
+        },
+        "qualificationAuthority": {
+          "closureId": "qualification-authority-closure-v1",
+          "inventorySha256": "3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8",
+          "treeSha256": "d1272eeae982173114c7dc67b62ff4876d8a2e101d2fa0ffd2fdc5c57526d1b5"
+        }
+      },
+      "unchanged": {
+        "profile": true,
+        "qualificationAuthority": true
+      }
+    },
+    "changedPaths": [
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-019/repository/api-rev-019-final-checksums.log",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-019/repository/committed-aggregate-authority-validation.json",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-041-qualified-recovery-source-review.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-042-qualified-recovery-rework-review.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-043-aggregate-authority-subject-review.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-044-aggregate-current-subject-resolution.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-045-aggregate-api-renewal-record-review.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/delivery-aggregate-renewal-gate-check.log",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "contracts/release/relevant-source-closure-v1.json",
+        "category": "release-pipeline-only"
+      },
+      {
+        "status": "M",
+        "path": "tests/release/relevant-source-closure.test.mjs",
+        "category": "release-pipeline-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-019/SHA256SUMS.txt",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-report.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-revision-record.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/delivery-revision-record.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/docs-sync-report.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/handoff-summary.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/implementation-handoff.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/implementation-revision-record.md",
+        "category": "documentation-or-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/release-deployment-report.md",
+        "category": "documentation-or-record-only"
+      }
+    ],
+    "changedPathsSha256": "a62a4cbaff359cbf57d412305d7aa3e4e27742e0e5c90951c1a00c2373f78765",
+    "decision": "reuse-permitted"
+  }
+}

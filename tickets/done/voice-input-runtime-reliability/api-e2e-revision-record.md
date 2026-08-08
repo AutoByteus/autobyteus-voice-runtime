@@ -22,6 +22,8 @@
 | `API-REV-016` | Code Reviewer / `code-review-report.md` / `CRR-035`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `CRR-034`, `CRR-035` | `Fail / 99%`              | `Fail / 99%`                |
 | `API-REV-017` | Code Reviewer / `code-review-report.md` / `CRR-037`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-024`, `CRR-036`, `CRR-037` | `Fail / 99%`              | `Pass / 99%`                |
 | `API-REV-018` | Code Reviewer / `code-review-report.md` / `CRR-039`            | `API-REV-017`, `DR-003`, `IR-025`, `CRR-038`, `CRR-039`            | `Pass / 99%`              | `Pass / 99%`                |
+| `API-REV-019` | Code Reviewer / `code-review-report.md` / `CRR-044`            | `SR-018`, `ARCH-REV-019`, `IR-029`, `CRR-044`                      | `Pass / 99%`              | `Pass / 99%`                |
+| `API-REV-020` | Code Reviewer / `code-review-report.md` / `CRR-046`            | `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `DR-006`            | `Pass / 99%`              | `Fail / 78%`                |
 
 ## Revision Entries
 
@@ -656,3 +658,42 @@ None.
 - New or remaining API/E2E failure IDs: none in the authorized Aggregate API Renewal scope.
 - Recommended recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable` and review of the durable authority record before later policy/controller work.
 - Remaining boundary: this Pass does not authorize archive recovery or candidate promotion. A separate reviewed policy/controller commit must accept the exact record commit and produce a new exact `reuse-permitted` Preliminary Source Admission. Recovery, promotion, tag, release, and publication remain unexecuted and fail closed.
+
+### API-REV-020 — Reuse admission passes but default-branch workflow registration blocks recovery
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-046`; API/E2E round 20.
+- Triggering scenario and criteria: `API-VOICE-016`; `R-022`, `R-023`, `R-024`; `AC-025`, `AC-026`; `BEH-007`, `BEH-013`.
+- Related revisions: `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `API-REV-019`, `DR-006`.
+- Reviewed source/artifact: source `2e743600ef67469f3fd1bf2c9078d53c2d053979`; artifact `ec0f726afd252448784855665a08d1de2ee0521c`; accepted record commit `448517cee89e6498c551bcc70aba65ec0bedf97e`.
+- Why recorded: the required direct admission transition passes, but the first real managed-recovery operation proves the reviewed branch-only workflow cannot be dispatched because GitHub requires it in the default-branch workflow catalog. API/E2E stopped fail closed before a workflow run or archive build existed.
+- Coverage decisions/durable test paths changed: none. Existing admission, recovery, candidate, and workflow boundary coverage remains valid. API/E2E added no repository-resident durable test code.
+- Scenario delta:
+  - `API-VOICE-016-A` Pass: exact record/policy/ancestry/closures/changed paths produce `reuse-permitted`.
+  - `API-VOICE-016-B` Fail as `API-F-015`: default workflow catalog omits the reviewed recovery workflow and dispatch returns HTTP 404.
+  - `API-VOICE-016-C` Not Tested: promotion correctly remained prohibited.
+- Execution delta: all API-REV-019 checksums Pass; focused source closure 6/6 Pass; release pipeline 46/46 Pass; exact reviewed artifact pushed and remote-equal; recovery/promotion workflow contents readable on ticket branch; recovery dispatch exit 1 / HTTP 404; zero runs at reviewed head.
+
+#### Prior Failure Resolution
+
+| Prior Scenario / Failure Reference                                    | Previous Classification            | Current Resolution     | Evidence                                                                                               |
+| --------------------------------------------------------------------- | ---------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------ |
+| API-REV-019 pending renewed-policy transition                         | Intended later reviewed transition | Resolved / direct Pass | production admission evidence: 11/11 exact checks, both closures unchanged, decision `reuse-permitted` |
+| Earlier API-REV-017 qualification and API-REV-019 aggregate authority | Pass / retained authority          | Reconfirmed exact      | API-REV-019 checksum manifest Pass; exact record/closure/archive authority remains unchanged           |
+
+#### New Failure
+
+- ID: `API-F-015`.
+- Expected: GitHub creates one recovery workflow run at exact reviewed head `ec0f726...` and queues it for approved organization-managed Apple Silicon capacity.
+- Observed: branch files exist at exact blob identities, but the default-branch Actions catalog contains only the older `Voice runtime qualified release`; `gh workflow run recover-qualified-voice-archives.yml --ref codex/voice-runtime-qualified-recovery ...` returns `HTTP 404: workflow ... not found on the default branch`. No run, build, Result, archive artifact, promotion, candidate, tag, release, or publication exists.
+- Preliminary classification: `Design Impact` — reviewed API/E2E-before-Delivery ordering conflicts with GitHub's default-branch workflow registration prerequisite. No authorized API/E2E action can make the workflow dispatchable without integrating release infrastructure to main or introducing a forbidden fallback.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-020/`
+- Prior result/confidence: `Pass / 99%`.
+- Current result/confidence: **`Fail / 78%`**.
+- New failure ID: `API-F-015`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review, likely followed by `solution_designer` for release-stage ordering/design correction.
+- Remaining proof after resolution: execute managed English/Chinese exact recovery, independently verify Result/raw evidence/archives, execute hosted 19-member promotion, and verify Candidate Promotion Record. Delivery pretag/tag/release/publication remains later and was not touched.

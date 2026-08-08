@@ -1,0 +1,13 @@
+apiRevision=API-REV-020
+timestamp=2026-08-08T18:54:02Z
+worktree=/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery
+branch=codex/voice-runtime-qualified-recovery
+head=ec0f726afd252448784855665a08d1de2ee0521c
+source=2e743600ef67469f3fd1bf2c9078d53c2d053979
+deliveryCheckpoint=4993d503e6b613c5691adffc378a19c07acbc85c
+aggregateRecordCommit=448517cee89e6498c551bcc70aba65ec0bedf97e
+qualifiedSource=32829080938911f0f46390a3fd2af823e105bd32
+recordParents=baf1e33f54446d2d1161afd38b88111e4086b76c
+recordIsAncestorOfArtifact=true
+sourceIsAncestorOfArtifact=true
+remote=https://github.com/AutoByteus/autobyteus-voice-runtime.git
