@@ -34,6 +34,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-026`    | Architecture Reviewer / `design-review-report.md` / round 18       | Resolved `AR-F-015`, `AR-F-016`; Delivery ownership blocker | `Design Impact`    | `SR-015`–`SR-017`; `ARCH-REV-016`–`ARCH-REV-018`; prior `CRR-039`, `CRR-040`; `API-REV-017`, `API-REV-018`; `DR-005`   | `Implementation Complete — Ready for Code Review`    |
 | `IR-027`    | Architecture Reviewer / `design-review-report.md` / round 19       | `CR-F-035`, `CR-F-036`, `CR-F-037`                          | `Design Impact`    | `SR-018`; `ARCH-REV-019`; `CRR-041`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
 | `IR-028`    | Code Reviewer / `code-review-report.md` / `CRR-042`                | `CR-F-038`                                                  | `Local Fix`        | `SR-018`; `ARCH-REV-019`; `CRR-042`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
+| `IR-029`    | Code Reviewer / `code-review-report.md` / `CRR-043`                | Remaining `CR-F-038`                                        | `Local Fix`        | `SR-018`; `ARCH-REV-019`; `CRR-043`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
 
 ## Revision Entries
 
@@ -747,3 +748,28 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: focused candidate coverage passed `27/27`; `npm run check:release-pipeline` passed `45/45`; exact pinned-Go full `npm run check` passed source guards, `7/7` Python tests plus compileall, all Go tests/guards, both evidence authorities, and `155/155` Node TAP tests. Authored-file Prettier and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`.
 - Remaining limitations or risks: implementation did not create the Aggregate API Renewal Record, run API/E2E, recover/build archives, start providers, run profile qualification, promote a candidate, merge, tag, or publish. Current admission truthfully remains `aggregate-api-renewal-required`. After source Pass, focused API/E2E must create and commit the zero-profile renewal record; only a separate later reviewed policy/controller commit may accept its exact Git authority and yield `reuse-permitted`.
+
+### IR-029 — Bind the exact current coverage-report subjects
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-043`, with focused evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-043-aggregate-authority-subject-review.md`.
+- Triggering finding IDs: remaining `CR-F-038`. `CR-F-035`, `CR-F-036`, and `CR-F-037` remain resolved.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-043` / `Fail — Local Fix` against `IR-028`; the record/report/profile/aggregate bindings were substantially resolved but arbitrary whole-report substring occurrences could still select a historical API/source as current.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-018`.
+- Related architecture-review revision IDs: `ARCH-REV-019` current Pass; `ARCH-REV-018` preserved.
+- Related code-review revision IDs: `CRR-043`; current re-review pending.
+- Related API/E2E revision IDs: retained `API-REV-017`, `API-REV-018`; focused zero-profile Aggregate API Renewal pending.
+- Related delivery revision IDs: `DR-005`.
+- Why this implementation revision is recorded: `verifyCoverageReport()` authenticated the whole Markdown file but accepted the record API revision, reviewed source, and reviewed test when each string appeared anywhere. Because the report retains history and an older source remains an ancestor of current tests, a self-consistent record could select valid historical subjects and still promote.
+- Approved behavior or requirement IDs affected: `BEH-007`, `BEH-013`; `R-023`; `AC-026`. Runtime/package/profile behavior and the exact recovery/candidate closure remain unchanged.
+- Implementation delta:
+  - Replaced whole-report substring checks inside the singular aggregate-authority owner with one exact current-subject projection headed `## Aggregate API Renewal Current Subjects`.
+  - Required one unique heading and exactly three ordered nonblank declarations: API revision, reviewed source commit, and reviewed test commit. Missing, duplicate, extra, malformed, zero-commit, or reordered projection content fails closed.
+  - Compared that parsed projection structurally with the Aggregate API Renewal Record. Historical API/source/test occurrences elsewhere in the authenticated report cannot satisfy the current binding.
+  - Updated the candidate fixtures to use the exact projection without adding a second parser, caller assertion, mutable/latest lookup, fallback, schema/workflow field, or candidate member.
+  - Expanded the production-shaped temporary Git fixture to contain both valid current and historical report subjects and added a negative that selects the older API/source while preserving exact hashes, direct record parent, source ancestry, profile evidence, and aggregate identities. Verification rejects it specifically at current report subject equality.
+- Changed files or areas: `release/candidate-authority.mjs`, `tests/release/qualified-candidate-fixture.mjs`, and `tests/release/qualified-release-candidate.test.mjs`; source commit `50b7e778c5c8b783f3089803b71636ea7fb2a513`.
+- Local validation and result: focused candidate coverage passed `28/28`; `npm run check:release-pipeline` passed `46/46`; exact pinned-Go full `npm run check` passed source guards, `7/7` Python plus compileall, all Go tests/guards, both evidence authorities, and `156/156` Node TAP tests. Authored-file Prettier, source-size, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not create the Aggregate API Renewal Record, run API/E2E, recover/build archives, start providers, run profile qualification, promote a candidate, merge, tag, or publish. Current admission remains `aggregate-api-renewal-required`. After source Pass, focused API/E2E must create and commit the zero-profile renewal record with the exact current-subject projection; only a separate later reviewed policy/controller commit may accept its Git authority and yield `reuse-permitted`.
