@@ -1,0 +1,7 @@
+./repository/API-VOICE-015-aggregate-renewal-input-validation.json: OK
+./repository/api-rev-019-precommit-checksums.log: OK
+./repository/check-release-pipeline.log: OK
+./repository/committed-aggregate-authority-validation.json: OK
+./repository/retained-authority-validation.log: OK
+./repository/scope-and-diff-check.log: OK
+./repository/source-closure-and-admission.json: OK
