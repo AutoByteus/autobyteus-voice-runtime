@@ -2,19 +2,19 @@
 
 ## Release / Publication / Deployment Scope
 
-This runtime-only delivery finalizes the exact English/Chinese darwin-arm64
-candidate to maintained `main` and executes the repository's explicit
-prequalify-then-publish v1.0.0 workflow. The user authorization gate is
-satisfied. No AutoByteus desktop/superrepo implementation, installation, or
-release is part of this ticket.
+This runtime-only delivery preserves the reviewed minimal-CI recovery chain for
+the exact English/Chinese darwin-arm64 candidate. The current result is a
+zero-profile Aggregate API Renewal stage gate, not release authorization. No
+AutoByteus desktop/superrepo implementation, installation, or release is part
+of this ticket.
 
 ## Handoff Summary
 
-- Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
+- Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
-- Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-runtime/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-005`
-- Notes: IR-025 remains integrated and passed, but the user rejected Delivery-owned full performance/profile requalification. Retry `30883225852` was cancelled, no release exists, and the pipeline ownership contract is routed to Solution Design.
+- Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
+- Current revision: `DR-006`
+- Notes: the exact zero-profile Aggregate API Renewal record passed its Delivery stage gate. Preliminary Source Admission remains `aggregate-api-renewal-required`, so no recovery, promotion, tag, publication, or release is authorized.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,10 +155,24 @@ release is part of this ticket.
 
 ## Final Status
 
-**Blocked / Design Impact — release unpublished.** Maintained `main` contains
-the reviewed IR-025 correction, but the user rejected the workflow's repeated
-full performance/profile qualification as outside Delivery CI ownership. Retry
-`30883225852` was cancelled, the temporary runner was removed, and no tag or
-release exists. Solution Design must define the minimal pipeline and accepted
-API/E2E evidence/artifact promotion contract before implementation, review,
-validation, and Delivery can resume.
+**Pass / Aggregate API Renewal stage gate only; release unpublished.** The
+reviewed zero-profile renewal record is preserved, but current Preliminary
+Source Admission remains `aggregate-api-renewal-required`. No recovery,
+promotion, tag, release, or publication is authorized. The next permitted step
+is a separate implementation/controller acceptance of exact record commit
+`448517c...`, followed by independent `reuse-permitted` recomputation and Source
+Review.
+
+## Aggregate API Renewal Delivery Gate — DR-006
+
+- Date: 2026-08-08.
+- Refreshed base: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`; candidate `502848c5906b2ba033a737f06ee6a5930495b85f`; already current, left/right `0 / 13`.
+- Review chain: CRR-044 source `Pass`; API-REV-019 `Pass / 99%`; CRR-045 proportional test review `Not Applicable`.
+- Accepted stage record: `release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`, exact record commit `448517cee89e6498c551bcc70aba65ec0bedf97e`.
+- Delivery execution: `npm run check:release-pipeline` passed 46/46 tests; every API-REV-019 checksum and record/source/test ancestry check passed.
+- Evidence: `delivery-aggregate-renewal-gate-check.log`, SHA-256 `01381537c8daea3a8edc3b964659025156aaed832839b56ffbadb28c881e04c9`.
+- Work performed: zero profile executions; no provider, inference, corpus, or performance qualification.
+- Docs sync: explicit no long-lived product-doc impact at this stage. `release-pipeline-ownership.md` is the reviewed authority.
+- Current admission: `aggregate-api-renewal-required`.
+- Release disposition: `Blocked / not authorized`; v1.0.0 tag, GitHub Release, catalog, and published assets remain absent.
+- Routing: separate Implementation and Source Review are required to accept exact record commit `448517c...` and independently reach `reuse-permitted` before managed recovery.

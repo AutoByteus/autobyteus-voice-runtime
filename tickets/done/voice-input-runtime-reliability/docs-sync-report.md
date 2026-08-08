@@ -96,3 +96,14 @@ tag publication, published-byte verification, and the deferred target set.
 - Immediate docs decision: no speculative README or workflow guidance is written. Existing product/runtime documentation remains accurate; release-pipeline guidance is held for a reviewed Solution Design revision.
 - Required long-lived follow-up: document the approved minimal final-main gate, immutable API/E2E evidence/artifact promotion rules, requalification triggers, bounded publication-byte verification, and managed runner ownership after design/review/implementation completes.
 - Current result: `Blocked for release docs sync`; route to `solution_designer` rather than guessing.
+
+## Delivery Round 5 — Zero-Profile Aggregate API Renewal
+
+- Trigger: CRR-044 source `Pass`, API-REV-019 `Pass / 99%`, and CRR-045 proportional test-code review `Not Applicable` for the reviewed Aggregate API Renewal package.
+- Integrated base: refreshed `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`; already contained by candidate `502848c5906b2ba033a737f06ee6a5930495b85f`, left/right `0 / 13`.
+- Stage-gate result: `Pass`. The focused release-pipeline check passed 46/46 tests, every API-REV-019 checksum passed, and exact record/source/test ancestry was verified. Evidence: `delivery-aggregate-renewal-gate-check.log`, SHA-256 `01381537c8daea3a8edc3b964659025156aaed832839b56ffbadb28c881e04c9`.
+- Current authority: exact committed record `release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json` at record commit `448517cee89e6498c551bcc70aba65ec0bedf97e`.
+- Long-lived docs impact: `No change at this stage`. The renewal is a zero-profile evidence-authority record, not a runtime, package, matrix, qualification-policy, operator, or publication behavior change. The reviewed `release-pipeline-ownership.md` remains the authoritative design until the next implementation/review transition completes.
+- Release-doc constraint: README and release guidance must not state that recovery, promotion, tagging, or publication is available yet. Preliminary Source Admission still resolves to `aggregate-api-renewal-required`.
+- Next documentation checkpoint: after a separate implementation accepts exact record commit `448517c...`, independently recomputes `reuse-permitted`, and passes source review, reassess operator/release documentation against that integrated behavior.
+- Result: `Pass / explicit no-impact for the current stage gate`; v1.0.0 remains unreleased.
