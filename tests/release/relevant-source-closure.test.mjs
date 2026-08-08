@@ -20,7 +20,8 @@ import {
 
 const run = promisify(execFile),
   root = path.resolve(import.meta.dirname, "../.."),
-  digest = "a".repeat(64);
+  digest = "a".repeat(64),
+  aggregateRecordCommit = "448517cee89e6498c551bcc70aba65ec0bedf97e";
 
 test("frozen Profile and Qualification Authority closures reproduce exactly", async () => {
   const { value: policy } = await loadSourceClosurePolicy(),
@@ -33,8 +34,20 @@ test("frozen Profile and Qualification Authority closures reproduce exactly", as
   assert.match(frozen.profile.treeSha256, /^[a-f0-9]{64}$/);
 });
 
-test("current preliminary admission truthfully requires aggregate API renewal", async () => {
+test("current preliminary admission accepts the exact renewed aggregate authority", async () => {
   const loaded = await loadSourceClosurePolicy(),
+    record = JSON.parse(
+      (
+        await run(
+          "git",
+          [
+            "show",
+            `${aggregateRecordCommit}:release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`,
+          ],
+          { cwd: root },
+        )
+      ).stdout,
+    ),
     headCommit = await head(root),
     admission = await assessPreliminarySourceAdmission({
       repository: root,
@@ -44,10 +57,28 @@ test("current preliminary admission truthfully requires aggregate API renewal", 
       policy: loaded.value,
       policySha256: loaded.sha256,
     });
+  assert.equal(
+    loaded.value.closures.qualificationAuthority.baseCommit,
+    aggregateRecordCommit,
+  );
+  assert.deepEqual(
+    admission.closures.accepted.qualificationAuthority,
+    record.qualificationAuthority,
+  );
+  assert.deepEqual(admission.closures.accepted.profile, record.profileClosure);
   assert.equal(admission.acceptedAuthorityIsAncestor, true);
   assert.equal(admission.acceptedAuthorityMatchesPolicy, true);
   assert.equal(admission.closures.unchanged.profile, true);
-  assert.equal(admission.decision, "aggregate-api-renewal-required");
+  assert.equal(admission.closures.unchanged.qualificationAuthority, true);
+  assert.equal(admission.decision, "reuse-permitted");
+  assert.ok(admission.changedPaths.length > 0);
+  assert.ok(
+    admission.changedPaths.every((item) =>
+      ["release-pipeline-only", "documentation-or-record-only"].includes(
+        item.category,
+      ),
+    ),
+  );
   assert.equal(
     admission.changedPathsSha256,
     canonicalObjectSha256(admission.changedPaths),

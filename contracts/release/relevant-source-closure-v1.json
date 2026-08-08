@@ -18,10 +18,10 @@
     },
     "qualificationAuthority": {
       "closureId": "qualification-authority-closure-v1",
-      "baseCommit": "b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e",
+      "baseCommit": "448517cee89e6498c551bcc70aba65ec0bedf97e",
       "categories": ["aggregate-api-renewal-required"],
       "inventorySha256": "3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8",
-      "treeSha256": "448c69d6216b9b35e09fa4622bf9f279bd250a7bf88d07ebb3f456ef172a31a1"
+      "treeSha256": "d1272eeae982173114c7dc67b62ff4876d8a2e101d2fa0ffd2fdc5c57526d1b5"
     }
   },
   "rules": [
