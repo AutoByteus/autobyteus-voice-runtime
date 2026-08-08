@@ -1,0 +1,6 @@
+# Reviewed source to implementation artifact delta
+M	tickets/done/voice-input-runtime-reliability/implementation-handoff.md
+M	tickets/done/voice-input-runtime-reliability/implementation-revision-record.md
+# Reviewed source ancestry
+PASS source is ancestor of artifact
+# API-owned path diff check

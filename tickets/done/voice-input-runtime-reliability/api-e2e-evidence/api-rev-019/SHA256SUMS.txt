@@ -1,0 +1,5 @@
+cfa4a6c8a13175b8f468231befc6c7cef70d4a46eb65d074b9a2c422249d489d  ./repository/API-VOICE-015-aggregate-renewal-input-validation.json
+b3c46d5a2735855a0c5d087b5c3a24164146c95faa18735753b634a997f8b80b  ./repository/check-release-pipeline.log
+fce4b522d2656ea8356c3fb347ebf32b31bb95f923e815eb0e644a25fbd0b6ea  ./repository/retained-authority-validation.log
+ef8c208e17c55cab4bc0dd0bd0e4fe074a22f5e3c9b79b094a381e945e47d738  ./repository/scope-and-diff-check.log
+d0b291175e0f6a21f33d8fb5db709d423498aba1e983745bb3ddae9f157e52e0  ./repository/source-closure-and-admission.json
