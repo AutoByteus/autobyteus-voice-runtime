@@ -16,6 +16,8 @@ const COVERAGE_REPORT_PATH =
   "tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md";
 const PROFILE_EVIDENCE_ROOT =
   "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016";
+const CURRENT_COVERAGE_SUBJECT_HEADING =
+  "## Aggregate API Renewal Current Subjects";
 
 export function preliminaryAdmissionReference(admission) {
   assertAdmission(admission);
@@ -267,14 +269,51 @@ async function verifyCoverageReport({
     declared.contentSha256 !== sha256(bytes)
   )
     throw new Error("Aggregate API coverage report identity is invalid.");
-  const text = bytes.toString("utf8");
-  for (const subject of [
-    record.api.revision,
-    record.reviewedSourceCommit,
-    record.reviewedTestCommit,
-  ])
-    if (!text.includes(subject))
-      throw new Error("Aggregate API coverage report subject is invalid.");
+  const currentSubjects = currentCoverageReportSubjects(bytes.toString("utf8")),
+    expectedSubjects = {
+      apiRevision: record.api.revision,
+      reviewedSourceCommit: record.reviewedSourceCommit,
+      reviewedTestCommit: record.reviewedTestCommit,
+    };
+  if (JSON.stringify(currentSubjects) !== JSON.stringify(expectedSubjects))
+    throw new Error("Aggregate API coverage report subject is invalid.");
+}
+
+function currentCoverageReportSubjects(text) {
+  const lines = text.split(/\r?\n/),
+    headings = lines.flatMap((line, index) =>
+      line === CURRENT_COVERAGE_SUBJECT_HEADING ? [index] : [],
+    );
+  if (headings.length !== 1)
+    throw new Error("Aggregate API coverage report subject is invalid.");
+  const start = headings[0] + 1,
+    nextHeading = lines.findIndex(
+      (line, index) => index >= start && /^#{1,6} /.test(line),
+    ),
+    section = lines
+      .slice(start, nextHeading === -1 ? lines.length : nextHeading)
+      .filter((line) => line.length > 0),
+    patterns = [
+      ["apiRevision", /^- API Revision: `(API-REV-[0-9]{3,})`$/],
+      [
+        "reviewedSourceCommit",
+        /^- Reviewed Source Commit: `((?!0{40})[a-f0-9]{40})`$/,
+      ],
+      [
+        "reviewedTestCommit",
+        /^- Reviewed Test Commit: `((?!0{40})[a-f0-9]{40})`$/,
+      ],
+    ];
+  if (section.length !== patterns.length)
+    throw new Error("Aggregate API coverage report subject is invalid.");
+  return Object.fromEntries(
+    patterns.map(([key, pattern], index) => {
+      const match = section[index].match(pattern);
+      if (!match)
+        throw new Error("Aggregate API coverage report subject is invalid.");
+      return [key, match[1]];
+    }),
+  );
 }
 
 async function verifyRetainedProfiles({

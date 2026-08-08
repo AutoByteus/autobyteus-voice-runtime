@@ -271,8 +271,9 @@ export async function qualifiedCandidateFixture() {
       sizeBytes: 1000 + index,
       sha256: profile.qualificationSummary.sha256,
     })),
+    apiRevision = "API-REV-999",
     coverageReportBytes = Buffer.from(
-      `# Aggregate renewal coverage\n\nRevision: ${"API-REV-999"}\nReviewed source: ${reviewedSourceCommit}\nReviewed tests: ${reviewedTestCommit}\n`,
+      `# Aggregate renewal coverage\n\n## Aggregate API Renewal Current Subjects\n\n- API Revision: \`${apiRevision}\`\n- Reviewed Source Commit: \`${reviewedSourceCommit}\`\n- Reviewed Test Commit: \`${reviewedTestCommit}\`\n`,
     ),
     aggregateRecord = {
       schemaVersion: 1,
@@ -282,7 +283,7 @@ export async function qualifiedCandidateFixture() {
       reviewedSourceCommit,
       reviewedTestCommit,
       api: {
-        revision: "API-REV-999",
+        revision: apiRevision,
         decision: "pass",
         coverageReport: {
           repositoryPath:

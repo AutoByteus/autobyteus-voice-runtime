@@ -419,6 +419,20 @@ test("aggregate authority resolves the committed record, report, profile evidenc
   }
 });
 
+test("aggregate authority rejects historical report subjects selected as current", async () => {
+  const fixture = await gitAggregateAuthorityFixture({
+    selectHistoricalSubjects: true,
+  });
+  try {
+    await assert.rejects(
+      verifyAggregateAuthority(fixture.input),
+      /coverage report subject/,
+    );
+  } finally {
+    await fs.rm(fixture.repository, { recursive: true, force: true });
+  }
+});
+
 test("promotion record is an exact immutable pointer without candidate copying", async () => {
   const fixture = await qualifiedCandidateFixture();
   try {
@@ -473,7 +487,9 @@ test("promotion record is an exact immutable pointer without candidate copying",
   }
 });
 
-async function gitAggregateAuthorityFixture() {
+async function gitAggregateAuthorityFixture({
+  selectHistoricalSubjects = false,
+} = {}) {
   const repository = await fs.mkdtemp(
       path.join(os.tmpdir(), "aggregate-authority-git-"),
     ),
@@ -529,15 +545,22 @@ async function gitAggregateAuthorityFixture() {
       sha256: sha256(bytes),
     });
   }
-  await fs.writeFile(path.join(repository, "source.txt"), "source\n");
-  await commitAll(repository, "reviewed source");
-  const reviewedSourceCommit = await head(repository);
+  await fs.writeFile(
+    path.join(repository, "source.txt"),
+    "historical source\n",
+  );
+  await commitAll(repository, "historical reviewed source");
+  const historicalSourceCommit = await head(repository);
+  await fs.writeFile(path.join(repository, "source.txt"), "current source\n");
+  await commitAll(repository, "current reviewed source");
+  const currentReviewedSourceCommit = await head(repository);
   await fs.writeFile(path.join(repository, "aggregate.test"), "tests\n");
   await commitAll(repository, "reviewed aggregate tests");
   const reviewedTestCommit = await head(repository),
     apiRevision = "API-REV-999",
+    historicalApiRevision = "API-REV-998",
     coverageBytes = Buffer.from(
-      `# Aggregate API renewal\n\n${apiRevision}\n${reviewedSourceCommit}\n${reviewedTestCommit}\n`,
+      `# Aggregate API renewal\n\n## Aggregate API Renewal Current Subjects\n\n- API Revision: \`${apiRevision}\`\n- Reviewed Source Commit: \`${currentReviewedSourceCommit}\`\n- Reviewed Test Commit: \`${reviewedTestCommit}\`\n\n## Historical API Renewal Subjects\n\n- API Revision: \`${historicalApiRevision}\`\n- Reviewed Source Commit: \`${historicalSourceCommit}\`\n- Reviewed Test Commit: \`${reviewedTestCommit}\`\n`,
     ),
     coveragePath =
       "tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md";
@@ -550,10 +573,12 @@ async function gitAggregateAuthorityFixture() {
     artifactKind: "aggregate-api-renewal",
     repository: "AutoByteus/autobyteus-voice-runtime",
     packageVersion: "1.0.0",
-    reviewedSourceCommit,
+    reviewedSourceCommit: selectHistoricalSubjects
+      ? historicalSourceCommit
+      : currentReviewedSourceCommit,
     reviewedTestCommit,
     api: {
-      revision: apiRevision,
+      revision: selectHistoricalSubjects ? historicalApiRevision : apiRevision,
       decision: "pass",
       coverageReport: {
         repositoryPath: coveragePath,
