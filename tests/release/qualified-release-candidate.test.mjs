@@ -1,19 +1,31 @@
 import test from "node:test";
 import assert from "node:assert/strict";
+import { execFile } from "node:child_process";
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
+import { promisify } from "node:util";
 import {
   CANDIDATE_MEMBERS,
   assembleQualifiedCandidate,
   verifyQualifiedCandidate,
   writeCandidatePromotionRecord,
 } from "../../release/qualified-release-candidate.mjs";
-import { qualifiedCandidateFixture } from "./qualified-candidate-fixture.mjs";
 import {
+  qualifiedCandidateFixture,
+  refreshAggregateAuthorityFixture,
+} from "./qualified-candidate-fixture.mjs";
+import {
+  aggregateAuthorityReference,
+  gitBlobSha256,
   preliminaryAdmissionReference,
+  verifyAggregateAuthority,
   verifyCandidateAdmission,
 } from "../../release/candidate-authority.mjs";
 import { canonicalObjectSha256 } from "../../release/source-closure.mjs";
+import { sha256 } from "../../build/lib/files.mjs";
+
+const run = promisify(execFile);
 
 test("candidate assembler closes exactly 19 members and independently rehashes them", async () => {
   const fixture = await qualifiedCandidateFixture();
@@ -272,6 +284,141 @@ test("candidate admission recomputation rejects a changed-path omission", async 
   }
 });
 
+test("aggregate authority binds every Git, API, profile, and aggregate subject", async (t) => {
+  for (const [name, mutate, expected] of [
+    [
+      "record commit versus admission",
+      (fixture) =>
+        refreshAggregateAuthorityFixture(fixture, {
+          recordCommit: "f".repeat(40),
+        }),
+      /does not bind the admission|commit lineage/,
+    ],
+    [
+      "promotion commit versus reviewed controller",
+      (fixture) => {
+        fixture.promotionInput.promotionCommit = "f".repeat(40);
+      },
+      /does not bind the admission|commit lineage/,
+    ],
+    [
+      "reviewed source commit",
+      (fixture) => {
+        fixture.aggregateRecord.reviewedSourceCommit = "f".repeat(40);
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /reviewed commit lineage/,
+    ],
+    [
+      "reviewed test commit",
+      (fixture) => {
+        fixture.aggregateRecord.reviewedTestCommit = "f".repeat(40);
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /reviewed commit lineage/,
+    ],
+    [
+      "API revision versus coverage report",
+      (fixture) => {
+        fixture.aggregateRecord.api.revision = "API-REV-998";
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /coverage report subject/,
+    ],
+    [
+      "coverage report Git blob",
+      (fixture) => {
+        fixture.aggregateRecord.api.coverageReport.gitBlobSha256 = "f".repeat(
+          64,
+        );
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /coverage report identity/,
+    ],
+    [
+      "coverage report content",
+      (fixture) => {
+        fixture.aggregateRecord.api.coverageReport.contentSha256 = "f".repeat(
+          64,
+        );
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /coverage report identity/,
+    ],
+    [
+      "retained archive",
+      (fixture) => {
+        fixture.aggregateRecord.retainedProfiles[0].archive.sha256 = "f".repeat(
+          64,
+        );
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /retained profile identity/,
+    ],
+    [
+      "retained profile evidence",
+      (fixture) => {
+        fixture.aggregateRecord.retainedProfiles[0].profileEvidence.sizeBytes += 1;
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /retained profile evidence/,
+    ],
+    [
+      "current Qualification Set",
+      (fixture) => {
+        fixture.aggregateRecord.aggregateEvidence.qualificationSet.current.sha256 =
+          "f".repeat(64);
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /qualificationSet identity/,
+    ],
+    [
+      "prior Branch Projection",
+      (fixture) => {
+        fixture.aggregateRecord.aggregateEvidence.branchProjection.prior.sha256 =
+          "f".repeat(64);
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /branchProjection identity/,
+    ],
+    [
+      "Projection Verification comparison flag",
+      (fixture) => {
+        fixture.aggregateRecord.aggregateEvidence.branchProjectionVerification.byteIdentical = false;
+        refreshAggregateAuthorityFixture(fixture);
+      },
+      /branchProjectionVerification identity/,
+    ],
+  ])
+    await t.test(name, async () => {
+      const fixture = await qualifiedCandidateFixture();
+      try {
+        mutate(fixture);
+        await assert.rejects(
+          assembleQualifiedCandidate({
+            candidate: fixture.candidate,
+            promotionInput: fixture.promotionInput,
+            authority: fixture.authority,
+          }),
+          expected,
+        );
+      } finally {
+        await fs.rm(fixture.temp, { recursive: true, force: true });
+      }
+    });
+});
+
+test("aggregate authority resolves the committed record, report, profile evidence, and commit chain from Git", async () => {
+  const fixture = await gitAggregateAuthorityFixture();
+  try {
+    const verified = await verifyAggregateAuthority(fixture.input);
+    assert.deepEqual(verified.record, fixture.record);
+    assert.deepEqual(verified.reference, fixture.reference);
+  } finally {
+    await fs.rm(fixture.repository, { recursive: true, force: true });
+  }
+});
+
 test("promotion record is an exact immutable pointer without candidate copying", async () => {
   const fixture = await qualifiedCandidateFixture();
   try {
@@ -325,3 +472,199 @@ test("promotion record is an exact immutable pointer without candidate copying",
     await fs.rm(fixture.temp, { recursive: true, force: true });
   }
 });
+
+async function gitAggregateAuthorityFixture() {
+  const repository = await fs.mkdtemp(
+      path.join(os.tmpdir(), "aggregate-authority-git-"),
+    ),
+    digest = (seed) => sha256(Buffer.from(seed)),
+    closure = {
+      profile: {
+        closureId: "profile-closure-v1",
+        inventorySha256: digest("profile-inventory"),
+        treeSha256: digest("profile-tree"),
+      },
+      qualificationAuthority: {
+        closureId: "qualification-authority-closure-v1",
+        inventorySha256: digest("qualification-inventory"),
+        treeSha256: digest("qualification-tree"),
+      },
+    },
+    archives = ["english", "chinese"].map((profileId, index) => ({
+      profileId,
+      fileName: `voice-${profileId}-darwin-arm64-1.0.0.zip`,
+      sizeBytes: 100 + index,
+      sha256: digest(`${profileId}-archive`),
+    })),
+    aggregate = {
+      qualificationSet: fileIdentity("qualification-set-v2.json", digest),
+      branchProjection: fileIdentity(
+        "branch-catalog-projection-v2.json",
+        digest,
+      ),
+      branchProjectionVerification: fileIdentity(
+        "branch-catalog-projection-verification-v2.json",
+        digest,
+      ),
+    };
+  await run("git", ["init", "-q"], { cwd: repository });
+  await run("git", ["config", "user.name", "Aggregate Authority Test"], {
+    cwd: repository,
+  });
+  await run("git", ["config", "user.email", "aggregate@example.invalid"], {
+    cwd: repository,
+  });
+  const profileEvidence = [];
+  for (const profileId of ["english", "chinese"]) {
+    const fileName = "qualification-summary-v2.json",
+      relative = `tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016/${profileId}-darwin-arm64/${fileName}`,
+      bytes = Buffer.from(`${profileId} qualification summary\n`);
+    await fs.mkdir(path.dirname(path.join(repository, relative)), {
+      recursive: true,
+    });
+    await fs.writeFile(path.join(repository, relative), bytes);
+    profileEvidence.push({
+      fileName,
+      sizeBytes: bytes.length,
+      sha256: sha256(bytes),
+    });
+  }
+  await fs.writeFile(path.join(repository, "source.txt"), "source\n");
+  await commitAll(repository, "reviewed source");
+  const reviewedSourceCommit = await head(repository);
+  await fs.writeFile(path.join(repository, "aggregate.test"), "tests\n");
+  await commitAll(repository, "reviewed aggregate tests");
+  const reviewedTestCommit = await head(repository),
+    apiRevision = "API-REV-999",
+    coverageBytes = Buffer.from(
+      `# Aggregate API renewal\n\n${apiRevision}\n${reviewedSourceCommit}\n${reviewedTestCommit}\n`,
+    ),
+    coveragePath =
+      "tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md";
+  await fs.mkdir(path.dirname(path.join(repository, coveragePath)), {
+    recursive: true,
+  });
+  await fs.writeFile(path.join(repository, coveragePath), coverageBytes);
+  const record = {
+    schemaVersion: 1,
+    artifactKind: "aggregate-api-renewal",
+    repository: "AutoByteus/autobyteus-voice-runtime",
+    packageVersion: "1.0.0",
+    reviewedSourceCommit,
+    reviewedTestCommit,
+    api: {
+      revision: apiRevision,
+      decision: "pass",
+      coverageReport: {
+        repositoryPath: coveragePath,
+        gitBlobSha256: gitBlobSha256(coverageBytes),
+        contentSha256: sha256(coverageBytes),
+      },
+      profileExecutionCount: 0,
+    },
+    profileClosure: closure.profile,
+    retainedProfiles: archives.map((archive, index) => ({
+      profileId: archive.profileId,
+      archive: {
+        fileName: archive.fileName,
+        sizeBytes: archive.sizeBytes,
+        sha256: archive.sha256,
+      },
+      profileEvidence: profileEvidence[index],
+    })),
+    aggregateEvidence: Object.fromEntries(
+      Object.entries(aggregate).map(([key, identity]) => [
+        key,
+        {
+          current: identity,
+          prior: identity,
+          byteIdentical: true,
+        },
+      ]),
+    ),
+    qualificationAuthority: closure.qualificationAuthority,
+  };
+  const recordPath =
+    "release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json";
+  await fs.mkdir(path.dirname(path.join(repository, recordPath)), {
+    recursive: true,
+  });
+  await fs.writeFile(
+    path.join(repository, recordPath),
+    `${JSON.stringify(record, null, 2)}\n`,
+  );
+  await commitAll(repository, "commit aggregate authority");
+  const recordCommit = await head(repository);
+  await fs.writeFile(path.join(repository, "controller.txt"), "controller\n");
+  await commitAll(repository, "reviewed promotion controller");
+  const promotionCommit = await head(repository),
+    recordBytes = await gitShow(repository, recordCommit, recordPath),
+    reference = aggregateAuthorityReference({
+      record,
+      bytes: recordBytes,
+      recordCommit,
+    }),
+    changedPaths = [
+      {
+        status: "M",
+        path: "controller.txt",
+        category: "release-pipeline-only",
+      },
+    ],
+    admission = {
+      schemaVersion: 1,
+      artifactKind: "preliminary-source-admission",
+      acceptedAuthorityCommit: recordCommit,
+      reviewedControllerCommit: promotionCommit,
+      closures: { accepted: closure },
+      changedPaths,
+      changedPathsSha256: canonicalObjectSha256(changedPaths),
+      decision: "reuse-permitted",
+    },
+    subjects = {
+      promotionCommit,
+      retainedProfiles: archives.map((archive, index) => ({
+        profileId: archive.profileId,
+        archive: {
+          fileName: archive.fileName,
+          sizeBytes: archive.sizeBytes,
+          sha256: archive.sha256,
+        },
+        profileEvidence: {
+          fileName: profileEvidence[index].fileName,
+          sha256: profileEvidence[index].sha256,
+        },
+      })),
+      aggregate: { current: aggregate, prior: aggregate },
+    };
+  return {
+    repository,
+    record,
+    reference,
+    input: { reference, admission, subjects, repository },
+  };
+}
+
+function fileIdentity(fileName, digest) {
+  return { fileName, sizeBytes: 10, sha256: digest(fileName) };
+}
+
+async function commitAll(repository, message) {
+  await run("git", ["add", "."], { cwd: repository });
+  await run("git", ["commit", "-q", "-m", message], { cwd: repository });
+}
+
+async function head(repository) {
+  return (
+    await run("git", ["rev-parse", "HEAD"], { cwd: repository })
+  ).stdout.trim();
+}
+
+async function gitShow(repository, commit, fileName) {
+  return (
+    await run("git", ["show", `${commit}:${fileName}`], {
+      cwd: repository,
+      encoding: "buffer",
+    })
+  ).stdout;
+}

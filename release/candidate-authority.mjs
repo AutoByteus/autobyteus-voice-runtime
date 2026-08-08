@@ -12,6 +12,10 @@ import {
 const run = promisify(execFile);
 export const AGGREGATE_AUTHORITY_PATH =
   "release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json";
+const COVERAGE_REPORT_PATH =
+  "tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md";
+const PROFILE_EVIDENCE_ROOT =
+  "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-016";
 
 export function preliminaryAdmissionReference(admission) {
   assertAdmission(admission);
@@ -65,34 +69,122 @@ export async function verifyCandidateAdmission({
 export async function verifyAggregateAuthority({
   reference,
   admission,
+  subjects,
   repository = ROOT,
   fixture,
 }) {
   assertAggregateReference(reference);
-  let bytes, record;
+  assertAggregateSubjects(subjects);
+  const resolved = await resolveRecord(reference, repository, fixture),
+    record = resolved.record;
+  await validateRecord(record);
+  const verifiedReference = aggregateAuthorityReference({
+    record,
+    bytes: resolved.bytes,
+    recordCommit: reference.recordCommit,
+  });
+  if (JSON.stringify(reference) !== JSON.stringify(verifiedReference))
+    throw new Error("Aggregate API authority reference is not exact.");
+  assertAggregateAdmission(record, reference, admission, subjects);
+  await verifyCommitLineage({
+    record,
+    reference,
+    admission,
+    promotionCommit: subjects.promotionCommit,
+    repository,
+    fixture: fixture?.commitLineage,
+  });
+  await verifyCoverageReport({
+    record,
+    reference,
+    repository,
+    fixture: fixture?.coverageReport,
+  });
+  await verifyRetainedProfiles({
+    record,
+    subjects,
+    reference,
+    repository,
+    fixture: fixture?.profileEvidence,
+  });
+  verifyAggregateEvidence(record.aggregateEvidence, subjects);
+  return { record, reference: verifiedReference };
+}
+
+export function aggregateAuthorityReference({ record, bytes, recordCommit }) {
+  return {
+    recordPath: AGGREGATE_AUTHORITY_PATH,
+    recordCommit,
+    gitBlobSha256: gitBlobSha256(bytes),
+    canonicalContentSha256: canonicalObjectSha256(record),
+    apiRevision: record.api.revision,
+    decision: record.api.decision,
+    testedCommit: record.reviewedSourceCommit,
+    qualificationAuthority: record.qualificationAuthority,
+  };
+}
+
+export function gitBlobSha256(bytes) {
+  const body = Buffer.from(bytes);
+  return sha256(
+    Buffer.concat([Buffer.from(`blob ${body.length}\0`, "utf8"), body]),
+  );
+}
+
+export function aggregateCandidateSubjects({
+  promotionCommit,
+  acceptedArchives,
+  providerArchives,
+  qset,
+  currentAggregate,
+  priorAggregate,
+}) {
+  const retainedProfiles = acceptedArchives.map((accepted) => {
+    const archive = providerArchives.find(
+        (item) => item.fileName === accepted.fileName,
+      ),
+      profile = qset.profiles.find(
+        (item) => item.profileId === accepted.profileId,
+      );
+    if (!archive || !profile?.qualificationSummary)
+      throw new Error("Aggregate API candidate profile subject is missing.");
+    return {
+      profileId: accepted.profileId,
+      archive,
+      profileEvidence: {
+        fileName: profile.qualificationSummary.fileName,
+        sha256: profile.qualificationSummary.sha256,
+      },
+    };
+  });
+  return {
+    promotionCommit,
+    retainedProfiles,
+    aggregate: { current: currentAggregate, prior: priorAggregate },
+  };
+}
+
+async function resolveRecord(reference, repository, fixture) {
   if (fixture) {
     if (
       fixture.reference &&
       JSON.stringify(reference) !== JSON.stringify(fixture.reference)
     )
       throw new Error("Aggregate API authority reference is not exact.");
-    ({ bytes, record } = fixture);
-  } else {
-    const result = await run(
-      "git",
-      ["show", `${reference.recordCommit}:${reference.recordPath}`],
-      { cwd: repository, encoding: "buffer", maxBuffer: 16 * 1024 * 1024 },
-    );
-    bytes = result.stdout;
-    record = JSON.parse(bytes.toString("utf8"));
+    return { bytes: Buffer.from(fixture.bytes), record: fixture.record };
   }
+  const bytes = await gitFileBytes(
+    reference.recordCommit,
+    reference.recordPath,
+    repository,
+  );
+  return { bytes, record: JSON.parse(bytes.toString("utf8")) };
+}
+
+function assertAggregateAdmission(record, reference, admission, subjects) {
   if (
-    sha256(bytes) !== reference.gitBlobSha256 ||
-    canonicalObjectSha256(record) !== reference.canonicalContentSha256
-  )
-    throw new Error("Aggregate API authority byte identity is invalid.");
-  await validateRecord(record);
-  if (
+    reference.recordCommit !== admission.acceptedAuthorityCommit ||
+    subjects.promotionCommit !== admission.reviewedControllerCommit ||
     record.repository !== "AutoByteus/autobyteus-voice-runtime" ||
     record.packageVersion !== "1.0.0" ||
     record.api.revision !== reference.apiRevision ||
@@ -107,20 +199,176 @@ export async function verifyAggregateAuthority({
       JSON.stringify(admission.closures.accepted.profile)
   )
     throw new Error("Aggregate API authority does not bind the admission.");
-  return record;
 }
 
-export function aggregateAuthorityReference({ record, bytes, recordCommit }) {
-  return {
-    recordPath: AGGREGATE_AUTHORITY_PATH,
-    recordCommit,
-    gitBlobSha256: sha256(bytes),
-    canonicalContentSha256: canonicalObjectSha256(record),
-    apiRevision: record.api.revision,
-    decision: record.api.decision,
-    testedCommit: record.reviewedSourceCommit,
-    qualificationAuthority: record.qualificationAuthority,
-  };
+async function verifyCommitLineage({
+  record,
+  reference,
+  admission,
+  promotionCommit,
+  repository,
+  fixture,
+}) {
+  if (fixture) {
+    const expected = {
+      reviewedSourceCommit: record.reviewedSourceCommit,
+      reviewedTestCommit: record.reviewedTestCommit,
+      recordCommit: reference.recordCommit,
+      promotionCommit,
+    };
+    if (
+      JSON.stringify(fixture.subjects) !== JSON.stringify(expected) ||
+      fixture.sourceIsAncestorOfTest !== true ||
+      fixture.recordIsAncestorOfPromotion !== true
+    )
+      throw new Error("Aggregate API reviewed commit lineage is invalid.");
+    return;
+  }
+  const parents = (
+    await run("git", ["show", "-s", "--format=%P", reference.recordCommit], {
+      cwd: repository,
+      encoding: "utf8",
+    })
+  ).stdout
+    .trim()
+    .split(/\s+/);
+  if (
+    parents.length !== 1 ||
+    parents[0] !== record.reviewedTestCommit ||
+    !(await isAncestor(
+      record.reviewedSourceCommit,
+      record.reviewedTestCommit,
+      repository,
+    )) ||
+    !(await isAncestor(reference.recordCommit, promotionCommit, repository)) ||
+    promotionCommit !== admission.reviewedControllerCommit
+  )
+    throw new Error("Aggregate API reviewed commit lineage is invalid.");
+}
+
+async function verifyCoverageReport({
+  record,
+  reference,
+  repository,
+  fixture,
+}) {
+  const declared = record.api.coverageReport;
+  if (declared.repositoryPath !== COVERAGE_REPORT_PATH)
+    throw new Error("Aggregate API coverage report path is invalid.");
+  const bytes = fixture
+    ? Buffer.from(fixture.bytes)
+    : await gitFileBytes(
+        reference.recordCommit,
+        declared.repositoryPath,
+        repository,
+      );
+  if (
+    declared.gitBlobSha256 !== gitBlobSha256(bytes) ||
+    declared.contentSha256 !== sha256(bytes)
+  )
+    throw new Error("Aggregate API coverage report identity is invalid.");
+  const text = bytes.toString("utf8");
+  for (const subject of [
+    record.api.revision,
+    record.reviewedSourceCommit,
+    record.reviewedTestCommit,
+  ])
+    if (!text.includes(subject))
+      throw new Error("Aggregate API coverage report subject is invalid.");
+}
+
+async function verifyRetainedProfiles({
+  record,
+  subjects,
+  reference,
+  repository,
+  fixture,
+}) {
+  for (const [index, expected] of subjects.retainedProfiles.entries()) {
+    const retained = record.retainedProfiles[index];
+    if (
+      retained.profileId !== expected.profileId ||
+      JSON.stringify(retained.archive) !== JSON.stringify(expected.archive) ||
+      retained.profileEvidence.fileName !== expected.profileEvidence.fileName ||
+      retained.profileEvidence.sha256 !== expected.profileEvidence.sha256
+    )
+      throw new Error("Aggregate API retained profile identity is invalid.");
+    const independentlyResolved = fixture?.[index]
+      ? fixture[index]
+      : await profileEvidenceIdentity(
+          retained.profileId,
+          retained.profileEvidence.fileName,
+          reference.recordCommit,
+          repository,
+        );
+    if (
+      JSON.stringify(retained.profileEvidence) !==
+      JSON.stringify(independentlyResolved)
+    )
+      throw new Error("Aggregate API retained profile evidence is invalid.");
+  }
+}
+
+function verifyAggregateEvidence(actual, subjects) {
+  for (const key of [
+    "qualificationSet",
+    "branchProjection",
+    "branchProjectionVerification",
+  ]) {
+    const current = subjects.aggregate.current[key],
+      prior = subjects.aggregate.prior[key],
+      expected = {
+        current,
+        prior,
+        byteIdentical: JSON.stringify(current) === JSON.stringify(prior),
+      };
+    if (JSON.stringify(actual[key]) !== JSON.stringify(expected))
+      throw new Error(`Aggregate API ${key} identity is invalid.`);
+  }
+}
+
+async function profileEvidenceIdentity(
+  profileId,
+  fileName,
+  commit,
+  repository,
+) {
+  const expectedName = "qualification-summary-v2.json";
+  if (fileName !== expectedName)
+    throw new Error("Aggregate API profile evidence filename is invalid.");
+  const bytes = await gitFileBytes(
+    commit,
+    `${PROFILE_EVIDENCE_ROOT}/${profileId}-darwin-arm64/${fileName}`,
+    repository,
+  );
+  return { fileName, sizeBytes: bytes.length, sha256: sha256(bytes) };
+}
+
+async function gitFileBytes(commit, fileName, repository) {
+  if (
+    !/^(?!0{40})[a-f0-9]{40}$/.test(commit) ||
+    !/^[A-Za-z0-9._/-]+$/.test(fileName) ||
+    fileName.startsWith("/") ||
+    fileName.split("/").some((part) => !part || part === "." || part === "..")
+  )
+    throw new Error("Aggregate API Git identity input is invalid.");
+  const result = await run("git", ["show", `${commit}:${fileName}`], {
+    cwd: repository,
+    encoding: "buffer",
+    maxBuffer: 16 * 1024 * 1024,
+  });
+  return result.stdout;
+}
+
+async function isAncestor(ancestor, descendant, repository) {
+  try {
+    await run("git", ["merge-base", "--is-ancestor", ancestor, descendant], {
+      cwd: repository,
+    });
+    return true;
+  } catch {
+    return false;
+  }
 }
 
 function assertAdmission(value) {
@@ -140,9 +388,25 @@ function assertAggregateReference(value) {
     !/^(?!0{40})[a-f0-9]{40}$/.test(value.recordCommit) ||
     !/^[a-f0-9]{64}$/.test(value.gitBlobSha256) ||
     !/^[a-f0-9]{64}$/.test(value.canonicalContentSha256) ||
-    value.decision !== "pass"
+    !/^API-REV-[0-9]{3,}$/.test(value.apiRevision) ||
+    value.decision !== "pass" ||
+    !/^(?!0{40})[a-f0-9]{40}$/.test(value.testedCommit) ||
+    value.qualificationAuthority?.closureId !==
+      "qualification-authority-closure-v1"
   )
     throw new Error("Aggregate API authority reference is invalid.");
+}
+
+function assertAggregateSubjects(value) {
+  if (
+    !/^(?!0{40})[a-f0-9]{40}$/.test(value?.promotionCommit) ||
+    value.retainedProfiles?.length !== 2 ||
+    value.retainedProfiles[0]?.profileId !== "english" ||
+    value.retainedProfiles[1]?.profileId !== "chinese" ||
+    !value.aggregate?.current ||
+    !value.aggregate?.prior
+  )
+    throw new Error("Aggregate API candidate subjects are invalid.");
 }
 
 async function validateRecord(record) {

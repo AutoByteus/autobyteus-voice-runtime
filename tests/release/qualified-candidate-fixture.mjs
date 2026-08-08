@@ -11,7 +11,10 @@ import {
   RAW_RECOVERY_MEMBERS,
   writeRecoveryManifest,
 } from "../../release/recovery-evidence.mjs";
-import { aggregateAuthorityReference } from "../../release/candidate-authority.mjs";
+import {
+  aggregateAuthorityReference,
+  gitBlobSha256,
+} from "../../release/candidate-authority.mjs";
 import { canonicalObjectSha256 } from "../../release/source-closure.mjs";
 
 const root = path.resolve(import.meta.dirname, "../.."),
@@ -20,7 +23,10 @@ const root = path.resolve(import.meta.dirname, "../.."),
     "tickets/done/voice-input-runtime-reliability/api-e2e-evidence",
   ),
   controllerCommit = "a".repeat(40),
-  apiApprovalCommit = "b".repeat(40),
+  recordCommit = "b".repeat(40),
+  reviewedTestCommit = "c".repeat(40),
+  reviewedSourceCommit = "d".repeat(40),
+  profileApiApprovalCommit = "e".repeat(40),
   digest = (seed) => sha256(Buffer.from(seed));
 
 export async function qualifiedCandidateFixture() {
@@ -126,7 +132,7 @@ export async function qualifiedCandidateFixture() {
         fileName: "contracts/release/relevant-source-closure-v1.json",
         sha256: digest("policy"),
       },
-      acceptedAuthorityCommit: apiApprovalCommit,
+      acceptedAuthorityCommit: recordCommit,
       reviewedControllerCommit: controllerCommit,
       acceptedAuthorityIsAncestor: true,
       acceptedAuthorityMatchesPolicy: true,
@@ -260,37 +266,41 @@ export async function qualifiedCandidateFixture() {
     path.join(candidate, "recovery/qualified-archive-recovery-result-v1.json"),
     result,
   );
-  const aggregateRecord = {
+  const profileEvidence = qset.profiles.map((profile, index) => ({
+      fileName: profile.qualificationSummary.fileName,
+      sizeBytes: 1000 + index,
+      sha256: profile.qualificationSummary.sha256,
+    })),
+    coverageReportBytes = Buffer.from(
+      `# Aggregate renewal coverage\n\nRevision: ${"API-REV-999"}\nReviewed source: ${reviewedSourceCommit}\nReviewed tests: ${reviewedTestCommit}\n`,
+    ),
+    aggregateRecord = {
       schemaVersion: 1,
       artifactKind: "aggregate-api-renewal",
       repository: "AutoByteus/autobyteus-voice-runtime",
       packageVersion: "1.0.0",
-      reviewedSourceCommit: apiApprovalCommit,
-      reviewedTestCommit: controllerCommit,
+      reviewedSourceCommit,
+      reviewedTestCommit,
       api: {
         revision: "API-REV-999",
         decision: "pass",
         coverageReport: {
           repositoryPath:
             "tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md",
-          gitBlobSha256: digest("coverage-blob"),
-          contentSha256: digest("coverage-content"),
+          gitBlobSha256: gitBlobSha256(coverageReportBytes),
+          contentSha256: sha256(coverageReportBytes),
         },
         profileExecutionCount: 0,
       },
       profileClosure: sourceClosures.profile,
-      retainedProfiles: archives.map((item) => ({
+      retainedProfiles: archives.map((item, index) => ({
         profileId: item.profileId,
         archive: {
           fileName: item.fileName,
           sizeBytes: item.sizeBytes,
           sha256: item.sha256,
         },
-        profileEvidence: {
-          fileName: `${item.profileId}-profile-evidence.json`,
-          sizeBytes: 1,
-          sha256: digest(`${item.profileId}-profile-evidence`),
-        },
+        profileEvidence: { ...profileEvidence[index] },
       })),
       aggregateEvidence: {
         qualificationSet: aggregateItem(aggregate.qualificationSet),
@@ -307,7 +317,7 @@ export async function qualifiedCandidateFixture() {
     aggregateAuthority = aggregateAuthorityReference({
       record: aggregateRecord,
       bytes: aggregateBytes,
-      recordCommit: apiApprovalCommit,
+      recordCommit,
     }),
     authority = {
       production: false,
@@ -322,6 +332,18 @@ export async function qualifiedCandidateFixture() {
         record: aggregateRecord,
         bytes: aggregateBytes,
         reference: aggregateAuthority,
+        coverageReport: { bytes: coverageReportBytes },
+        profileEvidence,
+        commitLineage: {
+          subjects: {
+            reviewedSourceCommit,
+            reviewedTestCommit,
+            recordCommit,
+            promotionCommit: controllerCommit,
+          },
+          sourceIsAncestorOfTest: true,
+          recordIsAncestorOfPromotion: true,
+        },
       },
     },
     promotionInput = {
@@ -332,8 +354,8 @@ export async function qualifiedCandidateFixture() {
         artifactId: 456,
         artifactName: "qualified-archive-recovery-v1.0.0-123",
       },
-      promotionCommit: apiApprovalCommit,
-      profileQualificationApiApprovalCommit: controllerCommit,
+      promotionCommit: controllerCommit,
+      profileQualificationApiApprovalCommit: profileApiApprovalCommit,
       aggregateAuthority,
     };
   return {
@@ -345,13 +367,34 @@ export async function qualifiedCandidateFixture() {
     qset,
     preliminarySourceAdmission,
     aggregateRecord,
+    aggregateRecordCommit: recordCommit,
   };
+}
+
+export function refreshAggregateAuthorityFixture(
+  fixture,
+  { recordCommit: nextRecordCommit = fixture.aggregateRecordCommit } = {},
+) {
+  const bytes = Buffer.from(
+      `${JSON.stringify(fixture.aggregateRecord, null, 2)}\n`,
+    ),
+    reference = aggregateAuthorityReference({
+      record: fixture.aggregateRecord,
+      bytes,
+      recordCommit: nextRecordCommit,
+    });
+  Object.assign(fixture.authority.aggregateAuthorityFixture, {
+    record: fixture.aggregateRecord,
+    bytes,
+    reference,
+  });
+  fixture.promotionInput.aggregateAuthority = reference;
 }
 
 function aggregateItem(identityValue) {
   return {
-    current: identityValue,
-    prior: identityValue,
+    current: { ...identityValue },
+    prior: { ...identityValue },
     byteIdentical: true,
   };
 }

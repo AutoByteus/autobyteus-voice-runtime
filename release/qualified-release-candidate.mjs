@@ -22,6 +22,7 @@ import {
   RELEASE_MATRIX,
 } from "./recovery-authority.mjs";
 import {
+  aggregateCandidateSubjects,
   preliminaryAdmissionReference,
   verifyAggregateAuthority,
   verifyCandidateAdmission,
@@ -302,9 +303,21 @@ async function candidateManifest(context, promotionInput) {
     repository: authority.repository,
     expectedAdmission: authority.preliminarySourceAdmission,
   });
-  await verifyAggregateAuthority({
+  const verifiedAggregate = await verifyAggregateAuthority({
     reference: promotionInput.aggregateAuthority,
     admission,
+    subjects: aggregateCandidateSubjects({
+      promotionCommit: promotionInput.promotionCommit,
+      acceptedArchives: authority.archives,
+      providerArchives,
+      qset,
+      currentAggregate: {
+        qualificationSet: qsetIdentity,
+        branchProjection: projectionIdentity,
+        branchProjectionVerification: verificationIdentity,
+      },
+      priorAggregate: authority.aggregate,
+    }),
     repository: authority.repository,
     fixture: authority.aggregateAuthorityFixture,
   });
@@ -339,7 +352,7 @@ async function candidateManifest(context, promotionInput) {
       apiRevision: "API-REV-017",
       apiDecision: "pass",
     },
-    aggregateAuthority: promotionInput.aggregateAuthority,
+    aggregateAuthority: verifiedAggregate.reference,
     releaseMatrix: authority.releaseMatrix,
     qualificationSet: qsetIdentity,
     branchProjection: projectionIdentity,
