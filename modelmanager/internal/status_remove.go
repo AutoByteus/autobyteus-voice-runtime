@@ -21,6 +21,7 @@ func (s *Service) Status(profile, installRoot string) Terminal {
 	if err != nil {
 		return s.fail("store-corrupt")
 	}
+	defer store.Close()
 	snapshot, err := store.Snapshot(profile)
 	if errors.Is(err, modelstore.ErrStateChanging) {
 		return s.fail("state-changing")
@@ -45,6 +46,7 @@ func (s *Service) Remove(profile, installRoot string) Terminal {
 	if err != nil {
 		return s.fail("store-corrupt")
 	}
+	defer store.Close()
 	writer, err := store.AcquireWriter()
 	if err != nil {
 		if errors.Is(err, modelstore.ErrLeaseBusy) {
@@ -53,6 +55,9 @@ func (s *Service) Remove(profile, installRoot string) Terminal {
 		return s.fail("store-corrupt")
 	}
 	defer writer.Close()
+	if _, err := store.PruneOrphans(64); err != nil {
+		return s.fail("store-corrupt")
+	}
 	snapshot, err := store.Snapshot(profile)
 	if errors.Is(err, modelstore.ErrStateChanging) {
 		return s.fail("state-changing")

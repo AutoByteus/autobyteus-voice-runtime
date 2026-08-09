@@ -4,10 +4,8 @@ import (
 	"bytes"
 	"errors"
 	"fmt"
-	"io"
 	"os"
 	"path/filepath"
-	"syscall"
 	"time"
 
 	installcontract "github.com/AutoByteus/autobyteus-voice-runtime/contracts/install"
@@ -39,7 +37,7 @@ func (s *Store) WriteActivation(record installcontract.ActivationRecord) ([]byte
 	if validateActivationRecord(record) != nil {
 		return nil, "", errors.New("invalid activation record")
 	}
-	path, err := s.activationPath(record.InstallationID)
+	relative, err := s.activationRelativePath(record.InstallationID)
 	if err != nil {
 		return nil, "", err
 	}
@@ -47,32 +45,34 @@ func (s *Store) WriteActivation(record installcontract.ActivationRecord) ([]byte
 	if err != nil {
 		return nil, "", err
 	}
-	if existing, err := readNoFollow(path); err == nil {
+	if existing, err := s.readOwned(relative, 4*1024*1024); err == nil {
 		if !bytes.Equal(existing, data) {
 			return nil, "", errors.New("immutable activation conflict")
 		}
 		return data, contractjson.Digest(data), nil
 	}
-	if err := os.MkdirAll(filepath.Dir(path), 0700); err != nil {
+	directory, err := s.openOwnedDirectory(filepath.Dir(relative), true)
+	if err != nil {
 		return nil, "", err
 	}
-	temp := path + ".tmp"
-	if err := writeDurable(temp, data, 0400); err != nil {
+	_ = directory.Close()
+	temp := relative + ".tmp"
+	if err := s.writeOwnedExclusive(temp, data, 0400); err != nil {
 		return nil, "", err
 	}
-	if err := os.Rename(temp, path); err != nil {
+	if err := s.renameOwned(temp, relative); err != nil {
 		return nil, "", err
 	}
-	if err := syncDirectory(filepath.Dir(path)); err != nil {
+	if err := s.syncOwnedDirectory(filepath.Dir(relative)); err != nil {
 		return nil, "", err
 	}
 	return data, contractjson.Digest(data), nil
 }
 
 type PreparedPointer struct {
+	directory *os.Root
 	temporary string
 	final     string
-	directory string
 }
 
 // PreparePointer writes and fsyncs the complete selector while the operation
@@ -82,51 +82,63 @@ func (s *Store) PreparePointer(pointer installcontract.ActivePointer) (*Prepared
 	if pointer.SchemaVersion != 1 || validateUUID(pointer.InstallationID) != nil || validateUUID(pointer.SelectorGeneration) != nil || !digestPattern.MatchString(pointer.ActivationSHA256) || pointer.ActivationRelativePath != fmt.Sprintf("activations/%s/profile-activation-v1.json", pointer.InstallationID) {
 		return nil, errors.New("invalid active pointer")
 	}
-	path, err := s.pointerPath(pointer.ProfileID)
+	relative, err := s.pointerRelativePath(pointer.ProfileID)
 	if err != nil {
 		return nil, err
 	}
-	if err := os.MkdirAll(filepath.Dir(path), 0700); err != nil {
+	directory, err := s.openOwnedDirectory(filepath.Dir(relative), true)
+	if err != nil {
 		return nil, err
 	}
 	data, err := contractjson.Canonical(pointer)
 	if err != nil {
+		_ = directory.Close()
 		return nil, err
 	}
-	temp := path + ".tmp-" + pointer.SelectorGeneration
-	if err := writeDurable(temp, data, 0600); err != nil {
+	final := filepath.Base(relative)
+	temp := final + ".tmp-" + pointer.SelectorGeneration
+	if err := writeDurableAt(directory, temp, data, 0600); err != nil {
+		_ = directory.Close()
 		return nil, err
 	}
-	return &PreparedPointer{temporary: temp, final: path, directory: filepath.Dir(path)}, nil
+	return &PreparedPointer{directory: directory, temporary: temp, final: final}, nil
 }
 
 func (p *PreparedPointer) Abort() {
 	if p != nil {
-		_ = os.Remove(p.temporary)
+		if p.directory != nil && p.temporary != "" {
+			_ = p.directory.Remove(p.temporary)
+		}
+		if p.directory != nil {
+			_ = p.directory.Close()
+			p.directory = nil
+		}
 	}
 }
 
 func (p *PreparedPointer) Commit() error {
-	if p == nil || p.temporary == "" || p.final == "" {
+	if p == nil || p.directory == nil || p.temporary == "" || p.final == "" {
 		return errors.New("pointer was not prepared")
 	}
-	if err := os.Rename(p.temporary, p.final); err != nil {
+	if err := p.directory.Rename(p.temporary, p.final); err != nil {
 		return err
 	}
 	p.temporary = ""
 	// Rename is the committed-state linearization point. Directory fsync is
 	// durability hardening and cannot truthfully turn the new active pointer
 	// into a reported precommit failure after the rename succeeded.
-	_ = syncDirectory(p.directory)
+	_ = syncOwnedDirectory(p.directory)
+	_ = p.directory.Close()
+	p.directory = nil
 	return nil
 }
 
 func (s *Store) RemovePointer(profile, installationID string) error {
-	path, err := s.pointerPath(profile)
+	relative, err := s.pointerRelativePath(profile)
 	if err != nil {
 		return err
 	}
-	data, err := readNoFollow(path)
+	data, err := s.readOwned(relative, 4*1024*1024)
 	if err != nil {
 		return err
 	}
@@ -134,22 +146,22 @@ func (s *Store) RemovePointer(profile, installationID string) error {
 	if contractjson.Decode(data, &pointer) != nil || pointer.InstallationID != installationID {
 		return ErrStoreCorrupt
 	}
-	if err := os.Remove(path); err != nil {
+	if err := s.removeOwned(relative, false); err != nil {
 		return err
 	}
 	// Unlink is the removal linearization point; later durability hardening
 	// cannot change the already-committed logical result.
-	_ = syncDirectory(filepath.Dir(path))
+	_ = s.syncOwnedDirectory(filepath.Dir(relative))
 	return nil
 }
 
 func (s *Store) Snapshot(profile string) (Snapshot, error) {
-	pointerPath, err := s.pointerPath(profile)
+	pointerRelative, err := s.pointerRelativePath(profile)
 	if err != nil {
 		return Snapshot{}, err
 	}
 	for attempt := 0; attempt < 3; attempt++ {
-		first, err := readNoFollow(pointerPath)
+		first, err := s.readOwned(pointerRelative, 4*1024*1024)
 		if os.IsNotExist(err) {
 			// Absence is a complete snapshot at this first open. An install that
 			// follows linearizes after this not-installed observation.
@@ -171,7 +183,8 @@ func (s *Store) Snapshot(profile string) (Snapshot, error) {
 			if pathErr != nil || filepath.ToSlash(stringsRelative(s.Root, activationPath)) != pointer.ActivationRelativePath {
 				activationErr = ErrStoreCorrupt
 			} else {
-				activationBytes, activationErr = readNoFollow(activationPath)
+				activationRelative, _ := s.activationRelativePath(pointer.InstallationID)
+				activationBytes, activationErr = s.readOwned(activationRelative, 4*1024*1024)
 				if activationErr == nil {
 					activationErr = contractjson.Decode(activationBytes, &activation)
 					if activationErr == nil {
@@ -183,7 +196,7 @@ func (s *Store) Snapshot(profile string) (Snapshot, error) {
 				}
 			}
 		}
-		second, secondErr := readNoFollow(pointerPath)
+		second, secondErr := s.readOwned(pointerRelative, 4*1024*1024)
 		if secondErr != nil || !bytes.Equal(first, second) {
 			continue
 		}
@@ -202,27 +215,6 @@ func stringsRelative(root, path string) string {
 	}
 	return relative
 }
-func readNoFollow(path string) ([]byte, error) {
-	fd, err := syscall.Open(path, syscall.O_RDONLY|syscall.O_NOFOLLOW, 0)
-	if err != nil {
-		return nil, err
-	}
-	file := os.NewFile(uintptr(fd), path)
-	if file == nil {
-		syscall.Close(fd)
-		return nil, errors.New("open file descriptor failed")
-	}
-	defer file.Close()
-	info, err := file.Stat()
-	if err != nil || !info.Mode().IsRegular() || info.Size() > 4*1024*1024 {
-		return nil, ErrStoreCorrupt
-	}
-	if stat, ok := info.Sys().(*syscall.Stat_t); ok && stat.Nlink != 1 {
-		return nil, ErrStoreCorrupt
-	}
-	return io.ReadAll(io.LimitReader(file, 4*1024*1024))
-}
-
 func validatePointer(pointer installcontract.ActivePointer, profile string) error {
 	if pointer.SchemaVersion != 1 || pointer.ProfileID != profile || pointer.Target.Platform != "darwin" || pointer.Target.Architecture != "arm64" || validateUUID(pointer.InstallationID) != nil || validateUUID(pointer.SelectorGeneration) != nil || !digestPattern.MatchString(pointer.ActivationSHA256) || !digestPattern.MatchString(pointer.CompatibilityPairSHA256) || pointer.ActivationRelativePath != fmt.Sprintf("activations/%s/profile-activation-v1.json", pointer.InstallationID) {
 		return ErrStoreCorrupt
@@ -257,10 +249,14 @@ func validateActivationRecord(record installcontract.ActivationRecord) error {
 	}
 	return nil
 }
-func writeDurable(path string, data []byte, mode os.FileMode) error {
-	file, err := os.OpenFile(path, os.O_CREATE|os.O_EXCL|os.O_WRONLY|syscall.O_NOFOLLOW, mode)
+func writeDurableAt(directory *os.Root, name string, data []byte, mode os.FileMode) error {
+	file, err := directory.OpenFile(name, os.O_CREATE|os.O_EXCL|os.O_WRONLY, mode)
 	if err != nil {
 		return err
+	}
+	if info, statErr := file.Stat(); statErr != nil || !safeRegularInfo(info) {
+		_ = file.Close()
+		return ErrStoreCorrupt
 	}
 	_, writeErr := file.Write(data)
 	syncErr := file.Sync()

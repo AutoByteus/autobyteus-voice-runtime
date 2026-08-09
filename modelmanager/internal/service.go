@@ -20,10 +20,11 @@ type Service struct {
 	Downloader func(modelcontract.DownloadPolicy) *DownloadSession
 	Now        func() time.Time
 	UUID       func() (string, error)
+	Space      func(string, int64) bool
 }
 
 func NewService(hostRoot string, expected EmbeddedAuthority, events *EventWriter, lifecycle *OperationLifecycle) *Service {
-	return &Service{HostRoot: hostRoot, Expected: expected, Events: events, Lifecycle: lifecycle, Downloader: NewDownloadSession, Now: time.Now, UUID: randomUUID}
+	return &Service{HostRoot: hostRoot, Expected: expected, Events: events, Lifecycle: lifecycle, Downloader: NewDownloadSession, Now: time.Now, UUID: randomUUID, Space: spaceAvailable}
 }
 
 func (s *Service) fail(category string) Terminal {
@@ -40,7 +41,7 @@ func (s *Service) success(phase string, event Event) Terminal {
 }
 
 func category(err error, fallback string) string {
-	for _, allowed := range []string{"catalog-invalid", "catalog-unadmitted", "host-incompatible", "network-unavailable", "http-status", "redirect-policy", "timeout", "size-mismatch", "digest-mismatch"} {
+	for _, allowed := range []string{"catalog-invalid", "catalog-unadmitted", "host-incompatible", "network-unavailable", "http-status", "redirect-policy", "timeout", "size-mismatch", "digest-mismatch", "store-corrupt"} {
 		if err != nil && err.Error() == allowed {
 			return allowed
 		}

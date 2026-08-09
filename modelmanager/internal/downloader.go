@@ -13,13 +13,13 @@ import (
 	"os"
 	"strconv"
 	"strings"
-	"syscall"
 	"time"
 
 	installcontract "github.com/AutoByteus/autobyteus-voice-runtime/contracts/install"
 	modelcontract "github.com/AutoByteus/autobyteus-voice-runtime/contracts/model"
 	"github.com/AutoByteus/autobyteus-voice-runtime/integrity"
 	"github.com/AutoByteus/autobyteus-voice-runtime/internal/contractjson"
+	"github.com/AutoByteus/autobyteus-voice-runtime/modelstore"
 )
 
 type DownloadProgress func(completed, total int64) error
@@ -51,17 +51,21 @@ func NewDownloadSession(policy modelcontract.DownloadPolicy) *DownloadSession {
 	return &DownloadSession{Client: client, ReadIdleTimeout: time.Duration(policy.ReadIdleTimeoutMS) * time.Millisecond, OverallTimeout: time.Duration(policy.OverallFileTimeoutMS) * time.Millisecond, PublicHost: publicHost}
 }
 
-func (d *DownloadSession) Fetch(ctx context.Context, file modelcontract.ManifestFile, catalogSHA, manifestSHA, modelAssetID, modelRevision, partialPath, recordPath string, progress DownloadProgress) error {
+func (d *DownloadSession) Fetch(ctx context.Context, file modelcontract.ManifestFile, catalogSHA, manifestSHA, modelAssetID, modelRevision string, partial *modelstore.Partial, progress DownloadProgress) error {
 	if !integrity.ValidRelativePath(file.Path) {
 		return errors.New("digest-mismatch")
 	}
 	overall, cancel := context.WithTimeout(ctx, d.overallTimeout())
 	defer cancel()
-	resume, validator := validPartial(partialPath, recordPath, file, catalogSHA, manifestSHA, modelAssetID, modelRevision)
-	start := int64(0)
-	if resume {
-		info, _ := os.Stat(partialPath)
-		start = info.Size()
+	start, validator, err := validPartial(partial, file, catalogSHA, manifestSHA, modelAssetID, modelRevision)
+	if err != nil {
+		return err
+	}
+	if start == file.SizeBytes {
+		if progress != nil {
+			return progress(start, file.SizeBytes)
+		}
+		return nil
 	}
 	response, appendMode, err := d.request(overall, file, start, validator)
 	if err != nil {
@@ -72,15 +76,15 @@ func (d *DownloadSession) Fetch(ctx context.Context, file modelcontract.Manifest
 	if appendMode {
 		flags = os.O_WRONLY | os.O_APPEND
 	}
-	output, err := openNoFollow(partialPath, flags, 0600)
+	output, err := partial.OpenData(flags, 0600)
 	if err != nil {
-		return errors.New("internal")
+		return errors.New("store-corrupt")
 	}
 	defer output.Close()
 	hash := sha256.New()
 	written := int64(0)
 	if appendMode {
-		prefix, err := openNoFollow(partialPath, os.O_RDONLY, 0)
+		prefix, err := partial.OpenData(os.O_RDONLY, 0)
 		if err != nil {
 			return errors.New("store-corrupt")
 		}
@@ -97,8 +101,9 @@ func (d *DownloadSession) Fetch(ctx context.Context, file modelcontract.Manifest
 		count, readErr := readWithTimeout(response.Body, buffer, d.ReadIdleTimeout)
 		if count > 0 {
 			if written+int64(count) > file.SizeBytes {
-				_ = os.Remove(partialPath)
-				_ = os.Remove(recordPath)
+				if partial.Remove() != nil {
+					return errors.New("store-corrupt")
+				}
 				return errors.New("size-mismatch")
 			}
 			stored, writeErr := output.Write(buffer[:count])
@@ -107,17 +112,17 @@ func (d *DownloadSession) Fetch(ctx context.Context, file modelcontract.Manifest
 				written += int64(stored)
 			}
 			if writeErr != nil || stored != count {
-				_ = checkpointPartial(output, recordPath, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator)
+				_ = checkpointPartial(output, partial, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator)
 				return errors.New("internal")
 			}
 			if progress != nil {
 				if err := progress(written, file.SizeBytes); err != nil {
-					_ = checkpointPartial(output, recordPath, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator)
+					_ = checkpointPartial(output, partial, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator)
 					return err
 				}
 			}
 			if written-checkpoint >= 4*1024*1024 {
-				if err := checkpointPartial(output, recordPath, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator); err != nil {
+				if err := checkpointPartial(output, partial, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator); err != nil {
 					return errors.New("internal")
 				}
 				checkpoint = written
@@ -127,7 +132,7 @@ func (d *DownloadSession) Fetch(ctx context.Context, file modelcontract.Manifest
 			if errors.Is(readErr, io.EOF) {
 				break
 			}
-			_ = checkpointPartial(output, recordPath, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator)
+			_ = checkpointPartial(output, partial, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator)
 			if errors.Is(readErr, context.DeadlineExceeded) || errors.Is(overall.Err(), context.DeadlineExceeded) {
 				return errors.New("timeout")
 			}
@@ -138,28 +143,37 @@ func (d *DownloadSession) Fetch(ctx context.Context, file modelcontract.Manifest
 		return errors.New("internal")
 	}
 	if written != file.SizeBytes {
-		_ = checkpointPartial(output, recordPath, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator)
+		_ = checkpointPartial(output, partial, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator)
 		return errors.New("size-mismatch")
 	}
 	if hex.EncodeToString(hash.Sum(nil)) != file.SHA256 {
-		_ = os.Remove(partialPath)
-		_ = os.Remove(recordPath)
+		if partial.Remove() != nil {
+			return errors.New("store-corrupt")
+		}
 		return errors.New("digest-mismatch")
 	}
-	if err := writePartialRecord(recordPath, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator); err != nil {
+	if err := writePartialRecord(partial, catalogSHA, manifestSHA, modelAssetID, modelRevision, file, written, validator); err != nil {
 		return errors.New("internal")
 	}
 	return nil
 }
 
-func checkpointPartial(output *os.File, recordPath, catalogSHA, manifestSHA, assetID, revision string, file modelcontract.ManifestFile, written int64, validator string) error {
+func (d *DownloadSession) ResumableBytes(file modelcontract.ManifestFile, catalogSHA, manifestSHA, modelAssetID, modelRevision string, partial *modelstore.Partial) (int64, error) {
+	bytesPresent, _, err := validPartial(partial, file, catalogSHA, manifestSHA, modelAssetID, modelRevision)
+	if err != nil {
+		return 0, err
+	}
+	return bytesPresent, nil
+}
+
+func checkpointPartial(output *os.File, partial *modelstore.Partial, catalogSHA, manifestSHA, assetID, revision string, file modelcontract.ManifestFile, written int64, validator string) error {
 	if written <= 0 || written >= file.SizeBytes || validator == "" {
 		return nil
 	}
 	if err := output.Sync(); err != nil {
 		return err
 	}
-	return writePartialRecord(recordPath, catalogSHA, manifestSHA, assetID, revision, file, written, validator)
+	return writePartialRecord(partial, catalogSHA, manifestSHA, assetID, revision, file, written, validator)
 }
 
 func (d *DownloadSession) overallTimeout() time.Duration {
@@ -282,77 +296,76 @@ func publicHost(ctx context.Context, host string) error {
 	}
 	return nil
 }
-func validPartial(partialPath, recordPath string, file modelcontract.ManifestFile, catalogSHA, manifestSHA, assetID, revision string) (bool, string) {
-	info, err := os.Lstat(partialPath)
-	if err != nil || !info.Mode().IsRegular() || hardLinked(info) || info.Size() <= 0 || info.Size() >= file.SizeBytes {
-		removePartial(partialPath, recordPath)
-		return false, ""
+func validPartial(partial *modelstore.Partial, file modelcontract.ManifestFile, catalogSHA, manifestSHA, assetID, revision string) (int64, string, error) {
+	info, err := partial.DataInfo()
+	if err != nil {
+		if !os.IsNotExist(err) {
+			return 0, "", errors.New("store-corrupt")
+		}
+		return 0, "", nil
+	}
+	if info.Size() <= 0 || info.Size() > file.SizeBytes {
+		if partial.Remove() != nil {
+			return 0, "", errors.New("store-corrupt")
+		}
+		return 0, "", nil
+	}
+	if info.Size() == file.SizeBytes {
+		data, err := partial.OpenData(os.O_RDONLY, 0)
+		if err != nil {
+			return 0, "", errors.New("store-corrupt")
+		}
+		hash := sha256.New()
+		_, copyErr := io.CopyBuffer(hash, data, make([]byte, 256*1024))
+		closeErr := data.Close()
+		if copyErr != nil || closeErr != nil {
+			return 0, "", errors.New("store-corrupt")
+		}
+		if hex.EncodeToString(hash.Sum(nil)) != file.SHA256 {
+			if partial.RemoveData() != nil {
+				return 0, "", errors.New("store-corrupt")
+			}
+			return 0, "", nil
+		}
+		return info.Size(), "", nil
 	}
 	var record installcontract.PartialDownloadRecord
-	data, err := readNoFollow(recordPath, 1024*1024)
-	if err != nil || contractjson.Decode(data, &record) != nil || record.SchemaVersion != 1 || record.CatalogSHA256 != catalogSHA || record.ManifestSHA256 != manifestSHA || record.ModelAssetID != assetID || record.Revision != revision || record.File.Path != file.Path || record.File.SizeBytes != file.SizeBytes || record.File.SHA256 != file.SHA256 || record.File.URL != file.URL || record.File.BytesPresent != info.Size() || record.File.EntityValidator == "" {
-		removePartial(partialPath, recordPath)
-		return false, ""
+	data, err := partial.ReadRecord(1024 * 1024)
+	if err != nil && !os.IsNotExist(err) {
+		return 0, "", errors.New("store-corrupt")
 	}
-	return true, record.File.EntityValidator
+	if os.IsNotExist(err) {
+		if partial.RemoveData() != nil {
+			return 0, "", errors.New("store-corrupt")
+		}
+		return 0, "", nil
+	}
+	if contractjson.Decode(data, &record) != nil || record.SchemaVersion != 1 {
+		if partial.Remove() != nil {
+			return 0, "", errors.New("store-corrupt")
+		}
+		return 0, "", nil
+	}
+	if record.File.Path != file.Path {
+		if partial.RemoveData() != nil {
+			return 0, "", errors.New("store-corrupt")
+		}
+		return 0, "", nil
+	}
+	if record.CatalogSHA256 != catalogSHA || record.ManifestSHA256 != manifestSHA || record.ModelAssetID != assetID || record.Revision != revision || record.File.SizeBytes != file.SizeBytes || record.File.SHA256 != file.SHA256 || record.File.URL != file.URL || record.File.BytesPresent != info.Size() || record.File.EntityValidator == "" {
+		if partial.Remove() != nil {
+			return 0, "", errors.New("store-corrupt")
+		}
+		return 0, "", nil
+	}
+	return info.Size(), record.File.EntityValidator, nil
 }
-func writePartialRecord(path, catalogSHA, manifestSHA, assetID, revision string, file modelcontract.ManifestFile, bytes int64, validator string) error {
+func writePartialRecord(partial *modelstore.Partial, catalogSHA, manifestSHA, assetID, revision string, file modelcontract.ManifestFile, bytes int64, validator string) error {
 	record := installcontract.PartialDownloadRecord{SchemaVersion: 1, CatalogSHA256: catalogSHA, ManifestSHA256: manifestSHA, ModelAssetID: assetID, Revision: revision, File: installcontract.PartialFile{Path: file.Path, SizeBytes: file.SizeBytes, SHA256: file.SHA256, URL: file.URL, BytesPresent: bytes, EntityValidator: validator}}
 	data, err := contractjson.Canonical(record)
 	if err != nil {
 		return err
 	}
-	temp := path + ".tmp"
-	_ = os.Remove(temp)
-	fileHandle, err := openNoFollow(temp, os.O_CREATE|os.O_EXCL|os.O_WRONLY, 0600)
-	if err != nil {
-		return err
-	}
-	if _, err := fileHandle.Write(data); err != nil {
-		_ = fileHandle.Close()
-		_ = os.Remove(temp)
-		return err
-	}
-	if err := fileHandle.Sync(); err != nil {
-		_ = fileHandle.Close()
-		_ = os.Remove(temp)
-		return err
-	}
-	if err := fileHandle.Close(); err != nil {
-		_ = os.Remove(temp)
-		return err
-	}
-	return os.Rename(temp, path)
+	return partial.WriteRecord(data)
 }
 func parseURL(value string) (*url.URL, error) { return url.Parse(value) }
-
-func openNoFollow(path string, flags int, mode os.FileMode) (*os.File, error) {
-	fd, err := syscall.Open(path, flags|syscall.O_NOFOLLOW, uint32(mode.Perm()))
-	if err != nil {
-		return nil, err
-	}
-	return os.NewFile(uintptr(fd), path), nil
-}
-
-func readNoFollow(path string, limit int64) ([]byte, error) {
-	file, err := openNoFollow(path, os.O_RDONLY, 0)
-	if err != nil {
-		return nil, err
-	}
-	defer file.Close()
-	info, err := file.Stat()
-	if err != nil || !info.Mode().IsRegular() || hardLinked(info) || info.Size() > limit {
-		return nil, errors.New("unsafe partial record")
-	}
-	return io.ReadAll(io.LimitReader(file, limit+1))
-}
-
-func hardLinked(info os.FileInfo) bool {
-	stat, ok := info.Sys().(*syscall.Stat_t)
-	return ok && stat.Nlink != 1
-}
-
-func removePartial(partialPath, recordPath string) {
-	_ = os.Remove(partialPath)
-	_ = os.Remove(recordPath)
-}

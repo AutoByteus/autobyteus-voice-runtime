@@ -3,7 +3,6 @@ import path from "node:path";
 import { parsePairs, ROOT, sha256 } from "../build/lib/files.mjs";
 import { loadCurrentReleaseMatrix } from "./current-release-matrix.mjs";
 import {
-  compareNames,
   ordinaryFileIdentity,
   readValidated,
   RELEASE_VERSION,
@@ -164,7 +163,6 @@ export async function buildReleaseCatalog({
       supportStatement: "macOS Apple Silicon only",
     });
   }
-  entries.sort((left, right) => compareNames(left.profileId, right.profileId));
   return writeArtifact(
     output,
     {

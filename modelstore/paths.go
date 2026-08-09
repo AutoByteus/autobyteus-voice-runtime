@@ -28,16 +28,20 @@ func Open(root string) (*Store, error) {
 	if err != nil || !info.IsDir() || info.Mode().Perm()&0022 != 0 {
 		return nil, errors.New("unsafe installation root")
 	}
-	for _, directory := range []string{"models", "activations", "profiles", "partials", "locks", "leases"} {
-		path := filepath.Join(clean, directory)
-		if err := os.MkdirAll(path, 0700); err != nil {
-			return nil, err
-		}
-		if err := validateOwnedDirectory(path); err != nil {
-			return nil, err
-		}
+	rootHandle, err := openStoreRoot(clean)
+	if err != nil {
+		return nil, err
 	}
-	return &Store{Root: clean}, nil
+	store := &Store{Root: clean, fs: rootHandle}
+	for _, directory := range []string{"models", "activations", "profiles", "partials", "locks", "leases"} {
+		owned, err := store.openOwnedDirectory(directory, true)
+		if err != nil {
+			_ = store.Close()
+			return nil, err
+		}
+		_ = owned.Close()
+	}
+	return store, nil
 }
 
 // OpenReadOnly validates an existing store without creating or repairing any
@@ -58,23 +62,20 @@ func OpenReadOnly(root string) (*Store, error) {
 	if !info.IsDir() || info.Mode()&os.ModeSymlink != 0 || info.Mode().Perm()&0022 != 0 {
 		return nil, errors.New("unsafe installation root")
 	}
+	rootHandle, err := openStoreRoot(clean)
+	if err != nil {
+		return nil, err
+	}
+	store := &Store{Root: clean, fs: rootHandle}
 	for _, directory := range []string{"models", "activations", "profiles", "partials", "locks", "leases"} {
-		if err := validateOwnedDirectory(filepath.Join(clean, directory)); err != nil {
+		owned, err := store.openOwnedDirectory(directory, false)
+		if err != nil {
+			_ = store.Close()
 			return nil, err
 		}
+		_ = owned.Close()
 	}
-	return &Store{Root: clean}, nil
-}
-
-func validateOwnedDirectory(path string) error {
-	info, err := os.Lstat(path)
-	if err != nil {
-		return err
-	}
-	if info.Mode()&os.ModeSymlink != 0 || !info.IsDir() || info.Mode().Perm()&0022 != 0 {
-		return errors.New("unsafe owned store directory")
-	}
-	return nil
+	return store, nil
 }
 
 func ensureLineage(target string) error {
@@ -111,28 +112,44 @@ func validateID(value string) error {
 }
 
 func (s *Store) modelRoot(modelAssetID, manifestSHA string) (string, error) {
+	relative, err := s.modelRelativeRoot(modelAssetID, manifestSHA)
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(s.Root, relative), nil
+}
+
+func (s *Store) modelRelativeRoot(modelAssetID, manifestSHA string) (string, error) {
 	if validateID(modelAssetID) != nil || !digestPattern.MatchString(manifestSHA) {
 		return "", errors.New("invalid model identity")
 	}
-	return filepath.Join(s.Root, "models", modelAssetID, manifestSHA), nil
+	return filepath.Join("models", modelAssetID, manifestSHA), nil
 }
 
 func (s *Store) ModelRoot(modelAssetID, manifestSHA string) (string, error) {
 	return s.modelRoot(modelAssetID, manifestSHA)
 }
 func (s *Store) activationPath(installationID string) (string, error) {
+	relative, err := s.activationRelativePath(installationID)
+	if err != nil {
+		return "", err
+	}
+	return filepath.Join(s.Root, relative), nil
+}
+
+func (s *Store) activationRelativePath(installationID string) (string, error) {
 	if validateUUID(installationID) != nil {
 		return "", errors.New("invalid installation identity")
 	}
-	return filepath.Join(s.Root, "activations", installationID, "profile-activation-v1.json"), nil
+	return filepath.Join("activations", installationID, "profile-activation-v1.json"), nil
 }
 
 func (s *Store) ActivationPath(installationID string) (string, error) {
 	return s.activationPath(installationID)
 }
-func (s *Store) pointerPath(profile string) (string, error) {
+func (s *Store) pointerRelativePath(profile string) (string, error) {
 	if profile != "english" && profile != "chinese" {
 		return "", errors.New("invalid profile")
 	}
-	return filepath.Join(s.Root, "profiles", profile, "darwin-arm64", "active-v1.json"), nil
+	return filepath.Join("profiles", profile, "darwin-arm64", "active-v1.json"), nil
 }

@@ -32,27 +32,15 @@ func (l *Lease) Close() error {
 	return l.file.Close()
 }
 
-func acquire(path string, shared bool) (*Lease, error) {
-	if err := os.MkdirAll(filepath.Dir(path), 0700); err != nil {
-		return nil, err
-	}
-	fd, err := syscall.Open(path, syscall.O_CREAT|syscall.O_RDWR|syscall.O_NOFOLLOW, 0600)
+func (s *Store) acquire(relative string, shared bool) (*Lease, error) {
+	file, err := s.openOwnedRegular(relative, os.O_CREATE|os.O_RDWR, 0600, true)
 	if err != nil {
 		return nil, err
 	}
-	file := os.NewFile(uintptr(fd), path)
-	if file == nil {
-		_ = syscall.Close(fd)
-		return nil, errors.New("lease descriptor unavailable")
-	}
 	info, statErr := file.Stat()
-	if statErr != nil || !info.Mode().IsRegular() {
+	if statErr != nil || !safeRegularInfo(info) {
 		_ = file.Close()
 		return nil, errors.New("unsafe lease file")
-	}
-	if stat, ok := info.Sys().(*syscall.Stat_t); ok && stat.Nlink != 1 {
-		_ = file.Close()
-		return nil, errors.New("unsafe lease alias")
 	}
 	operation := syscall.LOCK_EX | syscall.LOCK_NB
 	if shared {
@@ -69,17 +57,17 @@ func acquire(path string, shared bool) (*Lease, error) {
 }
 
 func (s *Store) AcquireWriter() (*Lease, error) {
-	return acquire(filepath.Join(s.Root, "locks/store-writer-v1.lock"), false)
+	return s.acquire(filepath.Join("locks", "store-writer-v1.lock"), false)
 }
 func (s *Store) AcquireInstallationShared(installationID string) (*Lease, error) {
 	if validateUUID(installationID) != nil {
 		return nil, errors.New("invalid installation identity")
 	}
-	return acquire(filepath.Join(s.Root, "leases", installationID+".lock"), true)
+	return s.acquire(filepath.Join("leases", installationID+".lock"), true)
 }
 func (s *Store) AcquireInstallationExclusive(installationID string) (*Lease, error) {
 	if validateUUID(installationID) != nil {
 		return nil, errors.New("invalid installation identity")
 	}
-	return acquire(filepath.Join(s.Root, "leases", installationID+".lock"), false)
+	return s.acquire(filepath.Join("leases", installationID+".lock"), false)
 }

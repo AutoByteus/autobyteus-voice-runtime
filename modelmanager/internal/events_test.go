@@ -60,17 +60,46 @@ func TestEventWriterRejectsCrossOperationAndSentinelFields(t *testing.T) {
 }
 
 func TestLifecycleSignalAndCommitHaveSingleWinner(t *testing.T) {
-	for i := 0; i < 100; i++ {
+	for name, signal := range map[string]int{"sigint": 2, "sigterm": 15} {
+		t.Run(name, func(t *testing.T) {
+			for i := 0; i < 1000; i++ {
+				lifecycle := NewOperationLifecycle()
+				results := make(chan bool, 2)
+				go func() { results <- lifecycle.AcceptSignal(signal) }()
+				go func() { results <- lifecycle.BeginCommit() }()
+				first, second := <-results, <-results
+				if first == second {
+					t.Fatalf("expected exactly one winner, got %v/%v", first, second)
+				}
+				cancelled, observed := lifecycle.Cancelled()
+				if cancelled && observed != signal {
+					t.Fatalf("accepted signal %d published as %d", signal, observed)
+				}
+				if !cancelled && observed != 0 {
+					t.Fatalf("commit winner exposed signal %d", observed)
+				}
+				if lifecycle.BeginCommit() || lifecycle.AcceptSignal(2) {
+					t.Fatal("lifecycle accepted a second transition")
+				}
+			}
+		})
+	}
+}
+
+func TestLifecyclePublishesAcceptedSignalAtomically(t *testing.T) {
+	for signal, exitCode := range map[int]int{2: 130, 15: 143} {
 		lifecycle := NewOperationLifecycle()
-		results := make(chan bool, 2)
-		go func() { results <- lifecycle.AcceptSignal(15) }()
-		go func() { results <- lifecycle.BeginCommit() }()
-		first, second := <-results, <-results
-		if first == second {
-			t.Fatalf("expected exactly one winner, got %v/%v", first, second)
+		if !lifecycle.AcceptSignal(signal) {
+			t.Fatalf("signal %d was not accepted", signal)
 		}
-		if lifecycle.BeginCommit() || lifecycle.AcceptSignal(2) {
-			t.Fatal("lifecycle accepted a second transition")
+		for index := 0; index < 1000; index++ {
+			cancelled, observed := lifecycle.Cancelled()
+			if !cancelled || observed != signal {
+				t.Fatalf("signal %d observed as cancelled=%v signal=%d", signal, cancelled, observed)
+			}
+		}
+		if observed := (Terminal{Phase: "cancelled", Signal: signal}).ExitCode(); observed != exitCode {
+			t.Fatalf("signal %d terminal exit=%d want=%d", signal, observed, exitCode)
 		}
 	}
 }

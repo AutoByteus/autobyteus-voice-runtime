@@ -34,6 +34,7 @@ func bindSession(root string, config SessionConfig, plan LauncherPlan) (BoundSes
 	if err != nil {
 		return BoundSession{}, nil, err
 	}
+	defer store.Close()
 	first, err := store.Snapshot(config.ProfileID)
 	if err != nil || first.State != modelstore.SnapshotActive {
 		return BoundSession{}, nil, errors.New("activation unavailable")

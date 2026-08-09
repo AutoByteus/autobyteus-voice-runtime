@@ -3,17 +3,11 @@ package modelstore
 import (
 	"bytes"
 	"errors"
-	"fmt"
-	"io"
 	"os"
 	"path/filepath"
 	"regexp"
-	"sort"
 
-	installcontract "github.com/AutoByteus/autobyteus-voice-runtime/contracts/install"
 	modelcontract "github.com/AutoByteus/autobyteus-voice-runtime/contracts/model"
-	"github.com/AutoByteus/autobyteus-voice-runtime/integrity"
-	"github.com/AutoByteus/autobyteus-voice-runtime/internal/contractjson"
 )
 
 var (
@@ -24,7 +18,10 @@ var (
 	ErrLeaseBusy    = errors.New("lease busy")
 )
 
-type Store struct{ Root string }
+type Store struct {
+	Root string
+	fs   *os.Root
+}
 
 func validateUUID(value string) error {
 	if !uuidPattern.MatchString(value) {
@@ -33,83 +30,92 @@ func validateUUID(value string) error {
 	return nil
 }
 
-func (s *Store) PartialPaths(manifestSHA, relative string) (string, string, error) {
-	if !digestPattern.MatchString(manifestSHA) || !integrity.ValidRelativePath(relative) {
-		return "", "", errors.New("invalid partial identity")
-	}
-	encoded := fmt.Sprintf("%x", []byte(relative))
-	directory := filepath.Join(s.Root, "partials", manifestSHA)
-	if err := os.MkdirAll(directory, 0700); err != nil {
-		return "", "", err
-	}
-	if err := validateOwnedDirectory(filepath.Join(s.Root, "partials")); err != nil {
-		return "", "", err
-	}
-	if err := validateOwnedDirectory(directory); err != nil {
-		return "", "", err
-	}
-	return filepath.Join(directory, encoded+".part"), filepath.Join(directory, "partial-download-v1.json"), nil
-}
-
 func (s *Store) VerifyModel(modelAssetID, manifestSHA string, files []modelcontract.FileIdentity) error {
-	root, err := s.modelRoot(modelAssetID, manifestSHA)
+	relative, err := s.modelRelativeRoot(modelAssetID, manifestSHA)
 	if err != nil {
 		return err
 	}
-	return integrity.VerifyTree(filepath.Join(root, "files"), files)
+	return s.verifyOwnedModelTree(filepath.Join(relative, "files"), files)
 }
 
-func (s *Store) CommitModel(modelAssetID, manifestSHA string, files []modelcontract.FileIdentity, partials map[string]string, manifestBytes, noticeBytes []byte) (string, error) {
-	final, err := s.modelRoot(modelAssetID, manifestSHA)
+func (s *Store) CommitModel(modelAssetID, manifestSHA string, files []modelcontract.FileIdentity, partials map[string]*Partial, manifestBytes, noticeBytes []byte) (string, error) {
+	finalRelative, err := s.modelRelativeRoot(modelAssetID, manifestSHA)
 	if err != nil {
 		return "", err
 	}
-	if _, err := os.Stat(final); err == nil {
+	final := filepath.Join(s.Root, finalRelative)
+	if directory, err := s.openOwnedDirectory(finalRelative, false); err == nil {
+		_ = directory.Close()
 		return final, s.VerifyCommittedModel(modelAssetID, manifestSHA, files, manifestBytes, noticeBytes)
-	}
-	staging := final + ".staging"
-	_ = os.RemoveAll(staging)
-	if err := os.MkdirAll(filepath.Join(staging, "files"), 0700); err != nil {
+	} else if !os.IsNotExist(err) {
 		return "", err
 	}
+	assetDirectory := filepath.Dir(finalRelative)
+	assetRoot, err := s.openOwnedDirectory(assetDirectory, true)
+	if err != nil {
+		return "", err
+	}
+	_ = assetRoot.Close()
+	stagingRelative := finalRelative + ".staging"
+	if err := s.removeOwnedTree(stagingRelative); err != nil && !os.IsNotExist(err) {
+		return "", err
+	}
+	stagingFiles, err := s.openOwnedDirectory(filepath.Join(stagingRelative, "files"), true)
+	if err != nil {
+		return "", err
+	}
+	_ = stagingFiles.Close()
 	cleanup := true
 	defer func() {
 		if cleanup {
-			_ = os.RemoveAll(staging)
+			_ = s.removeOwnedTree(stagingRelative)
 		}
 	}()
 	for _, item := range files {
 		source := partials[item.Path]
-		if source == "" {
+		if source == nil || source.store != s {
 			return "", errors.New("missing verified partial")
 		}
-		destination := filepath.Join(staging, "files", filepath.FromSlash(item.Path))
-		if err := os.MkdirAll(filepath.Dir(destination), 0700); err != nil {
+		destinationRelative := filepath.Join(stagingRelative, "files", filepath.FromSlash(item.Path))
+		destinationDirectory, err := s.openOwnedDirectory(filepath.Dir(destinationRelative), true)
+		if err != nil {
 			return "", err
 		}
-		if err := os.Rename(source, destination); err != nil {
+		_ = destinationDirectory.Close()
+		if err := s.renameOwned(source.dataRelative, destinationRelative); err != nil {
 			return "", err
 		}
-		if err := os.Chmod(destination, 0400); err != nil {
+		destination, err := s.openOwnedRegular(destinationRelative, os.O_RDONLY, 0, false)
+		if err != nil {
+			return "", err
+		}
+		chmodErr := destination.Chmod(0400)
+		closeErr := destination.Close()
+		if chmodErr != nil {
+			return "", chmodErr
+		}
+		if closeErr != nil {
+			return "", closeErr
+		}
+	}
+	for _, partial := range partials {
+		if err := partial.removeRecord(); err != nil {
 			return "", err
 		}
 	}
-	if err := os.WriteFile(filepath.Join(staging, "model-asset-manifest-v1.json"), manifestBytes, 0400); err != nil {
+	if err := s.writeOwnedExclusive(filepath.Join(stagingRelative, "model-asset-manifest-v1.json"), manifestBytes, 0400); err != nil {
 		return "", err
 	}
-	if err := os.WriteFile(filepath.Join(staging, "THIRD_PARTY_NOTICES.json"), noticeBytes, 0400); err != nil {
+	if err := s.writeOwnedExclusive(filepath.Join(stagingRelative, "THIRD_PARTY_NOTICES.json"), noticeBytes, 0400); err != nil {
 		return "", err
 	}
-	if err := syncTree(staging); err != nil {
+	if err := s.syncOwnedTree(stagingRelative); err != nil {
 		return "", err
 	}
-	if err := os.MkdirAll(filepath.Dir(final), 0700); err != nil {
+	if err := s.renameOwned(stagingRelative, finalRelative); err != nil {
 		return "", err
 	}
-	if err := os.Rename(staging, final); err != nil {
-		return "", err
-	}
-	if err := syncDirectory(filepath.Dir(final)); err != nil {
+	if err := s.syncOwnedDirectory(filepath.Dir(finalRelative)); err != nil {
 		return "", err
 	}
 	cleanup = false
@@ -127,95 +133,28 @@ func (s *Store) VerifyCommittedModel(modelAssetID, manifestSHA string, files []m
 	return nil
 }
 
-func CopyFixed(destination string, source io.Reader, maximum int64) (int64, error) {
-	file, err := os.OpenFile(destination, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0600)
-	if err != nil {
-		return 0, err
-	}
-	written, copyErr := io.CopyBuffer(file, io.LimitReader(source, maximum+1), make([]byte, 256*1024))
-	syncErr := file.Sync()
-	closeErr := file.Close()
-	if copyErr != nil {
-		return written, copyErr
-	}
-	if written > maximum {
-		return written, errors.New("download exceeds declared size")
-	}
-	if syncErr != nil {
-		return written, syncErr
-	}
-	return written, closeErr
-}
-func syncTree(root string) error {
-	paths := []string{}
-	err := filepath.WalkDir(root, func(path string, entry os.DirEntry, err error) error {
-		if err != nil {
-			return err
-		}
-		paths = append(paths, path)
-		return nil
-	})
-	if err != nil {
-		return err
-	}
-	sort.Slice(paths, func(i, j int) bool { return len(paths[i]) > len(paths[j]) })
-	for _, path := range paths {
-		info, err := os.Lstat(path)
-		if err != nil {
-			return err
-		}
-		if info.Mode()&os.ModeSymlink != 0 {
-			return errors.New("symlink in store")
-		}
-		if info.IsDir() {
-			if err := syncDirectory(path); err != nil {
-				return err
-			}
-		} else if info.Mode().IsRegular() {
-			file, err := os.Open(path)
-			if err != nil {
-				return err
-			}
-			err = file.Sync()
-			_ = file.Close()
-			if err != nil {
-				return err
-			}
-		} else {
-			return errors.New("non-ordinary store entry")
-		}
-	}
-	return nil
-}
-func syncDirectory(path string) error {
-	file, err := os.Open(path)
-	if err != nil {
-		return err
-	}
-	defer file.Close()
-	return file.Sync()
-}
-
 // CleanupInstallation removes only the selected immutable activation and its
 // unreferenced content. Callers must hold the store-writer lock and the
 // installation's exclusive lifetime lease.
 func (s *Store) CleanupInstallation(record modelcontractActivation) error {
-	activation, err := s.activationPath(record.InstallationID)
+	activation, err := s.activationRelativePath(record.InstallationID)
 	if err != nil {
 		return err
 	}
-	if err := os.Remove(activation); err != nil && !os.IsNotExist(err) {
+	if err := s.removeOwned(activation, false); err != nil && !os.IsNotExist(err) {
 		return err
 	}
-	_ = os.Remove(filepath.Dir(activation))
+	if err := s.removeOwned(filepath.Dir(activation), true); err != nil && !os.IsNotExist(err) {
+		return err
+	}
 	if referenced, err := s.modelReferenced(record.ModelAssetID, record.ManifestSHA256); err != nil || referenced {
 		return err
 	}
-	model, err := s.modelRoot(record.ModelAssetID, record.ManifestSHA256)
+	model, err := s.modelRelativeRoot(record.ModelAssetID, record.ManifestSHA256)
 	if err != nil {
 		return err
 	}
-	return os.RemoveAll(model)
+	return s.removeOwnedTree(model)
 }
 
 type modelcontractActivation struct {
@@ -229,51 +168,28 @@ func (s *Store) CleanupSubject(installationID, modelAssetID, manifestSHA string)
 }
 
 func (s *Store) modelReferenced(modelAssetID, manifestSHA string) (bool, error) {
-	profiles := filepath.Join(s.Root, "profiles")
-	found := false
-	err := filepath.WalkDir(profiles, func(path string, entry os.DirEntry, err error) error {
-		if os.IsNotExist(err) {
-			return nil
-		}
-		if err != nil || found || entry.IsDir() || entry.Name() != "active-v1.json" {
-			return err
-		}
-		pointerBytes, err := readNoFollow(path)
+	for _, profile := range []string{"english", "chinese"} {
+		snapshot, err := s.Snapshot(profile)
 		if err != nil {
-			return err
+			return false, err
 		}
-		var pointer installcontract.ActivePointer
-		if contractjson.Decode(pointerBytes, &pointer) != nil {
-			return ErrStoreCorrupt
+		if snapshot.State == SnapshotActive && snapshot.Activation.Model.ModelAssetID == modelAssetID && snapshot.Activation.Model.ManifestSHA256 == manifestSHA {
+			return true, nil
 		}
-		activationPath, err := s.activationPath(pointer.InstallationID)
-		if err != nil {
-			return err
-		}
-		activationBytes, err := readNoFollow(activationPath)
-		if err != nil {
-			return err
-		}
-		var activation installcontract.ActivationRecord
-		if contractjson.Decode(activationBytes, &activation) != nil || contractjson.Digest(activationBytes) != pointer.ActivationSHA256 {
-			return ErrStoreCorrupt
-		}
-		found = activation.Model.ModelAssetID == modelAssetID && activation.Model.ManifestSHA256 == manifestSHA
-		return nil
-	})
-	return found, err
+	}
+	return false, nil
 }
 
 func (s *Store) ReadModelAuthority(modelAssetID, manifestSHA string) ([]byte, []byte, error) {
-	root, err := s.modelRoot(modelAssetID, manifestSHA)
+	root, err := s.modelRelativeRoot(modelAssetID, manifestSHA)
 	if err != nil {
 		return nil, nil, err
 	}
-	manifest, err := readNoFollow(filepath.Join(root, "model-asset-manifest-v1.json"))
+	manifest, err := s.readOwned(filepath.Join(root, "model-asset-manifest-v1.json"), 4*1024*1024)
 	if err != nil {
 		return nil, nil, err
 	}
-	notice, err := readNoFollow(filepath.Join(root, "THIRD_PARTY_NOTICES.json"))
+	notice, err := s.readOwned(filepath.Join(root, "THIRD_PARTY_NOTICES.json"), 4*1024*1024)
 	if err != nil {
 		return nil, nil, err
 	}

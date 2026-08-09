@@ -27,6 +27,7 @@ func (s *Service) Install(ctx context.Context, catalogPath, profile, installRoot
 	if err != nil {
 		return s.fail("store-corrupt")
 	}
+	defer store.Close()
 	writer, err := store.AcquireWriter()
 	if err != nil {
 		if errors.Is(err, modelstore.ErrLeaseBusy) {
@@ -35,6 +36,9 @@ func (s *Service) Install(ctx context.Context, catalogPath, profile, installRoot
 		return s.fail("store-corrupt")
 	}
 	defer writer.Close()
+	if _, err := store.PruneOrphans(64); err != nil {
+		return s.fail("store-corrupt")
+	}
 	if cancelled, signal := s.Lifecycle.Cancelled(); cancelled {
 		return s.cancel(signal)
 	}
@@ -45,24 +49,23 @@ func (s *Service) Install(ctx context.Context, catalogPath, profile, installRoot
 	} else if snapshotErr != nil && !errors.Is(snapshotErr, modelstore.ErrStateChanging) {
 		return s.fail("store-corrupt")
 	}
+	download := s.Downloader(resolved.Manifest.DownloadPolicy)
 	metadataBytes := int64(len(resolved.ManifestBytes) + len(resolved.NoticeBytes) + 16*1024)
-	if !spaceAvailable(store.Root, resolved.Manifest.TotalSizeBytes+metadataBytes+freeSpaceReserve) {
+	partials, remainingBytes, err := inventoryResumablePartials(store, download, resolved)
+	if err != nil {
+		return s.fail("store-corrupt")
+	}
+	if remainingBytes < 0 || !s.Space(store.Root, remainingBytes+metadataBytes+freeSpaceReserve) {
 		return s.fail("insufficient-space")
 	}
-	partials := make(map[string]string, len(resolved.Manifest.Files))
-	download := s.Downloader(resolved.Manifest.DownloadPolicy)
 	installContext := s.Lifecycle.Context(ctx)
 	for index, file := range resolved.Manifest.Files {
 		if cancelled, signal := s.Lifecycle.Cancelled(); cancelled {
 			return s.cancel(signal)
 		}
-		partial, record, pathErr := store.PartialPaths(resolved.ManifestSHA256, file.Path)
-		if pathErr != nil {
-			return s.fail("store-corrupt")
-		}
-		partials[file.Path] = partial
+		partial := partials[file.Path]
 		fileIndex, fileCount := index+1, len(resolved.Manifest.Files)
-		err = download.Fetch(installContext, file, resolved.CatalogSHA256, resolved.ManifestSHA256, resolved.Manifest.ModelAssetID, resolved.Manifest.Revision, partial, record, func(completed, total int64) error {
+		err = download.Fetch(installContext, file, resolved.CatalogSHA256, resolved.ManifestSHA256, resolved.Manifest.ModelAssetID, resolved.Manifest.Revision, partial, func(completed, total int64) error {
 			if cancelled, _ := s.Lifecycle.Cancelled(); cancelled {
 				return context.Canceled
 			}
@@ -82,12 +85,33 @@ func (s *Service) Install(ctx context.Context, catalogPath, profile, installRoot
 	return s.commitInstall(store, authority, resolved, profile, partials, metadataBytes)
 }
 
-func (s *Service) commitInstall(store *modelstore.Store, authority HostAuthority, resolved ResolvedProfile, profile string, partials map[string]string, metadataBytes int64) Terminal {
+func inventoryResumablePartials(store *modelstore.Store, download *DownloadSession, resolved ResolvedProfile) (map[string]*modelstore.Partial, int64, error) {
+	partials := make(map[string]*modelstore.Partial, len(resolved.Manifest.Files))
+	remainingBytes := resolved.Manifest.TotalSizeBytes
+	for _, file := range resolved.Manifest.Files {
+		partial, err := store.Partial(resolved.ManifestSHA256, file.Path)
+		if err != nil {
+			return nil, 0, err
+		}
+		partials[file.Path] = partial
+		resumable, err := download.ResumableBytes(file, resolved.CatalogSHA256, resolved.ManifestSHA256, resolved.Manifest.ModelAssetID, resolved.Manifest.Revision, partial)
+		if err != nil {
+			return nil, 0, err
+		}
+		remainingBytes -= resumable
+	}
+	if remainingBytes < 0 {
+		return nil, 0, modelstore.ErrStoreCorrupt
+	}
+	return partials, remainingBytes, nil
+}
+
+func (s *Service) commitInstall(store *modelstore.Store, authority HostAuthority, resolved ResolvedProfile, profile string, partials map[string]*modelstore.Partial, metadataBytes int64) Terminal {
 	files := modelFiles(resolved.Manifest)
 	if _, err := store.CommitModel(resolved.Manifest.ModelAssetID, resolved.ManifestSHA256, files, partials, resolved.ManifestBytes, resolved.NoticeBytes); err != nil {
 		return s.fail("store-corrupt")
 	}
-	if !spaceAvailable(store.Root, metadataBytes+freeSpaceReserve) || store.VerifyModel(resolved.Manifest.ModelAssetID, resolved.ManifestSHA256, files) != nil {
+	if !s.Space(store.Root, metadataBytes+freeSpaceReserve) || store.VerifyModel(resolved.Manifest.ModelAssetID, resolved.ManifestSHA256, files) != nil {
 		return s.fail("digest-mismatch")
 	}
 	installationID, err := s.UUID()
@@ -122,5 +146,6 @@ func (s *Service) commitInstall(store *modelstore.Store, authority HostAuthority
 		return s.fail("activation-failed")
 	}
 	s.Lifecycle.MarkCommitted()
+	_, _ = store.PruneOrphans(64)
 	return s.success("installed", Event{Phase: "installed", ModelAssetID: resolved.Manifest.ModelAssetID})
 }

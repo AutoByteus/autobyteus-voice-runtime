@@ -39,25 +39,11 @@ func ResolveProfile(authority HostAuthority, catalogPath, profile string) (Resol
 	if err != nil {
 		return ResolvedProfile{}, errors.New("catalog-invalid")
 	}
-	if catalog.SchemaVersion != 4 || catalog.CatalogID != "voice-runtime-catalog-v4" || len(catalog.Entries) != 2 {
-		return ResolvedProfile{}, errors.New("catalog-invalid")
-	}
-	var entry *catalogcontract.Entry
-	for index := range catalog.Entries {
-		if catalog.Entries[index].ProfileID == profile {
-			if entry != nil {
-				return ResolvedProfile{}, errors.New("catalog-invalid")
-			}
-			entry = &catalog.Entries[index]
-		}
-	}
-	if entry == nil {
-		return ResolvedProfile{}, errors.New("catalog-invalid")
+	entry, err := validateCurrentCatalog(catalog, authority, profile)
+	if err != nil {
+		return ResolvedProfile{}, err
 	}
 	admitted := authority.Admission.AdmittedModels[0]
-	if entry.Host.HostPackageID != authority.Descriptor.HostPackageID || entry.ProviderID != authority.Descriptor.ProviderID || entry.Host.DescriptorSHA256 != authority.DescriptorSHA256 || entry.Host.FileManifestSHA256 != authority.FileManifestSHA256 || entry.Host.CompatibilityRequirementSHA256 != authority.CompatibilitySHA256 || entry.HostAuthority.HostSourceClosure.SHA256 != authority.Descriptor.HostSourceClosure.SHA256 || entry.HostAuthority.ModelAdmissionRoot.SHA256 != authority.AdmissionSHA256 || entry.Model.Manifest.FileName != admitted.ManifestFileName || entry.Model.Manifest.SHA256 != admitted.SHA256 || entry.Model.ModelAssetID != admitted.ModelAssetID || entry.Model.Revision != admitted.Revision || entry.Model.LayoutID != admitted.LayoutID || entry.Model.ModelTreeSHA256 != admitted.ModelTreeSHA256 || entry.Model.TotalSizeBytes != admitted.TotalSizeBytes {
-		return ResolvedProfile{}, errors.New("catalog-unadmitted")
-	}
 	directory := filepath.Dir(catalogPath)
 	manifestPath := filepath.Join(directory, admitted.ManifestFileName)
 	noticePath := filepath.Join(directory, authority.Admission.Notice.FileName)

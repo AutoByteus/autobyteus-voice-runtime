@@ -24,6 +24,7 @@ func TestActivationSnapshotAndRemovalLinearization(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	defer store.Close()
 	record := fixtureActivation()
 	_, activationSHA, err := store.WriteActivation(record)
 	if err != nil {
@@ -63,16 +64,18 @@ func TestActivationRejectsAliasesAndMutation(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
+	defer store.Close()
 	record := fixtureActivation()
 	if _, _, err := store.WriteActivation(record); err != nil {
 		t.Fatal(err)
 	}
 	path, _ := store.activationPath(installationID)
+	relative, _ := store.activationRelativePath(installationID)
 	alias := path + ".alias"
 	if err := os.Link(path, alias); err != nil {
 		t.Fatal(err)
 	}
-	if _, err := readNoFollow(path); err == nil {
+	if _, err := store.readOwned(relative, 4*1024*1024); err == nil {
 		t.Fatal("hard-linked activation accepted")
 	}
 	_ = os.Remove(alias)

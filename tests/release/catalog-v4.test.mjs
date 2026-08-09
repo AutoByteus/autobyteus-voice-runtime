@@ -26,7 +26,7 @@ test("Catalog 4 binds exact admitted host/model compatibility pairs", async () =
     });
     assert.deepEqual(
       catalog.entries.map((entry) => entry.profileId),
-      ["chinese", "english"],
+      ["english", "chinese"],
     );
     for (const entry of catalog.entries) {
       const profile = evidence.profiles.find(
