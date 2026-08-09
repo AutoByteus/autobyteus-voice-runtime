@@ -5,6 +5,7 @@
 - Requirements: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
 - Investigation notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
 - Design spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
+- Primary on-demand model supplement: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/on-demand-model-assets.md`
 - Release-pipeline authority: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/release-pipeline-ownership.md`
 - Supplemental authorities:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/benchmark-protocol.md`
@@ -22,21 +23,14 @@
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Current source/API/Delivery authority:
+- Still-relevant prior source/API/Delivery records:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-044-aggregate-current-subject-resolution.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-045-aggregate-api-renewal-record-review.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-019/SHA256SUMS.txt`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-019/repository/API-VOICE-015-aggregate-renewal-input-validation.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-019/repository/source-closure-and-admission.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-019/repository/committed-aggregate-authority-validation.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-aggregate-renewal-gate-check.log`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/docs-sync-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
@@ -44,105 +38,107 @@
 
 ## Current Implementation Summary
 
-`IR-030` implements the separately reviewed post-renewal policy/controller transition requested by Delivery `DR-006`. The Relevant Source Closure policy now accepts the exact immutable Aggregate API Renewal Record commit `448517cee89e6498c551bcc70aba65ec0bedf97e` as Qualification Authority. Its accepted inventory/tree identities are the exact identities carried by that Git-resolved record. The sole Preliminary Source Admission owner independently recomputes the current repository state and now returns `reuse-permitted`.
+`IR-031` implements the clean-cut SR-021 runtime-host/on-demand-model target. The repository now produces two model-free Runtime Host Archive 2 packages, installs exact host-authorized model assets explicitly into an application-owned content-addressed store, starts the existing providers only through Session Config 2 and a provider-lifetime lease, and composes the standard-hosted exact nine-asset release chain. Catalog 3, Config 1, combined host+model package paths, and the managed recovery/candidate pipeline are removed rather than retained behind compatibility branches.
 
-This is an authority transition only. It does not run recovery, reconstruct archives, promote a candidate, start providers, repeat profile qualification, merge, tag, or publish. Managed recovery remains prohibited until Code Review passes this source change.
-
-- Implementation cycle: `Rework / Reviewed Transition`
+- Implementation cycle: `Design-impact replacement`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision: `IR-030`
-- Related solution revision: `SR-018`
-- Related architecture revision: `ARCH-REV-019`
-- Related code reviews: `CRR-044` source Pass; `CRR-045` proportional test review Not Applicable
-- Related API/E2E revision: `API-REV-019` Pass / 99%, zero profile executions
-- Related Delivery revision: `DR-006`
-- Triggering finding: `N/A — approved lifecycle transition after Aggregate API Renewal`
-- Delivery checkpoint: `4993d503e6b613c5691adffc378a19c07acbc85c`
-- Source commit: `2e743600ef67469f3fd1bf2c9078d53c2d053979`
-- Result: `Implementation Complete — Ready for Code Re-review`
+- Current implementation revision: `IR-031`
+- Related solution revisions: `SR-020`, `SR-021` (`SR-021` current)
+- Related architecture revisions: `ARCH-REV-020`, `ARCH-REV-021` (`ARCH-REV-021` Pass)
+- Related code reviews: prior `CRR-044`, `CRR-045`; current source review pending
+- Related API/E2E revision: retained `API-REV-017`–`API-REV-019`; SR-021 coverage investigation/execution pending
+- Related Delivery revision: prior `DR-006`; current Delivery not started
+- Triggering findings: resolved design findings `AR-F-017`, `AR-F-018`, `AR-F-019`
+- Source commit: `6dc1aac500a84f50a8808ba9eca2bb15d808779d`
+- Result: `Implementation Complete — Ready for Code Review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior / Requirement                                   | Approved Change / Preserved Outcome                                                                                                                                                                       | Implemented Production Path / Key Files                                                                                             | Result / Notes                                                                                                                                                                                                                                                                                  |
-| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BEH-007`, `BEH-013`; `R-022`–`R-024`; `AC-025`–`AC-027` | After the committed zero-profile Aggregate API Renewal passes, a separate reviewed policy/controller commit may accept only that exact record and independently recompute admission to `reuse-permitted`. | `contracts/release/relevant-source-closure-v1.json`; `release/source-closure.mjs`; `tests/release/relevant-source-closure.test.mjs` | Policy pins exact record commit `448517c…`, exact inventory digest `3d0f73d3…`, and exact tree digest `d1272eea…`. Current admission proves ancestry, policy match, unchanged Profile and Qualification closures, classified change rows, canonical change digest, and exact `reuse-permitted`. |
-| `BEH-007`, `BEH-013`; `R-023`; `AC-026`                  | Preserve singular, immutable Aggregate API Renewal authority and exact current-subject binding.                                                                                                           | Existing `release/candidate-authority.mjs`, record schema, and Git-resolved authority record.                                       | No parser, verifier, schema, record byte, workflow, candidate member, or mutable/latest lookup changed. IR-028/IR-029 bindings remain intact.                                                                                                                                                   |
-| `BEH-001`–`BEH-012`                                      | Preserve accepted runtime/package/qualification behavior and exact two-profile matrix.                                                                                                                    | Existing provider, launcher, package, scoring, qualification, resource, and release owners.                                         | No runtime/provider/model/matrix/threshold/deadline/corpus/archive/profile-evidence behavior or byte changed or executed.                                                                                                                                                                       |
+| Behavior / Requirement                                                                                                                              | Approved Change / Preserved Outcome                                                                                                                                                            | Implemented Production Path / Key Files                                                                                                                                                                                            | Result / Notes                                                                                                                                                                                                                                                                                          |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEH-004`, `BEH-007`, `BEH-010`, `BEH-013`; `R-005`, `R-014`, `R-022`–`R-025`, `R-029`                                                              | Build independent model-free hosts from content authority; keep observed Git/build identity outside archive bytes; standard-hosted release only.                                               | `build/host-source-closure.mjs`; `build/host-package-{assembler,verifier}.mjs`; `build/host-build-*.mjs`; `build/input-recipes/*-host-*-v2.json`; `packaging/cmd/runtime-host-tool`; `.github/workflows/release-voice-runtime.yml` | Host Source Closure 1 and Model Admission Root 1 are embedded; Host Build Provenance 2 remains external. Deterministic/reproducibility owners compare complete host archives and reports.                                                                                                               |
+| `BEH-005`, `BEH-008`–`BEH-010`, `BEH-014`; `R-006`, `R-017`, `R-025`–`R-028`; `AC-028`–`AC-034`                                                     | Admit exactly one profile manifest family from the verified host, download explicitly with safe resume, and activate/remove/status linearly without ambient trust or inference network access. | `modelmanager/`; `modelstore/`; `hostverify/`; `integrity/`; `contracts/model/`; `contracts/install/`; `release/model-manifests/`                                                                                                  | Host verification precedes caller catalog/manifest/notice reads, network use, and store mutation. Install uses authenticated partial records, strict hashes, atomic cutoff and pointer rename; remove uses exclusive leases and pointer unlink; status uses bounded three-attempt generation snapshots. |
+| `BEH-002`, `BEH-003`, `BEH-005`, `BEH-006`, `BEH-009`, `BEH-011`; `R-002`, `R-004`, `R-006`–`R-011`, `R-019`; `AC-002`–`AC-011`, `AC-031`, `AC-033` | Preserve Protocol 1/provider/output behavior while binding a verified activated external model through Config 2 and one public launcher.                                                       | `launcher/internal/`; `launcher/internal/embeddedplan/package-launcher-plan-v2.json`; `contracts/startup/provider-session-config-v2.schema.json`; `providers/`                                                                     | Launcher verifies host/config/store/model identities, acquires a lifetime lease, rechecks activation, and invokes the private worker with a minimal offline environment. No provider/model/language/fallback public flags were added.                                                                   |
+| `BEH-005`, `BEH-007`, `BEH-009`, `BEH-013`, `BEH-014`; `R-017`, `R-022`–`R-024`, `R-028`, `R-029`; `AC-025`–`AC-027`, `AC-033`–`AC-035`             | Reuse qualification only through exact Profile Execution Closure 2 and require exact focused-to-hosted whole-archive identity before release.                                                  | `release/profile-execution-closure.mjs`; `release/focused-qualification-set.mjs`; `release/branch-catalog-projection-v3.mjs`; `release/verify-release-source-admission.mjs`; `release/source-closure.mjs`                          | Closure/classification and strict schemas are implemented. Focused authority artifacts and actual archive equality remain downstream inputs; implementation does not fabricate them.                                                                                                                    |
+| `BEH-007`, `BEH-009`, `BEH-013`; `R-014`, `R-022`–`R-024`, `R-029`                                                                                  | Publish only two hosts, two model locators, four metadata subjects, and checksums; preserve acyclic prepublication and post-publication verification/quarantine.                               | `release/{catalog-builder,hosted-host-construction-result,pretag-release-manifest,prepublication-seal,release-checksums,verify-published-assets,quarantine-published-release}.mjs`; `.github/workflows/release-voice-runtime.yml`  | Exact nine-asset contract is enforced. Model weights and admission roots are not separate release assets. The workflow does not start providers or execute qualification.                                                                                                                               |
+| Legacy-removal policy                                                                                                                               | Remove superseded package/catalog/config/recovery authorities cleanly.                                                                                                                         | Deleted Provider Archive 1, package recipe/descriptor v1, Catalog 3/Matrix 1, Config 1/launcher plan 1, qualification v1/v2 active entrypoints, managed recovery/candidate controllers and workflows.                              | No dual catalog/config/package reader, recovery fallback, old model-root lookup, or compatibility shim remains in active source. Historical ticket/evidence records remain unchanged.                                                                                                                   |
 
 ## Key Files Or Areas
 
-- `contracts/release/relevant-source-closure-v1.json`
-  - Updates only the Qualification Authority base commit and tree digest to the exact committed Aggregate API Renewal authority.
-  - Retains the exact Profile Authority, Qualification Authority inventory digest, classification rules, and four-way admission contract.
-- `tests/release/relevant-source-closure.test.mjs`
-  - Git-resolves the exact committed Aggregate API Renewal Record.
-  - Requires policy base equality, exact Profile/Qualification closure projection equality, ancestry and policy match, unchanged closures, permitted classifications, canonical changed-path digest, and `reuse-permitted`.
-  - Preserves frozen-base reproduction and fail-closed A/M/D/R, rename, ancestry, unknown-path, symlink, and case-fold-collision coverage.
+- Runtime/install authority: `hostverify/`, `integrity/`, `modelmanager/`, `modelstore/`, `launcher/internal/`, `contracts/{host,install,model,startup}/`.
+- Host construction: `build/host-*.mjs`, `build/profile-builders/*-host.mjs`, `packaging/cmd/runtime-host-tool/`, `packaging/launcher/compile-host-tools.mjs`, `contracts/{build,package}/`.
+- Qualification/release authority: `release/`, `contracts/{catalog,qualification,release}/`, `.github/workflows/release-voice-runtime.yml`.
+- Exact matrix and public locator inputs: `contracts/catalog/current-release-matrix-v2.json`, `release/model-manifests/`, `contracts/model/{admission,compatibility}/`.
+- Developer/user surface: `README.md`, `package.json`, `tooling/check-{source,release-pipeline}.mjs`.
 
 ## Important Assumptions
 
-- Aggregate API Renewal Record commit `448517cee89e6498c551bcc70aba65ec0bedf97e` remains immutable and is already independently accepted by `CRR-044`, `API-REV-019`, `CRR-045`, and `DR-006`.
-- Profile/Qualification evidence remains the retained no-retest authority; this transition does not relabel old profile output as current-source execution.
-- `reuse-permitted` is a source-admission result, not permission to bypass the subsequent Source Review or any recovery/candidate/Delivery gate.
+- The current release remains exactly English MLX Whisper Small FP16 and Chinese Fun-ASR-Nano GGUF Q8 on `darwin-arm64`; x64, Linux, Windows, `auto`, alternate providers/models, and desktop integration remain deferred.
+- Caller applications own the absolute installation root and Session Config 2 construction, but neither can enlarge the host-contained Model Admission Root 1.
+- Historical qualification remains evidence only. Reuse is permitted only after downstream proves exact Execution Closure 2 and focused-to-hosted whole-archive equality.
 
 ## Known Risks
 
-- Code Review must pass IR-030 before managed recovery begins.
-- Managed Apple Silicon recovery capacity, locked-input availability, exact archive reconstruction, candidate promotion, hosted pretag/publish, and downloaded-byte verification remain downstream fail-closed gates.
-- Loaded-host performance remains an accepted limitation. x64/Linux/Windows/`auto`, concurrent-provider, desktop, and personal-runner release infrastructure remain outside scope.
+- Actual deterministic host archive construction, production model installation, CDN validator/range behavior, offline provider smoke, macOS signal/filesystem/lease interleavings, and focused evidence equality have not been executed in this implementation stage.
+- The checked-in release workflow is intentionally unusable until reviewed focused admission/closure authorities exist and all fail-closed release inputs are supplied.
+- Large model transfer correctness depends on downstream testing with the real production manifests and hosting behavior, not only unit fixtures.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: `Approved release-controller authority transition`.
-- Reviewed root-cause classification: `No Design Issue Found`; this is the second step of the acyclic SR-018 transition, after the exact renewal record was independently created and reviewed.
-- Reviewed refactor decision: `No Refactor Needed`.
-- Implementation matched the reviewed assessment: `Yes`.
-- If challenged, routed as Design Impact: `N/A`.
-- Evidence / notes: one existing policy record moved to the exact immutable reviewed authority and one existing test proves the production owner independently recomputes the admission. No parallel owner or boundary bypass was introduced.
+- Reviewed change posture: `Intentional clean-cut architectural replacement`
+- Reviewed root-cause classification: combined host/model packaging and release infrastructure conflicted with explicit on-demand model delivery.
+- Reviewed refactor decision: `Refactor Needed Now`
+- Implementation matched the reviewed assessment: `Yes`
+- If challenged, routed as Design Impact: `N/A`
+- Evidence / notes: implementation follows SR-021 ownership boundaries; content authority, observed provenance, host admission, activation state, session binding, execution closure, and release composition have distinct owners.
 
 ## Legacy / Compatibility Removal Check
 
-- Backward-compatibility mechanisms introduced: `None`.
-- Legacy old behavior retained in scope: `No`.
-- Dead/obsolete code removed in scope: `Not Applicable`; no implementation path was replaced.
-- Shared structures remain tight: `Yes`.
-- Canonical shared design guidance reapplied: `Yes`.
-- Changed source-file size guardrails: `Yes`; no implementation source file changed, and the test delta is below the review signal.
-- Notes: no fallback, override, mutable/latest lookup, alternate authority, or twentieth candidate member was added.
+- Backward-compatibility mechanisms introduced: `None`
+- Legacy old-behavior retained in scope: `No`
+- Dead/obsolete code, files, helpers, tests, flags, adapters, and dormant replaced paths removed: `Yes`
+- Shared structures remain tight: `Yes`
+- Canonical shared design guidance reapplied: `Yes`
+- Changed source implementation files stayed within size guardrails: `Yes`; all changed implementation files are below 500 effective non-empty lines. The former package/release owners were split into bounded host staging/tool-build/evidence and admission/projection owners.
+- Notes: immutable historical ticket/API evidence was preserved; it is not an active compatibility path.
 
 ## Persisted Data Transition Check
 
-- Approved decision: `Directly Usable — No Migration` for the immutable Aggregate API Renewal Record; `Discard or Rebuild` remains applicable to generated recovery/candidate artifacts.
-- Design-spec decision reference: `SR-018` and `release-pipeline-ownership.md` Aggregate API Renewal transition.
-- Implementation follows the approved decision: `Yes`.
-- Direct-use evidence: the test Git-resolves the exact committed record and compares its Profile/Qualification closure subjects with independently recomputed admission.
-- Deviation: `None`.
+- Approved decision: `Discard or Rebuild`
+- Design-spec decision reference: `design-spec.md` / Persisted Data / State Transition Decision
+- Implementation follows the decision without an unapproved migration or version-specific fallback: `Yes`
+- Direct-use evidence or discard/rebuild result: current-schema Store 1 does not read or activate legacy desktop state; explicit installation rebuilds verified content-addressed state.
+- Migration implementation: `N/A`
+- Deviation: `None`
 
 ## Environment Or Dependency Notes
 
-- No dependency, lockfile, schema, workflow, provider, model, runtime, package, qualification, evidence record, or historical artifact changed.
-- Full checks used the exact locked Go 1.26.5 root through `/tmp/autobyteus-go1.26.5-ir027/go/bin/go`.
-- No runner was provisioned and no recovery, candidate, profile, release, or publication command was executed.
+- Implementation checks used Node `22.23.1` and repository-locked Go `1.26.5` at `/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go`.
+- Host construction additionally requires the reviewed macOS Apple Silicon native-tool preflight and authenticated external inputs; those production inputs were not provisioned or executed here.
+- No dependency version, provider, model, threshold, corpus, deadline, or target expansion was introduced.
 
 ## Local Implementation Checks Run
 
-- `node --test tests/release/relevant-source-closure.test.mjs` — pass: 6/6.
-- `npm run check:release-pipeline` — pass: 46/46 plus strict release source/schema guards.
-- `PATH=/tmp/autobyteus-go1.26.5-ir027/go/bin:$PATH VOICE_GO=/tmp/autobyteus-go1.26.5-ir027/go/bin/go npm run check` — pass: source guards; 7/7 Python plus compileall; all Go tests/guards; English-v2 and Chinese-v2 evidence verification; 156/156 Node TAP tests.
-- Authored-file Prettier and `git diff --check` — pass.
-
-These are implementation-scoped source/unit/contract checks only, not API/E2E recovery, promotion, release, or publication evidence.
+- `VOICE_GO=/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go npm run check:release-pipeline` — passed `9/9` focused Node contract/source tests.
+- `VOICE_GO=/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go npm run check` — passed source guards, `7/7` Python tests plus compileall, all Go tests/guards, English-v2 and Chinese-v2 evidence verification, and `91/91` Node TAP tests.
+- Trusted-Go `go vet ./...` — passed.
+- Trusted-Go `go test -race ./hostverify/... ./integrity/... ./launcher/... ./modelmanager/... ./modelstore/... ./packaging/...` — passed.
+- Prettier check across `97` changed authored Markdown/YAML/JSON/MJS files — passed.
+- `git diff --check` and changed-source effective-line guard — passed.
 
 ## Frontend Rendered-Result Check
 
-Not Applicable — release authority policy and source/contract tests only; no rendered frontend or user interaction changed.
+Not Applicable. This is a standalone runtime/build/release change with no rendered frontend or desktop source modification.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-- Recompute Preliminary Source Admission at IR-030 and require exact `reuse-permitted`, both authority closures unchanged, exact record base commit, and canonical changed-path classifications/digest.
-- Mutate the accepted record commit, Qualification Authority inventory/tree, ancestry, classification, or current closure and require the existing owner to fail closed.
-- Confirm no recovery/materialization/build action occurs before admission and no candidate promotes without the previously reviewed exact Aggregate API Renewal binding.
+1. Build each host twice from exact hydrated inputs under the network-denied boundary; verify reports and whole archives are byte-identical and match focused archive identities.
+2. Exercise fresh, resumed, stale-validator restart, cancellation before cutoff, cancellation after cutoff, status racing commit/remove, provider lifetime lease, and removal interleavings on macOS using actual production manifests.
+3. Prove host verification and admission rejection occur before caller catalog/notice/manifest reads, network access, or store mutation for tampered host/root/catalog/model subjects.
+4. Relocate both hosts, install their exact production model trees, disconnect networking, start via Session Config 2, and run retained offline clip/lifecycle smoke through Protocol 1.
+5. Derive and independently verify Profile Execution Closure 2, Focused Qualification Set 3, and Branch Catalog Projection 3; route any closure difference to the prescribed qualification scope.
+6. Execute the standard-hosted release only after source/API/E2E/code-review gates pass; verify exact nine published bytes, downloaded-byte identities, and tag-preserving quarantine behavior.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-Yes. Source review is required first. If it passes, downstream may validate the admission/controller transition and then begin only the separately authorized managed recovery sequence. IR-030 itself performs zero profile, provider, inference, corpus, performance, recovery, promotion, or publication execution.
+Yes. This handoff records implementation-scoped source, unit, contract, race, and static checks only. API/E2E owns durable coverage investigation, realistic host builds, production-manifest installation/CDN behavior, macOS interleavings, offline provider smoke, focused closure/equality evidence, and downstream failure classification. No API/E2E pass, release readiness, tag, or publication is claimed.

@@ -36,6 +36,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-028`    | Code Reviewer / `code-review-report.md` / `CRR-042`                | `CR-F-038`                                                  | `Local Fix`           | `SR-018`; `ARCH-REV-019`; `CRR-042`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
 | `IR-029`    | Code Reviewer / `code-review-report.md` / `CRR-043`                | Remaining `CR-F-038`                                        | `Local Fix`           | `SR-018`; `ARCH-REV-019`; `CRR-043`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
 | `IR-030`    | Delivery Engineer / `delivery-revision-record.md` / `DR-006`       | `N/A` — reviewed post-renewal controller transition         | `Reviewed Transition` | `SR-018`; `ARCH-REV-019`; `CRR-044`, `CRR-045`; `API-REV-019`; `DR-006`                                                | `Implementation Complete — Ready for Code Re-review` |
+| `IR-031`    | Architecture Reviewer / `design-review-report.md` / round 21       | Resolved `AR-F-017`, `AR-F-018`, `AR-F-019`                 | `Design Impact`       | `SR-020`, `SR-021`; `ARCH-REV-020`, `ARCH-REV-021`; prior `CRR-044`, `CRR-045`; `API-REV-017`–`API-REV-019`; `DR-006`  | `Implementation Complete — Ready for Code Review`    |
 
 ## Revision Entries
 
@@ -798,3 +799,30 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: focused source-closure coverage passed `6/6`; `npm run check:release-pipeline` passed `46/46` plus strict release guards; exact pinned-Go full `npm run check` passed source guards, `7/7` Python plus compileall, all Go tests/guards, both evidence authorities, and `156/156` Node TAP tests. Authored-file Prettier and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`.
 - Remaining limitations or risks: implementation did not run recovery, reconstruct archives, start providers, run corpus/lifecycle/performance/profile qualification, promote a candidate, merge, tag, or publish. `reuse-permitted` does not bypass Source Review. Managed recovery may begin only after source Pass, and all exact archive, candidate, hosted Delivery, publication, and downloaded-byte gates remain fail closed. Loaded-host performance and deferred x64/Linux/Windows/`auto` scope remain unchanged.
+
+### IR-031 — Split runtime hosts from on-demand model assets
+
+- Triggering role, report path, and round: Architecture Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`; round 21 / `ARCH-REV-021` against `SR-021`.
+- Triggering finding IDs: resolved design findings `AR-F-017`, `AR-F-018`, and `AR-F-019`.
+- Classification: `Design Impact`.
+- Prior authoritative result: `IR-030` implemented the accepted aggregate-renewal transition under SR-018; subsequent SR-020/SR-021 replaced the combined-package/recovery target with explicit on-demand model delivery.
+- Current authoritative result: `Implementation Complete — Ready for Code Review`.
+- Related solution revision IDs: `SR-020`, `SR-021` (`SR-021` current).
+- Related architecture-review revision IDs: `ARCH-REV-020`, `ARCH-REV-021` (`ARCH-REV-021` Pass).
+- Related code-review revision IDs: prior `CRR-044`, `CRR-045`; current source review pending.
+- Related API/E2E revision IDs: retained `API-REV-017`–`API-REV-019`; SR-021 coverage investigation/execution pending.
+- Related delivery revision IDs: prior `DR-006`; current Delivery not started.
+- Why this implementation revision is recorded: SR-021 intentionally replaces redistributed combined host+model archives and managed recovery/candidate release infrastructure with stable model-free runtime hosts, explicit host-authorized on-demand model installation, focused execution-closure reuse, and a standard-hosted nine-asset release.
+- Approved behavior or requirement IDs affected: `BEH-001`–`BEH-014`, principally `BEH-004`, `BEH-005`, `BEH-007`–`BEH-010`, `BEH-013`, `BEH-014`; `R-005`, `R-014`, `R-017`, `R-019`, `R-022`–`R-029`; `AC-025`–`AC-035`. Existing Protocol 1/provider/output/scoring/resource meanings remain preserved.
+- Implementation delta:
+  - Replaced combined package recipes/descriptors/tooling with deterministic Runtime Host Archive 2 construction, verification, Host Source Closure 1, externally recorded Host Build Provenance 2, and embedded per-profile Model Admission Root 1.
+  - Added exact Matrix 2, Catalog 4, model manifests/compatibility roots, strict install/host/model/session schemas and Go types, model-tree integrity, and one host-first admission owner.
+  - Added the public `voice-model-manager` with authenticated resumable downloads, content-addressed Store 1, atomic Activation State Protocol 1, bounded status snapshots, provider lifetime leases, and strict JSON-line terminal events.
+  - Upgraded the one public launcher to Session Config 2, verified external activated model binding, lease-preserving offline worker startup, and no ambient path/model/fallback authority. Providers consume the verified private model root without changing inference behavior.
+  - Added Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, Release Source Admission 3, and the acyclic exact nine-asset standard-hosted release/prepublication/postpublication chain.
+  - Removed Catalog 3/Matrix 1, Session Config/launcher plan 1, bundled-model staging, Provider Archive/package v1, active full qualification entrypoints, aggregate recovery/candidate authority/controllers/workflows, and stale compatibility tests.
+  - Rewrote README/package scripts for the standalone host/model-manager workflow and source/unit/contract validation.
+- Changed files or areas: `build/host-*.mjs`, `build/profile-builders/*-host.mjs`, `contracts/{build,catalog,host,install,launcher,model,package,qualification,release,startup}/`, `hostverify/`, `integrity/`, `modelmanager/`, `modelstore/`, `launcher/internal/`, `packaging/`, `providers/`, `release/`, `.github/workflows/release-voice-runtime.yml`, `tests/`, `tooling/`, `README.md`, and `package.json`; source commit `6dc1aac500a84f50a8808ba9eca2bb15d808779d`.
+- Local validation and result: exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go `npm run check` passed source guards, `7/7` Python plus compileall, all Go tests/guards, both evidence authorities, and `91/91` Node TAP tests. `go vet ./...`, race-enabled host/integrity/launcher/model-manager/model-store/packaging tests, authored Prettier, source-size checks, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not run API/E2E, construct production hosts, download production models, exercise real CDN resume behavior, start providers, run retained offline clips, execute corpora/performance/full qualification, derive focused authorities, dispatch hosted release, merge, tag, or publish. Deterministic whole-archive equality, production install/offline smoke, macOS filesystem/signal/lease interleavings, Execution Closure 2, focused QSet/projection, exact nine-asset publication, and downloaded-byte verification remain fail-closed downstream gates. x64/Linux/Windows/`auto`, alternate models/providers, desktop integration, and personal-runner release infrastructure remain out of scope.
