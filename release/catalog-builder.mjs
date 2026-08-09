@@ -1,147 +1,192 @@
 #!/usr/bin/env node
 import path from "node:path";
-import Ajv2020 from "ajv/dist/2020.js";
+import { parsePairs, ROOT, sha256 } from "../build/lib/files.mjs";
+import { loadCurrentReleaseMatrix } from "./current-release-matrix.mjs";
 import {
-  parsePairs,
-  readJson,
-  ROOT,
-  shaFile,
-  writeJson,
-} from "../build/lib/files.mjs";
-import {
-  assertExactMatrixRows,
-  loadCurrentReleaseMatrix,
-  matrixEntryKey,
-} from "./current-release-matrix.mjs";
-import { composeCatalogEntryIdentity } from "./catalog-entry-identity.mjs";
-import { verifyQualifiedCandidate } from "./qualified-release-candidate.mjs";
+  compareNames,
+  ordinaryFileIdentity,
+  readValidated,
+  RELEASE_VERSION,
+  writeArtifact,
+} from "./release-contract.mjs";
 
 export async function buildReleaseCatalog({
-  candidate,
-  releaseEvidencePath,
-  releaseTag,
+  releaseEvidence,
   baseUrl,
   output,
 }) {
-  if (
-    !/^v[0-9]+\.[0-9]+\.[0-9]+$/.test(releaseTag) ||
-    !/^https:\/\/[A-Za-z0-9._~:/?#\[\]@!$&'()*+,;=%-]+$/.test(baseUrl)
-  )
-    throw new Error("Invalid catalog release distribution identity.");
-  const candidateRoot = path.resolve(candidate),
-    candidateManifest = await verifyQualifiedCandidate(candidateRoot),
-    qualificationSetPath = path.join(
-      candidateRoot,
-      "qualification-set-v2.json",
-    ),
-    qset = await readJson(qualificationSetPath),
-    evidence = await readJson(releaseEvidencePath),
-    matrix = await loadCurrentReleaseMatrix();
-  await validate(
-    qset,
-    "contracts/release/qualification-set-v2.schema.json",
-    "Qualification Set",
-  );
-  await validate(
-    evidence,
-    "contracts/release/release-qualification-evidence-v2.schema.json",
-    "Release Evidence",
-  );
-  if (
-    qset.artifactKind !== "qualification-set" ||
-    evidence.artifactKind !== "release-qualification-evidence" ||
-    qset.functionalDecision !== "pass" ||
-    evidence.functionalDecision !== "pass" ||
-    evidence.performanceAssessment !== qset.performanceAssessment ||
-    evidence.qualificationSet.sha256 !==
-      (await shaFile(qualificationSetPath)) ||
-    evidence.qualifiedCandidate.sha256 !==
-      (await shaFile(
-        path.join(candidateRoot, "qualified-release-candidate-v1.json"),
-      )) ||
-    candidateManifest.decision !== "promoted" ||
-    evidence.intendedRelease.releaseTag !== releaseTag ||
-    evidence.intendedRelease.runtimeVersion !== qset.packageVersion ||
-    evidence.qualifiedSourceCommit !== qset.sourceCommit ||
-    evidence.releaseMatrix.sha256 !== matrix.sha256 ||
-    JSON.stringify(evidence.profileResourcePolicy) !==
-      JSON.stringify(qset.profileResourcePolicy) ||
-    JSON.stringify(evidence.profileQualifications) !==
-      JSON.stringify(qset.profiles) ||
-    JSON.stringify(evidence.expectedProviderArchives.items) !==
-      JSON.stringify(
-        qset.profiles
-          .map((item) => ({
-            fileName: item.archive.fileName,
-            sizeBytes: item.archive.sizeBytes,
-            sha256: item.archive.sha256,
-          }))
-          .sort((left, right) =>
-            Buffer.compare(
-              Buffer.from(left.fileName),
-              Buffer.from(right.fileName),
-            ),
-          ),
-      )
-  )
-    throw new Error("Catalog input digest/lineage mismatch.");
-  assertExactMatrixRows(matrix.value, qset.profiles);
-  const entries = [];
-  for (const matrixEntry of matrix.value.entries) {
-    const profile = qset.profiles.find(
-      (item) => matrixEntryKey(item) === matrixEntryKey(matrixEntry),
+  if (!/^https:\/\/[^?#]+$/.test(baseUrl))
+    throw new Error(
+      "Catalog base URL must be fixed HTTPS without query/fragment.",
     );
-    const identity = await composeCatalogEntryIdentity(matrixEntry, profile);
-    entries.push({
-      ...identity,
-      archive: {
-        ...identity.archive,
-        url: `${baseUrl.replace(/\/$/, "")}/${releaseTag}/${identity.archive.fileName}`,
+  const evidence = await readValidated(
+      releaseEvidence,
+      "contracts/release/release-qualification-evidence-v4.schema.json",
+      "Release Qualification Evidence 4",
+    ),
+    matrix = await loadCurrentReleaseMatrix(),
+    entries = [];
+  if (
+    evidence.decision !== "pass" ||
+    evidence.runtimeVersion !== RELEASE_VERSION
+  )
+    throw new Error("Catalog 4 requires passing exact release evidence.");
+  for (const matrixEntry of matrix.value.entries) {
+    const profile = evidence.profiles.find(
+      (item) => item.profileId === matrixEntry.profileId,
+    );
+    if (
+      !profile ||
+      profile.modelManifest.sha256 !== matrixEntry.modelManifest.sha256 ||
+      profile.modelAdmissionRootSha256 !== matrixEntry.modelAdmissionRoot.sha256
+    )
+      throw new Error("Catalog 4 matrix/evidence profile mismatch.");
+    const manifestPath = path.join(
+        ROOT,
+        "release/model-manifests",
+        matrixEntry.modelManifest.fileName,
+      ),
+      admissionPath = path.join(
+        ROOT,
+        "contracts/model/admission",
+        matrixEntry.modelAdmissionRoot.fileName,
+      ),
+      compatibilityPath = path.join(
+        ROOT,
+        "contracts/model/compatibility",
+        `${matrixEntry.profileId}-darwin-arm64-v1.json`,
+      ),
+      manifest = await readValidated(
+        manifestPath,
+        "contracts/model/model-asset-manifest-v1.schema.json",
+        "Model Asset Manifest 1",
+      ),
+      admission = await readValidated(
+        admissionPath,
+        "contracts/model/model-admission-root-v1.schema.json",
+        "Model Admission Root 1",
+      ),
+      compatibility = await readValidated(
+        compatibilityPath,
+        "contracts/model/model-compatibility-requirement-v1.schema.json",
+        "Model Compatibility Requirement 1",
+      ),
+      manifestIdentity = await ordinaryFileIdentity(manifestPath),
+      admissionIdentity = await ordinaryFileIdentity(
+        admissionPath,
+        "model-admission-root-v1.json",
+      ),
+      compatibilityIdentity = await ordinaryFileIdentity(
+        compatibilityPath,
+        "model-compatibility-requirement-v1.json",
+      ),
+      admittedModel = admission.admittedModels[0],
+      pair = {
+        hostPackageId: matrixEntry.hostPackageId,
+        descriptorSha256: profile.hostDescriptorSha256,
+        compatibilityRequirementSha256:
+          matrixEntry.compatibilityRequirementSha256,
+        modelManifestSha256: profile.modelManifest.sha256,
+        capabilityDigest: matrixEntry.capabilityDigest,
       },
+      pairSha256 = sha256(Buffer.from(`${JSON.stringify(pair, null, 2)}\n`));
+    if (
+      admissionIdentity.sha256 !== profile.modelAdmissionRootSha256 ||
+      admissionIdentity.sha256 !== matrixEntry.modelAdmissionRoot.sha256 ||
+      manifestIdentity.sha256 !== matrixEntry.modelManifest.sha256 ||
+      compatibilityIdentity.sha256 !==
+        matrixEntry.compatibilityRequirementSha256 ||
+      admission.profileId !== matrixEntry.profileId ||
+      admission.languageMode !== matrixEntry.languageMode ||
+      admission.providerId !== matrixEntry.providerId ||
+      admission.hostPackageId !== matrixEntry.hostPackageId ||
+      admission.capabilityDigest !== matrixEntry.capabilityDigest ||
+      admission.compatibilityRequirement.sha256 !==
+        compatibilityIdentity.sha256 ||
+      admission.admittedModels.length !== 1 ||
+      admittedModel.manifestFileName !== manifestIdentity.fileName ||
+      admittedModel.sizeBytes !== manifestIdentity.sizeBytes ||
+      admittedModel.sha256 !== manifestIdentity.sha256 ||
+      admittedModel.modelAssetId !== matrixEntry.modelAssetId ||
+      admittedModel.revision !== manifest.revision ||
+      admittedModel.layoutId !== manifest.layoutId ||
+      admittedModel.modelTreeSha256 !== manifest.modelTreeSha256 ||
+      admittedModel.totalSizeBytes !== manifest.totalSizeBytes ||
+      compatibility.profileId !== matrixEntry.profileId ||
+      compatibility.providerId !== matrixEntry.providerId ||
+      compatibility.model.modelId !== matrixEntry.modelId ||
+      compatibility.capabilityDigest !== matrixEntry.capabilityDigest ||
+      manifest.modelId !== matrixEntry.modelId ||
+      manifest.modelAssetId !== matrixEntry.modelAssetId ||
+      profile.compatibilityPairSha256 !== pairSha256
+    )
+      throw new Error("Catalog 4 host/model authority mismatch.");
+    entries.push({
+      profileId: matrixEntry.profileId,
+      languageMode: matrixEntry.languageMode,
+      target: { platform: "darwin", architecture: "arm64" },
+      providerId: matrixEntry.providerId,
+      modelId: matrixEntry.modelId,
+      capabilityDigest: matrixEntry.capabilityDigest,
+      host: {
+        archive: {
+          ...profile.hostArchive,
+          url: `${baseUrl.replace(/\/$/, "")}/v${RELEASE_VERSION}/${profile.hostArchive.fileName}`,
+        },
+        hostPackageId: matrixEntry.hostPackageId,
+        descriptorSha256: profile.hostDescriptorSha256,
+        fileManifestSha256: profile.hostFileManifestSha256,
+        compatibilityRequirementSha256:
+          matrixEntry.compatibilityRequirementSha256,
+        launcherPath: "bin/voice-provider",
+        modelManagerPath: "bin/voice-model-manager",
+      },
+      hostAuthority: {
+        hostSourceClosure: {
+          fileName: "host-source-closure-v1.json",
+          sizeBytes: profile.hostSourceClosureSizeBytes,
+          sha256: profile.hostSourceClosureSha256,
+        },
+        modelAdmissionRoot: admissionIdentity,
+      },
+      model: {
+        manifest: {
+          ...profile.modelManifest,
+          url: `${baseUrl.replace(/\/$/, "")}/v${RELEASE_VERSION}/${profile.modelManifest.fileName}`,
+        },
+        modelAssetId: manifest.modelAssetId,
+        revision: manifest.revision,
+        layoutId: manifest.layoutId,
+        modelTreeSha256: manifest.modelTreeSha256,
+        totalSizeBytes: manifest.totalSizeBytes,
+      },
+      compatibilityPairSha256: pairSha256,
+      supportStatement: "macOS Apple Silicon only",
     });
   }
-  const catalog = {
-    schemaVersion: 3,
-    runtimeId: "voice-input",
-    runtimeVersion: qset.packageVersion,
-    sourceCommit: evidence.sourceCommit,
-    releaseTag,
-    releaseMatrix: qset.releaseMatrix,
-    releaseEvidence: {
-      fileName: "release-qualification-evidence-v2.json",
-      sha256: await shaFile(releaseEvidencePath),
+  entries.sort((left, right) => compareNames(left.profileId, right.profileId));
+  return writeArtifact(
+    output,
+    {
+      schemaVersion: 4,
+      catalogId: "voice-runtime-catalog-v4",
+      releaseVersion: RELEASE_VERSION,
+      entries,
     },
-    entries,
-  };
-  await validate(
-    catalog,
-    "contracts/catalog/voice-runtime-catalog-v3.schema.json",
-    "Catalog 3",
+    "contracts/catalog/voice-runtime-catalog-v4.schema.json",
+    "Voice Runtime Catalog 4",
   );
-  await writeJson(path.resolve(output), catalog);
-  return catalog;
-}
-
-async function validate(value, schemaPath, label) {
-  const schema = await readJson(path.join(ROOT, schemaPath));
-  const check = new Ajv2020({ allErrors: true, strict: true }).compile(schema);
-  if (!check(value))
-    throw new Error(`${label} invalid: ${JSON.stringify(check.errors)}`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
-    "candidate",
     "release-evidence",
-    "release-tag",
     "base-url",
     "output",
   ]);
   await buildReleaseCatalog({
-    candidate: path.resolve(args.candidate),
-    releaseEvidencePath: path.resolve(args["release-evidence"]),
-    releaseTag: args["release-tag"],
+    releaseEvidence: args["release-evidence"],
     baseUrl: args["base-url"],
-    output: path.resolve(args.output),
+    output: args.output,
   });
 }

@@ -71,8 +71,8 @@ test("the complete observed staged manifest passes the canonical Go validator af
     observedPathBytes = gunzipSync(await fs.readFile(fixture)),
     observedPaths = observedPathBytes.toString("utf8").trimEnd().split("\n"),
     manifest = {
-      schemaVersion: 1,
-      packageId: "voice.english.whisper-small-fp16.darwin-arm64",
+      schemaVersion: 2,
+      hostPackageId: "voice.host.english-mlx.darwin-arm64",
       files: observedPaths.map((filePath) => ({
         path: filePath,
         sha256: "0".repeat(64),
@@ -114,7 +114,7 @@ test("the complete observed staged manifest passes the canonical Go validator af
     path.join(os.tmpdir(), "voice-manifest-closure-"),
   );
   try {
-    const manifestPath = path.join(temp, "package-files-v1.json");
+    const manifestPath = path.join(temp, "host-files-v2.json");
     await writeJson(manifestPath, manifest);
     const toolchain = await verifyGoToolchain(process.env.VOICE_GO);
     await run(

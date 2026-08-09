@@ -1,0 +1,212 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/release/release-source-admission-v3.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "focusedSourceCommit",
+    "finalMainCommit",
+    "ancestryVerified",
+    "changedPaths",
+    "changedPathsSha256",
+    "qualificationSet",
+    "branchProjection",
+    "projectionVerification",
+    "executionClosureVerifications",
+    "profiles",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 3
+    },
+    "artifactKind": {
+      "const": "release-source-admission"
+    },
+    "focusedSourceCommit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "finalMainCommit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "ancestryVerified": {
+      "const": true
+    },
+    "changedPaths": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status", "path", "classification"],
+            "properties": {
+              "status": {
+                "enum": ["A", "M", "D"]
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1
+              },
+              "classification": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status", "oldPath", "newPath", "classification"],
+            "properties": {
+              "status": {
+                "const": "R"
+              },
+              "oldPath": {
+                "type": "string",
+                "minLength": 1
+              },
+              "newPath": {
+                "type": "string",
+                "minLength": 1
+              },
+              "classification": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          }
+        ]
+      }
+    },
+    "changedPathsSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "qualificationSet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "branchProjection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "projectionVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "executionClosureVerifications": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["fileName", "sizeBytes", "sha256"],
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._-]+$"
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profileId",
+          "focusedHostSourceClosureSha256",
+          "finalHostSourceClosureSha256",
+          "equal"
+        ],
+        "properties": {
+          "profileId": {
+            "enum": ["english", "chinese"]
+          },
+          "focusedHostSourceClosureSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "finalHostSourceClosureSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "equal": {
+            "const": true
+          }
+        }
+      }
+    },
+    "decision": {
+      "enum": [
+        "reuse-permitted",
+        "profile-qualification-required",
+        "focused-qualification-required",
+        "api-impact-review-required",
+        "blocked"
+      ]
+    }
+  }
+}

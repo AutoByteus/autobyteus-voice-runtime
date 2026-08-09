@@ -21,6 +21,40 @@ for (const root of roots)
       failed = true;
     }
   }
+const activeProduct = await Promise.all(
+  (
+    await Promise.all(
+      [
+        "launcher",
+        "packaging",
+        "providers",
+        "build",
+        "benchmark",
+        "release",
+      ].map((root) => walk(root)),
+    )
+  )
+    .flat()
+    .filter((file) => source.test(file))
+    .map((file) => fs.readFile(file, "utf8").then((data) => [file, data])),
+);
+for (const [file, data] of activeProduct)
+  for (const [name, pattern] of [
+    [
+      "Provider Archive 1",
+      /Provider Archive 1|provider-package-v1|package-files-v1/,
+    ],
+    ["Session Config 1", /provider-session-config-v1/],
+    ["Catalog 3", /voice-runtime-catalog-v3|branch-catalog-projection-v2/],
+    [
+      "managed recovery",
+      /qualified-release-candidate|qualified-archive-recovery/,
+    ],
+  ])
+    if (pattern.test(data)) {
+      console.error(`${file}: forbidden obsolete ${name} active path`);
+      failed = true;
+    }
 const product = await Promise.all(
   (await walk("."))
     .filter(

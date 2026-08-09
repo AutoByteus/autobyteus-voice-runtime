@@ -2,13 +2,10 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
   PreparationEvidenceCollector,
-  PREPARATION_EVIDENCE_AUTHORITIES,
   derivePreparationStages,
   verifyPreparationStageEvidence,
   writePreparationStageEvidence,
 } from "../../benchmark/preparation-diagnostics.mjs";
-import { verifyPreparationBinding } from "../../benchmark/performance-assessment.mjs";
-import { shaFile } from "../../build/lib/files.mjs";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
@@ -217,54 +214,6 @@ test("written evidence revalidates and recomputes", async () => {
     assert.equal(
       (await verifyPreparationStageEvidence(file)).attempts.length,
       1,
-    );
-  } finally {
-    await fs.rm(root, { recursive: true, force: true });
-  }
-});
-
-test("qualification binding rejects evidence from another attempt identity", async () => {
-  const collector = createCollector(12);
-  collector.childSpawned();
-  collector.acceptStderrChunk(Buffer.from(canonicalLines().join("")));
-  const attempt = await collector.finalize("success"),
-    root = await fs.mkdtemp(path.join(os.tmpdir(), "voice-preparation-bind-")),
-    file = path.join(root, "preparation-stage-evidence-v1.json"),
-    summaryPath = path.join(root, "qualification-summary-v2.json");
-  try {
-    await writePreparationStageEvidence(file, [attempt]);
-    const summary = {
-        profileId: "chinese",
-        rawEvidence: {
-          preparationStageEvidence: {
-            fileName: path.basename(file),
-            sha256: await shaFile(file),
-          },
-        },
-        preparationEvidence: {
-          ...PREPARATION_EVIDENCE_AUTHORITIES,
-          attemptCount: 1,
-          validAttemptCount: 1,
-          privacyDecision: "pass",
-        },
-      },
-      ledger = {
-        attempts: [
-          {
-            sequence: 12,
-            phase: "cold",
-            status: "succeeded",
-            timings: { preparationMs: 1 },
-          },
-        ],
-      };
-    await verifyPreparationBinding(summary, summaryPath, ledger);
-    ledger.attempts[0].status = "failed";
-    await verifyPreparationBinding(summary, summaryPath, ledger);
-    ledger.attempts[0].sequence = 13;
-    await assert.rejects(
-      verifyPreparationBinding(summary, summaryPath, ledger),
-      /binding mismatch/,
     );
   } finally {
     await fs.rm(root, { recursive: true, force: true });

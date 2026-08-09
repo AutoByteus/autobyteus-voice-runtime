@@ -20,11 +20,11 @@ type BuildReport struct {
 }
 
 func BuildCanonicalZIP(packageRoot, outputPath string) (BuildReport, error) {
-	manifest, err := ReadManifest(filepath.Join(packageRoot, "provider", "package-files-v1.json"))
+	manifest, err := ReadManifest(filepath.Join(packageRoot, "provider", "host-files-v2.json"))
 	if err != nil {
 		return BuildReport{}, err
 	}
-	modes := map[string]FileMode{"provider/package-files-v1.json": ReadOnly}
+	modes := map[string]FileMode{"provider/host-files-v2.json": ReadOnly}
 	for _, record := range manifest.Files {
 		modes[record.Path] = record.Mode
 	}
@@ -34,7 +34,7 @@ func BuildCanonicalZIP(packageRoot, outputPath string) (BuildReport, error) {
 	}
 	sort.Strings(paths)
 	if extracted > MaxPackageBytes || len(paths) >= 65535 {
-		return BuildReport{}, errors.New("package exceeds Provider Archive 1 limits")
+		return BuildReport{}, errors.New("host exceeds Runtime Host Archive 2 limits")
 	}
 	if err := os.MkdirAll(filepath.Dir(outputPath), 0700); err != nil {
 		return BuildReport{}, err
@@ -112,7 +112,7 @@ func addCanonicalFile(writer *zip.Writer, root, relative string, logical FileMod
 	if logical == Executable {
 		perm = 0555
 	}
-	header := &zip.FileHeader{Name: "package/" + relative, Method: zip.Deflate, Flags: 0x800, CRC32: crc.Sum32(), CompressedSize64: uint64(compressedSize), UncompressedSize64: uint64(size), CreatorVersion: uint16(3<<8 | 20), ReaderVersion: 20, Modified: time.Date(1980, 1, 1, 0, 0, 0, 0, time.UTC)}
+	header := &zip.FileHeader{Name: "host/" + relative, Method: zip.Deflate, Flags: 0x800, CRC32: crc.Sum32(), CompressedSize64: uint64(compressedSize), UncompressedSize64: uint64(size), CreatorVersion: uint16(3<<8 | 20), ReaderVersion: 20, Modified: time.Date(1980, 1, 1, 0, 0, 0, 0, time.UTC)}
 	header.SetMode(0100000 | perm)
 	header.Extra = nil
 	header.Comment = ""

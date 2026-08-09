@@ -1,0 +1,243 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/package/runtime-host-v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "hostPackageId",
+    "packageVersion",
+    "providerId",
+    "target",
+    "protocolVersion",
+    "sessionConfigVersion",
+    "modelInstallationEventsVersion",
+    "launcher",
+    "modelManager",
+    "launcherPlan",
+    "host",
+    "worker",
+    "engine",
+    "profiles",
+    "audioContract",
+    "hostSourceClosure",
+    "modelAdmissionRoot",
+    "modelCompatibilityRequirement",
+    "fileManifestPath",
+    "noticeInventoryPath"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "hostPackageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "packageVersion": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "providerId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "architecture"],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": ["darwin"]
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["arm64"]
+        }
+      }
+    },
+    "protocolVersion": {
+      "const": 1
+    },
+    "sessionConfigVersion": {
+      "const": 2
+    },
+    "modelInstallationEventsVersion": {
+      "const": 1
+    },
+    "launcher": {
+      "type": "string",
+      "pattern": "^bin/voice-provider$"
+    },
+    "modelManager": {
+      "type": "string",
+      "pattern": "^bin/voice-model-manager$"
+    },
+    "launcherPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "const": "provider/package-launcher-plan-v2.json"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "version", "executable", "sha256"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["bundled-python", "native"]
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "executable": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._/-]+$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "worker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["entrypoint", "sha256"],
+      "properties": {
+        "entrypoint": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._/-]+$"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "engine": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "version", "configuration"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "minLength": 1
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "configuration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["path", "sha256"],
+          "properties": {
+            "path": {
+              "const": "provider/engine-configuration-v1.json"
+            },
+            "sha256": {
+              "type": "string",
+              "pattern": "^[a-f0-9]{64}$"
+            }
+          }
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profileId",
+          "languageMode",
+          "normalizationProfile",
+          "capabilityDigest"
+        ],
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "enum": ["english", "chinese"]
+          },
+          "languageMode": {
+            "type": "string",
+            "enum": ["en", "zh"]
+          },
+          "normalizationProfile": {
+            "type": "string",
+            "minLength": 1
+          },
+          "capabilityDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "audioContract": {
+      "const": "autobyteus-pcm16-mono-16khz-wav-v1"
+    },
+    "hostSourceClosure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "const": "provider/host-source-closure-v1.json"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "modelAdmissionRoot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "const": "provider/model-admission-root-v1.json"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "modelCompatibilityRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {
+          "const": "provider/model-compatibility-requirement-v1.json"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "fileManifestPath": {
+      "const": "provider/host-files-v2.json"
+    },
+    "noticeInventoryPath": {
+      "const": "THIRD_PARTY_NOTICES.json"
+    }
+  }
+}

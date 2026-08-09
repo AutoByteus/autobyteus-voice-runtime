@@ -1,8 +1,0 @@
-{
-  "paths": [
-    "bin/voice-provider",
-    "provider/provider-package-v1.json",
-    "worker/voice_provider.py",
-    "models/whisper-small/config.json"
-  ]
-}

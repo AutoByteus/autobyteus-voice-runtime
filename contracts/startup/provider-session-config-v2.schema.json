@@ -1,0 +1,122 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/startup/provider-session-config-v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "protocolVersion",
+    "sessionId",
+    "profileId",
+    "installationRoot",
+    "installationId",
+    "activationSha256",
+    "expected"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "protocolVersion": {
+      "const": 1
+    },
+    "sessionId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "profileId": {
+      "type": "string",
+      "enum": ["english", "chinese"]
+    },
+    "installationRoot": {
+      "type": "string",
+      "pattern": "^/.*"
+    },
+    "installationId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "activationSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hostPackageId",
+        "providerId",
+        "modelId",
+        "languageMode",
+        "platform",
+        "architecture",
+        "descriptorSha256",
+        "fileManifestSha256",
+        "hostSourceClosureSha256",
+        "modelAdmissionRootSha256",
+        "modelManifestSha256",
+        "modelTreeSha256",
+        "compatibilityPairSha256",
+        "capabilityDigest"
+      ],
+      "properties": {
+        "hostPackageId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "languageMode": {
+          "type": "string",
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "type": "string",
+          "enum": ["darwin"]
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["arm64"]
+        },
+        "descriptorSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "fileManifestSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "hostSourceClosureSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "modelAdmissionRootSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "modelManifestSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "modelTreeSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "compatibilityPairSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "capabilityDigest": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,254 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/install/model-installation-events-v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "operationId",
+    "operation",
+    "profileId",
+    "target",
+    "sequence",
+    "phase",
+    "timestamp"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "operationId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+    },
+    "operation": {
+      "type": "string",
+      "enum": ["install-profile", "status-profile", "remove-profile"]
+    },
+    "profileId": {
+      "type": "string",
+      "enum": ["english", "chinese"]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "architecture"],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": ["darwin"]
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["arm64"]
+        }
+      }
+    },
+    "sequence": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "phase": {
+      "type": "string",
+      "enum": [
+        "checking",
+        "downloading",
+        "verifying",
+        "activating",
+        "installed",
+        "already-installed",
+        "cancelled",
+        "failed",
+        "status-result",
+        "deactivating",
+        "pruning",
+        "removed",
+        "not-installed"
+      ]
+    },
+    "timestamp": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "modelAssetId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "fileIndex": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "fileCount": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "completedBytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "totalBytes": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "profileState": {
+      "type": "string",
+      "enum": ["active", "not-installed"]
+    },
+    "failureCategory": {
+      "type": "string",
+      "enum": [
+        "invalid-usage",
+        "host-authority-invalid",
+        "catalog-invalid",
+        "catalog-unadmitted",
+        "host-incompatible",
+        "writer-in-progress",
+        "profile-in-use",
+        "state-changing",
+        "insufficient-space",
+        "network-unavailable",
+        "http-status",
+        "redirect-policy",
+        "timeout",
+        "size-mismatch",
+        "digest-mismatch",
+        "store-corrupt",
+        "activation-failed",
+        "cancelled",
+        "internal"
+      ]
+    },
+    "cleanupPending": {
+      "type": "boolean"
+    }
+  },
+  "allOf": [
+    {
+      "oneOf": [
+        {
+          "properties": {
+            "operation": { "const": "install-profile" },
+            "phase": {
+              "enum": [
+                "checking",
+                "downloading",
+                "verifying",
+                "activating",
+                "installed",
+                "already-installed",
+                "cancelled",
+                "failed"
+              ]
+            }
+          }
+        },
+        {
+          "properties": {
+            "operation": { "const": "status-profile" },
+            "phase": { "enum": ["checking", "status-result", "failed"] }
+          }
+        },
+        {
+          "properties": {
+            "operation": { "const": "remove-profile" },
+            "phase": {
+              "enum": [
+                "checking",
+                "deactivating",
+                "pruning",
+                "removed",
+                "not-installed",
+                "cancelled",
+                "failed"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "if": {
+        "properties": { "phase": { "enum": ["downloading", "verifying"] } }
+      },
+      "then": {
+        "properties": {
+          "modelAssetId": {},
+          "fileIndex": {},
+          "fileCount": {},
+          "completedBytes": {},
+          "totalBytes": {}
+        },
+        "required": [
+          "modelAssetId",
+          "fileIndex",
+          "fileCount",
+          "completedBytes",
+          "totalBytes"
+        ]
+      },
+      "else": {
+        "not": {
+          "anyOf": [
+            { "required": ["fileIndex"] },
+            { "required": ["fileCount"] },
+            { "required": ["completedBytes"] },
+            { "required": ["totalBytes"] }
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "operation": { "const": "install-profile" },
+          "phase": {
+            "enum": [
+              "downloading",
+              "verifying",
+              "activating",
+              "installed",
+              "already-installed"
+            ]
+          }
+        },
+        "required": ["operation", "phase"]
+      },
+      "then": {
+        "properties": { "modelAssetId": {} },
+        "required": ["modelAssetId"]
+      },
+      "else": { "not": { "required": ["modelAssetId"] } }
+    },
+    {
+      "if": { "properties": { "phase": { "const": "status-result" } } },
+      "then": {
+        "properties": { "profileState": {} },
+        "required": ["profileState"]
+      },
+      "else": { "not": { "required": ["profileState"] } }
+    },
+    {
+      "if": { "properties": { "phase": { "const": "failed" } } },
+      "then": {
+        "properties": { "failureCategory": {} },
+        "required": ["failureCategory"]
+      },
+      "else": {
+        "if": { "properties": { "phase": { "const": "cancelled" } } },
+        "then": {
+          "required": ["failureCategory"],
+          "properties": { "failureCategory": { "const": "cancelled" } }
+        },
+        "else": { "not": { "required": ["failureCategory"] } }
+      }
+    },
+    {
+      "if": { "properties": { "phase": { "const": "removed" } } },
+      "then": {
+        "properties": { "cleanupPending": {} },
+        "required": ["cleanupPending"]
+      },
+      "else": { "not": { "required": ["cleanupPending"] } }
+    }
+  ]
+}

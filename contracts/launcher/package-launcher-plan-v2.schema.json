@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/launcher/package-launcher-plan-v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "hostPackageId", "target", "invocation"],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "hostPackageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "architecture"],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": ["darwin"]
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["arm64"]
+        }
+      }
+    },
+    "invocation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["kind", "executable"],
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": ["python-worker", "native-worker"]
+        },
+        "executable": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._/-]+$"
+        },
+        "worker": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._/-]+$"
+        }
+      }
+    }
+  }
+}

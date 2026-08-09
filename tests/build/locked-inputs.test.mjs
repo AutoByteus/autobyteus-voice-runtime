@@ -15,7 +15,7 @@ import {
 } from "../../build/locked-inputs.mjs";
 import { verifyGitSource } from "../../build/native/locked-source.mjs";
 import { verifyWheelhouse } from "../../build/python/materialize-runtime.mjs";
-import { assertInputClosure } from "../../build/profile-builders/common.mjs";
+import { assertHostInputClosure } from "../../build/profile-builders/host-common.mjs";
 
 const run = promisify(execFile);
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -261,7 +261,7 @@ test("wheelhouse rejects target wheel bytes changed without a version change", a
 test("operator-materialized Python trees are not accepted as build inputs", () => {
   assert.throws(
     () =>
-      assertInputClosure(
+      assertHostInputClosure(
         { inputManifest: { files: [{ path: "python-root/lib/modified.py" }] } },
         [
           "python-host-archive",
@@ -270,7 +270,7 @@ test("operator-materialized Python trees are not accepted as build inputs", () =
           "package-notices/",
         ],
       ),
-    /not consumed by a locked owner/,
+    /Host input has no consumer/,
   );
 });
 

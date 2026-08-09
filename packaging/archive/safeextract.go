@@ -11,7 +11,7 @@ import (
 )
 
 func ExtractVerified(archivePath, destination string, expected ExtractExpectation) (report VerificationReport, finalErr error) {
-	if expected.SchemaVersion != 1 || expected.PackageID == "" || expected.Target.Platform != "darwin" && expected.Target.Platform != "linux" && expected.Target.Platform != "win32" || expected.Target.Architecture != "arm64" && expected.Target.Architecture != "x64" || expected.Target.Platform != "darwin" && expected.Target.Architecture == "arm64" || expected.Archive.Format != "zip" || expected.Archive.FormatVersion != 1 || expected.Archive.Compression != "deflate" || expected.Archive.Canonicalization != "autobyteus-provider-zip-v1" || expected.Archive.RootDirectory != "package" || expected.Archive.CompressedSizeBytes <= 0 || expected.Archive.ExtractedSizeBytes <= 0 || expected.Archive.EntryCount <= 0 || expected.Archive.EntryCount >= 65535 || expected.PackageDescriptor.Path != "provider/provider-package-v1.json" || expected.FileManifest.Path != "provider/package-files-v1.json" || !shaPattern.MatchString(expected.Archive.SHA256) || !shaPattern.MatchString(expected.PackageDescriptor.SHA256) || !shaPattern.MatchString(expected.FileManifest.SHA256) {
+	if expected.SchemaVersion != 2 || expected.HostPackageID == "" || expected.Target.Platform != "darwin" || expected.Target.Architecture != "arm64" || expected.Archive.Format != "zip" || expected.Archive.FormatVersion != 2 || expected.Archive.Compression != "deflate" || expected.Archive.Canonicalization != "autobyteus-runtime-host-zip-v2" || expected.Archive.RootDirectory != "host" || expected.Archive.CompressedSizeBytes <= 0 || expected.Archive.ExtractedSizeBytes <= 0 || expected.Archive.EntryCount <= 0 || expected.Archive.EntryCount >= 65535 || expected.HostDescriptor.Path != "provider/runtime-host-v2.json" || expected.FileManifest.Path != "provider/host-files-v2.json" || !shaPattern.MatchString(expected.Archive.SHA256) || !shaPattern.MatchString(expected.HostDescriptor.SHA256) || !shaPattern.MatchString(expected.FileManifest.SHA256) {
 		return report, errors.New("invalid extraction expectation")
 	}
 	file, err := os.Open(archivePath)
@@ -57,7 +57,7 @@ func ExtractVerified(archivePath, destination string, expected ExtractExpectatio
 			removeWritableTree(staging)
 		}
 	}()
-	stagePackage := filepath.Join(staging, "package")
+	stagePackage := filepath.Join(staging, "host")
 	if err := os.Mkdir(stagePackage, 0700); err != nil {
 		return report, err
 	}
@@ -74,7 +74,7 @@ func ExtractVerified(archivePath, destination string, expected ExtractExpectatio
 		if entry == nil {
 			return report, errors.New("zip reader record mismatch")
 		}
-		relative := record.Name[len("package/"):]
+		relative := record.Name[len("host/"):]
 		target := filepath.Join(stagePackage, filepath.FromSlash(relative))
 		if err := os.MkdirAll(filepath.Dir(target), 0700); err != nil {
 			return report, err
@@ -104,13 +104,13 @@ func ExtractVerified(archivePath, destination string, expected ExtractExpectatio
 	} else {
 		_ = size
 	}
-	descriptorPath := filepath.Join(stagePackage, filepath.FromSlash(expected.PackageDescriptor.Path))
+	descriptorPath := filepath.Join(stagePackage, filepath.FromSlash(expected.HostDescriptor.Path))
 	descriptorDigest, _, err := HashFile(descriptorPath)
-	if err != nil || descriptorDigest != expected.PackageDescriptor.SHA256 {
+	if err != nil || descriptorDigest != expected.HostDescriptor.SHA256 {
 		return report, errors.New("descriptor digest mismatch")
 	}
 	manifest, err := ReadManifest(manifestPath)
-	if err != nil || manifest.PackageID != expected.PackageID {
+	if err != nil || manifest.HostPackageID != expected.HostPackageID {
 		return report, errors.New("manifest package mismatch")
 	}
 	if err := verifyExtractedClosure(stagePackage, manifest); err != nil {
@@ -132,11 +132,11 @@ func ExtractVerified(archivePath, destination string, expected ExtractExpectatio
 		}
 	}
 	_ = os.Remove(staging)
-	return VerificationReport{1, expected.PackageID, destination, digest, descriptorDigest, expected.FileManifest.SHA256, extracted, len(records), true}, nil
+	return VerificationReport{2, expected.HostPackageID, destination, digest, descriptorDigest, expected.FileManifest.SHA256, extracted, len(records), true}, nil
 }
 
-func verifyExtractedClosure(root string, manifest PackageFileManifest) error {
-	expected := map[string]ManifestFile{"provider/package-files-v1.json": {Path: "provider/package-files-v1.json", Mode: ReadOnly}}
+func verifyExtractedClosure(root string, manifest HostFileManifest) error {
+	expected := map[string]ManifestFile{"provider/host-files-v2.json": {Path: "provider/host-files-v2.json", Mode: ReadOnly}}
 	for _, record := range manifest.Files {
 		expected[record.Path] = record
 	}
@@ -162,7 +162,7 @@ func verifyExtractedClosure(root string, manifest PackageFileManifest) error {
 		if !ok {
 			return fmt.Errorf("extra extracted file %s", relative)
 		}
-		if relative != "provider/package-files-v1.json" {
+		if relative != "provider/host-files-v2.json" {
 			digest, size, err := HashFile(target)
 			if err != nil || digest != record.SHA256 || size != record.SizeBytes {
 				return errors.New("extracted file identity mismatch")

@@ -1,0 +1,156 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/model/model-admission-root-v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "authorityVersion",
+    "profileId",
+    "languageMode",
+    "target",
+    "providerId",
+    "engineKind",
+    "capabilityDigest",
+    "hostPackageId",
+    "compatibilityRequirement",
+    "admittedModels",
+    "notice",
+    "updatePolicy"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "authorityVersion": {
+      "const": 1
+    },
+    "profileId": {
+      "type": "string",
+      "enum": ["english", "chinese"]
+    },
+    "languageMode": {
+      "type": "string",
+      "enum": ["en", "zh"]
+    },
+    "target": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["platform", "architecture"],
+      "properties": {
+        "platform": {
+          "type": "string",
+          "enum": ["darwin"]
+        },
+        "architecture": {
+          "type": "string",
+          "enum": ["arm64"]
+        }
+      }
+    },
+    "providerId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "engineKind": {
+      "type": "string",
+      "minLength": 1
+    },
+    "capabilityDigest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "hostPackageId": {
+      "type": "string",
+      "minLength": 1
+    },
+    "compatibilityRequirement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "model-compatibility-requirement-v1.json"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "admittedModels": {
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "manifestFileName",
+          "sizeBytes",
+          "sha256",
+          "modelAssetId",
+          "revision",
+          "layoutId",
+          "modelTreeSha256",
+          "totalSizeBytes"
+        ],
+        "properties": {
+          "manifestFileName": {
+            "type": "string",
+            "pattern": "^voice-model-[A-Za-z0-9._-]+\\.json$"
+          },
+          "sizeBytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "sha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "modelAssetId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "revision": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{40}$"
+          },
+          "layoutId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "modelTreeSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "totalSizeBytes": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    },
+    "notice": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "THIRD_PARTY_NOTICES.json"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "updatePolicy": {
+      "const": "new-host-required"
+    }
+  }
+}

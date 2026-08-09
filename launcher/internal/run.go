@@ -2,9 +2,11 @@ package launcher
 
 import (
 	"fmt"
-	"github.com/AutoByteus/autobyteus-voice-runtime/launcher/internal/embeddedplan"
 	"os"
 	"path/filepath"
+	"strconv"
+
+	"github.com/AutoByteus/autobyteus-voice-runtime/launcher/internal/embeddedplan"
 )
 
 const (
@@ -21,27 +23,32 @@ func Run(args []string) int {
 	}
 	plan, err := DecodePlan(embeddedplan.PlanBytes)
 	if err != nil {
-		return launcherFailure("VOICE_LAUNCHER_PACKAGE", packageExit)
+		return launcherFailure("VOICE_LAUNCHER_HOST_INVALID", packageExit)
 	}
 	config, err := DecodeSession(args[2])
 	if err != nil {
-		return launcherFailure("VOICE_LAUNCHER_CONFIG", configExit)
+		return launcherFailure("VOICE_LAUNCHER_CONFIG_INVALID", configExit)
 	}
 	target := actualTarget()
-	if plan.PackageID != config.Expected.PackageID || plan.Target != target || config.Expected.Platform != target.Platform || config.Expected.Architecture != target.Architecture {
-		return launcherFailure("VOICE_LAUNCHER_PACKAGE", packageExit)
+	if plan.Target != target || config.Expected.Platform != target.Platform || config.Expected.Architecture != target.Architecture {
+		return launcherFailure("VOICE_LAUNCHER_HOST_INVALID", packageExit)
 	}
 	root, err := DerivePackageRoot()
 	if err != nil {
-		return launcherFailure("VOICE_LAUNCHER_PACKAGE", packageExit)
+		return launcherFailure("VOICE_LAUNCHER_HOST_INVALID", packageExit)
 	}
-	if err := validateControlFiles(root, config, plan, embeddedplan.PlanBytes); err != nil {
-		return launcherFailure("VOICE_LAUNCHER_PACKAGE", packageExit)
+	if err := validateEmbeddedPlan(root, plan, embeddedplan.PlanBytes); err != nil {
+		return launcherFailure("VOICE_LAUNCHER_HOST_INVALID", packageExit)
 	}
 	executable, worker, err := validatePrivatePaths(root, plan)
 	if err != nil {
-		return launcherFailure("VOICE_LAUNCHER_PACKAGE", packageExit)
+		return launcherFailure("VOICE_LAUNCHER_HOST_INVALID", packageExit)
 	}
+	bound, lease, err := bindSession(root, config, plan)
+	if err != nil {
+		return launcherFailure("VOICE_LAUNCHER_ACTIVATION_INVALID", configExit)
+	}
+	defer lease.Close()
 	scratch, environment, err := privateEnvironment(root)
 	if err != nil {
 		return launcherFailure("VOICE_LAUNCHER_INTERNAL", internalExit)
@@ -50,7 +57,13 @@ func Run(args []string) int {
 	if plan.Invocation.Kind == "python-worker" {
 		childArgs = append(childArgs, "-I", "-B", "-X", "utf8", "-c", pythonWorkerBootstrap, filepath.Dir(worker), worker)
 	}
-	childArgs = append(childArgs, "--private-package-root", root, "--session-config", args[2])
+	childArgs = append(childArgs,
+		"--private-host-root", root,
+		"--private-activation-record", bound.ActivationPath,
+		"--private-model-root", filepath.Join(bound.ModelRoot, "files"),
+		"--private-installation-lease-fd", strconv.FormatUint(uint64(bound.LeaseFD), 10),
+		"--session-config", args[2],
+	)
 	code, started := executePrivate(executable, childArgs, environment, scratch)
 	if !started {
 		_ = os.RemoveAll(scratch)

@@ -72,17 +72,7 @@ export async function verifyInputManifest(root) {
   )
     throw new Error("Input manifest must be an immutable regular file.");
   const manifest = await readJson(manifestPath);
-  if (
-    manifest.schemaVersion !== 1 ||
-    !Array.isArray(manifest.files) ||
-    manifest.files.length === 0
-  )
-    throw new Error("Invalid input manifest.");
-  try {
-    assertBuildInputPathSet(manifest.files.map((item) => item?.path));
-  } catch (error) {
-    throw new Error("Invalid input manifest record.", { cause: error });
-  }
+  assertInputManifestShape(manifest);
   const expected = new Set(["SHA256SUMS.json"]);
   for (const item of manifest.files) {
     if (
@@ -120,6 +110,28 @@ export async function verifyInputManifest(root) {
     [...expected].some((item) => !actual.has(item))
   )
     throw new Error("Input manifest does not close the input tree.");
+  return manifest;
+}
+export function assertInputManifestShape(manifest) {
+  if (
+    manifest?.schemaVersion !== 1 ||
+    !Array.isArray(manifest.files) ||
+    manifest.files.length === 0 ||
+    manifest.files.some(
+      (item) =>
+        !item ||
+        !/^[a-f0-9]{64}$/.test(item.sha256) ||
+        !Number.isSafeInteger(item.sizeBytes) ||
+        item.sizeBytes < 0 ||
+        !["executable", "read-only"].includes(item.mode),
+    )
+  )
+    throw new Error("Invalid input manifest record.");
+  try {
+    assertBuildInputPathSet(manifest.files.map((item) => item.path));
+  } catch (error) {
+    throw new Error("Invalid input manifest record.", { cause: error });
+  }
   return manifest;
 }
 export async function verifyGoToolchain(executable, options = {}) {

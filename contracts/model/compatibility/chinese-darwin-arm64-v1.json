@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "providerId": "autobyteus.voice.funasr-nano-q8",
+  "profileId": "chinese",
+  "languageMode": "zh",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "engine": {
+    "kind": "funasr-native",
+    "version": "53a56d80667320b44a7dd779f5bf8c024b6c30a8",
+    "configurationSha256": "ad42cf319e1970e62594c1fe10b12ace2dcd8917755b8f38883ffedcc3c781ef"
+  },
+  "acceptedModelManifestSchemaVersion": 1,
+  "model": {
+    "modelId": "fun-asr-nano-gguf-q8",
+    "family": "fun-asr-nano",
+    "size": "0.6b",
+    "precision": "gguf-q8",
+    "layoutId": "funasr-nano-gguf-v1"
+  },
+  "requiredFiles": [
+    {
+      "path": "fsmn-vad.gguf",
+      "role": "vad"
+    },
+    {
+      "path": "funasr-encoder-f16.gguf",
+      "role": "encoder"
+    },
+    {
+      "path": "qwen3-0.6b-q8_0.gguf",
+      "role": "decoder"
+    }
+  ],
+  "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+  "modelTreeAlgorithm": "canonical-path-size-sha256-v1"
+}

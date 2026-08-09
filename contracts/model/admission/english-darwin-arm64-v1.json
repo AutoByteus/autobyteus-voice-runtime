@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "authorityVersion": 1,
+  "profileId": "english",
+  "languageMode": "en",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "providerId": "autobyteus.voice.mlx-whisper-small",
+  "engineKind": "mlx-whisper",
+  "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+  "hostPackageId": "voice.host.english.mlx-whisper.darwin-arm64",
+  "compatibilityRequirement": {
+    "fileName": "model-compatibility-requirement-v1.json",
+    "sha256": "70e676b166b2d5587ace83b6e9a5ee352a54fe1086cd45b55f6f4ef38cbb8b56"
+  },
+  "admittedModels": [
+    {
+      "manifestFileName": "voice-model-english-whisper-small-mlx-fp16-v1.json",
+      "sizeBytes": 2335,
+      "sha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+      "modelAssetId": "voice.model.english.whisper-small-mlx-fp16.v1",
+      "revision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+      "layoutId": "mlx-whisper-small-v1",
+      "modelTreeSha256": "e03db60e823ae5f81cdb8f17af54008fa46f6dbf2c00efe59739538c7f1287c0",
+      "totalSizeBytes": 481307858
+    }
+  ],
+  "notice": {
+    "fileName": "THIRD_PARTY_NOTICES.json",
+    "sizeBytes": 2226,
+    "sha256": "f260d4b18a924eb4964154496a77efe42183d5a6908990c9c887be27e6719c50"
+  },
+  "updatePolicy": "new-host-required"
+}

@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "modelAssetId": "voice.model.chinese.fun-asr-nano-gguf-q8.v1",
+  "modelId": "fun-asr-nano-gguf-q8",
+  "family": "fun-asr-nano",
+  "size": "0.6b",
+  "precision": "gguf-q8",
+  "revision": "46e849502a867080d66d351b8dfb1018b607e509",
+  "layoutId": "funasr-nano-gguf-v1",
+  "files": [
+    {
+      "path": "fsmn-vad.gguf",
+      "role": "vad",
+      "url": "https://huggingface.co/FunAudioLLM/fsmn-vad-GGUF/resolve/6840bae4c5c92ee8c04faaf4db23dd0105098d7f/fsmn-vad.gguf",
+      "sizeBytes": 1720512,
+      "sha256": "1270f2559c495f4e7b6e739541151027d360761a3fda43fc147034f5719f5479",
+      "mode": "read-only",
+      "revision": "6840bae4c5c92ee8c04faaf4db23dd0105098d7f"
+    },
+    {
+      "path": "funasr-encoder-f16.gguf",
+      "role": "encoder",
+      "url": "https://huggingface.co/FunAudioLLM/Fun-ASR-Nano-GGUF/resolve/46e849502a867080d66d351b8dfb1018b607e509/funasr-encoder-f16.gguf",
+      "sizeBytes": 469331008,
+      "sha256": "f92f91d01a24fbed6c863495b2ee8c6a6788144a02858b75743f0946668de8a2",
+      "mode": "read-only",
+      "revision": "46e849502a867080d66d351b8dfb1018b607e509"
+    },
+    {
+      "path": "qwen3-0.6b-q8_0.gguf",
+      "role": "decoder",
+      "url": "https://huggingface.co/FunAudioLLM/Fun-ASR-Nano-GGUF/resolve/46e849502a867080d66d351b8dfb1018b607e509/qwen3-0.6b-q8_0.gguf",
+      "sizeBytes": 804753280,
+      "sha256": "819f385dc0e035dccc3d9e7edaf6b7b044b8ba7ace63cbcbf84c7e397eecbf27",
+      "mode": "read-only",
+      "revision": "46e849502a867080d66d351b8dfb1018b607e509"
+    }
+  ],
+  "totalSizeBytes": 1275804800,
+  "modelTreeSha256": "bfac50b188fde75790de4c350bd7d8430ec7efffa94751e4a0e5c22bb6f0e20e",
+  "compatibleHosts": [
+    {
+      "providerId": "autobyteus.voice.funasr-nano-q8",
+      "platform": "darwin",
+      "architecture": "arm64",
+      "engineKind": "funasr-native",
+      "engineVersion": "53a56d80667320b44a7dd779f5bf8c024b6c30a8",
+      "engineConfigurationSha256": "ad42cf319e1970e62594c1fe10b12ace2dcd8917755b8f38883ffedcc3c781ef",
+      "compatibilityRequirementSha256": "217c57429dd08e1ff5e17c02c7cc95d947a07ac541e5f3220b8e6319b57675b2"
+    }
+  ],
+  "downloadPolicy": {
+    "initialOrigin": "https://huggingface.co",
+    "httpsOnly": true,
+    "publicNetworkRedirectsOnly": true,
+    "maxRedirects": 5,
+    "connectTimeoutMs": 10000,
+    "readIdleTimeoutMs": 30000,
+    "overallFileTimeoutMs": 7200000,
+    "resume": "range-if-validator-matches-otherwise-restart"
+  },
+  "notice": {
+    "path": "THIRD_PARTY_NOTICES.json",
+    "sha256": "f260d4b18a924eb4964154496a77efe42183d5a6908990c9c887be27e6719c50"
+  },
+  "license": {
+    "repository": "https://huggingface.co/FunAudioLLM/Fun-ASR-Nano-GGUF",
+    "revision": "46e849502a867080d66d351b8dfb1018b607e509",
+    "identity": "upstream-model-license-and-card-v1"
+  }
+}

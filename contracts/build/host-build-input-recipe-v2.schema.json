@@ -1,0 +1,305 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "recipeId",
+    "releaseMatrix",
+    "package",
+    "inputs",
+    "toolchain"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "recipeId": {
+      "type": "string",
+      "pattern": "^[a-z0-9.-]+-v2$"
+    },
+    "releaseMatrix": {
+      "$ref": "#/$defs/matrix"
+    },
+    "package": {
+      "$ref": "#/$defs/package"
+    },
+    "inputs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/input"
+      }
+    },
+    "toolchain": {
+      "$ref": "#/$defs/toolchain"
+    }
+  },
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "path": {
+      "type": "string",
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*\\\\)[A-Za-z0-9._+/-]+$"
+    },
+    "matrix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["matrixId", "sha256"],
+      "properties": {
+        "matrixId": {
+          "const": "voice-runtime-darwin-arm64-v2"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "languageMode",
+        "platform",
+        "architecture",
+        "hostPackageId",
+        "providerId",
+        "modelId",
+        "modelAssetId",
+        "candidateDecision"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "languageMode": {
+          "enum": ["en", "zh"]
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        },
+        "hostPackageId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelAssetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "candidateDecision": {
+          "enum": ["preserve", "select"]
+        }
+      }
+    },
+    "input": {
+      "oneOf": [
+        {
+          "$ref": "#/$defs/cacheObject"
+        },
+        {
+          "$ref": "#/$defs/gitCheckout"
+        },
+        {
+          "$ref": "#/$defs/repositoryFile"
+        }
+      ]
+    },
+    "baseInput": {
+      "type": "object",
+      "properties": {
+        "role": {
+          "type": "string",
+          "pattern": "^[a-z0-9.-]+$"
+        },
+        "destination": {
+          "$ref": "#/$defs/path"
+        },
+        "licenseComponentId": {
+          "type": "string",
+          "pattern": "^[a-z0-9.+-]+$"
+        }
+      }
+    },
+    "cacheObject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "role",
+        "destination",
+        "sizeBytes",
+        "sha256",
+        "upstream",
+        "licenseComponentId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "cache-object"
+        },
+        "role": {
+          "type": "string",
+          "pattern": "^[a-z0-9.-]+$"
+        },
+        "destination": {
+          "$ref": "#/$defs/path"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "upstream": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "licenseComponentId": {
+          "type": "string",
+          "pattern": "^[a-z0-9.+-]+$"
+        }
+      }
+    },
+    "gitCheckout": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "role",
+        "destination",
+        "repository",
+        "revision",
+        "treeId",
+        "licenseComponentId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "git-checkout"
+        },
+        "role": {
+          "type": "string",
+          "pattern": "^[a-z0-9.-]+$"
+        },
+        "destination": {
+          "$ref": "#/$defs/path"
+        },
+        "repository": {
+          "type": "string",
+          "pattern": "^https://"
+        },
+        "revision": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "treeId": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{40}$"
+        },
+        "licenseComponentId": {
+          "type": "string",
+          "pattern": "^[a-z0-9.+-]+$"
+        }
+      }
+    },
+    "repositoryFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "kind",
+        "role",
+        "destination",
+        "sourcePath",
+        "sizeBytes",
+        "sha256",
+        "licenseComponentId"
+      ],
+      "properties": {
+        "kind": {
+          "const": "repository-file"
+        },
+        "role": {
+          "type": "string",
+          "pattern": "^[a-z0-9.-]+$"
+        },
+        "destination": {
+          "$ref": "#/$defs/path"
+        },
+        "sourcePath": {
+          "$ref": "#/$defs/path"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "licenseComponentId": {
+          "type": "string",
+          "pattern": "^[a-z0-9.+-]+$"
+        }
+      }
+    },
+    "toolchain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nodeVersion",
+        "goVersion",
+        "goArchiveSha256",
+        "goRootTreeSha256",
+        "cmakeVersion",
+        "appleClang",
+        "xcode",
+        "sdk",
+        "repositoryLockSha256"
+      ],
+      "properties": {
+        "nodeVersion": {
+          "const": "22.23.1"
+        },
+        "goVersion": {
+          "const": "1.26.5"
+        },
+        "goArchiveSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "goRootTreeSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "cmakeVersion": {
+          "const": "4.2.0"
+        },
+        "appleClang": {
+          "type": "string",
+          "minLength": 1
+        },
+        "xcode": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sdk": {
+          "type": "string",
+          "minLength": 1
+        },
+        "repositoryLockSha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    }
+  }
+}

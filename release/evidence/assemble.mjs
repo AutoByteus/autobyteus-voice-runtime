@@ -1,221 +1,130 @@
 #!/usr/bin/env node
-import fs from "node:fs/promises";
 import path from "node:path";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
-import Ajv2020 from "ajv/dist/2020.js";
-import addFormats from "ajv-formats";
+import { parsePairs, readJson, ROOT } from "../../build/lib/files.mjs";
+import { loadCurrentReleaseMatrix } from "../current-release-matrix.mjs";
 import {
-  parsePairs,
-  readJson,
-  ROOT,
-  shaFile,
-  writeJson,
-} from "../../build/lib/files.mjs";
-import {
-  CANDIDATE_MANIFEST_PATH,
-  verifyQualifiedCandidate,
-} from "../qualified-release-candidate.mjs";
-import { verifyCandidateApplicability } from "../assess-qualified-candidate.mjs";
-import { loadSourceClosurePolicy } from "../source-closure.mjs";
-import {
-  assertExactMatrixRows,
-  loadCurrentReleaseMatrix,
-} from "../current-release-matrix.mjs";
-
-const run = promisify(execFile);
+  ordinaryFileIdentity,
+  PUBLISHED_ASSET_NAMES,
+  readValidated,
+  RELEASE_TAG,
+  RELEASE_VERSION,
+  writeArtifact,
+} from "../release-contract.mjs";
 
 export async function assembleReleaseEvidence({
-  candidate,
-  promotionRecord,
-  applicability,
-  runtimeVersion,
-  releaseTag,
-  maintainedMainCommit,
+  sourceAdmission,
+  hostConstruction,
+  modelManifestAdmission,
+  branchProjection,
+  finalMainCommit,
   output,
 }) {
-  assertReleaseIdentity(runtimeVersion, releaseTag, maintainedMainCommit);
-  const candidateRoot = path.resolve(candidate),
-    manifest = await verifyQualifiedCandidate(candidateRoot),
-    promotion = await readAndValidate(
-      promotionRecord,
-      "contracts/release/candidate-promotion-record-v1.schema.json",
-      "Candidate Promotion Record",
-      true,
+  const admission = await readValidated(
+      sourceAdmission,
+      "contracts/release/release-source-admission-v3.schema.json",
+      "Release Source Admission 3",
     ),
-    applicabilityValue = await verifyCandidateApplicability({
-      candidate: candidateRoot,
-      promotionRecord,
-      applicability,
-      finalMainCommit: maintainedMainCommit,
-    }),
-    qsetPath = path.join(candidateRoot, "qualification-set-v2.json"),
-    qset = await readAndValidate(
-      qsetPath,
-      "contracts/release/qualification-set-v2.schema.json",
-      "Qualification Set",
+    construction = await readValidated(
+      hostConstruction,
+      "contracts/release/hosted-host-construction-result-v2.schema.json",
+      "Hosted Host Construction Result 2",
     ),
-    matrix = await loadCurrentReleaseMatrix(),
-    { value: closurePolicy, sha256: closurePolicySha256 } =
-      await loadSourceClosurePolicy();
+    modelAdmission = await readValidated(
+      modelManifestAdmission,
+      "contracts/release/model-manifest-admission-v1.schema.json",
+      "Model Manifest Admission 1",
+    ),
+    projection = await readValidated(
+      branchProjection,
+      "contracts/catalog/branch-catalog-projection-v3.schema.json",
+      "Branch Catalog Projection 3",
+    ),
+    matrix = await loadCurrentReleaseMatrix();
   if (
-    manifest.packageVersion !== runtimeVersion ||
-    manifest.decision !== "promoted" ||
-    promotion.candidateManifest.sha256 !==
-      (await shaFile(path.join(candidateRoot, CANDIDATE_MANIFEST_PATH))) ||
-    applicabilityValue.decision !== "reuse-permitted" ||
-    applicabilityValue.finalMainCommit !== maintainedMainCommit ||
-    qset.functionalDecision !== "pass" ||
-    qset.releaseMatrix.sha256 !== matrix.sha256 ||
-    JSON.stringify(qset.releaseMatrix) !==
-      JSON.stringify(manifest.releaseMatrix) ||
-    JSON.stringify(qset.profileResourcePolicy) !==
-      JSON.stringify(matrix.value.profileResourcePolicy)
+    admission.decision !== "reuse-permitted" ||
+    construction.decision !== "pass" ||
+    modelAdmission.decision !== "pass" ||
+    projection.decision !== "pass" ||
+    admission.finalMainCommit !== finalMainCommit ||
+    construction.finalMainCommit !== finalMainCommit
   )
-    throw new Error("Verified candidate release binding mismatch.");
-  assertExactMatrixRows(matrix.value, qset.profiles);
-  await assertTagAbsent(releaseTag);
-  const history = await readJson(
-    path.join(ROOT, "release/evidence/candidate-history-v1.json"),
-  );
-  for (const item of history.candidates)
-    if (
-      (await shaFile(
-        path.join(ROOT, "evidence/selection-study", item.resultPath),
-      )) !== item.resultDigest
-    )
-      throw new Error(`Candidate evidence mismatch: ${item.candidateId}`);
-  const evidence = {
-    schemaVersion: 2,
-    artifactKind: "release-qualification-evidence",
-    intendedRelease: { runtimeVersion, releaseTag },
-    sourceCommit: maintainedMainCommit,
-    runnerCommit: qset.runnerCommit,
-    testCommit: qset.testCommit,
-    qualifiedSourceCommit: qset.sourceCommit,
-    qualificationAuthority: {
-      sourceCommit: qset.sourceCommit,
-      runnerCommit: qset.runnerCommit,
-      testCommit: qset.testCommit,
-      apiApprovalCommit:
-        manifest.profileQualificationAuthority.apiApprovalCommit,
-      apiRevision: manifest.profileQualificationAuthority.apiRevision,
-    },
-    candidatePromotionRecord: await fileIdentity(
-      promotionRecord,
-      "v1.0.0.json",
-    ),
-    qualifiedCandidate: await fileIdentity(
-      path.join(candidateRoot, CANDIDATE_MANIFEST_PATH),
-      CANDIDATE_MANIFEST_PATH,
-    ),
-    sourceClosure: {
-      policy: {
-        policyId: closurePolicy.policyId,
-        fileName: "relevant-source-closure-v1.json",
-        sha256: closurePolicySha256,
-      },
-      applicability: {
-        ...(await fileIdentity(
-          applicability,
-          "release-candidate-applicability-v1.json",
-        )),
-        decision: "reuse-permitted",
-      },
-    },
-    releaseMatrix: qset.releaseMatrix,
-    profileResourcePolicy: qset.profileResourcePolicy,
-    qualificationSet: await fileIdentity(qsetPath, "qualification-set-v2.json"),
-    mainReachability: {
-      maintainedMainCommit,
-      releaseCommit: manifest.promotion.approvalCommit,
-      reachable: true,
-    },
-    selectionStudy: {
-      id: history.selectionStudyId,
-      sha256: await shaFile(
-        path.join(ROOT, "evidence/selection-study/SHA256SUMS.txt"),
+    throw new Error("Release Evidence 4 input decision/lineage mismatch.");
+  const profiles = projection.profiles.map((profile) => {
+    const host = construction.profiles.find(
+        (item) => item.profileId === profile.profileId,
       ),
+      model = modelAdmission.profiles.find(
+        (item) => item.profileId === profile.profileId,
+      );
+    if (
+      !host ||
+      host.outcome !== "succeeded" ||
+      !host.details ||
+      !model ||
+      host.details.hostedArchive.sha256 !== profile.hostArchive.sha256 ||
+      host.details.hostedHostSourceClosureSha256 !==
+        profile.hostSourceClosureSha256 ||
+      model.manifest.sha256 !== profile.modelManifest.sha256 ||
+      model.modelAdmissionRootSha256 !== profile.modelAdmissionRootSha256
+    )
+      throw new Error("Release Evidence 4 profile chain mismatch.");
+    return {
+      profileId: profile.profileId,
+      hostArchive: host.details.hostedArchive,
+      hostSourceClosureSha256: profile.hostSourceClosureSha256,
+      hostSourceClosureSizeBytes: profile.hostSourceClosureSizeBytes,
+      hostDescriptorSha256: profile.hostDescriptorSha256,
+      hostFileManifestSha256: profile.hostFileManifestSha256,
+      modelAdmissionRootSha256: profile.modelAdmissionRootSha256,
+      modelManifest: model.manifest,
+      compatibilityPairSha256: profile.compatibilityPairSha256,
+    };
+  });
+  return writeArtifact(
+    output,
+    {
+      schemaVersion: 4,
+      artifactKind: "release-qualification-evidence",
+      runtimeVersion: RELEASE_VERSION,
+      releaseTag: RELEASE_TAG,
+      finalMainCommit,
+      releaseSourceAdmission: await ordinaryFileIdentity(sourceAdmission),
+      hostConstruction: await ordinaryFileIdentity(hostConstruction),
+      modelManifestAdmission: await ordinaryFileIdentity(
+        modelManifestAdmission,
+      ),
+      matrix: await ordinaryFileIdentity(
+        path.join(ROOT, "contracts/catalog/current-release-matrix-v2.json"),
+      ),
+      profiles,
+      expectedAssetNames: [...PUBLISHED_ASSET_NAMES],
+      executionCounts: {
+        productTests: 0,
+        modelDownloads: 0,
+        providerLaunches: 0,
+      },
+      decision: "pass",
     },
-    candidateHistory: history.candidates.map(
-      ({ resultPath: _, ...item }) => item,
-    ),
-    profileQualifications: qset.profiles,
-    expectedProviderArchives: manifest.providerArchives,
-    limitations: [
-      ...new Set(qset.profiles.flatMap((item) => item.limitations)),
-    ],
-    functionalDecision: "pass",
-    performanceAssessment: qset.performanceAssessment,
-  };
-  await validate(
-    evidence,
-    "contracts/release/release-qualification-evidence-v2.schema.json",
-    "Release Qualification Evidence",
+    "contracts/release/release-qualification-evidence-v4.schema.json",
+    "Release Qualification Evidence 4",
   );
-  await writeJson(path.resolve(output), evidence);
-  return evidence;
-}
-
-async function fileIdentity(file, fileName) {
-  const resolved = path.resolve(file),
-    info = await fs.lstat(resolved);
-  if (!info.isFile() || info.isSymbolicLink())
-    throw new Error(`Release input is not an ordinary file: ${fileName}`);
-  return { fileName, sizeBytes: info.size, sha256: await shaFile(resolved) };
-}
-
-async function readAndValidate(file, schema, label, formats = false) {
-  const value = await readJson(path.resolve(file));
-  await validate(value, schema, label, formats);
-  return value;
-}
-
-async function validate(value, schemaPath, label, formats = false) {
-  const ajv = new Ajv2020({ allErrors: true, strict: true });
-  if (formats) addFormats(ajv);
-  const check = ajv.compile(await readJson(path.join(ROOT, schemaPath)));
-  if (!check(value))
-    throw new Error(`${label} invalid: ${JSON.stringify(check.errors)}`);
-}
-
-function assertReleaseIdentity(runtimeVersion, releaseTag, main) {
-  if (
-    !/^[0-9]+\.[0-9]+\.[0-9]+$/.test(runtimeVersion) ||
-    releaseTag !== `v${runtimeVersion}` ||
-    !/^(?!0{40})[a-f0-9]{40}$/.test(main)
-  )
-    throw new Error("Invalid intended release identity.");
-}
-
-async function assertTagAbsent(tag) {
-  try {
-    await run("git", ["rev-parse", "--verify", `refs/tags/${tag}`], {
-      cwd: ROOT,
-    });
-  } catch {
-    return;
-  }
-  throw new Error("Pre-tag evidence cannot be generated after tag creation.");
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
-    "candidate",
-    "promotion-record",
-    "applicability",
-    "runtime-version",
-    "release-tag",
-    "maintained-main-commit",
+    "source-admission",
+    "host-construction",
+    "model-manifest-admission",
+    "branch-projection",
+    "final-main-commit",
     "output",
   ]);
   await assembleReleaseEvidence({
-    candidate: args.candidate,
-    promotionRecord: args["promotion-record"],
-    applicability: args.applicability,
-    runtimeVersion: args["runtime-version"],
-    releaseTag: args["release-tag"],
-    maintainedMainCommit: args["maintained-main-commit"],
+    sourceAdmission: args["source-admission"],
+    hostConstruction: args["host-construction"],
+    modelManifestAdmission: args["model-manifest-admission"],
+    branchProjection: args["branch-projection"],
+    finalMainCommit: args["final-main-commit"],
     output: args.output,
   });
 }

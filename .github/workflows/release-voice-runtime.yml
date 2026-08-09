@@ -1,237 +1,154 @@
-name: Voice runtime qualified release
+name: Voice runtime host release
 on:
   workflow_dispatch:
     inputs:
-      operation:
-        description: Compose pre-tag truth or publish its exact successful bytes
-        type: choice
-        options: [pretag, publish]
-        required: true
       release_tag:
-        description: Intended immutable tag (vX.Y.Z)
-        required: true
+        { description: Exact immutable tag, required: true, default: v1.0.0 }
       runtime_version:
-        description: Runtime version (X.Y.Z)
-        required: true
-      pretag_run_id:
-        description: Exact successful pretag workflow run ID (publish only)
-        required: false
-permissions:
-  contents: write
-  actions: read
+        { description: Exact runtime version, required: true, default: 1.0.0 }
+permissions: { contents: write, actions: read }
+concurrency: { group: voice-runtime-host-v1.0.0, cancel-in-progress: false }
 env:
-  VOICE_RELEASE_TAG_INPUT: ${{ inputs.release_tag }}
-  VOICE_RUNTIME_VERSION_INPUT: ${{ inputs.runtime_version }}
-concurrency:
-  group: voice-runtime-${{ inputs.release_tag }}
-  cancel-in-progress: false
+  VOICE_RELEASE_TAG: ${{ inputs.release_tag }}
+  VOICE_RUNTIME_VERSION: ${{ inputs.runtime_version }}
 jobs:
-  pretag:
-    if: inputs.operation == 'pretag'
-    runs-on: ubuntu-24.04
+  release:
+    runs-on: macos-26
     steps:
       - uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - name: Resolve exact committed candidate pointer
-        id: candidate
+      - uses: actions/setup-node@v4
+        with: { node-version: 22.23.1, cache: npm }
+      - uses: actions/setup-go@v5
+        with: { go-version: 1.26.5, cache: false }
+      - name: Verify source and committed admission
         env: { GH_TOKEN: "${{ github.token }}" }
-        shell: bash
         run: |
           set -euo pipefail
-          test "$VOICE_RUNTIME_VERSION_INPUT" = 1.0.0
-          test "$VOICE_RELEASE_TAG_INPUT" = v1.0.0
+          test "$VOICE_RUNTIME_VERSION" = 1.0.0
+          test "$VOICE_RELEASE_TAG" = v1.0.0
+          test "$(node --version)" = v22.23.1
           test "$(git rev-parse HEAD)" = "$GITHUB_SHA"
           git fetch origin main --tags
           test "$(git rev-parse origin/main)" = "$GITHUB_SHA"
-          test -z "$(git tag -l -- "$VOICE_RELEASE_TAG_INPUT")"
-          RECORD=release/candidates/v1.0.0.json
-          test -f "$RECORD"
-          RUN_ID=$(jq -r .workflow.runId "$RECORD")
-          HEAD_SHA=$(jq -r .workflow.headSha "$RECORD")
-          ARTIFACT_ID=$(jq -r .artifact.id "$RECORD")
-          ARTIFACT_NAME=$(jq -r .artifact.name "$RECORD")
-          test "$(jq -r .workflow.path "$RECORD")" = .github/workflows/promote-qualified-voice-candidate.yml
-          test "$(jq -r .workflow.conclusion "$RECORD")" = success
-          printf 'run_id=%s\nhead_sha=%s\nartifact_id=%s\nartifact_name=%s\n' \
-            "$RUN_ID" "$HEAD_SHA" "$ARTIFACT_ID" "$ARTIFACT_NAME" >> "$GITHUB_OUTPUT"
-          RUN=$(gh api "/repos/$GITHUB_REPOSITORY/actions/runs/$RUN_ID")
-          test "$(jq -r .path <<<"$RUN")" = .github/workflows/promote-qualified-voice-candidate.yml
-          test "$(jq -r .conclusion <<<"$RUN")" = success
-          test "$(jq -r .head_sha <<<"$RUN")" = "$HEAD_SHA"
-          ARTIFACT=$(gh api "/repos/$GITHUB_REPOSITORY/actions/artifacts/$ARTIFACT_ID")
-          test "$(jq -r .workflow_run.id <<<"$ARTIFACT")" = "$RUN_ID"
-          test "$(jq -r .name <<<"$ARTIFACT")" = "$ARTIFACT_NAME"
-          test "$(jq -r .expired <<<"$ARTIFACT")" = false
-      - uses: actions/download-artifact@v4
-        with:
-          artifact-ids: ${{ steps.candidate.outputs.artifact_id }}
-          github-token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          run-id: ${{ steps.candidate.outputs.run_id }}
-          path: candidate
-      - name: Verify candidate applicability and compose immutable pre-tag chain
-        shell: bash
-        run: |
-          set -euo pipefail
+          test -z "$(git tag -l -- "$VOICE_RELEASE_TAG")"
+          ! gh release view "$VOICE_RELEASE_TAG" >/dev/null 2>&1
           npm ci --ignore-scripts
           npm run check:release-pipeline
-          mkdir -p bundle/assets
-          node release/qualified-release-candidate.mjs --operation verify --candidate candidate
-          node release/assess-qualified-candidate.mjs --candidate candidate \
-            --promotion-record release/candidates/v1.0.0.json \
-            --final-main-commit "$GITHUB_SHA" \
-            --output bundle/release-candidate-applicability-v1.json
-          node release/evidence/assemble.mjs --candidate candidate \
-            --promotion-record release/candidates/v1.0.0.json \
-            --applicability bundle/release-candidate-applicability-v1.json \
-            --runtime-version "$VOICE_RUNTIME_VERSION_INPUT" \
-            --release-tag "$VOICE_RELEASE_TAG_INPUT" \
-            --maintained-main-commit "$GITHUB_SHA" \
-            --output bundle/release-qualification-evidence-v2.json
-          node release/catalog-builder.mjs --candidate candidate \
-            --release-evidence bundle/release-qualification-evidence-v2.json \
-            --release-tag "$VOICE_RELEASE_TAG_INPUT" \
+          node release/verify-release-source-admission.mjs --repository "$GITHUB_WORKSPACE" \
+            --admission release/admission/v1.0.0-release-source-admission-v3.json \
+            --final-main-commit "$GITHUB_SHA"
+      - name: Capture hosted authority and hydrate host-only inputs
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-release"
+          mkdir -p "$ROOT"/{cache,inputs,assets,bundle,audit}
+          node build/host-build-environment.mjs --cmake "$(command -v cmake)" \
+            --runner-label macos-26 --output "$ROOT/host-build-environment-v2.json"
+          node build/hydrate-host-input-cache.mjs \
+            --english build/input-recipes/english-host-darwin-arm64-v2.json \
+            --chinese build/input-recipes/chinese-host-darwin-arm64-v2.json --cache "$ROOT/cache"
+          for PROFILE in english chinese; do
+            node build/materialize-release-inputs.mjs \
+              --recipe "build/input-recipes/${PROFILE}-host-darwin-arm64-v2.json" \
+              --cache "$ROOT/cache" --repository "$GITHUB_WORKSPACE" \
+              --destination "$ROOT/inputs/$PROFILE" --source-commit "$GITHUB_SHA"
+          done
+      - name: Build and independently verify exact runtime hosts
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-release"; GO="$(go env GOROOT)/bin/go"
+          /usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb \
+            "$(command -v node)" release/run-host-construction.mjs \
+            --source-admission release/admission/v1.0.0-release-source-admission-v3.json \
+            --qualification-set release/admission/v1.0.0-focused-qualification-set-v3.json \
+            --final-main-commit "$GITHUB_SHA" --inputs-root "$ROOT/inputs" \
+            --assets "$ROOT/assets" --audit "$ROOT/audit" --go "$GO" \
+            --build-environment "$ROOT/host-build-environment-v2.json" \
+            --version "$VOICE_RUNTIME_VERSION" \
+            --output "$ROOT/audit/hosted-host-construction-result-v2.json"
+      - name: Compose exact acyclic nine-asset bundle
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-release"; AUTH=release/admission
+          node release/model-manifest-admission.mjs \
+            --source-admission "$AUTH/v1.0.0-release-source-admission-v3.json" \
+            --branch-projection "$AUTH/v1.0.0-branch-catalog-projection-v3.json" \
+            --english-execution-closure "$AUTH/v1.0.0-english-profile-execution-closure-v2.json" \
+            --chinese-execution-closure "$AUTH/v1.0.0-chinese-profile-execution-closure-v2.json" \
+            --output "$ROOT/audit/model-manifest-admission-v1.json"
+          cp release/model-manifests/*.json THIRD_PARTY_NOTICES.json "$ROOT/bundle/"
+          cp "$ROOT/assets"/*.zip "$ROOT/bundle/"
+          node release/evidence/assemble.mjs \
+            --source-admission "$AUTH/v1.0.0-release-source-admission-v3.json" \
+            --host-construction "$ROOT/audit/hosted-host-construction-result-v2.json" \
+            --model-manifest-admission "$ROOT/audit/model-manifest-admission-v1.json" \
+            --branch-projection "$AUTH/v1.0.0-branch-catalog-projection-v3.json" \
+            --final-main-commit "$GITHUB_SHA" --output "$ROOT/bundle/release-qualification-evidence-v4.json"
+          node release/catalog-builder.mjs \
+            --release-evidence "$ROOT/bundle/release-qualification-evidence-v4.json" \
             --base-url "https://github.com/$GITHUB_REPOSITORY/releases/download" \
-            --output bundle/voice-runtime-catalog-v3.json
-          node release/pretag-release-manifest.mjs --candidate candidate \
-            --release-evidence bundle/release-qualification-evidence-v2.json \
-            --catalog bundle/voice-runtime-catalog-v3.json \
-            --output bundle/pretag-release-manifest-v2.json
-          node release/qualify-release.mjs --candidate candidate \
-            --promotion-record release/candidates/v1.0.0.json \
-            --applicability bundle/release-candidate-applicability-v1.json \
-            --manifest bundle/pretag-release-manifest-v2.json \
-            --release-evidence bundle/release-qualification-evidence-v2.json \
-            --catalog bundle/voice-runtime-catalog-v3.json \
-            --maintained-main-commit "$GITHUB_SHA" \
-            --output bundle/pretag-qualification-proof-v1.json
-          cp candidate/assets/*.zip bundle/assets/
-      - uses: actions/upload-artifact@v4
-        with:
-          name: pretag-voice-runtime-${{ inputs.release_tag }}-${{ github.sha }}
-          path: bundle/
-          if-no-files-found: error
-          retention-days: 30
-          compression-level: 0
-  publish:
-    if: inputs.operation == 'publish'
-    runs-on: ubuntu-24.04
-    env: { GH_TOKEN: "${{ github.token }}" }
-    steps:
-      - uses: actions/checkout@v4
-        with: { fetch-depth: 0 }
-      - name: Resolve exact successful pretag and candidate artifacts
-        id: artifacts
-        shell: bash
-        run: |
-          set -euo pipefail
-          test "$VOICE_RUNTIME_VERSION_INPUT" = 1.0.0
-          test "$VOICE_RELEASE_TAG_INPUT" = v1.0.0
-          [[ "${{ inputs.pretag_run_id }}" =~ ^[1-9][0-9]*$ ]]
-          git fetch origin main --tags
-          test "$(git rev-parse origin/main)" = "$GITHUB_SHA"
-          test -z "$(git tag -l -- "$VOICE_RELEASE_TAG_INPUT")"
-          RUN=$(gh api "/repos/$GITHUB_REPOSITORY/actions/runs/${{ inputs.pretag_run_id }}")
-          test "$(jq -r .path <<<"$RUN")" = .github/workflows/release-voice-runtime.yml
-          test "$(jq -r .conclusion <<<"$RUN")" = success
-          test "$(jq -r .head_sha <<<"$RUN")" = "$GITHUB_SHA"
-          PRETAG_NAME="pretag-voice-runtime-$VOICE_RELEASE_TAG_INPUT-$GITHUB_SHA"
-          mapfile -t PRETAG_IDS < <(gh api "/repos/$GITHUB_REPOSITORY/actions/runs/${{ inputs.pretag_run_id }}/artifacts" --jq ".artifacts[]|select(.name==\"$PRETAG_NAME\" and .expired==false)|.id")
-          test "${#PRETAG_IDS[@]}" = 1
-          PRETAG_ID=${PRETAG_IDS[0]}
-          RECORD=release/candidates/v1.0.0.json
-          CANDIDATE_ID=$(jq -r .artifact.id "$RECORD")
-          CANDIDATE_RUN=$(jq -r .workflow.runId "$RECORD")
-          CANDIDATE=$(gh api "/repos/$GITHUB_REPOSITORY/actions/artifacts/$CANDIDATE_ID")
-          test "$(jq -r .workflow_run.id <<<"$CANDIDATE")" = "$CANDIDATE_RUN"
-          test "$(jq -r .name <<<"$CANDIDATE")" = "$(jq -r .artifact.name "$RECORD")"
-          test "$(jq -r .expired <<<"$CANDIDATE")" = false
-          node - "$RECORD" "$GITHUB_OUTPUT" "$PRETAG_ID" <<'NODE'
-          const fs=require('fs'),r=JSON.parse(fs.readFileSync(process.argv[2]));
-          const rows={pretag_id:process.argv[4],candidate_id:r.artifact.id,candidate_run:r.workflow.runId};
-          for(const [k,v] of Object.entries(rows))fs.appendFileSync(process.argv[3],`${k}=${v}\n`);
-          NODE
-      - uses: actions/download-artifact@v4
-        with:
-          artifact-ids: ${{ steps.artifacts.outputs.pretag_id }}
-          github-token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          run-id: ${{ inputs.pretag_run_id }}
-          path: bundle
-      - uses: actions/download-artifact@v4
-        with:
-          artifact-ids: ${{ steps.artifacts.outputs.candidate_id }}
-          github-token: ${{ github.token }}
-          repository: ${{ github.repository }}
-          run-id: ${{ steps.artifacts.outputs.candidate_run }}
-          path: candidate
-      - name: Reverify exact pre-tag bytes, tag, and publish five files
+            --output "$ROOT/bundle/voice-runtime-catalog-v4.json"
+          node release/pretag-release-manifest.mjs --final-main-commit "$GITHUB_SHA" \
+            --release-evidence "$ROOT/bundle/release-qualification-evidence-v4.json" \
+            --catalog "$ROOT/bundle/voice-runtime-catalog-v4.json" \
+            --english-host "$ROOT/bundle/voice-host-english-darwin-arm64-1.0.0.zip" \
+            --chinese-host "$ROOT/bundle/voice-host-chinese-darwin-arm64-1.0.0.zip" \
+            --english-model-manifest "$ROOT/bundle/voice-model-english-whisper-small-mlx-fp16-v1.json" \
+            --chinese-model-manifest "$ROOT/bundle/voice-model-chinese-fun-asr-nano-gguf-q8-v1.json" \
+            --notices "$ROOT/bundle/THIRD_PARTY_NOTICES.json" \
+            --output "$ROOT/bundle/pretag-release-manifest-v4.json"
+          node release/release-checksums.mjs --directory "$ROOT/bundle" \
+            --output "$ROOT/bundle/release-SHA256SUMS.txt"
+          node release/prepublication-seal.mjs --directory "$ROOT/bundle" \
+            --output "$ROOT/audit/prepublication-seal-v1.json"
+      - name: Tag and publish exact sealed bytes
         id: publish
-        shell: bash
+        env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           set -euo pipefail
-          npm ci --ignore-scripts
-          npm run check:release-pipeline
-          node release/qualify-release.mjs --candidate candidate \
-            --promotion-record release/candidates/v1.0.0.json \
-            --applicability bundle/release-candidate-applicability-v1.json \
-            --manifest bundle/pretag-release-manifest-v2.json \
-            --release-evidence bundle/release-qualification-evidence-v2.json \
-            --catalog bundle/voice-runtime-catalog-v3.json \
-            --maintained-main-commit "$GITHUB_SHA" \
-            --output bundle/publication-recheck.json
-          git tag -a "$VOICE_RELEASE_TAG_INPUT" "$GITHUB_SHA" -m "Voice runtime $VOICE_RELEASE_TAG_INPUT"
-          git push origin "refs/tags/$VOICE_RELEASE_TAG_INPUT"
-          gh release create "$VOICE_RELEASE_TAG_INPUT" bundle/assets/*.zip \
-            bundle/voice-runtime-catalog-v3.json \
-            bundle/release-qualification-evidence-v2.json \
-            bundle/pretag-release-manifest-v2.json --verify-tag \
-            --title "Voice runtime $VOICE_RELEASE_TAG_INPUT — macOS Apple Silicon only" \
-            --notes "Provider Archive 1 packages for macOS Apple Silicon only."
-      - name: Download every published byte
-        id: download
-        if: always() && steps.publish.outcome != 'skipped'
-        continue-on-error: true
-        shell: bash
-        run: |
-          mkdir -p published
-          gh release download "$VOICE_RELEASE_TAG_INPUT" --dir published
-      - name: Always record published-byte verification
+          ROOT="$RUNNER_TEMP/voice-release"
+          git tag -a "$VOICE_RELEASE_TAG" "$GITHUB_SHA" -m "Voice runtime hosts $VOICE_RELEASE_TAG"
+          git push origin "refs/tags/$VOICE_RELEASE_TAG"
+          FILES=("$ROOT/bundle"/*)
+          test "${#FILES[@]}" = 9
+          gh release create "$VOICE_RELEASE_TAG" "${FILES[@]}" --verify-tag \
+            --title "Voice runtime hosts $VOICE_RELEASE_TAG — macOS Apple Silicon" \
+            --notes "Host-only runtimes; install an admitted model explicitly."
+      - name: Download and verify all published bytes
         id: verify
         if: always() && steps.publish.outcome != 'skipped'
         continue-on-error: true
-        shell: bash
+        env: { GH_TOKEN: "${{ github.token }}" }
         run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-release"; mkdir "$ROOT/published"
+          gh release download "$VOICE_RELEASE_TAG" --dir "$ROOT/published"
+          gh api "/repos/$GITHUB_REPOSITORY/releases/tags/$VOICE_RELEASE_TAG" \
+            | jq '{releaseId:.id,assets:[.assets[]|{name,id}]}' > "$ROOT/audit/published-assets.json"
           node release/verify-published-assets.mjs \
-            --manifest bundle/pretag-release-manifest-v2.json \
-            --downloads published --repository "$GITHUB_REPOSITORY" \
-            --release-tag "$VOICE_RELEASE_TAG_INPUT" \
-            --output bundle/published-asset-verification-v1.json
+            --seal "$ROOT/audit/prepublication-seal-v1.json" --downloads "$ROOT/published" \
+            --asset-metadata "$ROOT/audit/published-assets.json" \
+            --repository "$GITHUB_REPOSITORY" --release-tag "$VOICE_RELEASE_TAG" \
+            --output "$ROOT/audit/published-asset-verification-v2.json"
       - name: Quarantine failed publication without changing its tag
-        id: quarantine
         if: always() && steps.verify.outcome == 'failure'
-        continue-on-error: true
-        shell: bash
+        env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           node release/quarantine-published-release.mjs \
-            --verification bundle/published-asset-verification-v1.json \
-            --release-tag "$VOICE_RELEASE_TAG_INPUT" \
-            --repository "$GITHUB_REPOSITORY" \
-            --output bundle/publication-quarantine-result-v1.json
-      - name: Retain post-publication audit results
+            --verification "$RUNNER_TEMP/voice-release/audit/published-asset-verification-v2.json" \
+            --release-tag "$VOICE_RELEASE_TAG" --repository "$GITHUB_REPOSITORY" \
+            --output "$RUNNER_TEMP/voice-release/audit/publication-quarantine-result-v1.json"
+      - name: Retain release audit
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: publication-audit-${{ inputs.release_tag }}-${{ github.sha }}
-          path: |
-            bundle/published-asset-verification-v1.json
-            bundle/publication-quarantine-result-v1.json
-          if-no-files-found: warn
+          name: voice-runtime-host-release-audit-${{ github.run_id }}
+          path: ${{ runner.temp }}/voice-release/audit/
+          if-no-files-found: error
           retention-days: 90
-      - name: Fail finalization after verification or quarantine failure
-        if: always() && steps.publish.outcome != 'skipped'
-        shell: bash
+      - name: Fail finalization after publication or verification failure
+        if: always()
         run: |
           test "${{ steps.publish.outcome }}" = success
           test "${{ steps.verify.outcome }}" = success
-          test "${{ steps.quarantine.outcome }}" = skipped

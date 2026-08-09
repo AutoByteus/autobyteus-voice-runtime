@@ -2,7 +2,7 @@
 
 This contract owns paths inside a materialized Build Input tree and the
 corresponding `SHA256SUMS.json.files[].path` records. It is separate from the
-narrower Provider Archive 1 output-path policy.
+narrower Runtime Host Archive 2 output-path policy.
 
 A Build Input path:
 

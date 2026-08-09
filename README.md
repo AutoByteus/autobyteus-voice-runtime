@@ -1,143 +1,133 @@
 # AutoByteus Voice Input Runtime
 
-This repository builds independently executable, immutable Voice Input provider packages for a later desktop integration ticket. It does **not** install or activate a desktop runtime.
+This repository builds two relocatable **runtime host** archives for macOS Apple
+Silicon. A host contains the public launcher, model manager, provider engine,
+and pinned runtime dependencies. Model weights are separate, on-demand assets;
+they are never bundled in the host archive.
 
-## Runtime boundary
+The current matrix is `contracts/catalog/current-release-matrix-v2.json`:
 
-Every catalog entry is a Provider Archive 1 canonical ZIP containing one language-profile package and one target-native Go launcher:
+- English: MLX Whisper Small FP16.
+- Chinese: native Fun-ASR-Nano GGUF Q8.
 
-```text
-<extracted-package>/bin/voice-provider[.exe] --session-config <absolute-config-path>
+`auto`, macOS Intel, Linux, Windows, and alternate providers or models are not
+supported by this release.
+
+## Install a model profile
+
+Extract the matching host archive without changing its contents. The public
+tools are under the extracted `host/bin` directory. Use the release Catalog 4
+file to install a profile into an application-owned absolute directory:
+
+```bash
+HOST=/absolute/path/to/extracted/host
+STORE=/absolute/path/to/application/voice-models
+CATALOG=/absolute/path/to/voice-runtime-catalog-v4.json
+
+"$HOST/bin/voice-model-manager" install-profile \
+  --profile english --catalog "$CATALOG" --install-root "$STORE"
 ```
 
-The public command has no provider, model, language, host, decoding, context, or fallback flags. The launcher derives its relocated package root, validates the strict session/config/control identity, creates a minimal private environment, and starts exactly the embedded Python or native worker plan. The worker emits Protocol 1 JSON lines only after binding identity; `inference-ready` follows full package verification and real recognizer construction.
+Use `--profile chinese` with the Chinese host. Installation verifies the host
+before reading caller-supplied catalog data or contacting the network. It then
+validates the catalog, model manifest, compatibility requirement, notices, and
+every downloaded file before atomically activating the new installation.
+Interrupted downloads use the authenticated partial-download record when the
+server still presents the same strong validator. Inference never uses the
+network.
 
-The current release is **macOS Apple Silicon only**. Its sole current matrix is
-`contracts/catalog/current-release-matrix-v1.json` and contains exactly:
+The model manager writes canonical JSON Lines progress events to stdout. It has
+three operations:
 
-- English / darwin-arm64: hermetic CPython + MLX Whisper Small FP16.
-- Chinese / darwin-arm64: native Fun-ASR-Nano GGUF Q8.
+```bash
+"$HOST/bin/voice-model-manager" status-profile \
+  --profile english --install-root "$STORE"
 
-`auto`, macOS Intel, Linux, and Windows are not supported, qualified,
-cataloged, or published by this release. Generic target-capable implementation
-source is retained only for a future reviewed matrix expansion. Catalog absence
-means unsupported; it is never permission to infer or synthesize a package.
+"$HOST/bin/voice-model-manager" remove-profile \
+  --profile english --install-root "$STORE"
+```
 
-There is no Node provider, system Python, live package/model download, external media decoder, shell launcher, legacy protocol, or model fallback in the production tree.
+Removal refuses to delete an installation while a provider process holds its
+lifetime lease.
 
-## Local implementation checks
+## Start the provider
 
-Node 22.23.1 and the pinned Go 1.26.5 toolchain are required.
+The caller reads the active pointer and activation record in its installation
+store, then writes an absolute `provider-session-config-v2.json` conforming to
+`contracts/startup/provider-session-config-v2.schema.json`. That configuration
+binds the selected installation and all expected host, model, and compatibility
+identities.
+
+```bash
+"$HOST/bin/voice-provider" \
+  --session-config /absolute/path/to/provider-session-config-v2.json
+```
+
+There is one public provider command and no provider, model, language, context,
+or fallback flags. The launcher re-verifies the relocated host, snapshots the
+active pointer, acquires the installation lease, verifies every model byte, and
+rechecks the snapshot before starting the worker with a minimal environment.
+It does not use ambient Python, `PYTHONPATH`, the current directory, a system
+media decoder, or a fallback model.
+
+Provider stdin/stdout use Protocol 1 canonical JSON Lines. The caller waits for
+`hello`, sends `transcribe-file` requests referencing caller-supplied PCM WAV
+files, reads one terminal `transcription-result` or `request-error` per request,
+and finishes with `shutdown`.
+
+## Build and verify hosts
+
+Node 22.23.1 and the repository-pinned Go 1.26.5 root are required. External
+host build inputs are hydrated separately from the network-denied deterministic
+assembly step and are authenticated by Host Build Provenance 2.
 
 ```bash
 npm ci --ignore-scripts
-VOICE_GO=/absolute/path/to/locked/go/root/bin/go npm test
-npm run check:python
-VOICE_GO=/absolute/path/to/locked/go/root/bin/go npm run check:go
-npm run check:js
-```
 
-These are source/unit/contract checks only. They do not replace actual-target package qualification.
+node build/hydrate-host-input-cache.mjs \
+  --english build/input-recipes/english-host-darwin-arm64-v2.json \
+  --chinese build/input-recipes/chinese-host-darwin-arm64-v2.json \
+  --cache /absolute/cache
 
-## Package build and verification
+node build/materialize-release-inputs.mjs \
+  --recipe build/input-recipes/english-host-darwin-arm64-v2.json \
+  --cache /absolute/cache --repository "$PWD" \
+  --destination /absolute/inputs/english \
+  --source-commit "$(git rev-parse HEAD)"
 
-Builders are offline/fail-closed. `--inputs` must be produced by
-`build/materialize-release-inputs.mjs` from one of the two current recipes. The
-materializer verifies SHA-addressed cache objects, exact clean Git trees, and
-repository files before creating a fresh `SHA256SUMS.json`-closed tree plus
-`input-provenance-v1.json`. Acquisition is separate and is never attempted by
-the materializer or package builder.
+node build/host-build-environment.mjs --cmake /absolute/cmake \
+  --runner-label focused-darwin-arm64 \
+  --output /absolute/host-build-environment-v2.json
 
-- Python packages accept the repository-locked Python Build Standalone archive, the exact target wheelhouse in `build/python-wheel-locks/<target>.json`, model files, and notices. The builder extracts and materializes Python itself; an operator-supplied `python-root` or origin marker is not accepted.
-- Native packages require clean Git worktrees at the exact Fun-ASR, llama.cpp, and utf8proc commits in the provider lock, plus exact model files and notices. Modified, untracked, ignored, or marker-only source trees fail.
-- `VOICE_GO` must identify `bin/go[.exe]` inside the complete extracted official root. Every file and directory in that root must match the target's repository-owned full-root manifest under `build/go-toolchain-manifests/`; an exact front binary with missing, added, stale, or modified compiler/linker/standard-library siblings fails.
-- All Go subprocesses derive `GOROOT` from that verified `VOICE_GO` root, disable environment configuration, external cache programs, and automatic toolchain selection, and set the target through one internal/Node/Go tuple map. Inherited `GOROOT`, `GOTOOLCHAIN`, `GOTOOLDIR`, `GOCACHEPROG`, `GOENV`, `GOFLAGS`, `GOEXPERIMENT`, target, CGO, or external-tool overrides are rejected rather than trusted.
-- Every build report binds the repository lock set in addition to the closed external input manifest.
-- Package assembly consumes a passing `darwin-arm64-preflight-v2.json` and creates one `native-build-environment-v1.json` owner. It rejects inherited compiler/linker/CMake/SDK selectors and flags before builder invocation; pins the exact preflight-authenticated Node, CMake, Apple compiler/linker/archive tools, Make, shell, tar, and SDK settings; supplies explicit CMake configuration; and records that environment digest in both build reports and the reproducibility proof.
-- Configured executable aliases such as the standard Homebrew CMake and macOS tar symlinks are canonicalized once and retain their exact target-byte identity end to end. Preflight identifies execute-only `/usr/bin/sudo` without opening it by binding its root-owned mode/device/inode/size/timestamps and a successful `sudo -V` execution probe, then separately proves the exact noninteractive `/usr/sbin/purge` capability; either identity or capability drift blocks qualification.
-
-```bash
-node build/package-assembler.mjs \
+VOICE_GO=/absolute/locked/go/bin/go /usr/bin/sandbox-exec \
+  -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb \
+  "$(command -v node)" build/host-package-assembler.mjs \
   --profile english --target darwin-arm64 \
-  --inputs /approved/inputs/english/darwin-arm64 \
-  --output dist/voice-english-darwin-arm64-1.0.0.zip \
-  --go /approved/go/bin/go --cmake /approved/cmake \
-  --preflight /approved/darwin-arm64-preflight-v2.json \
+  --inputs /absolute/inputs/english \
+  --output dist/voice-host-english-darwin-arm64-1.0.0.zip \
+  --go "$VOICE_GO" \
+  --build-environment /absolute/host-build-environment-v2.json \
+  --expected-host-source-closure <focused-host-source-closure-sha256> \
   --source-commit "$(git rev-parse HEAD)" --version 1.0.0
 
-node build/package-verifier.mjs \
-  --archive dist/voice-english-darwin-arm64-1.0.0.zip \
-  --build-report dist/voice-english-darwin-arm64-1.0.0.zip.build.json \
-  --go /approved/go/bin/go --output dist/package-verification.json
-
-# Rebuild the same package in an independent directory, then bind both
-# byte-identical archives and build reports into the qualification input.
-node build/verify-reproducibility.mjs \
-  --first-archive dist/voice-english-darwin-arm64-1.0.0.zip \
-  --first-report dist/voice-english-darwin-arm64-1.0.0.zip.build.json \
-  --second-archive /independent-build/voice-english-darwin-arm64-1.0.0.zip \
-  --second-report /independent-build/voice-english-darwin-arm64-1.0.0.zip.build.json \
-  --output dist/reproducibility-proof-v1.json
+VOICE_GO=/absolute/locked/go/bin/go node build/host-package-verifier.mjs \
+  --archive dist/voice-host-english-darwin-arm64-1.0.0.zip \
+  --go "$VOICE_GO" --output dist/host-verification-v2.json
 ```
 
-`benchmark/darwin-arm64-runner-preflight.mjs` fail-closes objective M1 Max,
-power, pressure, toolchain, Seatbelt, and noninteractive purge
-prerequisites before counted work. It captures six CPU-idle samples once and
-classifies them as `controlled` or `loaded-host` without blocking functional work. `benchmark/run-profile-qualification.mjs`
-then owns the exact 30 filesystem-cold, 30 warm-preparation, and 100 warm-request
-sets plus complete corpus, timing, RSS, relocation, no-mutation, and recovery
-evidence. Qualification writes immutable functional Summary 2 first, then a non-gating
-Performance Assessment 1 that content-binds that Summary. Qualification Set 2
-binds both before the independently verified Branch Catalog Projection 2, with no release
-tag, URL, maintained-main, or public status.
+The release workflow performs these builds in its pinned network-denied build
+boundary. It publishes exactly nine assets: two host archives, two model
+manifests, Catalog 4, `THIRD_PARTY_NOTICES.json`, Pre-Tag Release Manifest 4,
+Release Qualification Evidence 4, and `release-SHA256SUMS.txt`. Model Admission
+Root 1 is contained in each host archive; it is not a separate published asset.
+The release never publishes model weights.
 
-Product-facing Chinese `normalizedText` remains governed by
-`autobyteus-simplified-zh-v1`. Quality comparison instead consumes retained raw
-reference and raw hypothesis through the frozen, checksum-bound
-`autobyteus-chinese-cer-selection-comparable-v1` scorer. Active Chinese v2 trust
-recomputes all 200 historical rows to the unchanged 343/6580 baseline before any
-candidate comparison; the unbound v1 baseline is not an active input.
+## Implementation checks
 
-The Current Release Matrix binds one exact Profile Resource Policy. English has
-a 2.5 GiB hard process-tree RSS ceiling. Chinese has a 4.0 GiB hard ceiling and
-a separate 2.5 GiB Assessment-only optimization target. Summary 2 owns the hard
-result; Performance Assessment 1 records optimization status without changing a
-passing functional decision. QSet, branch projection, and release evidence carry
-the same policy digest instead of restating a global RSS literal.
+```bash
+VOICE_GO=/absolute/locked/go/bin/go npm run check
+VOICE_GO=/absolute/locked/go/bin/go npm run check:release-pipeline
+```
 
-Every trial is written to `qualification-attempts-v1.json` before provider
-work starts and is atomically updated with its outcome. A timeout, process
-loss, malformed frame, write failure, or other qualification failure retains
-all prior and current attempts, partial raw/performance evidence, and a
-non-pass `qualification-summary-v2.json`/Qualification Set 2 result. Workflow
-uploads for each profile and the aggregate qualification audit run under
-`always()`; no failed trial is retried, excluded, or relabeled as passing.
-
-Chinese preparation verifies the complete package before recognizer
-construction through the Apple CommonCrypto SHA-256 owner using a fixed 1 MiB
-buffer. Whole-model allocation, skipped or cached manifest verification, and
-post-recognizer integrity checks are not supported. Private preparation stages
-are canonical LF-framed stderr diagnostics, not Protocol 1 output. The
-qualification runner timestamps complete-line receipt and RSS scan windows on
-one attempt clock, arms boundary observations, and derives inclusive interval
-Stage Evidence without treating worker durations as qualification timestamps.
-Missing or invalid coverage fails successful-attempt evidence rather than being
-fabricated or silently ignored.
-
-Delivery independently repeats qualification after integrating maintained
-`main`, then builds the acyclic chain: Qualification Set 2 -> Release
-Qualification Evidence 2 -> Catalog 3 -> Pre-Tag Release Manifest 2. Publication
-uploads exactly the two archives, evidence, catalog, and manifest. Published
-byte verification is a separate always-recorded result; a failed result may
-delete only the GitHub Release object/assets while preserving the tag.
-
-Qualification uses the repository-owned English-v2 and scoring-bound Chinese-v2
-baselines. The
-external audio tree must carry a byte-identical copy of the applicable manifest
-in `release/evidence/qualification-corpora/`. On the M1 Max reference runner,
-every filesystem-cold trial executes the pinned `sudo -n purge` procedure before
-process start; the runner account must be pre-authorized for only that
-noninteractive command. Raw cold-reset, cold-preparation, warm-preparation, and
-warm-request sample sets are preserved and re-verified before release.
-
-Do not tag or publish from ordinary implementation or review work.
+These are source, unit, and contract checks. They do not perform API/E2E model
+installation, run providers, execute the qualification corpora, tag, or publish.

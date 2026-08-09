@@ -1,168 +1,146 @@
 #!/usr/bin/env node
 import fs from "node:fs/promises";
 import path from "node:path";
-import Ajv2020 from "ajv/dist/2020.js";
-import addFormats from "ajv-formats";
+import { parsePairs, readJson, shaFile } from "../build/lib/files.mjs";
 import {
-  parsePairs,
-  readJson,
-  ROOT,
-  shaFile,
-  writeJson,
-} from "../build/lib/files.mjs";
+  assertExactNames,
+  ordinaryFileIdentity,
+  parseAndVerifyChecksums,
+  PUBLISHED_ASSET_NAMES,
+  readValidated,
+  writeArtifact,
+} from "./release-contract.mjs";
 
 export async function verifyPublishedAssets({
-  manifestPath,
+  seal,
   downloads,
+  assetMetadata,
   repository,
   releaseTag,
   output,
 }) {
-  const manifest = await readJson(manifestPath);
-  await validate(
-    manifest,
-    "contracts/release/pretag-release-manifest-v2.schema.json",
-    false,
-  );
-  if (
-    manifest.intendedRelease.releaseTag !== releaseTag ||
-    !/^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/.test(repository)
-  )
-    throw new Error("Published verification release identity mismatch.");
-  const expectedManifestSha256 = await shaFile(manifestPath),
-    publishedManifest = path.join(
-      path.resolve(downloads),
-      "pretag-release-manifest-v2.json",
+  const sealValue = await readValidated(
+      seal,
+      "contracts/release/prepublication-seal-v1.schema.json",
+      "Prepublication Seal 1",
     ),
-    manifestObservation = await observeFile(
-      publishedManifest,
-      (await fs.stat(manifestPath)).size,
-      expectedManifestSha256,
-    ),
-    expected = [
-      { role: "catalog", ...manifest.catalog },
-      { role: "release-evidence", ...manifest.releaseEvidence },
-      ...manifest.providerArchives.items.map((item) => ({
-        role: "provider-archive",
-        ...item,
-      })),
-    ],
-    expectedFileNames = [
-      "pretag-release-manifest-v2.json",
-      ...expected.map((item) => item.fileName),
-    ].sort(compareName),
-    actualFileNames = await publishedNames(path.resolve(downloads)),
-    exactPublishedFileSet =
-      JSON.stringify(actualFileNames) === JSON.stringify(expectedFileNames),
-    observations = [];
-  for (const item of expected) {
-    const observed = await observeFile(
-      path.join(path.resolve(downloads), item.fileName),
-      item.sizeBytes,
-      item.sha256,
+    metadata = await readJson(assetMetadata),
+    root = path.resolve(downloads),
+    actualNames = await fs.readdir(root).catch(() => []),
+    metadataNames = Array.isArray(metadata.assets)
+      ? metadata.assets.map((item) => item.name)
+      : [],
+    exactAssetSet =
+      exactNames(actualNames) &&
+      exactNames(metadataNames) &&
+      sealValue.expectedPublishedAssetNames.join("\0") ===
+        PUBLISHED_ASSET_NAMES.join("\0"),
+    expectations = new Map(
+      sealValue.coveredAssets.map((item) => [item.fileName, item]),
     );
-    observations.push({
-      role: item.role,
-      fileName: item.fileName,
-      expectedSizeBytes: item.sizeBytes,
-      observedSizeBytes: observed.observedSizeBytes,
-      expectedSha256: item.sha256,
-      observedSha256: observed.observedSha256,
-      status: observed.status,
+  expectations.set(
+    sealValue.checksumManifest.fileName,
+    sealValue.checksumManifest,
+  );
+  const assets = [];
+  for (const fileName of PUBLISHED_ASSET_NAMES) {
+    const expected = expectations.get(fileName),
+      metadataRow = metadata.assets?.find((item) => item.name === fileName),
+      observed = await observe(path.join(root, fileName)),
+      status = !observed
+        ? "missing"
+        : observed.sizeBytes !== expected?.sizeBytes
+          ? "size-mismatch"
+          : observed.sha256 !== expected?.sha256
+            ? "digest-mismatch"
+            : "match";
+    assets.push({
+      fileName,
+      assetId: Number.isSafeInteger(metadataRow?.id) ? metadataRow.id : null,
+      expectedSizeBytes: expected?.sizeBytes ?? 1,
+      observedSizeBytes: observed?.sizeBytes ?? null,
+      expectedSha256: expected?.sha256 ?? "0".repeat(64),
+      observedSha256: observed?.sha256 ?? null,
+      status,
     });
   }
+  let failureCategory = "none";
+  if (!exactAssetSet)
+    failureCategory =
+      actualNames.some((item) => !PUBLISHED_ASSET_NAMES.includes(item)) ||
+      metadataNames.some((item) => !PUBLISHED_ASSET_NAMES.includes(item))
+        ? "unexpected-asset"
+        : "missing-asset";
+  else if (assets.some((item) => item.status === "missing"))
+    failureCategory = "missing-asset";
+  else if (assets.some((item) => item.status === "size-mismatch"))
+    failureCategory = "size-mismatch";
+  else if (assets.some((item) => item.status === "digest-mismatch"))
+    failureCategory = "digest-mismatch";
   const result = {
-    schemaVersion: 1,
-    decision:
-      manifestObservation.status === "match" &&
-      exactPublishedFileSet &&
-      observations.every((item) => item.status === "match")
-        ? "pass"
-        : "fail",
-    releaseTag,
+    schemaVersion: 2,
+    artifactKind: "published-asset-verification",
     repository,
-    observedAt: new Date().toISOString(),
-    preTagReleaseManifest: {
-      expectedSha256: expectedManifestSha256,
-      publishedSha256: manifestObservation.observedSha256,
-      status: manifestObservation.status,
-    },
-    expectedPublishedPayloadSetSha256: manifest.publishedPayloadSetSha256,
-    observations,
+    releaseTag,
+    releaseId: metadata.releaseId,
+    prepublicationSealSha256: await shaFile(seal),
+    preTagManifest: sealValue.preTagManifest,
+    checksumManifest: sealValue.checksumManifest,
+    assets,
+    exactAssetSet,
+    decision: failureCategory === "none" ? "pass" : "fail",
+    failureCategory,
   };
-  await validate(
+  await writeArtifact(
+    output,
     result,
-    "contracts/release/published-asset-verification-v1.schema.json",
-    true,
+    "contracts/release/published-asset-verification-v2.schema.json",
+    "Published Asset Verification 2",
   );
-  await writeJson(path.resolve(output), result);
   if (result.decision !== "pass") {
-    const error = new Error("Published assets do not match pre-tag bytes.");
+    const error = new Error("Published assets differ from sealed bytes.");
     error.code = "PUBLISHED_ASSET_MISMATCH";
     throw error;
   }
+  await parseAndVerifyChecksums(
+    root,
+    path.join(root, "release-SHA256SUMS.txt"),
+  );
   return result;
 }
 
-function compareName(left, right) {
-  return Buffer.compare(Buffer.from(left), Buffer.from(right));
-}
-
-async function publishedNames(directory) {
+function exactNames(names) {
   try {
-    return (await fs.readdir(directory, { withFileTypes: true }))
-      .map((entry) => entry.name)
-      .sort(compareName);
+    assertExactNames(names, PUBLISHED_ASSET_NAMES, "Published assets");
+    return true;
+  } catch {
+    return false;
+  }
+}
+async function observe(file) {
+  try {
+    return await ordinaryFileIdentity(file);
   } catch (error) {
-    if (error.code === "ENOENT") return [];
+    if (error.code === "ENOENT") return null;
     throw error;
   }
-}
-
-async function observeFile(file, expectedSizeBytes, expectedSha256) {
-  try {
-    const info = await fs.lstat(file);
-    if (!info.isFile())
-      throw Object.assign(new Error("not file"), { code: "ENOENT" });
-    const digest = await shaFile(file);
-    return {
-      observedSizeBytes: info.size,
-      observedSha256: digest,
-      status:
-        info.size !== expectedSizeBytes
-          ? "size-mismatch"
-          : digest !== expectedSha256
-            ? "digest-mismatch"
-            : "match",
-    };
-  } catch (error) {
-    if (error.code !== "ENOENT") throw error;
-    return { observedSizeBytes: null, observedSha256: null, status: "missing" };
-  }
-}
-
-async function validate(value, schemaPath, formats) {
-  const schema = await readJson(path.join(ROOT, schemaPath)),
-    ajv = new Ajv2020({ allErrors: true, strict: true });
-  if (formats) addFormats(ajv);
-  const check = ajv.compile(schema);
-  if (!check(value))
-    throw new Error(`Artifact invalid: ${JSON.stringify(check.errors)}`);
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
-    "manifest",
+    "seal",
     "downloads",
+    "asset-metadata",
     "repository",
     "release-tag",
     "output",
   ]);
   await verifyPublishedAssets({
-    manifestPath: path.resolve(args.manifest),
-    downloads: path.resolve(args.downloads),
+    seal: args.seal,
+    downloads: args.downloads,
+    assetMetadata: args["asset-metadata"],
     repository: args.repository,
     releaseTag: args["release-tag"],
-    output: path.resolve(args.output),
+    output: args.output,
   });
 }

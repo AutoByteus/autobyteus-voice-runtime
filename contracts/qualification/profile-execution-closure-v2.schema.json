@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/qualification/profile-execution-closure-v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "profileId",
+    "historical",
+    "current",
+    "adapterExclusions",
+    "comparison",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "artifactKind": {
+      "const": "profile-execution-closure"
+    },
+    "profileId": {
+      "enum": ["english", "chinese"]
+    },
+    "historical": {
+      "$ref": "#/$defs/execution"
+    },
+    "current": {
+      "$ref": "#/$defs/execution"
+    },
+    "adapterExclusions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "minLength": 1
+      }
+    },
+    "comparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "inferenceCoreEqual",
+        "pathNeutralConfigurationEqual",
+        "modelIdentityEqual",
+        "outputEvidenceEqual",
+        "adapterExclusionsExact"
+      ],
+      "properties": {
+        "inferenceCoreEqual": {
+          "type": "boolean"
+        },
+        "pathNeutralConfigurationEqual": {
+          "type": "boolean"
+        },
+        "modelIdentityEqual": {
+          "type": "boolean"
+        },
+        "outputEvidenceEqual": {
+          "type": "boolean"
+        },
+        "adapterExclusionsExact": {
+          "type": "boolean"
+        }
+      }
+    },
+    "decision": {
+      "enum": ["reuse-permitted", "qualification-required", "blocked"]
+    }
+  },
+  "$defs": {
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceCommit",
+        "inferenceCoreSha256",
+        "configurationSha256",
+        "modelManifestSha256",
+        "trustedOutputSha256"
+      ],
+      "properties": {
+        "sourceCommit": {
+          "type": "string",
+          "pattern": "^(?!0{40})[a-f0-9]{40}$"
+        },
+        "inferenceCoreSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "configurationSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "modelManifestSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "trustedOutputSha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

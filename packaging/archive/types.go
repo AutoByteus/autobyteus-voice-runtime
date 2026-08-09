@@ -14,9 +14,9 @@ type ManifestFile struct {
 	SizeBytes int64    `json:"sizeBytes"`
 	Mode      FileMode `json:"mode"`
 }
-type PackageFileManifest struct {
+type HostFileManifest struct {
 	SchemaVersion int            `json:"schemaVersion"`
-	PackageID     string         `json:"packageId"`
+	HostPackageID string         `json:"hostPackageId"`
 	Files         []ManifestFile `json:"files"`
 }
 type AssetRef struct {
@@ -41,17 +41,17 @@ type ArchiveIdentity struct {
 	EntryCount          int    `json:"entryCount"`
 }
 type ExtractExpectation struct {
-	SchemaVersion     int             `json:"schemaVersion"`
-	PackageID         string          `json:"packageId"`
-	Target            Target          `json:"target"`
-	Archive           ArchiveIdentity `json:"archive"`
-	PackageDescriptor AssetRef        `json:"packageDescriptor"`
-	FileManifest      AssetRef        `json:"fileManifest"`
+	SchemaVersion  int             `json:"schemaVersion"`
+	HostPackageID  string          `json:"hostPackageId"`
+	Target         Target          `json:"target"`
+	Archive        ArchiveIdentity `json:"archive"`
+	HostDescriptor AssetRef        `json:"hostDescriptor"`
+	FileManifest   AssetRef        `json:"fileManifest"`
 }
 type VerificationReport struct {
 	SchemaVersion      int    `json:"schemaVersion"`
-	PackageID          string `json:"packageId"`
-	PackageRoot        string `json:"packageRoot"`
+	HostPackageID      string `json:"hostPackageId"`
+	HostRoot           string `json:"hostRoot"`
 	ArchiveSHA256      string `json:"archiveSha256"`
 	DescriptorSHA256   string `json:"descriptorSha256"`
 	FileManifestSHA256 string `json:"fileManifestSha256"`

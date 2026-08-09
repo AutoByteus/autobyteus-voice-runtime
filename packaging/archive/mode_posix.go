@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 )
 
-func applyAndVerifyModes(root string, manifest PackageFileManifest, _ Target) error {
-	modes := map[string]FileMode{"provider/package-files-v1.json": ReadOnly}
+func applyAndVerifyModes(root string, manifest HostFileManifest, _ Target) error {
+	modes := map[string]FileMode{"provider/host-files-v2.json": ReadOnly}
 	for _, record := range manifest.Files {
 		modes[record.Path] = record.Mode
 	}

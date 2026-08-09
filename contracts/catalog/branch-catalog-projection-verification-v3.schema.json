@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/catalog/branch-catalog-projection-verification-v3.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "projection",
+    "sourceCommit",
+    "profileCount",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 3
+    },
+    "artifactKind": {
+      "const": "branch-catalog-projection-verification"
+    },
+    "projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "sourceCommit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "profileCount": {
+      "const": 2
+    },
+    "decision": {
+      "enum": ["pass", "fail", "blocked"]
+    }
+  }
+}
