@@ -1,0 +1,3 @@
+API-REV-021 recovery dispatch attempt 1 — INVALID LOCAL HARNESS ATTEMPT
+The command stopped before gh workflow run because a local Node helper used require() with a non-relative evidence path and raised MODULE_NOT_FOUND for runs-before.json.
+No GitHub workflow dispatch occurred in this attempt. This attempt is excluded from API-F-015 recheck and recovery evidence.

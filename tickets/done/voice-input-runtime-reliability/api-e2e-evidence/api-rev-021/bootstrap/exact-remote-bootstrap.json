@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-bootstrap-validation",
+  "apiRevision": "API-REV-021",
+  "repository": "AutoByteus/autobyteus-voice-runtime",
+  "defaultBranch": "main",
+  "mainCommit": "7385b65e397e6f1b17495720281fe0b2e39de99b",
+  "mainParents": [
+    "fd83e8681dfd4e98afdfa46cb691d31400565d70",
+    "ec0f726afd252448784855665a08d1de2ee0521c"
+  ],
+  "reviewedTicketRef": "codex/voice-runtime-qualified-recovery",
+  "reviewedTicketCommit": "ec0f726afd252448784855665a08d1de2ee0521c",
+  "checks": {
+    "mainExact": true,
+    "parentsExact": true,
+    "ticketRefExact": true
+  }
+}

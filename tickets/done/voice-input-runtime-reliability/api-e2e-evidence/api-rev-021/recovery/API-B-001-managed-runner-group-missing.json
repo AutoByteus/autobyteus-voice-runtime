@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-blocker",
+  "apiRevision": "API-REV-021",
+  "blockerId": "API-B-001",
+  "scenarioId": "API-VOICE-016-B",
+  "requirements": [
+    "R-022",
+    "R-023"
+  ],
+  "acceptanceCriteria": [
+    "AC-025"
+  ],
+  "priorFailureResolution": {
+    "failureId": "API-F-015",
+    "resolved": true,
+    "evidence": "Workflow dispatch created the exact reviewed run."
+  },
+  "dispatch": {
+    "workflowId": 330372979,
+    "workflowPath": ".github/workflows/recover-qualified-voice-archives.yml",
+    "runId": 31301948625,
+    "runAttempt": 1,
+    "event": "workflow_dispatch",
+    "headBranch": "codex/voice-runtime-qualified-recovery",
+    "headSha": "ec0f726afd252448784855665a08d1de2ee0521c",
+    "status": "completed",
+    "conclusion": "failure",
+    "url": "https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/31301948625"
+  },
+  "job": {
+    "id": 93216043982,
+    "name": "recover",
+    "status": "completed",
+    "conclusion": "failure",
+    "runnerId": 0,
+    "runnerName": "",
+    "runnerGroupId": 0,
+    "runnerGroupName": "",
+    "stepCount": 0
+  },
+  "missingDependency": {
+    "type": "organization-managed-runner-group",
+    "exactName": "voice-runtime-recovery",
+    "requiredLabels": [
+      "self-hosted",
+      "macOS",
+      "ARM64"
+    ],
+    "runnerOwnedEnvironment": [
+      "VOICE_INPUT_CACHE_ROOT",
+      "VOICE_GO",
+      "VOICE_CMAKE"
+    ],
+    "requiredNodeVersion": "v22.23.1",
+    "observedAnnotation": "Required runner group 'voice-runtime-recovery' not found"
+  },
+  "observed": {
+    "workflowRunCreated": true,
+    "buildAttemptedCount": 0,
+    "stepsExecuted": 0,
+    "recoveryArtifactCreated": false,
+    "promotionAttempted": false
+  },
+  "prohibitedFallbacksUsed": [],
+  "userOrSharedStateChanged": false,
+  "resumeCondition": "An organization administrator provisions the exact approved runner group and locked runner environment, after which API/E2E opens a new revision and dispatches a new run once."
+}

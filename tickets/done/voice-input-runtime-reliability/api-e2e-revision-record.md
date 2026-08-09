@@ -24,6 +24,7 @@
 | `API-REV-018` | Code Reviewer / `code-review-report.md` / `CRR-039`            | `API-REV-017`, `DR-003`, `IR-025`, `CRR-038`, `CRR-039`            | `Pass / 99%`              | `Pass / 99%`                |
 | `API-REV-019` | Code Reviewer / `code-review-report.md` / `CRR-044`            | `SR-018`, `ARCH-REV-019`, `IR-029`, `CRR-044`                      | `Pass / 99%`              | `Pass / 99%`                |
 | `API-REV-020` | Code Reviewer / `code-review-report.md` / `CRR-046`            | `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `DR-006`            | `Pass / 99%`              | `Fail / 78%`                |
+| `API-REV-021` | Delivery Engineer / `delivery-revision-record.md` / `DR-007`   | `SR-018`, `ARCH-REV-019`, `CRR-047`, `DR-007`                      | `Fail / 78%`              | `Blocked / 80%`             |
 
 ## Revision Entries
 
@@ -697,3 +698,41 @@ None.
 - New failure ID: `API-F-015`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review, likely followed by `solution_designer` for release-stage ordering/design correction.
 - Remaining proof after resolution: execute managed English/Chinese exact recovery, independently verify Result/raw evidence/archives, execute hosted 19-member promotion, and verify Candidate Promotion Record. Delivery pretag/tag/release/publication remains later and was not touched.
+
+### API-REV-021 — Default registration resolves dispatch; managed runner group is unavailable
+
+- Triggering role/report/round: Delivery Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`; `DR-007` after `CRR-047`; API/E2E round 21.
+- Triggering scenario/criteria: recheck `API-F-015` in `API-VOICE-016-B`; continue `API-VOICE-016-C`; `R-022`, `R-023`, `R-024`; `AC-025`, `AC-026`.
+- Related revisions: `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `API-REV-020`, `CRR-047`, `DR-007`.
+- Why recorded: DR-007 registered exact reviewed workflows on default main while preserving exact ticket dispatch ref. Direct retry creates the intended workflow run and resolves API-F-015, but GitHub immediately reports that the required organization-managed runner group does not exist. No recovery step can start, so promotion remains prohibited.
+- Coverage decisions/durable test paths changed: none. Existing admission/recovery/candidate/workflow coverage remains valid; API/E2E changed no repository-resident durable test.
+- Scenario delta:
+  - `API-VOICE-016-A` Pass: exact authority remains `reuse-permitted`.
+  - `API-VOICE-016-B` Blocked as `API-B-001`: exact run exists, but missing runner group prevents all steps/builds/artifacts.
+  - `API-VOICE-016-C` Not Tested: zero promotion runs, as required without recovery Pass.
+- Execution delta: DR-007 checksums Pass; exact main merge/topology/ref/workflow IDs Pass; API-REV-019/020 checksums Pass; admission Pass; recovery run `31301948625` at `ec0f726...` created; job `93216043982` terminates with annotation `Required runner group 'voice-runtime-recovery' not found`, runner ID 0, zero steps, zero artifacts.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                              | Previous Classification                                    | Current Resolution | Evidence                                                                                        |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------- |
+| `API-F-015` — branch-only workflow returned HTTP 404 and created zero runs | Design Impact / resolved through user-authorized bootstrap | **Resolved**       | recovery workflow `330372979` active; exact dispatch creates run `31301948625` at reviewed head |
+
+#### New Blocker
+
+- ID: `API-B-001`.
+- Exact missing dependency: organization-managed GitHub runner group `voice-runtime-recovery` with approved macOS ARM64 runner, Node `v22.23.1`, and runner-owned exact `VOICE_INPUT_CACHE_ROOT`, `VOICE_GO`, and `VOICE_CMAKE` environment.
+- Observed: GitHub job annotation states `Required runner group 'voice-runtime-recovery' not found`; no runner or step is assigned.
+- Safe alternatives: none within approved scope. A personal runner, local build, old heavy workflow, or qualification rerun would violate requirements.
+- Resume condition: an organization administrator provisions the exact approved group/environment, then API/E2E opens a later revision and dispatches a new recovery run once.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-021/`
+- Prior result/confidence: `Fail / 78%`.
+- Current result/confidence: **`Blocked / 80%`**.
+- New blocker: `API-B-001`; prior `API-F-015` resolved.
+- Recommended recipient: user request for the exact external dependency; no teammate handoff while Blocked.
+- Remaining proof: exact managed two-archive recovery, raw/manifest/Result and archive verification, hosted 19-member promotion, and Promotion Record verification. Release actions remain later Delivery-owned.
