@@ -51,6 +51,8 @@ The latest `code-review-report.md` remains authoritative. This record retains th
 | `CRR-043`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 43 / `IR-028` against `CRR-042`           | `Fail — Local Fix`                  | `Fail — Local Fix`     | `CR-F-038` partially resolved; exact current report subjects remain open      |
 | `CRR-044`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 44 / `IR-029` against `CRR-043`           | `Fail — Local Fix`                  | `Pass`                 | Resolved `CR-F-038`; `CR-F-035`–`037` remain resolved                         |
 | `CRR-045`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md`               | Proportional Test Review / successful `API-REV-019`                   | `Pass`                              | `Not Applicable`       | None — no durable API/E2E test change; authority record passes review          |
+| `CRR-046`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 46 / `IR-030` after `API-REV-019`/`DR-006` | `CRR-044 Pass`; `CRR-045 N/A`       | `Pass`                 | No new finding; reviewed transition completes `CR-F-036` source lifecycle      |
+| `CRR-047`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Failure-Origin Review / `API-REV-020`, `API-F-015`                    | `CRR-046 Pass`                     | `Pass — bootstrap approved` | No source finding; `API-F-015` awaits post-integration rerun                 |
 
 ## Revision Entries
 
@@ -1359,3 +1361,57 @@ None.
 - Material score or classification changes: no full implementation scorecard applies. The proportional test-code review result is `Not Applicable` because no durable test file changed. The separately requested authority-record review passes within the approved zero-profile boundary.
 - Recommended recipient: `delivery_engineer` under the successful API/E2E handoff rule, with an explicit prohibition on recovery/release and the approved next policy/controller implementation boundary preserved
 - Remaining risks or uncertainty: a separate implementation and source-review round must accept exact record commit `448517c...` and recompute `reuse-permitted` before managed recovery. Recovery, candidate promotion, Delivery release actions, tag, and publication remain unexecuted. Loaded-host performance remains observational; x64/Linux/Windows/`auto` and desktop remain deferred.
+
+### CRR-046 — Exact renewed authority yields reviewed reuse admission
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `46`
+- Triggering role, report path, and scenario IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`; `IR-030`; approved `R-024` / `AC-026` transition after `API-REV-019` and `DR-006`
+- Relevant solution revision IDs: current `SR-018`; preserved `SR-015`–`017`
+- Relevant architecture-review revision IDs: current `ARCH-REV-019 Pass`; preserved `ARCH-REV-018 Pass`
+- Relevant implementation revision IDs: `IR-030`; source `2e743600ef67469f3fd1bf2c9078d53c2d053979`; artifact `ec0f726afd252448784855665a08d1de2ee0521c`; Delivery checkpoint `4993d503e6b613c5691adffc378a19c07acbc85c`
+- Relevant API/E2E revision IDs: `API-REV-019 Pass / 99%`; record commit `448517cee89e6498c551bcc70aba65ec0bedf97e`; retained `API-REV-017`/`018`
+- Relevant delivery revision IDs: `DR-006`; prior `DR-005`
+- Prior authoritative result: `CRR-044 Pass -> api_e2e_engineer`; `CRR-045 Not Applicable -> delivery_engineer`
+- Current authoritative result: `Pass -> api_e2e_engineer`
+- What changed in the review result and why: IR-030 performs only the approved second step of the acyclic aggregate transition. The source-closure policy now pins exact record commit `448517c...` and its reviewed Qualification Authority tree while preserving the inventory, Profile Authority, categories, and rules. The sole canonical evaluator independently computes both accepted/reviewed closures, ancestry, policy match, every changed path/category, canonical digest, and exact `reuse-permitted` at source and artifact heads. The regression Git-resolves the record and structurally compares both record closures. Focused `6/6`, release-pipeline `46/46`, every API-REV-019 checksum, reviewer direct admission probes, diff checks, and the implementation-reported full `156/156` Node plus `7/7` Python/all Go/source/evidence gate pass. No recovery, profile execution, promotion, or release occurred.
+
+#### Prior Finding Resolution
+
+| Finding ID / Blocker | Prior Status | Current Status | Related Revision References | Verification Evidence |
+| --- | --- | --- | --- | --- |
+| `CR-F-038` | Resolved in source; renewal pending | Resolved / directly confirmed | `CRR-042`–`046`, `API-REV-019` | Exact committed record/report/current subjects passed API and independent record review. |
+| `CR-F-036` | Resolved design/source gate with later transition pending | Resolved / transition complete in source | `SR-018`, `ARCH-REV-019`, `IR-027`–`030`, `API-REV-019`, `DR-006`, `CRR-046` | Record-first API renewal is followed by exact separate policy acceptance; current admission is `reuse-permitted`. |
+| `CR-F-035`, `CR-F-037` | Resolved in source | Resolved / unchanged | `SR-018`, `IR-027`–`030`, `CRR-042`–`046` | Complete pre-work admission, truthful recovery outcomes, and Pass-only candidate invariants remain. |
+| Earlier source/API/delivery findings | Resolved | Resolved / unchanged | prior recorded revisions | No runtime, package, profile, scoring, resource, Build Input, archived-fixture, or hosted-Delivery source changed. |
+
+- New or remaining finding IDs: None
+- Material score or classification changes: implementation review passes at `9.8/10` (`98.1/100`); every category meets the clean-pass threshold.
+- Recommended recipient: `api_e2e_engineer`
+- Remaining risks or uncertainty: API/E2E must now validate the exact admission/controller transition and execute only the approved managed archive recovery plus hosted candidate promotion. Exact archive mismatch, unavailable managed capacity/inputs/toolchain, non-Pass recovery, member drift, or authority drift must block. No provider/profile/corpus/performance requalification or Delivery release action is authorized in this stage.
+
+### CRR-047 — User-authorized default-main bootstrap closes the dispatch-order review
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `API/E2E Failure-Origin Review`, round `47`
+- Triggering role, report path, and scenario IDs: API/E2E Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`; `API-REV-020`; `API-VOICE-016-B`; `API-F-015`
+- Relevant solution revision IDs: current `SR-018`; preserved `SR-015`–`017`
+- Relevant architecture-review revision IDs: current `ARCH-REV-019 Pass`; preserved `ARCH-REV-018 Pass`
+- Relevant implementation revision IDs: `IR-030`; reviewed source `2e743600ef67469f3fd1bf2c9078d53c2d053979`; artifact `ec0f726afd252448784855665a08d1de2ee0521c`
+- Relevant API/E2E revision IDs: `API-REV-020 Fail / 78%`; retained `API-REV-019`, `017`, and `018`
+- Relevant delivery revision IDs: `DR-006`; prior `DR-005`
+- Prior authoritative result: `CRR-046 Pass -> api_e2e_engineer`
+- Current authoritative result: `Pass — no source defect; user-authorized bootstrap -> delivery_engineer, then api_e2e_engineer`
+- What changed in the review result and why: API-REV-020 directly proves exact `reuse-permitted`, focused `6/6`, release-pipeline `46/46`, and remote equality, then receives HTTP 404 before run creation because the new `workflow_dispatch` file exists only on the ticket branch. GitHub's independent platform contract requires a manually dispatched workflow to exist on the default branch even when the dispatch selects another ref. The prior source matches the reviewed API/E2E-before-Delivery order, so no implementation defect is established. The user explicitly authorizes the special-case default-main bootstrap and confirms Delivery as the merge owner. The reviewed pipeline may therefore integrate without tag/publication, after which API/E2E must dispatch the exact reviewed ref and produce the still-missing recovery/promotion result.
+
+#### Prior Finding Resolution
+
+| Finding ID / Blocker | Prior Status | Current Status | Related Revision References | Verification Evidence |
+| --- | --- | --- | --- | --- |
+| `API-F-015` | Open / workflow dispatch unavailable | Bootstrap route approved; execution result pending | `API-REV-020`, `CRR-047` | Official GitHub default-branch rule, exact workflow trees/blobs, HTTP 404, zero reviewed-head runs, and explicit user authorization. |
+| `CR-F-035`–`CR-F-038` | Resolved | Resolved / unchanged | `CRR-041`–`047` | Admission remains exact `reuse-permitted`; no later implementation byte changed. |
+
+- New or remaining source finding IDs: `None`.
+- Material score or classification changes: no full scorecard applies to this focused failure-origin review. CRR-046 remains the current source-quality score at `9.8/10`. API-REV-020 is not relabeled because it created zero recovery runs.
+- Recommended recipient: `delivery_engineer` for narrow reviewed default-main bootstrap only; after registration, `api_e2e_engineer` resumes exact recovery/promotion validation.
+- Remaining risks or uncertainty: integrated-tree drift must return through review. Recovery, exact archive comparison, Recovery Result, promotion, candidate, tag, release, publication, and downloaded-byte verification remain unexecuted. No personal runner, Delivery build, profile requalification, tag, or publication is authorized by this bootstrap Pass.

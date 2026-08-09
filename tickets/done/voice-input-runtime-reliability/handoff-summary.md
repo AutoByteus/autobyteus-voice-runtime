@@ -2,18 +2,34 @@
 
 ## Status
 
-- Delivery status: **zero-profile Aggregate API Renewal passed and is preserved; recovery and v1.0.0 release remain unauthorized**.
+- Delivery status: **default-main workflow bootstrap passed; exact reviewed ref is registered and preserved for API/E2E recovery; v1.0.0 remains unpublished**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
 - Ticket branch: `codex/voice-runtime-qualified-recovery`
 - Recorded finalization target: `origin/main` / local `main`
 - Bootstrap source baseline: `251eab80a1cfd6a6d4c4d2a1fdbe1c06c3923dde` (`v0.3.0`)
-- Latest tracked base: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`
+- Latest tracked base before bootstrap: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`
+- Current maintained main: `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b`
 - Reviewed API/E2E artifact HEAD: `5333d1d00c31fc9fe6fe2dcfe86219e2b894bebe`
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
 - Finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Default-Main Workflow Bootstrap — DR-007
+
+- Failure origin: API-REV-020 / API-F-015 remains a truthful Fail. GitHub returned HTTP 404 and created zero runs because `workflow_dispatch` requires the workflow to be registered on the default branch.
+- Authorization: CRR-047 `Pass`; the user explicitly authorized Delivery to merge the already-reviewed pipeline to default `main` before API/E2E execution.
+- Exact reviewed source: `2e743600ef67469f3fd1bf2c9078d53c2d053979`.
+- Exact reviewed artifact/remote ticket ref: `ec0f726afd252448784855665a08d1de2ee0521c`.
+- Integration: merge commit `7385b65e397e6f1b17495720281fe0b2e39de99b`, exact parents `fd83e868...` and `ec0f726...`, pushed to `origin/main`.
+- Dispatch-ref preservation: `origin/codex/voice-runtime-qualified-recovery` still equals `ec0f726...`.
+- Integrated-state check: corrected fail-fast focused release-pipeline suite passed 46/46; zero profile, provider, inference, corpus, or performance execution.
+- GitHub registration: promotion workflow `330372978` active; recovery workflow `330372979` active; default branch `main`.
+- Evidence manifest: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-default-main-bootstrap-SHA256SUMS.txt`.
+- Current admission: API-REV-020 records `reuse-permitted` for the exact accepted authority. This permits evidence reuse by API/E2E; it is not release permission.
+- Delivery actions not performed: no recovery/promotion dispatch, archive build, provider/profile/corpus/performance qualification, tag, release, assets, publication, or personal runner.
+- Next owner: `api_e2e_engineer` for organization-managed recovery and hosted promotion against exact reviewed ref `ec0f726...`.
 
 ## Aggregate API Renewal Stage Gate
 

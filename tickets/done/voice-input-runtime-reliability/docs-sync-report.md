@@ -107,3 +107,14 @@ tag publication, published-byte verification, and the deferred target set.
 - Release-doc constraint: README and release guidance must not state that recovery, promotion, tagging, or publication is available yet. Preliminary Source Admission still resolves to `aggregate-api-renewal-required`.
 - Next documentation checkpoint: after a separate implementation accepts exact record commit `448517c...`, independently recomputes `reuse-permitted`, and passes source review, reassess operator/release documentation against that integrated behavior.
 - Result: `Pass / explicit no-impact for the current stage gate`; v1.0.0 remains unreleased.
+
+## Delivery Round 6 — Default-Main Workflow Bootstrap
+
+- Trigger: CRR-047 `Pass` authorized the user-approved narrow default-main bootstrap after API-REV-020 / API-F-015 truthfully failed with HTTP 404 and zero runs.
+- Integrated state: exact reviewed artifact `ec0f726afd252448784855665a08d1de2ee0521c` was merged into refreshed `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70` as merge commit `7385b65e397e6f1b17495720281fe0b2e39de99b` and pushed to `origin/main`.
+- Exact dispatch ref: `origin/codex/voice-runtime-qualified-recovery` remains unchanged at `ec0f726...`.
+- Verification: corrected fail-fast `npm run check:release-pipeline` passed 46/46 focused tests with zero profile/provider/inference/corpus/performance execution; GitHub lists both recovery and promotion workflows as active on default `main`.
+- Durable documentation impact: `No additional prose change`. The reviewed workflow files now present on default `main` are the executable long-lived operator contract, and `release-pipeline-ownership.md` already documents the responsibility boundary. README runtime/package/model guidance remains accurate.
+- Ticket-local updates: DR-007, the handoff summary, release/deployment report, corrected/invalid attempt evidence, remote registration evidence, and checksum manifest record the bootstrap truthfully.
+- Release boundary: no recovery/promotion dispatch, build, tag, release, asset, or publication occurred. API-REV-020 remains Fail; the next owner is API/E2E.
+- Result: `Pass / explicit no additional docs impact`; workflow registration bootstrap is complete, not release completion.

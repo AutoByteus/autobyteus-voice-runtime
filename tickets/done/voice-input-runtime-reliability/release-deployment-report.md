@@ -2,9 +2,9 @@
 
 ## Release / Publication / Deployment Scope
 
-This runtime-only delivery preserves the reviewed minimal-CI recovery chain for
-the exact English/Chinese darwin-arm64 candidate. The current result is a
-zero-profile Aggregate API Renewal stage gate, not release authorization. No
+This runtime-only delivery bootstraps the already-reviewed minimal recovery and
+promotion workflows onto default `main` so GitHub can register them for the
+next API/E2E stage. It does not execute recovery, promotion, or publication. No
 AutoByteus desktop/superrepo implementation, installation, or release is part
 of this ticket.
 
@@ -13,8 +13,8 @@ of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-006`
-- Notes: the exact zero-profile Aggregate API Renewal record passed its Delivery stage gate. Preliminary Source Admission remains `aggregate-api-renewal-required`, so no recovery, promotion, tag, publication, or release is authorized.
+- Current revision: `DR-007`
+- Notes: exact reviewed workflow artifact `ec0f726...` is merged and active on default `main`; its remote ticket ref remains unchanged for API/E2E dispatch. No recovery, promotion, tag, publication, or release occurred.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,13 +155,11 @@ of this ticket.
 
 ## Final Status
 
-**Pass / Aggregate API Renewal stage gate only; release unpublished.** The
-reviewed zero-profile renewal record is preserved, but current Preliminary
-Source Admission remains `aggregate-api-renewal-required`. No recovery,
-promotion, tag, release, or publication is authorized. The next permitted step
-is a separate implementation/controller acceptance of exact record commit
-`448517c...`, followed by independent `reuse-permitted` recomputation and Source
-Review.
+**Pass / default-main bootstrap only; release unpublished.** Exact reviewed
+artifact `ec0f726...` is registered on default `main`, the remote ticket ref is
+preserved, and the current admission is `reuse-permitted`. API/E2E must now
+execute and verify managed recovery and hosted promotion. Delivery created no
+run, archive, candidate, tag, release, asset, or publication.
 
 ## Aggregate API Renewal Delivery Gate — DR-006
 
@@ -176,3 +174,19 @@ Review.
 - Current admission: `aggregate-api-renewal-required`.
 - Release disposition: `Blocked / not authorized`; v1.0.0 tag, GitHub Release, catalog, and published assets remain absent.
 - Routing: separate Implementation and Source Review are required to accept exact record commit `448517c...` and independently reach `reuse-permitted` before managed recovery.
+
+## Default-Main Workflow Bootstrap — DR-007
+
+- Date: 2026-08-09.
+- Authorization: CRR-047 `Pass` after user approval of the special default-main bootstrap ordering. API-REV-020 / API-F-015 remains Fail because its HTTP 404 attempt created zero workflows.
+- Pre-bootstrap base: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70` after refresh; no base drift.
+- Exact integrated artifact: `ec0f726afd252448784855665a08d1de2ee0521c`, containing reviewed source `2e743600ef67469f3fd1bf2c9078d53c2d053979`.
+- Maintained-main result: merge commit `7385b65e397e6f1b17495720281fe0b2e39de99b` pushed to `origin/main`; its two parents are the exact prior main and reviewed artifact subjects.
+- Exact ticket ref: `origin/codex/voice-runtime-qualified-recovery` remains `ec0f726...` for subsequent API/E2E dispatch.
+- Local check: 46/46 focused release-pipeline tests passed after declared npm dependency installation; no profile, provider, inference, corpus, or performance suite ran.
+- Invalid first attempt: retained and explicitly excluded because missing `ajv` plus a shell-wrapper defect produced an untrustworthy Pass footer despite the module error.
+- Remote registration: default branch `main`; promotion workflow `330372978` active; recovery workflow `330372979` active.
+- Evidence: `delivery-default-main-bootstrap-SHA256SUMS.txt` verifies the corrected check, invalid-attempt log, and registration log.
+- Docs sync: explicit no additional long-lived prose impact; reviewed workflows plus `release-pipeline-ownership.md` are authoritative.
+- Release disposition: no recovery/promotion dispatch, archive build, tag, GitHub Release, catalog, asset, publication, or published-byte verification occurred.
+- Next action: cumulative package routed to `api_e2e_engineer` for real managed recovery and hosted promotion. Delivery must not resume publication until that stage passes and returns through the required review route.
