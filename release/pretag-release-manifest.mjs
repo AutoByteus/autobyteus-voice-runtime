@@ -15,15 +15,22 @@ import {
   providerArchiveSetDigest,
   verifyExactProviderArchiveSet,
 } from "./provider-archive-set.mjs";
+import { verifyQualifiedCandidate } from "./qualified-release-candidate.mjs";
 
 export async function assemblePreTagReleaseManifest({
-  qualificationSetPath,
+  candidate,
   releaseEvidencePath,
   catalogPath,
-  assets,
   output,
 }) {
-  const qset = await readJson(qualificationSetPath),
+  const candidateRoot = path.resolve(candidate),
+    candidateManifest = await verifyQualifiedCandidate(candidateRoot),
+    qualificationSetPath = path.join(
+      candidateRoot,
+      "qualification-set-v2.json",
+    ),
+    assets = path.join(candidateRoot, "assets"),
+    qset = await readJson(qualificationSetPath),
     evidence = await readJson(releaseEvidencePath),
     catalog = await readJson(catalogPath);
   await validate(
@@ -44,8 +51,14 @@ export async function assemblePreTagReleaseManifest({
   if (
     evidence.qualificationSet.sha256 !==
       (await shaFile(qualificationSetPath)) ||
+    evidence.qualifiedCandidate.sha256 !==
+      (await shaFile(
+        path.join(candidateRoot, "qualified-release-candidate-v1.json"),
+      )) ||
+    candidateManifest.decision !== "promoted" ||
     catalog.releaseEvidence.sha256 !== (await shaFile(releaseEvidencePath)) ||
-    catalog.sourceCommit !== qset.sourceCommit ||
+    catalog.sourceCommit !== evidence.sourceCommit ||
+    evidence.qualifiedSourceCommit !== qset.sourceCommit ||
     catalog.runtimeVersion !== evidence.intendedRelease.runtimeVersion ||
     catalog.releaseTag !== evidence.intendedRelease.releaseTag ||
     catalog.releaseMatrix.sha256 !== qset.releaseMatrix.sha256 ||
@@ -112,17 +125,15 @@ async function validate(value, schemaPath, label) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
-    "qualification-set",
+    "candidate",
     "release-evidence",
     "catalog",
-    "assets",
     "output",
   ]);
   await assemblePreTagReleaseManifest({
-    qualificationSetPath: path.resolve(args["qualification-set"]),
+    candidate: path.resolve(args.candidate),
     releaseEvidencePath: path.resolve(args["release-evidence"]),
     catalogPath: path.resolve(args.catalog),
-    assets: path.resolve(args.assets),
     output: path.resolve(args.output),
   });
 }

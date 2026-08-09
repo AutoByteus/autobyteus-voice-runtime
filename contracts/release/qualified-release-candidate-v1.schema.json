@@ -1,0 +1,661 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.org/contracts/release/qualified-release-candidate-v1.schema.json",
+  "title": "Qualified Release Candidate Bundle 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "repository",
+    "packageVersion",
+    "decision",
+    "archiveRecovery",
+    "preliminarySourceAdmission",
+    "profileQualificationAuthority",
+    "aggregateAuthority",
+    "releaseMatrix",
+    "qualificationSet",
+    "branchProjection",
+    "branchProjectionVerification",
+    "apiEvidenceManifests",
+    "providerArchives",
+    "sourceClosures",
+    "promotion"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "artifactKind": {
+      "const": "qualified-release-candidate"
+    },
+    "repository": {
+      "const": "AutoByteus/autobyteus-voice-runtime"
+    },
+    "packageVersion": {
+      "const": "1.0.0"
+    },
+    "decision": {
+      "const": "promoted"
+    },
+    "archiveRecovery": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "evidenceManifest", "rawEvidence", "workflow"],
+      "properties": {
+        "result": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["fileName", "sizeBytes", "sha256", "decision"],
+          "properties": {
+            "fileName": {
+              "const": "recovery/qualified-archive-recovery-result-v1.json"
+            },
+            "sizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "$ref": "#/$defs/digest"
+            },
+            "decision": {
+              "const": "pass"
+            }
+          }
+        },
+        "evidenceManifest": {
+          "$ref": "#/$defs/recoveryManifest"
+        },
+        "rawEvidence": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sha256", "items"],
+          "properties": {
+            "sha256": {
+              "$ref": "#/$defs/digest"
+            },
+            "items": {
+              "type": "array",
+              "minItems": 8,
+              "maxItems": 8,
+              "prefixItems": [
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/fileIdentity"
+                    },
+                    {
+                      "properties": {
+                        "fileName": {
+                          "const": "recovery/chinese-build.log"
+                        }
+                      },
+                      "required": ["fileName"],
+                      "type": "object"
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/fileIdentity"
+                    },
+                    {
+                      "properties": {
+                        "fileName": {
+                          "const": "recovery/chinese-profile-recovery-v1.json"
+                        }
+                      },
+                      "required": ["fileName"],
+                      "type": "object"
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/fileIdentity"
+                    },
+                    {
+                      "properties": {
+                        "fileName": {
+                          "const": "recovery/english-build.log"
+                        }
+                      },
+                      "required": ["fileName"],
+                      "type": "object"
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/fileIdentity"
+                    },
+                    {
+                      "properties": {
+                        "fileName": {
+                          "const": "recovery/english-profile-recovery-v1.json"
+                        }
+                      },
+                      "required": ["fileName"],
+                      "type": "object"
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/fileIdentity"
+                    },
+                    {
+                      "properties": {
+                        "fileName": {
+                          "const": "recovery/network-denial-v1.json"
+                        }
+                      },
+                      "required": ["fileName"],
+                      "type": "object"
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/fileIdentity"
+                    },
+                    {
+                      "properties": {
+                        "fileName": {
+                          "const": "recovery/qualified-source-checkout-v1.json"
+                        }
+                      },
+                      "required": ["fileName"],
+                      "type": "object"
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/fileIdentity"
+                    },
+                    {
+                      "properties": {
+                        "fileName": {
+                          "const": "recovery/recovery-run-v1.json"
+                        }
+                      },
+                      "required": ["fileName"],
+                      "type": "object"
+                    }
+                  ]
+                },
+                {
+                  "allOf": [
+                    {
+                      "$ref": "#/$defs/fileIdentity"
+                    },
+                    {
+                      "properties": {
+                        "fileName": {
+                          "const": "recovery/runner-environment-v1.json"
+                        }
+                      },
+                      "required": ["fileName"],
+                      "type": "object"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "workflow": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "path",
+            "runId",
+            "headSha",
+            "artifactId",
+            "artifactName"
+          ],
+          "properties": {
+            "path": {
+              "const": ".github/workflows/recover-qualified-voice-archives.yml"
+            },
+            "runId": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "headSha": {
+              "$ref": "#/$defs/commit"
+            },
+            "artifactId": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "artifactName": {
+              "type": "string",
+              "pattern": "^qualified-archive-recovery-v1\\.0\\.0-[1-9][0-9]*$"
+            }
+          }
+        }
+      }
+    },
+    "releaseMatrix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["matrixId", "sha256"],
+      "properties": {
+        "matrixId": {
+          "const": "voice-runtime-darwin-arm64-v1"
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "qualificationSet": {
+      "$ref": "#/$defs/fileIdentity"
+    },
+    "branchProjection": {
+      "$ref": "#/$defs/fileIdentity"
+    },
+    "branchProjectionVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256", "decision"],
+      "properties": {
+        "fileName": {
+          "const": "branch-catalog-projection-verification-v2.json"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "decision": {
+          "const": "pass"
+        }
+      }
+    },
+    "apiEvidenceManifests": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "prefixItems": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["apiRevision", "fileName", "sizeBytes", "sha256"],
+          "properties": {
+            "apiRevision": {
+              "const": "API-REV-016"
+            },
+            "fileName": {
+              "const": "api-evidence/api-rev-016-SHA256SUMS.txt"
+            },
+            "sizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "$ref": "#/$defs/digest"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["apiRevision", "fileName", "sizeBytes", "sha256"],
+          "properties": {
+            "apiRevision": {
+              "const": "API-REV-017"
+            },
+            "fileName": {
+              "const": "api-evidence/api-rev-017-SHA256SUMS.txt"
+            },
+            "sizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "$ref": "#/$defs/digest"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["apiRevision", "fileName", "sizeBytes", "sha256"],
+          "properties": {
+            "apiRevision": {
+              "const": "API-REV-018"
+            },
+            "fileName": {
+              "const": "api-evidence/api-rev-018-SHA256SUMS.txt"
+            },
+            "sizeBytes": {
+              "type": "integer",
+              "minimum": 1
+            },
+            "sha256": {
+              "$ref": "#/$defs/digest"
+            }
+          }
+        }
+      ]
+    },
+    "providerArchives": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sha256", "items"],
+      "properties": {
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "items": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/fileIdentity"
+                },
+                {
+                  "properties": {
+                    "fileName": {
+                      "const": "voice-chinese-darwin-arm64-1.0.0.zip"
+                    }
+                  },
+                  "required": ["fileName"],
+                  "type": "object"
+                }
+              ]
+            },
+            {
+              "allOf": [
+                {
+                  "$ref": "#/$defs/fileIdentity"
+                },
+                {
+                  "properties": {
+                    "fileName": {
+                      "const": "voice-english-darwin-arm64-1.0.0.zip"
+                    }
+                  },
+                  "required": ["fileName"],
+                  "type": "object"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "sourceClosures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile", "qualificationAuthority"],
+      "properties": {
+        "profile": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/closure"
+            },
+            {
+              "properties": {
+                "closureId": {
+                  "const": "profile-closure-v1"
+                }
+              },
+              "required": ["closureId"],
+              "type": "object"
+            }
+          ]
+        },
+        "qualificationAuthority": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/closure"
+            },
+            {
+              "properties": {
+                "closureId": {
+                  "const": "qualification-authority-closure-v1"
+                }
+              },
+              "required": ["closureId"],
+              "type": "object"
+            }
+          ]
+        }
+      }
+    },
+    "promotion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["approvalCommit", "workflowPath", "workflowSha256"],
+      "properties": {
+        "workflowPath": {
+          "const": ".github/workflows/promote-qualified-voice-candidate.yml"
+        },
+        "workflowSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "approvalCommit": {
+          "$ref": "#/$defs/commit"
+        }
+      }
+    },
+    "preliminarySourceAdmission": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "fileName",
+        "jsonPointer",
+        "canonicalSha256",
+        "policy",
+        "acceptedAuthorityCommit",
+        "reviewedControllerCommit",
+        "decision"
+      ],
+      "properties": {
+        "fileName": {
+          "const": "recovery/recovery-run-v1.json"
+        },
+        "jsonPointer": {
+          "const": "/preliminarySourceAdmission"
+        },
+        "canonicalSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "policy": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["policyId", "fileName", "sha256"],
+          "properties": {
+            "policyId": {
+              "const": "voice-runtime-relevant-source-closure-v1"
+            },
+            "fileName": {
+              "const": "contracts/release/relevant-source-closure-v1.json"
+            },
+            "sha256": {
+              "$ref": "#/$defs/digest"
+            }
+          }
+        },
+        "acceptedAuthorityCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "reviewedControllerCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "decision": {
+          "const": "reuse-permitted"
+        }
+      }
+    },
+    "profileQualificationAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "sourceCommit",
+        "runnerCommit",
+        "testCommit",
+        "apiApprovalCommit",
+        "apiRevision",
+        "apiDecision"
+      ],
+      "properties": {
+        "sourceCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "runnerCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "testCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "apiApprovalCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "apiRevision": {
+          "const": "API-REV-017"
+        },
+        "apiDecision": {
+          "const": "pass"
+        }
+      }
+    },
+    "aggregateAuthority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "recordPath",
+        "recordCommit",
+        "gitBlobSha256",
+        "canonicalContentSha256",
+        "apiRevision",
+        "decision",
+        "testedCommit",
+        "qualificationAuthority"
+      ],
+      "properties": {
+        "recordPath": {
+          "const": "release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json"
+        },
+        "recordCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "gitBlobSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "canonicalContentSha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "apiRevision": {
+          "type": "string",
+          "pattern": "^API-REV-[0-9]{3,}$"
+        },
+        "decision": {
+          "const": "pass"
+        },
+        "testedCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "qualificationAuthority": {
+          "allOf": [
+            {
+              "$ref": "#/$defs/closure"
+            },
+            {
+              "type": "object",
+              "properties": {
+                "closureId": {
+                  "const": "qualification-authority-closure-v1"
+                }
+              },
+              "required": ["closureId"]
+            }
+          ]
+        }
+      }
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "fileIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 256
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "recoveryManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256", "entryCount", "coverage"],
+      "properties": {
+        "fileName": {
+          "const": "recovery/recovery-evidence-SHA256SUMS.txt"
+        },
+        "sizeBytes": {
+          "const": 807
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "entryCount": {
+          "const": 8
+        },
+        "coverage": {
+          "const": "raw-recovery-evidence-only"
+        }
+      }
+    },
+    "closure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["closureId", "inventorySha256", "treeSha256"],
+      "properties": {
+        "closureId": {
+          "enum": ["profile-closure-v1", "qualification-authority-closure-v1"]
+        },
+        "inventorySha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "treeSha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    }
+  }
+}

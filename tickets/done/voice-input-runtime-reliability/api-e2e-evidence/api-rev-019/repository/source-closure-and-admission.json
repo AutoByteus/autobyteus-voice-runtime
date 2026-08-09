@@ -1,0 +1,42 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-015",
+  "decision": "pass",
+  "reviewedSourceCommit": "50b7e778c5c8b783f3089803b71636ea7fb2a513",
+  "implementationArtifactHead": "850dd5f8d34996793f5a27672933684e508c8429",
+  "policy": {
+    "policyId": "voice-runtime-relevant-source-closure-v1",
+    "fileName": "contracts/release/relevant-source-closure-v1.json",
+    "sha256": "ab16bdd5eb5bc68dd61d1be82cb66fb204fb47b26c415677b814039252e3b49a"
+  },
+  "currentPreliminaryDecision": "aggregate-api-renewal-required",
+  "acceptedAuthorityCommit": "b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e",
+  "profileClosureUnchanged": true,
+  "qualificationAuthorityClosureChanged": true,
+  "acceptedClosures": {
+    "profile": {
+      "closureId": "profile-closure-v1",
+      "inventorySha256": "74786fae1a642edf808c3d3692b0dd41e3e473c055321e504506300c444f6fb1",
+      "treeSha256": "dcbdf08695be438258d53129d586804578f22ce2b38d3f1932c8d05b2d6e0c1e"
+    },
+    "qualificationAuthority": {
+      "closureId": "qualification-authority-closure-v1",
+      "inventorySha256": "3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8",
+      "treeSha256": "448c69d6216b9b35e09fa4622bf9f279bd250a7bf88d07ebb3f456ef172a31a1"
+    }
+  },
+  "reviewedClosures": {
+    "profile": {
+      "closureId": "profile-closure-v1",
+      "inventorySha256": "74786fae1a642edf808c3d3692b0dd41e3e473c055321e504506300c444f6fb1",
+      "treeSha256": "dcbdf08695be438258d53129d586804578f22ce2b38d3f1932c8d05b2d6e0c1e"
+    },
+    "qualificationAuthority": {
+      "closureId": "qualification-authority-closure-v1",
+      "inventorySha256": "3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8",
+      "treeSha256": "d1272eeae982173114c7dc67b62ff4876d8a2e101d2fa0ffd2fdc5c57526d1b5"
+    }
+  },
+  "changedPathsCount": 69,
+  "changedPathsSha256": "a0a0c44dcb95732e66a8a6b0aa3f4b4589095f5bec38476c027fb377f066c883"
+}

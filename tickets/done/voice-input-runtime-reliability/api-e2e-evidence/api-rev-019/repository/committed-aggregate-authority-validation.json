@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-015",
+  "phase": "postcommit-real-git",
+  "decision": "pass",
+  "recordCommit": "448517cee89e6498c551bcc70aba65ec0bedf97e",
+  "recordParent": "baf1e33f54446d2d1161afd38b88111e4086b76c",
+  "recordReference": {
+    "recordPath": "release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json",
+    "recordCommit": "448517cee89e6498c551bcc70aba65ec0bedf97e",
+    "gitBlobSha256": "9effd01c4a77f46f16b6debef3e9c30a5b4ac208349fef8f1cdd02969ef931d6",
+    "canonicalContentSha256": "92628e2c499afeb91139c7c1374e92d096fbbd97b6600a83334af37bc135c55a",
+    "apiRevision": "API-REV-019",
+    "decision": "pass",
+    "testedCommit": "50b7e778c5c8b783f3089803b71636ea7fb2a513",
+    "qualificationAuthority": {
+      "closureId": "qualification-authority-closure-v1",
+      "inventorySha256": "3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8",
+      "treeSha256": "d1272eeae982173114c7dc67b62ff4876d8a2e101d2fa0ffd2fdc5c57526d1b5"
+    }
+  },
+  "report": {
+    "repositoryPath": "tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md",
+    "sizeBytes": 14353,
+    "contentSha256": "d78e73ed0c364a8df4dfc29154a732456021b1c6ddeaa51fb10b84984101ce4d",
+    "gitBlobSha256": "b31f6493c848e60a11a754b8e2c022b386fe63c8fa143edeec159d9ece74f36a",
+    "uniqueCurrentSubjectProjection": true
+  },
+  "reviewedSourceIsAncestorOfTest": true,
+  "currentPreliminaryDecision": "aggregate-api-renewal-required",
+  "profileExecutionCount": 0,
+  "closures": {
+    "profile": {
+      "closureId": "profile-closure-v1",
+      "inventorySha256": "74786fae1a642edf808c3d3692b0dd41e3e473c055321e504506300c444f6fb1",
+      "treeSha256": "dcbdf08695be438258d53129d586804578f22ce2b38d3f1932c8d05b2d6e0c1e"
+    },
+    "qualificationAuthority": {
+      "closureId": "qualification-authority-closure-v1",
+      "inventorySha256": "3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8",
+      "treeSha256": "d1272eeae982173114c7dc67b62ff4876d8a2e101d2fa0ffd2fdc5c57526d1b5"
+    }
+  },
+  "retainedProfiles": [
+    {
+      "profileId": "english",
+      "profileEvidence": {
+        "fileName": "qualification-summary-v2.json",
+        "sizeBytes": 15377,
+        "sha256": "6df8c85e6b5a4e0aa1b52ffb7cce1e5c8b58cd9ff219717df0d3bdf0334954de"
+      },
+      "archive": {
+        "fileName": "voice-english-darwin-arm64-1.0.0.zip",
+        "sizeBytes": 645513268,
+        "sha256": "9e4d1d5981ba9389f63bdf98094078a6152fbac05ff42d52c287138baafa46f8"
+      }
+    },
+    {
+      "profileId": "chinese",
+      "profileEvidence": {
+        "fileName": "qualification-summary-v2.json",
+        "sizeBytes": 16037,
+        "sha256": "3d9fae0627516e21496d6a87e1fcc4922a876ebe1e55208449efdeba402c511a"
+      },
+      "archive": {
+        "fileName": "voice-chinese-darwin-arm64-1.0.0.zip",
+        "sizeBytes": 1068528640,
+        "sha256": "84783c61b8a08e0e0848a4906139210868cf552ee0104d5179be7144be432cc3"
+      }
+    }
+  ],
+  "aggregateEvidence": {
+    "qualificationSet": {
+      "fileName": "qualification-set-v2.json",
+      "sizeBytes": 15025,
+      "sha256": "c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003"
+    },
+    "branchProjection": {
+      "fileName": "branch-catalog-projection-v2.json",
+      "sizeBytes": 5194,
+      "sha256": "bcc3b1c2f3afc42fa0861adcdd3558ad0779ecf7f3c77c370501679a50bbeddd"
+    },
+    "branchProjectionVerification": {
+      "fileName": "branch-catalog-projection-verification-v2.json",
+      "sizeBytes": 441,
+      "sha256": "a78c59fa085a95a6af28cdd3adc6065f87c216caceb304f6edcf034cd5e96c27"
+    }
+  },
+  "recoveryAuthorized": false,
+  "nextRequiredTransition": "separate reviewed policy/controller commit and exact reuse-permitted preliminary admission"
+}

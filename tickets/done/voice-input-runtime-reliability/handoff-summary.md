@@ -2,18 +2,33 @@
 
 ## Status
 
-- Delivery status: **v1.0.0 release blocked by user-directed pipeline ownership redesign; heavy retry cancelled and no release exists**.
+- Delivery status: **zero-profile Aggregate API Renewal passed and is preserved; recovery and v1.0.0 release remain unauthorized**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
-- Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability-postarchive-fix`
-- Ticket branch: `codex/voice-input-runtime-reliability-postarchive-fix`
+- Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
+- Ticket branch: `codex/voice-runtime-qualified-recovery`
 - Recorded finalization target: `origin/main` / local `main`
 - Bootstrap source baseline: `251eab80a1cfd6a6d4c4d2a1fdbe1c06c3923dde` (`v0.3.0`)
-- Latest tracked base: `origin/main @ 5531e83421dce859f9934c16e006c34cf5291cde`
+- Latest tracked base: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`
 - Reviewed API/E2E artifact HEAD: `5333d1d00c31fc9fe6fe2dcfe86219e2b894bebe`
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
 - Finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Aggregate API Renewal Stage Gate
+
+- `git fetch origin --prune`: **Pass**, 2026-08-08.
+- Integration: **Already current**. `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70` is the merge base/ancestor of candidate `502848c5906b2ba033a737f06ee6a5930495b85f`; left/right `0 / 13`.
+- Reviewed source: `50b7e778c5c8b783f3089803b71636ea7fb2a513`; reviewed tests: `baf1e33f54446d2d1161afd38b88111e4086b76c`.
+- Exact renewal record commit: `448517cee89e6498c551bcc70aba65ec0bedf97e`.
+- Reviews: CRR-044 **Pass**; API-REV-019 **Pass / 99%**; CRR-045 **Not Applicable**, no durable API/E2E test change.
+- Delivery check: **Pass / stage gate only** — 46/46 focused release-pipeline tests, all API-REV-019 checksums, and record/source/test ancestry passed.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-aggregate-renewal-gate-check.log` (SHA-256 `01381537c8daea3a8edc3b964659025156aaed832839b56ffbadb28c881e04c9`).
+- Qualification scope: zero profile executions; no provider, inference, corpus, or performance qualification was repeated.
+- Current Preliminary Source Admission: exactly `aggregate-api-renewal-required`.
+- Authorization: **No recovery, promotion, merge to maintained main, tag, publication, or release**.
+- Required next transition: a separate Implementation round must accept exact record commit `448517c...`, independently recompute `reuse-permitted`, and pass Source Review before managed archive recovery starts.
+- Docs decision: explicit no long-lived product-doc update for this stage; `release-pipeline-ownership.md` remains authoritative.
 
 ## Post-Archive Correction Refresh
 

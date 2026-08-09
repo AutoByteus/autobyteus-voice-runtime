@@ -11,34 +11,45 @@ import {
   shaFile,
   writeJson,
 } from "../build/lib/files.mjs";
+import { verifyQualifiedCandidate } from "./qualified-release-candidate.mjs";
+import { verifyCandidateApplicability } from "./assess-qualified-candidate.mjs";
 import { assemblePreTagReleaseManifest } from "./pretag-release-manifest.mjs";
-import { assertIntegratedReleaseCommit } from "./evidence/main-reachability.mjs";
 import { assembleReleaseEvidence } from "./evidence/assemble.mjs";
 import { buildReleaseCatalog } from "./catalog-builder.mjs";
 
 const run = promisify(execFile);
 
 export async function qualifyRelease({
+  candidate,
+  promotionRecord,
+  applicability,
   manifestPath,
-  qualificationSetPath,
   releaseEvidencePath,
   catalogPath,
-  assets,
   maintainedMainCommit,
   output,
 }) {
-  const manifest = await readJson(manifestPath),
+  const candidateRoot = path.resolve(candidate),
+    candidateManifest = await verifyQualifiedCandidate(candidateRoot),
+    applicabilityValue = await verifyCandidateApplicability({
+      candidate: candidateRoot,
+      promotionRecord,
+      applicability,
+      finalMainCommit: maintainedMainCommit,
+    }),
+    manifest = await readJson(manifestPath),
     evidence = await readJson(releaseEvidencePath);
   if (
-    evidence.mainReachability.maintainedMainCommit !== maintainedMainCommit ||
-    manifest.intendedRelease.sourceCommit !== evidence.sourceCommit
+    candidateManifest.decision !== "promoted" ||
+    applicabilityValue.decision !== "reuse-permitted" ||
+    evidence.sourceCommit !== maintainedMainCommit ||
+    evidence.sourceClosure.applicability.sha256 !==
+      (await shaFile(applicability)) ||
+    evidence.candidatePromotionRecord.sha256 !==
+      (await shaFile(promotionRecord)) ||
+    manifest.intendedRelease.sourceCommit !== maintainedMainCommit
   )
-    throw new Error("Pre-tag maintained-main identity mismatch.");
-  await assertIntegratedReleaseCommit({
-    repository: ROOT,
-    releaseCommit: manifest.intendedRelease.sourceCommit,
-    maintainedMainCommit,
-  });
+    throw new Error("Pre-tag candidate/final-main identity mismatch.");
   await assertTagAbsent(manifest.intendedRelease.releaseTag);
   const work = await fs.mkdtemp(path.join(os.tmpdir(), "voice-pretag-verify-"));
   try {
@@ -47,7 +58,7 @@ export async function qualifyRelease({
         "release-qualification-evidence-v2.json",
       ),
       expectedCatalog = path.join(work, "voice-runtime-catalog-v3.json"),
-      expected = path.join(work, "pretag-release-manifest-v2.json"),
+      expectedManifest = path.join(work, "pretag-release-manifest-v2.json"),
       catalog = await readJson(catalogPath),
       firstEntry = catalog.entries?.[0],
       suffix = `/${catalog.releaseTag}/${firstEntry?.archive?.fileName}`;
@@ -57,59 +68,54 @@ export async function qualifyRelease({
       );
     const baseUrl = firstEntry.archive.url.slice(0, -suffix.length);
     await assembleReleaseEvidence({
-      qualificationSetPath,
-      assets,
+      candidate: candidateRoot,
+      promotionRecord,
+      applicability,
       runtimeVersion: catalog.runtimeVersion,
       releaseTag: catalog.releaseTag,
       maintainedMainCommit,
       output: expectedEvidence,
     });
-    if (
-      !Buffer.from(await fs.readFile(releaseEvidencePath)).equals(
-        await fs.readFile(expectedEvidence),
-      )
-    )
-      throw new Error(
-        "Release Evidence does not match independent recomputation.",
-      );
+    assertBytesEqual(
+      await fs.readFile(releaseEvidencePath),
+      await fs.readFile(expectedEvidence),
+      "Release Evidence",
+    );
     await buildReleaseCatalog({
-      qualificationSetPath,
+      candidate: candidateRoot,
       releaseEvidencePath,
       releaseTag: catalog.releaseTag,
       baseUrl,
       output: expectedCatalog,
     });
-    if (
-      !Buffer.from(await fs.readFile(catalogPath)).equals(
-        await fs.readFile(expectedCatalog),
-      )
-    )
-      throw new Error("Catalog 3 does not match independent recomputation.");
+    assertBytesEqual(
+      await fs.readFile(catalogPath),
+      await fs.readFile(expectedCatalog),
+      "Catalog 3",
+    );
     await assemblePreTagReleaseManifest({
-      qualificationSetPath,
+      candidate: candidateRoot,
       releaseEvidencePath,
       catalogPath,
-      assets,
-      output: expected,
+      output: expectedManifest,
     });
-    if (
-      !Buffer.from(await fs.readFile(manifestPath)).equals(
-        await fs.readFile(expected),
-      )
-    )
-      throw new Error(
-        "Pre-Tag Manifest does not match independent recomputation.",
-      );
+    assertBytesEqual(
+      await fs.readFile(manifestPath),
+      await fs.readFile(expectedManifest),
+      "Pre-Tag Manifest",
+    );
   } finally {
     await fs.rm(work, { recursive: true, force: true });
   }
   const proof = {
     schemaVersion: 1,
     decision: "qualified-pre-tag",
-    sourceCommit: manifest.intendedRelease.sourceCommit,
+    sourceCommit: maintainedMainCommit,
+    candidateManifestSha256: evidence.qualifiedCandidate.sha256,
+    applicabilitySha256: evidence.sourceClosure.applicability.sha256,
     releaseTag: manifest.intendedRelease.releaseTag,
     releaseMatrixSha256: manifest.releaseMatrix.sha256,
-    qualificationSetSha256: await shaFile(qualificationSetPath),
+    qualificationSetSha256: evidence.qualificationSet.sha256,
     releaseEvidenceSha256: await shaFile(releaseEvidencePath),
     catalogSha256: await shaFile(catalogPath),
     preTagReleaseManifestSha256: await shaFile(manifestPath),
@@ -118,6 +124,11 @@ export async function qualifyRelease({
   };
   await writeJson(path.resolve(output), proof);
   return proof;
+}
+
+function assertBytesEqual(observed, expected, label) {
+  if (!Buffer.from(observed).equals(expected))
+    throw new Error(`${label} does not match independent recomputation.`);
 }
 
 async function assertTagAbsent(tag) {
@@ -133,21 +144,23 @@ async function assertTagAbsent(tag) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
+    "candidate",
+    "promotion-record",
+    "applicability",
     "manifest",
-    "qualification-set",
     "release-evidence",
     "catalog",
-    "assets",
     "maintained-main-commit",
     "output",
   ]);
   await qualifyRelease({
-    manifestPath: path.resolve(args.manifest),
-    qualificationSetPath: path.resolve(args["qualification-set"]),
-    releaseEvidencePath: path.resolve(args["release-evidence"]),
-    catalogPath: path.resolve(args.catalog),
-    assets: path.resolve(args.assets),
+    candidate: args.candidate,
+    promotionRecord: args["promotion-record"],
+    applicability: args.applicability,
+    manifestPath: args.manifest,
+    releaseEvidencePath: args["release-evidence"],
+    catalogPath: args.catalog,
     maintainedMainCommit: args["maintained-main-commit"],
-    output: path.resolve(args.output),
+    output: args.output,
   });
 }

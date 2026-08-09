@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.org/contracts/release/release-candidate-applicability-v1.schema.json",
+  "title": "Release Candidate Applicability 1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "repository",
+    "candidateManifest",
+    "promotionRecord",
+    "approvalCommit",
+    "finalMainCommit",
+    "approvalReachable",
+    "policy",
+    "closures",
+    "changedPaths",
+    "changedPathsSha256",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 1
+    },
+    "artifactKind": {
+      "const": "release-candidate-applicability"
+    },
+    "repository": {
+      "const": "AutoByteus/autobyteus-voice-runtime"
+    },
+    "candidateManifest": {
+      "$ref": "#/$defs/fileIdentity"
+    },
+    "promotionRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "v1.0.0.json"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "approvalCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "finalMainCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "approvalReachable": {
+      "type": "boolean"
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "fileName", "sha256"],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-relevant-source-closure-v1"
+        },
+        "fileName": {
+          "const": "relevant-source-closure-v1.json"
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "closures": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile", "qualificationAuthority"],
+      "properties": {
+        "profile": {
+          "$ref": "#/$defs/closureComparison"
+        },
+        "qualificationAuthority": {
+          "$ref": "#/$defs/closureComparison"
+        }
+      }
+    },
+    "changedPaths": {
+      "type": "array",
+      "items": {
+        "oneOf": [
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status", "path", "category"],
+            "properties": {
+              "status": {
+                "enum": ["A", "D", "M"]
+              },
+              "path": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "category": {
+                "enum": [
+                  "profile-qualification-required",
+                  "aggregate-api-renewal-required",
+                  "release-pipeline-only",
+                  "documentation-or-record-only",
+                  "api-impact-review-required"
+                ]
+              }
+            }
+          },
+          {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["status", "oldPath", "newPath", "category"],
+            "properties": {
+              "status": {
+                "const": "R"
+              },
+              "oldPath": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "newPath": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 512
+              },
+              "category": {
+                "enum": [
+                  "profile-qualification-required",
+                  "aggregate-api-renewal-required",
+                  "release-pipeline-only",
+                  "documentation-or-record-only",
+                  "api-impact-review-required"
+                ]
+              }
+            }
+          }
+        ]
+      }
+    },
+    "decision": {
+      "enum": [
+        "reuse-permitted",
+        "aggregate-api-renewal-required",
+        "profile-qualification-required",
+        "api-impact-review-required"
+      ]
+    },
+    "changedPathsSha256": {
+      "$ref": "#/$defs/digest"
+    }
+  },
+  "$defs": {
+    "digest": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "fileIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "const": "qualified-release-candidate-v1.json"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "closure": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["closureId", "inventorySha256", "treeSha256"],
+      "properties": {
+        "closureId": {
+          "enum": ["profile-closure-v1", "qualification-authority-closure-v1"]
+        },
+        "inventorySha256": {
+          "$ref": "#/$defs/digest"
+        },
+        "treeSha256": {
+          "$ref": "#/$defs/digest"
+        }
+      }
+    },
+    "closureComparison": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["accepted", "finalMain", "unchanged"],
+      "properties": {
+        "accepted": {
+          "$ref": "#/$defs/closure"
+        },
+        "finalMain": {
+          "$ref": "#/$defs/closure"
+        },
+        "unchanged": {
+          "type": "boolean"
+        }
+      }
+    }
+  }
+}

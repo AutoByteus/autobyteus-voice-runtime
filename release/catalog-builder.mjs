@@ -14,9 +14,10 @@ import {
   matrixEntryKey,
 } from "./current-release-matrix.mjs";
 import { composeCatalogEntryIdentity } from "./catalog-entry-identity.mjs";
+import { verifyQualifiedCandidate } from "./qualified-release-candidate.mjs";
 
 export async function buildReleaseCatalog({
-  qualificationSetPath,
+  candidate,
   releaseEvidencePath,
   releaseTag,
   baseUrl,
@@ -27,7 +28,13 @@ export async function buildReleaseCatalog({
     !/^https:\/\/[A-Za-z0-9._~:/?#\[\]@!$&'()*+,;=%-]+$/.test(baseUrl)
   )
     throw new Error("Invalid catalog release distribution identity.");
-  const qset = await readJson(qualificationSetPath),
+  const candidateRoot = path.resolve(candidate),
+    candidateManifest = await verifyQualifiedCandidate(candidateRoot),
+    qualificationSetPath = path.join(
+      candidateRoot,
+      "qualification-set-v2.json",
+    ),
+    qset = await readJson(qualificationSetPath),
     evidence = await readJson(releaseEvidencePath),
     matrix = await loadCurrentReleaseMatrix();
   await validate(
@@ -48,9 +55,14 @@ export async function buildReleaseCatalog({
     evidence.performanceAssessment !== qset.performanceAssessment ||
     evidence.qualificationSet.sha256 !==
       (await shaFile(qualificationSetPath)) ||
+    evidence.qualifiedCandidate.sha256 !==
+      (await shaFile(
+        path.join(candidateRoot, "qualified-release-candidate-v1.json"),
+      )) ||
+    candidateManifest.decision !== "promoted" ||
     evidence.intendedRelease.releaseTag !== releaseTag ||
     evidence.intendedRelease.runtimeVersion !== qset.packageVersion ||
-    evidence.sourceCommit !== qset.sourceCommit ||
+    evidence.qualifiedSourceCommit !== qset.sourceCommit ||
     evidence.releaseMatrix.sha256 !== matrix.sha256 ||
     JSON.stringify(evidence.profileResourcePolicy) !==
       JSON.stringify(qset.profileResourcePolicy) ||
@@ -92,7 +104,7 @@ export async function buildReleaseCatalog({
     schemaVersion: 3,
     runtimeId: "voice-input",
     runtimeVersion: qset.packageVersion,
-    sourceCommit: qset.sourceCommit,
+    sourceCommit: evidence.sourceCommit,
     releaseTag,
     releaseMatrix: qset.releaseMatrix,
     releaseEvidence: {
@@ -119,14 +131,14 @@ async function validate(value, schemaPath, label) {
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
-    "qualification-set",
+    "candidate",
     "release-evidence",
     "release-tag",
     "base-url",
     "output",
   ]);
   await buildReleaseCatalog({
-    qualificationSetPath: path.resolve(args["qualification-set"]),
+    candidate: path.resolve(args.candidate),
     releaseEvidencePath: path.resolve(args["release-evidence"]),
     releaseTag: args["release-tag"],
     baseUrl: args["base-url"],

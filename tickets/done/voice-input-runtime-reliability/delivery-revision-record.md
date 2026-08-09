@@ -9,6 +9,7 @@
 | `DR-003`    | Finalized-main v1.0.0 prequalification run `30881048872`                               | `DR-002 — Pass / release authorized`    | `Blocked — repository finalization passed; prequalification failed closed on two archived-ticket evidence paths in durable tests; no tag or release created`  | `delivery-evidence/prequalify-30881048872/`, `handoff-summary.md`, `release-deployment-report.md`                                              |
 | `DR-004`    | `code_reviewer` handoff after IR-025, CRR-039, API-REV-018, and CRR-040                | `DR-003 — release blocked`              | `Pass — latest main already integrated; archived-fixture correction and review artifacts pass; no long-lived docs impact; guarded release retry ready`        | `delivery-postarchive-integration-check.log`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                      |
 | `DR-005`    | User rejected full performance/profile qualification in the Delivery release pipeline  | `DR-004 — guarded retry ready`          | `Blocked / Design Impact — heavy run cancelled; no release; Solution Designer must redefine minimal CI and accepted-evidence promotion boundary`              | `delivery-evidence/prequalify-30883225852/`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                       |
+| `DR-006`    | `code_reviewer` handoff after CRR-044, API-REV-019, and CRR-045                        | `DR-005 — redesign required`            | `Pass / stage gate only — zero-profile Aggregate API Renewal is preserved and checked; admission remains aggregate-api-renewal-required; no recovery/release` | `delivery-aggregate-renewal-gate-check.log`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                       |
 
 ## Revision Entries
 
@@ -89,3 +90,19 @@
 - Evidence: `delivery-evidence/prequalify-30883225852/`; checksum manifest preserves the run metadata, full log, and disposition.
 - Cleanup: repository self-hosted runner count is zero. Ticket correction worktree/branch and original ticket branch/worktree remain preserved while design/release is blocked.
 - Current result: `Blocked`; maintained `main` contains the reviewed IR-025 correction, but v1.0.0 remains unreleased pending Solution Design and the applicable review/implementation/validation chain.
+
+### DR-006 — Aggregate API Renewal stage gate preserved
+
+- Date: 2026-08-08
+- Trigger: Code Reviewer handed off the qualified-recovery package after CRR-044 source `Pass`, API-REV-019 `Pass / 99%`, and CRR-045 proportional test-code review `Not Applicable` with no findings.
+- Prior authoritative result: `DR-005` — the heavy Delivery qualification workflow was cancelled and the minimal-CI/evidence-promotion boundary required reviewed redesign.
+- Base refresh: `git fetch origin --prune` passed. `origin/main` remained `fd83e8681dfd4e98afdfa46cb691d31400565d70`.
+- Integration: already current. The refreshed base is the merge base and sole main-side history of candidate `502848c5906b2ba033a737f06ee6a5930495b85f`; left/right count `0 / 13`. No merge or rebase was required.
+- Reviewed chain: source `50b7e778c5c8b783f3089803b71636ea7fb2a513`; test commit `baf1e33f54446d2d1161afd38b88111e4086b76c`; exact Aggregate API Renewal record commit `448517cee89e6498c551bcc70aba65ec0bedf97e`; API/E2E evidence candidate `502848c5906b2ba033a737f06ee6a5930495b85f`.
+- Stage-gate validation: `Pass`; the focused release-pipeline check passed 46/46 tests, every API-REV-019 checksum passed, record/source/test ancestry passed, and the independently read current admission remained exactly `aggregate-api-renewal-required`.
+- Evidence: `delivery-aggregate-renewal-gate-check.log`, SHA-256 `01381537c8daea3a8edc3b964659025156aaed832839b56ffbadb28c881e04c9`.
+- Qualification boundary: API-REV-019 executed zero profiles (`profileExecutionCount: 0`). It renewed aggregate authority only and did not repeat provider, inference, corpus, or performance qualification.
+- Documentation impact: `Explicit no long-lived product-doc change at this stage`. `release-pipeline-ownership.md` remains the current reviewed authority; README/release operator guidance must not claim recovery or publication before the separate acceptance transition completes.
+- Authorization boundary: this stage does **not** authorize managed archive recovery, candidate promotion, target-branch merge, tagging, publication, or release. v1.0.0 remains absent.
+- Required next transition: `implementation_engineer` must accept the exact record commit `448517c...` in a separate implementation/controller round and independently recompute Preliminary Source Admission to `reuse-permitted`; that source change must pass Code Review before managed recovery can begin.
+- Current result: `Pass / stage gate only`; preserve this completed zero-profile renewal checkpoint on its ticket branch and route the next reviewed transition without merging or releasing.

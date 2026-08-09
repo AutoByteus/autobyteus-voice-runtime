@@ -1,0 +1,5 @@
+./repository/API-VOICE-015-aggregate-renewal-input-validation.json: OK
+./repository/check-release-pipeline.log: OK
+./repository/retained-authority-validation.log: OK
+./repository/scope-and-diff-check.log: OK
+./repository/source-closure-and-admission.json: OK

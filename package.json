@@ -13,6 +13,7 @@
     "check:python": "python3 -m unittest discover -s tests/providers -p '*_test.py' && python3 -m compileall -q providers",
     "check:go": "node tooling/check-go.mjs",
     "check:evidence": "node tooling/verify-english-preservation.mjs && node tooling/verify-chinese-qualification.mjs",
+    "check:release-pipeline": "node tooling/check-release-pipeline.mjs && node --test tests/release/qualified-archive-recovery.test.mjs tests/release/qualified-release-candidate.test.mjs tests/release/relevant-source-closure.test.mjs tests/release/release-workflow-boundary.test.mjs",
     "check": "npm run check:js && npm run check:python && npm run check:go && npm run check:evidence && npm test",
     "build:package": "node build/package-assembler.mjs",
     "verify:package": "node build/package-verifier.mjs",

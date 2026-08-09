@@ -627,3 +627,32 @@ None.
 - New or remaining API/E2E failure IDs: none.
 - Recommended recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable`, then Delivery.
 - Remaining risks/untested scope: remote prequalification retry and release remain Delivery-owned; performance remains loaded-host observation; x64, Linux, Windows, `auto`, and desktop remain deferred. No v1.0.0 tag, release, or assets exist yet.
+
+### API-REV-019 — Zero-profile Aggregate API Renewal authority is committed
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-044`; API/E2E round 19.
+- Triggering scenario and criteria: `API-VOICE-015`; `R-024`, `AC-026`, `BEH-007`, `BEH-013`; remaining `CR-F-038` was source-resolved before this execution.
+- Related revisions: `SR-018`, `ARCH-REV-019`, `IR-027`, `IR-028`, `IR-029`, `CRR-042`, `CRR-043`, `CRR-044`; prior accepted `API-REV-017` and `API-REV-018`.
+- Reviewed source commit: `50b7e778c5c8b783f3089803b71636ea7fb2a513`.
+- Reviewed test commit: `baf1e33f54446d2d1161afd38b88111e4086b76c`.
+- Why recorded: current source correctly remains `aggregate-api-renewal-required`. The approved focused transition requires one immutable, committed zero-profile Aggregate API Renewal Record binding exact report subjects, unchanged Profile Closure, retained archive/profile evidence, current/prior aggregate identities, and the proposed Qualification Authority closure before a later policy/controller commit can seek `reuse-permitted`.
+- Execution delta:
+  - API-REV-016 and API-REV-017 checksum manifests passed completely.
+  - Exact English/Chinese archives and qualification summaries matched retained size/SHA identities.
+  - Current and prior Qualification Set 2, Branch Catalog Projection 2, and Projection Verification 2 were byte-identical to the accepted API-REV-017 identities.
+  - Production source closure recomputed unchanged Profile Closure and changed Qualification Authority, with current decision exactly `aggregate-api-renewal-required`.
+  - `npm run check:release-pipeline` passed `46/46` with no profile/runtime execution.
+  - The canonical report contains one exact ordered current-subject projection; the strict Aggregate API Renewal Record was committed with that report and later passed independent real-Git schema, hash, lineage, closure, profile, and aggregate validation.
+- Profile execution count: `0`.
+- Durable API/E2E test coverage changes: none. No repository-resident test was added, updated, or removed by API/E2E.
+- Durable non-test authority added: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`.
+- Canonical API artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-019/`
+- Prior result/confidence: `Pass / 99%`.
+- Current result/confidence: **`Pass / 99%`**.
+- New or remaining API/E2E failure IDs: none in the authorized Aggregate API Renewal scope.
+- Recommended recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable` and review of the durable authority record before later policy/controller work.
+- Remaining boundary: this Pass does not authorize archive recovery or candidate promotion. A separate reviewed policy/controller commit must accept the exact record commit and produce a new exact `reuse-permitted` Preliminary Source Admission. Recovery, promotion, tag, release, and publication remain unexecuted and fail closed.

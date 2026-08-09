@@ -1,0 +1,121 @@
+name: Promote exact qualified voice candidate
+on:
+  workflow_dispatch:
+    inputs:
+      recovery_run_id:
+        description: Exact successful recovery workflow run ID
+        required: true
+      recovery_artifact_id:
+        description: Exact immutable recovery artifact ID
+        required: true
+      api_approval_commit:
+        description: Exact reviewed promotion commit
+        required: true
+      aggregate_record_commit:
+        description: Exact commit containing Aggregate API Renewal Record 1
+        required: true
+permissions:
+  contents: read
+  actions: read
+jobs:
+  promote:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with: { fetch-depth: 0 }
+      - name: Validate exact recovery transport
+        id: recovery
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          [[ "${{ inputs.recovery_run_id }}" =~ ^[1-9][0-9]*$ ]]
+          [[ "${{ inputs.recovery_artifact_id }}" =~ ^[1-9][0-9]*$ ]]
+          [[ "${{ inputs.api_approval_commit }}" =~ ^[a-f0-9]{40}$ ]]
+          [[ "${{ inputs.aggregate_record_commit }}" =~ ^[a-f0-9]{40}$ ]]
+          test "${{ inputs.api_approval_commit }}" = "$GITHUB_SHA"
+          RUN=$(gh api "/repos/$GITHUB_REPOSITORY/actions/runs/${{ inputs.recovery_run_id }}")
+          test "$(jq -r .path <<<"$RUN")" = .github/workflows/recover-qualified-voice-archives.yml
+          test "$(jq -r .conclusion <<<"$RUN")" = success
+          ARTIFACT=$(gh api "/repos/$GITHUB_REPOSITORY/actions/artifacts/${{ inputs.recovery_artifact_id }}")
+          test "$(jq -r .workflow_run.id <<<"$ARTIFACT")" = "${{ inputs.recovery_run_id }}"
+          test "$(jq -r .expired <<<"$ARTIFACT")" = false
+          test "$(jq -r .name <<<"$ARTIFACT")" = "qualified-archive-recovery-v1.0.0-${{ inputs.recovery_run_id }}"
+          echo "head_sha=$(jq -r .head_sha <<<"$RUN")" >> "$GITHUB_OUTPUT"
+          echo "artifact_name=$(jq -r .name <<<"$ARTIFACT")" >> "$GITHUB_OUTPUT"
+      - uses: actions/download-artifact@v4
+        with:
+          artifact-ids: ${{ inputs.recovery_artifact_id }}
+          github-token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          run-id: ${{ inputs.recovery_run_id }}
+          path: candidate
+      - name: Assemble and independently verify exact 19-member candidate
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts
+          cp tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/aggregate/qualification-set-v2.json candidate/
+          cp tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/aggregate/branch-catalog-projection-v2.json candidate/
+          cp tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-017/aggregate/branch-catalog-projection-verification-v2.json candidate/
+          mkdir candidate/api-evidence
+          for REV in 016 017 018; do
+            cp "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-$REV/SHA256SUMS.txt" \
+              "candidate/api-evidence/api-rev-$REV-SHA256SUMS.txt"
+          done
+          node --input-type=module - "$GITHUB_WORKSPACE/promotion-input.json" <<'NODE'
+          import fs from 'node:fs';
+          import {execFileSync} from 'node:child_process';
+          import {aggregateAuthorityReference,AGGREGATE_AUTHORITY_PATH} from './release/candidate-authority.mjs';
+          import {PROFILE_QUALIFICATION_API_APPROVAL_COMMIT} from './release/recovery-authority.mjs';
+          const recordCommit='${{ inputs.aggregate_record_commit }}';
+          const bytes=execFileSync('git',['show',`${recordCommit}:${AGGREGATE_AUTHORITY_PATH}`]);
+          const record=JSON.parse(bytes.toString('utf8'));
+          const value={
+            archiveRecoveryWorkflow:{
+              path:'.github/workflows/recover-qualified-voice-archives.yml',
+              runId:Number('${{ inputs.recovery_run_id }}'),
+              headSha:'${{ steps.recovery.outputs.head_sha }}',
+              artifactId:Number('${{ inputs.recovery_artifact_id }}'),
+              artifactName:'${{ steps.recovery.outputs.artifact_name }}'
+            },
+            promotionCommit:process.env.GITHUB_SHA,
+            profileQualificationApiApprovalCommit:PROFILE_QUALIFICATION_API_APPROVAL_COMMIT,
+            aggregateAuthority:aggregateAuthorityReference({record,bytes,recordCommit})
+          };
+          fs.writeFileSync(process.argv[2],`${JSON.stringify(value,null,2)}\n`);
+          NODE
+          node release/qualified-release-candidate.mjs --operation assemble \
+            --candidate candidate --input promotion-input.json
+          node release/qualified-release-candidate.mjs --operation verify \
+            --candidate candidate
+      - name: Upload candidate exactly once
+        id: upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: qualified-release-candidate-v1.0.0-${{ inputs.api_approval_commit }}
+          path: candidate/
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
+      - name: Emit immutable promotion-record input
+        shell: bash
+        run: |
+          set -euo pipefail
+          node - "$GITHUB_WORKSPACE/promotion-record-input.json" <<'NODE'
+          const fs=require('fs'), expires=new Date(Date.now()+90*86400000).toISOString();
+          fs.writeFileSync(process.argv[2],JSON.stringify({
+            workflow:{path:'.github/workflows/promote-qualified-voice-candidate.yml',runId:Number(process.env.GITHUB_RUN_ID),headSha:process.env.GITHUB_SHA,conclusion:'success'},
+            artifact:{id:Number('${{ steps.upload.outputs.artifact-id }}'),name:'qualified-release-candidate-v1.0.0-${{ inputs.api_approval_commit }}',expiresAt:expires}
+          },null,2)+'\n');
+          NODE
+          node release/qualified-release-candidate.mjs --operation record \
+            --candidate candidate --input promotion-record-input.json \
+            --output candidate-promotion-record-v1.0.0.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: candidate-promotion-record-v1.0.0-${{ github.run_id }}
+          path: candidate-promotion-record-v1.0.0.json
+          if-no-files-found: error
+          retention-days: 90
