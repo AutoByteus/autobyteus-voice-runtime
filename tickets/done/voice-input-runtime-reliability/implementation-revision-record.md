@@ -877,3 +877,29 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: focused real-builder/verifier composition passed `2/2`; exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go full `npm run check` passed `93/93` Node, `7/7` Python plus compileall, all Go/source/evidence checks; `go vet ./...`, `go test -race ./...`, Prettier, and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`.
 - Remaining limitations or risks: implementation did not rerun API/E2E or production host construction. After Source Pass, API/E2E should resume at Chinese double construction and English/Chinese independent verification; production model install/CDN resume, offline runtime, focused evidence, and release scenarios remain paused until those prerequisites pass. No merge, tag, publication, desktop, alternate target/model, or personal-runner work occurred.
+
+### IR-034 — Assign every host input to exactly one construction owner
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; focused failure-origin review `CRR-052`, with evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-052-api-f-018-origin.md`.
+- Triggering finding ID: `CR-F-046` / `API-F-018`.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-051` source Pass was superseded by `CRR-052` / `Fail — Local Fix` after `API-REV-023` reached the complete Chinese manifest and failed before CMake on an outer-owned authority path.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-021`.
+- Related architecture-review revision IDs: `ARCH-REV-021` Pass; no requirement/design reset required.
+- Related code-review revision IDs: `CRR-051`, `CRR-052`; current re-review pending.
+- Related API/E2E revision IDs: `API-REV-023` Fail at canonical host construction; later host/model/runtime/evidence scenarios remain paused.
+- Related delivery revision IDs: prior `DR-006`; current Delivery not started.
+- Why this implementation revision is recorded: the inner builders received the complete authenticated input manifest even though the outer assembler later authenticated and staged both host-authority subjects. Chinese rejected those outer-owned paths, while English masked the same ownership mismatch with a broad authority prefix. The complete manifest lacked one explicit single-owner classification at the actual assembler boundary.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-010`; `R-005`, `R-025`; `AC-028`; `API-VOICE-018`. Host/provider/model/runtime/release behavior and previous fixes remain unchanged.
+- Implementation delta:
+  - Moved complete-manifest unused-input ownership enforcement to `host-package-assembler.mjs`, before any builder, native work, or staging. The assembler now independently verifies the input manifest and requires every non-provenance member to have exactly one construction owner.
+  - Added immutable profile-specific builder input patterns under `build/profile-builders/host-input-ownership.mjs`; English and Chinese no longer claim any host-authority prefix.
+  - Added one frozen exact two-path `ASSEMBLER_HOST_AUTHORITY_INPUTS` authority under `host-package-staging.mjs`. Both ownership classification and `stageHostAuthorities()` reuse that same set.
+  - Rejected no-owner, ambiguous two-owner, duplicate-path, missing-authority, unexpected third-authority, broad-authority-prefix, and unrelated-input cases without an ignore, fallback, rename, omission, or relaxed closure.
+  - Added exact path-only fixtures from the API-REV-023 authenticated English 48-row and Chinese 3,151-row manifests. Durable tests bind fixture counts/digests, prove each complete path set is closed by its current recipe, validate both profiles, and exercise the negative cases.
+  - Included the new profile ownership authority in Host Source Closure 1 and removed the obsolete inner closure helper and its synthetic test.
+- Changed files or areas: `build/host-package-assembler.mjs`, `build/host-package-staging.mjs`, `build/host-source-closure.mjs`, `build/profile-builders/{host-common,funasr-host,host-input-ownership}.mjs`, `tests/build/{host-builder-composition,locked-inputs}.test.mjs`, and `tests/fixtures/host-input-ownership/`; source commit `97f3007c2a62e5f48acd5fcc8c26d1e38b099850`.
+- Local validation and result: focused real-builder/current-manifest/verifier composition passed `3/3`; the combined focused build tests passed `13/13`; exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go full `npm run check` passed `93/93` Node, `7/7` Python plus compileall, all Go/source/evidence checks; `go vet ./...`, `go test -race ./...`, Prettier, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not rerun API/E2E or production host construction. After Source Pass, API/E2E must restart at canonical Chinese construction, then independent English/Chinese verification; model install/CDN resume, offline runtime, focused evidence, and release scenarios remain paused until those prerequisites pass. No merge, tag, publication, desktop, alternate target/model, user-state, or personal-runner work occurred.
