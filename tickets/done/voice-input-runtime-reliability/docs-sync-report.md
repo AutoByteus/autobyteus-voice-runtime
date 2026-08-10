@@ -149,3 +149,13 @@ tag publication, published-byte verification, and the deferred target set.
 - Long-lived documentation decision: `No product/operator prose change`. The host/model lifecycle, supported matrix, release boundary, and release notes remain accurate. This is a release-host tool-selection implementation failure, recorded in ticket-local Delivery evidence.
 - Publication result: no tag, release, or asset was created.
 - Result: `Blocked / Local Fix` to `implementation_engineer`; after reviewed correction and applicable validation, Delivery may retry the standard-hosted release without repeating product/profile/performance qualification.
+
+## Delivery Round 10 — Hosted Toolchain Correction
+
+- Refreshed base: `origin/main @ a486c998481a4d6649d3245c24f0c8e954785594`; it is unchanged from the reviewed source base and already an ancestor of the ticket candidate.
+- Reviewed correction: exact source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`, reviewed artifact `c233e2c82300e798322964c2547af3d97f507488`, CRR-061 Pass, API-REV-027 Pass / 99%, and CRR-062 Not Applicable.
+- Integrated validation: production focused checks 22/22, API-REV-027 checksum rows 60/60, and retained DR-010 evidence checksums pass. v1.0.0 tag and release remain absent.
+- Real hosted result: exact Xcode 26.1.1/SDK 26.1 and official CMake 4.2.0 selection plus Host Build Environment 2 authentication pass; forced early failure retains a truthful terminal audit and performs no later work.
+- Long-lived documentation decision: `No change`. README/release notes already state standard-hosted host-only construction, exact asset scope, explicit on-demand model installation, and zero release-CI model/profile/performance work.
+- Ticket-local updates: DR-011 and handoff/release records supersede the DR-010 tool-selection blocker while preserving the failed run as historical evidence.
+- Result: `Pass / release-retry-ready`; maintained-main integration and the standard-hosted production release remain Delivery-owned.

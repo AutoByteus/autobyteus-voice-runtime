@@ -14,6 +14,7 @@
 | `DR-008`    | `code_reviewer` handoff after IR-035, CRR-055, API-REV-025, and CRR-056                | `DR-007 — workflow bootstrap complete`  | `Blocked / Design Impact — checks pass, but production references absent committed admission inputs and exact-current-SHA binding is unresolved`              | `delivery-final-main-integration-check.log`, `release-notes.md`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`   |
 | `DR-009`    | `code_reviewer` handoff after CRR-059, API-REV-026, and CRR-060                        | `DR-008 — admission design blocked`      | `Pass / release-ready — exact reviewed R integrated without rewriting; Policy 3 reuse, focused checks, and authority checks pass; final target merge pending`  | `delivery-release-authority-integration-check.log`, `delivery-release-authority-integration-SHA256SUMS.txt`, delivery handoff artifacts       |
 | `DR-010`    | Standard-hosted v1.0.0 release run `31420271551`                                      | `DR-009 — release-ready`                 | `Blocked / Local Fix — maintained-main W and admission passed; host environment lock rejected current runner before build; no tag or release created`         | `delivery-evidence/release-31420271551/`, `handoff-summary.md`, `release-deployment-report.md`                                                 |
+| `DR-011`    | `code_reviewer` handoff after CRR-061, API-REV-027, and CRR-062                        | `DR-010 — hosted tool lock blocked`      | `Pass / retry-ready — exact hosted toolchain selection and truthful early-failure audit pass on real macos-26; latest main already integrated`                 | `delivery-hosted-toolchain-integration-check.log`, `delivery-hosted-toolchain-integration-SHA256SUMS.txt`, delivery handoff artifacts          |
 
 ## Revision Entries
 
@@ -179,3 +180,20 @@
 - Evidence: `delivery-evidence/release-31420271551/`; its `SHA256SUMS.txt` verifies the run metadata, full workflow log, failure summary, and release-state record.
 - Historical truth: run `31420271551` remains `failure` and must not be relabeled. v1.0.0 remains absent.
 - Current result: `Blocked` for release/publication; maintained-main repository finalization is complete and is not undone.
+
+### DR-011 — Hosted toolchain correction integrated and retry-ready
+
+- Date: 2026-08-10
+- Trigger: Code Reviewer handed off CRR-061 `Pass / 97.6%`, API-REV-027 `Pass / 99%`, and CRR-062 proportional API/E2E test-code review `Not Applicable` because no durable API/E2E test changed.
+- Prior authoritative result: `DR-010` — exact maintained-main W finalized, but release run `31420271551` failed before hydration/build because the hosted default toolchain did not meet the exact lock.
+- Reviewed chain: maintained-main base `a486c998481a4d6649d3245c24f0c8e954785594`; exact source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`; reviewed implementation artifact `c233e2c82300e798322964c2547af3d97f507488`; API/reviewer checkpoint `8ca083ee53c1b5b7674dd5e4d03967ac184a753f`.
+- Upstream preservation: every API-REV-027 checksum row passed before the uncommitted API/reviewer artifacts were committed at the checkpoint.
+- Latest-base refresh: `git fetch origin --prune` passed. `origin/main` remained exact reviewed base `a486c998481a4d6649d3245c24f0c8e954785594`; it is the merge base and ancestor of the candidate with left/right `0 / 3`. No merge or rebase was required.
+- Real hosted validation: run `31424156708`, job `93571782200`, authenticated Xcode 26.1.1 build 17B100, SDK 26.1, official CMake 4.2.0, and the resulting Host Build Environment 2 record. It also proved a truthful terminal audit on forced toolchain failure with all later phases unattempted.
+- Integrated-state check: `Pass`; focused production release-pipeline tests passed 22/22, all 60 API-REV-027 checksum rows passed, retained DR-010 failure evidence checksums passed, and remote tag/release guards confirmed v1.0.0 remains absent.
+- Execution boundary: Delivery and API-REV-027 executed zero product/profile/provider/inference/corpus/performance qualification, zero model downloads, and zero release/tag/publication actions.
+- Docs sync: `No additional long-lived product/operator impact`. README and release notes already describe the standard-hosted, host-only, on-demand model release boundary. Ticket-local handoff and release records are updated to record the corrected toolchain selection and retry state.
+- Historical truth: DR-010 run `31420271551` remains failed and is not relabeled; the temporary validation harness was removed locally and remotely and remains evidence only.
+- User gate: the prior explicit runtime-only v1.0.0 finalize/release authorization and minimal-pipeline direction remain applicable. The correction changes only hosted toolchain selection/audit behavior, not runtime behavior, supported scope, or release assets.
+- Evidence: `delivery-hosted-toolchain-integration-check.log`, SHA-256 `078850f47bf780139a6675fa4c42ce0384f0c935e3a8133ac9afb931a5e44940`, bound by `delivery-hosted-toolchain-integration-SHA256SUMS.txt`.
+- Current result: `Pass / retry-ready`; push the ticket branch, refresh maintained main again, integrate the reviewed correction, verify exact integrated authority, then retry the production standard-hosted release without product/profile requalification.
