@@ -1,0 +1,13 @@
+{
+  "compatibilityPairSha256": "ae45a451184c0660861f3900ef8bbb05b1c6cfd75cdefd04bbeb410e2e849795",
+  "executionClosureVerificationPath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/aggregate/chinese-profile-execution-closure-v2.json",
+  "executionClosureVerificationSha256": "ed769548601482f1672a7e1a3a6c863f4d9a5c05d9d54a8ce93c322dbc8f3341",
+  "hostArchivePath": "/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/builds-r25-v1/chinese-a/voice-host-chinese-darwin-arm64-1.0.0.zip",
+  "hostDescriptorSha256": "0435c0867e0c74478e9f44cf75ab4d46e6de32aa45aab8bce30e0eee62448495",
+  "hostFileManifestSha256": "e55cb44e863ed9760ba825538d88c7a292a5c4790e6834072b2b5e75819330af",
+  "hostSourceClosureSha256": "705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4",
+  "hostSourceClosureSizeBytes": 701449,
+  "modelAdmissionRootSha256": "7a49df7e07d907818a02e3f5f12a58c47b5116d5e9deb2fd67caad1dcc97f0a8",
+  "modelManifestPath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/release/model-manifests/voice-model-chinese-fun-asr-nano-gguf-q8-v1.json",
+  "profileId": "chinese"
+}

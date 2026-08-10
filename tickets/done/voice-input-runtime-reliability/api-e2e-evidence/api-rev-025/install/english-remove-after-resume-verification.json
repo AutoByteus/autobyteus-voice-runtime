@@ -1,0 +1,36 @@
+{
+  "activePointerExists": false,
+  "decision": "pass",
+  "profileId": "english",
+  "remainingModelFiles": [],
+  "removeTerminal": {
+    "cleanupPending": false,
+    "operation": "remove-profile",
+    "operationId": "7c421536-2cd6-4503-b545-e899037347d9",
+    "phase": "removed",
+    "profileId": "english",
+    "schemaVersion": 1,
+    "sequence": 4,
+    "target": {
+      "architecture": "arm64",
+      "platform": "darwin"
+    },
+    "timestamp": "2026-08-10T15:30:41.882999Z"
+  },
+  "scenarioId": "API-VOICE-020",
+  "schemaVersion": 1,
+  "statusTerminal": {
+    "operation": "status-profile",
+    "operationId": "9c8d1f35-ea1a-4595-bfb7-d369cf300fe6",
+    "phase": "status-result",
+    "profileId": "english",
+    "profileState": "not-installed",
+    "schemaVersion": 1,
+    "sequence": 2,
+    "target": {
+      "architecture": "arm64",
+      "platform": "darwin"
+    },
+    "timestamp": "2026-08-10T15:30:42.723774Z"
+  }
+}

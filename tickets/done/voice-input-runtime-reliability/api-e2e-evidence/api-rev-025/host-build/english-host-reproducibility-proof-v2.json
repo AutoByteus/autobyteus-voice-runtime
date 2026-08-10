@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "host-reproducibility-proof",
+  "sourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+  "profileId": "english",
+  "hostPackageId": "voice.host.english.mlx-whisper.darwin-arm64",
+  "hostSourceClosureSha256": "d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134",
+  "archiveSha256": "7149be2ebb28ae49e0e88df006e7de9446e9697c1e0b7ada91a82d77405fcbee",
+  "firstBuildReport": {
+    "fileName": "voice-host-english-darwin-arm64-1.0.0.zip.build.json",
+    "sizeBytes": 3143,
+    "sha256": "f6880cafd8e7749a84a88a801b08296d6ed4bf97a3ca71ba0d6c73d7ca565b85"
+  },
+  "secondBuildReport": {
+    "fileName": "voice-host-english-darwin-arm64-1.0.0.zip.build.json",
+    "sizeBytes": 3143,
+    "sha256": "f6880cafd8e7749a84a88a801b08296d6ed4bf97a3ca71ba0d6c73d7ca565b85"
+  },
+  "wholeArchiveEqual": true,
+  "buildReportsEqual": true,
+  "decision": "pass"
+}

@@ -15,17 +15,43 @@
 - Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md` (`SR-021`)
 - Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md` (`ARCH-REV-021 Pass`)
 - Architecture Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md` (`IR-034`)
+- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md` (`IR-035`)
 - Implementation Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` (`CRR-053 Pass`)
+- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` (`CRR-055 Pass`)
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
 - Delivery Revision Record: historical only; no SR-021 Delivery execution is in scope
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-024`
-- Current Investigation Round: `24`
-- Trigger: Code Reviewer `CRR-053` against exact source commit `97f3007c2a62e5f48acd5fcc8c26d1e38b099850` and reviewed artifact/HEAD `2a4b2ef7eab573388390274b47e1de197fe02d3e`.
-- Prior Investigation Reviewed: `API-REV-023 — Fail / 84%`; `API-F-018` is the mandatory first recheck.
-- Latest Authoritative Investigation: **`API-REV-024 — Fail / 84%`**. Exact repository and complete-manifest ownership checks pass and construction reaches the authenticated native build, directly resolving `API-F-018`; the first canonical Chinese build then exposes `API-F-019`, a real C++ compilation failure in three JSON-digest comparisons. No archive is created, so downstream execution remains fail closed.
+- Current API/E2E Revision ID: `API-REV-025`
+- Current Investigation Round: `25`
+- Trigger: Code Reviewer `CRR-055` against exact source commit `b88c230663eb96e0def8c869b095ea858b0ff50b` and reviewed artifact/HEAD `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`.
+- Prior Investigation Reviewed: `API-REV-024 — Fail / 84%`; `API-F-019` is the mandatory first recheck.
+- Latest Authoritative Investigation: **`API-REV-025 — Pass / 97%`**. Exact current-source local execution now proves the complete host-build, install/store, relocated offline provider, execution-closure, focused-authority, and nonpublishing release-composition boundaries. `API-F-019` is directly resolved at the actual CMake link/archive boundary.
+
+## API-REV-025 Recheck And Coverage Delta
+
+- `API-F-019` recheck: rerun the exact canonical Chinese Runtime Host Archive 2 construction from source `b88c230...`; require the complete production worker to compile and link, then build a second archive and require exact archive/report equality before independent Host Verification 2.
+- Prior-resolution preservation: retain complete-manifest one-owner classification (`API-F-018`), the real Chinese builder import boundary (`API-F-016`), and logical verification-root projection (`API-F-017`) under focused repository and actual packaged-host checks.
+- Retained environment decision: `Reusable after identity recheck`. The isolated API-REV-024 cache, official CMake 4.2.0, official Go 1.26.5, Xcode/SDK/tool identities, and ownership remain eligible only if their exact authenticated identities still match.
+- Retained materialized inputs/host artifacts: `Do Not Relabel`. IR-035 changes Chinese production source and its exact input recipe binding. The Chinese input must be rematerialized. English will be rebuilt or reused only after exact Host Source Closure/input/tool/archive impact proves that current authority permits it; no prior archive will be labeled current merely because source review passed.
+- Durable coverage decisions:
+  - `tests/build/chinese-worker-native-compile.test.mjs` plus `tests/fixtures/chinese-worker-native-headers-v1/*`: `Still Valid / Added Upstream`; exact Apple-native compile guard for the complete CMake translation set, authenticated external fixture, and current Xcode/SDK identities. It deliberately does not prove link/archive/runtime.
+  - `tests/build/host-builder-composition.test.mjs` and exact input-ownership fixtures: `Still Valid`; retain one-owner complete-manifest and builder/verifier composition coverage.
+  - `packaging/archive/canonicalzip_test.go`: `Still Valid`; logical `host` projection/non-disclosure remains unchanged.
+  - API/E2E plans no repository-resident durable coverage edit unless actual execution exposes a new stable coverage gap.
+- Ordered execution: revalidate environment and current materialization; run focused/full repository gates; build Chinese twice and independently verify; establish current-source English archive authority and independently verify; only after every host prerequisite passes continue production Catalog/model install, Store 1 lifecycle, relocated offline retained-clip providers, Profile Execution Closure 2, QSet 3, Projection 3, and exact nonpublishing nine-member composition.
+- Stop rule: any critical construction, verification, production installation, provider, or closure mismatch stops downstream aggregation without retry relaxation, provider/model substitution, fallback, or release action.
+
+### API-REV-025 Execution Update
+
+- `API-F-019` is resolved directly: the canonical Chinese build compiles and links the complete production worker, and two independent builds produce the same archive and build report. Chinese archive SHA-256 is `d08bb4775ae1cc599679f3f2675ac81297ed5e6956aabe5c81ff45c2818dcea3`; English archive SHA-256 is `7149be2ebb28ae49e0e88df006e7de9446e9697c1e0b7ada91a82d77405fcbee`. Both Host Verification 2 records Pass with `modelPayloadAbsent: true`.
+- The build and nonpublishing composition paths downloaded zero model bytes, ran zero product tests, and launched zero providers. Host packages contain runtime/code only. The two small model-manifest JSON assets are locators and integrity/admission records, not model weights.
+- Production Catalog 4 SHA-256 `c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f` was rejected before network/store mutation when invalid, then used for one real public immutable model install per profile in isolated Store 1 roots. English installed `481,307,858` bytes and Chinese installed `1,275,804,800` bytes with exact per-file, manifest, tree, activation, pointer, and read-only checks.
+- Actual lifecycle proof covers cancellation with retained partials, range resume from the retained weight offset, duplicate-install no-download behavior, clean removal/status, provider lifetime-lease removal rejection, active status during the lease, atomic-pointer stability, clean shutdown, and post-run host/store non-mutation. Repository race/fixture coverage retains the remaining bounded concurrent/failure cases required by `AC-030` and `AC-032`.
+- Both relocated providers start and transcribe their retained approved real FLEURS clip under the checked-in deny-network Seatbelt profile with exact historical transcripts. Independent Profile Execution Closure 2 returns `reuse-permitted` for English and Chinese, so `AC-033` authorizes reuse of immutable API-REV-017/018 49/200 and 30/30/100 qualification rather than rerunning it.
+- Focused Qualification Set 3 Passes for exact source `b88c230...`; Branch Catalog Projection 3 is independently verified. A local, nonpublishing prepublication composition contains exactly nine assets, covers the eight non-checksum assets in `release-SHA256SUMS.txt`, and passes Prepublication Seal 1. No tag, publication, release, merge, desktop, or user/shared application state was touched.
+- One preliminary English startup probe was intentionally excluded from acceptance: it overlapped heavy model transfers and crossed the hello deadline. The canonical isolated rerun under the exact hard deadlines passed; no retry, timeout, provider/model, or threshold was relaxed.
+- Durable coverage decision after execution: all relevant current durable scenarios remain valid. IR-035's complete Apple-native translation-set compile guard is directly corroborated by the real archive build. API/E2E added, updated, and removed **no** repository-resident durable coverage.
+- Final broader-validation decision: `Required — Completed`. Final confidence is `97%`; every applicable scorecard category is at least `96%` and every critical current-platform criterion has direct or explicitly authorized closure-reuse evidence.
 
 ## API-REV-024 Recheck And Coverage Delta
 
@@ -150,8 +176,9 @@ No API/E2E-owned deletion is planned. Obsolete active Catalog 3, Config 1, conta
 
 ## Durable Coverage To Add / Update / Remove
 
-- Add/update after failure-origin review: production-shaped regression coverage must load both real host builders and must run the Host Verification 2 projection against a real extractor report. The existing generic reproducibility/schema tests did not exercise either composition defect.
-- API/E2E did not edit repository-resident tests in this failed round; the source owner should deliver the fixes and regressions together, then source review must pass before API/E2E resumes.
+- Added upstream and source-reviewed: `tests/build/chinese-worker-native-compile.test.mjs` plus its authenticated eleven-member fixture closes the complete Chinese translation-set compile gap exposed by `API-F-019` while preserving the distinction between compilation and actual link/archive/runtime proof.
+- Previously added upstream builder ownership/import and Host Verification 2 regression coverage remains valid for `API-F-016` through `API-F-018`.
+- API/E2E plans no repository-resident durable coverage edit in API-REV-025 unless actual execution exposes a new stable regression case.
 - Remove: none.
 - Real host/CDN/model/process observations are run-specific and belong in retained API/E2E evidence rather than source tests containing gigabyte downloads or host-specific identities. If execution exposes a stable missing regression case, investigation will be updated before any durable edit and the result will return through Code Reviewer.
 
@@ -232,17 +259,18 @@ Scores after this round's repository execution:
 
 ## Ambiguities Or Reroute Triggers
 
-| Issue                                                                                                                | Classification | Evidence                             | Recommended Recipient                                                      |
-| -------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------ | -------------------------------------------------------------------------- |
-| `API-F-016`: `funasr-host.mjs` imports `cmakeConfigureArguments` from a module that does not export it               | Local Fix      | exact Chinese production build log   | `code_reviewer` for failure-origin confirmation, then implementation owner |
-| `API-F-017`: extractor reports absolute destination as `hostRoot` while Host Verification 2 requires constant `host` | Local Fix      | exact English canonical verifier log | `code_reviewer` for failure-origin confirmation, then implementation owner |
+| Issue                                                                                      | Classification           | Evidence                                                       | Recommended Recipient                                                  |
+| ------------------------------------------------------------------------------------------ | ------------------------ | -------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `API-F-016` through `API-F-018`                                                            | Resolved                 | CRR-051/053 and API-REV-023/024 focused/live evidence          | None unless the actual packaged-host recheck regresses                 |
+| `API-F-019`: complete Chinese worker did not compile due to string/JSON digest comparisons | Local Fix / source fixed | CRR-055 compile guard plus exact source/fixture/recipe binding | API/E2E actual construction recheck; Code Reviewer only on new failure |
+| Later actual link/archive/install/provider/closure mismatch, if observed                   | Undetermined             | must be classified from exact API-REV-025 runtime evidence     | Code Reviewer for failure-origin review                                |
 
 ## Investigation Decision
 
-- Proceed To Further API/E2E Execution: `No`; stop fail closed until source rework and review.
-- Repository-resident durable coverage will be added/updated/removed: `No` initially.
-- Post-repository confidence: `88.0%`.
+- Proceed To Further API/E2E Execution: `Yes`; CRR-055 authorizes the exact Chinese construction recheck and conditional downstream sequence.
+- Repository-resident durable coverage will be added/updated/removed: `No` planned by API/E2E; IR-035's upstream compile coverage has already passed full source review.
+- Pre-execution confidence: `88.0%`; compilation evidence is strong but critical live host/install/provider/authority boundaries remain unproven.
 - Broader validation: `Required`.
-- Reroute Required Before Further Execution: `Yes`.
-- Recommended Recipient: `code_reviewer` for focused failure-origin review.
-- Notes: no repository-resident durable coverage changed. This artifact supersedes the API-REV-021 managed-runner investigation as current truth while retaining that result in the revision record.
+- Reroute Required Before Further Execution: `No`.
+- Recommended Recipient: none before execution; route any new concrete failure through `code_reviewer`, or a completed Pass through proportional test-code review.
+- Notes: no API/E2E-owned durable coverage changed. Do not infer link/archive/runtime success from CRR-055's compile-only result.

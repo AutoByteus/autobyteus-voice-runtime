@@ -1,0 +1,2 @@
+{"schemaVersion":1,"operationId":"beaaf1f1-70a7-401f-92cc-0f59d846e6b3","operation":"status-profile","profileId":"english","target":{"platform":"darwin","architecture":"arm64"},"sequence":1,"phase":"checking","timestamp":"2026-08-10T15:14:57.397102Z"}
+{"schemaVersion":1,"operationId":"beaaf1f1-70a7-401f-92cc-0f59d846e6b3","operation":"status-profile","profileId":"english","target":{"platform":"darwin","architecture":"arm64"},"sequence":2,"phase":"status-result","timestamp":"2026-08-10T15:14:58.159316Z","profileState":"not-installed"}

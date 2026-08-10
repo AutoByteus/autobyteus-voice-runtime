@@ -1,0 +1,2 @@
+{"schemaVersion":1,"operationId":"56f9e023-fb25-4a10-bd38-02ed2768d0a1","operation":"install-profile","profileId":"english","target":{"platform":"darwin","architecture":"arm64"},"sequence":1,"phase":"checking","timestamp":"2026-08-10T15:15:52.836978Z"}
+{"schemaVersion":1,"operationId":"56f9e023-fb25-4a10-bd38-02ed2768d0a1","operation":"install-profile","profileId":"english","target":{"platform":"darwin","architecture":"arm64"},"sequence":2,"phase":"failed","timestamp":"2026-08-10T15:15:53.591048Z","failureCategory":"catalog-invalid"}

@@ -1,0 +1,99 @@
+{
+  "profileId": "chinese",
+  "inferenceCoreFiles": [
+    {
+      "path": "providers/chinese-funasr/CMakeLists.txt",
+      "sizeBytes": 2635,
+      "sha256": "24fdb921ddcc33f6e834069f6a87c1b3e2e7e368c858b2ca122fe38d80410b35"
+    },
+    {
+      "path": "providers/chinese-funasr/provider-lock.json",
+      "sizeBytes": 1532,
+      "sha256": "19088f62c5ce6701c4776ce8f7467de4df07d6ab749b63add9ef50b18fdc6bbb"
+    },
+    {
+      "path": "providers/chinese-funasr/src/audio.cpp",
+      "sizeBytes": 1979,
+      "sha256": "f02673b09cdf89e432a2131ada57f1317a1d64c8c52b3343ea449632143491ff"
+    },
+    {
+      "path": "providers/chinese-funasr/src/audio.h",
+      "sizeBytes": 201,
+      "sha256": "f450bebadbfc18e24c3b97fb21b2546ecba406739748a459789aeac7a6f450d2"
+    },
+    {
+      "path": "providers/chinese-funasr/src/audio_features.cpp",
+      "sizeBytes": 5394,
+      "sha256": "ac62276109362a1e4588e711e622a86e1140d0157157e28872e4791f516cb27d"
+    },
+    {
+      "path": "providers/chinese-funasr/src/audio_features.h",
+      "sizeBytes": 208,
+      "sha256": "c6ab4f8c1db60eb52a77590dcc531be8c0523326df55dd66a92c2a705d948b06"
+    },
+    {
+      "path": "providers/chinese-funasr/src/funasr_engine.cpp",
+      "sizeBytes": 12792,
+      "sha256": "e2c2db6290b98abe55440c10d90683e99ceafdc67e2e2327b3230b4713ab943d"
+    },
+    {
+      "path": "providers/chinese-funasr/src/funasr_engine.h",
+      "sizeBytes": 591,
+      "sha256": "285662e176acab00b82079d79da2ef6463c8aa9345da3fabf424b094c63a638b"
+    },
+    {
+      "path": "providers/chinese-funasr/src/normalization.cpp",
+      "sizeBytes": 7486,
+      "sha256": "bc79d3026ab8c4ff50e96b7b060b4951a8bd8602afcd0878783d1d6f0736d622"
+    },
+    {
+      "path": "providers/chinese-funasr/src/normalization.h",
+      "sizeBytes": 320,
+      "sha256": "e0eaaeb54fb51fff982488df97bde948943a4063b7b85cb85a7e9446d7f30949"
+    },
+    {
+      "path": "providers/chinese-funasr/src/package_integrity.cpp",
+      "sizeBytes": 1408,
+      "sha256": "be743a06e21b61b31af0efab0bd0dc797fb8ac3a17604b00c2b3836dbb130be0"
+    },
+    {
+      "path": "providers/chinese-funasr/src/package_integrity.h",
+      "sizeBytes": 185,
+      "sha256": "ebf923a82874051ba813f576538be2fc920744bbb41efaad1f97cfb3a23c7123"
+    },
+    {
+      "path": "providers/chinese-funasr/src/package_integrity_apple.cpp",
+      "sizeBytes": 1570,
+      "sha256": "62c9e5bbf3a6efb6fd7df9c4c1fa7d94e59187ad4f1897dd1ac76e2ef16abd01"
+    },
+    {
+      "path": "providers/chinese-funasr/src/preparation_diagnostics.cpp",
+      "sizeBytes": 1740,
+      "sha256": "67d28aaee49a7a78b837f42a5b3138d4bcaa6222c1b78a8847e3787410090e5c"
+    },
+    {
+      "path": "providers/chinese-funasr/src/preparation_diagnostics.h",
+      "sizeBytes": 364,
+      "sha256": "99f5172763b85673bd2cc0f85052fe3ef9986713ee4d080c80f8df6bc4468ff7"
+    },
+    {
+      "path": "providers/chinese-funasr/src/result_policy.cpp",
+      "sizeBytes": 379,
+      "sha256": "e2ecf9b95f4a2d9c486f53d412971a3b6268a0830a31b5c46ad8706f8a8047e6"
+    },
+    {
+      "path": "providers/chinese-funasr/src/result_policy.h",
+      "sizeBytes": 111,
+      "sha256": "4227a39c839964de12bc313c074cbba17da319e559e160fc10d8c6b27c6ccd70"
+    }
+  ],
+  "adapterExclusions": [
+    "providers/chinese-funasr/src/main.cpp",
+    "providers/chinese-funasr/src/session.cpp",
+    "providers/chinese-funasr/src/session.h"
+  ],
+  "configurationSha256": "aa50b05a04a2df598db2a9a829856e3d46e636f8ada032c4b1682acc0c84aa8d",
+  "modelManifestSha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da",
+  "trustedOutputSha256": "ded872d120c23ca6f8793ce90f03ef097591e790f91e45cc0b93de6797abfb09",
+  "sourceCommit": "32829080938911f0f46390a3fd2af823e105bd32"
+}

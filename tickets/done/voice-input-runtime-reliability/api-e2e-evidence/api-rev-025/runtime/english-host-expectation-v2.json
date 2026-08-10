@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "hostPackageId": "voice.host.english.mlx-whisper.darwin-arm64",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "archive": {
+    "format": "zip",
+    "formatVersion": 2,
+    "compression": "deflate",
+    "canonicalization": "autobyteus-runtime-host-zip-v2",
+    "rootDirectory": "host",
+    "fileName": "voice-host-english-darwin-arm64-1.0.0.zip",
+    "url": "https://invalid.example/prepublication",
+    "sha256": "7149be2ebb28ae49e0e88df006e7de9446e9697c1e0b7ada91a82d77405fcbee",
+    "compressedSizeBytes": 207493128,
+    "extractedSizeBytes": 723870544,
+    "entryCount": 6503
+  },
+  "hostDescriptor": {
+    "path": "provider/runtime-host-v2.json",
+    "sha256": "dbfef7fa107a9b1304875ea85fcf3c7c08f88a5036ba70e0d450df2aec854665"
+  },
+  "fileManifest": {
+    "path": "provider/host-files-v2.json",
+    "sha256": "8ac5fe397f225efcbb035779b0172d56933de0c9c67d3aaff0587dbacda67256"
+  }
+}

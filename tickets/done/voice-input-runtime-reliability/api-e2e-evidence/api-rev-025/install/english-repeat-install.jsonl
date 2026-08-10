@@ -1,0 +1,2 @@
+{"schemaVersion":1,"operationId":"49d0b80a-3ffe-478c-b438-1ce95c7a991a","operation":"install-profile","profileId":"english","target":{"platform":"darwin","architecture":"arm64"},"sequence":1,"phase":"checking","timestamp":"2026-08-10T15:19:57.783294Z"}
+{"schemaVersion":1,"operationId":"49d0b80a-3ffe-478c-b438-1ce95c7a991a","operation":"install-profile","profileId":"english","target":{"platform":"darwin","architecture":"arm64"},"sequence":2,"phase":"already-installed","timestamp":"2026-08-10T15:19:58.828799Z","modelAssetId":"voice.model.english.whisper-small-mlx-fp16.v1"}

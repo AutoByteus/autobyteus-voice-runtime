@@ -854,3 +854,44 @@ None.
 - New failure ID: `API-F-019`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
 - Remaining proof after resolution: Chinese double construction/verification, English double construction/verification, production model installation and Store 1 lifecycle, relocated offline retained-clip providers, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and exact nonpublishing nine-member composition.
+
+### API-REV-025 — Current M1 host/model/install/runtime/focused release authority passes
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-055`; API/E2E round 25.
+- Triggering scenarios/criteria: recheck `API-F-019` in `API-VOICE-018`, then execute `API-VOICE-019`–`API-VOICE-024`; `AC-028`–`AC-035`.
+- Related revisions: `SR-021`, `ARCH-REV-021`, `IR-035`, `CRR-054`, `CRR-055`, `API-REV-024`.
+- Reviewed source/artifact: source `b88c230663eb96e0def8c869b095ea858b0ff50b`; artifact `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`.
+- Why recorded: the complete current Apple-native Chinese worker now compiles and links in the real canonical build. Both model-free hosts build twice byte-identically and independently verify; the exact Catalog 4 performs real immutable public model installation into isolated stores; actual signal/resume/remove/status/lease and relocated offline retained-audio provider journeys pass; both Profile Execution Closure 2 records authorize historical full-profile evidence reuse; Focused Qualification Set 3, Branch Catalog Projection 3, and exact nonpublishing nine-member composition pass.
+- Coverage decisions/durable test paths changed: API/E2E added, updated, and removed no repository-resident durable coverage. IR-035's `tests/build/chinese-worker-native-compile.test.mjs` and authenticated fixture are `Still Valid` and are directly corroborated by the real linked archive. All other relevant current coverage remains `Still Valid`.
+- Scenario delta:
+  - `API-VOICE-017` Pass: full/focused repository, race, worker translation-set, release, source, and legacy guards.
+  - `API-VOICE-018` Pass: English and Chinese each build twice with exact archive/report equality; Host Verification 2 passes and proves model payload absent.
+  - `API-VOICE-019` Pass: invalid authority rejects before network/store; exact production Catalog 4 and manifests install English and Chinese public immutable model bytes and verify all store/activation identities.
+  - `API-VOICE-020` Pass: duplicate install, actual cancellation, retained-partial resume, removal/status, lifetime lease rejection, pointer stability, and clean shutdown.
+  - `API-VOICE-021` Pass: relocated public providers transcribe exact retained English/Chinese clips under network denial and leave host/store bytes unchanged.
+  - `API-VOICE-022` Pass: English and Chinese Profile Execution Closure 2 decisions are `reuse-permitted`.
+  - `API-VOICE-023` Pass: Focused Qualification Set 3 and independent Branch Catalog Projection 3 verification.
+  - `API-VOICE-024` Pass: exact nine prospective assets, eight checksum-covered preceding assets, and Prepublication Seal 1 under local nonpublishing composition.
+- Execution delta: actual MacBookPro18,4 M1 Max/64 GB/macOS 26.5.2 on AC; Node 22.23.1; official Go 1.26.5; official CMake 4.2.0; authenticated Xcode/SDK/native tools; network-denied host construction and provider execution; current source and freshly materialized exact English/Chinese inputs.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                          | Previous Classification        | Current Resolution                     | Evidence                                                                       |
+| ------------------------------------------------------ | ------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------ |
+| `API-F-019` — complete Chinese worker does not compile | `Local Fix`                    | **Resolved**                           | actual CMake compile/link, two exact archives, independent Host Verification 2 |
+| `API-F-018` — builder ownership mismatch               | resolved in source/API recheck | remains resolved                       | exact current Chinese 3,151-row input closes and builds twice                  |
+| `API-F-017` — verifier exposes extraction destination  | direct regression resolved     | **fully resolved at package boundary** | both actual relocated hosts verify with logical root `host`                    |
+| `API-F-016` — Chinese builder import failure           | resolved                       | remains resolved                       | real builder completes native construction                                     |
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/`
+- Prior result/confidence: `Fail / 84%`.
+- Current result/confidence: **`Pass / 97%`**.
+- Broader validation: `Required — Completed`.
+- New failures/blockers: `None`.
+- Durable API/E2E coverage changes: `None`.
+- Recommended recipient: `code_reviewer` for proportional API/E2E test-code review; expected disposition `Not Applicable` before Delivery resumes.
+- Residual scope: maintained-main/standard-hosted equality, tag/release/publication/downloaded-byte verification are Delivery-owned; x64/Linux/Windows/auto/desktop remain explicitly deferred.

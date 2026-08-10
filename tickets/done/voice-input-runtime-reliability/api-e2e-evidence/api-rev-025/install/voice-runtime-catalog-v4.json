@@ -1,0 +1,111 @@
+{
+  "schemaVersion": 4,
+  "catalogId": "voice-runtime-catalog-v4",
+  "releaseVersion": "1.0.0",
+  "entries": [
+    {
+      "profileId": "english",
+      "languageMode": "en",
+      "target": {
+        "platform": "darwin",
+        "architecture": "arm64"
+      },
+      "providerId": "autobyteus.voice.mlx-whisper-small",
+      "modelId": "whisper-small-mlx-fp16",
+      "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+      "host": {
+        "archive": {
+          "fileName": "voice-host-english-darwin-arm64-1.0.0.zip",
+          "sizeBytes": 207493128,
+          "sha256": "7149be2ebb28ae49e0e88df006e7de9446e9697c1e0b7ada91a82d77405fcbee",
+          "url": "https://github.com/AutoByteus/autobyteus-voice-runtime/releases/download/v1.0.0/voice-host-english-darwin-arm64-1.0.0.zip"
+        },
+        "hostPackageId": "voice.host.english.mlx-whisper.darwin-arm64",
+        "descriptorSha256": "dbfef7fa107a9b1304875ea85fcf3c7c08f88a5036ba70e0d450df2aec854665",
+        "fileManifestSha256": "8ac5fe397f225efcbb035779b0172d56933de0c9c67d3aaff0587dbacda67256",
+        "compatibilityRequirementSha256": "70e676b166b2d5587ace83b6e9a5ee352a54fe1086cd45b55f6f4ef38cbb8b56",
+        "launcherPath": "bin/voice-provider",
+        "modelManagerPath": "bin/voice-model-manager"
+      },
+      "hostAuthority": {
+        "hostSourceClosure": {
+          "fileName": "host-source-closure-v1.json",
+          "sizeBytes": 40027,
+          "sha256": "d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134"
+        },
+        "modelAdmissionRoot": {
+          "fileName": "model-admission-root-v1.json",
+          "sizeBytes": 1327,
+          "sha256": "7cbf9799670b42482a29404c7a2acfb3a7f701a5e890d3cc22f3245bddfb5448"
+        }
+      },
+      "model": {
+        "manifest": {
+          "fileName": "voice-model-english-whisper-small-mlx-fp16-v1.json",
+          "sizeBytes": 2335,
+          "sha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+          "url": "https://github.com/AutoByteus/autobyteus-voice-runtime/releases/download/v1.0.0/voice-model-english-whisper-small-mlx-fp16-v1.json"
+        },
+        "modelAssetId": "voice.model.english.whisper-small-mlx-fp16.v1",
+        "revision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+        "layoutId": "mlx-whisper-small-v1",
+        "modelTreeSha256": "e03db60e823ae5f81cdb8f17af54008fa46f6dbf2c00efe59739538c7f1287c0",
+        "totalSizeBytes": 481307858
+      },
+      "compatibilityPairSha256": "d5a6b572df31561d06ae27bd6157d177bc251f57be8bbff6dd410884163fe53c",
+      "supportStatement": "macOS Apple Silicon only"
+    },
+    {
+      "profileId": "chinese",
+      "languageMode": "zh",
+      "target": {
+        "platform": "darwin",
+        "architecture": "arm64"
+      },
+      "providerId": "autobyteus.voice.funasr-nano-q8",
+      "modelId": "fun-asr-nano-gguf-q8",
+      "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+      "host": {
+        "archive": {
+          "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip",
+          "sizeBytes": 9662381,
+          "sha256": "d08bb4775ae1cc599679f3f2675ac81297ed5e6956aabe5c81ff45c2818dcea3",
+          "url": "https://github.com/AutoByteus/autobyteus-voice-runtime/releases/download/v1.0.0/voice-host-chinese-darwin-arm64-1.0.0.zip"
+        },
+        "hostPackageId": "voice.host.chinese.funasr-native.darwin-arm64",
+        "descriptorSha256": "0435c0867e0c74478e9f44cf75ab4d46e6de32aa45aab8bce30e0eee62448495",
+        "fileManifestSha256": "e55cb44e863ed9760ba825538d88c7a292a5c4790e6834072b2b5e75819330af",
+        "compatibilityRequirementSha256": "217c57429dd08e1ff5e17c02c7cc95d947a07ac541e5f3220b8e6319b57675b2",
+        "launcherPath": "bin/voice-provider",
+        "modelManagerPath": "bin/voice-model-manager"
+      },
+      "hostAuthority": {
+        "hostSourceClosure": {
+          "fileName": "host-source-closure-v1.json",
+          "sizeBytes": 701449,
+          "sha256": "705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4"
+        },
+        "modelAdmissionRoot": {
+          "fileName": "model-admission-root-v1.json",
+          "sizeBytes": 1324,
+          "sha256": "7a49df7e07d907818a02e3f5f12a58c47b5116d5e9deb2fd67caad1dcc97f0a8"
+        }
+      },
+      "model": {
+        "manifest": {
+          "fileName": "voice-model-chinese-fun-asr-nano-gguf-q8-v1.json",
+          "sizeBytes": 2801,
+          "sha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da",
+          "url": "https://github.com/AutoByteus/autobyteus-voice-runtime/releases/download/v1.0.0/voice-model-chinese-fun-asr-nano-gguf-q8-v1.json"
+        },
+        "modelAssetId": "voice.model.chinese.fun-asr-nano-gguf-q8.v1",
+        "revision": "46e849502a867080d66d351b8dfb1018b607e509",
+        "layoutId": "funasr-nano-gguf-v1",
+        "modelTreeSha256": "bfac50b188fde75790de4c350bd7d8430ec7efffa94751e4a0e5c22bb6f0e20e",
+        "totalSizeBytes": 1275804800
+      },
+      "compatibilityPairSha256": "ae45a451184c0660861f3900ef8bbb05b1c6cfd75cdefd04bbeb410e2e849795",
+      "supportStatement": "macOS Apple Silicon only"
+    }
+  ]
+}

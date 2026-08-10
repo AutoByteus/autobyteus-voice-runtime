@@ -1,0 +1,8 @@
+THIRD_PARTY_NOTICES.json: OK
+pretag-release-manifest-v4.json: OK
+release-qualification-evidence-v4.json: OK
+voice-host-chinese-darwin-arm64-1.0.0.zip: OK
+voice-host-english-darwin-arm64-1.0.0.zip: OK
+voice-model-chinese-fun-asr-nano-gguf-q8-v1.json: OK
+voice-model-english-whisper-small-mlx-fp16-v1.json: OK
+voice-runtime-catalog-v4.json: OK

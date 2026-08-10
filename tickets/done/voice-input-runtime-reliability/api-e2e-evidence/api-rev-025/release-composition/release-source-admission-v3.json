@@ -1,0 +1,51 @@
+{
+  "schemaVersion": 3,
+  "artifactKind": "release-source-admission",
+  "focusedSourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+  "finalMainCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+  "ancestryVerified": true,
+  "changedPaths": [],
+  "changedPathsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "qualificationSet": {
+    "fileName": "focused-qualification-set-v3.json",
+    "sizeBytes": 2215,
+    "sha256": "61ecbebdd734a8d4bec3e701350aaa5e4bb41af3642acae9f00cc716dea9ccc1"
+  },
+  "branchProjection": {
+    "fileName": "branch-catalog-projection-v3.json",
+    "sizeBytes": 2401,
+    "sha256": "240b909f1e64c106a6e65e4572cd756816777dd8114f33b5235a5edd00aa691f"
+  },
+  "projectionVerification": {
+    "fileName": "branch-catalog-projection-verification-v3.json",
+    "sizeBytes": 370,
+    "sha256": "fd2440191680573d64f8444eb1158dab1d3665ff7a48ed7edae0bb736f96fb76"
+  },
+  "executionClosureVerifications": [
+    {
+      "fileName": "chinese-profile-execution-closure-v2.json",
+      "sizeBytes": 1426,
+      "sha256": "ed769548601482f1672a7e1a3a6c863f4d9a5c05d9d54a8ce93c322dbc8f3341"
+    },
+    {
+      "fileName": "english-profile-execution-closure-v2.json",
+      "sizeBytes": 1454,
+      "sha256": "1f105d7b8af89332b946d7788e59c8597291f76bc51dc663dee1bce91ca73862"
+    }
+  ],
+  "profiles": [
+    {
+      "profileId": "chinese",
+      "focusedHostSourceClosureSha256": "705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4",
+      "finalHostSourceClosureSha256": "705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4",
+      "equal": true
+    },
+    {
+      "profileId": "english",
+      "focusedHostSourceClosureSha256": "d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134",
+      "finalHostSourceClosureSha256": "d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134",
+      "equal": true
+    }
+  ],
+  "decision": "reuse-permitted"
+}

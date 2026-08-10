@@ -1,0 +1,8 @@
+reviewed_source_commit=b88c230663eb96e0def8c869b095ea858b0ff50b
+reviewed_artifact_commit=5a2ec1b95536e8490d00e0359ff75e74f199d8f0
+node_version=v22.23.1
+go_version=go version go1.26.5 darwin/arm64
+cmake_version=cmake version 4.2.0
+power_state=Now drawing from 'AC Power'  -InternalBattery-0 (id=21692515)	100%; charged; 0:00 remaining present: true 
+disk_free_bytes=305982103552
+retained_environment_sha256=1ffed2538d3d65c1fbb62d319e7d66d27b840652eca8cb524ae876a68467bf2a

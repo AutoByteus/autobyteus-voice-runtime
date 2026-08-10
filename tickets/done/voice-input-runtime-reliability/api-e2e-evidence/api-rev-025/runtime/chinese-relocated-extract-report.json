@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 2,
+  "hostPackageId": "voice.host.chinese.funasr-native.darwin-arm64",
+  "hostRoot": "host",
+  "archiveSha256": "d08bb4775ae1cc599679f3f2675ac81297ed5e6956aabe5c81ff45c2818dcea3",
+  "descriptorSha256": "0435c0867e0c74478e9f44cf75ab4d46e6de32aa45aab8bce30e0eee62448495",
+  "fileManifestSha256": "e55cb44e863ed9760ba825538d88c7a292a5c4790e6834072b2b5e75819330af",
+  "extractedSizeBytes": 19610836,
+  "entryCount": 22,
+  "modesVerified": true
+}

@@ -1,0 +1,13 @@
+{
+  "compatibilityPairSha256": "d5a6b572df31561d06ae27bd6157d177bc251f57be8bbff6dd410884163fe53c",
+  "executionClosureVerificationPath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/aggregate/english-profile-execution-closure-v2.json",
+  "executionClosureVerificationSha256": "1f105d7b8af89332b946d7788e59c8597291f76bc51dc663dee1bce91ca73862",
+  "hostArchivePath": "/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/builds-r25-v1/english-a/voice-host-english-darwin-arm64-1.0.0.zip",
+  "hostDescriptorSha256": "dbfef7fa107a9b1304875ea85fcf3c7c08f88a5036ba70e0d450df2aec854665",
+  "hostFileManifestSha256": "8ac5fe397f225efcbb035779b0172d56933de0c9c67d3aaff0587dbacda67256",
+  "hostSourceClosureSha256": "d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134",
+  "hostSourceClosureSizeBytes": 40027,
+  "modelAdmissionRootSha256": "7cbf9799670b42482a29404c7a2acfb3a7f701a5e890d3cc22f3245bddfb5448",
+  "modelManifestPath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/release/model-manifests/voice-model-english-whisper-small-mlx-fp16-v1.json",
+  "profileId": "english"
+}

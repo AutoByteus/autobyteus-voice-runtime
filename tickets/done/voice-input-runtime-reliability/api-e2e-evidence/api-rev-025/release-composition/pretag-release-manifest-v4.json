@@ -1,0 +1,44 @@
+{
+  "schemaVersion": 4,
+  "artifactKind": "pretag-release-manifest",
+  "runtimeVersion": "1.0.0",
+  "releaseTag": "v1.0.0",
+  "finalMainCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+  "releaseEvidence": {
+    "fileName": "release-qualification-evidence-v4.json",
+    "sizeBytes": 3553,
+    "sha256": "771c3d399f44e7e28d4afed78a3a17a8d514a78af2bcebd5a7f974460cc1a0a0"
+  },
+  "catalog": {
+    "fileName": "voice-runtime-catalog-v4.json",
+    "sizeBytes": 5194,
+    "sha256": "c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f"
+  },
+  "payloads": [
+    {
+      "fileName": "THIRD_PARTY_NOTICES.json",
+      "sizeBytes": 2226,
+      "sha256": "f260d4b18a924eb4964154496a77efe42183d5a6908990c9c887be27e6719c50"
+    },
+    {
+      "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip",
+      "sizeBytes": 9662381,
+      "sha256": "d08bb4775ae1cc599679f3f2675ac81297ed5e6956aabe5c81ff45c2818dcea3"
+    },
+    {
+      "fileName": "voice-host-english-darwin-arm64-1.0.0.zip",
+      "sizeBytes": 207493128,
+      "sha256": "7149be2ebb28ae49e0e88df006e7de9446e9697c1e0b7ada91a82d77405fcbee"
+    },
+    {
+      "fileName": "voice-model-chinese-fun-asr-nano-gguf-q8-v1.json",
+      "sizeBytes": 2801,
+      "sha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da"
+    },
+    {
+      "fileName": "voice-model-english-whisper-small-mlx-fp16-v1.json",
+      "sizeBytes": 2335,
+      "sha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593"
+    }
+  ]
+}

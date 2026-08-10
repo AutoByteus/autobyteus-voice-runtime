@@ -1,0 +1,18 @@
+{
+  "decision": "pass",
+  "initial": {
+    "downloadEvents": 83515,
+    "eventCount": 83521,
+    "sequencesContiguous": true,
+    "terminal": "installed"
+  },
+  "profileId": "chinese",
+  "repeat": {
+    "downloadEvents": 0,
+    "eventCount": 2,
+    "sequencesContiguous": true,
+    "terminal": "already-installed"
+  },
+  "scenarioId": "API-VOICE-020",
+  "schemaVersion": 1
+}

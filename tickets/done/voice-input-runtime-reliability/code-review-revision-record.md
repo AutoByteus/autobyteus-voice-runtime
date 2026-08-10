@@ -59,6 +59,9 @@ The latest `code-review-report.md` remains authoritative. This record retains th
 | `CRR-051`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 51 / `IR-033` rework                       | `CRR-050 Fail — Local Fix`                  | `Pass`                      | Resolved `CR-F-044`, `CR-F-045`                                              |
 | `CRR-052`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Failure-Origin Review / `API-REV-023`, `API-F-018`                     | `CRR-051 Pass`                              | `Fail — Local Fix`          | New `CR-F-046`; prior API-readiness gap                                      |
 | `CRR-053`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 53 / `IR-034` rework                       | `CRR-052 Fail — Local Fix`                  | `Pass`                      | Resolved `CR-F-046`; prior findings remain resolved                          |
+| `CRR-054`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Failure-Origin Review / `API-REV-024`, `API-F-019`                     | `CRR-053 Pass`                              | `Fail — Local Fix`          | New `CR-F-047`; prior API-readiness gap                                      |
+| `CRR-055`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 55 / `IR-035` rework                       | `CRR-054 Fail — Local Fix`                  | `Pass`                      | Resolved `CR-F-047`; prior findings remain resolved                          |
+| `CRR-056`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md`                | Proportional Test Review / successful `API-REV-025`                    | `CRR-055 Pass`                              | `Not Applicable`            | None — no durable API/E2E test change                                        |
 
 ## Revision Entries
 
@@ -1586,3 +1589,87 @@ None.
 - Material score or classification changes: implementation review returns to `Pass` at `9.6/10` (`96.4/100`); every category meets the clean-pass threshold.
 - Recommended recipient: `api_e2e_engineer`
 - Remaining risks or uncertainty: API/E2E must restart at canonical Chinese construction and complete both host builds/verifications before model/install/runtime/focused-evidence/release scenarios. Merge, tag, publication, desktop, alternate target/model/provider, and user-state work remain unauthorized.
+
+### CRR-054 — Complete Chinese worker fails native digest-binding compilation
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `API/E2E Failure-Origin Review`, round `54`
+- Triggering role, report path, and finding or scenario IDs: API/E2E Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`; `API-REV-024`; `API-VOICE-018`; `API-F-019`; new `CR-F-047`
+- Relevant solution revision IDs: `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-021 Pass`
+- Relevant implementation revision IDs: `IR-034`; source `97f3007c2a62e5f48acd5fcc8c26d1e38b099850`; artifact `2a4b2ef7eab573388390274b47e1de197fe02d3e`
+- Relevant API/E2E revision IDs: `API-REV-024 Fail / 84%`; evidence/report commit `c5722696af92c2432b7c2e4396583ce73fc6bc53`
+- Relevant delivery revision IDs: historical `DR-006`; no current SR-021 Delivery result
+- Prior authoritative result: `CRR-053 Pass -> api_e2e_engineer`
+- Current authoritative result: `Fail — Local Fix -> implementation_engineer`
+- What changed in the review result and why: API-REV-024 directly resolves API-F-018 by passing exact complete-manifest ownership and reaching authenticated native CMake. The full production Chinese worker then fails compilation because three computed string digests are compared directly with JSON values. Focused source inspection and a syntax-only proof expose a fourth same-class model-tree comparison immediately behind them. Repository coverage compiles only selected Chinese components, so every repository gate passed without compile-closing the required worker. This is a deterministic implementation defect and prior source-review/API-readiness gap, not a design change.
+
+#### Prior Finding Resolution
+
+| Finding ID / Boundary            | Prior Status          | Current Status                                                    | Related Revision References         | Verification Evidence                                                                                                                                           |
+| -------------------------------- | --------------------- | ----------------------------------------------------------------- | ----------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CR-F-046` / `API-F-018`         | Resolved              | Resolved                                                          | `IR-034`, `CRR-053`, `API-REV-024`  | Exact current 3,151-row ownership passes and production construction reaches CMake.                                                                             |
+| `CR-F-044` / `API-F-016`         | Resolved              | Resolved                                                          | `IR-033`, `CRR-051`, `API-REV-024`  | The real Chinese builder imports and executes.                                                                                                                  |
+| `CR-F-045` / `API-F-017`         | Resolved              | Direct regression resolved; full packaged-host recheck downstream | `IR-033`, `CRR-051`, `API-REV-024`  | Logical-root/private-destination regression remains Pass; no new archive exists to verify.                                                                      |
+| Current SR-021 API/E2E readiness | Pass at source review | Reopened / Fail                                                   | `CRR-053`, `API-REV-024`, `CRR-054` | Production CMake compiles `session.cpp`; repository coverage does not compile the complete worker, and four invalid string/JSON comparisons are source-visible. |
+
+- New or remaining finding IDs: `CR-F-047`
+- Material score or classification changes: no full scorecard applies. CRR-053's `9.6/10` remains historical; current classification is `Local Fix` and API/E2E readiness is superseded.
+- Recommended recipient: `implementation_engineer`
+- Remaining risks or uncertainty: after typed digest correction, complete production-worker compilation coverage, and source Pass, API/E2E must restart at canonical Chinese construction. Both host verification profiles and every model/store/runtime/focused-authority/release-composition scenario remain downstream. API/E2E changed no durable repository coverage.
+
+### CRR-055 — Complete Chinese worker compilation passes source re-review
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `55`
+- Triggering role, report path, and finding IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`; `IR-035`; prior `CR-F-047` / `API-F-019`
+- Relevant solution revision IDs: `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-021 Pass`
+- Relevant implementation revision IDs: `IR-035`; source `b88c230663eb96e0def8c869b095ea858b0ff50b`; artifact/reviewed HEAD `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`
+- Relevant API/E2E revision IDs: triggering `API-REV-024 Fail / 84%`; `API-F-019`
+- Relevant delivery revision IDs: historical `DR-006`; no current SR-021 Delivery result
+- Prior authoritative result: `CRR-054 Fail — Local Fix -> implementation_engineer`
+- Current authoritative result: `Pass -> api_e2e_engineer`
+- What changed in the review result and why: IR-035 preserves strict JSON/session/model validation while extracting all four validated digest subjects to typed strings before computed comparison. The Chinese input recipe binds the corrected source exactly. Durable Apple-native coverage derives and guards the complete production CMake translation set, authenticates the locked external header/C fixture and live Xcode/SDK subjects, and compiles every production C++/C unit with warnings-as-errors. Reviewer-executed focused `1/1`, release `9/9`, full `94/94` Node plus `7/7` Python/all Go/source/evidence, exact fixture/source bindings, and diff checks pass with zero skips.
+
+#### Prior Finding Resolution
+
+| Finding ID               | Prior Status     | Current Status                                                    | Related Revision References    | Verification Evidence                                                                                                                            |
+| ------------------------ | ---------------- | ----------------------------------------------------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CR-F-047` / `API-F-019` | Open / Local Fix | Resolved                                                          | `IR-035`, `CRR-054`, `CRR-055` | All four digest operands are typed after strict validation; complete production translation-set coverage passes under exact locked Apple inputs. |
+| `CR-F-046` / `API-F-018` | Resolved         | Resolved / unchanged                                              | `IR-034`, `CRR-053`, `IR-035`  | Whole-manifest ownership source/tests are unchanged and full gates pass.                                                                         |
+| `CR-F-044` / `API-F-016` | Resolved         | Resolved / unchanged                                              | `IR-033`, `CRR-051`, `IR-035`  | Real builder composition remains Pass.                                                                                                           |
+| `CR-F-045` / `API-F-017` | Resolved         | Direct regression resolved; full packaged-host recheck downstream | `IR-033`, `CRR-051`, `IR-035`  | Logical-root/private-destination coverage remains Pass; actual new archive verification awaits API/E2E.                                          |
+| `CR-F-039`–`CR-F-043`    | Resolved         | Resolved / unchanged                                              | `IR-032`, `CRR-049`, `IR-035`  | Full repository/release gates retain catalog/store/lifecycle coverage.                                                                           |
+
+- New or remaining finding IDs: None
+- Material score or classification changes: implementation review returns to `Pass` at `9.7/10` (`96.5/100`); every category meets the clean-pass threshold.
+- Recommended recipient: `api_e2e_engineer`
+- Remaining risks or uncertainty: API/E2E must restart at canonical Chinese construction and prove actual link/archive equality/verification before English and later model/store/runtime/focused-authority/release-composition scenarios. The new durable test intentionally proves compilation only. Merge, tag, publication, desktop, alternate target/model, and user-state work remain unauthorized.
+
+### CRR-056 — API-REV-025 changes no durable API/E2E test code
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md`
+- Review entry point and round: `Proportional Test Review`, round `56`
+- Triggering role, report path, and scenario IDs: API/E2E Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`; `API-REV-025`; `API-VOICE-017`–`API-VOICE-024`
+- Relevant solution revision IDs: `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-021 Pass`
+- Relevant implementation revision IDs: `IR-035`; source `b88c230663eb96e0def8c869b095ea858b0ff50b`; artifact `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`
+- Relevant API/E2E revision IDs: `API-REV-025 Pass / 97%`; broader validation `Required — Completed`
+- Relevant delivery revision IDs: historical `DR-006`; no current SR-021 Delivery result
+- Prior authoritative result: `CRR-055 Pass -> api_e2e_engineer`
+- Current authoritative result: `Not Applicable -> delivery_engineer`
+- What changed in the review result and why: API-REV-025 added, updated, and removed no repository-resident durable API/E2E coverage. The only new persistent API/E2E material is canonical reporting and run evidence. The `IR-035` complete-worker test remains implementation-owned and was already reviewed at CRR-055; actual Chinese CMake compile/link/archive execution directly corroborates it. The proportional test-code review is therefore correctly `Not Applicable`.
+
+#### Prior Finding Resolution
+
+| Finding ID / Boundary                           | Prior Status              | Current Status                      | Related Revision References        | Verification Evidence                                                                                                                                                    |
+| ----------------------------------------------- | ------------------------- | ----------------------------------- | ---------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CR-F-047` / `API-F-019`                        | Resolved in source review | Direct runtime resolution confirmed | `IR-035`, `CRR-055`, `API-REV-025` | Canonical Chinese construction compiles and links the complete worker, produces two equal archives, and passes independent Host Verification 2.                          |
+| `CR-F-044`–`CR-F-046` / `API-F-016`–`API-F-018` | Resolved                  | Resolved / unchanged                | `CRR-051`–`CRR-055`, `API-REV-025` | Exact real builder, complete-manifest ownership, archive verification, and both current host builds pass.                                                                |
+| Durable API/E2E test scope                      | No planned change         | No change / `Not Applicable`        | `API-REV-025`, `CRR-056`           | Canonical reports and execution summary record an empty durable coverage-change set; repository diff/status inspection finds no test change after the reviewed artifact. |
+
+- New or remaining finding IDs: None
+- Material score or classification changes: no implementation scorecard applies. The proportional test-code result is `Not Applicable`; API/E2E's authoritative execution result remains `Pass / 97%`.
+- Recommended recipient: `delivery_engineer`
+- Remaining risks or uncertainty: Delivery must refresh and integrate against maintained main, reproduce the exact standard-hosted host-only release subjects, synchronize durable documentation/final handoff, and own tag/release/publication plus downloaded-byte equality. macOS x64, Linux, Windows, `auto`, and desktop UI remain explicitly deferred.

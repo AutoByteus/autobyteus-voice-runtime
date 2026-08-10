@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "profile-execution-closure",
+  "profileId": "english",
+  "historical": {
+    "sourceCommit": "32829080938911f0f46390a3fd2af823e105bd32",
+    "inferenceCoreSha256": "251cc486fb4c15cea6e8372553ff2302be17699c553cad26946432f5c122b986",
+    "configurationSha256": "92d2d60a599910dbfd79ce407a655ec3d268c7810eb963021e1bd4d72c64c980",
+    "modelManifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+    "trustedOutputSha256": "8f9d0abfa27c563f02a12fd468f3eb48b075334b5c1d9f3255ec808a7cadad9f"
+  },
+  "current": {
+    "sourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+    "inferenceCoreSha256": "251cc486fb4c15cea6e8372553ff2302be17699c553cad26946432f5c122b986",
+    "configurationSha256": "92d2d60a599910dbfd79ce407a655ec3d268c7810eb963021e1bd4d72c64c980",
+    "modelManifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+    "trustedOutputSha256": "8f9d0abfa27c563f02a12fd468f3eb48b075334b5c1d9f3255ec808a7cadad9f"
+  },
+  "adapterExclusions": [
+    "providers/english-mlx/recognizer.py",
+    "providers/python/autobyteus_voice_provider/bootstrap.py",
+    "providers/python/autobyteus_voice_provider/session.py"
+  ],
+  "comparison": {
+    "inferenceCoreEqual": true,
+    "pathNeutralConfigurationEqual": true,
+    "modelIdentityEqual": true,
+    "outputEvidenceEqual": true,
+    "adapterExclusionsExact": true
+  },
+  "decision": "reuse-permitted"
+}

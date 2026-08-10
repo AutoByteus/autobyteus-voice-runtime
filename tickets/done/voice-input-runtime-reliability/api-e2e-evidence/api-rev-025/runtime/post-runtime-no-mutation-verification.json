@@ -1,0 +1,56 @@
+{
+  "decision": "pass",
+  "profiles": [
+    {
+      "activationAndModelExact": true,
+      "activationSha256": "d876b4e65cf5724736cbfda99042dbb2fcaf8274065efc6f1babe9e8e3f6964a",
+      "activePointerSha256": "9323d7536ee0391e977daffb0007a82f1ed0fed7fa611369b228f5904b66b355",
+      "decision": "pass",
+      "hostClosureExact": true,
+      "hostManifestSha256": "8ac5fe397f225efcbb035779b0172d56933de0c9c67d3aaff0587dbacda67256",
+      "hostRecordCount": 6502,
+      "modelFileChecks": [
+        {
+          "modeOctal": "0o400",
+          "pass": true,
+          "path": "config.json"
+        },
+        {
+          "modeOctal": "0o400",
+          "pass": true,
+          "path": "weights.npz"
+        }
+      ],
+      "profileId": "english"
+    },
+    {
+      "activationAndModelExact": true,
+      "activationSha256": "f96608c39d43bb2a4063f526081d1c2a1b5ce3c99c1873f0a00068702703be31",
+      "activePointerSha256": "3f17df57d29c6fce7eb1b5510da005f7b31fcc16f50ab2e993f8ead3192612f0",
+      "decision": "pass",
+      "hostClosureExact": true,
+      "hostManifestSha256": "e55cb44e863ed9760ba825538d88c7a292a5c4790e6834072b2b5e75819330af",
+      "hostRecordCount": 21,
+      "modelFileChecks": [
+        {
+          "modeOctal": "0o400",
+          "pass": true,
+          "path": "fsmn-vad.gguf"
+        },
+        {
+          "modeOctal": "0o400",
+          "pass": true,
+          "path": "funasr-encoder-f16.gguf"
+        },
+        {
+          "modeOctal": "0o400",
+          "pass": true,
+          "path": "qwen3-0.6b-q8_0.gguf"
+        }
+      ],
+      "profileId": "chinese"
+    }
+  ],
+  "scenarioId": "API-VOICE-021",
+  "schemaVersion": 1
+}

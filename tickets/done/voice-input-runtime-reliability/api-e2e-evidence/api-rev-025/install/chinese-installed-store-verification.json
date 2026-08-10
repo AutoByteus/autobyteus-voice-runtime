@@ -1,0 +1,108 @@
+{
+  "activation": {
+    "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+    "catalog": {
+      "fileName": "voice-runtime-catalog-v4.json",
+      "sha256": "c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f"
+    },
+    "compatibilityPairSha256": "ae45a451184c0660861f3900ef8bbb05b1c6cfd75cdefd04bbeb410e2e849795",
+    "createdAt": "2026-08-10T15:24:18.396396Z",
+    "decision": "active",
+    "host": {
+      "compatibilityRequirementSha256": "217c57429dd08e1ff5e17c02c7cc95d947a07ac541e5f3220b8e6319b57675b2",
+      "descriptorSha256": "0435c0867e0c74478e9f44cf75ab4d46e6de32aa45aab8bce30e0eee62448495",
+      "fileManifestSha256": "e55cb44e863ed9760ba825538d88c7a292a5c4790e6834072b2b5e75819330af",
+      "hostPackageId": "voice.host.chinese.funasr-native.darwin-arm64",
+      "hostSourceClosureSha256": "705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4",
+      "modelAdmissionRootSha256": "7a49df7e07d907818a02e3f5f12a58c47b5116d5e9deb2fd67caad1dcc97f0a8",
+      "providerId": "autobyteus.voice.funasr-nano-q8"
+    },
+    "installationId": "1fd0229a-185e-4f0d-bda1-9eb272ef4592",
+    "languageMode": "zh",
+    "model": {
+      "files": [
+        {
+          "mode": "read-only",
+          "path": "fsmn-vad.gguf",
+          "role": "vad",
+          "sha256": "1270f2559c495f4e7b6e739541151027d360761a3fda43fc147034f5719f5479",
+          "sizeBytes": 1720512
+        },
+        {
+          "mode": "read-only",
+          "path": "funasr-encoder-f16.gguf",
+          "role": "encoder",
+          "sha256": "f92f91d01a24fbed6c863495b2ee8c6a6788144a02858b75743f0946668de8a2",
+          "sizeBytes": 469331008
+        },
+        {
+          "mode": "read-only",
+          "path": "qwen3-0.6b-q8_0.gguf",
+          "role": "decoder",
+          "sha256": "819f385dc0e035dccc3d9e7edaf6b7b044b8ba7ace63cbcbf84c7e397eecbf27",
+          "sizeBytes": 804753280
+        }
+      ],
+      "layoutId": "funasr-nano-gguf-v1",
+      "manifestSha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da",
+      "modelAssetId": "voice.model.chinese.fun-asr-nano-gguf-q8.v1",
+      "modelId": "fun-asr-nano-gguf-q8",
+      "revision": "46e849502a867080d66d351b8dfb1018b607e509",
+      "treeSha256": "bfac50b188fde75790de4c350bd7d8430ec7efffa94751e4a0e5c22bb6f0e20e"
+    },
+    "profileId": "chinese",
+    "schemaVersion": 1,
+    "target": {
+      "architecture": "arm64",
+      "platform": "darwin"
+    }
+  },
+  "activePointer": {
+    "activationRelativePath": "activations/1fd0229a-185e-4f0d-bda1-9eb272ef4592/profile-activation-v1.json",
+    "activationSha256": "f96608c39d43bb2a4063f526081d1c2a1b5ce3c99c1873f0a00068702703be31",
+    "compatibilityPairSha256": "ae45a451184c0660861f3900ef8bbb05b1c6cfd75cdefd04bbeb410e2e849795",
+    "installationId": "1fd0229a-185e-4f0d-bda1-9eb272ef4592",
+    "profileId": "chinese",
+    "schemaVersion": 1,
+    "selectorGeneration": "c52ac965-5be1-4a42-9e04-fae30ca21d8a",
+    "target": {
+      "architecture": "arm64",
+      "platform": "darwin"
+    },
+    "updatedAt": "2026-08-10T15:24:18.408872Z"
+  },
+  "catalogSha256": "c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f",
+  "decision": "pass",
+  "fileChecks": [
+    {
+      "actualSha256": "1270f2559c495f4e7b6e739541151027d360761a3fda43fc147034f5719f5479",
+      "actualSize": 1720512,
+      "expectedSha256": "1270f2559c495f4e7b6e739541151027d360761a3fda43fc147034f5719f5479",
+      "expectedSize": 1720512,
+      "pass": true,
+      "path": "fsmn-vad.gguf"
+    },
+    {
+      "actualSha256": "f92f91d01a24fbed6c863495b2ee8c6a6788144a02858b75743f0946668de8a2",
+      "actualSize": 469331008,
+      "expectedSha256": "f92f91d01a24fbed6c863495b2ee8c6a6788144a02858b75743f0946668de8a2",
+      "expectedSize": 469331008,
+      "pass": true,
+      "path": "funasr-encoder-f16.gguf"
+    },
+    {
+      "actualSha256": "819f385dc0e035dccc3d9e7edaf6b7b044b8ba7ace63cbcbf84c7e397eecbf27",
+      "actualSize": 804753280,
+      "expectedSha256": "819f385dc0e035dccc3d9e7edaf6b7b044b8ba7ace63cbcbf84c7e397eecbf27",
+      "expectedSize": 804753280,
+      "pass": true,
+      "path": "qwen3-0.6b-q8_0.gguf"
+    }
+  ],
+  "modelManifestSha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da",
+  "modelRoot": "/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/stores-r25-v1/chinese/models/voice.model.chinese.fun-asr-nano-gguf-q8.v1/09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da",
+  "profileId": "chinese",
+  "scenarioId": "API-VOICE-020",
+  "schemaVersion": 1,
+  "symlinks": []
+}

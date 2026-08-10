@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 2,
+  "hostPackageId": "voice.host.chinese.funasr-native.darwin-arm64",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "archive": {
+    "format": "zip",
+    "formatVersion": 2,
+    "compression": "deflate",
+    "canonicalization": "autobyteus-runtime-host-zip-v2",
+    "rootDirectory": "host",
+    "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip",
+    "url": "https://invalid.example/prepublication",
+    "sha256": "d08bb4775ae1cc599679f3f2675ac81297ed5e6956aabe5c81ff45c2818dcea3",
+    "compressedSizeBytes": 9662381,
+    "extractedSizeBytes": 19610836,
+    "entryCount": 22
+  },
+  "hostDescriptor": {
+    "path": "provider/runtime-host-v2.json",
+    "sha256": "0435c0867e0c74478e9f44cf75ab4d46e6de32aa45aab8bce30e0eee62448495"
+  },
+  "fileManifest": {
+    "path": "provider/host-files-v2.json",
+    "sha256": "e55cb44e863ed9760ba825538d88c7a292a5c4790e6834072b2b5e75819330af"
+  }
+}
