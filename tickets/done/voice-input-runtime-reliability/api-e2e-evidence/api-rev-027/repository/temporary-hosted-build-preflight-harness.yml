@@ -1,0 +1,237 @@
+name: Temporary voice runtime hosted build preflight
+on:
+  workflow_dispatch:
+    inputs:
+      release_tag:
+        { description: Evidence-only fixed value, required: true, default: v1.0.0 }
+      runtime_version:
+        { description: Evidence-only fixed value, required: true, default: 1.0.0 }
+permissions: { contents: read }
+concurrency:
+  group: voice-runtime-api-r27-hosted-preflight
+  cancel-in-progress: false
+env:
+  REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+jobs:
+  hosted-build-preflight:
+    runs-on: macos-26
+    steps:
+      - name: Check out exact reviewed source
+        id: checkout
+        uses: actions/checkout@v4
+        with:
+          ref: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+          fetch-depth: 0
+      - name: Initialize bounded hosted audit
+        id: audit_init
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          mkdir -p "$ROOT/evidence"/{repository,environment,success,failure,verification,cleanup} "$ROOT/tools"
+          node release/hosted-release-audit.mjs initialize \
+            --output "$ROOT/evidence/success/bounded-hosted-release-audit-v1.json" \
+            --repository "$GITHUB_REPOSITORY" --workflow-run-id "$GITHUB_RUN_ID" \
+            --workflow-run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --workflow-checkout-commit "$REVIEWED_SOURCE" --runner-label macos-26 \
+            --release-tag v1.0.0 --runtime-version 1.0.0
+      - name: Select exact Node runtime
+        id: setup_node
+        uses: actions/setup-node@v4
+        with: { node-version: 22.23.1, cache: npm }
+      - name: Select exact Go runtime
+        id: setup_go
+        uses: actions/setup-go@v5
+        with: { go-version: 1.26.5, cache: false }
+      - name: Verify exact source owners and prepare declared dependencies
+        id: source_identity
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          test "$(git rev-parse HEAD)" = "$REVIEWED_SOURCE"
+          test "$(node --version)" = v22.23.1
+          npm ci --ignore-scripts > "$ROOT/evidence/repository/npm-ci.log" 2>&1
+          {
+            printf 'sourceCommit=%s\n' "$(git rev-parse HEAD)"
+            printf 'workflowHarnessCommit=%s\n' "$GITHUB_SHA"
+            printf 'runnerName=%s\n' "$RUNNER_NAME"
+            printf 'runnerArch=%s\n' "$RUNNER_ARCH"
+            printf 'runnerOs=%s\n' "$RUNNER_OS"
+            printf 'runnerEnvironment=%s\n' "$RUNNER_ENVIRONMENT"
+            printf 'node=%s\n' "$(node --version)"
+            printf 'go=%s\n' "$(go version)"
+            git ls-tree "$REVIEWED_SOURCE" -- \
+              release/hosted-toolchain.mjs release/hosted-release-audit.mjs \
+              build/host-build-environment.mjs \
+              contracts/release/hosted-toolchain-selection-v1.schema.json \
+              contracts/release/hosted-release-audit-v1.schema.json
+          } > "$ROOT/evidence/repository/exact-source-and-runner.txt"
+      - name: Select exact hosted Xcode SDK and CMake toolchain
+        id: hosted_toolchain
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          CMAKE="$(node release/hosted-toolchain.mjs --tools-root "$ROOT/tools" \
+            --runner-label macos-26 \
+            --output "$ROOT/evidence/success/hosted-toolchain-selection-v1.json")"
+          printf 'cmake=%s\n' "$CMAKE" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$CMAKE" > "$ROOT/evidence/success/selector-cmake-path.txt"
+      - name: Capture and consume unchanged Host Build Environment 2
+        id: host_environment
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          CMAKE="${{ steps.hosted_toolchain.outputs.cmake }}"
+          node build/host-build-environment.mjs --cmake "$CMAKE" \
+            --runner-label macos-26 \
+            --output "$ROOT/evidence/success/host-build-environment-v2.json"
+          RECORD="$ROOT/evidence/success/host-build-environment-v2.json" node --input-type=module <<'NODE'
+          import { consumeHostBuildEnvironment } from "./build/host-build-environment.mjs";
+          const value = await consumeHostBuildEnvironment({recordPath: process.env.RECORD});
+          process.stdout.write(`${value.tools.cmake.path}\n`);
+          NODE
+      - name: Independently verify selected identities and environment binding
+        id: independent_verify
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          ROOT="$ROOT" node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          import path from "node:path";
+          import crypto from "node:crypto";
+          import { execFileSync } from "node:child_process";
+          const root=process.env.ROOT, evidence=path.join(root,"evidence"), selection=JSON.parse(fs.readFileSync(path.join(evidence,"success/hosted-toolchain-selection-v1.json"),"utf8")), environment=JSON.parse(fs.readFileSync(path.join(evidence,"success/host-build-environment-v2.json"),"utf8"));
+          const out=(file,args)=>execFileSync(file,args,{encoding:"utf8"}).trim(), sha=file=>crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex"), cmake=fs.readFileSync(path.join(evidence,"success/selector-cmake-path.txt"),"utf8").trim(), sdk=out("/usr/bin/xcrun",["--sdk","macosx","--show-sdk-path"]), archive=path.join(root,"tools",selection.cmake.archiveFileName);
+          const result={schemaVersion:1,artifactKind:"api-e2e-hosted-toolchain-environment-verification",sourceCommit:"b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636",runnerLabel:"macos-26",architecture:process.arch,platform:process.platform,selectedDeveloperDirectory:out("/usr/bin/xcode-select",["--print-path"]),xcodeVersion:out("/usr/bin/xcodebuild",["-version"]),sdkVersion:out("/usr/bin/xcrun",["--sdk","macosx","--show-sdk-version"]),sdkPath:sdk,sdkRealPath:fs.realpathSync(sdk),sdkSettingsSha256:sha(path.join(sdk,"SDKSettings.json")),cmakeArchive:{path:archive,sizeBytes:fs.statSync(archive).size,sha256:sha(archive)},cmakeExecutable:{path:cmake,sizeBytes:fs.statSync(cmake).size,sha256:sha(cmake),version:out(cmake,["--version"]).split("\n")[0]},selectorEnvironmentBinding:{selectorPath:cmake,environmentPath:environment.tools.cmake.path,environmentSha256:environment.tools.cmake.sha256,equal:cmake===environment.tools.cmake.path&&sha(cmake)===environment.tools.cmake.sha256},environmentAuthority:{runnerLabel:environment.authority.runnerLabel,xcodeVersion:environment.authority.xcodeVersion,sdkVersion:environment.authority.sdkVersion},decision:"pass"};
+          const expected=selection.xcode, expectedCmake=selection.cmake;
+          if(result.architecture!=="arm64"||result.platform!=="darwin"||result.selectedDeveloperDirectory!==expected.developerDirectory||result.xcodeVersion!==expected.version||result.sdkVersion!==expected.sdkVersion||!result.sdkRealPath.startsWith(`${expected.developerDirectory}/`)||result.sdkSettingsSha256!==expected.sdkSettingsSha256||result.cmakeArchive.sha256!==expectedCmake.archiveSha256||result.cmakeExecutable.sha256!==expectedCmake.executableSha256||result.cmakeExecutable.version!==`cmake version ${expectedCmake.version}`||!result.selectorEnvironmentBinding.equal||result.environmentAuthority.runnerLabel!=="macos-26") throw new Error("Independent hosted identity verification failed.");
+          fs.writeFileSync(path.join(evidence,"verification/hosted-toolchain-environment-verification.json"),JSON.stringify(result,null,2)+"\n");
+          NODE
+      - name: Finalize truthful bounded success-path audit
+        id: bounded_audit
+        if: always() && steps.audit_init.outcome == 'success'
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          AUDIT="$ROOT/evidence/success/bounded-hosted-release-audit-v1.json"
+          node release/hosted-release-audit.mjs finalize --input "$AUDIT" --output "$AUDIT" \
+            --checkout "${{ steps.checkout.outcome }}" \
+            --setup-node "${{ steps.setup_node.outcome }}" \
+            --setup-go "${{ steps.setup_go.outcome }}" \
+            --source-admission "${{ steps.source_identity.outcome }}" \
+            --hosted-toolchain "${{ steps.hosted_toolchain.outcome }}" \
+            --input-hydration skipped --host-construction skipped \
+            --release-composition skipped --publication skipped \
+            --postpublication-verification skipped --quarantine skipped
+      - name: Exercise exact full-success audit projection
+        id: audit_success_projection
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          AUDIT="$ROOT/evidence/success/full-success-contract-projection-v1.json"
+          node release/hosted-release-audit.mjs initialize --output "$AUDIT" \
+            --repository "$GITHUB_REPOSITORY" --workflow-run-id "$GITHUB_RUN_ID" \
+            --workflow-run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --workflow-checkout-commit "$REVIEWED_SOURCE" --runner-label macos-26 \
+            --release-tag v1.0.0 --runtime-version 1.0.0
+          node release/hosted-release-audit.mjs finalize --input "$AUDIT" --output "$AUDIT" \
+            --checkout success --setup-node success --setup-go success \
+            --source-admission success --hosted-toolchain success \
+            --input-hydration success --host-construction success \
+            --release-composition success --publication success \
+            --postpublication-verification success --quarantine skipped
+          cat > "$ROOT/evidence/success/full-success-projection-scope.json" <<'JSON'
+          {
+            "schemaVersion": 1,
+            "artifactKind": "api-e2e-audit-projection-scope",
+            "scope": "contract-only-synthetic-github-outcome-projection",
+            "productOrReleaseExecutionClaimed": false,
+            "decision": "pass"
+          }
+          JSON
+      - name: Force exact selector failure before hydration
+        id: forced_toolchain
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          node release/hosted-release-audit.mjs initialize \
+            --output "$ROOT/evidence/failure/forced-tool-failure-audit-v1.json" \
+            --repository "$GITHUB_REPOSITORY" --workflow-run-id "$GITHUB_RUN_ID" \
+            --workflow-run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --workflow-checkout-commit "$REVIEWED_SOURCE" --runner-label macos-26 \
+            --release-tag v1.0.0 --runtime-version 1.0.0
+          node release/hosted-toolchain.mjs \
+            --tools-root "$ROOT/forced-failure-tools" --runner-label macos-latest \
+            --output "$ROOT/evidence/failure/should-not-exist-selection.json" \
+            > "$ROOT/evidence/failure/forced-tool-failure.stdout.log" \
+            2> "$ROOT/evidence/failure/forced-tool-failure.stderr.log"
+      - name: Finalize and verify actual forced-failure audit
+        id: forced_failure_audit
+        if: always() && steps.audit_init.outcome == 'success'
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          test "${{ steps.forced_toolchain.outcome }}" = failure
+          AUDIT="$ROOT/evidence/failure/forced-tool-failure-audit-v1.json"
+          node release/hosted-release-audit.mjs finalize --input "$AUDIT" --output "$AUDIT" \
+            --checkout success --setup-node success --setup-go success \
+            --source-admission success --hosted-toolchain "${{ steps.forced_toolchain.outcome }}" \
+            --input-hydration skipped --host-construction skipped \
+            --release-composition skipped --publication skipped \
+            --postpublication-verification skipped --quarantine skipped
+          ROOT="$ROOT" node --input-type=module <<'NODE'
+          import fs from "node:fs";
+          import path from "node:path";
+          const root=process.env.ROOT, evidence=path.join(root,"evidence"), audit=JSON.parse(fs.readFileSync(path.join(evidence,"failure/forced-tool-failure-audit-v1.json"),"utf8")), later=["input-hydration","host-construction","release-composition","publication","postpublication-verification","quarantine"];
+          if(audit.decision!=="fail"||audit.failureCategory!=="hosted-toolchain-failed"||audit.phases.find(x=>x.phase==="hosted-toolchain")?.outcome!=="failed"||later.some(phase=>audit.phases.find(x=>x.phase===phase)?.outcome!=="unattempted")||fs.existsSync(path.join(root,"forced-failure-tools"))||fs.existsSync(path.join(evidence,"failure/should-not-exist-selection.json"))) throw new Error("Forced pre-hydration failure evidence is invalid.");
+          const result={schemaVersion:1,artifactKind:"api-e2e-forced-tool-failure-verification",actualGithubStepOutcome:"failure",decision:audit.decision,failureCategory:audit.failureCategory,laterPhasesUnattempted:true,toolRootAbsent:true,selectionRecordAbsent:true,result:"pass"};
+          fs.writeFileSync(path.join(evidence,"verification/forced-tool-failure-verification.json"),JSON.stringify(result,null,2)+"\n");
+          NODE
+      - name: Verify no later release or product side effects
+        id: side_effects
+        if: always()
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-api-e2e-r27"
+          for name in cache inputs assets bundle build product-store models published; do
+            test ! -e "$ROOT/$name"
+          done
+          test -z "$(git tag -l -- v1.0.0)"
+          cat > "$ROOT/evidence/verification/zero-execution-counts.json" <<'JSON'
+          {
+            "schemaVersion": 1,
+            "artifactKind": "api-e2e-zero-execution-counts",
+            "profileExecutionCount": 0,
+            "providerLaunchCount": 0,
+            "modelDownloadCount": 0,
+            "corpusAttemptCount": 0,
+            "performanceTrialCount": 0,
+            "inputHydrationCount": 0,
+            "hostBuildCount": 0,
+            "tagCreationCount": 0,
+            "releaseCreationCount": 0,
+            "publicationCount": 0,
+            "assetCreationCount": 0,
+            "decision": "pass"
+          }
+          JSON
+          find "$ROOT" -maxdepth 2 -mindepth 1 -print | sort > "$ROOT/evidence/cleanup/final-root-inventory.txt"
+      - name: Retain bounded hosted build-preflight evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: voice-runtime-api-rev-027-${{ github.run_id }}
+          path: ${{ runner.temp }}/voice-api-e2e-r27/evidence/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Require bounded success path and forced failure proof
+        if: always()
+        run: |
+          test "${{ steps.hosted_toolchain.outcome }}" = success
+          test "${{ steps.host_environment.outcome }}" = success
+          test "${{ steps.independent_verify.outcome }}" = success
+          test "${{ steps.bounded_audit.outcome }}" = success
+          test "${{ steps.audit_success_projection.outcome }}" = success
+          test "${{ steps.forced_toolchain.outcome }}" = failure
+          test "${{ steps.forced_failure_audit.outcome }}" = success
+          test "${{ steps.side_effects.outcome }}" = success

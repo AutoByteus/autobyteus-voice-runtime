@@ -1,0 +1,21 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "hosted-toolchain-selection",
+  "runnerLabel": "macos-26",
+  "target": "darwin-arm64",
+  "xcode": {
+    "developerDirectory": "/Applications/Xcode_26.1.1.app/Contents/Developer",
+    "version": "Xcode 26.1.1\nBuild version 17B100",
+    "sdkVersion": "26.1",
+    "sdkSettingsSha256": "5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff"
+  },
+  "cmake": {
+    "version": "4.2.0",
+    "sourceUrl": "https://github.com/Kitware/CMake/releases/download/v4.2.0/cmake-4.2.0-macos-universal.tar.gz",
+    "archiveFileName": "cmake-4.2.0-macos-universal.tar.gz",
+    "archiveSha256": "b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d",
+    "executableRelativePath": "cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake",
+    "executableSha256": "d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb"
+  },
+  "decision": "pass"
+}

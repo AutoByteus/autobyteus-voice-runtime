@@ -15,13 +15,32 @@ jobs:
   release:
     runs-on: macos-26
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out exact maintained-main source
+        id: checkout
+        uses: actions/checkout@v4
         with: { fetch-depth: 0 }
-      - uses: actions/setup-node@v4
+      - name: Initialize truthful hosted release audit
+        id: audit_init
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-release"
+          mkdir -p "$ROOT"/{cache,inputs,assets,bundle,audit,tools}
+          node release/hosted-release-audit.mjs initialize \
+            --output "$ROOT/audit/hosted-release-audit-v1.json" \
+            --repository "$GITHUB_REPOSITORY" --workflow-run-id "$GITHUB_RUN_ID" \
+            --workflow-run-attempt "$GITHUB_RUN_ATTEMPT" \
+            --workflow-checkout-commit "$GITHUB_SHA" --runner-label macos-26 \
+            --release-tag "$VOICE_RELEASE_TAG" --runtime-version "$VOICE_RUNTIME_VERSION"
+      - name: Select exact Node runtime
+        id: setup_node
+        uses: actions/setup-node@v4
         with: { node-version: 22.23.1, cache: npm }
-      - uses: actions/setup-go@v5
+      - name: Select exact Go runtime
+        id: setup_go
+        uses: actions/setup-go@v5
         with: { go-version: 1.26.5, cache: false }
       - name: Verify source and committed admission
+        id: source_admission
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
           set -euo pipefail
@@ -37,12 +56,22 @@ jobs:
           npm run check:release-pipeline
           node release/verify-release-source-admission.mjs --repository "$GITHUB_WORKSPACE" \
             --workflow-checkout-commit "$GITHUB_SHA" --mode lineage
-      - name: Capture hosted authority and hydrate host-only inputs
+      - name: Select exact hosted Xcode SDK and CMake toolchain
+        id: hosted_toolchain
         run: |
           set -euo pipefail
           ROOT="$RUNNER_TEMP/voice-release"
-          mkdir -p "$ROOT"/{cache,inputs,assets,bundle,audit}
-          node build/host-build-environment.mjs --cmake "$(command -v cmake)" \
+          CMAKE="$(node release/hosted-toolchain.mjs --tools-root "$ROOT/tools" \
+            --runner-label macos-26 \
+            --output "$ROOT/audit/hosted-toolchain-selection-v1.json")"
+          printf 'cmake=%s\n' "$CMAKE" >> "$GITHUB_OUTPUT"
+      - name: Capture hosted authority and hydrate host-only inputs
+        id: input_hydration
+        run: |
+          set -euo pipefail
+          ROOT="$RUNNER_TEMP/voice-release"
+          CMAKE="${{ steps.hosted_toolchain.outputs.cmake }}"
+          node build/host-build-environment.mjs --cmake "$CMAKE" \
             --runner-label macos-26 --output "$ROOT/host-build-environment-v2.json"
           node build/hydrate-host-input-cache.mjs \
             --english build/input-recipes/english-host-darwin-arm64-v2.json \
@@ -54,6 +83,7 @@ jobs:
               --destination "$ROOT/inputs/$PROFILE" --source-commit "$GITHUB_SHA"
           done
       - name: Build and independently verify exact runtime hosts
+        id: host_construction
         run: |
           set -euo pipefail
           ROOT="$RUNNER_TEMP/voice-release"; GO="$(go env GOROOT)/bin/go"
@@ -68,6 +98,7 @@ jobs:
             --version "$VOICE_RUNTIME_VERSION" \
             --output "$ROOT/audit/hosted-host-construction-result-v3.json"
       - name: Compose exact acyclic nine-asset bundle
+        id: release_composition
         run: |
           set -euo pipefail
           ROOT="$RUNNER_TEMP/voice-release"; AUTH=release/admission
@@ -133,6 +164,7 @@ jobs:
             --repository "$GITHUB_REPOSITORY" --release-tag "$VOICE_RELEASE_TAG" \
             --output "$ROOT/audit/published-asset-verification-v2.json"
       - name: Quarantine failed publication without changing its tag
+        id: quarantine
         if: always() && steps.verify.outcome == 'failure'
         env: { GH_TOKEN: "${{ github.token }}" }
         run: |
@@ -140,6 +172,24 @@ jobs:
             --verification "$RUNNER_TEMP/voice-release/audit/published-asset-verification-v2.json" \
             --release-tag "$VOICE_RELEASE_TAG" --repository "$GITHUB_REPOSITORY" \
             --output "$RUNNER_TEMP/voice-release/audit/publication-quarantine-result-v1.json"
+      - name: Finalize truthful hosted release audit
+        id: audit_finalize
+        if: always() && steps.audit_init.outcome == 'success'
+        run: |
+          set -euo pipefail
+          AUDIT="$RUNNER_TEMP/voice-release/audit/hosted-release-audit-v1.json"
+          node release/hosted-release-audit.mjs finalize --input "$AUDIT" --output "$AUDIT" \
+            --checkout "${{ steps.checkout.outcome }}" \
+            --setup-node "${{ steps.setup_node.outcome }}" \
+            --setup-go "${{ steps.setup_go.outcome }}" \
+            --source-admission "${{ steps.source_admission.outcome }}" \
+            --hosted-toolchain "${{ steps.hosted_toolchain.outcome }}" \
+            --input-hydration "${{ steps.input_hydration.outcome }}" \
+            --host-construction "${{ steps.host_construction.outcome }}" \
+            --release-composition "${{ steps.release_composition.outcome }}" \
+            --publication "${{ steps.publish.outcome }}" \
+            --postpublication-verification "${{ steps.verify.outcome }}" \
+            --quarantine "${{ steps.quarantine.outcome }}"
       - name: Retain release audit
         if: always()
         uses: actions/upload-artifact@v4

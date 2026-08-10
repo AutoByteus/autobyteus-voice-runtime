@@ -1,0 +1,3 @@
+localHarnessBranchAbsent=true
+exactSourceWorktreeRemoved=true
+harnessWorktreeRemoved=true

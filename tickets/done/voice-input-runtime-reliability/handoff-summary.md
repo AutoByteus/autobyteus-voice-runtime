@@ -2,7 +2,7 @@
 
 ## Status
 
-- Delivery status: **maintained-main W is finalized and its source/admission gate passes, but standard-hosted release run 31420271551 failed closed on host tool selection before build; v1.0.0 remains unpublished**.
+- Delivery status: **the bounded hosted-toolchain correction is reviewed, validated on real macos-26, and integrated against current main; production v1.0.0 retry remains**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
@@ -16,6 +16,18 @@
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
 - Initial finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`; current finalized W: `743597440277e39155b059a475d6820ddc9ff831`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Hosted Toolchain Correction — DR-011
+
+- Review: CRR-061 **Pass / 97.6%**, API-REV-027 **Pass / 99%**, CRR-062 **Not Applicable** with no durable API/E2E test change.
+- Exact chain: base `a486c998481a4d6649d3245c24f0c8e954785594`; source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`; reviewed artifact `c233e2c82300e798322964c2547af3d97f507488`; API/reviewer checkpoint `8ca083ee53c1b5b7674dd5e4d03967ac184a753f`.
+- Refresh: `origin/main` remains exact base `a486c99...`; left/right is `0 / 3`, so no base merge was required.
+- Real hosted validation: run `31424156708` selected/authenticated Xcode 26.1.1 build 17B100, SDK 26.1, and official CMake 4.2.0; success and forced-failure audit paths both pass.
+- Integrated check: production focused suite 22/22; API-REV-027 60/60 checksum rows; DR-010 evidence checksum retention; tag/release absence — all Pass.
+- Scope: zero product/profile/performance qualification, provider/inference work, model downloads, release, tag, publication, or user-state mutation.
+- Historical run `31420271551` remains failed. The temporary validation harness was removed and is evidence-only.
+- Status: **release-retry-ready** under the user's existing runtime-only v1.0.0 authorization.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-hosted-toolchain-integration-SHA256SUMS.txt`.
 
 ## Standard-Hosted Release Failure — DR-010
 

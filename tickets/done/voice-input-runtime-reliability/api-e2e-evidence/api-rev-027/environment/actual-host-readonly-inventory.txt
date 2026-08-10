@@ -1,0 +1,19 @@
+timestampUtc=2026-08-10T19:23:51Z
+uname=Darwin MacBookPro 25.5.0 Darwin Kernel Version 25.5.0: Tue Jun  9 22:18:58 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T6000 arm64
+machine=arm64
+productVersion=26.5.2
+productBuild=25F84
+node=v22.23.1
+selectedDeveloperDirectory=/Applications/Xcode.app/Contents/Developer
+xcodeVersionStart
+Xcode 26.1.1
+Build version 17B100
+xcodeVersionEnd
+sdkVersion=26.1
+sdkPath=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk
+sdkRealPath=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk
+sdkSettingsSha256=5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff
+xcodeTargetExists=false
+sudoNoninteractiveCredential=unavailable
+ambientCmake=/opt/homebrew/bin/cmake
+ambientCmakeVersion=cmake version 4.3.3

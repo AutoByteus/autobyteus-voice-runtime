@@ -13,8 +13,8 @@ installation, or release is part of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-010`
-- Notes: maintained-main W is finalized and admission checks pass, but standard-hosted run 31420271551 failed before build on the current runner's tool-version selection. No tag or release exists.
+- Current revision: `DR-011`
+- Notes: the exact hosted toolchain selection/audit correction passed review and real macos-26 validation; latest main is already integrated and the bounded production retry is ready. No tag or release exists yet.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,12 +155,11 @@ installation, or release is part of this ticket.
 
 ## Final Status
 
-**Blocked / Local Fix — repository finalized, release unpublished.** Exact W is
-on maintained main and its source/admission gate passes. Standard-hosted run
-`31420271551` then failed closed before hydration/build because its default
-host tools did not satisfy the exact production lock. No tag, release, or
-asset exists. The correction is routed to Implementation and must pass review
-and applicable API/E2E validation before Delivery retries.
+**Pass / release-retry-ready.** The reviewed correction explicitly selects and
+authenticates the exact hosted Xcode/SDK/CMake toolchain and preserves truthful
+early-failure audit evidence. Real macos-26 validation, focused 22/22 checks,
+and all API-REV-027 checksums pass. Historical run `31420271551` remains
+failed; no tag, release, or asset exists yet.
 
 ## Aggregate API Renewal Delivery Gate — DR-006
 
@@ -231,3 +230,15 @@ and applicable API/E2E validation before Delivery retries.
 - Publication boundary: build/composition/publish/download verification skipped; no v1.0.0 tag, release, or assets.
 - Classification: `Local Fix / release-host tool selection and early failure evidence` to `implementation_engineer`.
 - Evidence: `delivery-evidence/release-31420271551/`, checksum manifest Pass.
+
+## Hosted Toolchain Retry Readiness — DR-011
+
+- Reviewed chain: base `a486c998481a4d6649d3245c24f0c8e954785594`; exact source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`; artifact `c233e2c82300e798322964c2547af3d97f507488`; checkpoint `8ca083ee53c1b5b7674dd5e4d03967ac184a753f`.
+- Reviews: CRR-061 `Pass / 97.6%`; API-REV-027 `Pass / 99%`; CRR-062 `Not Applicable`.
+- Base refresh: `origin/main` unchanged at exact source base; already integrated, left/right `0 / 3`.
+- Hosted proof: run/job `31424156708 / 93571782200`; exact Xcode 26.1.1 build 17B100, SDK 26.1, official CMake 4.2.0, and Host Build Environment 2 authenticated.
+- Audit proof: success terminal audit and forced hosted-toolchain failure terminal audit both pass; all later phases stay unattempted in the forced failure.
+- Integrated check: production release suite 22/22; all 60 API-REV-027 checksums; retained DR-010 evidence checksums; remote no-tag/no-release guards — Pass.
+- No product/profile/provider/inference/corpus/performance qualification and no model download occurred.
+- Documentation: explicit no long-lived prose impact; ticket-local DR-011 updates only.
+- Next action: push ticket branch, refresh/merge maintained main, validate exact integrated authority, and retry the production standard-hosted release.

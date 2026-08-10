@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "repository",
+    "workflowRunId",
+    "workflowRunAttempt",
+    "workflowCheckoutCommit",
+    "runnerLabel",
+    "releaseTag",
+    "runtimeVersion",
+    "phases",
+    "decision",
+    "failureCategory"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "artifactKind": { "const": "hosted-release-audit" },
+    "repository": { "const": "AutoByteus/autobyteus-voice-runtime" },
+    "workflowRunId": { "type": "string", "pattern": "^[0-9]+$" },
+    "workflowRunAttempt": { "type": "string", "pattern": "^[0-9]+$" },
+    "workflowCheckoutCommit": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{40}$"
+    },
+    "runnerLabel": { "const": "macos-26" },
+    "releaseTag": { "const": "v1.0.0" },
+    "runtimeVersion": { "const": "1.0.0" },
+    "phases": {
+      "type": "array",
+      "minItems": 11,
+      "maxItems": 11,
+      "prefixItems": [
+        { "$ref": "#/$defs/checkout" },
+        { "$ref": "#/$defs/setupNode" },
+        { "$ref": "#/$defs/setupGo" },
+        { "$ref": "#/$defs/sourceAdmission" },
+        { "$ref": "#/$defs/hostedToolchain" },
+        { "$ref": "#/$defs/inputHydration" },
+        { "$ref": "#/$defs/hostConstruction" },
+        { "$ref": "#/$defs/releaseComposition" },
+        { "$ref": "#/$defs/publication" },
+        { "$ref": "#/$defs/postpublicationVerification" },
+        { "$ref": "#/$defs/quarantine" }
+      ],
+      "items": false
+    },
+    "decision": { "enum": ["in-progress", "fail", "pass"] },
+    "failureCategory": { "type": ["string", "null"] }
+  },
+  "$defs": {
+    "outcome": {
+      "enum": ["pending", "succeeded", "failed", "cancelled", "unattempted"]
+    },
+    "checkout": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "checkout" } }
+    },
+    "setupNode": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "setup-node" } }
+    },
+    "setupGo": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "setup-go" } }
+    },
+    "sourceAdmission": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "source-admission" } }
+    },
+    "hostedToolchain": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "hosted-toolchain" } }
+    },
+    "inputHydration": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "input-hydration" } }
+    },
+    "hostConstruction": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "host-construction" } }
+    },
+    "releaseComposition": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "release-composition" } }
+    },
+    "publication": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "publication" } }
+    },
+    "postpublicationVerification": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "postpublication-verification" } }
+    },
+    "quarantine": {
+      "type": "object",
+      "$ref": "#/$defs/phaseBase",
+      "properties": { "phase": { "const": "quarantine" } }
+    },
+    "phaseBase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["phase", "outcome"],
+      "properties": {
+        "phase": { "type": "string" },
+        "outcome": { "$ref": "#/$defs/outcome" }
+      }
+    }
+  }
+}

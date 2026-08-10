@@ -1,0 +1,13 @@
+sourceCommit=b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+workflowHarnessCommit=cf1a676053fdacda10994fdd4ec46a6162bdb874
+runnerName=GitHub Actions 1000004091
+runnerArch=ARM64
+runnerOs=macOS
+runnerEnvironment=github-hosted
+node=v22.23.1
+go=go version go1.26.5 darwin/arm64
+100644 blob 6fcc2111aaca431c8c901d49d86da1fcd1d0f4be	build/host-build-environment.mjs
+100644 blob 5538c4024eda2af971ff953d28cc71618d3d21cb	contracts/release/hosted-release-audit-v1.schema.json
+100644 blob 4d06c098a72ce308d2f176915c4cfc2149712b20	contracts/release/hosted-toolchain-selection-v1.schema.json
+100644 blob 530794403bcd7c05ccff4e628e258af9cff809e7	release/hosted-release-audit.mjs
+100644 blob d4194d07734bb7b7940ca8e7824ae01bd5a86583	release/hosted-toolchain.mjs

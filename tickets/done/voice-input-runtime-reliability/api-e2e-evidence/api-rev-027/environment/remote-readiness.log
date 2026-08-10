@@ -1,0 +1,11 @@
+origin	https://github.com/AutoByteus/autobyteus-voice-runtime.git (fetch)
+origin	https://github.com/AutoByteus/autobyteus-voice-runtime.git (push)
+github.com
+  ✓ Logged in to github.com account ryan-zheng-teki (keyring)
+  - Active account: true
+  - Git operations protocol: https
+  - Token: gho_************************************
+  - Token scopes: 'gist', 'read:org', 'repo', 'workflow'
+{"defaultBranchRef":{"name":"main"},"isPrivate":false,"nameWithOwner":"AutoByteus/autobyteus-voice-runtime","url":"https://github.com/AutoByteus/autobyteus-voice-runtime"}
+27577ed1108db3a6e07c652d5d52df912df3c452	refs/heads/codex/voice-runtime-qualified-recovery
+a486c998481a4d6649d3245c24f0c8e954785594	refs/heads/main

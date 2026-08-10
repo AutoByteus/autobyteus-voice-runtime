@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "runnerLabel",
+    "target",
+    "xcode",
+    "cmake",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "artifactKind": { "const": "hosted-toolchain-selection" },
+    "runnerLabel": { "const": "macos-26" },
+    "target": { "const": "darwin-arm64" },
+    "xcode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "developerDirectory",
+        "version",
+        "sdkVersion",
+        "sdkSettingsSha256"
+      ],
+      "properties": {
+        "developerDirectory": {
+          "const": "/Applications/Xcode_26.1.1.app/Contents/Developer"
+        },
+        "version": { "const": "Xcode 26.1.1\nBuild version 17B100" },
+        "sdkVersion": { "const": "26.1" },
+        "sdkSettingsSha256": {
+          "const": "5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff"
+        }
+      }
+    },
+    "cmake": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "version",
+        "sourceUrl",
+        "archiveFileName",
+        "archiveSha256",
+        "executableRelativePath",
+        "executableSha256"
+      ],
+      "properties": {
+        "version": { "const": "4.2.0" },
+        "sourceUrl": {
+          "const": "https://github.com/Kitware/CMake/releases/download/v4.2.0/cmake-4.2.0-macos-universal.tar.gz"
+        },
+        "archiveFileName": {
+          "const": "cmake-4.2.0-macos-universal.tar.gz"
+        },
+        "archiveSha256": {
+          "const": "b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d"
+        },
+        "executableRelativePath": {
+          "const": "cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake"
+        },
+        "executableSha256": {
+          "const": "d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb"
+        }
+      }
+    },
+    "decision": { "const": "pass" }
+  }
+}

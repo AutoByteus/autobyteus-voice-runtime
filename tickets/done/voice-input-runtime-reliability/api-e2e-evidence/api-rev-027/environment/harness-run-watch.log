@@ -1,0 +1,146 @@
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* codex/voice-runtime-api-r27-hosted-harness-20260810-v1 Voice runtime host release · 31424156708
+Triggered via workflow_dispatch less than a minute ago
+
+JOBS
+* hosted-build-preflight (ID 93571782200)
+  * Set up job
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* codex/voice-runtime-api-r27-hosted-harness-20260810-v1 Voice runtime host release · 31424156708
+Triggered via workflow_dispatch less than a minute ago
+
+JOBS
+* hosted-build-preflight (ID 93571782200)
+  ✓ Set up job
+  ✓ Check out exact reviewed source
+  ✓ Initialize bounded hosted audit
+  ✓ Select exact Node runtime
+  ✓ Select exact Go runtime
+  ✓ Verify exact source owners and prepare declared dependencies
+  * Select exact hosted Xcode SDK and CMake toolchain
+  * Capture and consume unchanged Host Build Environment 2
+  * Independently verify selected identities and environment binding
+  * Finalize truthful bounded success-path audit
+  * Exercise exact full-success audit projection
+  * Force exact selector failure before hydration
+  * Finalize and verify actual forced-failure audit
+  * Verify no later release or product side effects
+  * Retain bounded hosted build-preflight evidence
+  * Require bounded success path and forced failure proof
+  * Post Select exact Go runtime
+  * Post Select exact Node runtime
+  * Post Check out exact reviewed source
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* codex/voice-runtime-api-r27-hosted-harness-20260810-v1 Voice runtime host release · 31424156708
+Triggered via workflow_dispatch less than a minute ago
+
+JOBS
+* hosted-build-preflight (ID 93571782200)
+  ✓ Set up job
+  ✓ Check out exact reviewed source
+  ✓ Initialize bounded hosted audit
+  ✓ Select exact Node runtime
+  ✓ Select exact Go runtime
+  ✓ Verify exact source owners and prepare declared dependencies
+  ✓ Select exact hosted Xcode SDK and CMake toolchain
+  * Capture and consume unchanged Host Build Environment 2
+  * Independently verify selected identities and environment binding
+  * Finalize truthful bounded success-path audit
+  * Exercise exact full-success audit projection
+  * Force exact selector failure before hydration
+  * Finalize and verify actual forced-failure audit
+  * Verify no later release or product side effects
+  * Retain bounded hosted build-preflight evidence
+  * Require bounded success path and forced failure proof
+  * Post Select exact Go runtime
+  * Post Select exact Node runtime
+  * Post Check out exact reviewed source
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* codex/voice-runtime-api-r27-hosted-harness-20260810-v1 Voice runtime host release · 31424156708
+Triggered via workflow_dispatch less than a minute ago
+
+JOBS
+* hosted-build-preflight (ID 93571782200)
+  ✓ Set up job
+  ✓ Check out exact reviewed source
+  ✓ Initialize bounded hosted audit
+  ✓ Select exact Node runtime
+  ✓ Select exact Go runtime
+  ✓ Verify exact source owners and prepare declared dependencies
+  ✓ Select exact hosted Xcode SDK and CMake toolchain
+  * Capture and consume unchanged Host Build Environment 2
+  * Independently verify selected identities and environment binding
+  * Finalize truthful bounded success-path audit
+  * Exercise exact full-success audit projection
+  * Force exact selector failure before hydration
+  * Finalize and verify actual forced-failure audit
+  * Verify no later release or product side effects
+  * Retain bounded hosted build-preflight evidence
+  * Require bounded success path and forced failure proof
+  * Post Select exact Go runtime
+  * Post Select exact Node runtime
+  * Post Check out exact reviewed source
+Refreshing run status every 10 seconds. Press Ctrl+C to quit.
+
+* codex/voice-runtime-api-r27-hosted-harness-20260810-v1 Voice runtime host release · 31424156708
+Triggered via workflow_dispatch about 1 minute ago
+
+JOBS
+* hosted-build-preflight (ID 93571782200)
+  ✓ Set up job
+  ✓ Check out exact reviewed source
+  ✓ Initialize bounded hosted audit
+  ✓ Select exact Node runtime
+  ✓ Select exact Go runtime
+  ✓ Verify exact source owners and prepare declared dependencies
+  ✓ Select exact hosted Xcode SDK and CMake toolchain
+  ✓ Capture and consume unchanged Host Build Environment 2
+  ✓ Independently verify selected identities and environment binding
+  ✓ Finalize truthful bounded success-path audit
+  ✓ Exercise exact full-success audit projection
+  ✓ Force exact selector failure before hydration
+  ✓ Finalize and verify actual forced-failure audit
+  ✓ Verify no later release or product side effects
+  ✓ Retain bounded hosted build-preflight evidence
+  ✓ Require bounded success path and forced failure proof
+  ✓ Post Select exact Go runtime
+  ✓ Post Select exact Node runtime
+  ✓ Post Check out exact reviewed source
+  ✓ Complete job
+✓ codex/voice-runtime-api-r27-hosted-harness-20260810-v1 Voice runtime host release · 31424156708
+Triggered via workflow_dispatch about 1 minute ago
+
+JOBS
+✓ hosted-build-preflight in 54s (ID 93571782200)
+  ✓ Set up job
+  ✓ Check out exact reviewed source
+  ✓ Initialize bounded hosted audit
+  ✓ Select exact Node runtime
+  ✓ Select exact Go runtime
+  ✓ Verify exact source owners and prepare declared dependencies
+  ✓ Select exact hosted Xcode SDK and CMake toolchain
+  ✓ Capture and consume unchanged Host Build Environment 2
+  ✓ Independently verify selected identities and environment binding
+  ✓ Finalize truthful bounded success-path audit
+  ✓ Exercise exact full-success audit projection
+  ✓ Force exact selector failure before hydration
+  ✓ Finalize and verify actual forced-failure audit
+  ✓ Verify no later release or product side effects
+  ✓ Retain bounded hosted build-preflight evidence
+  ✓ Require bounded success path and forced failure proof
+  ✓ Post Select exact Go runtime
+  ✓ Post Select exact Node runtime
+  ✓ Post Check out exact reviewed source
+  ✓ Complete job
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+hosted-build-preflight: .github#2
+
+X Process completed with exit code 1.
+hosted-build-preflight: .github#19
+

@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-hosted-toolchain-environment-verification",
+  "sourceCommit": "b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636",
+  "runnerLabel": "macos-26",
+  "architecture": "arm64",
+  "platform": "darwin",
+  "selectedDeveloperDirectory": "/Applications/Xcode_26.1.1.app/Contents/Developer",
+  "xcodeVersion": "Xcode 26.1.1\nBuild version 17B100",
+  "sdkVersion": "26.1",
+  "sdkPath": "/Applications/Xcode_26.1.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+  "sdkRealPath": "/Applications/Xcode_26.1.1.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk",
+  "sdkSettingsSha256": "5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff",
+  "cmakeArchive": {
+    "path": "/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal.tar.gz",
+    "sizeBytes": 84264582,
+    "sha256": "b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d"
+  },
+  "cmakeExecutable": {
+    "path": "/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake",
+    "sizeBytes": 25014288,
+    "sha256": "d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb",
+    "version": "cmake version 4.2.0"
+  },
+  "selectorEnvironmentBinding": {
+    "selectorPath": "/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake",
+    "environmentPath": "/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake",
+    "environmentSha256": "d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb",
+    "equal": true
+  },
+  "environmentAuthority": {
+    "runnerLabel": "macos-26",
+    "xcodeVersion": "Xcode 26.1.1\nBuild version 17B100",
+    "sdkVersion": "26.1"
+  },
+  "decision": "pass"
+}

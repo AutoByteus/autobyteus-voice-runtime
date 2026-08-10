@@ -1,0 +1,1 @@
+cf1a676 test: add temporary hosted build preflight harness

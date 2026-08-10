@@ -30,6 +30,7 @@
 | `API-REV-024` | Code Reviewer / `code-review-report.md` / `CRR-053`            | `SR-021`, `ARCH-REV-021`, `IR-034`, `CRR-052`, `CRR-053`           | `Fail / 84%`              | `Fail / 84%`                |
 | `API-REV-025` | Code Reviewer / `code-review-report.md` / `CRR-055`            | `SR-021`, `ARCH-REV-021`, `IR-035`, `CRR-054`, `CRR-055`           | `Fail / 84%`              | `Pass / 97%`                |
 | `API-REV-026` | Code Reviewer / `code-review-report.md` / `CRR-058`            | `SR-024`, `ARCH-REV-024`, `IR-037`, `CRR-057`, `CRR-058`, `DR-008` | `Pass / 97%`              | `Pass / 98%`                |
+| `API-REV-027` | Code Reviewer / `code-review-report.md` / `CRR-061`            | `SR-024`, `ARCH-REV-024`, `IR-038`, `CRR-061`, `DR-010`            | `Pass / 98%`              | `Pass / 99%`                |
 
 ## Revision Entries
 
@@ -921,3 +922,31 @@ None.
 - New failures/blockers: `None`.
 - Recommended recipient: `code_reviewer` for review of exact durable authority commit `R`; proportional test-code review is `Not Applicable` because no test changed.
 - Remaining scope: Delivery-owned maintained-main `W`, hosted `R..W` verification, standard-hosted host-only equality, tag/release/publication, and downloaded-byte proof. Alternate targets and desktop remain deferred.
+
+### API-REV-027 — Real macos-26 hosted toolchain and early-audit boundary passes
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-061`; API/E2E round 27.
+- Triggering scenario/criteria: `API-VOICE-026`; the bounded DR-010 standard-hosted Xcode/SDK/CMake selection, Host Build Environment 2 consumption, and Hosted Release Audit 1 success/failure-retention prerequisite.
+- Related revisions: `SR-024`, `ARCH-REV-024`, `IR-038`, `CRR-061`, `DR-010`, and preserved `API-REV-026`.
+- Reviewed subjects: maintained-main base `a486c998481a4d6649d3245c24f0c8e954785594`; source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`; implementation artifact `c233e2c82300e798322964c2547af3d97f507488`.
+- Why recorded: a transparent temporary workflow-only harness executed the exact reviewed toolchain, environment, and audit production owners on GitHub-hosted `macos-26` ARM64. It proved the exact Xcode 26.1.1 build 17B100 / SDK 26.1 / official CMake 4.2.0 identities, exact selector-to-environment consumption, truthful bounded-success and forced-prehydration-failure audit records, and zero later execution or release side effect.
+- Coverage decisions/durable test paths changed: API/E2E added, updated, and removed no repository-resident durable coverage. The temporary hosted harness was execution-only, retained as evidence, and removed locally and remotely.
+- Scenario delta: `API-VOICE-026` Pass. Exact-source release-pipeline coverage passes `22/22`; real hosted run `31424156708`, job `93571782200`, concludes success and retains one non-release Actions evidence artifact.
+- Temporary harness identity: commit `cf1a676053fdacda10994fdd4ec46a6162bdb874`, direct child of exact source, changing only `.github/workflows/release-voice-runtime.yml`. It checks out the exact source, invokes the exact reviewed source owners, and stops before input hydration.
+- Toolchain delta: selected `/Applications/Xcode_26.1.1.app/Contents/Developer`; Xcode `26.1.1` / `17B100`; SDK `26.1`; SDK settings SHA-256 `5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff`; official CMake archive SHA-256 `b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d`; executable SHA-256 `d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb`.
+- Audit delta: the actual bounded path correctly records `input-hydration-unattempted`; the explicitly synthetic complete-success projection returns Pass without a product/release claim; the actual forced selector failure records `hosted-toolchain-failed`, later phases unattempted, and no tool root/selection record.
+- Excluded observation: the temporary harness branch passes `20/22`; the two failures are production-workflow-shape tests that correctly reject the temporary workflow replacement. This is not an implementation failure. The exact reviewed source independently passes all `22/22`.
+- Required zero counts: profile executions, provider launches, model downloads, corpus attempts, performance trials, input hydrations, host builds, tags, releases, publications, and assets all equal zero.
+- Cleanup: the temporary remote branch, local branch, and temporary worktrees were removed; maintained main remained unchanged; v1.0.0 tag and GitHub Release remain absent; no user/shared product state was touched.
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-027/`
+- Prior result/confidence: `Pass / 98%`.
+- Current result/confidence: **`Pass / 99%`**.
+- Broader validation: `Required — Completed` on the real standard-hosted runner/toolchain/environment/audit boundary.
+- New failures/blockers: `None`.
+- Durable API/E2E coverage changes: `None`.
+- Recommended recipient: `code_reviewer` for proportional test-code review, expected `Not Applicable`, then Delivery.
+- Remaining scope: Delivery alone owns the later production release retry, maintained-main integration verification, tag, release, publication, and downloaded-byte proof. Product qualification remains the unchanged API-REV-025 authority; alternate targets and desktop remain deferred.

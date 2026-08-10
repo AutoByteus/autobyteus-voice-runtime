@@ -1,0 +1,11 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-forced-tool-failure-verification",
+  "actualGithubStepOutcome": "failure",
+  "decision": "fail",
+  "failureCategory": "hosted-toolchain-failed",
+  "laterPhasesUnattempted": true,
+  "toolRootAbsent": true,
+  "selectionRecordAbsent": true,
+  "result": "pass"
+}

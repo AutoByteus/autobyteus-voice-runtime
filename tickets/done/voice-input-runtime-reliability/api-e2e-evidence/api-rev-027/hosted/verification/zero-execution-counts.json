@@ -1,0 +1,16 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-zero-execution-counts",
+  "profileExecutionCount": 0,
+  "providerLaunchCount": 0,
+  "modelDownloadCount": 0,
+  "corpusAttemptCount": 0,
+  "performanceTrialCount": 0,
+  "inputHydrationCount": 0,
+  "hostBuildCount": 0,
+  "tagCreationCount": 0,
+  "releaseCreationCount": 0,
+  "publicationCount": 0,
+  "assetCreationCount": 0,
+  "decision": "pass"
+}

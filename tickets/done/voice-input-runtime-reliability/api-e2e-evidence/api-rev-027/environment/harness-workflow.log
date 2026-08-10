@@ -1,0 +1,483 @@
+hosted-build-preflight	Set up job	﻿2026-08-10T19:27:18.3307690Z Current runner version: '2.336.0'
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3337410Z ##[group]Runner Image Provisioner
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3339090Z Hosted Compute Agent
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3340100Z Version: 20260707.563
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3341200Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3342480Z Build Date: 2026-07-07T19:33:50Z
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3343670Z Worker ID: {a26c54ac-63af-4192-8d25-67cbef9000fc}
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3345150Z Azure Region: westus
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3346180Z ##[endgroup]
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3349140Z ##[group]Operating System
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3354850Z macOS
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3358140Z 26.5.2
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3358570Z 25F84
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3359050Z ##[endgroup]
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3359520Z ##[group]Runner Image
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3359920Z Image: macos-26-arm64
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3360290Z Version: 20260728.0273.1
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3361020Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20260728.0273/images/macos/macos-26-arm64-Readme.md
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3362370Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20260728.0273
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3363010Z ##[endgroup]
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3363780Z ##[group]GITHUB_TOKEN Permissions
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3366170Z Contents: read
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3366530Z Metadata: read
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3366870Z ##[endgroup]
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3368520Z Secret source: Actions
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3369180Z Prepare workflow directory
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3748270Z Prepare all required actions
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.3863620Z Getting action download info
+hosted-build-preflight	Set up job	2026-08-10T19:27:18.8153310Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+hosted-build-preflight	Set up job	2026-08-10T19:27:19.1845870Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+hosted-build-preflight	Set up job	2026-08-10T19:27:19.3389760Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
+hosted-build-preflight	Set up job	2026-08-10T19:27:24.8541120Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+hosted-build-preflight	Set up job	2026-08-10T19:27:25.1189930Z Complete job name: hosted-build-preflight
+hosted-build-preflight	Check out exact reviewed source	﻿2026-08-10T19:27:25.1919540Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1927470Z ##[group]Run actions/checkout@v4
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1928070Z with:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1928480Z   ref: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1928940Z   fetch-depth: 0
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1929350Z   repository: AutoByteus/autobyteus-voice-runtime
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1932560Z   token: ***
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1932910Z   ssh-strict: true
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1933280Z   ssh-user: git
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1933640Z   persist-credentials: true
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1934040Z   clean: true
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1934460Z   sparse-checkout-cone-mode: true
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1934900Z   fetch-tags: false
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1935280Z   show-progress: true
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1935690Z   lfs: false
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1936640Z   submodules: false
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1938280Z   set-safe-directory: true
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1938720Z   allow-unsafe-pr-checkout: false
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1939670Z env:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1940130Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.1940710Z ##[endgroup]
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8394450Z Syncing repository: AutoByteus/autobyteus-voice-runtime
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8399470Z ##[group]Getting Git version info
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8400770Z Working directory is '/Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime'
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8402850Z [command]/opt/homebrew/bin/git version
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8822740Z git version 2.55.0
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8843860Z ##[endgroup]
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8856290Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/07e7f563-a74a-4a50-b2dd-06c5d3685c17/.gitconfig'
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8868730Z Temporarily overriding HOME='/Users/runner/work/_temp/07e7f563-a74a-4a50-b2dd-06c5d3685c17' before making global git config changes
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8875350Z Adding repository directory to the temporary git global config as a safe directory
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.8881750Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9037610Z Deleting the contents of '/Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime'
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9045970Z ##[group]Initializing the repository
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9048420Z [command]/opt/homebrew/bin/git init /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9355220Z hint: Using 'master' as the name for the initial branch. This default branch name
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9362510Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9364660Z hint: to use in all of your new repositories, which will suppress this warning,
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9366120Z hint: call:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9367350Z hint:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9368380Z hint: 	git config --global init.defaultBranch <name>
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9369510Z hint:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9370610Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9372420Z hint: 'development'. The just-created branch can be renamed via this command:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9373910Z hint:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9374680Z hint: 	git branch -m <name>
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9375650Z hint:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9376810Z hint: Disable this message with "git config set advice.defaultBranchName false"
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9379100Z Initialized empty Git repository in /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/.git/
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9406750Z [command]/opt/homebrew/bin/git remote add origin https://github.com/AutoByteus/autobyteus-voice-runtime
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9497060Z ##[endgroup]
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9498350Z ##[group]Disabling automatic garbage collection
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9500770Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9589430Z ##[endgroup]
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9592010Z ##[group]Setting up auth
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9595730Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:25.9681810Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:26.0996940Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:26.1074180Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:26.2255470Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:26.2337250Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:26.3335810Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:26.3452620Z ##[endgroup]
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:26.3455240Z ##[group]Fetching the repository
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:26.3460300Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6298850Z From https://github.com/AutoByteus/autobyteus-voice-runtime
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6299680Z  * [new branch]      codex/voice-input-bilingual-runtime -> origin/codex/voice-input-bilingual-runtime
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6301920Z  * [new branch]      codex/voice-input-runtime-reliability -> origin/codex/voice-input-runtime-reliability
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6304770Z  * [new branch]      codex/voice-input-runtime-reliability-postarchive-fix -> origin/codex/voice-input-runtime-reliability-postarchive-fix
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6307340Z  * [new branch]      codex/voice-runtime-api-r27-hosted-harness-20260810-v1 -> origin/codex/voice-runtime-api-r27-hosted-harness-20260810-v1
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6309530Z  * [new branch]      codex/voice-runtime-qualified-recovery -> origin/codex/voice-runtime-qualified-recovery
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6310730Z  * [new branch]      main       -> origin/main
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6311420Z  * [new tag]         v0.1.1     -> v0.1.1
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6312010Z  * [new tag]         v0.2.0     -> v0.2.0
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6312670Z  * [new tag]         v0.3.0     -> v0.3.0
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6316030Z [command]/opt/homebrew/bin/git rev-parse --verify --quiet b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636^{object}
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6403490Z b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6420860Z ##[endgroup]
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6421660Z ##[group]Determining the checkout info
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6422200Z ##[endgroup]
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6422600Z [command]/opt/homebrew/bin/git sparse-checkout disable
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6522450Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6616620Z ##[group]Checking out the ref
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:27.6619090Z [command]/opt/homebrew/bin/git checkout --progress --force b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:28.0536390Z HEAD is now at b5d3c2f fix: select exact hosted release toolchain
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:28.0551760Z ##[endgroup]
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:28.0706440Z [command]/opt/homebrew/bin/git log -1 --format=%H
+hosted-build-preflight	Check out exact reviewed source	2026-08-10T19:27:28.0796500Z b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Initialize bounded hosted audit	﻿2026-08-10T19:27:28.1074310Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1074660Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1074970Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1075530Z [36;1mmkdir -p "$ROOT/evidence"/{repository,environment,success,failure,verification,cleanup} "$ROOT/tools"[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1076050Z [36;1mnode release/hosted-release-audit.mjs initialize \[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1076530Z [36;1m  --output "$ROOT/evidence/success/bounded-hosted-release-audit-v1.json" \[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1077050Z [36;1m  --repository "$GITHUB_REPOSITORY" --workflow-run-id "$GITHUB_RUN_ID" \[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1077460Z [36;1m  --workflow-run-attempt "$GITHUB_RUN_ATTEMPT" \[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1078390Z [36;1m  --workflow-checkout-commit "$REVIEWED_SOURCE" --runner-label macos-26 \[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1078800Z [36;1m  --release-tag v1.0.0 --runtime-version 1.0.0[0m
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1130320Z shell: /bin/bash -e {0}
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1130600Z env:
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1130930Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Initialize bounded hosted audit	2026-08-10T19:27:28.1131260Z ##[endgroup]
+hosted-build-preflight	Select exact Node runtime	﻿2026-08-10T19:27:28.6896050Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6897570Z ##[group]Run actions/setup-node@v4
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6897770Z with:
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6897950Z   node-version: 22.23.1
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6898110Z   cache: npm
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6898250Z   always-auth: false
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6898410Z   check-latest: false
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6900740Z   token: ***
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6900880Z env:
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6901100Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.6901390Z ##[endgroup]
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.8844260Z Found in cache @ /Users/runner/hostedtoolcache/node/22.23.1/arm64
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.8851660Z (node:1625) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.8856850Z ##[group]Environment details
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:28.8858510Z (Use `node --trace-deprecation ...` to show where the warning was created)
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:29.7988470Z node: v22.23.1
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:29.8040860Z npm: 10.9.8
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:29.8041370Z yarn: 1.22.22
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:29.8042470Z ##[endgroup]
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:29.8050230Z [command]/Users/runner/hostedtoolcache/node/22.23.1/arm64/bin/npm config get cache
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:30.0235250Z /Users/runner/.npm
+hosted-build-preflight	Select exact Node runtime	2026-08-10T19:27:30.3537150Z npm cache is not found
+hosted-build-preflight	Select exact Go runtime	﻿2026-08-10T19:27:30.3723780Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3725050Z ##[group]Run actions/setup-go@v5
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3725420Z with:
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3725680Z   go-version: 1.26.5
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3725860Z   cache: false
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3726130Z   check-latest: false
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3728890Z   token: ***
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3729170Z env:
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3729410Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.3729690Z ##[endgroup]
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.5368830Z Setup go version spec 1.26.5
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.5392080Z Found in cache @ /Users/runner/hostedtoolcache/go/1.26.5/arm64
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.5395020Z (node:1642) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.5396070Z (Use `node --trace-deprecation ...` to show where the warning was created)
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.5405250Z Added go to the path
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.5412210Z Successfully set up Go version 1.26.5
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.6846780Z go version go1.26.5 darwin/arm64
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.6847010Z 
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:30.6849660Z ##[group]go env
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3582930Z AR='ar'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3584790Z CC='clang'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3585130Z CGO_CFLAGS='-O2 -g'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3585510Z CGO_CPPFLAGS=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3587120Z CGO_CXXFLAGS='-O2 -g'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3587540Z CGO_ENABLED='1'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3588010Z CGO_FFLAGS='-O2 -g'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3588350Z CGO_LDFLAGS='-O2 -g'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3588560Z CXX='clang++'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3588770Z GCCGO='gccgo'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3588950Z GO111MODULE=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3644640Z GOARCH='arm64'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3644960Z GOARM64='v8.0'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3645120Z GOAUTH='netrc'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3645360Z GOBIN=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3645650Z GOCACHE='/Users/runner/Library/Caches/go-build'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3646260Z GOCACHEPROG=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3646440Z GODEBUG=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3646810Z GOENV='/Users/runner/Library/Application Support/go/env'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3647120Z GOEXE=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3647310Z GOEXPERIMENT=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3647630Z GOFIPS140='off'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3647850Z GOFLAGS=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3649550Z GOGCCFLAGS='-fPIC -arch arm64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -ffile-prefix-map=/var/folders/df/djsxfhc17x95674wsm_g8s980000gn/T/go-build215001175=/tmp/go-build -gno-record-gcc-switches -fno-common'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3650650Z GOHOSTARCH='arm64'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3650980Z GOHOSTOS='darwin'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3652180Z GOINSECURE=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3652930Z GOMOD='/Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/go.mod'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3653530Z GOMODCACHE='/Users/runner/go/pkg/mod'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3654080Z GONOPROXY=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3654450Z GONOSUMDB=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3654700Z GOOS='darwin'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3655020Z GOPATH='/Users/runner/go'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3655370Z GOPRIVATE=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3655770Z GOPROXY='https://proxy.golang.org,direct'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3656360Z GOROOT='/Users/runner/hostedtoolcache/go/1.26.5/arm64'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3679750Z GOSUMDB='sum.golang.org'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3681100Z GOTELEMETRY='local'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3681760Z GOTELEMETRYDIR='/Users/runner/Library/Application Support/go/telemetry'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3682320Z GOTMPDIR=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3682650Z GOTOOLCHAIN='auto'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3683320Z GOTOOLDIR='/Users/runner/hostedtoolcache/go/1.26.5/arm64/pkg/tool/darwin_arm64'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3683710Z GOVCS=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3684050Z GOVERSION='go1.26.5'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3684310Z GOWORK=''
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3684660Z PKG_CONFIG='pkg-config'
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3684890Z 
+hosted-build-preflight	Select exact Go runtime	2026-08-10T19:27:33.3686780Z ##[endgroup]
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	﻿2026-08-10T19:27:33.3757090Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3757450Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3757700Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3757990Z [36;1mtest "$(git rev-parse HEAD)" = "$REVIEWED_SOURCE"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3758340Z [36;1mtest "$(node --version)" = v22.23.1[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3759170Z [36;1mnpm ci --ignore-scripts > "$ROOT/evidence/repository/npm-ci.log" 2>&1[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3759600Z [36;1m{[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3759900Z [36;1m  printf 'sourceCommit=%s\n' "$(git rev-parse HEAD)"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3760300Z [36;1m  printf 'workflowHarnessCommit=%s\n' "$GITHUB_SHA"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3760650Z [36;1m  printf 'runnerName=%s\n' "$RUNNER_NAME"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3760980Z [36;1m  printf 'runnerArch=%s\n' "$RUNNER_ARCH"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3761340Z [36;1m  printf 'runnerOs=%s\n' "$RUNNER_OS"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3761660Z [36;1m  printf 'runnerEnvironment=%s\n' "$RUNNER_ENVIRONMENT"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3762190Z [36;1m  printf 'node=%s\n' "$(node --version)"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3762470Z [36;1m  printf 'go=%s\n' "$(go version)"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3763770Z [36;1m  git ls-tree "$REVIEWED_SOURCE" -- \[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3764760Z [36;1m    release/hosted-toolchain.mjs release/hosted-release-audit.mjs \[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3765850Z [36;1m    build/host-build-environment.mjs \[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3766970Z [36;1m    contracts/release/hosted-toolchain-selection-v1.schema.json \[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3767630Z [36;1m    contracts/release/hosted-release-audit-v1.schema.json[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3768040Z [36;1m} > "$ROOT/evidence/repository/exact-source-and-runner.txt"[0m
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3819700Z shell: /bin/bash -e {0}
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3819940Z env:
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3820170Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Verify exact source owners and prepare declared dependencies	2026-08-10T19:27:33.3820430Z ##[endgroup]
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	﻿2026-08-10T19:27:35.0693710Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0694000Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0694220Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0694590Z [36;1mCMAKE="$(node release/hosted-toolchain.mjs --tools-root "$ROOT/tools" \[0m
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0695360Z [36;1m  --runner-label macos-26 \[0m
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0695700Z [36;1m  --output "$ROOT/evidence/success/hosted-toolchain-selection-v1.json")"[0m
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0696130Z [36;1mprintf 'cmake=%s\n' "$CMAKE" >> "$GITHUB_OUTPUT"[0m
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0696650Z [36;1mprintf '%s\n' "$CMAKE" > "$ROOT/evidence/success/selector-cmake-path.txt"[0m
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0738520Z shell: /bin/bash -e {0}
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0738880Z env:
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0739160Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Select exact hosted Xcode SDK and CMake toolchain	2026-08-10T19:27:35.0739570Z ##[endgroup]
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	﻿2026-08-10T19:27:46.1500780Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1501120Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1501460Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1502020Z [36;1mCMAKE="/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake"[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1502650Z [36;1mnode build/host-build-environment.mjs --cmake "$CMAKE" \[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1503100Z [36;1m  --runner-label macos-26 \[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1504230Z [36;1m  --output "$ROOT/evidence/success/host-build-environment-v2.json"[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1504760Z [36;1mRECORD="$ROOT/evidence/success/host-build-environment-v2.json" node --input-type=module <<'NODE'[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1505350Z [36;1mimport { consumeHostBuildEnvironment } from "./build/host-build-environment.mjs";[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1505890Z [36;1mconst value = await consumeHostBuildEnvironment({recordPath: process.env.RECORD});[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1506570Z [36;1mprocess.stdout.write(`${value.tools.cmake.path}\n`);[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1507060Z [36;1mNODE[0m
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1567190Z shell: /bin/bash -e {0}
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1567410Z env:
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1567910Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:27:46.1568250Z ##[endgroup]
+hosted-build-preflight	Capture and consume unchanged Host Build Environment 2	2026-08-10T19:28:00.3242450Z /Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake
+hosted-build-preflight	Independently verify selected identities and environment binding	﻿2026-08-10T19:28:00.3463250Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3464080Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3464500Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3464860Z [36;1mROOT="$ROOT" node --input-type=module <<'NODE'[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3465350Z [36;1mimport fs from "node:fs";[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3465780Z [36;1mimport path from "node:path";[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3466120Z [36;1mimport crypto from "node:crypto";[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3466580Z [36;1mimport { execFileSync } from "node:child_process";[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3467740Z [36;1mconst root=process.env.ROOT, evidence=path.join(root,"evidence"), selection=JSON.parse(fs.readFileSync(path.join(evidence,"success/hosted-toolchain-selection-v1.json"),"utf8")), environment=JSON.parse(fs.readFileSync(path.join(evidence,"success/host-build-environment-v2.json"),"utf8"));[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3469880Z [36;1mconst out=(file,args)=>execFileSync(file,args,{encoding:"utf8"}).trim(), sha=file=>crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex"), cmake=fs.readFileSync(path.join(evidence,"success/selector-cmake-path.txt"),"utf8").trim(), sdk=out("/usr/bin/xcrun",["--sdk","macosx","--show-sdk-path"]), archive=path.join(root,"tools",selection.cmake.archiveFileName);[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3474740Z [36;1mconst result={schemaVersion:1,artifactKind:"api-e2e-hosted-toolchain-environment-verification",sourceCommit:"b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636",runnerLabel:"macos-26",architecture:process.arch,platform:process.platform,selectedDeveloperDirectory:out("/usr/bin/xcode-select",["--print-path"]),xcodeVersion:out("/usr/bin/xcodebuild",["-version"]),sdkVersion:out("/usr/bin/xcrun",["--sdk","macosx","--show-sdk-version"]),sdkPath:sdk,sdkRealPath:fs.realpathSync(sdk),sdkSettingsSha256:sha(path.join(sdk,"SDKSettings.json")),cmakeArchive:{path:archive,sizeBytes:fs.statSync(archive).size,sha256:sha(archive)},cmakeExecutable:{path:cmake,sizeBytes:fs.statSync(cmake).size,sha256:sha(cmake),version:out(cmake,["--version"]).split("\n")[0]},selectorEnvironmentBinding:{selectorPath:cmake,environmentPath:environment.tools.cmake.path,environmentSha256:environment.tools.cmake.sha256,equal:cmake===environment.tools.cmake.path&&sha(cmake)===environment.tools.cmake.sha256},environmentAuthority:{runnerLabel:environment.authority.runnerLabel,xcodeVersion:environment.authority.xcodeVersion,sdkVersion:environment.authority.sdkVersion},decision:"pass"};[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3479050Z [36;1mconst expected=selection.xcode, expectedCmake=selection.cmake;[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3481660Z [36;1mif(result.architecture!=="arm64"||result.platform!=="darwin"||result.selectedDeveloperDirectory!==expected.developerDirectory||result.xcodeVersion!==expected.version||result.sdkVersion!==expected.sdkVersion||!result.sdkRealPath.startsWith(`${expected.developerDirectory}/`)||result.sdkSettingsSha256!==expected.sdkSettingsSha256||result.cmakeArchive.sha256!==expectedCmake.archiveSha256||result.cmakeExecutable.sha256!==expectedCmake.executableSha256||result.cmakeExecutable.version!==`cmake version ${expectedCmake.version}`||!result.selectorEnvironmentBinding.equal||result.environmentAuthority.runnerLabel!=="macos-26") throw new Error("Independent hosted identity verification failed.");[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3491640Z [36;1mfs.writeFileSync(path.join(evidence,"verification/hosted-toolchain-environment-verification.json"),JSON.stringify(result,null,2)+"\n");[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.3492240Z [36;1mNODE[0m
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.5497490Z shell: /bin/bash -e {0}
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.5497820Z env:
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.5498110Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Independently verify selected identities and environment binding	2026-08-10T19:28:00.5498600Z ##[endgroup]
+hosted-build-preflight	Finalize truthful bounded success-path audit	﻿2026-08-10T19:28:01.4321810Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4322230Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4322760Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4323170Z [36;1mAUDIT="$ROOT/evidence/success/bounded-hosted-release-audit-v1.json"[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4323830Z [36;1mnode release/hosted-release-audit.mjs finalize --input "$AUDIT" --output "$AUDIT" \[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4324330Z [36;1m  --checkout "success" \[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4325730Z [36;1m  --setup-node "success" \[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4326200Z [36;1m  --setup-go "success" \[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4326560Z [36;1m  --source-admission "success" \[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4326850Z [36;1m  --hosted-toolchain "success" \[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4327280Z [36;1m  --input-hydration skipped --host-construction skipped \[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4327720Z [36;1m  --release-composition skipped --publication skipped \[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4328220Z [36;1m  --postpublication-verification skipped --quarantine skipped[0m
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4385410Z shell: /bin/bash -e {0}
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4385730Z env:
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4386140Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Finalize truthful bounded success-path audit	2026-08-10T19:28:01.4405510Z ##[endgroup]
+hosted-build-preflight	Exercise exact full-success audit projection	﻿2026-08-10T19:28:01.5270020Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5270430Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5270790Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5271260Z [36;1mAUDIT="$ROOT/evidence/success/full-success-contract-projection-v1.json"[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5272400Z [36;1mnode release/hosted-release-audit.mjs initialize --output "$AUDIT" \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5272850Z [36;1m  --repository "$GITHUB_REPOSITORY" --workflow-run-id "$GITHUB_RUN_ID" \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5273400Z [36;1m  --workflow-run-attempt "$GITHUB_RUN_ATTEMPT" \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5273890Z [36;1m  --workflow-checkout-commit "$REVIEWED_SOURCE" --runner-label macos-26 \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5274390Z [36;1m  --release-tag v1.0.0 --runtime-version 1.0.0[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5275550Z [36;1mnode release/hosted-release-audit.mjs finalize --input "$AUDIT" --output "$AUDIT" \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5276060Z [36;1m  --checkout success --setup-node success --setup-go success \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5276610Z [36;1m  --source-admission success --hosted-toolchain success \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5277120Z [36;1m  --input-hydration success --host-construction success \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5277490Z [36;1m  --release-composition success --publication success \[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5280980Z [36;1m  --postpublication-verification success --quarantine skipped[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5282250Z [36;1mcat > "$ROOT/evidence/success/full-success-projection-scope.json" <<'JSON'[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5283190Z [36;1m{[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5283620Z [36;1m  "schemaVersion": 1,[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5284300Z [36;1m  "artifactKind": "api-e2e-audit-projection-scope",[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5285250Z [36;1m  "scope": "contract-only-synthetic-github-outcome-projection",[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5286200Z [36;1m  "productOrReleaseExecutionClaimed": false,[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5286870Z [36;1m  "decision": "pass"[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5287390Z [36;1m}[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5287780Z [36;1mJSON[0m
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5390870Z shell: /bin/bash -e {0}
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5392320Z env:
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5392920Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Exercise exact full-success audit projection	2026-08-10T19:28:01.5393690Z ##[endgroup]
+hosted-build-preflight	Force exact selector failure before hydration	﻿2026-08-10T19:28:01.6903050Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6903360Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6904040Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6904390Z [36;1mnode release/hosted-release-audit.mjs initialize \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6904830Z [36;1m  --output "$ROOT/evidence/failure/forced-tool-failure-audit-v1.json" \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6905690Z [36;1m  --repository "$GITHUB_REPOSITORY" --workflow-run-id "$GITHUB_RUN_ID" \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6906180Z [36;1m  --workflow-run-attempt "$GITHUB_RUN_ATTEMPT" \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6906590Z [36;1m  --workflow-checkout-commit "$REVIEWED_SOURCE" --runner-label macos-26 \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6907040Z [36;1m  --release-tag v1.0.0 --runtime-version 1.0.0[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6907380Z [36;1mnode release/hosted-toolchain.mjs \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6907800Z [36;1m  --tools-root "$ROOT/forced-failure-tools" --runner-label macos-latest \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6908620Z [36;1m  --output "$ROOT/evidence/failure/should-not-exist-selection.json" \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6909130Z [36;1m  > "$ROOT/evidence/failure/forced-tool-failure.stdout.log" \[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6909520Z [36;1m  2> "$ROOT/evidence/failure/forced-tool-failure.stderr.log"[0m
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6973910Z shell: /bin/bash -e {0}
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6974160Z env:
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6974450Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.6974920Z ##[endgroup]
+hosted-build-preflight	Force exact selector failure before hydration	2026-08-10T19:28:01.8788860Z ##[error]Process completed with exit code 1.
+hosted-build-preflight	Finalize and verify actual forced-failure audit	﻿2026-08-10T19:28:01.9081180Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9098490Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9098780Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9099020Z [36;1mtest "failure" = failure[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9099340Z [36;1mAUDIT="$ROOT/evidence/failure/forced-tool-failure-audit-v1.json"[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9099910Z [36;1mnode release/hosted-release-audit.mjs finalize --input "$AUDIT" --output "$AUDIT" \[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9100380Z [36;1m  --checkout success --setup-node success --setup-go success \[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9100780Z [36;1m  --source-admission success --hosted-toolchain "failure" \[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9101160Z [36;1m  --input-hydration skipped --host-construction skipped \[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9101520Z [36;1m  --release-composition skipped --publication skipped \[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9102210Z [36;1m  --postpublication-verification skipped --quarantine skipped[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9102580Z [36;1mROOT="$ROOT" node --input-type=module <<'NODE'[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9102930Z [36;1mimport fs from "node:fs";[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9103220Z [36;1mimport path from "node:path";[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9104340Z [36;1mconst root=process.env.ROOT, evidence=path.join(root,"evidence"), audit=JSON.parse(fs.readFileSync(path.join(evidence,"failure/forced-tool-failure-audit-v1.json"),"utf8")), later=["input-hydration","host-construction","release-composition","publication","postpublication-verification","quarantine"];[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9106620Z [36;1mif(audit.decision!=="fail"||audit.failureCategory!=="hosted-toolchain-failed"||audit.phases.find(x=>x.phase==="hosted-toolchain")?.outcome!=="failed"||later.some(phase=>audit.phases.find(x=>x.phase===phase)?.outcome!=="unattempted")||fs.existsSync(path.join(root,"forced-failure-tools"))||fs.existsSync(path.join(evidence,"failure/should-not-exist-selection.json"))) throw new Error("Forced pre-hydration failure evidence is invalid.");[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9109960Z [36;1mconst result={schemaVersion:1,artifactKind:"api-e2e-forced-tool-failure-verification",actualGithubStepOutcome:"failure",decision:audit.decision,failureCategory:audit.failureCategory,laterPhasesUnattempted:true,toolRootAbsent:true,selectionRecordAbsent:true,result:"pass"};[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9112030Z [36;1mfs.writeFileSync(path.join(evidence,"verification/forced-tool-failure-verification.json"),JSON.stringify(result,null,2)+"\n");[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9112620Z [36;1mNODE[0m
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9166610Z shell: /bin/bash -e {0}
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9166880Z env:
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9167140Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Finalize and verify actual forced-failure audit	2026-08-10T19:28:01.9167470Z ##[endgroup]
+hosted-build-preflight	Verify no later release or product side effects	﻿2026-08-10T19:28:02.0702420Z ##[group]Run set -euo pipefail
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0703600Z [36;1mset -euo pipefail[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0704760Z [36;1mROOT="$RUNNER_TEMP/voice-api-e2e-r27"[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0705770Z [36;1mfor name in cache inputs assets bundle build product-store models published; do[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0706780Z [36;1m  test ! -e "$ROOT/$name"[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0707380Z [36;1mdone[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0707910Z [36;1mtest -z "$(git tag -l -- v1.0.0)"[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0708840Z [36;1mcat > "$ROOT/evidence/verification/zero-execution-counts.json" <<'JSON'[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0710130Z [36;1m{[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0711080Z [36;1m  "schemaVersion": 1,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0711820Z [36;1m  "artifactKind": "api-e2e-zero-execution-counts",[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0712630Z [36;1m  "profileExecutionCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0713290Z [36;1m  "providerLaunchCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0713940Z [36;1m  "modelDownloadCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0714570Z [36;1m  "corpusAttemptCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0715310Z [36;1m  "performanceTrialCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0716010Z [36;1m  "inputHydrationCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0716670Z [36;1m  "hostBuildCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0717280Z [36;1m  "tagCreationCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0717910Z [36;1m  "releaseCreationCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0718550Z [36;1m  "publicationCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0719170Z [36;1m  "assetCreationCount": 0,[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0719800Z [36;1m  "decision": "pass"[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0720350Z [36;1m}[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0720810Z [36;1mJSON[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0721810Z [36;1mfind "$ROOT" -maxdepth 2 -mindepth 1 -print | sort > "$ROOT/evidence/cleanup/final-root-inventory.txt"[0m
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0800120Z shell: /bin/bash -e {0}
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0800710Z env:
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0801330Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Verify no later release or product side effects	2026-08-10T19:28:02.0802270Z ##[endgroup]
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	﻿2026-08-10T19:28:02.2533720Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2534820Z ##[group]Run actions/upload-artifact@v4
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2535030Z with:
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2535220Z   name: voice-runtime-api-rev-027-31424156708
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2535590Z   path: /Users/runner/work/_temp/voice-api-e2e-r27/evidence/
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2535930Z   if-no-files-found: error
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2536110Z   retention-days: 30
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2536300Z   compression-level: 6
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2536470Z   overwrite: false
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2537360Z   include-hidden-files: false
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2537920Z env:
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2538480Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:02.2539160Z ##[endgroup]
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.0070430Z (node:2042) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.0094130Z (Use `node --trace-deprecation ...` to show where the warning was created)
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.0209120Z With the provided path, there will be 15 files uploaded
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.0209820Z Artifact name is valid!
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.0210150Z Root directory input is valid!
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.4857120Z (node:2042) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.4999690Z Beginning upload of artifact content to blob storage
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.7795440Z Uploaded bytes 8139
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.8582240Z Finished uploading artifact content to blob storage!
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.8588930Z SHA256 digest of uploaded artifact zip is ee5235d34ec181de0b20615af43e1c70effdf8be4ef572719a6de45e0f442aea
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:03.8592790Z Finalizing artifact upload
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:04.0913430Z Artifact voice-runtime-api-rev-027-31424156708.zip successfully finalized. Artifact ID 9076525567
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:04.0915360Z Artifact voice-runtime-api-rev-027-31424156708 has been successfully uploaded! Final size is 8139 bytes. Artifact ID is 9076525567
+hosted-build-preflight	Retain bounded hosted build-preflight evidence	2026-08-10T19:28:04.0916710Z Artifact download URL: https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/31424156708/artifacts/9076525567
+hosted-build-preflight	Require bounded success path and forced failure proof	﻿2026-08-10T19:28:04.1060280Z ##[group]Run test "success" = success
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1060610Z [36;1mtest "success" = success[0m
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1060820Z [36;1mtest "success" = success[0m
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1061020Z [36;1mtest "success" = success[0m
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1061230Z [36;1mtest "success" = success[0m
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1061440Z [36;1mtest "success" = success[0m
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1061670Z [36;1mtest "failure" = failure[0m
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1061890Z [36;1mtest "success" = success[0m
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1062100Z [36;1mtest "success" = success[0m
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1118710Z shell: /bin/bash -e {0}
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1118990Z env:
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1119240Z   REVIEWED_SOURCE: b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+hosted-build-preflight	Require bounded success path and forced failure proof	2026-08-10T19:28:04.1119510Z ##[endgroup]
+hosted-build-preflight	Post Select exact Go runtime	﻿2026-08-10T19:28:04.1798550Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+hosted-build-preflight	Post Select exact Go runtime	2026-08-10T19:28:04.1799880Z Post job cleanup.
+hosted-build-preflight	Post Select exact Go runtime	2026-08-10T19:28:04.3770970Z (node:2048) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+hosted-build-preflight	Post Select exact Go runtime	2026-08-10T19:28:04.3880150Z (Use `node --trace-deprecation ...` to show where the warning was created)
+hosted-build-preflight	Post Select exact Node runtime	﻿2026-08-10T19:28:04.4105160Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+hosted-build-preflight	Post Select exact Node runtime	2026-08-10T19:28:04.4106570Z Post job cleanup.
+hosted-build-preflight	Post Select exact Node runtime	2026-08-10T19:28:04.6477630Z (node:2067) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+hosted-build-preflight	Post Select exact Node runtime	2026-08-10T19:28:04.6580080Z (Use `node --trace-deprecation ...` to show where the warning was created)
+hosted-build-preflight	Post Select exact Node runtime	2026-08-10T19:28:04.7962880Z [command]/opt/homebrew/bin/gtar --posix -cf cache.tzst --exclude cache.tzst -P -C /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime --files-from manifest.txt --delay-directory-restore --use-compress-program zstdmt
+hosted-build-preflight	Post Select exact Node runtime	2026-08-10T19:28:05.1227520Z (node:2067) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+hosted-build-preflight	Post Select exact Node runtime	2026-08-10T19:28:06.1074510Z Sent 5005523 of 5005523 (100.0%), 4.8 MBs/sec
+hosted-build-preflight	Post Select exact Node runtime	2026-08-10T19:28:06.4556260Z Cache saved with the key: node-cache-macOS-arm64-npm-f9f2f4ef31a47847c9e5c8df6202d55efc03d08ab45f91903137ffa3f663193b
+hosted-build-preflight	Post Check out exact reviewed source	﻿2026-08-10T19:28:06.4774670Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.4776990Z Post job cleanup.
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.6280060Z [command]/opt/homebrew/bin/git version
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.6420300Z git version 2.55.0
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.6755180Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/f3677e81-7d31-453b-aac3-b4f08f9e6da3/.gitconfig'
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.6770930Z Temporarily overriding HOME='/Users/runner/work/_temp/f3677e81-7d31-453b-aac3-b4f08f9e6da3' before making global git config changes
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.6799190Z Adding repository directory to the temporary git global config as a safe directory
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.6814560Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.6855770Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.6897560Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.8632210Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.8691250Z http.https://github.com/.extraheader
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.8924300Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:06.9049460Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:07.0899490Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+hosted-build-preflight	Post Check out exact reviewed source	2026-08-10T19:28:07.1230760Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+hosted-build-preflight	Complete job	﻿2026-08-10T19:28:07.3737980Z Cleaning up orphan processes
+hosted-build-preflight	Complete job	2026-08-10T19:28:08.3172280Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

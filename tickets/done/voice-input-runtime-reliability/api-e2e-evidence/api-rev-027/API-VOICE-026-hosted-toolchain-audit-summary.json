@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-execution-summary",
+  "apiRevision": "API-REV-027",
+  "scenarioId": "API-VOICE-026",
+  "scope": "bounded-real-macos-26-hosted-toolchain-environment-and-audit",
+  "subjects": {
+    "maintainedMainBase": "a486c998481a4d6649d3245c24f0c8e954785594",
+    "sourceCommit": "b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636",
+    "reviewedArtifactCommit": "c233e2c82300e798322964c2547af3d97f507488",
+    "temporaryHarnessCommit": "cf1a676053fdacda10994fdd4ec46a6162bdb874",
+    "hostedRunId": "31424156708",
+    "hostedJobId": "93571782200"
+  },
+  "repositoryChecks": {
+    "exactSourceReleasePipeline": {
+      "result": "pass",
+      "testCount": 22
+    },
+    "temporaryHarnessWorkflowShapeCheck": {
+      "result": "excluded",
+      "sourceOwnerTestsPassed": 20,
+      "expectedHarnessShapeRejections": 2
+    }
+  },
+  "hostedExecution": {
+    "result": "success",
+    "runnerLabel": "macos-26",
+    "githubHosted": true,
+    "architecture": "arm64",
+    "sourceOwnersExact": true,
+    "orchestrationDifference": "one temporary workflow file only",
+    "temporaryBranchRemoved": true
+  },
+  "toolchain": {
+    "xcode": {
+      "developerDirectory": "/Applications/Xcode_26.1.1.app/Contents/Developer",
+      "version": "Xcode 26.1.1\nBuild version 17B100",
+      "sdkVersion": "26.1",
+      "sdkSettingsSha256": "5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff"
+    },
+    "cmake": {
+      "archiveSizeBytes": 84264582,
+      "archiveSha256": "b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d",
+      "executableSizeBytes": 25014288,
+      "executableSha256": "d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb",
+      "version": "cmake version 4.2.0"
+    },
+    "environmentCmakeBinding": {
+      "selectorPath": "/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake",
+      "environmentPath": "/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake",
+      "environmentSha256": "d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb",
+      "equal": true
+    },
+    "boundedAudit": {
+      "decision": "fail",
+      "failureCategory": "input-hydration-unattempted"
+    },
+    "forcedAudit": {
+      "decision": "fail",
+      "failureCategory": "hosted-toolchain-failed"
+    }
+  },
+  "environmentConsumption": {
+    "result": "pass",
+    "selectorCmakePathConsumedExactly": true,
+    "hostBuildEnvironmentV2IndependentlyCapturedAndConsumed": true
+  },
+  "audit": {
+    "boundedActualSuccessPath": {
+      "hostedToolchainOutcome": "succeeded",
+      "laterPhases": "unattempted",
+      "decision": "fail",
+      "failureCategory": "input-hydration-unattempted",
+      "interpretation": "truthful intentional harness stop, not an implementation failure"
+    },
+    "fullSuccessProjection": {
+      "result": "pass",
+      "scope": "contract-only synthetic GitHub outcome projection",
+      "productOrReleaseExecutionClaimed": false
+    },
+    "forcedPreHydrationFailure": {
+      "actualGithubStepOutcome": "failure",
+      "decision": "fail",
+      "failureCategory": "hosted-toolchain-failed",
+      "laterPhases": "unattempted",
+      "toolRootAbsent": true,
+      "selectionRecordAbsent": true
+    }
+  },
+  "executionCounts": {
+    "schemaVersion": 1,
+    "artifactKind": "api-e2e-zero-execution-counts",
+    "profileExecutionCount": 0,
+    "providerLaunchCount": 0,
+    "modelDownloadCount": 0,
+    "corpusAttemptCount": 0,
+    "performanceTrialCount": 0,
+    "inputHydrationCount": 0,
+    "hostBuildCount": 0,
+    "tagCreationCount": 0,
+    "releaseCreationCount": 0,
+    "publicationCount": 0,
+    "assetCreationCount": 0,
+    "decision": "pass",
+    "workflowEvidenceArtifactCount": 1,
+    "releaseAssetCreationCount": 0
+  },
+  "durableApiE2eTestChanges": {
+    "added": [],
+    "updated": [],
+    "removed": []
+  },
+  "broaderValidation": "required-completed",
+  "result": "pass",
+  "confidencePercent": 99
+}

@@ -1,0 +1,232 @@
+Voice Input Runtime Reliability — hosted toolchain correction integrated-state check
+timestamp_utc=2026-08-10T19:42:37Z
+origin_main=a486c998481a4d6649d3245c24f0c8e954785594
+reviewed_source=b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636
+reviewed_artifact=c233e2c82300e798322964c2547af3d97f507488
+checkpoint=8ca083ee53c1b5b7674dd5e4d03967ac184a753f
+left_right=0/3
+
+== focused release pipeline ==
+
+> @autobyteus/voice-input-runtime@1.0.0 check:release-pipeline
+> node tooling/check-release-pipeline.mjs && node --test tests/release/catalog-v4.test.mjs tests/release/host-construction-result.test.mjs tests/release/host-release-contracts.test.mjs tests/release/prepublication-chain.test.mjs tests/release/release-source-admission-verifier.test.mjs tests/release/relevant-source-closure-v3.test.mjs
+
+TAP version 13
+# Subtest: Catalog 4 binds exact admitted host/model compatibility pairs
+ok 1 - Catalog 4 binds exact admitted host/model compatibility pairs
+  ---
+  duration_ms: 254.844375
+  type: 'test'
+  ...
+# Subtest: host construction truthfully retains first-profile and pre-build failures
+ok 2 - host construction truthfully retains first-profile and pre-build failures
+  ---
+  duration_ms: 330.309084
+  type: 'test'
+  ...
+# Subtest: the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+ok 3 - the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+  ---
+  duration_ms: 1.084209
+  type: 'test'
+  ...
+# Subtest: one standard-hosted job builds hosts without model or product execution
+ok 4 - one standard-hosted job builds hosts without model or product execution
+  ---
+  duration_ms: 3.626333
+  type: 'test'
+  ...
+# Subtest: the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+ok 5 - the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+  ---
+  duration_ms: 1.012542
+  type: 'test'
+  ...
+# Subtest: the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+ok 6 - the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+  ---
+  duration_ms: 41.981959
+  type: 'test'
+  ...
+# Subtest: an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+ok 7 - an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+  ---
+  duration_ms: 6.003583
+  type: 'test'
+  ...
+# Subtest: managed recovery and combined-package entrypoints are absent
+ok 8 - managed recovery and combined-package entrypoints are absent
+  ---
+  duration_ms: 1.434125
+  type: 'test'
+  ...
+# Subtest: the prepublication seal closes exactly eight prior assets plus checksums
+ok 9 - the prepublication seal closes exactly eight prior assets plus checksums
+  ---
+  duration_ms: 112.320125
+  type: 'test'
+  ...
+# Subtest: Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+ok 10 - Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+  ---
+  duration_ms: 3447.947791
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts later documentation-only W and rejects archive impact
+ok 11 - lineage verifier accepts later documentation-only W and rejects archive impact
+  ---
+  duration_ms: 4542.654333
+  type: 'test'
+  ...
+# Subtest: lineage-aware protection rejects mutation followed by byte-identical revert
+ok 12 - lineage-aware protection rejects mutation followed by byte-identical revert
+  ---
+  duration_ms: 2092.081458
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts an integration merge that preserves the R-bearing tree
+ok 13 - lineage verifier accepts an integration merge that preserves the R-bearing tree
+  ---
+  duration_ms: 3018.66925
+  type: 'test'
+  ...
+# Subtest: lineage verifier rejects bound policy drift and checkout closure drift
+ok 14 - lineage verifier rejects bound policy drift and checkout closure drift
+  ---
+  duration_ms: 3819.897791
+  type: 'test'
+  ...
+# Subtest: Admission 4 schema forbids self and later lineage edges
+ok 15 - Admission 4 schema forbids self and later lineage edges
+  ---
+  duration_ms: 974.884583
+  type: 'test'
+  ...
+# Subtest: promotion rejects checksum drift and verifier rejects a seventh promoted path
+ok 16 - promotion rejects checksum drift and verifier rejects a seventh promoted path
+  ---
+  duration_ms: 1936.706792
+  type: 'test'
+  ...
+# Subtest: Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+ok 17 - Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+  ---
+  duration_ms: 4.45875
+  type: 'test'
+  ...
+# Subtest: same-specificity matches choose their strictest result without reintroducing broader prefixes
+ok 18 - same-specificity matches choose their strictest result without reintroducing broader prefixes
+  ---
+  duration_ms: 1.324
+  type: 'test'
+  ...
+# Subtest: complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+ok 19 - complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+  ---
+  duration_ms: 378.51425
+  type: 'test'
+  ...
+# Subtest: mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+ok 20 - mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+  ---
+  duration_ms: 420.211875
+  type: 'test'
+  ...
+# Subtest: frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+ok 21 - frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+  ---
+  duration_ms: 57.19525
+  type: 'test'
+  ...
+# Subtest: production Admission 4 assembler accepts actual current F..D with exact API-REV-025 subjects
+ok 22 - production Admission 4 assembler accepts actual current F..D with exact API-REV-025 subjects
+  ---
+  duration_ms: 408.2565
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 19947.983458
+
+== API-REV-027 checksums ==
+./API-VOICE-026-hosted-toolchain-audit-summary.json: OK
+./cleanup/exact-source-worktree-precleanup-status.txt: OK
+./cleanup/harness-worktree-precleanup-status.txt: OK
+./cleanup/local-cleanup-verification.txt: OK
+./cleanup/local-harness-branch-delete.log: OK
+./cleanup/remote-harness-branch-absence.txt: OK
+./cleanup/remote-harness-branch-delete.log: OK
+./environment/actual-host-readonly-inventory.txt: OK
+./environment/downloaded-hosted-evidence-files.txt: OK
+./environment/harness-artifact-download.log: OK
+./environment/harness-artifacts.json: OK
+./environment/harness-branch-push.log: OK
+./environment/harness-dispatch-start.txt: OK
+./environment/harness-dispatch.log: OK
+./environment/harness-run-discovery.json: OK
+./environment/harness-run-final.json: OK
+./environment/harness-run-id.txt: OK
+./environment/harness-run-watch.exit-code: OK
+./environment/harness-run-watch.log: OK
+./environment/harness-workflow.log: OK
+./environment/remote-readiness.log: OK
+./hosted/cleanup/final-root-inventory.txt: OK
+./hosted/failure/forced-tool-failure-audit-v1.json: OK
+./hosted/failure/forced-tool-failure.stderr.log: OK
+./hosted/failure/forced-tool-failure.stdout.log: OK
+./hosted/repository/exact-source-and-runner.txt: OK
+./hosted/repository/npm-ci.log: OK
+./hosted/success/bounded-hosted-release-audit-v1.json: OK
+./hosted/success/full-success-contract-projection-v1.json: OK
+./hosted/success/full-success-projection-scope.json: OK
+./hosted/success/host-build-environment-v2.json: OK
+./hosted/success/hosted-toolchain-selection-v1.json: OK
+./hosted/success/selector-cmake-path.txt: OK
+./hosted/verification/forced-tool-failure-verification.json: OK
+./hosted/verification/hosted-toolchain-environment-verification.json: OK
+./hosted/verification/zero-execution-counts.json: OK
+./repository/exact-source-check-release-pipeline.exit-code: OK
+./repository/exact-source-check-release-pipeline.log: OK
+./repository/exact-source-initial-status.txt: OK
+./repository/exact-source-npm-ci.log: OK
+./repository/exact-source-worktree-add.log: OK
+./repository/execution-subjects.txt: OK
+./repository/harness-branch-release-check-disposition.json: OK
+./repository/harness-commit.log: OK
+./repository/harness-commit.txt: OK
+./repository/harness-diff-name-status.txt: OK
+./repository/harness-show-check.txt: OK
+./repository/harness-static-validation.log: OK
+./repository/initial-clean-status.txt: OK
+./repository/local-check-release-pipeline.exit-code: OK
+./repository/local-check-release-pipeline.log: OK
+./repository/local-npm-ci.exit-code: OK
+./repository/local-npm-ci.log: OK
+./repository/source-head.txt: OK
+./repository/temporary-hosted-build-preflight-harness.patch: OK
+./repository/temporary-hosted-build-preflight-harness.yml: OK
+./repository/worktree-add.log: OK
+./verification/independent-hosted-toolchain-audit-verification.json: OK
+./verification/release-view.stderr.log: OK
+./verification/remote-side-effect-verification.txt: OK
+
+== retained DR-010 failure evidence checksums ==
+failure-summary.md: OK
+release-state.txt: OK
+run.json: OK
+workflow.log: OK
+
+== remote publication guards ==
+release_v1.0.0=ABSENT
+tag_v1.0.0=ABSENT
+
+RESULT=PASS_BOUNDED_HOSTED_TOOLCHAIN_CORRECTION
+PRODUCT_PROFILE_PERFORMANCE_EXECUTED=0
+MODEL_WEIGHTS_DOWNLOADED=0
+RELEASE_CREATED=NO
