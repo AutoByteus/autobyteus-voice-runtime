@@ -18,7 +18,7 @@ import {
 
 const run = promisify(execFile);
 export const SOURCE_CLOSURE_POLICY_PATH =
-  "contracts/release/relevant-source-closure-v2.json";
+  "contracts/release/relevant-source-closure-v3.json";
 const PRECEDENCE = [
   "profile-qualification-required",
   "focused-qualification-required",
@@ -37,7 +37,7 @@ export async function loadSourceClosurePolicy({
           repository,
           commit,
           relativePath: SOURCE_CLOSURE_POLICY_PATH,
-          label: "Relevant Source Closure Policy 2",
+          label: "Relevant Source Closure Policy 3",
         })
       : await readJson(file);
   assertPolicy(value);
@@ -53,13 +53,15 @@ export async function loadSourceClosurePolicy({
 
 export function classifySourcePath(fileName, policy) {
   if (!isRepositoryPath(fileName)) throw new Error("Noncanonical source path.");
-  const matches = policy.rules
-    .filter(
-      (rule) =>
-        rule.exact.includes(fileName) ||
-        rule.prefixes.some((prefix) => fileName.startsWith(prefix)),
-    )
-    .map((rule) => rule.classification);
+  const exactMatches = policy.rules.filter((rule) =>
+      rule.exact.includes(fileName),
+    ),
+    selectedRules = exactMatches.length
+      ? exactMatches
+      : policy.rules.filter((rule) =>
+          rule.prefixes.some((prefix) => fileName.startsWith(prefix)),
+        ),
+    matches = selectedRules.map((rule) => rule.classification);
   return strictest(matches, policy.defaultClassification);
 }
 
@@ -245,13 +247,24 @@ function isRepositoryPath(value) {
 }
 function assertPolicy(value) {
   if (
-    value?.schemaVersion !== 2 ||
-    value.policyId !== "voice-runtime-relevant-source-closure-v2" ||
+    value?.schemaVersion !== 3 ||
+    value.policyId !== "voice-runtime-relevant-source-closure-v3" ||
     value.defaultClassification !== "api-impact-review-required" ||
     !deepEqual(value.precedence, PRECEDENCE) ||
-    !Array.isArray(value.rules)
+    !Array.isArray(value.rules) ||
+    value.rules.some(
+      (rule) =>
+        !PRECEDENCE.includes(rule.classification) ||
+        !Array.isArray(rule.exact) ||
+        !Array.isArray(rule.prefixes) ||
+        rule.exact.some((fileName) => !isRepositoryPath(fileName)) ||
+        rule.prefixes.some(
+          (prefix) =>
+            !isRepositoryPath(`${prefix}subject`) || !prefix.endsWith("/"),
+        ),
+    )
   )
-    throw new Error("Relevant Source Closure 2 policy is invalid.");
+    throw new Error("Relevant Source Closure 3 policy is invalid.");
 }
 export async function isAncestor(repository, ancestor, descendant) {
   return run("git", ["merge-base", "--is-ancestor", ancestor, descendant], {

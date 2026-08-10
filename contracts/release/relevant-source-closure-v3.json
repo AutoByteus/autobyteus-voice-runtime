@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 2,
-  "policyId": "voice-runtime-relevant-source-closure-v2",
+  "schemaVersion": 3,
+  "policyId": "voice-runtime-relevant-source-closure-v3",
   "defaultClassification": "api-impact-review-required",
   "precedence": [
     "profile-qualification-required",
@@ -71,7 +71,8 @@
         "release/profile-execution-closure.mjs",
         "release/focused-qualification-set.mjs",
         "release/branch-catalog-projection-v3.mjs",
-        "release/verify-branch-catalog-projection-v3.mjs"
+        "release/verify-branch-catalog-projection-v3.mjs",
+        "contracts/release/focused-qualification-set-v3.schema.json"
       ]
     },
     {
@@ -82,7 +83,17 @@
         "contracts/release/",
         "tooling/"
       ],
-      "exact": ["package.json"]
+      "exact": [
+        "package.json",
+        "tests/release/release-admission-fixture.mjs",
+        "tests/release/catalog-v4.test.mjs",
+        "tests/release/host-construction-result.test.mjs",
+        "tests/release/host-release-contracts.test.mjs",
+        "tests/release/release-source-admission-verifier.test.mjs",
+        "tests/release/relevant-source-closure-v2.test.mjs",
+        "tests/release/relevant-source-closure-v3.test.mjs",
+        "tests/release/fixtures/ir-036-f-to-d-changed-paths-v1.json"
+      ]
     },
     {
       "classification": "documentation-record-only",

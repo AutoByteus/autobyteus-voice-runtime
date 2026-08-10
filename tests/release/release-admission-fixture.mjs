@@ -24,8 +24,8 @@ export async function createReleaseAdmissionRepository(
   });
   await fs.mkdir(evidence, { recursive: true });
   await fs.copyFile(
-    path.join(projectRoot, "contracts/release/relevant-source-closure-v2.json"),
-    path.join(repository, "contracts/release/relevant-source-closure-v2.json"),
+    path.join(projectRoot, "contracts/release/relevant-source-closure-v3.json"),
+    path.join(repository, "contracts/release/relevant-source-closure-v3.json"),
   );
   await fs.copyFile(
     path.join(projectRoot, "contracts/catalog/current-release-matrix-v2.json"),

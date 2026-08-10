@@ -32,15 +32,15 @@ for (const schemaPath of schemas) {
 }
 
 const policy = await readJson(
-  path.join(ROOT, "contracts/release/relevant-source-closure-v2.json"),
+  path.join(ROOT, "contracts/release/relevant-source-closure-v3.json"),
 );
 if (
-  policy.schemaVersion !== 2 ||
-  policy.policyId !== "voice-runtime-relevant-source-closure-v2" ||
+  policy.schemaVersion !== 3 ||
+  policy.policyId !== "voice-runtime-relevant-source-closure-v3" ||
   policy.defaultClassification !== "api-impact-review-required" ||
   new Set(policy.rules.map((row) => row.classification)).size !== 5
 )
-  throw new Error("Relevant Source Closure 2 policy is not exact.");
+  throw new Error("Relevant Source Closure 3 policy is not exact.");
 if (
   PUBLISHED_ASSET_NAMES.length !== 9 ||
   CHECKSUM_COVERED_NAMES.length !== 8 ||
@@ -55,6 +55,8 @@ for (const obsolete of [
   "release/qualified-release-candidate.mjs",
   "contracts/release/release-source-admission-v3.schema.json",
   "contracts/release/hosted-host-construction-result-v2.schema.json",
+  "contracts/release/relevant-source-closure-v2.json",
+  "tests/release/relevant-source-closure-v2.test.mjs",
 ])
   try {
     await fs.access(path.join(ROOT, obsolete));

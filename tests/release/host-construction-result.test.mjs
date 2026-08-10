@@ -183,7 +183,7 @@ function admissionFixture(commit) {
     artifactKind: "release-source-admission",
     focusedSourceCommit: commit,
     admittedSourceCommit: commit,
-    sourceClosurePolicy: identity("relevant-source-closure-v2.json", "d"),
+    sourceClosurePolicy: identity("relevant-source-closure-v3.json", "d"),
     currentReleaseMatrix: identity("current-release-matrix-v2.json", "e"),
     ancestryVerified: true,
     changedPaths: [],
@@ -271,7 +271,7 @@ function verificationFixture(commit, sourceAdmission) {
     authorityPromotionCommit: commit,
     workflowCheckoutCommit: commit,
     sourceClosurePolicy: {
-      fileName: "relevant-source-closure-v2.json",
+      fileName: "relevant-source-closure-v3.json",
       sizeBytes: 1,
       sha256: "d".repeat(64),
     },

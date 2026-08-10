@@ -199,13 +199,13 @@ test("lineage verifier rejects bound policy drift and checkout closure drift", a
     const fixture = await createReleaseAdmissionRepository(temporary),
       policyPath = path.join(
         fixture.repository,
-        "contracts/release/relevant-source-closure-v2.json",
+        "contracts/release/relevant-source-closure-v3.json",
       ),
       policy = await readJson(policyPath);
     policy.rules[3].exact.push("release/new-policy-subject.mjs");
     const policyCommit = await commitPath(
       fixture.repository,
-      "contracts/release/relevant-source-closure-v2.json",
+      "contracts/release/relevant-source-closure-v3.json",
       `${JSON.stringify(policy, null, 2)}\n`,
       "drift source policy",
     );
