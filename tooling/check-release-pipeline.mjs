@@ -13,6 +13,8 @@ const schemas = [
   "contracts/build/host-verification-v2.schema.json",
   "contracts/release/focused-qualification-set-v3.schema.json",
   "contracts/release/hosted-host-construction-result-v3.schema.json",
+  "contracts/release/hosted-release-audit-v1.schema.json",
+  "contracts/release/hosted-toolchain-selection-v1.schema.json",
   "contracts/release/model-manifest-admission-v1.schema.json",
   "contracts/release/prepublication-seal-v1.schema.json",
   "contracts/release/pretag-release-manifest-v4.schema.json",
