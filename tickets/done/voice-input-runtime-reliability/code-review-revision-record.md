@@ -55,6 +55,8 @@ The latest `code-review-report.md` remains authoritative. This record retains th
 | `CRR-047`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Failure-Origin Review / `API-REV-020`, `API-F-015`                     | `CRR-046 Pass`                              | `Pass — bootstrap approved` | No source finding; `API-F-015` awaits post-integration rerun                 |
 | `CRR-048`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 48 / `IR-031` against `SR-021`             | `CRR-047 Pass`; prior source `CRR-046 Pass` | `Fail — Local Fix`          | New `CR-F-039`–`CR-F-043`; prior recovery path superseded                    |
 | `CRR-049`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 49 / `IR-032` rework                       | `CRR-048 Fail — Local Fix`                  | `Pass`                      | Resolved `CR-F-039`–`CR-F-043`                                               |
+| `CRR-050`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Failure-Origin Review / `API-REV-022`, `API-F-016`/`017`               | `CRR-049 Pass`                              | `Fail — Local Fix`          | New `CR-F-044`, `CR-F-045`; prior API-readiness gap                          |
+| `CRR-051`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 51 / `IR-033` rework                       | `CRR-050 Fail — Local Fix`                  | `Pass`                      | Resolved `CR-F-044`, `CR-F-045`                                              |
 
 ## Revision Entries
 
@@ -1473,3 +1475,56 @@ None.
 - Material score or classification changes: current implementation review passes at `9.5/10` (`94.5/100`); every category meets the clean-pass threshold.
 - Recommended recipient: `api_e2e_engineer`
 - Remaining risks or uncertainty: API/E2E must now investigate and execute actual host double-construction/equality, production Catalog 4/manifests/CDN installation/resume, macOS filesystem/signal/status/remove/lease interleavings, relocated offline retained-clip inference, Execution Closure 2, QSet 3, Projection 3, and exact nine-asset release verification. Broader requalification remains conditional on Execution Closure 2; merge/tag/publication/desktop work is not authorized by this source Pass.
+
+### CRR-050 — Real host construction and verification expose two bounded source compositions
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `API/E2E Failure-Origin Review`, round `50`
+- Triggering role, report path, and finding or scenario IDs: API/E2E Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`; `API-REV-022`; `API-VOICE-018`; `API-F-016`; `API-F-017`; new `CR-F-044`, `CR-F-045`
+- Relevant solution revision IDs: `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-021 Pass`
+- Relevant implementation revision IDs: `IR-032`; reviewed source `ad7c402d224690584e2da98ec71a73e8b6d4ca36`; reviewed artifact `93c9a6e579d253cfc1e9b5b8f69f22e4f688df9c`
+- Relevant API/E2E revision IDs: `API-REV-022 Fail / 84%`; evidence/report commit `c4e04d2776a337a80fa76dc705551bbb626c0bd0`
+- Relevant delivery revision IDs: historical `DR-006`; no current SR-021 Delivery result
+- Prior authoritative result: `CRR-049 Pass -> api_e2e_engineer`
+- Current authoritative result: `Fail — Local Fix -> implementation_engineer`
+- What changed in the review result and why: API-REV-022 passed the complete repository, release, race, repetition, preserved-authority, and actual English double-build gates, then exercised two approved real production compositions absent from repository coverage. The Chinese builder fails ESM linking because both resolved-CMake functions are imported from a module that does not export them. The independent English verifier safely extracts the byte-identical archive but its Go report exposes the absolute destination where Host Verification 2 requires logical root `host`. Both are deterministic implementation-source defects and prior source-review/API-readiness gaps; neither changes the approved design.
+
+#### Prior Finding Resolution
+
+| Finding ID                       | Prior Status          | Current Status       | Related Revision References         | Verification Evidence                                                                                                                                         |
+| -------------------------------- | --------------------- | -------------------- | ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CR-F-039`–`CR-F-043`            | Resolved              | Resolved / unchanged | `IR-032`, `CRR-049`, `API-REV-022`  | Repository `91/91` Node, `7/7` Python/all Go/source/evidence, release `9/9`, focused race, and ten-repeat manager/store checks pass before host construction. |
+| Current SR-021 API/E2E readiness | Pass at source review | Reopened / Fail      | `CRR-049`, `API-REV-022`, `CRR-050` | Real Chinese builder named-export failure and real extractor/Host Verification 2 report mismatch were not covered by the generic passing suites.              |
+
+- New or remaining finding IDs: `CR-F-044`, `CR-F-045`
+- Material score or classification changes: no full scorecard applies to this focused review. CRR-049's `9.5/10` remains historical context, while its API/E2E-readiness conclusion is superseded. Current classification is `Local Fix`.
+- Recommended recipient: `implementation_engineer`
+- Remaining risks or uncertainty: after bounded source/test rework and source Pass, API/E2E must resume at Chinese double construction and both independent verifications. Model installation, macOS lifecycle/store interleavings, offline retained-clip inference, Execution Closure 2, QSet 3, Projection 3, and exact nine-asset composition remain unexecuted. API/E2E changed no durable repository coverage in this failed round.
+
+### CRR-051 — Host builder and verifier composition passes source re-review
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `51`
+- Triggering role, report path, and finding IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`; `IR-033`; prior `CR-F-044`, `CR-F-045`
+- Relevant solution revision IDs: `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-021 Pass`
+- Relevant implementation revision IDs: `IR-033`; source `4db8bf26708309440c83ec56973250f77e9f1619`; artifact/reviewed HEAD `bd70e942dd6ed3b49d7db5221dfe13f14b44032f`
+- Relevant API/E2E revision IDs: triggering `API-REV-022 Fail / 84%`; `API-F-016`, `API-F-017`
+- Relevant delivery revision IDs: historical `DR-006`; no current SR-021 Delivery result
+- Prior authoritative result: `CRR-050 Fail — Local Fix -> implementation_engineer`
+- Current authoritative result: `Pass -> api_e2e_engineer`
+- What changed in the review result and why: IR-033 directly restores the two broken production compositions without changing design or adding fallback. The FunASR builder now obtains both resolved-CMake functions from their canonical owner while retaining the trusted environment under its existing owner. Safe extraction now reports the validated logical archive root rather than its private destination. Durable coverage executes both real builder entry graphs and the real locked-Go canonical build/extract through strict Host Verification 2. Reviewer-executed focused `2/2`, release `9/9`, full `93/93` Node plus `7/7` Python/all Go/source/evidence, targeted archive race, formatting, and diff checks pass.
+
+#### Prior Finding Resolution
+
+| Finding ID               | Prior Status     | Current Status       | Related Revision References         | Verification Evidence                                                                                                                          |
+| ------------------------ | ---------------- | -------------------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CR-F-044` / `API-F-016` | Open / Local Fix | Resolved             | `IR-033`, `CRR-050`, `CRR-051`      | Real FunASR builder graph instantiates; both resolved-CMake functions import from `resolved-cmake-configuration.mjs`; no named-export failure. |
+| `CR-F-045` / `API-F-017` | Open / Local Fix | Resolved             | `IR-033`, `CRR-050`, `CRR-051`      | Real Go extraction emits logical `host`, strict Host Verification 2 passes, and direct Go coverage rejects private destination disclosure.     |
+| `CR-F-039`–`CR-F-043`    | Resolved         | Resolved / unchanged | `IR-032`, `IR-033`, `CRR-049`–`051` | IR-033 changes only builder/archive composition; full/race/release gates retain catalog/store/lifecycle coverage.                              |
+
+- New or remaining finding IDs: None
+- Material score or classification changes: implementation review returns to `Pass` at `9.5/10` (`95.0/100`); every category meets the clean-pass threshold.
+- Recommended recipient: `api_e2e_engineer`
+- Remaining risks or uncertainty: API/E2E must resume at Chinese double construction and both independent verifications before production install/runtime/evidence scenarios proceed. Actual CDN/model/store/macOS/offline/focused evidence and nine-asset composition remain unexecuted; merge/tag/publication/desktop work remains unauthorized.

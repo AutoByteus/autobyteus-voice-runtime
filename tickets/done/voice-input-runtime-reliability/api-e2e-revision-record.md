@@ -26,6 +26,7 @@
 | `API-REV-020` | Code Reviewer / `code-review-report.md` / `CRR-046`            | `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `DR-006`            | `Pass / 99%`              | `Fail / 78%`                |
 | `API-REV-021` | Delivery Engineer / `delivery-revision-record.md` / `DR-007`   | `SR-018`, `ARCH-REV-019`, `CRR-047`, `DR-007`                      | `Fail / 78%`              | `Blocked / 80%`             |
 | `API-REV-022` | Code Reviewer / `code-review-report.md` / `CRR-049`            | `SR-021`, `ARCH-REV-021`, `IR-032`, `CRR-048`, `CRR-049`           | `Blocked / 80%`           | `Fail / 84%`                |
+| `API-REV-023` | Code Reviewer / `code-review-report.md` / `CRR-051`            | `SR-021`, `ARCH-REV-021`, `IR-033`, `CRR-050`, `CRR-051`           | `Fail / 84%`              | `Fail / 84%`                |
 
 ## Revision Entries
 
@@ -773,3 +774,42 @@ None.
 - New failure IDs: `API-F-016`, `API-F-017`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
 - Remaining proof after resolution: Chinese double construction, both host verifications/model-free inspections, production CDN install/resume and actual lifecycle interleavings, relocated offline retained-clip provider smoke, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and independent nine-member release-composition verification. No tag, publication, desktop, or user-state action is part of API/E2E.
+
+### API-REV-023 — Corrected builder loads but rejects outer-owned authority input
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-051`; API/E2E round 23.
+- Triggering scenarios/criteria: recheck `API-F-016` and `API-F-017` in `API-VOICE-018`; continue `API-VOICE-019`–`API-VOICE-024` only after `AC-028` passes.
+- Related revisions: `SR-021`, `ARCH-REV-021`, `IR-033`, `CRR-050`, `CRR-051`, `API-REV-022`.
+- Reviewed source/artifact: source `4db8bf26708309440c83ec56973250f77e9f1619`; artifact `bd70e942dd6ed3b49d7db5221dfe13f14b44032f`.
+- Why recorded: focused and full repository gates resolve the prior import and logical-root regressions, and both exact current inputs/closures rematerialize. The first real network-denied Chinese construction then exposes a new ownership mismatch: the inner builder rejects `host-authority/model-admission-root-v1.json`, even though the outer assembler is designed to consume and stage both host-authority inputs after the profile builder returns.
+- Coverage decisions/durable test paths changed: API/E2E changed no repository-resident durable coverage. IR-033's archive regression remains `Still Valid`; its builder composition test is `Needs Update` because module loading does not execute the real complete-manifest ownership boundary.
+- Scenario delta:
+  - `API-VOICE-017` Pass: focused composition 2/2, archive race, release pipeline 9/9, and full 93/93 Node plus 7/7 Python/all Go/source/evidence checks.
+  - `API-VOICE-018` Fail as `API-F-018`: current inputs and Host Source Closure 1 pass; first Chinese build fails before CMake and creates no archive.
+  - `API-VOICE-019`–`API-VOICE-024` Not Tested after the critical `AC-028` failure.
+- Execution delta: exact MacBookPro18,4 M1 Max/64 GB/macOS 26.5 on AC; official Node 22.23.1, Go 1.26.5, CMake 4.2.0; retained environment record byte-identical to API-REV-022; source-bound current input trees and closures; checked-in deny-network Seatbelt profile. Zero model bytes downloaded.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                              | Previous Classification | Current Resolution                                                     | Evidence                                                                                                               |
+| -------------------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `API-F-016` — Chinese builder imports CMake functions from wrong owner     | `Local Fix`             | **Resolved at exact import boundary**                                  | production builder loads and reaches input-consumer closure; focused builder composition Pass                          |
+| `API-F-017` — extraction report exposes absolute destination as `hostRoot` | `Local Fix`             | **Direct regression resolved; full packaged-host recheck not reached** | real canonical small archive extraction and targeted archive race assert logical `host` and destination non-disclosure |
+
+#### New Failure
+
+- ID: `API-F-018`.
+- Expected: the canonical Chinese profile builder validates and consumes its native/runtime inputs while allowing the two `host-authority/*` inputs to remain for the outer host-package assembler's later staging.
+- Observed: `assertHostInputClosure()` receives the complete manifest and rejects `host-authority/model-admission-root-v1.json` as unconsumed before CMake. No Chinese archive is created.
+- Preliminary classification: `Local Fix`; source ownership and coverage need a bounded correction without weakening unused-input rejection.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-023/`
+- Prior result/confidence: `Fail / 84%`.
+- Current result/confidence: **`Fail / 84%`**.
+- New failure ID: `API-F-018`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
+- Remaining proof after resolution: Chinese double construction and verification, current-source English double construction and verification, production model installation and Store 1 lifecycle, relocated offline retained-clip providers, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and exact nonpublishing nine-member composition.
