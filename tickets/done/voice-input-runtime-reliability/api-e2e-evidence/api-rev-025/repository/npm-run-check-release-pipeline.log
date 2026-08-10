@@ -1,0 +1,72 @@
+
+> @autobyteus/voice-input-runtime@1.0.0 check:release-pipeline
+> node tooling/check-release-pipeline.mjs && node --test tests/release/catalog-v4.test.mjs tests/release/host-construction-result.test.mjs tests/release/host-release-contracts.test.mjs tests/release/prepublication-chain.test.mjs tests/release/release-source-admission-verifier.test.mjs tests/release/relevant-source-closure-v2.test.mjs
+
+TAP version 13
+# Subtest: Catalog 4 binds exact admitted host/model compatibility pairs
+ok 1 - Catalog 4 binds exact admitted host/model compatibility pairs
+  ---
+  duration_ms: 219.025291
+  type: 'test'
+  ...
+# Subtest: host construction truthfully retains first-profile and pre-build failures
+ok 2 - host construction truthfully retains first-profile and pre-build failures
+  ---
+  duration_ms: 235.489167
+  type: 'test'
+  ...
+# Subtest: the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+ok 3 - the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+  ---
+  duration_ms: 0.942583
+  type: 'test'
+  ...
+# Subtest: one standard-hosted job builds hosts without model or product execution
+ok 4 - one standard-hosted job builds hosts without model or product execution
+  ---
+  duration_ms: 4.3705
+  type: 'test'
+  ...
+# Subtest: managed recovery and combined-package entrypoints are absent
+ok 5 - managed recovery and combined-package entrypoints are absent
+  ---
+  duration_ms: 1.911084
+  type: 'test'
+  ...
+# Subtest: the prepublication seal closes exactly eight prior assets plus checksums
+ok 6 - the prepublication seal closes exactly eight prior assets plus checksums
+  ---
+  duration_ms: 121.674
+  type: 'test'
+  ...
+# Subtest: release admission reopens and cross-binds every focused authority
+ok 7 - release admission reopens and cross-binds every focused authority
+  ---
+  duration_ms: 430.457958
+  type: 'test'
+  ...
+# Subtest: Relevant Source Closure 2 classifies every governed path at its strictest impact
+ok 8 - Relevant Source Closure 2 classifies every governed path at its strictest impact
+  ---
+  duration_ms: 7.007583
+  type: 'test'
+  ...
+# Subtest: complete A/M/D/R inventory classifies both rename subjects and only safe release transitions reuse
+ok 9 - complete A/M/D/R inventory classifies both rename subjects and only safe release transitions reuse
+  ---
+  duration_ms: 350.402875
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 521.905458
+
+real	0m0.932s
+user	0m2.025s
+sys	0m0.495s

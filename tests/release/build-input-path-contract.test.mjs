@@ -11,7 +11,10 @@ import {
   assertBuildInputPathSet,
 } from "../../build/build-input-path-policy.mjs";
 import { materializeReleaseInputs } from "../../build/materialize-release-inputs.mjs";
-import { verifyInputManifest } from "../../build/locked-inputs.mjs";
+import {
+  assertInputManifestShape,
+  verifyInputManifest,
+} from "../../build/locked-inputs.mjs";
 import {
   readJson,
   sha256,
@@ -20,7 +23,6 @@ import {
 } from "../../build/lib/files.mjs";
 import { repositoryBuildLockDigest } from "../../build/repository-lock-set.mjs";
 import { loadCurrentReleaseMatrix } from "../../release/current-release-matrix.mjs";
-import { assertPreservedBuildInputManifest } from "../../release/evidence/bindings.mjs";
 
 const run = promisify(execFile);
 const root = path.resolve(import.meta.dirname, "../..");
@@ -102,7 +104,7 @@ test("aggregate verifier accepts the exact retained API-REV-016 Chinese manifest
     punctuationPaths,
     currentRoutingPaths.map((value) => `llama-cpp-source/${value}`),
   );
-  assert.doesNotThrow(() => assertPreservedBuildInputManifest(manifest));
+  assert.doesNotThrow(() => assertInputManifestShape(manifest));
 });
 
 test("aggregate verifier retains canonical unsafe-path and record rejection", () => {
@@ -119,11 +121,11 @@ test("aggregate verifier retains canonical unsafe-path and record rejection", ()
   ])
     assert.throws(
       () =>
-        assertPreservedBuildInputManifest({
+        assertInputManifestShape({
           schemaVersion: 1,
           files,
         }),
-      /Preserved build-input manifest invalid/,
+      /Invalid input manifest record/,
     );
   for (const invalid of [
     { ...record("source/file.cc"), sha256: "z".repeat(64) },
@@ -132,11 +134,11 @@ test("aggregate verifier retains canonical unsafe-path and record rejection", ()
   ])
     assert.throws(
       () =>
-        assertPreservedBuildInputManifest({
+        assertInputManifestShape({
           schemaVersion: 1,
           files: [invalid],
         }),
-      /Preserved build-input manifest invalid/,
+      /Invalid input manifest record/,
     );
 });
 
@@ -173,7 +175,7 @@ test("materialized current Chinese routing paths pass the package verifier uncha
   const repository = path.join(temp, "repository"),
     checkout = path.join(temp, "cache/checkouts/llama-cpp-source"),
     output = path.join(temp, "output"),
-    recipePath = path.join(temp, "chinese-darwin-arm64-v1.json");
+    recipePath = path.join(temp, "chinese-host-darwin-arm64-v2.json");
   try {
     const sourceCommit = await createGitRepository(repository, [
       "source-authority.txt",
@@ -186,8 +188,8 @@ test("materialized current Chinese routing paths pass the package verifier uncha
       entry = matrix.value.entries.find((item) => item.profileId === "chinese"),
       locked = await readJson(path.join(root, "build/locked-inputs.json"));
     await writeJson(recipePath, {
-      schemaVersion: 1,
-      recipeId: "chinese-path-contract-v1",
+      schemaVersion: 2,
+      recipeId: "chinese-path-contract-v2",
       releaseMatrix: {
         matrixId: matrix.value.matrixId,
         sha256: matrix.sha256,
@@ -198,10 +200,11 @@ test("materialized current Chinese routing paths pass the package verifier uncha
           "languageMode",
           "platform",
           "architecture",
-          "packageId",
+          "hostPackageId",
           "providerId",
           "modelId",
-          "decision",
+          "modelAssetId",
+          "candidateDecision",
         ].map((key) => [key, entry[key]]),
       ),
       inputs: [
@@ -221,7 +224,7 @@ test("materialized current Chinese routing paths pass the package verifier uncha
         goArchiveSha256: locked.goToolchain.archives["darwin-arm64"].sha256,
         goRootTreeSha256:
           locked.goToolchain.archives["darwin-arm64"].rootTreeSha256,
-        cmakeVersion: "4.3.3",
+        cmakeVersion: "4.2.0",
         appleClang: "17.0.0",
         xcode: "26.1.1",
         sdk: "26.1",

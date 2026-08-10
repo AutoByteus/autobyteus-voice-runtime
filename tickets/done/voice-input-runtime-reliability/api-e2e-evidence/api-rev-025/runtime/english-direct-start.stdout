@@ -1,0 +1,2 @@
+{"type":"hello","protocolVersion":1,"sessionId":"6e6b7090-b993-45c2-93f2-e88f9216dbed","packageId":"voice.host.english.mlx-whisper.darwin-arm64","providerId":"autobyteus.voice.mlx-whisper-small","modelId":"whisper-small-mlx-fp16","profileId":"english","languageMode":"en","target":{"platform":"darwin","architecture":"arm64"},"capabilityDigest":"e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8"}
+{"type":"lifecycle","protocolVersion":1,"state":"model-preparing"}

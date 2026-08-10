@@ -198,7 +198,7 @@ async function capturePerformanceEnvironment() {
       "/usr/bin/pgrep",
       [
         "-fl",
-        "voice-provider|run-profile-qualification|package-assembler|cmake --build",
+        "voice-provider|voice-model-manager|host-package-assembler|cmake --build",
       ],
       true,
     ),

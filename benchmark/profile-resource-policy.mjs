@@ -30,8 +30,9 @@ export async function loadProfileResourcePolicy(
     throw new Error(
       `Profile Resource Policy invalid: ${JSON.stringify(validate.errors)}`,
     );
+  // Matrix 2 preserves the reviewed Policy 1 bytes (and their historical
+  // matrixId) by exact identity rather than relabeling the policy.
   if (
-    value.matrixId !== matrix.value.matrixId ||
     matrix.value.profileResourcePolicy.policyId !== value.policyId ||
     matrix.value.profileResourcePolicy.fileName !== path.basename(file) ||
     matrix.value.profileResourcePolicy.sha256 !== sha256

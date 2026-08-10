@@ -1,31 +1,28 @@
 # AutoByteus Voice Input Runtime v1.0.0
 
-## macOS Apple Silicon runtime packages
+## macOS Apple Silicon runtime hosts
 
-- Adds the first closed Provider Archive 1 release for the exact current two-entry matrix.
-- English uses a hermetic CPython host with MLX Whisper Small FP16.
-- Chinese uses the native Fun-ASR-Nano GGUF Q8 provider.
-- Each archive exposes one relocated target-native `voice-provider` launcher and the strict Protocol 1/session configuration contract.
-- Packages perform no live model/package download, system interpreter fallback, external media decoding, or request-time provider/model switching.
+- Adds two deterministic, relocatable Runtime Host Archive 2 packages for the exact current matrix: English and Chinese on `darwin-arm64`.
+- English uses MLX Whisper Small FP16; Chinese uses the native Fun-ASR-Nano GGUF Q8 provider.
+- Host archives contain the launcher, model manager, provider engine, pinned runtime dependencies, Host Source Closure 1, and Model Admission Root 1—but no model weights.
+- `auto`, macOS Intel, Linux, Windows, and desktop integration remain deferred.
 
-## Reliability and evidence
+## Explicit on-demand model installation
 
-- Verifies the complete Chinese package before recognizer construction with bounded fixed-buffer CommonCrypto SHA-256.
-- Preserves truthful private preparation-stage and process-tree RSS evidence on one qualification clock.
-- Retains fail-closed lifecycle, timeout, recovery, offline, read-only, no-mutation, privacy, compliance, reproducibility, and exact archive verification.
-- Uses immutable functional Qualification Summary 2 plus a separately bound Performance Assessment 1; loaded-host observations are not relabeled as controlled certification.
+- Adds the public `voice-model-manager` install/status/remove lifecycle.
+- Downloads only the exact host-admitted immutable model files after an explicit install request; release CI neither downloads nor republishes weights.
+- Verifies catalog, manifest, compatibility, sizes, SHA-256 values, and model-tree identity before atomic Store 1 activation.
+- Supports bounded progress, cancellation, authenticated resume, idempotent repeat installation, status snapshots, safe removal, and provider lease protection.
+- Provider execution remains offline and fail-closed through Session Config 2 and Protocol 1.
 
-## Qualified scope
+## Validation and release assets
 
-- English / darwin-arm64: 160/160 current qualification attempts passed.
-- Chinese / darwin-arm64: 260/260 current qualification attempts passed.
-- Qualification Set 2 and the independently verified two-entry Branch Catalog Projection 2 passed at API-REV-017.
-- `auto`, macOS Intel, Linux, and Windows are not included or advertised by this release.
+- API-REV-025 passed at 97% confidence with two exact-equal host builds per profile, independent host verification, real public model installation, Store 1 lifecycle coverage, relocated offline retained-clip inference, execution-closure reuse, focused aggregation, and nonpublishing prepublication sealing.
+- The prospective GitHub Release contains exactly nine assets: two host archives, two model manifests, Catalog 4, Release Qualification Evidence 4, Pre-Tag Release Manifest 4, `THIRD_PARTY_NOTICES.json`, and `release-SHA256SUMS.txt`.
+- Model weights and product/performance qualification are not part of release CI.
 
-## Release gate
+## Release integrity
 
-The user authorized runtime-only finalization and release. Final v1.0.0
-publication remains conditional on integration into refreshed maintained
-`main`, a new complete two-package pre-tag qualification from that exact commit,
-Catalog 3 and Pre-Tag Release Manifest 2 verification, and exact published-byte
-verification.
+- The reviewed acyclic F/D/R/W release-authority chain admits the exact API/E2E-qualified source while allowing later documentation-only integration under closed Policy 3 classification.
+- Release CI runs on a standard GitHub-hosted macOS runner and performs host-only construction, archive equality, exact nine-asset sealing, publication, and downloaded-byte verification.
+- Release CI does not repeat product/profile/performance qualification and does not download model weights.

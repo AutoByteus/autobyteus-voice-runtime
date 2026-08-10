@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/build/host-reproducibility-proof-v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "sourceCommit",
+    "profileId",
+    "hostPackageId",
+    "hostSourceClosureSha256",
+    "archiveSha256",
+    "firstBuildReport",
+    "secondBuildReport",
+    "wholeArchiveEqual",
+    "buildReportsEqual",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 2 },
+    "artifactKind": { "const": "host-reproducibility-proof" },
+    "sourceCommit": { "type": "string", "pattern": "^(?!0{40})[a-f0-9]{40}$" },
+    "profileId": { "enum": ["english", "chinese"] },
+    "hostPackageId": { "type": "string", "minLength": 1 },
+    "hostSourceClosureSha256": { "$ref": "#/$defs/sha" },
+    "archiveSha256": { "$ref": "#/$defs/sha" },
+    "firstBuildReport": { "$ref": "#/$defs/file" },
+    "secondBuildReport": { "$ref": "#/$defs/file" },
+    "wholeArchiveEqual": { "const": true },
+    "buildReportsEqual": { "const": true },
+    "decision": { "const": "pass" }
+  },
+  "$defs": {
+    "sha": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": { "type": "string", "pattern": "^[A-Za-z0-9._-]+$" },
+        "sizeBytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha" }
+      }
+    }
+  }
+}

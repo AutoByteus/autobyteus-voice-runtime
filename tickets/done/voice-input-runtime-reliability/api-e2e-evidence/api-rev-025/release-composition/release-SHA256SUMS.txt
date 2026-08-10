@@ -1,0 +1,8 @@
+f260d4b18a924eb4964154496a77efe42183d5a6908990c9c887be27e6719c50  THIRD_PARTY_NOTICES.json
+81ec7e6b334db807751900685c7346356eb3f38d0b6175d43d4105ff0b31c942  pretag-release-manifest-v4.json
+771c3d399f44e7e28d4afed78a3a17a8d514a78af2bcebd5a7f974460cc1a0a0  release-qualification-evidence-v4.json
+d08bb4775ae1cc599679f3f2675ac81297ed5e6956aabe5c81ff45c2818dcea3  voice-host-chinese-darwin-arm64-1.0.0.zip
+7149be2ebb28ae49e0e88df006e7de9446e9697c1e0b7ada91a82d77405fcbee  voice-host-english-darwin-arm64-1.0.0.zip
+09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da  voice-model-chinese-fun-asr-nano-gguf-q8-v1.json
+623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593  voice-model-english-whisper-small-mlx-fp16-v1.json
+c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f  voice-runtime-catalog-v4.json

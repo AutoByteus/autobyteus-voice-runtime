@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "host-reproducibility-proof",
+  "sourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+  "profileId": "chinese",
+  "hostPackageId": "voice.host.chinese.funasr-native.darwin-arm64",
+  "hostSourceClosureSha256": "705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4",
+  "archiveSha256": "d08bb4775ae1cc599679f3f2675ac81297ed5e6956aabe5c81ff45c2818dcea3",
+  "firstBuildReport": {
+    "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip.build.json",
+    "sizeBytes": 3134,
+    "sha256": "d9ca85df4ef540f4c0f8f9a5e219bf4fc5e3a0b1e6afeba133c3db5471d46e1b"
+  },
+  "secondBuildReport": {
+    "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip.build.json",
+    "sizeBytes": 3134,
+    "sha256": "d9ca85df4ef540f4c0f8f9a5e219bf4fc5e3a0b1e6afeba133c3db5471d46e1b"
+  },
+  "wholeArchiveEqual": true,
+  "buildReportsEqual": true,
+  "decision": "pass"
+}

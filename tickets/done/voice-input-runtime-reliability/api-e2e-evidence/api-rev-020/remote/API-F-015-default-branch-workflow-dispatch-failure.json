@@ -1,0 +1,63 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-failure",
+  "apiRevision": "API-REV-020",
+  "failureId": "API-F-015",
+  "scenarioId": "API-VOICE-016-B",
+  "requirements": [
+    "R-022",
+    "R-023",
+    "R-024"
+  ],
+  "acceptanceCriteria": [
+    "AC-025",
+    "AC-026"
+  ],
+  "preliminaryClassification": "design-impact",
+  "reviewed": {
+    "sourceCommit": "2e743600ef67469f3fd1bf2c9078d53c2d053979",
+    "artifactCommit": "ec0f726afd252448784855665a08d1de2ee0521c",
+    "aggregateRecordCommit": "448517cee89e6498c551bcc70aba65ec0bedf97e"
+  },
+  "repository": {
+    "nameWithOwner": "AutoByteus/autobyteus-voice-runtime",
+    "defaultBranch": "main",
+    "defaultBranchHead": "fd83e8681dfd4e98afdfa46cb691d31400565d70",
+    "ticketBranch": "codex/voice-runtime-qualified-recovery",
+    "ticketBranchHead": "ec0f726afd252448784855665a08d1de2ee0521c",
+    "ticketBranchExactReviewedArtifact": true
+  },
+  "admission": {
+    "decision": "reuse-permitted",
+    "passed": true,
+    "evidence": "../repository/current-preliminary-source-admission.json"
+  },
+  "workflowDiscovery": {
+    "defaultBranchCatalog": [
+      "Voice runtime qualified release"
+    ],
+    "recoveryWorkflow": {
+      "path": ".github/workflows/recover-qualified-voice-archives.yml",
+      "ticketBranchBlobSha": "7e721c10640e5fba3b07a0f8375f4d1876496b5c",
+      "defaultBranchCatalogPresence": false
+    },
+    "promotionWorkflow": {
+      "path": ".github/workflows/promote-qualified-voice-candidate.yml",
+      "ticketBranchBlobSha": "cfaf7c2d4d053088a606c2eb25e2efa2fa2d2ebf",
+      "defaultBranchCatalogPresence": false
+    }
+  },
+  "attemptedCommand": "gh workflow run recover-qualified-voice-archives.yml --repo AutoByteus/autobyteus-voice-runtime --ref codex/voice-runtime-qualified-recovery -f runtime_version=1.0.0",
+  "expected": "GitHub creates one workflow run at exact reviewed head ec0f726... and queues it for the approved organization-managed Apple Silicon recovery group.",
+  "observed": {
+    "exitCode": 1,
+    "stderr": "HTTP 404: workflow recover-qualified-voice-archives.yml not found on the default branch",
+    "workflowRunCreated": false,
+    "recoveryBuildAttemptedCount": 0,
+    "recoveryArtifactCreated": false,
+    "promotionAttempted": false
+  },
+  "prohibitedFallbacksUsed": [],
+  "userOrSharedStateChanged": false,
+  "recommendedOriginReview": "The reviewed ordering requires API/E2E recovery before Delivery integration, while GitHub refuses workflow_dispatch until the workflow exists in the default-branch Actions catalog. Resolve the stage-order/deployment authority without local or personal-runner fallback."
+}

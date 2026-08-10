@@ -1,0 +1,320 @@
+Voice Input Runtime Reliability — default-main workflow bootstrap integration check
+timestamp_utc=2026-08-09T07:37:22Z
+attempt_1_disposition=INVALID_HARNESS_RESULT_MISSING_LOCAL_DEPENDENCIES
+attempt_1_evidence=delivery-default-main-bootstrap-check-attempt-1-invalid.log
+premerge_origin_main=fd83e8681dfd4e98afdfa46cb691d31400565d70
+reviewed_ticket_head=ec0f726afd252448784855665a08d1de2ee0521c
+integrated_main=7385b65e397e6f1b17495720281fe0b2e39de99b
+merge_parents=fd83e8681dfd4e98afdfa46cb691d31400565d70 ec0f726afd252448784855665a08d1de2ee0521c
+remote_ticket_head=ec0f726afd252448784855665a08d1de2ee0521c
+
+== exact reviewed identity checks ==
+identity_result=PASS
+
+== workflow files present on integrated default-main tree ==
+.github/workflows/recover-qualified-voice-archives.yml sha256=022d4d098419cd7cdb128719e8279603e9c8ec1a9230c7af78db311d2f817a25
+.github/workflows/promote-qualified-voice-candidate.yml sha256=17dac772f8264db19662fdd1d2f600ef6f63cf343b6f604a4342650ec5301e09
+workflow_files_result=PASS
+
+== focused minimal release-pipeline checks (no profile/inference/performance execution) ==
+
+> @autobyteus/voice-input-runtime@1.0.0 check:release-pipeline
+> node tooling/check-release-pipeline.mjs && node --test tests/release/qualified-archive-recovery.test.mjs tests/release/qualified-release-candidate.test.mjs tests/release/relevant-source-closure.test.mjs tests/release/release-workflow-boundary.test.mjs
+
+TAP version 13
+# Subtest: Recovery Evidence Manifest closes exactly eight earlier raw members
+ok 1 - Recovery Evidence Manifest closes exactly eight earlier raw members
+  ---
+  duration_ms: 17.624625
+  type: 'test'
+  ...
+# Subtest: Recovery manifest rejects reverse, self, archive, candidate, and API edges
+ok 2 - Recovery manifest rejects reverse, self, archive, candidate, and API edges
+  ---
+  duration_ms: 0.45775
+  type: 'test'
+  ...
+# Subtest: Recovery Result schema forbids qualification and release claims
+ok 3 - Recovery Result schema forbids qualification and release claims
+  ---
+  duration_ms: 66.527041
+  type: 'test'
+  ...
+# Subtest: Recovery controller owns one build/profile and no runtime qualification command
+ok 4 - Recovery controller owns one build/profile and no runtime qualification command
+  ---
+  duration_ms: 1.827042
+  type: 'test'
+  ...
+# Subtest: blocked and sequential failures retain truthful profile/count variants
+ok 5 - blocked and sequential failures retain truthful profile/count variants
+  ---
+  duration_ms: 39.6305
+  type: 'test'
+  ...
+# Subtest: non-reuse preliminary admission finalizes blocked evidence before build
+ok 6 - non-reuse preliminary admission finalizes blocked evidence before build
+  ---
+  duration_ms: 53.1135
+  type: 'test'
+  ...
+# Subtest: raw recovery verifier cross-binds runner, profiles, and archive bytes
+ok 7 - raw recovery verifier cross-binds runner, profiles, and archive bytes
+  ---
+  duration_ms: 3.787666
+  type: 'test'
+  ...
+# Subtest: candidate assembler closes exactly 19 members and independently rehashes them
+ok 8 - candidate assembler closes exactly 19 members and independently rehashes them
+  ---
+  duration_ms: 460.07725
+  type: 'test'
+  ...
+# Subtest: candidate verifier rejects raw, manifest, Result, archive, and member drift
+    # Subtest: raw byte drift
+    ok 1 - raw byte drift
+      ---
+      duration_ms: 240.230417
+      type: 'test'
+      ...
+    # Subtest: extra recovery member
+    ok 2 - extra recovery member
+      ---
+      duration_ms: 331.6415
+      type: 'test'
+      ...
+    # Subtest: archive byte drift
+    ok 3 - archive byte drift
+      ---
+      duration_ms: 276.27125
+      type: 'test'
+      ...
+    1..3
+ok 9 - candidate verifier rejects raw, manifest, Result, archive, and member drift
+  ---
+  duration_ms: 848.689959
+  type: 'test'
+  ...
+# Subtest: candidate rejects recovery workflow/Result and same-source disagreement
+ok 10 - candidate rejects recovery workflow/Result and same-source disagreement
+  ---
+  duration_ms: 148.022417
+  type: 'test'
+  ...
+# Subtest: candidate rejects a schema-valid partial non-Pass recovery
+ok 11 - candidate rejects a schema-valid partial non-Pass recovery
+  ---
+  duration_ms: 50.187792
+  type: 'test'
+  ...
+# Subtest: candidate rejects weak admission, aggregate authority, and raw projection bindings
+    # Subtest: preliminary admission object digest
+    ok 1 - preliminary admission object digest
+      ---
+      duration_ms: 273.731958
+      type: 'test'
+      ...
+    # Subtest: aggregate authority bytes
+    ok 2 - aggregate authority bytes
+      ---
+      duration_ms: 264.345709
+      type: 'test'
+      ...
+    # Subtest: raw profile projection
+    ok 3 - raw profile projection
+      ---
+      duration_ms: 218.256625
+      type: 'test'
+      ...
+    1..3
+ok 12 - candidate rejects weak admission, aggregate authority, and raw projection bindings
+  ---
+  duration_ms: 757.388584
+  type: 'test'
+  ...
+# Subtest: candidate admission recomputation rejects a changed-path omission
+ok 13 - candidate admission recomputation rejects a changed-path omission
+  ---
+  duration_ms: 10.340916
+  type: 'test'
+  ...
+# Subtest: aggregate authority binds every Git, API, profile, and aggregate subject
+    # Subtest: record commit versus admission
+    ok 1 - record commit versus admission
+      ---
+      duration_ms: 80.948834
+      type: 'test'
+      ...
+    # Subtest: promotion commit versus reviewed controller
+    ok 2 - promotion commit versus reviewed controller
+      ---
+      duration_ms: 79.8155
+      type: 'test'
+      ...
+    # Subtest: reviewed source commit
+    ok 3 - reviewed source commit
+      ---
+      duration_ms: 79.376917
+      type: 'test'
+      ...
+    # Subtest: reviewed test commit
+    ok 4 - reviewed test commit
+      ---
+      duration_ms: 78.557375
+      type: 'test'
+      ...
+    # Subtest: API revision versus coverage report
+    ok 5 - API revision versus coverage report
+      ---
+      duration_ms: 89.735292
+      type: 'test'
+      ...
+    # Subtest: coverage report Git blob
+    ok 6 - coverage report Git blob
+      ---
+      duration_ms: 82.91925
+      type: 'test'
+      ...
+    # Subtest: coverage report content
+    ok 7 - coverage report content
+      ---
+      duration_ms: 83.863208
+      type: 'test'
+      ...
+    # Subtest: retained archive
+    ok 8 - retained archive
+      ---
+      duration_ms: 95.303292
+      type: 'test'
+      ...
+    # Subtest: retained profile evidence
+    ok 9 - retained profile evidence
+      ---
+      duration_ms: 84.589416
+      type: 'test'
+      ...
+    # Subtest: current Qualification Set
+    ok 10 - current Qualification Set
+      ---
+      duration_ms: 78.541416
+      type: 'test'
+      ...
+    # Subtest: prior Branch Projection
+    ok 11 - prior Branch Projection
+      ---
+      duration_ms: 79.84525
+      type: 'test'
+      ...
+    # Subtest: Projection Verification comparison flag
+    ok 12 - Projection Verification comparison flag
+      ---
+      duration_ms: 78.580292
+      type: 'test'
+      ...
+    1..12
+ok 14 - aggregate authority binds every Git, API, profile, and aggregate subject
+  ---
+  duration_ms: 993.527375
+  type: 'test'
+  ...
+# Subtest: aggregate authority resolves the committed record, report, profile evidence, and commit chain from Git
+ok 15 - aggregate authority resolves the committed record, report, profile evidence, and commit chain from Git
+  ---
+  duration_ms: 776.020375
+  type: 'test'
+  ...
+# Subtest: aggregate authority rejects historical report subjects selected as current
+ok 16 - aggregate authority rejects historical report subjects selected as current
+  ---
+  duration_ms: 712.864667
+  type: 'test'
+  ...
+# Subtest: promotion record is an exact immutable pointer without candidate copying
+ok 17 - promotion record is an exact immutable pointer without candidate copying
+  ---
+  duration_ms: 549.702708
+  type: 'test'
+  ...
+# Subtest: recovery is exact-source, organization-managed, no-retest, and nonpublishing
+ok 18 - recovery is exact-source, organization-managed, no-retest, and nonpublishing
+  ---
+  duration_ms: 4.113792
+  type: 'test'
+  ...
+# Subtest: promotion is hosted, exact-artifact, 19-member, no-build, and nonpublishing
+ok 19 - promotion is hosted, exact-artifact, 19-member, no-build, and nonpublishing
+  ---
+  duration_ms: 1.096708
+  type: 'test'
+  ...
+# Subtest: Delivery workflow exposes only hosted pretag and publish
+ok 20 - Delivery workflow exposes only hosted pretag and publish
+  ---
+  duration_ms: 1.088709
+  type: 'test'
+  ...
+# Subtest: focused release check contains no profile or runtime execution suite
+ok 21 - focused release check contains no profile or runtime execution suite
+  ---
+  duration_ms: 1.207375
+  type: 'test'
+  ...
+# Subtest: the recovery builders retain the reviewed trusted native environment boundary
+ok 22 - the recovery builders retain the reviewed trusted native environment boundary
+  ---
+  duration_ms: 2.612875
+  type: 'test'
+  ...
+# Subtest: frozen Profile and Qualification Authority closures reproduce exactly
+ok 23 - frozen Profile and Qualification Authority closures reproduce exactly
+  ---
+  duration_ms: 6133.18325
+  type: 'test'
+  ...
+# Subtest: current preliminary admission accepts the exact renewed aggregate authority
+ok 24 - current preliminary admission accepts the exact renewed aggregate authority
+  ---
+  duration_ms: 10914.256958
+  type: 'test'
+  ...
+# Subtest: strictest source category wins and unknown paths fail closed
+ok 25 - strictest source category wins and unknown paths fail closed
+  ---
+  duration_ms: 14.671875
+  type: 'test'
+  ...
+# Subtest: add, change, remove, and rename produce complete fail-closed decisions
+ok 26 - add, change, remove, and rename produce complete fail-closed decisions
+  ---
+  duration_ms: 459.09125
+  type: 'test'
+  ...
+# Subtest: unknown closure-equal change and ancestry failure block admission
+ok 27 - unknown closure-equal change and ancestry failure block admission
+  ---
+  duration_ms: 698.126292
+  type: 'test'
+  ...
+# Subtest: closure computation rejects symlinks and case-fold collisions
+ok 28 - closure computation rejects symlinks and case-fold collisions
+  ---
+  duration_ms: 448.79825
+  type: 'test'
+  ...
+1..28
+# tests 46
+# suites 0
+# pass 46
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 18737.707458
+
+RESULT=PASS_LOCAL_BOOTSTRAP_INTEGRATION
+PROFILE_EXECUTION_COUNT=0
+RECOVERY_DISPATCHED=NO
+PROMOTION_DISPATCHED=NO
+RELEASE_DISPATCHED=NO
+exit=0
+sha256=c8e99cd75fff3bf4527e40e21420e16a08a5ffbe996d24f27cff74a8d780b1f9

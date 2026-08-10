@@ -107,3 +107,36 @@ tag publication, published-byte verification, and the deferred target set.
 - Release-doc constraint: README and release guidance must not state that recovery, promotion, tagging, or publication is available yet. Preliminary Source Admission still resolves to `aggregate-api-renewal-required`.
 - Next documentation checkpoint: after a separate implementation accepts exact record commit `448517c...`, independently recomputes `reuse-permitted`, and passes source review, reassess operator/release documentation against that integrated behavior.
 - Result: `Pass / explicit no-impact for the current stage gate`; v1.0.0 remains unreleased.
+
+## Delivery Round 6 — Default-Main Workflow Bootstrap
+
+- Trigger: CRR-047 `Pass` authorized the user-approved narrow default-main bootstrap after API-REV-020 / API-F-015 truthfully failed with HTTP 404 and zero runs.
+- Integrated state: exact reviewed artifact `ec0f726afd252448784855665a08d1de2ee0521c` was merged into refreshed `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70` as merge commit `7385b65e397e6f1b17495720281fe0b2e39de99b` and pushed to `origin/main`.
+- Exact dispatch ref: `origin/codex/voice-runtime-qualified-recovery` remains unchanged at `ec0f726...`.
+- Verification: corrected fail-fast `npm run check:release-pipeline` passed 46/46 focused tests with zero profile/provider/inference/corpus/performance execution; GitHub lists both recovery and promotion workflows as active on default `main`.
+- Durable documentation impact: `No additional prose change`. The reviewed workflow files now present on default `main` are the executable long-lived operator contract, and `release-pipeline-ownership.md` already documents the responsibility boundary. README runtime/package/model guidance remains accurate.
+- Ticket-local updates: DR-007, the handoff summary, release/deployment report, corrected/invalid attempt evidence, remote registration evidence, and checksum manifest record the bootstrap truthfully.
+- Release boundary: no recovery/promotion dispatch, build, tag, release, asset, or publication occurred. API-REV-020 remains Fail; the next owner is API/E2E.
+- Result: `Pass / explicit no additional docs impact`; workflow registration bootstrap is complete, not release completion.
+
+## Delivery Round 7 — Host-Only Final Handoff And Admission Blocker
+
+- Trigger: IR-035 / CRR-055 `Pass`, API-REV-025 `Pass / 97%`, and CRR-056 proportional review `Not Applicable` for the user-approved host-only/on-demand model design.
+- Integrated state: refreshed `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b` was merged into preserved API/reviewer checkpoint `b5b44a4c87bfeb192c7e7556093e6a8383fcbb60` as ticket integration commit `5c0c4b8b47d503a1c8ae464e0675ec797f2366a9`; post-merge left/right is `0 / 19`.
+- Long-lived README result: `Already updated / accurate`. It documents two model-free Runtime Host Archive 2 assets, explicit `voice-model-manager` install/status/remove, Store 1 activation, Session Config 2, offline provider execution, exact current matrix, standard-hosted host-only release construction, nine assets, and zero release-owned model weights/product tests.
+- Release notes result: `Updated`. The former Provider Archive 1/model-contained release description is replaced with the current host/model split, explicit on-demand installation lifecycle, API-REV-025 acceptance, exact nine-asset scope, and current prepublication blocker.
+- No-impact areas: desktop UI/installation, macOS x64, Linux, Windows, and `auto` remain deferred. User/shared application state was not changed by Delivery.
+- Integrated validation: focused release checks passed 9/9 and API-REV-025 checksums passed; no heavy qualification ran.
+- Blocker: production workflow inputs below `release/admission/` are absent, and the reviewed verifier requires the committed admission's `finalMainCommit` to equal the same workflow checkout SHA. Delivery cannot truthfully fill or reinterpret that cyclic authority as a docs-only action.
+- Result: `Blocked / Design Impact`; documentation is synchronized for handoff, but hosted build/tag/publication must wait for corrected final-main admission design and review.
+
+## Delivery Round 8 — Reviewed Release Authority Integration
+
+- Refreshed base: `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b`; it had not advanced since the prior Delivery refresh.
+- Exact reviewed authority: `R = 71f8e7823d876b9c0914bfc7b90b143d851d4875`, with sole parent `D = 3e8474213f79b26cc7a68c4dd42d2994ebf2d42d` and exactly six protected `release/admission/` additions.
+- Integration result: `Pass`; exact `R` was merged without recreation or blob mutation. The integrated candidate is `3c091aae1a7acb12f3d021a2b0b8d49336f730e5` before this delivery-record update.
+- Authority result: all 45 `R..candidate` paths are documentation-record-only; Policy 3 is `reuse-permitted`; focused release checks pass 19/19; API-REV-026 checksums pass.
+- Long-lived docs decision: `No additional change`. README, workflow source, on-demand model documentation, supported matrix, and release notes already describe the reviewed two model-free hosts, explicit model installation, standard-hosted construction, and exact nine-asset release.
+- Ticket-local updates: DR-009, handoff status, and release/deployment status supersede the resolved DR-008 admission blocker and record the exact F/D/R authority chain.
+- Execution boundary: no product/profile/performance qualification and no model-weight download occurred in Delivery.
+- Result: `Pass / release-ready`; v1.0.0 remains absent until the maintained-main W integration and hosted publication workflow complete.

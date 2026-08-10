@@ -1,0 +1,46 @@
+TAP version 13
+# Subtest: frozen Profile and Qualification Authority closures reproduce exactly
+ok 1 - frozen Profile and Qualification Authority closures reproduce exactly
+  ---
+  duration_ms: 4903.666792
+  type: 'test'
+  ...
+# Subtest: current preliminary admission accepts the exact renewed aggregate authority
+ok 2 - current preliminary admission accepts the exact renewed aggregate authority
+  ---
+  duration_ms: 9706.386584
+  type: 'test'
+  ...
+# Subtest: strictest source category wins and unknown paths fail closed
+ok 3 - strictest source category wins and unknown paths fail closed
+  ---
+  duration_ms: 1.555709
+  type: 'test'
+  ...
+# Subtest: add, change, remove, and rename produce complete fail-closed decisions
+ok 4 - add, change, remove, and rename produce complete fail-closed decisions
+  ---
+  duration_ms: 348.156333
+  type: 'test'
+  ...
+# Subtest: unknown closure-equal change and ancestry failure block admission
+ok 5 - unknown closure-equal change and ancestry failure block admission
+  ---
+  duration_ms: 598.584208
+  type: 'test'
+  ...
+# Subtest: closure computation rejects symlinks and case-fold collisions
+ok 6 - closure computation rejects symlinks and case-fold collisions
+  ---
+  duration_ms: 383.646917
+  type: 'test'
+  ...
+1..6
+# tests 6
+# suites 0
+# pass 6
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16003.530792

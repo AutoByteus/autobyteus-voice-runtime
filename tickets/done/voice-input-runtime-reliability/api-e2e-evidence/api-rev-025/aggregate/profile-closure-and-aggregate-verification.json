@@ -1,0 +1,49 @@
+{
+  "branchProjection": {
+    "decision": "pass",
+    "fileName": "branch-catalog-projection-v3.json",
+    "sha256": "240b909f1e64c106a6e65e4572cd756816777dd8114f33b5235a5edd00aa691f",
+    "sizeBytes": 2401
+  },
+  "decision": "pass",
+  "focusedQualificationSet": {
+    "decision": "pass",
+    "fileName": "focused-qualification-set-v3.json",
+    "profileCount": 2,
+    "sha256": "61ecbebdd734a8d4bec3e701350aaa5e4bb41af3642acae9f00cc716dea9ccc1",
+    "sizeBytes": 2215
+  },
+  "independentProjectionVerification": {
+    "decision": "pass",
+    "fileName": "branch-catalog-projection-verification-v3.json",
+    "sha256": "fd2440191680573d64f8444eb1158dab1d3665ff7a48ed7edae0bb736f96fb76",
+    "sizeBytes": 370
+  },
+  "profiles": [
+    {
+      "adapterExclusionsExact": true,
+      "closureDecision": "reuse-permitted",
+      "configurationEqual": true,
+      "currentSourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+      "historicalSourceCommit": "32829080938911f0f46390a3fd2af823e105bd32",
+      "inferenceCoreEqual": true,
+      "modelIdentityEqual": true,
+      "outputEvidenceEqual": true,
+      "profileId": "english"
+    },
+    {
+      "adapterExclusionsExact": true,
+      "closureDecision": "reuse-permitted",
+      "configurationEqual": true,
+      "currentSourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+      "historicalSourceCommit": "32829080938911f0f46390a3fd2af823e105bd32",
+      "inferenceCoreEqual": true,
+      "modelIdentityEqual": true,
+      "outputEvidenceEqual": true,
+      "profileId": "chinese"
+    }
+  ],
+  "scenarioId": "API-VOICE-022-023",
+  "schemaVersion": 1,
+  "sourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b"
+}

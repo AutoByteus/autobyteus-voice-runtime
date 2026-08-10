@@ -2,19 +2,19 @@
 
 ## Release / Publication / Deployment Scope
 
-This runtime-only delivery preserves the reviewed minimal-CI recovery chain for
-the exact English/Chinese darwin-arm64 candidate. The current result is a
-zero-profile Aggregate API Renewal stage gate, not release authorization. No
-AutoByteus desktop/superrepo implementation, installation, or release is part
-of this ticket.
+This runtime-only delivery integrates the reviewed model-free host and
+on-demand model-manager candidate against maintained `main`, validates the
+minimal release boundary, synchronizes durable documentation, and prepares the
+standard-hosted v1.0.0 handoff. No AutoByteus desktop/superrepo implementation,
+installation, or release is part of this ticket.
 
 ## Handoff Summary
 
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-006`
-- Notes: the exact zero-profile Aggregate API Renewal record passed its Delivery stage gate. Preliminary Source Admission remains `aggregate-api-renewal-required`, so no recovery, promotion, tag, publication, or release is authorized.
+- Current revision: `DR-009`
+- Notes: exact reviewed release-authority commit R is integrated unchanged; Policy 3 reuse, 19/19 focused checks, and API-REV-026 checksums pass. Maintained-main W integration and hosted release execution remain.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,13 +155,12 @@ of this ticket.
 
 ## Final Status
 
-**Pass / Aggregate API Renewal stage gate only; release unpublished.** The
-reviewed zero-profile renewal record is preserved, but current Preliminary
-Source Admission remains `aggregate-api-renewal-required`. No recovery,
-promotion, tag, release, or publication is authorized. The next permitted step
-is a separate implementation/controller acceptance of exact record commit
-`448517c...`, followed by independent `reuse-permitted` recomputation and Source
-Review.
+**Pass / authorized release preparation.** The reviewed acyclic F/D/R/W
+authority design resolves DR-008. Exact R is integrated unchanged, its six
+protected admission blobs remain immutable, Policy 3 returns
+`reuse-permitted`, and focused checks pass. No tag, release, or asset exists
+yet; maintained-main W integration and the standard-hosted publication run
+remain Delivery-owned.
 
 ## Aggregate API Renewal Delivery Gate — DR-006
 
@@ -176,3 +175,46 @@ Review.
 - Current admission: `aggregate-api-renewal-required`.
 - Release disposition: `Blocked / not authorized`; v1.0.0 tag, GitHub Release, catalog, and published assets remain absent.
 - Routing: separate Implementation and Source Review are required to accept exact record commit `448517c...` and independently reach `reuse-permitted` before managed recovery.
+
+## Default-Main Workflow Bootstrap — DR-007
+
+- Date: 2026-08-09.
+- Authorization: CRR-047 `Pass` after user approval of the special default-main bootstrap ordering. API-REV-020 / API-F-015 remains Fail because its HTTP 404 attempt created zero workflows.
+- Pre-bootstrap base: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70` after refresh; no base drift.
+- Exact integrated artifact: `ec0f726afd252448784855665a08d1de2ee0521c`, containing reviewed source `2e743600ef67469f3fd1bf2c9078d53c2d053979`.
+- Maintained-main result: merge commit `7385b65e397e6f1b17495720281fe0b2e39de99b` pushed to `origin/main`; its two parents are the exact prior main and reviewed artifact subjects.
+- Exact ticket ref: `origin/codex/voice-runtime-qualified-recovery` remains `ec0f726...` for subsequent API/E2E dispatch.
+- Local check: 46/46 focused release-pipeline tests passed after declared npm dependency installation; no profile, provider, inference, corpus, or performance suite ran.
+- Invalid first attempt: retained and explicitly excluded because missing `ajv` plus a shell-wrapper defect produced an untrustworthy Pass footer despite the module error.
+- Remote registration: default branch `main`; promotion workflow `330372978` active; recovery workflow `330372979` active.
+- Evidence: `delivery-default-main-bootstrap-SHA256SUMS.txt` verifies the corrected check, invalid-attempt log, and registration log.
+- Docs sync: explicit no additional long-lived prose impact; reviewed workflows plus `release-pipeline-ownership.md` are authoritative.
+- Release disposition: no recovery/promotion dispatch, archive build, tag, GitHub Release, catalog, asset, publication, or published-byte verification occurred.
+- Next action: cumulative package routed to `api_e2e_engineer` for real managed recovery and hosted promotion. Delivery must not resume publication until that stage passes and returns through the required review route.
+
+## Host-Only Final Integration Blocker — DR-008
+
+- Date: 2026-08-10.
+- Reviewed chain: source `b88c230...`; implementation artifact `5a2ec1b...`; CRR-055 `Pass / 9.7`; API-REV-025 `Pass / 97%`; CRR-056 `Not Applicable`.
+- Refresh/integration: `origin/main @ 7385b65...` merged into checkpoint `b5b44a4...` as `5c0c4b8b47d503a1c8ae464e0675ec797f2366a9`; left/right `0 / 19`.
+- Integrated check: `npm run check:release-pipeline` 9/9 Pass; every API-REV-025 checksum Pass; zero product/performance qualification in Delivery.
+- Docs: README already accurately documents the reviewed host/model split; release notes updated to current v1.0.0 host-only scope.
+- Direct blocker: six `release/admission/v1.0.0-*` workflow inputs are missing from the repository. The API-local source-admission file is evidence for `b88c230...`, not a committed final-main input.
+- Design blocker: production verification requires `record.finalMainCommit == GITHUB_SHA`; committing that record changes `GITHUB_SHA`. The authoritative design must identify separate acyclic source/record/workflow subjects or another reviewed construction.
+- Classification/routing: `Design Impact / final-main admission authority` to `solution_designer`.
+- Evidence: `delivery-final-main-integration-SHA256SUMS.txt`, binding `delivery-final-main-integration-check.log` at SHA-256 `a397ae525cfb45f4b4662d8ff7f7b5d7d1039e624a8c8963157ba4c3297dd9e2`.
+- Release state: standard-hosted equality not dispatched; no branch push, maintained-main merge, tag, release, asset, publication, or downloaded-byte verification.
+
+## Reviewed Release Authority Integration — DR-009
+
+- Date: 2026-08-10.
+- Review chain: CRR-059 `Pass / 9.9`; API-REV-026 `Pass / 98%`; CRR-060 `Not Applicable`.
+- Exact chain: `F = b88c230663eb96e0def8c869b095ea858b0ff50b`; `D = 3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`; `R = 71f8e7823d876b9c0914bfc7b90b143d851d4875`.
+- Refresh: `origin/main` remains `7385b65e397e6f1b17495720281fe0b2e39de99b`.
+- Preservation/integration: API/reviewer evidence checkpoint `795d2dd44d990a32376a75410cfba11a48c70095`; exact R merged without rewrite as second parent of `3c091aae1a7acb12f3d021a2b0b8d49336f730e5`.
+- Protected edge: R has sole parent D, introduces exactly six `100644` `release/admission/` files, and their blob IDs remain unchanged in the integrated candidate.
+- Integrated result: all 45 R-to-candidate paths classify documentation-record-only; Policy 3 returns `reuse-permitted` with identity `c7cd2e5ede4a96f6990145a4719912e6dd7dc97fa85d157ea0f68ab37af1e676`; focused release checks pass 19/19; all API-REV-026 checksums pass.
+- Evidence: `delivery-release-authority-integration-check.log`, SHA-256 `557692491a4f66f72a4939c3d06cc7839d5c75fbba828a1e1633b17b1c4d8711`, bound by `delivery-release-authority-integration-SHA256SUMS.txt`.
+- Pipeline boundary: standard GitHub-hosted macOS; host-only build/equality and exact nine-asset publication; zero product/profile/performance qualification and zero model-weight downloads.
+- Authorization: the prior explicit user verification/finalize-and-release instruction remains applicable to the unchanged runtime-only v1.0.0 scope.
+- Current release state: ticket branch push, maintained-main W integration, tag, GitHub Release, assets, and downloaded-byte verification remain pending.

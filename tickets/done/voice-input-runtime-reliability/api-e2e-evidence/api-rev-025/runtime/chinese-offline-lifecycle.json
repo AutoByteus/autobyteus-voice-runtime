@@ -1,0 +1,120 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-020",
+  "profileId": "chinese",
+  "decision": "pass",
+  "networkDeniedSandbox": "/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/source/benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+  "readyMs": 14835.605458999999,
+  "removeWhileLeased": {
+    "exitCode": 3,
+    "signal": null,
+    "events": [
+      {
+        "schemaVersion": 1,
+        "operationId": "eabb2018-a13b-4eab-9413-cf5381738bc0",
+        "operation": "remove-profile",
+        "profileId": "chinese",
+        "target": {
+          "platform": "darwin",
+          "architecture": "arm64"
+        },
+        "sequence": 1,
+        "phase": "checking",
+        "timestamp": "2026-08-10T15:32:51.73139Z"
+      },
+      {
+        "schemaVersion": 1,
+        "operationId": "eabb2018-a13b-4eab-9413-cf5381738bc0",
+        "operation": "remove-profile",
+        "profileId": "chinese",
+        "target": {
+          "platform": "darwin",
+          "architecture": "arm64"
+        },
+        "sequence": 2,
+        "phase": "failed",
+        "timestamp": "2026-08-10T15:32:51.759828Z",
+        "failureCategory": "profile-in-use"
+      }
+    ],
+    "terminal": {
+      "schemaVersion": 1,
+      "operationId": "eabb2018-a13b-4eab-9413-cf5381738bc0",
+      "operation": "remove-profile",
+      "profileId": "chinese",
+      "target": {
+        "platform": "darwin",
+        "architecture": "arm64"
+      },
+      "sequence": 2,
+      "phase": "failed",
+      "timestamp": "2026-08-10T15:32:51.759828Z",
+      "failureCategory": "profile-in-use"
+    },
+    "stderr": ""
+  },
+  "statusWhileLeased": {
+    "exitCode": 0,
+    "signal": null,
+    "events": [
+      {
+        "schemaVersion": 1,
+        "operationId": "00739874-a266-4b58-a843-c8c524802bca",
+        "operation": "status-profile",
+        "profileId": "chinese",
+        "target": {
+          "platform": "darwin",
+          "architecture": "arm64"
+        },
+        "sequence": 1,
+        "phase": "checking",
+        "timestamp": "2026-08-10T15:32:51.769395Z"
+      },
+      {
+        "schemaVersion": 1,
+        "operationId": "00739874-a266-4b58-a843-c8c524802bca",
+        "operation": "status-profile",
+        "profileId": "chinese",
+        "target": {
+          "platform": "darwin",
+          "architecture": "arm64"
+        },
+        "sequence": 2,
+        "phase": "status-result",
+        "timestamp": "2026-08-10T15:32:51.783189Z",
+        "profileState": "active"
+      }
+    ],
+    "terminal": {
+      "schemaVersion": 1,
+      "operationId": "00739874-a266-4b58-a843-c8c524802bca",
+      "operation": "status-profile",
+      "profileId": "chinese",
+      "target": {
+        "platform": "darwin",
+        "architecture": "arm64"
+      },
+      "sequence": 2,
+      "phase": "status-result",
+      "timestamp": "2026-08-10T15:32:51.783189Z",
+      "profileState": "active"
+    },
+    "stderr": ""
+  },
+  "activePointerSha256": {
+    "before": "3f17df57d29c6fce7eb1b5510da005f7b31fcc16f50ab2e993f8ead3192612f0",
+    "during": "3f17df57d29c6fce7eb1b5510da005f7b31fcc16f50ab2e993f8ead3192612f0",
+    "after": "3f17df57d29c6fce7eb1b5510da005f7b31fcc16f50ab2e993f8ead3192612f0"
+  },
+  "shutdown": {
+    "code": 0,
+    "signal": null
+  },
+  "providerTimings": {
+    "handshakeMs": 1452.251125,
+    "preparationMs": 13383.227291,
+    "startToReadyMs": 14835.486167
+  },
+  "providerStderr": "VOICE_PROVIDER_DIAGNOSTIC_REDACTED",
+  "providerStderrBytes": 1042
+}

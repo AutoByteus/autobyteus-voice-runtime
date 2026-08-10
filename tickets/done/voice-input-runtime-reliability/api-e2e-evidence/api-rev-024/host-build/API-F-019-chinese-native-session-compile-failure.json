@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "failureId": "API-F-019",
+  "scenarioId": "API-VOICE-018",
+  "reviewedSourceCommit": "97f3007c2a62e5f48acd5fcc8c26d1e38b099850",
+  "reviewedArtifactCommit": "2a4b2ef7eab573388390274b47e1de197fe02d3e",
+  "classification": "Local Fix",
+  "boundary": "Chinese Runtime Host Archive 2 native provider compilation",
+  "expected": "After complete input ownership passes, the exact authenticated CMake build compiles the full Chinese voice-provider-worker and proceeds to archive assembly.",
+  "observed": "The production build reaches CMake and fails compiling providers/chinese-funasr/src/session.cpp because three digest comparisons use std::string != nlohmann::json without extracting the validated JSON string value.",
+  "command": "/usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb node build/host-package-assembler.mjs --profile chinese --target darwin-arm64 --inputs /private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/inputs-r24-v1/chinese --output /private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/builds-r24-v1/chinese-a/voice-host-chinese-darwin-arm64-1.0.0.zip --go /tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go --build-environment /private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/evidence/host-build-environment-v2.json --expected-host-source-closure 571191f217d16369b126edfd6944d622207cd32dc8aefedff0e8b9fb4d40de02 --source-commit 97f3007c2a62e5f48acd5fcc8c26d1e38b099850 --version 1.0.0",
+  "exitCode": 1,
+  "compilerDiagnostics": [
+    {
+      "path": "providers/chinese-funasr/src/session.cpp",
+      "line": 44,
+      "leftType": "std::string",
+      "rightType": "nlohmann::json value_type",
+      "subject": "descriptorSha256"
+    },
+    {
+      "path": "providers/chinese-funasr/src/session.cpp",
+      "line": 45,
+      "leftType": "std::string",
+      "rightType": "nlohmann::json value_type",
+      "subject": "activationSha256"
+    },
+    {
+      "path": "providers/chinese-funasr/src/session.cpp",
+      "line": 52,
+      "leftType": "std::string",
+      "rightType": "nlohmann::json value_type",
+      "subject": "model file sha256"
+    }
+  ],
+  "priorFailureRechecks": {
+    "API-F-018": "resolved: complete manifest ownership passes and construction reaches the native CMake build",
+    "API-F-016": "resolved: production builder imports and executes",
+    "API-F-017": "direct logical-root regression remains passing; full packaged-host verification remains downstream"
+  },
+  "inputAuthority": {
+    "sourceCommit": "97f3007c2a62e5f48acd5fcc8c26d1e38b099850",
+    "hostSourceClosureSha256": "571191f217d16369b126edfd6944d622207cd32dc8aefedff0e8b9fb4d40de02"
+  },
+  "sideEffects": {
+    "chineseArchiveCreated": false,
+    "secondChineseBuildStarted": false,
+    "englishCurrentSourceBuildStarted": false,
+    "modelDownloaded": false,
+    "providerLaunched": false,
+    "storeMutated": false
+  },
+  "evidence": "build-chinese-a.log"
+}

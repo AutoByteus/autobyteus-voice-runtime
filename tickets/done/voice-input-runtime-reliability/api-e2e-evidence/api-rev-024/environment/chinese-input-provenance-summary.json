@@ -1,0 +1,8 @@
+{
+  "profile": "chinese",
+  "sourceCommit": "97f3007c2a62e5f48acd5fcc8c26d1e38b099850",
+  "inputCount": 31,
+  "materializedTreeSha256": "4097a48395123ee15b486ecf6d65d69dfc7b75e5c03cbb90c5e9783e19f422bf",
+  "recipeSha256": "1178b86bc245d8c4bbcd2e206e0c3ad88d593379b2943a2de297e19be3f0c2b0",
+  "releaseMatrixSha256": "32510b0dfd6493a0c6066d309c361555791b5ecc2a5b5ace72fdadc85a52eebb"
+}

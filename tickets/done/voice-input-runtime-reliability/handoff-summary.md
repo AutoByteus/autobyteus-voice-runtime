@@ -2,18 +2,61 @@
 
 ## Status
 
-- Delivery status: **zero-profile Aggregate API Renewal passed and is preserved; recovery and v1.0.0 release remain unauthorized**.
+- Delivery status: **reviewed release authority is integrated and all focused authority checks pass; maintained-main W integration and the authorized standard-hosted v1.0.0 publication remain**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
 - Ticket branch: `codex/voice-runtime-qualified-recovery`
 - Recorded finalization target: `origin/main` / local `main`
 - Bootstrap source baseline: `251eab80a1cfd6a6d4c4d2a1fdbe1c06c3923dde` (`v0.3.0`)
-- Latest tracked base: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`
+- Latest tracked base before bootstrap: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`
+- Current maintained main: `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b`
+- Current integrated authority candidate before the DR-009 record commit: `3c091aae1a7acb12f3d021a2b0b8d49336f730e5`
 - Reviewed API/E2E artifact HEAD: `5333d1d00c31fc9fe6fe2dcfe86219e2b894bebe`
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
 - Finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Release Authority Integration — DR-009
+
+- Authoritative review: CRR-059 **Pass / 9.9**, API-REV-026 **Pass / 98%**, CRR-060 **Not Applicable** because no durable API/E2E test changed.
+- Exact lineage: `F = b88c230663eb96e0def8c869b095ea858b0ff50b`, `D = 3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`, and `R = 71f8e7823d876b9c0914bfc7b90b143d851d4875`.
+- Latest-base refresh: `origin/main` remains `7385b65e397e6f1b17495720281fe0b2e39de99b`.
+- Integration: API/reviewer evidence checkpoint `795d2dd44d990a32376a75410cfba11a48c70095`; exact reviewed `R` merged as the second parent of `3c091aae1a7acb12f3d021a2b0b8d49336f730e5` without recreation or protected-blob changes.
+- Authority check: exact R parent and six-file boundary pass; 45 `R..candidate` documentation-record-only paths yield `reuse-permitted` under Policy 3 identity `c7cd2e5e...1e676`; focused release suite 19/19 and API-REV-026 checksums pass.
+- Delivery execution count: zero product tests, profile qualification, provider/inference/performance work, or model-weight downloads.
+- User completion gate: satisfied by the explicit runtime-only v1.0.0 finalization/release authorization and the later minimal standard-hosted release-pipeline direction.
+- Remaining release actions: push the ticket branch; refresh and merge to maintained `main` as W; verify W lineage and host-only boundary; dispatch the standard-hosted release; verify the tag, exact nine assets, and downloaded bytes.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-release-authority-integration-SHA256SUMS.txt`.
+
+## Host-Only Final Integration — DR-008
+
+- Reviewed source: `b88c230663eb96e0def8c869b095ea858b0ff50b`; implementation artifact: `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`.
+- Validation: CRR-055 **Pass / 9.7**; API-REV-025 **Pass / 97%**; CRR-056 **Not Applicable** because API/E2E changed no durable test code.
+- Preserved API/reviewer checkpoint: `b5b44a4c87bfeb192c7e7556093e6a8383fcbb60`.
+- Latest-base integration: refreshed `origin/main @ 7385b65...` merged without conflict as `5c0c4b8b47d503a1c8ae464e0675ec797f2366a9`; left/right `0 / 19`.
+- Integrated checks: focused release suite **9/9 Pass**; API-REV-025 checksum manifest **Pass**. Delivery ran no provider/profile/corpus/inference/performance qualification.
+- Delivered scope: two model-free darwin-arm64 host archives; explicit on-demand immutable model installation; atomic Store 1 activation; offline provider use; exact nine prospective release assets. x64/Linux/Windows/`auto`/desktop remain deferred.
+- Blocking condition: `.github/workflows/release-voice-runtime.yml` requires six committed `release/admission/v1.0.0-*` inputs, but `release/admission/` does not exist in the integrated repository.
+- Authority conflict: the available API-local admission binds `b88c230...`; the verifier requires admission `finalMainCommit == GITHUB_SHA`. Adding the admission creates a new commit, so an exact self-bound current SHA cannot be produced by Delivery without changing the reviewed contract.
+- Classification: **Design Impact** to `solution_designer`; define an acyclic record-commit/source-commit contract, then route through implementation, review, and applicable API validation.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-final-main-integration-SHA256SUMS.txt`.
+- Not performed: ticket push, maintained-main merge, hosted build/equality, tag, GitHub Release, assets, publication, downloaded-byte verification, desktop/user-state change, or personal runner.
+
+## Default-Main Workflow Bootstrap — DR-007
+
+- Failure origin: API-REV-020 / API-F-015 remains a truthful Fail. GitHub returned HTTP 404 and created zero runs because `workflow_dispatch` requires the workflow to be registered on the default branch.
+- Authorization: CRR-047 `Pass`; the user explicitly authorized Delivery to merge the already-reviewed pipeline to default `main` before API/E2E execution.
+- Exact reviewed source: `2e743600ef67469f3fd1bf2c9078d53c2d053979`.
+- Exact reviewed artifact/remote ticket ref: `ec0f726afd252448784855665a08d1de2ee0521c`.
+- Integration: merge commit `7385b65e397e6f1b17495720281fe0b2e39de99b`, exact parents `fd83e868...` and `ec0f726...`, pushed to `origin/main`.
+- Dispatch-ref preservation: `origin/codex/voice-runtime-qualified-recovery` still equals `ec0f726...`.
+- Integrated-state check: corrected fail-fast focused release-pipeline suite passed 46/46; zero profile, provider, inference, corpus, or performance execution.
+- GitHub registration: promotion workflow `330372978` active; recovery workflow `330372979` active; default branch `main`.
+- Evidence manifest: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-default-main-bootstrap-SHA256SUMS.txt`.
+- Current admission: API-REV-020 records `reuse-permitted` for the exact accepted authority. This permits evidence reuse by API/E2E; it is not release permission.
+- Delivery actions not performed: no recovery/promotion dispatch, archive build, provider/profile/corpus/performance qualification, tag, release, assets, publication, or personal runner.
+- Next owner: `api_e2e_engineer` for organization-managed recovery and hosted promotion against exact reviewed ref `ec0f726...`.
 
 ## Aggregate API Renewal Stage Gate
 

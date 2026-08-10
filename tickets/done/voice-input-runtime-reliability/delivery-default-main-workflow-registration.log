@@ -1,0 +1,14 @@
+Voice Input Runtime Reliability — GitHub default-main workflow registration
+timestamp_utc=2026-08-09T07:38:37Z
+default_branch=main
+origin_main=7385b65e397e6f1b17495720281fe0b2e39de99b
+reviewed_ticket_ref=ec0f726afd252448784855665a08d1de2ee0521c
+
+{"id":330372978,"name":"Promote exact qualified voice candidate","path":".github/workflows/promote-qualified-voice-candidate.yml","state":"active"}
+{"id":330372979,"name":"Recover exact qualified voice archives","path":".github/workflows/recover-qualified-voice-archives.yml","state":"active"}
+
+RESULT=PASS_DEFAULT_BRANCH_WORKFLOWS_ACTIVE
+RECOVERY_DISPATCHED=NO
+PROMOTION_DISPATCHED=NO
+RELEASE_DISPATCHED=NO
+sha256=20ff47a6442b9fac3b8b36afce4a8d4a862d49461b4b0ddde63f6724de9cc9b2

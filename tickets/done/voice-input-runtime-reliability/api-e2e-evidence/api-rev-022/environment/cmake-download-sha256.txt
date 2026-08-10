@@ -1,0 +1,1 @@
+b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d  /private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/tools/cmake-4.2.0-macos-universal.tar.gz

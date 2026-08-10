@@ -1,0 +1,80 @@
+{
+  "cancel": {
+    "eventCount": 4058,
+    "exitCode": 143,
+    "sequencesContiguous": true,
+    "terminal": {
+      "failureCategory": "cancelled",
+      "operation": "install-profile",
+      "operationId": "e2214c20-4f27-4b39-b5d9-d838ce8589ba",
+      "phase": "cancelled",
+      "profileId": "english",
+      "schemaVersion": 1,
+      "sequence": 4058,
+      "target": {
+        "architecture": "arm64",
+        "platform": "darwin"
+      },
+      "timestamp": "2026-08-10T15:25:08.005314Z"
+    }
+  },
+  "decision": "pass",
+  "profileId": "english",
+  "resume": {
+    "eventCount": 26078,
+    "exitCode": 0,
+    "firstDownloadingEvent": {
+      "completedBytes": 266,
+      "fileCount": 2,
+      "fileIndex": 1,
+      "modelAssetId": "voice.model.english.whisper-small-mlx-fp16.v1",
+      "operation": "install-profile",
+      "operationId": "328e74f1-cb9c-4726-a2e9-2e28ae568617",
+      "phase": "downloading",
+      "profileId": "english",
+      "schemaVersion": 1,
+      "sequence": 2,
+      "target": {
+        "architecture": "arm64",
+        "platform": "darwin"
+      },
+      "timestamp": "2026-08-10T15:25:31.500995Z",
+      "totalBytes": 266
+    },
+    "firstResumedWeightEvent": {
+      "completedBytes": 66392996,
+      "fileCount": 2,
+      "fileIndex": 2,
+      "modelAssetId": "voice.model.english.whisper-small-mlx-fp16.v1",
+      "operation": "install-profile",
+      "operationId": "328e74f1-cb9c-4726-a2e9-2e28ae568617",
+      "phase": "downloading",
+      "profileId": "english",
+      "schemaVersion": 1,
+      "sequence": 4,
+      "target": {
+        "architecture": "arm64",
+        "platform": "darwin"
+      },
+      "timestamp": "2026-08-10T15:25:32.255774Z",
+      "totalBytes": 481307592
+    },
+    "sequencesContiguous": true,
+    "terminal": {
+      "modelAssetId": "voice.model.english.whisper-small-mlx-fp16.v1",
+      "operation": "install-profile",
+      "operationId": "328e74f1-cb9c-4726-a2e9-2e28ae568617",
+      "phase": "installed",
+      "profileId": "english",
+      "schemaVersion": 1,
+      "sequence": 26078,
+      "target": {
+        "architecture": "arm64",
+        "platform": "darwin"
+      },
+      "timestamp": "2026-08-10T15:26:16.735603Z"
+    }
+  },
+  "scenarioId": "API-VOICE-019",
+  "schemaVersion": 1
+}

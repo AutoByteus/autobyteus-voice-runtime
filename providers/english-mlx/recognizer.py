@@ -1,7 +1,7 @@
 class MlxWhisperRecognizer:
     def __init__(self, session):
         self.session = session
-        self.model_path = str(session.resolve_directory(session.descriptor["model"]["root"]))
+        self.model_path = str(session.model_root)
         self._mlx_whisper = None
     def prepare(self):
         import mlx.core as mx

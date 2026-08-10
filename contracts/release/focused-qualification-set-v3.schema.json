@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/release/focused-qualification-set-v3.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "sourceCommit",
+    "decision",
+    "profiles"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 3
+    },
+    "artifactKind": {
+      "const": "focused-qualification-set"
+    },
+    "sourceCommit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "decision": {
+      "enum": ["pass", "fail", "blocked"]
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profileId",
+          "hostArchive",
+          "hostSourceClosureSha256",
+          "modelAdmissionRootSha256",
+          "modelManifest",
+          "compatibilityPairSha256",
+          "hostDescriptorSha256",
+          "hostFileManifestSha256",
+          "hostSourceClosureSizeBytes"
+        ],
+        "properties": {
+          "profileId": {
+            "enum": ["english", "chinese"]
+          },
+          "hostArchive": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["fileName", "sizeBytes", "sha256"],
+            "properties": {
+              "fileName": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "sizeBytes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "hostSourceClosureSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "modelAdmissionRootSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "modelManifest": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["fileName", "sizeBytes", "sha256"],
+            "properties": {
+              "fileName": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+$"
+              },
+              "sizeBytes": {
+                "type": "integer",
+                "minimum": 1
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "compatibilityPairSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "hostDescriptorSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "hostFileManifestSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "hostSourceClosureSizeBytes": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,152 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/release/published-asset-verification-v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "repository",
+    "releaseTag",
+    "releaseId",
+    "prepublicationSealSha256",
+    "preTagManifest",
+    "checksumManifest",
+    "assets",
+    "exactAssetSet",
+    "decision",
+    "failureCategory"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "artifactKind": {
+      "const": "published-asset-verification"
+    },
+    "repository": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$"
+    },
+    "releaseTag": {
+      "type": "string",
+      "pattern": "^v[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "releaseId": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "prepublicationSealSha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "preTagManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "checksumManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    },
+    "assets": {
+      "type": "array",
+      "minItems": 9,
+      "maxItems": 9,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "fileName",
+          "assetId",
+          "expectedSizeBytes",
+          "observedSizeBytes",
+          "expectedSha256",
+          "observedSha256",
+          "status"
+        ],
+        "properties": {
+          "fileName": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._-]+$"
+          },
+          "assetId": {
+            "type": ["integer", "null"],
+            "minimum": 1
+          },
+          "expectedSizeBytes": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "observedSizeBytes": {
+            "type": ["integer", "null"],
+            "minimum": 0
+          },
+          "expectedSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "observedSha256": {
+            "anyOf": [
+              {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "status": {
+            "enum": ["match", "size-mismatch", "digest-mismatch", "missing"]
+          }
+        }
+      }
+    },
+    "exactAssetSet": {
+      "type": "boolean"
+    },
+    "decision": {
+      "enum": ["pass", "fail"]
+    },
+    "failureCategory": {
+      "enum": [
+        "none",
+        "missing-asset",
+        "unexpected-asset",
+        "size-mismatch",
+        "digest-mismatch",
+        "metadata-invalid"
+      ]
+    }
+  }
+}

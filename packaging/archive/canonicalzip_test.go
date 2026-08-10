@@ -18,12 +18,12 @@ func TestCanonicalBuildAndVerifiedExtraction(t *testing.T) {
 	os.MkdirAll(filepath.Join(payload, "provider"), 0700)
 	os.WriteFile(filepath.Join(payload, "bin", "voice-provider"), []byte("probe"), 0700)
 	descriptor := []byte("{}\n")
-	os.WriteFile(filepath.Join(payload, "provider", "provider-package-v1.json"), descriptor, 0600)
-	files := []ManifestFile{{"bin/voice-provider", digestBytes([]byte("probe")), 5, Executable}, {"provider/provider-package-v1.json", digestBytes(descriptor), int64(len(descriptor)), ReadOnly}}
-	manifest := PackageFileManifest{1, "fixture.package", files}
+	os.WriteFile(filepath.Join(payload, "provider", "runtime-host-v2.json"), descriptor, 0600)
+	files := []ManifestFile{{"bin/voice-provider", digestBytes([]byte("probe")), 5, Executable}, {"provider/runtime-host-v2.json", digestBytes(descriptor), int64(len(descriptor)), ReadOnly}}
+	manifest := HostFileManifest{2, "fixture.host", files}
 	manifestBytes, _ := json.MarshalIndent(manifest, "", "  ")
 	manifestBytes = append(manifestBytes, '\n')
-	os.WriteFile(filepath.Join(payload, "provider", "package-files-v1.json"), manifestBytes, 0600)
+	os.WriteFile(filepath.Join(payload, "provider", "host-files-v2.json"), manifestBytes, 0600)
 	first := filepath.Join(root, "first.zip")
 	second := filepath.Join(root, "second.zip")
 	one, err := BuildCanonicalZIP(payload, first)
@@ -39,7 +39,7 @@ func TestCanonicalBuildAndVerifiedExtraction(t *testing.T) {
 	if !reflect.DeepEqual(a, b) {
 		t.Fatal("archive not deterministic")
 	}
-	expected := ExtractExpectation{1, "fixture.package", Target{"darwin", "arm64"}, ArchiveIdentity{"zip", 1, "deflate", "autobyteus-provider-zip-v1", "package", "fixture.zip", "https://example/fixture.zip", one.SHA256, one.CompressedSizeBytes, one.ExtractedSizeBytes, one.EntryCount}, AssetRef{"provider/provider-package-v1.json", digestBytes(descriptor)}, AssetRef{"provider/package-files-v1.json", digestBytes(manifestBytes)}}
+	expected := ExtractExpectation{2, "fixture.host", Target{"darwin", "arm64"}, ArchiveIdentity{"zip", 2, "deflate", "autobyteus-runtime-host-zip-v2", "host", "fixture.zip", "https://example/fixture.zip", one.SHA256, one.CompressedSizeBytes, one.ExtractedSizeBytes, one.EntryCount}, AssetRef{"provider/runtime-host-v2.json", digestBytes(descriptor)}, AssetRef{"provider/host-files-v2.json", digestBytes(manifestBytes)}}
 	destination := filepath.Join(root, "verified package")
 	t.Cleanup(func() {
 		filepath.WalkDir(destination, func(target string, entry os.DirEntry, _ error) error {
@@ -57,6 +57,12 @@ func TestCanonicalBuildAndVerifiedExtraction(t *testing.T) {
 	}
 	if !report.ModesVerified {
 		t.Fatal("modes not verified")
+	}
+	if report.HostRoot != expected.Archive.RootDirectory || report.HostRoot != "host" {
+		t.Fatalf("verification report exposed the wrong host root: %q", report.HostRoot)
+	}
+	if report.HostRoot == destination {
+		t.Fatal("verification report exposed the private extraction destination")
 	}
 	if _, err := os.Stat(filepath.Join(destination, "bin", "voice-provider")); err != nil {
 		t.Fatal(err)
@@ -95,7 +101,7 @@ func TestCanonicalBuildAndVerifiedExtraction(t *testing.T) {
 	})
 	t.Run("rejects expectation path escape before extraction", func(t *testing.T) {
 		invalid := expected
-		invalid.FileManifest.Path = "../package-files-v1.json"
+		invalid.FileManifest.Path = "../host-files-v2.json"
 		invalidDestination := filepath.Join(root, "path escape destination")
 		if _, err := ExtractVerified(first, invalidDestination, invalid); err == nil {
 			t.Fatal("expectation path escape accepted")

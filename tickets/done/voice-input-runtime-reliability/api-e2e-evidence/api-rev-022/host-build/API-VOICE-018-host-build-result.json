@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-018",
+  "reviewedSourceCommit": "ad7c402d224690584e2da98ec71a73e8b6d4ca36",
+  "result": "fail",
+  "english": {
+    "doubleBuild": "pass",
+    "archive": {
+      "path": "/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/builds/english-a/voice-host-english-darwin-arm64-1.0.0.zip",
+      "sizeBytes": 207492896,
+      "sha256": "a2463fc5fedcf2c7e96924d4f5df69045b70ca7b5983dad094a40fe9504e53dc"
+    },
+    "reproducibilityProof": {
+      "path": "/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/evidence/english-host-reproducibility-proof-v2.json",
+      "sizeBytes": 902,
+      "sha256": "1a5b550aabf4372c0e4359e5341684e06c57957a4e95b94a51158482fdb043a6"
+    },
+    "independentVerification": "fail/API-F-017"
+  },
+  "chinese": {
+    "firstBuild": "fail/API-F-016",
+    "archiveCreated": false,
+    "secondBuild": "not-tested",
+    "verification": "not-tested"
+  },
+  "remainingScenarios": [
+    "API-VOICE-019",
+    "API-VOICE-020",
+    "API-VOICE-021",
+    "API-VOICE-022",
+    "API-VOICE-023",
+    "API-VOICE-024"
+  ],
+  "stopReason": "Critical AC-028 host construction/verification prerequisite failed; no model download, provider execution, closure aggregation, or release composition is authorized."
+}

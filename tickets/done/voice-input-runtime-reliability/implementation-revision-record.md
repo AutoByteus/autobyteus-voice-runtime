@@ -36,6 +36,13 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-028`    | Code Reviewer / `code-review-report.md` / `CRR-042`                | `CR-F-038`                                                  | `Local Fix`           | `SR-018`; `ARCH-REV-019`; `CRR-042`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
 | `IR-029`    | Code Reviewer / `code-review-report.md` / `CRR-043`                | Remaining `CR-F-038`                                        | `Local Fix`           | `SR-018`; `ARCH-REV-019`; `CRR-043`; `API-REV-017`, `API-REV-018`; `DR-005`                                            | `Implementation Complete — Ready for Code Re-review` |
 | `IR-030`    | Delivery Engineer / `delivery-revision-record.md` / `DR-006`       | `N/A` — reviewed post-renewal controller transition         | `Reviewed Transition` | `SR-018`; `ARCH-REV-019`; `CRR-044`, `CRR-045`; `API-REV-019`; `DR-006`                                                | `Implementation Complete — Ready for Code Re-review` |
+| `IR-031`    | Architecture Reviewer / `design-review-report.md` / round 21       | Resolved `AR-F-017`, `AR-F-018`, `AR-F-019`                 | `Design Impact`       | `SR-020`, `SR-021`; `ARCH-REV-020`, `ARCH-REV-021`; prior `CRR-044`, `CRR-045`; `API-REV-017`–`API-REV-019`; `DR-006`  | `Implementation Complete — Ready for Code Review`    |
+| `IR-032`    | Code Reviewer / `code-review-report.md` / `CRR-048`                | `CR-F-039`–`CR-F-043`                                       | `Local Fix`           | `SR-021`; `ARCH-REV-021`; `CRR-048`; `API-REV-017`–`API-REV-019`; `DR-006`                                             | `Implementation Complete — Ready for Code Re-review` |
+| `IR-033`    | Code Reviewer / `code-review-report.md` / `CRR-050`                | `CR-F-044`, `CR-F-045` / `API-F-016`, `API-F-017`           | `Local Fix`           | `SR-021`; `ARCH-REV-021`; `CRR-049`, `CRR-050`; `API-REV-022`; `DR-006`                                                | `Implementation Complete — Ready for Code Re-review` |
+| `IR-034`    | Code Reviewer / `code-review-report.md` / `CRR-052`                | `CR-F-046` / `API-F-018`                                    | `Local Fix`           | `SR-021`; `ARCH-REV-021`; `CRR-051`, `CRR-052`; `API-REV-023`; `DR-006`                                                | `Implementation Complete — Ready for Code Re-review` |
+| `IR-035`    | Code Reviewer / `code-review-report.md` / `CRR-054`                | `CR-F-047` / `API-F-019`                                    | `Local Fix`           | `SR-021`; `ARCH-REV-021`; `CRR-053`–`CRR-055`; `API-REV-024`; `DR-006`                                                 | `Implementation Complete — Ready for Code Re-review` |
+| `IR-036`    | Architecture Reviewer / `design-review-report.md` / round 22       | `DR-008` final-main admission self-reference                | `Design Impact`       | `SR-022`; `ARCH-REV-022`; prior `CRR-055`, `CRR-056`; `API-REV-025`; `DR-008`                                          | `Implementation Complete — Ready for Code Review`    |
+| `IR-037`    | Architecture Reviewer / `design-review-report.md` / round 24       | `CR-F-048`; resolved `AR-F-020`                             | `Design Impact`       | `SR-023`, `SR-024`; `ARCH-REV-023`, `ARCH-REV-024`; `CRR-057`; `API-REV-025`; `DR-008`                                 | `Implementation Complete — Ready for Code Review`    |
 
 ## Revision Entries
 
@@ -798,3 +805,183 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: focused source-closure coverage passed `6/6`; `npm run check:release-pipeline` passed `46/46` plus strict release guards; exact pinned-Go full `npm run check` passed source guards, `7/7` Python plus compileall, all Go tests/guards, both evidence authorities, and `156/156` Node TAP tests. Authored-file Prettier and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`.
 - Remaining limitations or risks: implementation did not run recovery, reconstruct archives, start providers, run corpus/lifecycle/performance/profile qualification, promote a candidate, merge, tag, or publish. `reuse-permitted` does not bypass Source Review. Managed recovery may begin only after source Pass, and all exact archive, candidate, hosted Delivery, publication, and downloaded-byte gates remain fail closed. Loaded-host performance and deferred x64/Linux/Windows/`auto` scope remain unchanged.
+
+### IR-031 — Split runtime hosts from on-demand model assets
+
+- Triggering role, report path, and round: Architecture Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`; round 21 / `ARCH-REV-021` against `SR-021`.
+- Triggering finding IDs: resolved design findings `AR-F-017`, `AR-F-018`, and `AR-F-019`.
+- Classification: `Design Impact`.
+- Prior authoritative result: `IR-030` implemented the accepted aggregate-renewal transition under SR-018; subsequent SR-020/SR-021 replaced the combined-package/recovery target with explicit on-demand model delivery.
+- Current authoritative result: `Implementation Complete — Ready for Code Review`.
+- Related solution revision IDs: `SR-020`, `SR-021` (`SR-021` current).
+- Related architecture-review revision IDs: `ARCH-REV-020`, `ARCH-REV-021` (`ARCH-REV-021` Pass).
+- Related code-review revision IDs: prior `CRR-044`, `CRR-045`; current source review pending.
+- Related API/E2E revision IDs: retained `API-REV-017`–`API-REV-019`; SR-021 coverage investigation/execution pending.
+- Related delivery revision IDs: prior `DR-006`; current Delivery not started.
+- Why this implementation revision is recorded: SR-021 intentionally replaces redistributed combined host+model archives and managed recovery/candidate release infrastructure with stable model-free runtime hosts, explicit host-authorized on-demand model installation, focused execution-closure reuse, and a standard-hosted nine-asset release.
+- Approved behavior or requirement IDs affected: `BEH-001`–`BEH-014`, principally `BEH-004`, `BEH-005`, `BEH-007`–`BEH-010`, `BEH-013`, `BEH-014`; `R-005`, `R-014`, `R-017`, `R-019`, `R-022`–`R-029`; `AC-025`–`AC-035`. Existing Protocol 1/provider/output/scoring/resource meanings remain preserved.
+- Implementation delta:
+  - Replaced combined package recipes/descriptors/tooling with deterministic Runtime Host Archive 2 construction, verification, Host Source Closure 1, externally recorded Host Build Provenance 2, and embedded per-profile Model Admission Root 1.
+  - Added exact Matrix 2, Catalog 4, model manifests/compatibility roots, strict install/host/model/session schemas and Go types, model-tree integrity, and one host-first admission owner.
+  - Added the public `voice-model-manager` with authenticated resumable downloads, content-addressed Store 1, atomic Activation State Protocol 1, bounded status snapshots, provider lifetime leases, and strict JSON-line terminal events.
+  - Upgraded the one public launcher to Session Config 2, verified external activated model binding, lease-preserving offline worker startup, and no ambient path/model/fallback authority. Providers consume the verified private model root without changing inference behavior.
+  - Added Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, Release Source Admission 3, and the acyclic exact nine-asset standard-hosted release/prepublication/postpublication chain.
+  - Removed Catalog 3/Matrix 1, Session Config/launcher plan 1, bundled-model staging, Provider Archive/package v1, active full qualification entrypoints, aggregate recovery/candidate authority/controllers/workflows, and stale compatibility tests.
+  - Rewrote README/package scripts for the standalone host/model-manager workflow and source/unit/contract validation.
+- Changed files or areas: `build/host-*.mjs`, `build/profile-builders/*-host.mjs`, `contracts/{build,catalog,host,install,launcher,model,package,qualification,release,startup}/`, `hostverify/`, `integrity/`, `modelmanager/`, `modelstore/`, `launcher/internal/`, `packaging/`, `providers/`, `release/`, `.github/workflows/release-voice-runtime.yml`, `tests/`, `tooling/`, `README.md`, and `package.json`; source commit `6dc1aac500a84f50a8808ba9eca2bb15d808779d`.
+- Local validation and result: exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go `npm run check` passed source guards, `7/7` Python plus compileall, all Go tests/guards, both evidence authorities, and `91/91` Node TAP tests. `go vet ./...`, race-enabled host/integrity/launcher/model-manager/model-store/packaging tests, authored Prettier, source-size checks, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not run API/E2E, construct production hosts, download production models, exercise real CDN resume behavior, start providers, run retained offline clips, execute corpora/performance/full qualification, derive focused authorities, dispatch hosted release, merge, tag, or publish. Deterministic whole-archive equality, production install/offline smoke, macOS filesystem/signal/lease interleavings, Execution Closure 2, focused QSet/projection, exact nine-asset publication, and downloaded-byte verification remain fail-closed downstream gates. x64/Linux/Windows/`auto`, alternate models/providers, desktop integration, and personal-runner release infrastructure remain out of scope.
+
+### IR-032 — Harden Catalog 4 admission and on-demand model lifecycle
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-048`, with focused evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-048-on-demand-runtime-source-review.md`.
+- Triggering finding IDs: `CR-F-039`, `CR-F-040`, `CR-F-041`, `CR-F-042`, `CR-F-043`.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-048` / `Fail — Local Fix` (`8.0/10`) against `IR-031` / `SR-021`; API/E2E paused.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-021` current; `SR-020` superseded.
+- Related architecture-review revision IDs: `ARCH-REV-021` Pass; no design reset required.
+- Related code-review revision IDs: `CRR-048`; current re-review pending.
+- Related API/E2E revision IDs: retained `API-REV-017`–`API-REV-019`; SR-021 API/E2E remains paused pending source Pass.
+- Related delivery revision IDs: prior `DR-006`; no current Delivery work.
+- Why this implementation revision is recorded: the accepted clean-cut host/model architecture was present, but CatalogResolver admitted an incomplete catalog subject; pathname-based store descendant operations could follow nested ancestor symlinks; cancellation state could become observable before its signal identity; later writers did not collect crash/precommit or replaced unreferenced subjects; and resumable capacity was checked against the full model before authenticating retained partial bytes.
+- Approved behavior or requirement IDs affected: Store 1, Catalog 4, Activation State Protocol 1, Model Admission Root 1, `BEH-005`, `BEH-008`–`BEH-010`, `BEH-014`; `R-006`, `R-017`, `R-025`–`R-028`; `AC-028`–`AC-034`. Providers, models, Protocol 1, Session Config 2, host archives, focused release authority, exact nine-asset chain, and legacy removals remain unchanged.
+- Implementation delta:
+  - Embedded the current Matrix 2 and both current Model Admission roots in the Go authority surface. Catalog resolution now validates the exact release, exact English-then-Chinese two-row catalog, every row's host/model/admission/compatibility/locator identity, and all selected descriptor fields before sibling manifest access, store opening, or network use.
+  - Replaced Store 1 descendant pathname mutation/verification with descriptor-relative rooted operations that traverse and verify every ancestor, forbid symlink/special/group-or-world-writable components, reject hard-link aliases, and perform rooted create/read/write/rename/unlink/tree verification and removal without following nested escapes.
+  - Packed lifecycle state and accepted signal into one atomic word so cancellation observations cannot see a cancelled state without the exact winning signal. Race regressions cover SIGINT/SIGTERM and exact terminal `130`/`143` behavior.
+  - Added bounded later-writer orphan pruning under the writer lock. It snapshots active installations, acquires exclusive installation leases, preserves busy provider subjects, recomputes model references, and removes only unreferenced activation/model/staging subjects; crash/precommit, replacement, lease, and hostile-ancestor cases are covered.
+  - Inventories and authenticates retained partials before capacity admission. Capacity now requires only remaining bytes plus bounded metadata and the fixed 64 MiB reserve; completed files and exact valid prefixes are retained, while stale authority/validator records restart fail closed.
+  - Preserved one public launcher, provider lifetime leases, offline inference, exact current matrix, runtime-only scope, and removal of Catalog 3/Config 1/bundled-model/managed-recovery compatibility.
+- Changed files or areas: `contracts/catalog/current.go`, `contracts/model/current.go`, Catalog 4 schema/builder tests, `modelmanager/internal/{catalog_validation,downloader,install,lifecycle}.go`, `modelstore/{safefs,safetree,verify,partials,prune,store,activation,leases}.go`, launcher store-close ownership, and focused Go/Node regressions; source commit `ad7c402d224690584e2da98ec71a73e8b6d4ca36`.
+- Local validation and result: exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go full `npm run check` passed source guards, `7/7` Python plus compileall, all Go/source/evidence checks, and `91/91` Node TAP tests. `go vet ./...`, `go test -race ./...`, focused race tests, repeated model-manager/model-store tests, Prettier, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not run API/E2E, construct production hosts, download production models, exercise real CDN resume behavior, start providers, run retained offline clips, execute qualification, derive focused authorities, dispatch release, merge, tag, or publish. Actual macOS filesystem/signal/lease interleavings, production-manifest install/resume, offline smoke, deterministic archive equality, Profile Execution Closure 2, and exact nine-asset publication remain fail-closed downstream work. x64/Linux/Windows/`auto`, alternate models/providers, desktop integration, and personal-runner release infrastructure remain out of scope.
+
+### IR-033 — Correct runtime-host builder and verifier composition
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; focused failure-origin review `CRR-050`, with evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-050-api-f-016-f-017-origin.md`.
+- Triggering finding IDs: `CR-F-044` / `API-F-016`; `CR-F-045` / `API-F-017`.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-049` source Pass was superseded by `CRR-050` / `Fail — Local Fix` after `API-REV-022` failed at the host construction/independent-verification prerequisites.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-021`.
+- Related architecture-review revision IDs: `ARCH-REV-021` Pass; no requirement/design reset required.
+- Related code-review revision IDs: `CRR-049`, `CRR-050`; current re-review pending.
+- Related API/E2E revision IDs: `API-REV-022` Fail / 84%; later model/install/runtime/evidence scenarios remain paused.
+- Related delivery revision IDs: prior `DR-006`; current Delivery not started.
+- Why this implementation revision is recorded: approved Chinese Runtime Host Archive 2 construction deterministically reached a real builder whose resolved-CMake imports addressed the wrong module, and independent verification reached a real extractor whose report exposed an absolute private destination instead of the logical archive-root contract.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-007`, `BEH-010`, `BEH-013`; `AC-028`; `API-VOICE-018`. Runtime/provider/model/matrix/catalog/store/lifecycle/release behavior is unchanged.
+- Implementation delta:
+  - Corrected `build/profile-builders/funasr-host.mjs` to import `cmakeConfigureArguments` and `verifyResolvedCmakeConfiguration` from their sole owner, `build/resolved-cmake-configuration.mjs`, while retaining `trustedHostBuildEnvironment` under `build/host-build-environment.mjs`.
+  - Changed `packaging/archive.ExtractVerified` to project the already validated `expected.Archive.RootDirectory` into `VerificationReport.hostRoot`; the absolute extraction destination remains operational state and is not published.
+  - Added direct Go assertions for exact logical `host` and non-disclosure of the destination.
+  - Added production-shaped Node coverage that loads both real host-builder module graphs through their actual entry scripts, asserts the resolved-CMake owner contract, builds a canonical host archive with the real Go tool, and passes its real extractor report through the Host Verification 2 schema/output owner.
+  - Preserved `CR-F-039`–`CR-F-043` resolutions, trusted build-environment ownership, strict Host Verification 2 schema, provider/model selection, exact nine-asset release contract, and runtime-only scope.
+- Changed files or areas: `build/profile-builders/funasr-host.mjs`, `packaging/archive/safeextract.go`, `packaging/archive/canonicalzip_test.go`, and `tests/build/host-builder-composition.test.mjs`; source commit `4db8bf26708309440c83ec56973250f77e9f1619`.
+- Local validation and result: focused real-builder/verifier composition passed `2/2`; exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go full `npm run check` passed `93/93` Node, `7/7` Python plus compileall, all Go/source/evidence checks; `go vet ./...`, `go test -race ./...`, Prettier, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not rerun API/E2E or production host construction. After Source Pass, API/E2E should resume at Chinese double construction and English/Chinese independent verification; production model install/CDN resume, offline runtime, focused evidence, and release scenarios remain paused until those prerequisites pass. No merge, tag, publication, desktop, alternate target/model, or personal-runner work occurred.
+
+### IR-034 — Assign every host input to exactly one construction owner
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; focused failure-origin review `CRR-052`, with evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-052-api-f-018-origin.md`.
+- Triggering finding ID: `CR-F-046` / `API-F-018`.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-051` source Pass was superseded by `CRR-052` / `Fail — Local Fix` after `API-REV-023` reached the complete Chinese manifest and failed before CMake on an outer-owned authority path.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-021`.
+- Related architecture-review revision IDs: `ARCH-REV-021` Pass; no requirement/design reset required.
+- Related code-review revision IDs: `CRR-051`, `CRR-052`; current re-review pending.
+- Related API/E2E revision IDs: `API-REV-023` Fail at canonical host construction; later host/model/runtime/evidence scenarios remain paused.
+- Related delivery revision IDs: prior `DR-006`; current Delivery not started.
+- Why this implementation revision is recorded: the inner builders received the complete authenticated input manifest even though the outer assembler later authenticated and staged both host-authority subjects. Chinese rejected those outer-owned paths, while English masked the same ownership mismatch with a broad authority prefix. The complete manifest lacked one explicit single-owner classification at the actual assembler boundary.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-010`; `R-005`, `R-025`; `AC-028`; `API-VOICE-018`. Host/provider/model/runtime/release behavior and previous fixes remain unchanged.
+- Implementation delta:
+  - Moved complete-manifest unused-input ownership enforcement to `host-package-assembler.mjs`, before any builder, native work, or staging. The assembler now independently verifies the input manifest and requires every non-provenance member to have exactly one construction owner.
+  - Added immutable profile-specific builder input patterns under `build/profile-builders/host-input-ownership.mjs`; English and Chinese no longer claim any host-authority prefix.
+  - Added one frozen exact two-path `ASSEMBLER_HOST_AUTHORITY_INPUTS` authority under `host-package-staging.mjs`. Both ownership classification and `stageHostAuthorities()` reuse that same set.
+  - Rejected no-owner, ambiguous two-owner, duplicate-path, missing-authority, unexpected third-authority, broad-authority-prefix, and unrelated-input cases without an ignore, fallback, rename, omission, or relaxed closure.
+  - Added exact path-only fixtures from the API-REV-023 authenticated English 48-row and Chinese 3,151-row manifests. Durable tests bind fixture counts/digests, prove each complete path set is closed by its current recipe, validate both profiles, and exercise the negative cases.
+  - Included the new profile ownership authority in Host Source Closure 1 and removed the obsolete inner closure helper and its synthetic test.
+- Changed files or areas: `build/host-package-assembler.mjs`, `build/host-package-staging.mjs`, `build/host-source-closure.mjs`, `build/profile-builders/{host-common,funasr-host,host-input-ownership}.mjs`, `tests/build/{host-builder-composition,locked-inputs}.test.mjs`, and `tests/fixtures/host-input-ownership/`; source commit `97f3007c2a62e5f48acd5fcc8c26d1e38b099850`.
+- Local validation and result: focused real-builder/current-manifest/verifier composition passed `3/3`; the combined focused build tests passed `13/13`; exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go full `npm run check` passed `93/93` Node, `7/7` Python plus compileall, all Go/source/evidence checks; `go vet ./...`, `go test -race ./...`, Prettier, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not rerun API/E2E or production host construction. After Source Pass, API/E2E must restart at canonical Chinese construction, then independent English/Chinese verification; model install/CDN resume, offline runtime, focused evidence, and release scenarios remain paused until those prerequisites pass. No merge, tag, publication, desktop, alternate target/model, user-state, or personal-runner work occurred.
+
+### IR-035 — Compile the complete Chinese runtime-host worker
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; focused failure-origin review `CRR-054`, with evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-054-api-f-019-origin.md`.
+- Triggering finding ID: `CR-F-047` / `API-F-019`.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-053` source Pass was superseded by `CRR-054` / `Fail — Local Fix` after `API-REV-024` reached the exact production `voice-provider-worker` target and Apple Clang rejected computed `std::string` digests compared directly with JSON values.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-021`.
+- Related architecture-review revision IDs: `ARCH-REV-021` Pass; no requirement/design reset required.
+- Related code-review revision IDs: `CRR-053`, `CRR-054`; current re-review pending.
+- Related API/E2E revision IDs: `API-REV-024` Fail at canonical Chinese host construction; later independent host verification/model/runtime/evidence scenarios remain paused.
+- Related delivery revision IDs: prior `DR-006`; current Delivery not started.
+- Why this implementation revision is recorded: the strict session/model JSON values were validated as SHA-256 strings but four computed C++ digest comparisons retained the values as `nlohmann::json`. Existing native tests compiled selected integrity/preparation components rather than the complete production worker translation set, so repository gates passed while the required Chinese host could not compile.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-010`; `R-005`, `R-025`; `AC-028`; `API-VOICE-018`. JSON validation, provider/model selection, runtime protocol, host archive, model admission, and release behavior remain unchanged.
+- Implementation delta:
+  - Extracted the already-validated expected descriptor SHA-256 and Session Config 2 activation SHA-256 as `std::string` before comparing them with computed file digests.
+  - Extracted each already-validated model-file SHA-256 and the activation-bound model-tree SHA-256 as `std::string` before computed-digest comparison. Strict object shape, type, SHA expression, exact activation binding, size, mode, containment, and closure checks remain in force.
+  - Added a deterministic 302 KiB compile-input archive containing only the exact locked llama.cpp/nlohmann headers and utf8proc header/C source required by the production worker translation set. Its manifest binds archive and file SHA-256, Git blob identities, source revisions/tree IDs, and existing MIT notice subjects.
+  - Added Apple-native coverage that derives the exact translation-unit list from the production CMake `voice-provider-worker` target, rejects any list or warning-policy drift, authenticates the live Xcode clang++ alias/version/SDK, and compiles every production C++ translation unit plus utf8proc C with `-Wall -Wextra -Werror` and syntax-only emission.
+  - Updated the Chinese Host Build Input Recipe 2 size/SHA-256 binding for the corrected `session.cpp`; no external input, provider/model, schema, fallback, target, or threshold changed.
+- Changed files or areas: `providers/chinese-funasr/src/session.cpp`, `build/input-recipes/chinese-host-darwin-arm64-v2.json`, `tests/build/chinese-worker-native-compile.test.mjs`, and `tests/fixtures/chinese-worker-native-headers-v1/`; source commit `b88c230663eb96e0def8c869b095ea858b0ff50b`.
+- Local validation and result: focused Apple-native complete translation-set compilation passed `1/1`; exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go full `npm run check` passed `94/94` Node with no skips, `7/7` Python plus compileall, all Go/source/evidence checks; Prettier, recipe byte/hash binding, direct corrected-session Apple syntax compilation, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not run API/E2E, link the complete production target against freshly built locked llama.cpp libraries, construct archives, install models, start providers, execute clips/qualification, derive focused authorities, dispatch release, merge, tag, or publish. After Source Pass, API/E2E must restart at canonical Chinese construction and prove the real target compiles/links plus deterministic host equality before independent host verification and later scenarios. No desktop, alternate target/model, user-state, or personal-runner action occurred.
+
+### IR-036 — Close the acyclic production release-admission chain
+
+- Triggering role, report path, and round: Architecture Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`; round 22 / `ARCH-REV-022`, following Delivery `DR-008`.
+- Triggering finding IDs: `DR-008` final-main Admission 3 self-reference and absent production admission bundle; `ARCH-REV-022` has no open architecture finding.
+- Classification: `Design Impact`.
+- Prior authoritative result: `DR-008` / `Blocked — Design Impact`; previously reviewed runtime source/API authority remains `CRR-055 Pass`, `API-REV-025 Pass / 97%`, and `CRR-056 Not Applicable`.
+- Current authoritative result: `Implementation Complete — Ready for Code Review`.
+- Related solution revision IDs: `SR-022`.
+- Related architecture-review revision IDs: `ARCH-REV-022` Pass.
+- Related code-review revision IDs: prior `CRR-055`, `CRR-056`; current review pending.
+- Related API/E2E revision IDs: `API-REV-025` Pass; exact repository-resident Production Admission Bundle 1 promotion remains pending.
+- Related delivery revision IDs: `DR-008` Blocked.
+- Why this implementation revision is recorded: the active release admission required its committed record to name the later workflow checkout containing it and the six production authority files were absent. SR-022 replaces that impossible self-edge with one acyclic `F -> D -> R -> W` authority chain and explicit API/E2E promotion ownership.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-007`, `BEH-013`; `R-014`, `R-019`, `R-022`–`R-024`, `R-029`; `AC-010`, `AC-022`, `AC-025`–`AC-027`, `AC-035`. Runtime/provider/model/Protocol/archive contents, qualification thresholds, exact matrix, nine assets, desktop, and publication behavior remain unchanged.
+- Implementation delta:
+  - Added Release Source Admission 4 assembly and strict schema. Admission binds only `F/D`, the policy/current matrix, complete `F..D` source classification, five exact focused authorities, and equal ordered focused/admitted closure subjects; it has no self, `R`, `W`, or later-artifact edge.
+  - Added the API/E2E-only promotion controller and shared exact authority contract. It requires clean `HEAD == D`, validates the five focused artifacts plus API checksum authority, copies bytes without normalization, requires six absent fixed destinations, and stages exactly six `A` rows without committing.
+  - Replaced the hosted verifier with the sole `W` owner. It requires clean `HEAD == origin/main == W`, derives the unique one-parent/direct-child exact-six-add `R`, verifies protected blobs and every later `R`-bearing parent edge, revalidates Admission-bound policy/matrix/authorities and `F..D`/`R..W` decisions, compares both checkout closures, and emits Release Admission Verification 1.
+  - Updated host construction, Hosted Host Construction Result 3, model-manifest admission, Release Qualification Evidence 4, and the standard-hosted workflow to consume the verified lineage. Host Build Report 2 receives only `W`; exact focused-to-hosted archive equality and the nine-asset chain remain unchanged.
+  - Removed active Admission 3 / Hosted Result 2 schemas/readers and added production-shaped real-Git positive/negative coverage, including later docs, archive impact, mutation/revert, integration merge, policy/closure drift, checksum drift, schema reverse/self edges, and a seventh path. Historical ticket evidence is untouched.
+- Changed files or areas: release admission/source-closure/promotion/verifier/construction/evidence owners; current release schemas; `.github/workflows/release-voice-runtime.yml`; focused release contract fixtures/tests; source commit `8111f3fe27f2d551676fd891f1f98ac2615da526`.
+- Local validation and result: exact pinned-Go `npm run check:release-pipeline` passed `15/15`; exact pinned-Go full `npm run check` passed `100/100` Node, `7/7` Python plus compileall, all Go/source/evidence checks; focused final admission/result tests passed `8/8`; changed-file Prettier, active-v3 absence search, source-size assessment, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not generate production Admission 4, invoke/stage/commit Production Admission Bundle 1, create `R`, integrate maintained-main `W`, run API/E2E, construct hosts, run provider/model/corpus/qualification work, merge, tag, publish, or modify desktop/user state. API/E2E must create the exact six-file direct-child promotion and return it through Code Review; Delivery must later verify exact `W`, closure/archive equality, and publication. x64/Linux/Windows/`auto`, alternate providers/models, desktop integration, and personal-runner release infrastructure remain out of scope.
+
+### IR-037 — Resolve source impact by exact policy specificity
+
+- Triggering role, report path, and round: Architecture Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`; round 24 / `ARCH-REV-024`, following Code Reviewer `CRR-057`.
+- Triggering finding IDs: `CR-F-048`; resolved `AR-F-020`.
+- Classification: `Design Impact`.
+- Prior authoritative result: `CRR-057` / `Fail — Design Impact`; Policy 2 made five release-policy tests aggregate-impact on the real IR-036 `F..D`, and SR-023 initially omitted its own mandatory regression fixture from the closed exception set.
+- Current authoritative result: `Implementation Complete — Ready for Code Review`.
+- Related solution revision IDs: `SR-023`, `SR-024` (`SR-024` current).
+- Related architecture-review revision IDs: `ARCH-REV-023` Fail, `ARCH-REV-024` Pass.
+- Related code-review revision IDs: `CRR-057`; current source review pending.
+- Related API/E2E revision IDs: `API-REV-025` remains the exact accepted focused authority; no new API/E2E execution occurred.
+- Related delivery revision IDs: `DR-008` remains blocked pending reviewed promotion and hosted verification.
+- Why this implementation revision is recorded: Policy 2 flattened exact and prefix matches, so the broad `tests/release/` aggregate guard overrode five reviewed release-policy/contract tests. The first Policy 3 proposal also omitted the mandatory historical regression fixture, which would have blocked its own addition. SR-024 defines one exact-before-prefix owner and a closed eight-path test/fixture exception set.
+- Approved behavior or requirement IDs affected: `BEH-007`, `BEH-013`; `R-008`, `R-014`, `R-022`–`R-024`, `R-029`; `AC-010`, `AC-025`–`AC-027`, `AC-035`. Runtime/provider/model/Protocol/archive/asset/desktop behavior is unchanged.
+- Implementation delta:
+  - Replaced active Relevant Source Closure Policy 2 with Policy 3 and updated the sole reader/check gate/test fixtures. No active v2 policy or test reader remains.
+  - Changed `classifySourcePath()` to select all exact matches when present, otherwise matching prefixes, then choose the unchanged strictest precedence only within that specificity. Unknown paths and both independently resolved rename endpoints remain fail-closed.
+  - Added exact release-only ownership for the five CRR-057 release tests/helper, removed-v2/current-v3 policy test filenames, and mandatory IR-036 fixture. Kept all other `tests/release/**` paths aggregate by prefix.
+  - Added exact aggregate protection for the four aggregate-authority producers and Focused Qualification Set 3 schema so broader release prefixes cannot weaken them.
+  - Added a frozen 213-row CRR-057 fixture with 20 release-only and 193 documentation-only rows and expected `reuse-permitted`; direct tests prove its own add/modify classification and an unlisted sibling's aggregate classification.
+  - Added focused specificity/strictness/rename/protection coverage and a committed production-shaped test that assembles Admission 4 over the actual current `F..D` using the exact five API-REV-025 subjects and retained equal host closures.
+- Changed files or areas: `contracts/release/relevant-source-closure-v3.json`, `release/source-closure.mjs`, `tests/release/relevant-source-closure-v3.test.mjs`, `tests/release/fixtures/ir-036-f-to-d-changed-paths-v1.json`, current release fixtures/check tooling, and `package.json`; source commit `3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`.
+- Local validation and result: `npm run check:release-pipeline` passed `19/19`; exact pinned-Go full `npm run check` passed source guards, `7/7` Python plus compileall, all Go/evidence checks, and `104/104` Node TAP tests. Focused Policy 3/historical/current Admission coverage, Prettier, and commit diff checks passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not create production Admission 4, promote the exact six-file direct-child `R`, run API/E2E/product qualification, build release hosts, integrate maintained main, tag, publish, or edit desktop/user state. Source Review must independently reproduce the actual current admission result before API/E2E may promote authority; any broader relevant-byte change invalidates reuse and remains fail-closed.

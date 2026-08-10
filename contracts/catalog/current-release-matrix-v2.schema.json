@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/catalog/current-release-matrix-v2.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "matrixId",
+    "supportStatement",
+    "entries",
+    "profileResourcePolicy"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 2
+    },
+    "matrixId": {
+      "const": "voice-runtime-darwin-arm64-v2"
+    },
+    "supportStatement": {
+      "const": "macOS Apple Silicon only"
+    },
+    "entries": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "profileId",
+          "languageMode",
+          "platform",
+          "architecture",
+          "providerId",
+          "modelId",
+          "candidateDecision",
+          "hostPackageId",
+          "hostRecipeFileName",
+          "modelAdmissionRoot",
+          "modelAssetId",
+          "modelManifest",
+          "compatibilityRequirementSha256",
+          "capabilityDigest"
+        ],
+        "properties": {
+          "profileId": {
+            "type": "string",
+            "enum": ["english", "chinese"]
+          },
+          "languageMode": {
+            "type": "string",
+            "enum": ["en", "zh"]
+          },
+          "platform": {
+            "type": "string",
+            "enum": ["darwin"]
+          },
+          "architecture": {
+            "type": "string",
+            "enum": ["arm64"]
+          },
+          "providerId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "modelId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "candidateDecision": {
+            "type": "string",
+            "enum": ["preserve", "select"]
+          },
+          "hostPackageId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "hostRecipeFileName": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9._-]+\\.json$"
+          },
+          "modelAdmissionRoot": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["fileName", "sha256"],
+            "properties": {
+              "fileName": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+\\.json$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "modelAssetId": {
+            "type": "string",
+            "minLength": 1
+          },
+          "modelManifest": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["fileName", "sha256"],
+            "properties": {
+              "fileName": {
+                "type": "string",
+                "pattern": "^[A-Za-z0-9._-]+\\.json$"
+              },
+              "sha256": {
+                "type": "string",
+                "pattern": "^[a-f0-9]{64}$"
+              }
+            }
+          },
+          "compatibilityRequirementSha256": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          },
+          "capabilityDigest": {
+            "type": "string",
+            "pattern": "^[a-f0-9]{64}$"
+          }
+        }
+      }
+    },
+    "profileResourcePolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["policyId", "fileName", "sha256"],
+      "properties": {
+        "policyId": {
+          "const": "voice-runtime-profile-resource-policy-v1"
+        },
+        "fileName": {
+          "const": "profile-resource-policy-v1.json"
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
+    }
+  }
+}

@@ -58,7 +58,7 @@ func inspectZIP(file *os.File, size int64) ([]zipRecord, error) {
 		if record.Flags != 0x800 || record.Method != 8 || record.Time != 0 || record.Date != 0x21 || record.Compressed == 0 && record.Uncompressed != 0 {
 			return nil, errors.New("noncanonical central record")
 		}
-		if len(record.Name) < 9 || record.Name[:8] != "package/" {
+		if len(record.Name) < 6 || record.Name[:5] != "host/" {
 			return nil, errors.New("unexpected archive root")
 		}
 		records = append(records, record)
@@ -69,7 +69,7 @@ func inspectZIP(file *os.File, size int64) ([]zipRecord, error) {
 	}
 	names := make([]string, len(records))
 	for i := range records {
-		names[i] = records[i].Name[8:]
+		names[i] = records[i].Name[5:]
 	}
 	if ValidatePathSet(names) != nil || !sort.StringsAreSorted(names) {
 		return nil, errors.New("noncanonical path order")
@@ -132,8 +132,8 @@ func copyBounded(destination io.Writer, source io.Reader, expected int64) error 
 	return nil
 }
 
-func verifyArchiveModes(records []zipRecord, manifest PackageFileManifest) error {
-	modes := map[string]FileMode{"provider/package-files-v1.json": ReadOnly}
+func verifyArchiveModes(records []zipRecord, manifest HostFileManifest) error {
+	modes := map[string]FileMode{"provider/host-files-v2.json": ReadOnly}
 	for _, record := range manifest.Files {
 		modes[record.Path] = record.Mode
 	}
@@ -141,7 +141,7 @@ func verifyArchiveModes(records []zipRecord, manifest PackageFileManifest) error
 		return errors.New("archive mode closure mismatch")
 	}
 	for _, record := range records {
-		relative := record.Name[len("package/"):]
+		relative := record.Name[len("host/"):]
 		logical, ok := modes[relative]
 		if !ok {
 			return errors.New("archive mode path absent from manifest")

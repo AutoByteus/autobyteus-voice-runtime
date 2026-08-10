@@ -2,148 +2,128 @@
 
 ## Execution Round Meta
 
-- Requirements Doc: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
-- Investigation Notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
-- Design Spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Release Ownership: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/release-pipeline-ownership.md`
-- Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
-- Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
-- Architecture Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`
-- Implementation Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
-- Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-- Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
-- API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-019`
-- Current Execution Round: `19`
-- Trigger: `CRR-044` Pass for reviewed source `50b7e778c5c8b783f3089803b71636ea7fb2a513`.
-- Reviewed Test Commit: `baf1e33f54446d2d1161afd38b88111e4086b76c`.
-- Prior Round Reviewed: `API-REV-018 — Pass / 99%`; retained profile/aggregate authority from `API-REV-017 — Pass / 99%`.
-- Latest Authoritative Round: **`API-REV-019 — Pass / 99%`**.
-
-## Aggregate API Renewal Current Subjects
-
-- API Revision: `API-REV-019`
-- Reviewed Source Commit: `50b7e778c5c8b783f3089803b71636ea7fb2a513`
-- Reviewed Test Commit: `baf1e33f54446d2d1161afd38b88111e4086b76c`
+- Requirements / Design: `requirements.md`, `investigation-notes.md`, `design-spec.md`, `release-pipeline-ownership.md`, and the current SR-024 supplements under `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/`.
+- Solution / Architecture: `SR-024`; `ARCH-REV-024 Pass`.
+- Implementation: `IR-037`; admitted source `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`; reviewed artifact `f9e4cff7ea44c303bb7fd94cff07f4345d51c77d`.
+- Focused retained authority source: `F=b88c230663eb96e0def8c869b095ea858b0ff50b`.
+- Code Review: `CRR-058 Pass / 9.8`.
+- Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`.
+- API/E2E Revision: `API-REV-026`.
+- Prior Result: `API-REV-025 — Pass / 97%`.
+- Latest Authoritative Result: **`API-REV-026 — Pass / 98%`**.
 
 ## Investigation And Execution Basis
 
-- Investigation completed before execution: `Yes`.
-- Investigation plan followed: `Yes`.
-- Scenario: `API-VOICE-015`; `R-024`, `AC-026`, `BEH-007`, `BEH-013`.
-- Authorized scope: zero-profile Aggregate API Renewal only.
-- Profile execution count: `0`.
-- Reroute required: `No`.
-- Prohibited actions observed: `None`; no recovery, package build, provider/model startup, profile/corpus/performance execution, candidate promotion, workflow dispatch, tag, release, or publication occurred.
+- Mandatory coverage investigation refreshed before execution: `Yes`.
+- Changed boundary: only Release Source Admission 4 and the exact protected six-file authority promotion. Runtime hosts, providers, Store 1, model assets, corpora, performance, desktop, and publication bytes are unchanged.
+- Retained evidence decision: the exact five checksum-bound API-REV-025 aggregate subjects remain `Still Valid / Reuse Exact Bytes`. They were revalidated against all `175` API-REV-025 checksum rows and were not regenerated or relabeled.
+- Repository-resident durable API/E2E test coverage changed: `No`.
+- Repository-resident durable non-test authority changed: `Yes`; commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875` adds exactly six protected files under `release/admission/`.
+- Broader validation: `Required — Completed`, limited to production Admission 4 assembly, sole-controller promotion, real-Git commit topology, and independent protected-byte verification.
 
-## Changed Boundary And Evidence Matrix
+## Scenario Matrix
 
-| Scenario          | Behavior / Criteria                               | Changed Boundary                      | Execution Surface                                 | Evidence Type                       | Result       | Evidence                                                                                                                   |
-| ----------------- | ------------------------------------------------- | ------------------------------------- | ------------------------------------------------- | ----------------------------------- | ------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| `API-VOICE-015-A` | Current source transition, `R-024`, `AC-026`      | Complete source closure and decision  | Production source-closure owner over real Git     | Temporary/CLI                       | Pass         | `api-e2e-evidence/api-rev-019/repository/source-closure-and-admission.json`                                                |
-| `API-VOICE-015-B` | Unchanged Profile Closure and retained subjects   | API-REV-016/017 evidence              | Exact Git-retained manifests/files                | Temporary/CLI                       | Pass         | `api-e2e-evidence/api-rev-019/repository/retained-authority-validation.log`                                                |
-| `API-VOICE-015-C` | Strict record/report/admission/candidate contract | Release-pipeline durable coverage     | Node test facade                                  | Durable execution                   | Pass — 46/46 | `api-e2e-evidence/api-rev-019/repository/check-release-pipeline.log`                                                       |
-| `API-VOICE-015-D` | Aggregate API Renewal Record 1                    | Canonical report/record Git authority | Real Git commit and independent object validation | Durable authority + temporary probe | Pass         | `release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`; committed authority validation performed after commit |
+| Scenario        | Requirement / Boundary                                                                                            | Result | Direct Evidence                                                                                                       |
+| --------------- | ----------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
+| `API-VOICE-025` | `BEH-007`, `BEH-013`, `AC-025`: exact `F -> D -> R` Admission 4 and six-add promotion with zero product execution | Pass   | `api-e2e-evidence/api-rev-026/API-VOICE-025-zero-profile-release-authority-promotion.json` and supporting directories |
 
-## Exact Renewal Result
+## Repository And Authority Execution
 
-- Current preliminary decision: `aggregate-api-renewal-required` as required; it was not changed or relabeled.
-- Accepted authority commit before renewal: `b19f51f8e2ee2ca7ae659edf2c451a02b9a3ac4e`.
-- Profile Closure:
-  - inventory SHA-256: `74786fae1a642edf808c3d3692b0dd41e3e473c055321e504506300c444f6fb1`
-  - tree SHA-256: `dcbdf08695be438258d53129d586804578f22ce2b38d3f1932c8d05b2d6e0c1e`
-  - result: unchanged.
-- Proposed Qualification Authority Closure:
-  - inventory SHA-256: `3d0f73d3cfb00908f7fd743a5c5b9122fed3d9c5c541058eb1b5072049540bc8`
-  - tree SHA-256: `d1272eeae982173114c7dc67b62ff4876d8a2e101d2fa0ffd2fdc5c57526d1b5`
-- Retained English archive: `645513268` bytes, SHA-256 `9e4d1d5981ba9389f63bdf98094078a6152fbac05ff42d52c287138baafa46f8`.
-- Retained Chinese archive: `1068528640` bytes, SHA-256 `84783c61b8a08e0e0848a4906139210868cf552ee0104d5179be7144be432cc3`.
-- Retained English qualification summary: `15377` bytes, SHA-256 `6df8c85e6b5a4e0aa1b52ffb7cce1e5c8b58cd9ff219717df0d3bdf0334954de`.
-- Retained Chinese qualification summary: `16037` bytes, SHA-256 `3d9fae0627516e21496d6a87e1fcc4922a876ebe1e55208449efdeba402c511a`.
-- Current/prior Qualification Set 2: byte-identical, `15025` bytes, SHA-256 `c5eaedef8b4790f0f267ac378eba033319091ebc3a4ef29ddd931c1f123b0003`.
-- Current/prior Branch Catalog Projection 2: byte-identical, `5194` bytes, SHA-256 `bcc3b1c2f3afc42fa0861adcdd3558ad0779ecf7f3c77c370501679a50bbeddd`.
-- Current/prior Projection Verification 2: byte-identical, `441` bytes, SHA-256 `a78c59fa085a95a6af28cdd3adc6065f87c216caceb304f6edcf034cd5e96c27`.
-- Canonical record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`.
-- The record commit has exactly one parent, the reviewed test commit. The reviewed source is an ancestor of that test commit. The record and report bytes, strict schema, unique three-row current-subject projection, closures, retained profiles, and current/prior aggregates pass independent real-Git validation.
+| Command / Mode                                                                                                                                       | Result      | Evidence                                                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------- |
+| `npm ci --ignore-scripts` in clean checkout at exact `D`                                                                                             | Pass        | `repository/npm-ci.log`                                                       |
+| `npm run check:release-pipeline`                                                                                                                     | Pass, 19/19 | `repository/npm-run-check-release-pipeline.log`                               |
+| production `assembleReleaseSourceAdmission()` over exact `F..D`, Policy 3, Matrix 2, five retained authorities, and two equal retained host closures | Pass        | `admission/v1.0.0-release-source-admission-v4.json`                           |
+| independent Git/policy/identity recomputation without the production admission owner                                                                 | Pass        | `admission/admission-v4-independent-verification.json`                        |
+| `node release/promote-release-authority.mjs ...` from clean `HEAD==D`                                                                                | Pass        | `promotion/promote-release-authority.log`; `promotion/staged-name-status.txt` |
+| commit and independent `D..R` tree/parent/source-byte verification                                                                                   | Pass        | `verification/committed-release-authority-verification.json`                  |
 
-## Repository Coverage Execution
+## Release Source Admission 4 Result
 
-| Order | Command                                                            | Result       | Evidence                               |
-| ----- | ------------------------------------------------------------------ | ------------ | -------------------------------------- |
-| 1     | Production source-closure/admission computation at reviewed source | Pass         | `source-closure-and-admission.json`    |
-| 2     | `(cd api-rev-016 && shasum -a 256 -c SHA256SUMS.txt)`              | Pass         | `retained-authority-validation.log`    |
-| 3     | `(cd api-rev-017 && shasum -a 256 -c SHA256SUMS.txt)`              | Pass         | `retained-authority-validation.log`    |
-| 4     | Exact retained archive/profile/aggregate identity probe            | Pass         | `retained-authority-validation.log`    |
-| 5     | `npm run check:release-pipeline`                                   | Pass — 46/46 | `check-release-pipeline.log`           |
-| 6     | Independent committed-authority probe                              | Pass         | Exact Git objects at the record commit |
+- Decision: `reuse-permitted`.
+- Policy 3 identity: `3129` bytes, SHA-256 `c7cd2e5ede4a96f6990145a4719912e6dd7dc97fa85d157ea0f68ab37af1e676`.
+- `F..D` ancestry: verified.
+- Changed paths: exactly `218`; `25` are `release-pipeline-only`, `193` are `documentation-record-only`, and no stricter category is present.
+- Changed-path canonical digest: `191b58b2a7ea1ad79e6b06b134bd525380ff88beff45a46fae46e0ee47b3f56d`.
+- English retained Host Source Closure equality: `true` (`40027` bytes / `d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134`).
+- Chinese retained Host Source Closure equality: `true` (`701449` bytes / `705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4`).
+- The five focused authority identities exactly match API-REV-025 and its checksum authority.
 
-## Validation Confidence Scorecard
+## Exact Promotion Commit
 
-| Category                                            | Post-Repository | Final | Final Evidence                                                       | Residual Uncertainty                                         |
-| --------------------------------------------------- | --------------- | ----- | -------------------------------------------------------------------- | ------------------------------------------------------------ |
-| Requirement and acceptance-criteria proof           | 97%             | 99%   | Exact AC-026 record produced and validated                           | Later admission/policy transition intentionally not executed |
-| Changed-boundary execution directness               | 97%             | 99%   | Real committed report/record and Git lineage                         | None in authorized renewal boundary                          |
-| Cross-boundary integration realism and mock gap     | 96%             | 99%   | Schema + production code + real Git objects                          | Candidate promotion remains later                            |
-| Environment/configuration/identity/fixture fidelity | 99%             | 100%  | Exact retained checksums, file sizes, hashes, closures               | None for immutable subjects                                  |
-| Failure/edge/lifecycle/recovery evidence            | 98%             | 99%   | 46/46 includes extensive fail-closed mutation and non-reuse coverage | Recovery execution intentionally excluded                    |
-| User-surface/browser/desktop-shell confidence       | N/A             | N/A   | No user surface changed                                              | Deferred scope is not part of this decision                  |
-| Durable regression coverage quality/relevance       | 98%             | 99%   | CRR-044 reviewed production-shaped coverage; focused suite rerun     | No API/E2E test edit                                         |
+- Clean promotion worktree: `/private/tmp/autobyteus-voice-api-e2e-r26-20260810-v1/repository`.
+- Promotion branch: `codex/voice-runtime-release-admission-promotion-r`.
+- Admitted parent: `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`.
+- Promotion commit: `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`.
+- Topology: one parent only, exactly `D`; worktree clean after commit.
+- Diff: exactly six `A` records, no rename or other file:
+  1. `release/admission/v1.0.0-branch-catalog-projection-v3.json`
+  2. `release/admission/v1.0.0-branch-catalog-projection-verification-v3.json`
+  3. `release/admission/v1.0.0-chinese-profile-execution-closure-v2.json`
+  4. `release/admission/v1.0.0-english-profile-execution-closure-v2.json`
+  5. `release/admission/v1.0.0-focused-qualification-set-v3.json`
+  6. `release/admission/v1.0.0-release-source-admission-v4.json`
+- All six are ordinary `100644` blobs. The first five are byte-identical to their API-REV-025 inputs; the sixth is byte-identical to the independently checked Admission 4 output.
 
-- Overall post-repository confidence: `97.5%`.
-- Overall final confidence: `99.2%`, reported as `99%`.
-- Every critical criterion in the authorized round directly proven: `Yes`.
-- Any applicable category below 90%: `No`.
-- Default 95% target met: `Yes`.
+## Zero-Profile Execution Counts
 
-## Broader Validation Decision And Execution
+The required exact counters are recorded in `verification/zero-profile-execution-counts.json`:
 
-- Decision: `Required and completed`.
-- Mode: focused CLI / real Git object validation.
-- Rationale: source tests could not prove the exact future record commit, report blob/content identity, direct-parent lineage, and retained Git subjects. The post-commit probe closed that gap without performing forbidden recovery or profile work.
-- Browser/desktop validation: not applicable.
+| Counter                 | Value |
+| ----------------------- | ----: |
+| `profileExecutionCount` |     0 |
+| `providerLaunchCount`   |     0 |
+| `modelDownloadCount`    |     0 |
+| `corpusAttemptCount`    |     0 |
+| `performanceTrialCount` |     0 |
 
-## Compatibility / Persisted Data / User State
+Host builds, release dispatches, tags, publications, and user/desktop mutations were also zero. This round did not download any model because model installation remains an explicit user/runtime action, not a release-authority operation.
 
-- Backward-compatibility or legacy-retention behavior added: `No`.
-- Approved persisted-data decision: `Not Affected`.
-- User/shared state accessed or changed: `No`.
-- Sudo/audio/device/network/release credentials used: `No`.
+## Confidence Scorecard
 
-## Durable Coverage Changed In The Codebase
+| Category                                            | Score | Basis / Residual                                                                                                                               |
+| --------------------------------------------------- | ----: | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| requirement and acceptance-criteria proof           |   99% | exact `AC-025` `F -> D -> R` admission, topology, path-set, policy, closure, and byte identities directly proved                               |
+| changed-boundary execution directness               |   99% | production assembler and sole promotion controller executed against a clean real-Git checkout, followed by independent verification            |
+| cross-boundary integration realism and mock gap     |   98% | real policy/Git/API25/admission/promotion/commit chain; maintained-main `W` and hosted verification remain correctly Delivery-owned            |
+| environment/configuration/identity/fixture fidelity |   99% | exact reviewed commits, immutable API-REV-025 subjects, Policy 3, Matrix 2, and retained closure identities                                    |
+| failure/edge/lifecycle/recovery evidence            |   97% | 19/19 fail-closed release tests plus absence, clean-checkout, exact-stage, parent, mode, and byte checks; hosted `R..W` negatives remain later |
+| user/browser/desktop confidence                     |   N/A | zero-profile repository/release authority stage; no user or desktop surface is applicable                                                      |
+| durable regression coverage quality and relevance   |   98% | current exact/prefix/rename/unknown/actual-transition release suite passes; API/E2E changed no test code                                       |
 
-- Repository-resident durable API/E2E test coverage added, updated, or removed by API/E2E: `No`.
-- Test-code paths: `None`.
-- Proportional test-code review request: `Not Applicable`.
-- Durable non-test authority added: `release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json`.
-- Canonical API artifacts updated: coverage investigation, execution report, and revision record.
+Overall confidence: **`98%`**. No applicable category is below `97%`; every critical criterion in this bounded stage has direct evidence.
 
-## Cleanup And Deferred Work
+## Durable Coverage And Repository Changes
 
-- Temporary services/processes/data created: `None`.
-- Temporary probe source: `/tmp` only; removed after execution.
-- Current source remains `aggregate-api-renewal-required`.
-- A separate later implementation and source review must update the policy/controller to accept the exact record commit and recompute Preliminary Source Admission. Recovery remains prohibited until that decision is exactly `reuse-permitted`.
-- Archive recovery, candidate promotion, release, tag, publication, x64/Linux/Windows/auto, and desktop scope remain unexecuted and unclaimed.
+- API/E2E durable test additions: `None`.
+- API/E2E durable test updates: `None`.
+- API/E2E durable test removals: `None`.
+- Durable non-test authority additions: the exact six `release/admission/` paths listed above, committed only in `R`.
+- Required next review: full Code Review of the committed `R` authority state. A proportional test-code review is `Not Applicable` because no durable test changed.
 
-## Result Summary
+## Cleanup And Safety
 
-| Result             | Scenario                     | Summary                                                                                                                              |
-| ------------------ | ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| Pass               | `API-VOICE-015`              | Zero-profile Aggregate API Renewal Record 1 is committed and exact report/record/lineage/closure/profile/aggregate authority passes. |
-| Not Tested / Later | Recovery, promotion, release | Correctly prohibited until separate reviewed policy/controller acceptance.                                                           |
+- Promotion worktree is clean and remains isolated under `/private/tmp` for reviewer inspection.
+- No host build, provider, model manager, model download, corpus, performance, workflow, merge, tag, release, publication, or desktop process was started.
+- No user/shared Store 1 or application state was touched.
+- Reviewer-owned uncommitted CRR-057/058 artifacts in the original worktree were preserved and were not included in `R`.
+
+## Residual Scope
+
+- Code Reviewer must review exact committed authority `R` before Delivery resumes.
+- Delivery owns maintained-main `W`, hosted `R..W` admission verification, standard-hosted host-only archive equality, tag/release/publication, and downloaded-byte verification.
+- API-REV-025 remains the current product/runtime qualification evidence. This zero-profile round neither reruns nor weakens it.
+- macOS x64, Linux, Windows, `auto`, and desktop UI remain explicitly deferred.
 
 ## Recommended Recipient
 
-`code_reviewer` for proportional API/E2E test-code review recorded as `Not Applicable`, plus review of the new durable aggregate authority record before later implementation/Delivery work.
+`code_reviewer` for review of the exact six-file durable non-test authority commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`. No repository-resident durable API/E2E test changed.
 
 ## Latest Authoritative Result
 
-- Result: **Pass**.
-- Final validation confidence: **99%**.
-- Default 95% target met: `Yes`.
-- Applicable category below 90%: `No`.
-- Broader validation: `Required and completed — focused real-Git CLI validation`.
-- Critical criteria lacking proof in the authorized round: `None`.
-- Release/recovery status: still blocked by the intentionally absent later `reuse-permitted` admission; no release action occurred.
+- Result: **`Pass`**.
+- Confidence: **`98%`**.
+- Broader validation: **`Required — Completed`**.
+- New failures or blockers: `None`.
+- Durable API/E2E test changes: `None`.
+- Durable non-test authority additions: `6`, exact and committed in `R`.

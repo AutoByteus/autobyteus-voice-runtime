@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-committed-release-authority-verification",
+  "admittedSourceCommit": "3e8474213f79b26cc7a68c4dd42d2994ebf2d42d",
+  "releaseAuthorityCommit": "71f8e7823d876b9c0914bfc7b90b143d851d4875",
+  "parentCommits": ["3e8474213f79b26cc7a68c4dd42d2994ebf2d42d"],
+  "singleParentDirectChild": true,
+  "changedFileCount": 6,
+  "changes": [
+    {
+      "status": "A",
+      "path": "release/admission/v1.0.0-branch-catalog-projection-v3.json"
+    },
+    {
+      "status": "A",
+      "path": "release/admission/v1.0.0-branch-catalog-projection-verification-v3.json"
+    },
+    {
+      "status": "A",
+      "path": "release/admission/v1.0.0-chinese-profile-execution-closure-v2.json"
+    },
+    {
+      "status": "A",
+      "path": "release/admission/v1.0.0-english-profile-execution-closure-v2.json"
+    },
+    {
+      "status": "A",
+      "path": "release/admission/v1.0.0-focused-qualification-set-v3.json"
+    },
+    {
+      "status": "A",
+      "path": "release/admission/v1.0.0-release-source-admission-v4.json"
+    }
+  ],
+  "ordinaryFileModeVerified": true,
+  "protectedIdentities": [
+    {
+      "path": "release/admission/v1.0.0-branch-catalog-projection-v3.json",
+      "mode": "100644",
+      "objectId": "80420cdd8fa44e85d0cf27b1f1aea437aaa9abb2",
+      "sizeBytes": 2401,
+      "sha256": "240b909f1e64c106a6e65e4572cd756816777dd8114f33b5235a5edd00aa691f",
+      "sourcePath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/aggregate/branch-catalog-projection-v3.json",
+      "sourceBytesEqual": true
+    },
+    {
+      "path": "release/admission/v1.0.0-branch-catalog-projection-verification-v3.json",
+      "mode": "100644",
+      "objectId": "e31e71e0f6bb98e607b7d7a6b1971b828e9b656b",
+      "sizeBytes": 370,
+      "sha256": "fd2440191680573d64f8444eb1158dab1d3665ff7a48ed7edae0bb736f96fb76",
+      "sourcePath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/aggregate/branch-catalog-projection-verification-v3.json",
+      "sourceBytesEqual": true
+    },
+    {
+      "path": "release/admission/v1.0.0-chinese-profile-execution-closure-v2.json",
+      "mode": "100644",
+      "objectId": "c996fc4a78ba8eeddaaa1469777d25eeac870113",
+      "sizeBytes": 1426,
+      "sha256": "ed769548601482f1672a7e1a3a6c863f4d9a5c05d9d54a8ce93c322dbc8f3341",
+      "sourcePath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/aggregate/chinese-profile-execution-closure-v2.json",
+      "sourceBytesEqual": true
+    },
+    {
+      "path": "release/admission/v1.0.0-english-profile-execution-closure-v2.json",
+      "mode": "100644",
+      "objectId": "64a65a41634ea83e8c7ebbe22d87d969df7da879",
+      "sizeBytes": 1454,
+      "sha256": "1f105d7b8af89332b946d7788e59c8597291f76bc51dc663dee1bce91ca73862",
+      "sourcePath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/aggregate/english-profile-execution-closure-v2.json",
+      "sourceBytesEqual": true
+    },
+    {
+      "path": "release/admission/v1.0.0-focused-qualification-set-v3.json",
+      "mode": "100644",
+      "objectId": "14f0a15df2147b6d69acf91f45b350a45549b0f6",
+      "sizeBytes": 2215,
+      "sha256": "61ecbebdd734a8d4bec3e701350aaa5e4bb41af3642acae9f00cc716dea9ccc1",
+      "sourcePath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/aggregate/focused-qualification-set-v3.json",
+      "sourceBytesEqual": true
+    },
+    {
+      "path": "release/admission/v1.0.0-release-source-admission-v4.json",
+      "mode": "100644",
+      "objectId": "6ae3d55356caea6650098c704eeb4a6424c4b798",
+      "sizeBytes": 50284,
+      "sha256": "82167623a9c37b647cf5622e5b30881105c9ba30e5de482f438b1947d758a1db",
+      "sourcePath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/admission/v1.0.0-release-source-admission-v4.json",
+      "sourceBytesEqual": true
+    }
+  ],
+  "committedAdmission": {
+    "focusedSourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+    "admittedSourceCommit": "3e8474213f79b26cc7a68c4dd42d2994ebf2d42d",
+    "decision": "reuse-permitted",
+    "changedPathCount": 218,
+    "changedPathsSha256": "191b58b2a7ea1ad79e6b06b134bd525380ff88beff45a46fae46e0ee47b3f56d",
+    "profileClosureEquality": {
+      "english": true,
+      "chinese": true
+    }
+  },
+  "workingTreeClean": true,
+  "decision": "pass"
+}

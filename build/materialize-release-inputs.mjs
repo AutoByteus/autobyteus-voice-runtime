@@ -52,10 +52,11 @@ export async function materializeReleaseInputs({
     "languageMode",
     "platform",
     "architecture",
-    "packageId",
+    "hostPackageId",
     "providerId",
     "modelId",
-    "decision",
+    "modelAssetId",
+    "candidateDecision",
   ])
     if (matrixEntry[key] !== recipe.package[key])
       throw new Error(`Build recipe matrix identity mismatch: ${key}`);
@@ -105,7 +106,7 @@ export async function materializeReleaseInputs({
     }
     const records = await fileRecords(output);
     const provenance = {
-      schemaVersion: 1,
+      schemaVersion: 2,
       recipe: {
         fileName: path.basename(recipePath),
         sha256: await shaFile(recipePath),
@@ -119,7 +120,7 @@ export async function materializeReleaseInputs({
       ),
     };
     await validateProvenance(provenance);
-    const provenancePath = path.join(output, "input-provenance-v1.json");
+    const provenancePath = path.join(output, "host-input-provenance-v2.json");
     await writeJson(provenancePath, provenance);
     await fs.chmod(provenancePath, 0o444);
     const files = await fileRecords(output);
@@ -149,7 +150,7 @@ function observation(input, identity) {
 async function validateRecipe(value) {
   await validate(
     value,
-    path.join(ROOT, "contracts/build/build-input-recipe-v1.schema.json"),
+    path.join(ROOT, "contracts/build/host-build-input-recipe-v2.schema.json"),
     "Build Input Recipe",
   );
   const destinations = value.inputs.map((item) => item.destination);
@@ -160,7 +161,10 @@ async function validateRecipe(value) {
 async function validateProvenance(value) {
   await validate(
     value,
-    path.join(ROOT, "contracts/build/build-input-provenance-v1.schema.json"),
+    path.join(
+      ROOT,
+      "contracts/build/host-build-input-provenance-v2.schema.json",
+    ),
     "Build Input Provenance",
   );
 }

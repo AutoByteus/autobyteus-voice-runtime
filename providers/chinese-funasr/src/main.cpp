@@ -44,9 +44,9 @@ int main(int argc, char** argv) {
     BoundSession session;
     std::unique_ptr<ScratchCleanup> scratch;
     try {
-        if (argc != 5 || std::string(argv[1]) != "--private-package-root" || std::string(argv[3]) != "--session-config") throw std::runtime_error("invalid-usage");
+        if (argc != 11 || std::string(argv[1]) != "--private-host-root" || std::string(argv[3]) != "--private-activation-record" || std::string(argv[5]) != "--private-model-root" || std::string(argv[7]) != "--private-installation-lease-fd" || std::string(argv[9]) != "--session-config") throw std::runtime_error("invalid-usage");
         scratch = std::make_unique<ScratchCleanup>(argv[2]);
-        session = bind_session(argv[2], argv[4]);
+        session = bind_session(argv[2], argv[4], argv[6], std::stoi(argv[8]), argv[10]);
     } catch (...) {
         std::cerr << "VOICE_PROVIDER_STARTUP_REJECTED\n";
         return 65;
@@ -65,9 +65,9 @@ int main(int argc, char** argv) {
             if (std::string(event) == "start") diagnostics.start(stage);
             else diagnostics.complete(stage);
         };
-        engine = std::make_unique<FunAsrEngine>(session.resolve("model/funasr-encoder-f16.gguf").string(), session.resolve("model/qwen3-0.6b-q8_0.gguf").string(), boundary);
+        engine = std::make_unique<FunAsrEngine>(session.resolve_model("funasr-encoder-f16.gguf").string(), session.resolve_model("qwen3-0.6b-q8_0.gguf").string(), boundary);
         diagnostics.start("normalizer-load");
-        normalizer = std::make_unique<Normalizer>(session.resolve("normalizer/t2s-mapping-v1.json"));
+        normalizer = std::make_unique<Normalizer>(session.resolve_host("normalizer/t2s-mapping-v1.json"));
         diagnostics.complete("normalizer-load");
     } catch (...) {
         emit({{"type","lifecycle"},{"protocolVersion",1},{"state","failed"},{"code","MODEL_PREPARATION_FAILED"}});

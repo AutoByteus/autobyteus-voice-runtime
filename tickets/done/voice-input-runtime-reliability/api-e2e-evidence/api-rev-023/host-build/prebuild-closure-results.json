@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "4db8bf26708309440c83ec56973250f77e9f1619",
+  "profiles": {
+    "english": {
+      "hostSourceClosureSha256": "61ffa719c21f334bf3174a52e109140aea543dbf2bea46f5ecbd34af4b44014c"
+    },
+    "chinese": {
+      "hostSourceClosureSha256": "68977e18233b2a157f4c7c2eb9085bd83e9a91657119b30fa82f5786368b6762"
+    }
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-independent-release-source-admission-verification",
+  "subject": {
+    "fileName": "v1.0.0-release-source-admission-v4.json",
+    "sizeBytes": 50284,
+    "sha256": "82167623a9c37b647cf5622e5b30881105c9ba30e5de482f438b1947d758a1db"
+  },
+  "focusedSourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b",
+  "admittedSourceCommit": "3e8474213f79b26cc7a68c4dd42d2994ebf2d42d",
+  "ancestryVerified": true,
+  "sourceClosurePolicy": {
+    "sizeBytes": 3129,
+    "sha256": "c7cd2e5ede4a96f6990145a4719912e6dd7dc97fa85d157ea0f68ab37af1e676"
+  },
+  "changedPathCount": 218,
+  "classificationCounts": {
+    "documentation-record-only": 193,
+    "release-pipeline-only": 25
+  },
+  "changedPathsSha256": "191b58b2a7ea1ad79e6b06b134bd525380ff88beff45a46fae46e0ee47b3f56d",
+  "authorityIdentities": {
+    "focusedQualificationSet": {
+      "fileName": "focused-qualification-set-v3.json",
+      "sizeBytes": 2215,
+      "sha256": "61ecbebdd734a8d4bec3e701350aaa5e4bb41af3642acae9f00cc716dea9ccc1"
+    },
+    "branchCatalogProjection": {
+      "fileName": "branch-catalog-projection-v3.json",
+      "sizeBytes": 2401,
+      "sha256": "240b909f1e64c106a6e65e4572cd756816777dd8114f33b5235a5edd00aa691f"
+    },
+    "branchCatalogProjectionVerification": {
+      "fileName": "branch-catalog-projection-verification-v3.json",
+      "sizeBytes": 370,
+      "sha256": "fd2440191680573d64f8444eb1158dab1d3665ff7a48ed7edae0bb736f96fb76"
+    },
+    "englishExecutionClosure": {
+      "fileName": "english-profile-execution-closure-v2.json",
+      "sizeBytes": 1454,
+      "sha256": "1f105d7b8af89332b946d7788e59c8597291f76bc51dc663dee1bce91ca73862"
+    },
+    "chineseExecutionClosure": {
+      "fileName": "chinese-profile-execution-closure-v2.json",
+      "sizeBytes": 1426,
+      "sha256": "ed769548601482f1672a7e1a3a6c863f4d9a5c05d9d54a8ce93c322dbc8f3341"
+    }
+  },
+  "profileClosureEquality": {
+    "english": true,
+    "chinese": true
+  },
+  "decision": "pass"
+}

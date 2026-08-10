@@ -1,0 +1,273 @@
+Voice Input Runtime Reliability — integrated-state release readiness check
+timestamp_utc=2026-08-10T15:57:41Z
+reviewed_source=b88c230663eb96e0def8c869b095ea858b0ff50b
+reviewed_artifact=5a2ec1b95536e8490d00e0359ff75e74f199d8f0
+api_checkpoint=b5b44a4c87bfeb192c7e7556093e6a8383fcbb60
+integrated_ticket=5c0c4b8b47d503a1c8ae464e0675ec797f2366a9
+origin_main=7385b65e397e6f1b17495720281fe0b2e39de99b
+merge_base=7385b65e397e6f1b17495720281fe0b2e39de99b
+left_right=0	19
+base_integration=PASS
+
+== focused release-pipeline checks ==
+
+> @autobyteus/voice-input-runtime@1.0.0 check:release-pipeline
+> node tooling/check-release-pipeline.mjs && node --test tests/release/catalog-v4.test.mjs tests/release/host-construction-result.test.mjs tests/release/host-release-contracts.test.mjs tests/release/prepublication-chain.test.mjs tests/release/release-source-admission-verifier.test.mjs tests/release/relevant-source-closure-v2.test.mjs
+
+TAP version 13
+# Subtest: Catalog 4 binds exact admitted host/model compatibility pairs
+ok 1 - Catalog 4 binds exact admitted host/model compatibility pairs
+  ---
+  duration_ms: 283.845167
+  type: 'test'
+  ...
+# Subtest: host construction truthfully retains first-profile and pre-build failures
+ok 2 - host construction truthfully retains first-profile and pre-build failures
+  ---
+  duration_ms: 305.438625
+  type: 'test'
+  ...
+# Subtest: the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+ok 3 - the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+  ---
+  duration_ms: 1.014083
+  type: 'test'
+  ...
+# Subtest: one standard-hosted job builds hosts without model or product execution
+ok 4 - one standard-hosted job builds hosts without model or product execution
+  ---
+  duration_ms: 7.970709
+  type: 'test'
+  ...
+# Subtest: managed recovery and combined-package entrypoints are absent
+ok 5 - managed recovery and combined-package entrypoints are absent
+  ---
+  duration_ms: 3.569667
+  type: 'test'
+  ...
+# Subtest: the prepublication seal closes exactly eight prior assets plus checksums
+ok 6 - the prepublication seal closes exactly eight prior assets plus checksums
+  ---
+  duration_ms: 192.257292
+  type: 'test'
+  ...
+# Subtest: release admission reopens and cross-binds every focused authority
+ok 7 - release admission reopens and cross-binds every focused authority
+  ---
+  duration_ms: 685.627333
+  type: 'test'
+  ...
+# Subtest: Relevant Source Closure 2 classifies every governed path at its strictest impact
+ok 8 - Relevant Source Closure 2 classifies every governed path at its strictest impact
+  ---
+  duration_ms: 6.544583
+  type: 'test'
+  ...
+# Subtest: complete A/M/D/R inventory classifies both rename subjects and only safe release transitions reuse
+ok 9 - complete A/M/D/R inventory classifies both rename subjects and only safe release transitions reuse
+  ---
+  duration_ms: 616.048083
+  type: 'test'
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 816.4725
+
+== API-REV-025 checksum manifest ==
+./API-VOICE-017-024-execution-summary.json: OK
+./aggregate/branch-catalog-projection-v3.json: OK
+./aggregate/branch-catalog-projection-verification-v3.json: OK
+./aggregate/branch-catalog-projection-verification.exit-code: OK
+./aggregate/branch-catalog-projection-verification.log: OK
+./aggregate/branch-catalog-projection.exit-code: OK
+./aggregate/branch-catalog-projection.log: OK
+./aggregate/catalog-build.exit-code: OK
+./aggregate/catalog-build.log: OK
+./aggregate/chinese-current-execution-subject.json: OK
+./aggregate/chinese-focused-qualification-input.json: OK
+./aggregate/chinese-historical-execution-subject.json: OK
+./aggregate/chinese-profile-execution-closure-v2.json: OK
+./aggregate/chinese-profile-execution-closure.exit-code: OK
+./aggregate/chinese-profile-execution-closure.log: OK
+./aggregate/english-current-execution-subject.json: OK
+./aggregate/english-focused-qualification-input.json: OK
+./aggregate/english-historical-execution-subject.json: OK
+./aggregate/english-profile-execution-closure-v2.json: OK
+./aggregate/english-profile-execution-closure.exit-code: OK
+./aggregate/english-profile-execution-closure.log: OK
+./aggregate/focused-qualification-set-v3.json: OK
+./aggregate/focused-qualification-set.exit-code: OK
+./aggregate/focused-qualification-set.log: OK
+./aggregate/host-construction-result.exit-code: OK
+./aggregate/host-construction-result.log: OK
+./aggregate/model-manifest-admission.exit-code: OK
+./aggregate/model-manifest-admission.log: OK
+./aggregate/prepublication-seal.exit-code: OK
+./aggregate/prepublication-seal.log: OK
+./aggregate/pretag-release-manifest.exit-code: OK
+./aggregate/pretag-release-manifest.log: OK
+./aggregate/profile-closure-and-aggregate-verification.json: OK
+./aggregate/profile-execution-closure-basis.json: OK
+./aggregate/release-checksums.exit-code: OK
+./aggregate/release-checksums.log: OK
+./aggregate/release-evidence-assembly.exit-code: OK
+./aggregate/release-evidence-assembly.log: OK
+./aggregate/release-source-admission-verification.exit-code: OK
+./aggregate/release-source-admission-verification.log: OK
+./aggregate/release-source-admission.exit-code: OK
+./aggregate/release-source-admission.log: OK
+./environment/chinese-input-provenance-summary.json: OK
+./environment/english-input-provenance-summary.json: OK
+./environment/environment-recheck.txt: OK
+./environment/materialize-chinese.exit-code: OK
+./environment/materialize-chinese.log: OK
+./environment/materialize-english.exit-code: OK
+./environment/materialize-english.log: OK
+./host-build/build-chinese-a.command: OK
+./host-build/build-chinese-a.exit-code: OK
+./host-build/build-chinese-a.log: OK
+./host-build/build-chinese-b.command: OK
+./host-build/build-chinese-b.exit-code: OK
+./host-build/build-chinese-b.log: OK
+./host-build/build-english-a.command: OK
+./host-build/build-english-a.exit-code: OK
+./host-build/build-english-a.log: OK
+./host-build/build-english-b.command: OK
+./host-build/build-english-b.exit-code: OK
+./host-build/build-english-b.log: OK
+./host-build/chinese-double-build-identities.txt: OK
+./host-build/chinese-host-build-report-v2.json: OK
+./host-build/chinese-host-input-manifest.json: OK
+./host-build/chinese-host-input-provenance-v2.json: OK
+./host-build/chinese-host-reproducibility-proof-v2.json: OK
+./host-build/chinese-host-verification-v2.json: OK
+./host-build/chinese-host-verification.log: OK
+./host-build/chinese-prebuild-host-source-closure-v1.json: OK
+./host-build/chinese-reproducibility.log: OK
+./host-build/derive-prebuild-closures.log: OK
+./host-build/english-double-build-identities.txt: OK
+./host-build/english-host-build-report-v2.json: OK
+./host-build/english-host-input-manifest.json: OK
+./host-build/english-host-input-provenance-v2.json: OK
+./host-build/english-host-reproducibility-proof-v2.json: OK
+./host-build/english-host-verification-v2.json: OK
+./host-build/english-host-verification.log: OK
+./host-build/english-prebuild-host-source-closure-v1.json: OK
+./host-build/english-reproducibility.log: OK
+./host-build/prebuild-closure-results.json: OK
+./install/api-e2e-preinstall-release-evidence-v4.json: OK
+./install/build-preinstall-catalog.log: OK
+./install/chinese-install-event-verification.json: OK
+./install/chinese-installed-store-verification.json: OK
+./install/chinese-production-install.exit-code: OK
+./install/chinese-production-install.jsonl.gz: OK
+./install/chinese-production-install.stderr: OK
+./install/chinese-repeat-install.exit-code: OK
+./install/chinese-repeat-install.jsonl: OK
+./install/chinese-repeat-install.stderr: OK
+./install/chinese-status-after-install.exit-code: OK
+./install/chinese-status-after-install.jsonl: OK
+./install/chinese-status-after-install.stderr: OK
+./install/english-cancel-install.exit-code: OK
+./install/english-cancel-install.jsonl.gz: OK
+./install/english-cancel-install.pid: OK
+./install/english-cancel-install.stderr: OK
+./install/english-cancel-resume-verification.json: OK
+./install/english-install-event-verification.json: OK
+./install/english-installed-store-verification.json: OK
+./install/english-production-install.exit-code: OK
+./install/english-production-install.jsonl.gz: OK
+./install/english-production-install.stderr: OK
+./install/english-remove-after-resume-verification.json: OK
+./install/english-remove-after-resume.exit-code: OK
+./install/english-remove-after-resume.jsonl: OK
+./install/english-remove-after-resume.stderr: OK
+./install/english-repeat-install.exit-code: OK
+./install/english-repeat-install.jsonl: OK
+./install/english-repeat-install.stderr: OK
+./install/english-resume-install.exit-code: OK
+./install/english-resume-install.jsonl.gz: OK
+./install/english-resume-install.stderr: OK
+./install/english-status-after-install.exit-code: OK
+./install/english-status-after-install.jsonl: OK
+./install/english-status-after-install.stderr: OK
+./install/english-status-after-remove.exit-code: OK
+./install/english-status-after-remove.jsonl: OK
+./install/english-status-after-remove.stderr: OK
+./install/invalid-catalog-before-network.exit-code: OK
+./install/invalid-catalog-before-network.jsonl: OK
+./install/invalid-catalog-before-network.stderr: OK
+./install/invalid-catalog-no-side-effects.txt: OK
+./install/preinstall-catalog-assets.txt: OK
+./install/preinstall-profile-authorities.json: OK
+./install/voice-runtime-catalog-v4.json: OK
+./release-composition/exact-nine-asset-composition-verification.json: OK
+./release-composition/hosted-host-construction-result-v2.json: OK
+./release-composition/model-manifest-admission-v1.json: OK
+./release-composition/prepublication-seal-v1.json: OK
+./release-composition/pretag-release-manifest-v4.json: OK
+./release-composition/release-SHA256SUMS.txt: OK
+./release-composition/release-checksums-verification.log: OK
+./release-composition/release-qualification-evidence-v4.json: OK
+./release-composition/release-source-admission-v3.json: OK
+./release-composition/voice-runtime-catalog-v4.json: OK
+./repository/focused-chinese-worker-compile.exit-code: OK
+./repository/focused-chinese-worker-compile.log: OK
+./repository/focused-go-race.exit-code: OK
+./repository/focused-go-race.log: OK
+./repository/focused-host-builder-composition.exit-code: OK
+./repository/focused-host-builder-composition.log: OK
+./repository/npm-run-check-release-pipeline.exit-code: OK
+./repository/npm-run-check-release-pipeline.log: OK
+./repository/npm-run-check.exit-code: OK
+./repository/npm-run-check.log: OK
+./repository/pre-checkout-status.txt: OK
+./repository/source-status.txt: OK
+./runtime/chinese-clean-status.jsonl: OK
+./runtime/chinese-clean-status.stderr: OK
+./runtime/chinese-host-expectation-v2.json: OK
+./runtime/chinese-offline-lifecycle.exit-code: OK
+./runtime/chinese-offline-lifecycle.json: OK
+./runtime/chinese-offline-lifecycle.log: OK
+./runtime/chinese-offline-retained-clip-smoke.exit-code: OK
+./runtime/chinese-offline-retained-clip-smoke.json: OK
+./runtime/chinese-offline-retained-clip-smoke.log: OK
+./runtime/chinese-relocated-extract-report.json: OK
+./runtime/chinese-relocated-extract.log: OK
+./runtime/english-clean-status.jsonl: OK
+./runtime/english-clean-status.stderr: OK
+./runtime/english-direct-start.pid: OK
+./runtime/english-direct-start.stderr: OK
+./runtime/english-direct-start.stdout: OK
+./runtime/english-host-expectation-v2.json: OK
+./runtime/english-offline-lifecycle.exit-code: OK
+./runtime/english-offline-lifecycle.json: OK
+./runtime/english-offline-lifecycle.log: OK
+./runtime/english-offline-retained-clip-smoke.exit-code: OK
+./runtime/english-offline-retained-clip-smoke.json: OK
+./runtime/english-offline-retained-clip-smoke.log: OK
+./runtime/english-relocated-extract-report.json: OK
+./runtime/english-relocated-extract.log: OK
+./runtime/post-runtime-no-mutation-verification.json: OK
+
+== exact production workflow admission inputs ==
+missing=release/admission/v1.0.0-release-source-admission-v3.json
+missing=release/admission/v1.0.0-focused-qualification-set-v3.json
+missing=release/admission/v1.0.0-branch-catalog-projection-v3.json
+missing=release/admission/v1.0.0-branch-catalog-projection-verification-v3.json
+missing=release/admission/v1.0.0-english-profile-execution-closure-v2.json
+missing=release/admission/v1.0.0-chinese-profile-execution-closure-v2.json
+api_local_admission_finalMainCommit=b88c230663eb96e0def8c869b095ea858b0ff50b
+integrated_ticket_commit=5c0c4b8b47d503a1c8ae464e0675ec797f2366a9
+workflow_verifier_requires=value.finalMainCommit == GITHUB_SHA
+RESULT=BLOCKED_MISSING_COMMITTED_FINAL_MAIN_ADMISSION
+STANDARD_HOSTED_EQUALITY_DISPATCHED=NO
+TAG_CREATED=NO
+RELEASE_CREATED=NO
+exit=1

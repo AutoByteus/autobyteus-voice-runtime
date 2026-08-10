@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 3,
+  "policyId": "voice-runtime-relevant-source-closure-v3",
+  "defaultClassification": "api-impact-review-required",
+  "precedence": [
+    "profile-qualification-required",
+    "focused-qualification-required",
+    "aggregate-api-renewal-required",
+    "release-pipeline-only",
+    "documentation-record-only"
+  ],
+  "rules": [
+    {
+      "classification": "profile-qualification-required",
+      "prefixes": [
+        "benchmark/",
+        "contracts/audio/",
+        "contracts/normalization/",
+        "contracts/protocol/",
+        "contracts/qualification/",
+        "contracts/scoring/"
+      ],
+      "exact": [
+        "providers/english-mlx/recognizer.py",
+        "providers/chinese-funasr/src/funasr_engine.cpp",
+        "providers/chinese-funasr/src/funasr_engine.h",
+        "providers/chinese-funasr/src/normalization.cpp",
+        "providers/chinese-funasr/src/normalization.h",
+        "providers/chinese-funasr/src/sha256.cpp",
+        "providers/chinese-funasr/src/sha256.h"
+      ]
+    },
+    {
+      "classification": "focused-qualification-required",
+      "prefixes": [
+        "build/",
+        "contracts/build/",
+        "contracts/catalog/",
+        "contracts/host/",
+        "contracts/install/",
+        "contracts/launcher/",
+        "contracts/model/",
+        "contracts/package/",
+        "contracts/startup/",
+        "hostverify/",
+        "integrity/",
+        "internal/",
+        "launcher/",
+        "modelmanager/",
+        "modelstore/",
+        "packaging/",
+        "providers/",
+        "release/model-manifests/",
+        "tests/build/",
+        "tests/contracts/",
+        "tests/modelmanager/",
+        "tests/modelstore/",
+        "tests/providers/"
+      ],
+      "exact": [
+        "go.mod",
+        "go.sum",
+        "package-lock.json",
+        "THIRD_PARTY_NOTICES.json"
+      ]
+    },
+    {
+      "classification": "aggregate-api-renewal-required",
+      "prefixes": ["tests/release/"],
+      "exact": [
+        "release/profile-execution-closure.mjs",
+        "release/focused-qualification-set.mjs",
+        "release/branch-catalog-projection-v3.mjs",
+        "release/verify-branch-catalog-projection-v3.mjs",
+        "contracts/release/focused-qualification-set-v3.schema.json"
+      ]
+    },
+    {
+      "classification": "release-pipeline-only",
+      "prefixes": [
+        ".github/workflows/",
+        "release/",
+        "contracts/release/",
+        "tooling/"
+      ],
+      "exact": [
+        "package.json",
+        "tests/release/release-admission-fixture.mjs",
+        "tests/release/catalog-v4.test.mjs",
+        "tests/release/host-construction-result.test.mjs",
+        "tests/release/host-release-contracts.test.mjs",
+        "tests/release/release-source-admission-verifier.test.mjs",
+        "tests/release/relevant-source-closure-v2.test.mjs",
+        "tests/release/relevant-source-closure-v3.test.mjs",
+        "tests/release/fixtures/ir-036-f-to-d-changed-paths-v1.json"
+      ]
+    },
+    {
+      "classification": "documentation-record-only",
+      "prefixes": ["docs/", "tickets/"],
+      "exact": ["README.md"]
+    }
+  ]
+}

@@ -10,8 +10,8 @@ import (
 	"syscall"
 )
 
-func applyAndVerifyModes(root string, manifest PackageFileManifest, target Target) error {
-	modes := map[string]FileMode{"provider/package-files-v1.json": ReadOnly}
+func applyAndVerifyModes(root string, manifest HostFileManifest, target Target) error {
+	modes := map[string]FileMode{"provider/host-files-v2.json": ReadOnly}
 	for _, record := range manifest.Files {
 		modes[record.Path] = record.Mode
 	}

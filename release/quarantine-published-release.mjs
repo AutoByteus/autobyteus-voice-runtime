@@ -42,7 +42,7 @@ export async function quarantinePublishedRelease({
     const verification = await readJson(verificationPath);
     await validate(
       verification,
-      "contracts/release/published-asset-verification-v1.schema.json",
+      "contracts/release/published-asset-verification-v2.schema.json",
     );
     result.verificationResultSha256 = await shaFile(verificationPath);
     if (

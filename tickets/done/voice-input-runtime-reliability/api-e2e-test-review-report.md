@@ -2,70 +2,58 @@
 
 ## Review Meta
 
-- Review Round: `45`
-- Trigger: successful `API-REV-019` zero-profile Aggregate API Renewal after `CRR-044 Pass`
+- Review Round: `60`
+- Trigger: successful `API-REV-026` after `CRR-058 Pass`, followed by exact durable authority review `CRR-059 Pass`
 - Requirements Doc Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
 - Design Spec Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Supplemental Task Artifacts Reviewed As Context: `release-pipeline-ownership.md`; current-platform/runtime authority; retained API-REV-016/017 evidence; SR-018 transition sequence
-- Solution Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md` (`SR-018`)
-- Architecture Review Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md` (`ARCH-REV-019 Pass`)
-- Implementation Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md` (`IR-029`)
-- Original Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` (`CRR-044 Pass`)
+- Supplemental Task Artifacts Reviewed As Context: `release-pipeline-ownership.md`; `benchmark-protocol.md`; `current-platform-qualification.md`; `voice-runtime-contract.md`; `on-demand-model-assets.md`; preserved backend-selection, English-v2, Chinese-v2, and cold-preparation authorities
+- Solution Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md` (`SR-024`)
+- Architecture Review Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md` (`ARCH-REV-024 Pass`)
+- Implementation Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md` (`IR-037`)
+- Original Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` (`CRR-059 Pass` authority review; prior source `CRR-058 Pass`)
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-- Current Code Review Revision ID: `CRR-045`
+- Current Code Review Revision ID: `CRR-060`
 - Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
 - Execution Coverage Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
-- API/E2E Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md` (`API-REV-019`)
-- Delivery Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md` (`DR-005` transition context)
-- API/E2E Result: `Pass / 99%` for `API-VOICE-015`, the deliberately narrow zero-profile Aggregate API Renewal
-- Final Validation Confidence: `99%`
+- API/E2E Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md` (`API-REV-026`)
+- Delivery Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md` (`DR-008 Blocked — Design Impact`)
+- API/E2E Result: `Pass / 98%` for exact zero-profile `API-VOICE-025`; broader validation `Required — Completed`
+- Final Validation Confidence: `98%`
 - Prior unresolved test-review findings rechecked: none
 
 ## Changed Durable Test Scope
 
-Temporary probes, logs, checksum manifests, canonical reports, and the Aggregate API Renewal authority record are evidence or non-test authority, not durable test code under review.
+Temporary probes, logs, checksum manifests, generated execution evidence, and canonical API/E2E reports are evidence, not durable test code under review. The six new `release/admission/` members are durable non-test production authority and were reviewed separately at `CRR-059`.
 
-| Durable Test Path | Change (`Added`/`Updated`/`Removed`) | Related Scenario / Requirement | Coherent Test Responsibility | Notes |
-| --- | --- | --- | --- | --- |
-| None | N/A | `API-VOICE-015`; `R-024`; `AC-026` | N/A | `850dd5f...502848c` changes ticket reports/evidence and one non-test authority record only. |
+| Durable Test Path | Change (`Added`/`Updated`/`Removed`) | Related Scenario / Requirement                  | Coherent Test Responsibility | Notes                                                                        |
+| ----------------- | ------------------------------------ | ----------------------------------------------- | ---------------------------- | ---------------------------------------------------------------------------- |
+| None              | N/A                                  | `API-VOICE-025`; `BEH-007`, `BEH-013`; `AC-025` | N/A                          | API/E2E added, updated, or removed no repository-resident durable test file. |
 
 - No durable test file changed: `Yes`
 - Review result when no durable test file changed: `Not Applicable`
-- Clarification: API/E2E reran the already source-reviewed release-pipeline suite but added, updated, or removed no repository-resident test.
+- Scope evidence: exact `D..R` contains only six `A` rows below `release/admission/`; no `tests/**` path or implementation file changed. The coverage investigation, execution report, API revision record, and committed verification agree.
+- Clarification: Policy 3 and Admission/promotion test changes belong to IR-037 and were fully source-reviewed at CRR-058. API-REV-026 reused them unchanged and executed the actual production boundary.
 
 ## Proportional Test-Code Checks
 
-| Check | Result (`Pass`/`Fail`/`N/A`) | Evidence / Notes |
-| --- | --- | --- |
-| Scenario grouping and names make intent clear | N/A | No API/E2E-owned durable test change. |
-| Assertions prove approved requirements instead of incidental implementation details | N/A | No API/E2E-owned durable test change; unchanged source-reviewed coverage passed `46/46`. |
-| Fixtures, setup, helpers, and data builders reuse meaningful repetition | N/A | No API/E2E-owned durable test change. |
-| Test isolation and determinism are appropriate for the exercised boundary | N/A | No API/E2E-owned durable test change. API-REV-019 used independent real-Git validation of the committed authority. |
-| Large files remain coherent and navigable rather than mixing unrelated scenarios | N/A | No API/E2E-owned durable test change. |
-| No stale, duplicated, disabled-without-reason, or compatibility-only tests remain | N/A | No coverage was added, changed, removed, or disabled by API/E2E. |
-| Added, updated, and removed coverage agrees with the coverage investigation and execution evidence | N/A | Commit-scope review and both canonical API reports consistently record no durable test change. |
+| Check                                                                                              | Result (`Pass`/`Fail`/`N/A`) | Evidence / Notes                                                                                       |
+| -------------------------------------------------------------------------------------------------- | ---------------------------- | ------------------------------------------------------------------------------------------------------ |
+| Scenario grouping and names make intent clear                                                      | N/A                          | No API/E2E-owned durable test change.                                                                  |
+| Assertions prove approved requirements instead of incidental implementation details                | N/A                          | No durable assertion changed; actual production Admission/promotion and independent verification pass. |
+| Fixtures, setup, helpers, and data builders reuse meaningful repetition                            | N/A                          | No API/E2E-owned durable test change.                                                                  |
+| Test isolation and determinism are appropriate for the exercised boundary                          | N/A                          | No test change. API execution used a clean isolated D checkout and preserved exact R for review.       |
+| Large files remain coherent and navigable rather than mixing unrelated scenarios                   | N/A                          | No durable test file changed.                                                                          |
+| No stale, duplicated, disabled-without-reason, or compatibility-only tests remain                  | N/A                          | API/E2E changed or disabled no test; unchanged release gate passes 19/19 at exact R.                   |
+| Added, updated, and removed coverage agrees with the coverage investigation and execution evidence | N/A                          | Every canonical artifact records an empty durable test delta; Git independently confirms it.           |
 
 ## Findings
 
 None.
-
-## Aggregate Authority Record Confirmation
-
-The durable non-test record `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/release/candidates/authority/v1.0.0-aggregate-api-renewal-v1.json` was reviewed separately from the N/A test scope:
-
-- record commit `448517cee89e6498c551bcc70aba65ec0bedf97e` has exactly one parent, reviewed test commit `baf1e33f54446d2d1161afd38b88111e4086b76c`; reviewed source `50b7e778c5c8b783f3089803b71636ea7fb2a513` is its ancestor;
-- the record validates against Aggregate API Renewal Record 1 and binds `API-REV-019`, decision `pass`, and profile execution count `0`;
-- the committed report has one exact three-row current-subject projection and matches declared content SHA-256 `d78e73ed...ce4d` and Git-blob SHA-256 `b31f6493...f36a`;
-- independently recomputed record identities match Git-blob SHA-256 `9effd01c...31d6` and canonical-content SHA-256 `92628e2c...c55a`;
-- retained Profile Closure, English/Chinese archive and profile evidence, current/prior QSet/projection/verification identities, and Qualification Authority closure agree with the record and API-REV-019 evidence;
-- the current preliminary decision remains `aggregate-api-renewal-required`; the record does not authorize recovery, promotion, or release.
-
-Reviewer confirmation is recorded at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-045-aggregate-api-renewal-record-review.md`.
 
 ## Latest Authoritative Result
 
 - Result: `Not Applicable`
 - Changed durable test paths reviewed: none
 - Unresolved finding IDs: none
-- Recommended Recipient: `delivery_engineer` for stage-gate routing under the standard successful API/E2E handoff; no recovery or release action is authorized
-- Notes: API-REV-019 is valid only for the zero-profile renewal boundary. The approved next transition remains a separate implementation and source review that accepts record commit `448517c...` and independently produces `reuse-permitted` before recovery.
+- Recommended Recipient: `delivery_engineer`
+- Notes: API-REV-026 passes at the exact zero-profile promotion boundary, CRR-059 passes the resulting durable production authority commit, and no durable test code changed. Delivery may resume using exact `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`; maintained-main W verification, hosted archive equality, tag/release/publication, downloaded-byte verification, and quarantine remain Delivery-owned.

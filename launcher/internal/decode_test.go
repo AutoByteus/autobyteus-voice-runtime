@@ -3,13 +3,13 @@ package launcher
 import "testing"
 
 func TestPlanStrictness(t *testing.T) {
-	valid := []byte(`{"schemaVersion":1,"packageId":"p","target":{"platform":"darwin","architecture":"arm64"},"invocation":{"kind":"python-worker","executable":"host/python","worker":"worker/main.py"}}`)
+	valid := []byte(`{"schemaVersion":2,"hostPackageId":"p","target":{"platform":"darwin","architecture":"arm64"},"invocation":{"kind":"python-worker","executable":"host/python","worker":"worker/main.py"}}`)
 	if _, err := DecodePlan(valid); err != nil {
 		t.Fatal(err)
 	}
 	for _, value := range [][]byte{
-		[]byte(`{"schemaVersion":1,"packageId":"p","target":{"platform":"darwin","architecture":"arm64"},"invocation":{"kind":"python-worker","executable":"../python","worker":"worker/main.py"}}`),
-		[]byte(`{"schemaVersion":1,"packageId":"p","target":{"platform":"darwin","architecture":"arm64"},"invocation":{"kind":"native-worker","executable":"provider/worker"},"backend":"x"}`),
+		[]byte(`{"schemaVersion":2,"hostPackageId":"p","target":{"platform":"darwin","architecture":"arm64"},"invocation":{"kind":"python-worker","executable":"../python","worker":"worker/main.py"}}`),
+		[]byte(`{"schemaVersion":2,"hostPackageId":"p","target":{"platform":"darwin","architecture":"arm64"},"invocation":{"kind":"native-worker","executable":"provider/worker"},"backend":"x"}`),
 	} {
 		if _, err := DecodePlan(value); err == nil {
 			t.Fatal("invalid plan accepted")

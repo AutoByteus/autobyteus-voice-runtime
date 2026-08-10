@@ -12,7 +12,7 @@ import (
 )
 
 var sha256Pattern = regexp.MustCompile(`^[a-f0-9]{64}$`)
-var uuidPattern = regexp.MustCompile(`^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}$`)
+var uuidPattern = regexp.MustCompile(`^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$`)
 
 func decodeExact(data []byte, target any) error {
 	decoder := json.NewDecoder(bytes.NewReader(data))
@@ -25,13 +25,9 @@ func decodeExact(data []byte, target any) error {
 	}
 	return nil
 }
-
 func DecodePlan(data []byte) (LauncherPlan, error) {
 	var plan LauncherPlan
-	if err := decodeExact(data, &plan); err != nil {
-		return plan, err
-	}
-	if plan.SchemaVersion != 1 || plan.PackageID == "" || !validTarget(plan.Target) {
+	if decodeExact(data, &plan) != nil || plan.SchemaVersion != 2 || plan.HostPackageID == "" || !validTarget(plan.Target) {
 		return plan, errors.New("invalid plan identity")
 	}
 	if plan.Invocation.Kind == "python-worker" {
@@ -47,14 +43,13 @@ func DecodePlan(data []byte) (LauncherPlan, error) {
 	}
 	return plan, nil
 }
-
 func DecodeSession(path string) (SessionConfig, error) {
 	var config SessionConfig
 	if !filepath.IsAbs(path) {
 		return config, errors.New("config must be absolute")
 	}
 	info, err := os.Lstat(path)
-	if err != nil || !info.Mode().IsRegular() || info.Size() > 1024*1024 {
+	if err != nil || !info.Mode().IsRegular() || info.Mode()&os.ModeSymlink != 0 || info.Size() > 1024*1024 {
 		return config, errors.New("config is not an ordinary bounded file")
 	}
 	data, err := os.ReadFile(path)
@@ -62,34 +57,30 @@ func DecodeSession(path string) (SessionConfig, error) {
 		return config, errors.New("invalid config")
 	}
 	e := config.Expected
-	if config.SchemaVersion != 1 || config.ProtocolVersion != 1 || !uuidPattern.MatchString(config.SessionID) || !profileLanguage(config.ProfileID, e.LanguageMode) || e.PackageID == "" || e.ProviderID == "" || e.ModelID == "" || !validTarget(Target{e.Platform, e.Architecture}) || !sha256Pattern.MatchString(e.DescriptorSHA256) || !sha256Pattern.MatchString(e.FileManifestSHA256) || !sha256Pattern.MatchString(e.CapabilityDigest) {
+	validDigests := []string{config.ActivationSHA256, e.DescriptorSHA256, e.FileManifestSHA256, e.HostSourceClosureSHA256, e.ModelAdmissionRootSHA256, e.ModelManifestSHA256, e.ModelTreeSHA256, e.CompatibilityPairSHA256, e.CapabilityDigest}
+	for _, value := range validDigests {
+		if !sha256Pattern.MatchString(value) {
+			return config, errors.New("invalid config digest")
+		}
+	}
+	if config.SchemaVersion != 2 || config.ProtocolVersion != 1 || !uuidPattern.MatchString(config.SessionID) || !uuidPattern.MatchString(config.InstallationID) || !filepath.IsAbs(config.InstallationRoot) || !profileLanguage(config.ProfileID, e.LanguageMode) || e.HostPackageID == "" || e.ProviderID == "" || e.ModelID == "" || !validTarget(Target{Platform: e.Platform, Architecture: e.Architecture}) {
 		return config, errors.New("invalid config identity")
 	}
 	return config, nil
 }
-
 func validTarget(target Target) bool {
-	if target.Platform != "darwin" && target.Platform != "linux" && target.Platform != "win32" {
-		return false
-	}
-	if target.Architecture != "arm64" && target.Architecture != "x64" {
-		return false
-	}
-	return !(target.Platform != "darwin" && target.Architecture == "arm64")
+	return target.Platform == "darwin" && target.Architecture == "arm64"
 }
-
 func profileLanguage(profile, language string) bool {
-	return (profile == "english" && language == "en") || (profile == "chinese" && language == "zh") || (profile == "auto" && language == "auto")
+	return (profile == "english" && language == "en") || (profile == "chinese" && language == "zh")
 }
-
 func actualTarget() Target {
-	platform := runtime.GOOS
+	platform, architecture := runtime.GOOS, runtime.GOARCH
 	if platform == "windows" {
 		platform = "win32"
 	}
-	architecture := runtime.GOARCH
 	if architecture == "amd64" {
 		architecture = "x64"
 	}
-	return Target{platform, architecture}
+	return Target{Platform: platform, Architecture: architecture}
 }

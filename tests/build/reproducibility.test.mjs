@@ -3,56 +3,75 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
 import { createHash } from "node:crypto";
-import { removeWritableTree } from "../../build/lib/files.mjs";
+import { verifyHostReproducibility } from "../../build/verify-reproducibility.mjs";
 
-const run = promisify(execFile),
-  root = path.resolve(import.meta.dirname, "../.."),
-  digest = (value) => createHash("sha256").update(value).digest("hex");
-
-test("reproducibility proof requires byte-identical archives and reports", async () => {
-  const work = await fs.mkdtemp(path.join(os.tmpdir(), "voice-rebuild-"));
+const sha = (value) => createHash("sha256").update(value).digest("hex");
+const identity = (name) => ({
+  fileName: name,
+  sizeBytes: 1,
+  sha256: "a".repeat(64),
+});
+test("host reproducibility requires whole-archive and complete report equality", async () => {
+  const root = await fs.mkdtemp(path.join(os.tmpdir(), "host-repro-"));
   try {
-    const archive = Buffer.from("canonical archive"),
-      archiveSha256 = digest(archive),
+    const archive = Buffer.from("host"),
+      archiveSha = sha(archive),
       report = {
+        schemaVersion: 2,
+        artifactKind: "host-build-report",
+        profileId: "english",
         sourceCommit: "a".repeat(40),
-        packageId: "fixture.package",
-        buildInputManifestSha256: "b".repeat(64),
-        buildInputProvenanceSha256: "c".repeat(64),
-        buildInputRecipeSha256: "d".repeat(64),
-        releaseMatrixSha256: "e".repeat(64),
-        nativeBuildEnvironmentSha256: "f".repeat(64),
-        archive: { sha256: archiveSha256 },
+        hostSourceClosure: identity("host-source-closure-v1.json"),
+        archive: {
+          fileName: "host.zip",
+          sizeBytes: archive.length,
+          sha256: archiveSha,
+          extractedSizeBytes: 1,
+          entryCount: 1,
+        },
+        descriptor: identity("runtime-host-v2.json"),
+        fileManifest: identity("host-files-v2.json"),
+        noticeInventory: identity("THIRD_PARTY_NOTICES.json"),
+        modelAdmissionRoot: identity("model-admission-root-v1.json"),
+        compatibilityRequirement: identity(
+          "model-compatibility-requirement-v1.json",
+        ),
+        productTestsExecuted: 0,
+        recipe: identity("recipe.json"),
+        inputManifest: identity("inputs.json"),
+        inputProvenance: identity("provenance.json"),
+        hostBuildEnvironment: identity("host-build-environment-v2.json"),
+        toolProvenance: identity("tools.json"),
+        hostPackageId: "host",
+        providerId: "provider",
+        modelAssetId: "asset",
+        packageVersion: "1.0.0",
+        target: { platform: "darwin", architecture: "arm64" },
+        launcher: identity("voice-provider"),
+        modelManager: identity("voice-model-manager"),
+        modelBytesDownloaded: 0,
+        providersLaunched: 0,
       };
     for (const side of ["first", "second"]) {
-      await fs.writeFile(path.join(work, `${side}.zip`), archive);
+      await fs.writeFile(path.join(root, `${side}.zip`), archive);
       await fs.writeFile(
-        path.join(work, `${side}.json`),
+        path.join(root, `${side}.json`),
         `${JSON.stringify(report)}\n`,
       );
     }
-    const output = path.join(work, "proof.json"),
-      command = [
-        path.join(root, "build/verify-reproducibility.mjs"),
-        "--first-archive",
-        path.join(work, "first.zip"),
-        "--first-report",
-        path.join(work, "first.json"),
-        "--second-archive",
-        path.join(work, "second.zip"),
-        "--second-report",
-        path.join(work, "second.json"),
-        "--output",
-        output,
-      ];
-    await run(process.execPath, command);
-    assert.equal(JSON.parse(await fs.readFile(output)).passed, true);
-    await fs.writeFile(path.join(work, "second.zip"), "different");
-    await assert.rejects(run(process.execPath, command));
+    const output = path.join(root, "proof.json");
+    const args = {
+      firstArchive: path.join(root, "first.zip"),
+      firstReport: path.join(root, "first.json"),
+      secondArchive: path.join(root, "second.zip"),
+      secondReport: path.join(root, "second.json"),
+      output,
+    };
+    assert.equal((await verifyHostReproducibility(args)).decision, "pass");
+    await fs.writeFile(args.secondArchive, "changed");
+    await assert.rejects(verifyHostReproducibility(args), /not byte-identical/);
   } finally {
-    await removeWritableTree(work);
+    await fs.rm(root, { recursive: true, force: true });
   }
 });

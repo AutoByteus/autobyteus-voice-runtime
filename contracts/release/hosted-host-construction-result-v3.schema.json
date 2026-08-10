@@ -1,0 +1,487 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/release/hosted-host-construction-result-v3.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "sourceAdmission",
+    "releaseAdmissionVerification",
+    "focusedSourceCommit",
+    "admittedSourceCommit",
+    "authorityPromotionCommit",
+    "workflowCheckoutCommit",
+    "runner",
+    "profiles",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 3
+    },
+    "artifactKind": {
+      "const": "hosted-host-construction-result"
+    },
+    "sourceAdmission": {
+      "$ref": "#/$defs/identity"
+    },
+    "runner": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["label", "platform", "architecture"],
+      "properties": {
+        "label": {
+          "const": "macos-26"
+        },
+        "platform": {
+          "const": "darwin"
+        },
+        "architecture": {
+          "const": "arm64"
+        }
+      }
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/englishOutcome"
+        },
+        {
+          "$ref": "#/$defs/chineseOutcome"
+        }
+      ],
+      "items": false
+    },
+    "decision": {
+      "enum": ["pass", "fail", "blocked"]
+    },
+    "releaseAdmissionVerification": {
+      "$ref": "#/$defs/identity"
+    },
+    "focusedSourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "admittedSourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "authorityPromotionCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "workflowCheckoutCommit": {
+      "$ref": "#/$defs/commit"
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "pass"
+          }
+        },
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "profiles": {
+            "prefixItems": [
+              {
+                "properties": {
+                  "outcome": {
+                    "const": "succeeded"
+                  }
+                },
+                "type": "object"
+              },
+              {
+                "properties": {
+                  "outcome": {
+                    "const": "succeeded"
+                  }
+                },
+                "type": "object"
+              }
+            ],
+            "type": "array",
+            "minItems": 2,
+            "maxItems": 2,
+            "items": false
+          }
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "fail"
+          }
+        },
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "profiles": {
+            "contains": {
+              "properties": {
+                "outcome": {
+                  "const": "failed"
+                }
+              },
+              "required": ["outcome"],
+              "type": "object"
+            },
+            "minContains": 1,
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "blocked"
+          }
+        },
+        "type": "object"
+      },
+      "then": {
+        "properties": {
+          "profiles": {
+            "contains": {
+              "properties": {
+                "outcome": {
+                  "const": "unattempted"
+                }
+              },
+              "required": ["outcome"],
+              "type": "object"
+            },
+            "minContains": 1,
+            "not": {
+              "contains": {
+                "properties": {
+                  "outcome": {
+                    "const": "failed"
+                  }
+                },
+                "required": ["outcome"],
+                "type": "object"
+              }
+            },
+            "type": "array"
+          }
+        },
+        "type": "object"
+      }
+    }
+  ],
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "details": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "focusedSourceCommit",
+        "focusedArchive",
+        "hostedArchive",
+        "identityComparison",
+        "focusedHostSourceClosureSha256",
+        "admittedHostSourceClosureSha256",
+        "workflowHostSourceClosureSha256",
+        "closureComparison",
+        "buildReport",
+        "hostVerification",
+        "provenance",
+        "executionCounts"
+      ],
+      "properties": {
+        "focusedSourceCommit": {
+          "$ref": "#/$defs/commit"
+        },
+        "focusedArchive": {
+          "$ref": "#/$defs/identity"
+        },
+        "hostedArchive": {
+          "$ref": "#/$defs/identity"
+        },
+        "focusedHostSourceClosureSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "buildReport": {
+          "$ref": "#/$defs/identity"
+        },
+        "hostVerification": {
+          "$ref": "#/$defs/identity"
+        },
+        "provenance": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "recipe",
+            "inputManifest",
+            "inputProvenance",
+            "hostBuildEnvironment",
+            "toolProvenance",
+            "hostSourceClosure",
+            "modelAdmissionRoot",
+            "compatibilityRequirement",
+            "descriptor",
+            "fileManifest",
+            "noticeInventory"
+          ],
+          "properties": {
+            "recipe": {
+              "$ref": "#/$defs/identity"
+            },
+            "inputManifest": {
+              "$ref": "#/$defs/identity"
+            },
+            "inputProvenance": {
+              "$ref": "#/$defs/identity"
+            },
+            "hostBuildEnvironment": {
+              "$ref": "#/$defs/identity"
+            },
+            "toolProvenance": {
+              "$ref": "#/$defs/identity"
+            },
+            "hostSourceClosure": {
+              "$ref": "#/$defs/identity"
+            },
+            "modelAdmissionRoot": {
+              "$ref": "#/$defs/identity"
+            },
+            "compatibilityRequirement": {
+              "$ref": "#/$defs/identity"
+            },
+            "descriptor": {
+              "$ref": "#/$defs/identity"
+            },
+            "fileManifest": {
+              "$ref": "#/$defs/identity"
+            },
+            "noticeInventory": {
+              "$ref": "#/$defs/identity"
+            }
+          }
+        },
+        "executionCounts": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "productTestsExecuted",
+            "modelBytesDownloaded",
+            "providersLaunched"
+          ],
+          "properties": {
+            "productTestsExecuted": {
+              "const": 0
+            },
+            "modelBytesDownloaded": {
+              "const": 0
+            },
+            "providersLaunched": {
+              "const": 0
+            }
+          }
+        },
+        "identityComparison": {
+          "const": "equal"
+        },
+        "admittedHostSourceClosureSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "workflowHostSourceClosureSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "closureComparison": {
+          "const": "equal"
+        }
+      }
+    },
+    "outcome": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "attempted",
+        "completed",
+        "outcome",
+        "failureCategory",
+        "details"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "attempted": {
+          "type": "boolean"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "outcome": {
+          "enum": ["succeeded", "failed", "unattempted"]
+        },
+        "failureCategory": {
+          "type": ["string", "null"]
+        },
+        "details": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/details"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "succeeded"
+              }
+            },
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "attempted": {
+                "const": true
+              },
+              "completed": {
+                "const": true
+              },
+              "failureCategory": {
+                "type": "null"
+              },
+              "details": {
+                "$ref": "#/$defs/details"
+              }
+            },
+            "type": "object"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "failed"
+              }
+            },
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "completed": {
+                "const": false
+              },
+              "failureCategory": {
+                "type": "string",
+                "minLength": 1
+              },
+              "details": {
+                "type": "null"
+              }
+            },
+            "type": "object"
+          }
+        },
+        {
+          "if": {
+            "properties": {
+              "outcome": {
+                "const": "unattempted"
+              }
+            },
+            "type": "object"
+          },
+          "then": {
+            "properties": {
+              "attempted": {
+                "const": false
+              },
+              "completed": {
+                "const": false
+              },
+              "failureCategory": {
+                "type": "string",
+                "minLength": 1
+              },
+              "details": {
+                "type": "null"
+              }
+            },
+            "type": "object"
+          }
+        }
+      ]
+    },
+    "englishOutcome": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/outcome"
+        },
+        {
+          "properties": {
+            "profileId": {
+              "const": "english"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    },
+    "chineseOutcome": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/outcome"
+        },
+        {
+          "properties": {
+            "profileId": {
+              "const": "chinese"
+            }
+          },
+          "type": "object"
+        }
+      ]
+    }
+  }
+}

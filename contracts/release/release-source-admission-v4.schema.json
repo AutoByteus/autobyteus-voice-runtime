@@ -1,0 +1,312 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://autobyteus.local/contracts/release/release-source-admission-v4.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "artifactKind",
+    "focusedSourceCommit",
+    "admittedSourceCommit",
+    "sourceClosurePolicy",
+    "currentReleaseMatrix",
+    "ancestryVerified",
+    "changedPaths",
+    "changedPathsSha256",
+    "focusedQualificationSet",
+    "branchCatalogProjection",
+    "branchCatalogProjectionVerification",
+    "englishExecutionClosure",
+    "chineseExecutionClosure",
+    "profiles",
+    "decision"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": 4
+    },
+    "artifactKind": {
+      "const": "release-source-admission"
+    },
+    "focusedSourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "admittedSourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "sourceClosurePolicy": {
+      "$ref": "#/$defs/identity"
+    },
+    "currentReleaseMatrix": {
+      "$ref": "#/$defs/identity"
+    },
+    "ancestryVerified": {
+      "type": "boolean"
+    },
+    "changedPaths": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/change"
+      }
+    },
+    "changedPathsSha256": {
+      "$ref": "#/$defs/sha"
+    },
+    "focusedQualificationSet": {
+      "$ref": "#/$defs/identity"
+    },
+    "branchCatalogProjection": {
+      "$ref": "#/$defs/identity"
+    },
+    "branchCatalogProjectionVerification": {
+      "$ref": "#/$defs/identity"
+    },
+    "englishExecutionClosure": {
+      "$ref": "#/$defs/identity"
+    },
+    "chineseExecutionClosure": {
+      "$ref": "#/$defs/identity"
+    },
+    "profiles": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {
+          "$ref": "#/$defs/englishProfile"
+        },
+        {
+          "$ref": "#/$defs/chineseProfile"
+        }
+      ],
+      "items": false
+    },
+    "decision": {
+      "enum": [
+        "reuse-permitted",
+        "profile-qualification-required",
+        "focused-qualification-required",
+        "api-impact-review-required",
+        "blocked"
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "decision": {
+            "const": "reuse-permitted"
+          }
+        },
+        "required": ["decision"]
+      },
+      "then": {
+        "properties": {
+          "ancestryVerified": {
+            "const": true
+          },
+          "profiles": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "equal": {
+                  "const": true
+                }
+              },
+              "required": ["equal"]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "commit": {
+      "type": "string",
+      "pattern": "^(?!0{40})[a-f0-9]{40}$"
+    },
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "contentIdentity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["sizeBytes", "sha256"],
+      "properties": {
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha"
+        }
+      }
+    },
+    "classification": {
+      "enum": [
+        "profile-qualification-required",
+        "focused-qualification-required",
+        "aggregate-api-renewal-required",
+        "release-pipeline-only",
+        "documentation-record-only",
+        "api-impact-review-required"
+      ]
+    },
+    "change": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "path", "classification"],
+          "properties": {
+            "status": {
+              "enum": ["A", "M", "D"]
+            },
+            "path": {
+              "type": "string",
+              "minLength": 1
+            },
+            "classification": {
+              "$ref": "#/$defs/classification"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "oldPath", "newPath", "classification"],
+          "properties": {
+            "status": {
+              "const": "R"
+            },
+            "oldPath": {
+              "type": "string",
+              "minLength": 1
+            },
+            "newPath": {
+              "type": "string",
+              "minLength": 1
+            },
+            "classification": {
+              "$ref": "#/$defs/classification"
+            }
+          }
+        }
+      ]
+    },
+    "profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profileId",
+        "hostPackageId",
+        "providerId",
+        "modelAssetId",
+        "hostArchive",
+        "hostDescriptorSha256",
+        "hostFileManifestSha256",
+        "modelAdmissionRootSha256",
+        "modelManifest",
+        "compatibilityPairSha256",
+        "focusedHostSourceClosure",
+        "admittedHostSourceClosure",
+        "equal"
+      ],
+      "properties": {
+        "profileId": {
+          "enum": ["english", "chinese"]
+        },
+        "hostPackageId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "providerId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "modelAssetId": {
+          "type": "string",
+          "minLength": 1
+        },
+        "hostArchive": {
+          "$ref": "#/$defs/identity"
+        },
+        "hostDescriptorSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "hostFileManifestSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "modelAdmissionRootSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "modelManifest": {
+          "$ref": "#/$defs/identity"
+        },
+        "compatibilityPairSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "focusedHostSourceClosure": {
+          "$ref": "#/$defs/contentIdentity"
+        },
+        "admittedHostSourceClosure": {
+          "$ref": "#/$defs/contentIdentity"
+        },
+        "equal": {
+          "type": "boolean"
+        }
+      }
+    },
+    "englishProfile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "profileId": {
+              "const": "english"
+            }
+          }
+        }
+      ]
+    },
+    "chineseProfile": {
+      "allOf": [
+        {
+          "$ref": "#/$defs/profile"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "profileId": {
+              "const": "chinese"
+            }
+          }
+        }
+      ]
+    }
+  }
+}

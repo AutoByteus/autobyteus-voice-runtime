@@ -1,0 +1,6 @@
+timestamp_utc=2026-08-10T07:59:02Z
+head=93c9a6e579d253cfc1e9b5b8f69f22e4f688df9c
+source_commit=ad7c402d224690584e2da98ec71a73e8b6d4ca36
+node=v22.23.1
+go=go version go1.26.5 darwin/arm64
+uname=Darwin MacBookPro 25.5.0 Darwin Kernel Version 25.5.0: Tue Jun  9 22:18:58 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T6000 arm64

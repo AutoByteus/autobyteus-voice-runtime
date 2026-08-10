@@ -22,6 +22,14 @@
 | `API-REV-016` | Code Reviewer / `code-review-report.md` / `CRR-035`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-023`, `CRR-034`, `CRR-035` | `Fail / 99%`              | `Fail / 99%`                |
 | `API-REV-017` | Code Reviewer / `code-review-report.md` / `CRR-037`            | `SR-013`, `SR-014`, `ARCH-REV-015`, `IR-024`, `CRR-036`, `CRR-037` | `Fail / 99%`              | `Pass / 99%`                |
 | `API-REV-018` | Code Reviewer / `code-review-report.md` / `CRR-039`            | `API-REV-017`, `DR-003`, `IR-025`, `CRR-038`, `CRR-039`            | `Pass / 99%`              | `Pass / 99%`                |
+| `API-REV-019` | Code Reviewer / `code-review-report.md` / `CRR-044`            | `SR-018`, `ARCH-REV-019`, `IR-029`, `CRR-044`                      | `Pass / 99%`              | `Pass / 99%`                |
+| `API-REV-020` | Code Reviewer / `code-review-report.md` / `CRR-046`            | `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `DR-006`            | `Pass / 99%`              | `Fail / 78%`                |
+| `API-REV-021` | Delivery Engineer / `delivery-revision-record.md` / `DR-007`   | `SR-018`, `ARCH-REV-019`, `CRR-047`, `DR-007`                      | `Fail / 78%`              | `Blocked / 80%`             |
+| `API-REV-022` | Code Reviewer / `code-review-report.md` / `CRR-049`            | `SR-021`, `ARCH-REV-021`, `IR-032`, `CRR-048`, `CRR-049`           | `Blocked / 80%`           | `Fail / 84%`                |
+| `API-REV-023` | Code Reviewer / `code-review-report.md` / `CRR-051`            | `SR-021`, `ARCH-REV-021`, `IR-033`, `CRR-050`, `CRR-051`           | `Fail / 84%`              | `Fail / 84%`                |
+| `API-REV-024` | Code Reviewer / `code-review-report.md` / `CRR-053`            | `SR-021`, `ARCH-REV-021`, `IR-034`, `CRR-052`, `CRR-053`           | `Fail / 84%`              | `Fail / 84%`                |
+| `API-REV-025` | Code Reviewer / `code-review-report.md` / `CRR-055`            | `SR-021`, `ARCH-REV-021`, `IR-035`, `CRR-054`, `CRR-055`           | `Fail / 84%`              | `Pass / 97%`                |
+| `API-REV-026` | Code Reviewer / `code-review-report.md` / `CRR-058`            | `SR-024`, `ARCH-REV-024`, `IR-037`, `CRR-057`, `CRR-058`, `DR-008` | `Pass / 97%`              | `Pass / 98%`                |
 
 ## Revision Entries
 
@@ -656,3 +664,260 @@ None.
 - New or remaining API/E2E failure IDs: none in the authorized Aggregate API Renewal scope.
 - Recommended recipient: `code_reviewer` for proportional test-code review recorded as `Not Applicable` and review of the durable authority record before later policy/controller work.
 - Remaining boundary: this Pass does not authorize archive recovery or candidate promotion. A separate reviewed policy/controller commit must accept the exact record commit and produce a new exact `reuse-permitted` Preliminary Source Admission. Recovery, promotion, tag, release, and publication remain unexecuted and fail closed.
+
+### API-REV-020 — Reuse admission passes but default-branch workflow registration blocks recovery
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-046`; API/E2E round 20.
+- Triggering scenario and criteria: `API-VOICE-016`; `R-022`, `R-023`, `R-024`; `AC-025`, `AC-026`; `BEH-007`, `BEH-013`.
+- Related revisions: `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `API-REV-019`, `DR-006`.
+- Reviewed source/artifact: source `2e743600ef67469f3fd1bf2c9078d53c2d053979`; artifact `ec0f726afd252448784855665a08d1de2ee0521c`; accepted record commit `448517cee89e6498c551bcc70aba65ec0bedf97e`.
+- Why recorded: the required direct admission transition passes, but the first real managed-recovery operation proves the reviewed branch-only workflow cannot be dispatched because GitHub requires it in the default-branch workflow catalog. API/E2E stopped fail closed before a workflow run or archive build existed.
+- Coverage decisions/durable test paths changed: none. Existing admission, recovery, candidate, and workflow boundary coverage remains valid. API/E2E added no repository-resident durable test code.
+- Scenario delta:
+  - `API-VOICE-016-A` Pass: exact record/policy/ancestry/closures/changed paths produce `reuse-permitted`.
+  - `API-VOICE-016-B` Fail as `API-F-015`: default workflow catalog omits the reviewed recovery workflow and dispatch returns HTTP 404.
+  - `API-VOICE-016-C` Not Tested: promotion correctly remained prohibited.
+- Execution delta: all API-REV-019 checksums Pass; focused source closure 6/6 Pass; release pipeline 46/46 Pass; exact reviewed artifact pushed and remote-equal; recovery/promotion workflow contents readable on ticket branch; recovery dispatch exit 1 / HTTP 404; zero runs at reviewed head.
+
+#### Prior Failure Resolution
+
+| Prior Scenario / Failure Reference                                    | Previous Classification            | Current Resolution     | Evidence                                                                                               |
+| --------------------------------------------------------------------- | ---------------------------------- | ---------------------- | ------------------------------------------------------------------------------------------------------ |
+| API-REV-019 pending renewed-policy transition                         | Intended later reviewed transition | Resolved / direct Pass | production admission evidence: 11/11 exact checks, both closures unchanged, decision `reuse-permitted` |
+| Earlier API-REV-017 qualification and API-REV-019 aggregate authority | Pass / retained authority          | Reconfirmed exact      | API-REV-019 checksum manifest Pass; exact record/closure/archive authority remains unchanged           |
+
+#### New Failure
+
+- ID: `API-F-015`.
+- Expected: GitHub creates one recovery workflow run at exact reviewed head `ec0f726...` and queues it for approved organization-managed Apple Silicon capacity.
+- Observed: branch files exist at exact blob identities, but the default-branch Actions catalog contains only the older `Voice runtime qualified release`; `gh workflow run recover-qualified-voice-archives.yml --ref codex/voice-runtime-qualified-recovery ...` returns `HTTP 404: workflow ... not found on the default branch`. No run, build, Result, archive artifact, promotion, candidate, tag, release, or publication exists.
+- Preliminary classification: `Design Impact` — reviewed API/E2E-before-Delivery ordering conflicts with GitHub's default-branch workflow registration prerequisite. No authorized API/E2E action can make the workflow dispatchable without integrating release infrastructure to main or introducing a forbidden fallback.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-020/`
+- Prior result/confidence: `Pass / 99%`.
+- Current result/confidence: **`Fail / 78%`**.
+- New failure ID: `API-F-015`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review, likely followed by `solution_designer` for release-stage ordering/design correction.
+- Remaining proof after resolution: execute managed English/Chinese exact recovery, independently verify Result/raw evidence/archives, execute hosted 19-member promotion, and verify Candidate Promotion Record. Delivery pretag/tag/release/publication remains later and was not touched.
+
+### API-REV-021 — Default registration resolves dispatch; managed runner group is unavailable
+
+- Triggering role/report/round: Delivery Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`; `DR-007` after `CRR-047`; API/E2E round 21.
+- Triggering scenario/criteria: recheck `API-F-015` in `API-VOICE-016-B`; continue `API-VOICE-016-C`; `R-022`, `R-023`, `R-024`; `AC-025`, `AC-026`.
+- Related revisions: `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `API-REV-020`, `CRR-047`, `DR-007`.
+- Why recorded: DR-007 registered exact reviewed workflows on default main while preserving exact ticket dispatch ref. Direct retry creates the intended workflow run and resolves API-F-015, but GitHub immediately reports that the required organization-managed runner group does not exist. No recovery step can start, so promotion remains prohibited.
+- Coverage decisions/durable test paths changed: none. Existing admission/recovery/candidate/workflow coverage remains valid; API/E2E changed no repository-resident durable test.
+- Scenario delta:
+  - `API-VOICE-016-A` Pass: exact authority remains `reuse-permitted`.
+  - `API-VOICE-016-B` Blocked as `API-B-001`: exact run exists, but missing runner group prevents all steps/builds/artifacts.
+  - `API-VOICE-016-C` Not Tested: zero promotion runs, as required without recovery Pass.
+- Execution delta: DR-007 checksums Pass; exact main merge/topology/ref/workflow IDs Pass; API-REV-019/020 checksums Pass; admission Pass; recovery run `31301948625` at `ec0f726...` created; job `93216043982` terminates with annotation `Required runner group 'voice-runtime-recovery' not found`, runner ID 0, zero steps, zero artifacts.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                              | Previous Classification                                    | Current Resolution | Evidence                                                                                        |
+| -------------------------------------------------------------------------- | ---------------------------------------------------------- | ------------------ | ----------------------------------------------------------------------------------------------- |
+| `API-F-015` — branch-only workflow returned HTTP 404 and created zero runs | Design Impact / resolved through user-authorized bootstrap | **Resolved**       | recovery workflow `330372979` active; exact dispatch creates run `31301948625` at reviewed head |
+
+#### New Blocker
+
+- ID: `API-B-001`.
+- Exact missing dependency: organization-managed GitHub runner group `voice-runtime-recovery` with approved macOS ARM64 runner, Node `v22.23.1`, and runner-owned exact `VOICE_INPUT_CACHE_ROOT`, `VOICE_GO`, and `VOICE_CMAKE` environment.
+- Observed: GitHub job annotation states `Required runner group 'voice-runtime-recovery' not found`; no runner or step is assigned.
+- Safe alternatives: none within approved scope. A personal runner, local build, old heavy workflow, or qualification rerun would violate requirements.
+- Resume condition: an organization administrator provisions the exact approved group/environment, then API/E2E opens a later revision and dispatches a new recovery run once.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-021/`
+- Prior result/confidence: `Fail / 78%`.
+- Current result/confidence: **`Blocked / 80%`**.
+- New blocker: `API-B-001`; prior `API-F-015` resolved.
+- Recommended recipient: user request for the exact external dependency; no teammate handoff while Blocked.
+- Remaining proof: exact managed two-archive recovery, raw/manifest/Result and archive verification, hosted 19-member promotion, and Promotion Record verification. Release actions remain later Delivery-owned.
+
+### API-REV-022 — Model-free host construction exposes two production composition defects
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-049`; API/E2E round 22.
+- Triggering scenarios/criteria: `API-VOICE-017`–`API-VOICE-024`; `R-025`–`R-029`; `AC-028`–`AC-035`.
+- Related revisions: `SR-021`, `ARCH-REV-021`, `IR-032`, `CRR-048`, `CRR-049`.
+- Reviewed source/artifact: source `ad7c402d224690584e2da98ec71a73e8b6d4ca36`; artifact `93c9a6e579d253cfc1e9b5b8f69f22e4f688df9c`.
+- Why recorded: the clean model-free design supersedes the managed model-contained recovery blocker and makes local host/package validation authoritative. Repository checks and a real English double build pass, but the mandatory production boundary finds two source integration defects: the Chinese builder cannot load, and the canonical verifier rejects the real Go extraction report. Execution stopped fail closed before any model installation or provider execution.
+- Coverage decisions/durable test paths changed: no repository-resident durable API/E2E coverage changed. Existing reproducibility/schema coverage is now `Needs Update` because it neither imports the production Chinese builder nor validates the real Go extraction-report projection. Those changes belong to the source fix and subsequent source review.
+- Scenario delta:
+  - `API-VOICE-017` Pass: current repository/race/source/evidence checks and clean-cut legacy guards pass.
+  - `API-VOICE-018` Fail: English builds twice byte-identically, but Chinese construction fails as `API-F-016` and English verification fails as `API-F-017`.
+  - `API-VOICE-019`–`API-VOICE-024` Not Tested: downstream install/lifecycle/provider/closure/QSet/projection/release-composition execution is not authorized after the critical prerequisite failure.
+- Execution delta: actual MacBookPro18,4 Apple M1 Max / 64 GB / macOS 26.5 on AC; Node 22.23.1; official Go 1.26.5; official CMake 4.2.0; exact isolated inputs; full pinned repository check Pass; race and ten-repeat suites Pass; English double archives and build reports exact at SHA-256 `a2463fc5fedcf2c7e96924d4f5df69045b70ca7b5983dad094a40fe9504e53dc`, size `207492896`; zero model bytes downloaded.
+
+#### Prior Blocker Resolution
+
+| Prior Scenario / Blocker Reference                                                                 | Previous Classification                     | Current Resolution                                              | Evidence                                                                                                                                |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `API-B-001` — organization-managed runner group absent under prior model-contained recovery design | `Blocked`; exact external runner dependency | Superseded prospectively by SR-021, not retroactively relabeled | SR-021 requires local product proof, standard-hosted build/release only, and model-free host archives with on-demand model installation |
+
+#### New Failures
+
+- `API-F-016` — expected the canonical Chinese host builder to load and begin construction from authenticated materialized inputs; observed Node ESM rejection because `build/profile-builders/funasr-host.mjs` imports `cmakeConfigureArguments` from `build/host-build-environment.mjs`, which does not export it. Preliminary classification: `Local Fix`.
+- `API-F-017` — expected the canonical verifier to validate the real extracted English host under canonical logical root `host`; observed the Go extractor report projects its absolute temporary destination as `hostRoot`, which violates Host Verification 2's required constant `host`. Preliminary classification: `Local Fix`.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-022/`
+- Prior result/confidence: `Blocked / 80%`.
+- Current result/confidence: **`Fail / 84%`**.
+- New failure IDs: `API-F-016`, `API-F-017`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
+- Remaining proof after resolution: Chinese double construction, both host verifications/model-free inspections, production CDN install/resume and actual lifecycle interleavings, relocated offline retained-clip provider smoke, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and independent nine-member release-composition verification. No tag, publication, desktop, or user-state action is part of API/E2E.
+
+### API-REV-023 — Corrected builder loads but rejects outer-owned authority input
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-051`; API/E2E round 23.
+- Triggering scenarios/criteria: recheck `API-F-016` and `API-F-017` in `API-VOICE-018`; continue `API-VOICE-019`–`API-VOICE-024` only after `AC-028` passes.
+- Related revisions: `SR-021`, `ARCH-REV-021`, `IR-033`, `CRR-050`, `CRR-051`, `API-REV-022`.
+- Reviewed source/artifact: source `4db8bf26708309440c83ec56973250f77e9f1619`; artifact `bd70e942dd6ed3b49d7db5221dfe13f14b44032f`.
+- Why recorded: focused and full repository gates resolve the prior import and logical-root regressions, and both exact current inputs/closures rematerialize. The first real network-denied Chinese construction then exposes a new ownership mismatch: the inner builder rejects `host-authority/model-admission-root-v1.json`, even though the outer assembler is designed to consume and stage both host-authority inputs after the profile builder returns.
+- Coverage decisions/durable test paths changed: API/E2E changed no repository-resident durable coverage. IR-033's archive regression remains `Still Valid`; its builder composition test is `Needs Update` because module loading does not execute the real complete-manifest ownership boundary.
+- Scenario delta:
+  - `API-VOICE-017` Pass: focused composition 2/2, archive race, release pipeline 9/9, and full 93/93 Node plus 7/7 Python/all Go/source/evidence checks.
+  - `API-VOICE-018` Fail as `API-F-018`: current inputs and Host Source Closure 1 pass; first Chinese build fails before CMake and creates no archive.
+  - `API-VOICE-019`–`API-VOICE-024` Not Tested after the critical `AC-028` failure.
+- Execution delta: exact MacBookPro18,4 M1 Max/64 GB/macOS 26.5 on AC; official Node 22.23.1, Go 1.26.5, CMake 4.2.0; retained environment record byte-identical to API-REV-022; source-bound current input trees and closures; checked-in deny-network Seatbelt profile. Zero model bytes downloaded.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                              | Previous Classification | Current Resolution                                                     | Evidence                                                                                                               |
+| -------------------------------------------------------------------------- | ----------------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `API-F-016` — Chinese builder imports CMake functions from wrong owner     | `Local Fix`             | **Resolved at exact import boundary**                                  | production builder loads and reaches input-consumer closure; focused builder composition Pass                          |
+| `API-F-017` — extraction report exposes absolute destination as `hostRoot` | `Local Fix`             | **Direct regression resolved; full packaged-host recheck not reached** | real canonical small archive extraction and targeted archive race assert logical `host` and destination non-disclosure |
+
+#### New Failure
+
+- ID: `API-F-018`.
+- Expected: the canonical Chinese profile builder validates and consumes its native/runtime inputs while allowing the two `host-authority/*` inputs to remain for the outer host-package assembler's later staging.
+- Observed: `assertHostInputClosure()` receives the complete manifest and rejects `host-authority/model-admission-root-v1.json` as unconsumed before CMake. No Chinese archive is created.
+- Preliminary classification: `Local Fix`; source ownership and coverage need a bounded correction without weakening unused-input rejection.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-023/`
+- Prior result/confidence: `Fail / 84%`.
+- Current result/confidence: **`Fail / 84%`**.
+- New failure ID: `API-F-018`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
+- Remaining proof after resolution: Chinese double construction and verification, current-source English double construction and verification, production model installation and Store 1 lifecycle, relocated offline retained-clip providers, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and exact nonpublishing nine-member composition.
+
+### API-REV-024 — Exact ownership passes; full Chinese provider fails to compile
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-053`; API/E2E round 24.
+- Triggering scenarios/criteria: recheck `API-F-018` in `API-VOICE-018`; continue `API-VOICE-019`–`API-VOICE-024` only after `AC-028` passes.
+- Related revisions: `SR-021`, `ARCH-REV-021`, `IR-034`, `CRR-052`, `CRR-053`, `API-REV-023`.
+- Reviewed source/artifact: source `97f3007c2a62e5f48acd5fcc8c26d1e38b099850`; artifact `2a4b2ef7eab573388390274b47e1de197fe02d3e`.
+- Why recorded: repository gates and exact complete-manifest fixtures pass, and the first canonical Chinese construction directly resolves the prior ownership failure by reaching native CMake. The production build then exposes `API-F-019`: the full provider does not compile because three validated JSON digest values are compared to `std::string` results without typed extraction.
+- Coverage decisions/durable test paths changed: API/E2E changed no repository-resident durable coverage. IR-034 ownership fixtures/tests remain valid. Existing Chinese preparation/integrity tests and source guards are `Needs Update` for the complete `voice-provider-worker` translation set because all repository checks pass while production compilation fails.
+- Scenario delta:
+  - `API-VOICE-017` Pass: focused ownership/builder/verifier 3/3, targeted race/vet, release pipeline 9/9, and full 93/93 Node plus 7/7 Python/all Go/source/evidence checks.
+  - `API-VOICE-018` Fail as `API-F-019`: current inputs/closures and complete input ownership pass; first Chinese native build fails after about 164 seconds; no archive.
+  - `API-VOICE-019`–`API-VOICE-024` Not Tested after the critical `AC-028` failure.
+- Execution delta: exact M1 Max/64 GB/macOS host on AC; official Node 22.23.1, Go 1.26.5, CMake 4.2.0; retained environment record byte-identical; source-bound current inputs and closures; checked-in deny-network Seatbelt profile; zero model downloads.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                     | Previous Classification                 | Current Resolution                                                | Evidence                                                                    |
+| ----------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `API-F-018` — Chinese builder rejects outer-owned authority input | `Local Fix`                             | **Resolved**                                                      | exact complete 3,151-row manifest passes ownership and reaches native CMake |
+| `API-F-016` — invalid Chinese builder import                      | `Local Fix`, resolved in API-REV-023    | remains resolved                                                  | production builder executes through native build                            |
+| `API-F-017` — extraction report root mismatch                     | `Local Fix`, direct regression resolved | remains directly resolved; packaged-host verification not reached | focused real archive and targeted race checks Pass                          |
+
+#### New Failure
+
+- ID: `API-F-019`.
+- Expected: the authenticated native build compiles the complete Chinese `voice-provider-worker` and proceeds to archive assembly.
+- Observed: Apple Clang rejects `providers/chinese-funasr/src/session.cpp` lines 44, 45, and 52 because `std::string` SHA results are compared directly to `nlohmann::json` values for descriptor, activation, and model-file digests.
+- Preliminary classification: `Local Fix`; preserve strict digest/schema validation and add full native translation-set compilation coverage.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-024/`
+- Prior result/confidence: `Fail / 84%`.
+- Current result/confidence: **`Fail / 84%`**.
+- New failure ID: `API-F-019`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
+- Remaining proof after resolution: Chinese double construction/verification, English double construction/verification, production model installation and Store 1 lifecycle, relocated offline retained-clip providers, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and exact nonpublishing nine-member composition.
+
+### API-REV-025 — Current M1 host/model/install/runtime/focused release authority passes
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-055`; API/E2E round 25.
+- Triggering scenarios/criteria: recheck `API-F-019` in `API-VOICE-018`, then execute `API-VOICE-019`–`API-VOICE-024`; `AC-028`–`AC-035`.
+- Related revisions: `SR-021`, `ARCH-REV-021`, `IR-035`, `CRR-054`, `CRR-055`, `API-REV-024`.
+- Reviewed source/artifact: source `b88c230663eb96e0def8c869b095ea858b0ff50b`; artifact `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`.
+- Why recorded: the complete current Apple-native Chinese worker now compiles and links in the real canonical build. Both model-free hosts build twice byte-identically and independently verify; the exact Catalog 4 performs real immutable public model installation into isolated stores; actual signal/resume/remove/status/lease and relocated offline retained-audio provider journeys pass; both Profile Execution Closure 2 records authorize historical full-profile evidence reuse; Focused Qualification Set 3, Branch Catalog Projection 3, and exact nonpublishing nine-member composition pass.
+- Coverage decisions/durable test paths changed: API/E2E added, updated, and removed no repository-resident durable coverage. IR-035's `tests/build/chinese-worker-native-compile.test.mjs` and authenticated fixture are `Still Valid` and are directly corroborated by the real linked archive. All other relevant current coverage remains `Still Valid`.
+- Scenario delta:
+  - `API-VOICE-017` Pass: full/focused repository, race, worker translation-set, release, source, and legacy guards.
+  - `API-VOICE-018` Pass: English and Chinese each build twice with exact archive/report equality; Host Verification 2 passes and proves model payload absent.
+  - `API-VOICE-019` Pass: invalid authority rejects before network/store; exact production Catalog 4 and manifests install English and Chinese public immutable model bytes and verify all store/activation identities.
+  - `API-VOICE-020` Pass: duplicate install, actual cancellation, retained-partial resume, removal/status, lifetime lease rejection, pointer stability, and clean shutdown.
+  - `API-VOICE-021` Pass: relocated public providers transcribe exact retained English/Chinese clips under network denial and leave host/store bytes unchanged.
+  - `API-VOICE-022` Pass: English and Chinese Profile Execution Closure 2 decisions are `reuse-permitted`.
+  - `API-VOICE-023` Pass: Focused Qualification Set 3 and independent Branch Catalog Projection 3 verification.
+  - `API-VOICE-024` Pass: exact nine prospective assets, eight checksum-covered preceding assets, and Prepublication Seal 1 under local nonpublishing composition.
+- Execution delta: actual MacBookPro18,4 M1 Max/64 GB/macOS 26.5.2 on AC; Node 22.23.1; official Go 1.26.5; official CMake 4.2.0; authenticated Xcode/SDK/native tools; network-denied host construction and provider execution; current source and freshly materialized exact English/Chinese inputs.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                          | Previous Classification        | Current Resolution                     | Evidence                                                                       |
+| ------------------------------------------------------ | ------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------ |
+| `API-F-019` — complete Chinese worker does not compile | `Local Fix`                    | **Resolved**                           | actual CMake compile/link, two exact archives, independent Host Verification 2 |
+| `API-F-018` — builder ownership mismatch               | resolved in source/API recheck | remains resolved                       | exact current Chinese 3,151-row input closes and builds twice                  |
+| `API-F-017` — verifier exposes extraction destination  | direct regression resolved     | **fully resolved at package boundary** | both actual relocated hosts verify with logical root `host`                    |
+| `API-F-016` — Chinese builder import failure           | resolved                       | remains resolved                       | real builder completes native construction                                     |
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/`
+- Prior result/confidence: `Fail / 84%`.
+- Current result/confidence: **`Pass / 97%`**.
+- Broader validation: `Required — Completed`.
+- New failures/blockers: `None`.
+- Durable API/E2E coverage changes: `None`.
+- Recommended recipient: `code_reviewer` for proportional API/E2E test-code review; expected disposition `Not Applicable` before Delivery resumes.
+- Residual scope: maintained-main/standard-hosted equality, tag/release/publication/downloaded-byte verification are Delivery-owned; x64/Linux/Windows/auto/desktop remain explicitly deferred.
+
+### API-REV-026 — Zero-profile release source admission and exact authority promotion pass
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-058`; API/E2E round 26.
+- Triggering scenario/criteria: `API-VOICE-025`; `BEH-007`, `BEH-013`, and `AC-025` bounded `F -> D -> R` source-admission/promotion stage.
+- Related revisions: `SR-024`, `ARCH-REV-024`, `IR-037`, `CRR-057`, `CRR-058`, preserved `API-REV-025`, and blocked Delivery round `DR-008`.
+- Reviewed subjects: focused authority source `F=b88c230663eb96e0def8c869b095ea858b0ff50b`; admitted source `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`; implementation artifact `f9e4cff7ea44c303bb7fd94cff07f4345d51c77d`.
+- Why recorded: production Release Source Admission 4 and the sole promotion controller were executed from a clean exact-`D` checkout against the exact five checksum-bound API-REV-025 authorities and equal retained Host Source Closures. The result is one independently verified six-add direct-child promotion commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`.
+- Coverage decisions/durable test paths changed: API/E2E added, updated, and removed no repository-resident durable test coverage. The exact six `release/admission/` files are new durable non-test production authority and require Code Review before Delivery.
+- Scenario delta: `API-VOICE-025` Pass. API-REV-025 product/runtime evidence remains unchanged and was not rerun or relabeled.
+- Execution delta: all `175` API-REV-025 checksum rows Pass; clean-checkout `npm ci --ignore-scripts` Pass; release pipeline `19/19` Pass; Admission 4 returns `reuse-permitted` for exact `218` paths (`25` release-only, `193` documentation-only), digest `191b58b2...3f56d`, Policy 3 `c7cd2e5e...1e676`, verified ancestry, and equal English/Chinese closures. Independent verification confirms the same result.
+- Promotion delta: `R` has exactly one parent `D`, exactly six ordinary `100644` additions, no other change, and byte identity with all admitted sources. The isolated promotion worktree is clean after commit.
+- Required zero counts: `profileExecutionCount=0`, `providerLaunchCount=0`, `modelDownloadCount=0`, `corpusAttemptCount=0`, and `performanceTrialCount=0`; host build, dispatch, tag, publication, and user/desktop mutation counts are also zero.
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/`
+- Prior result/confidence: `Pass / 97%`.
+- Current result/confidence: **`Pass / 98%`**.
+- Broader validation: `Required — Completed` at the real Git admission/promotion/commit boundary.
+- New failures/blockers: `None`.
+- Recommended recipient: `code_reviewer` for review of exact durable authority commit `R`; proportional test-code review is `Not Applicable` because no test changed.
+- Remaining scope: Delivery-owned maintained-main `W`, hosted `R..W` verification, standard-hosted host-only equality, tag/release/publication, and downloaded-byte proof. Alternate targets and desktop remain deferred.

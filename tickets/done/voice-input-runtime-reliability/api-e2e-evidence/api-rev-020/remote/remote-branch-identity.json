@@ -1,0 +1,10 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-remote-branch-identity",
+  "apiRevision": "API-REV-020",
+  "repository": "AutoByteus/autobyteus-voice-runtime",
+  "branch": "codex/voice-runtime-qualified-recovery",
+  "expectedHead": "ec0f726afd252448784855665a08d1de2ee0521c",
+  "observedHead": "ec0f726afd252448784855665a08d1de2ee0521c",
+  "exactMatch": true
+}

@@ -1,0 +1,184 @@
+{
+  "aggregate": {
+    "branchProjection": {
+      "decision": "pass",
+      "fileName": "branch-catalog-projection-v3.json",
+      "sha256": "240b909f1e64c106a6e65e4572cd756816777dd8114f33b5235a5edd00aa691f",
+      "sizeBytes": 2401
+    },
+    "decision": "pass",
+    "focusedQualificationSet": {
+      "decision": "pass",
+      "fileName": "focused-qualification-set-v3.json",
+      "profileCount": 2,
+      "sha256": "61ecbebdd734a8d4bec3e701350aaa5e4bb41af3642acae9f00cc716dea9ccc1",
+      "sizeBytes": 2215
+    },
+    "independentProjectionVerification": {
+      "decision": "pass",
+      "fileName": "branch-catalog-projection-verification-v3.json",
+      "sha256": "fd2440191680573d64f8444eb1158dab1d3665ff7a48ed7edae0bb736f96fb76",
+      "sizeBytes": 370
+    },
+    "profileClosures": [
+      {
+        "closureDecision": "reuse-permitted",
+        "profileId": "english"
+      },
+      {
+        "closureDecision": "reuse-permitted",
+        "profileId": "chinese"
+      }
+    ]
+  },
+  "apiRevision": "API-REV-025",
+  "broaderValidation": "required-completed",
+  "buildBoundary": {
+    "modelBytesDownloaded": 0,
+    "productTestsExecuted": 0,
+    "providersLaunched": 0
+  },
+  "confidencePercent": 97,
+  "decision": "pass",
+  "durableApiE2eCoverageChanges": [],
+  "hosts": [
+    {
+      "archive": {
+        "entryCount": 6503,
+        "extractedSizeBytes": 723870544,
+        "fileName": "voice-host-english-darwin-arm64-1.0.0.zip",
+        "sha256": "7149be2ebb28ae49e0e88df006e7de9446e9697c1e0b7ada91a82d77405fcbee",
+        "sizeBytes": 207493128
+      },
+      "descriptor": {
+        "fileName": "runtime-host-v2.json",
+        "sha256": "dbfef7fa107a9b1304875ea85fcf3c7c08f88a5036ba70e0d450df2aec854665",
+        "sizeBytes": 2071
+      },
+      "doubleBuildEqual": true,
+      "fileManifest": {
+        "fileName": "host-files-v2.json",
+        "sha256": "8ac5fe397f225efcbb035779b0172d56933de0c9c67d3aaff0587dbacda67256",
+        "sizeBytes": 1539732
+      },
+      "hostSourceClosure": {
+        "fileName": "host-source-closure-v1.json",
+        "sha256": "d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134",
+        "sizeBytes": 40027
+      },
+      "modelPayloadAbsent": true,
+      "profileId": "english"
+    },
+    {
+      "archive": {
+        "entryCount": 22,
+        "extractedSizeBytes": 19610836,
+        "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip",
+        "sha256": "d08bb4775ae1cc599679f3f2675ac81297ed5e6956aabe5c81ff45c2818dcea3",
+        "sizeBytes": 9662381
+      },
+      "descriptor": {
+        "fileName": "runtime-host-v2.json",
+        "sha256": "0435c0867e0c74478e9f44cf75ab4d46e6de32aa45aab8bce30e0eee62448495",
+        "sizeBytes": 2159
+      },
+      "doubleBuildEqual": true,
+      "fileManifest": {
+        "fileName": "host-files-v2.json",
+        "sha256": "e55cb44e863ed9760ba825538d88c7a292a5c4790e6834072b2b5e75819330af",
+        "sizeBytes": 4303
+      },
+      "hostSourceClosure": {
+        "fileName": "host-source-closure-v1.json",
+        "sha256": "705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4",
+        "sizeBytes": 701449
+      },
+      "modelPayloadAbsent": true,
+      "profileId": "chinese"
+    }
+  ],
+  "implementationArtifact": "5a2ec1b95536e8490d00e0359ff75e74f199d8f0",
+  "lifecycle": [
+    {
+      "decision": "pass",
+      "profileId": "english",
+      "readyMs": 4596.376208,
+      "removeWhileLeasedFailureCategory": "profile-in-use",
+      "shutdownCode": 0,
+      "statusWhileLeased": "active"
+    },
+    {
+      "decision": "pass",
+      "profileId": "chinese",
+      "readyMs": 14835.605458999999,
+      "removeWhileLeasedFailureCategory": "profile-in-use",
+      "shutdownCode": 0,
+      "statusWhileLeased": "active"
+    }
+  ],
+  "priorFailureResolution": {
+    "boundary": "actual Chinese compile/link/archive/verification",
+    "failureId": "API-F-019",
+    "resolved": true
+  },
+  "productionInstalls": [
+    {
+      "allModelFilesExact": true,
+      "catalogSha256": "c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f",
+      "modelFileCount": 2,
+      "modelManifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+      "profileId": "english",
+      "storeDecision": "pass"
+    },
+    {
+      "allModelFilesExact": true,
+      "catalogSha256": "c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f",
+      "modelFileCount": 3,
+      "modelManifestSha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da",
+      "profileId": "chinese",
+      "storeDecision": "pass"
+    }
+  ],
+  "releaseComposition": {
+    "assetCount": 9,
+    "decision": "pass",
+    "exactAssetNames": true,
+    "executionMode": "local-nonpublishing-prepublication-composition",
+    "hostPackagesContainModels": false,
+    "modelWeightsDownloadedDuringHostBuildOrComposition": 0,
+    "published": false,
+    "tagCreated": false
+  },
+  "repository": {
+    "fullGate": "pass",
+    "nodeTapPassed": 94,
+    "pythonPassed": 7,
+    "race": "pass",
+    "releasePipelinePassed": 9
+  },
+  "residualScope": [
+    "Delivery-owned maintained-main/standard-hosted equality and release publication",
+    "deferred macOS x64/Linux/Windows/auto/desktop"
+  ],
+  "retainedClipSmoke": [
+    {
+      "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+      "decision": "pass",
+      "exactTranscriptEqual": true,
+      "inferenceMs": 1350.019375,
+      "networkDenied": true,
+      "profileId": "english"
+    },
+    {
+      "audioSha256": "f24a03299a08b700c7096fdb5f9c9debaf35cad48f04d343126dcc84c9e7f865",
+      "decision": "pass",
+      "exactTranscriptEqual": true,
+      "inferenceMs": 555.33325,
+      "networkDenied": true,
+      "profileId": "chinese"
+    }
+  ],
+  "scenarioRange": "API-VOICE-017-024",
+  "schemaVersion": 1,
+  "sourceCommit": "b88c230663eb96e0def8c869b095ea858b0ff50b"
+}

@@ -1,0 +1,93 @@
+{
+  "activation": {
+    "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+    "catalog": {
+      "fileName": "voice-runtime-catalog-v4.json",
+      "sha256": "c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f"
+    },
+    "compatibilityPairSha256": "d5a6b572df31561d06ae27bd6157d177bc251f57be8bbff6dd410884163fe53c",
+    "createdAt": "2026-08-10T15:17:01.471129Z",
+    "decision": "active",
+    "host": {
+      "compatibilityRequirementSha256": "70e676b166b2d5587ace83b6e9a5ee352a54fe1086cd45b55f6f4ef38cbb8b56",
+      "descriptorSha256": "dbfef7fa107a9b1304875ea85fcf3c7c08f88a5036ba70e0d450df2aec854665",
+      "fileManifestSha256": "8ac5fe397f225efcbb035779b0172d56933de0c9c67d3aaff0587dbacda67256",
+      "hostPackageId": "voice.host.english.mlx-whisper.darwin-arm64",
+      "hostSourceClosureSha256": "d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134",
+      "modelAdmissionRootSha256": "7cbf9799670b42482a29404c7a2acfb3a7f701a5e890d3cc22f3245bddfb5448",
+      "providerId": "autobyteus.voice.mlx-whisper-small"
+    },
+    "installationId": "cea33e32-e4e1-4f56-b791-85990876ffdb",
+    "languageMode": "en",
+    "model": {
+      "files": [
+        {
+          "mode": "read-only",
+          "path": "config.json",
+          "role": "configuration",
+          "sha256": "e8f58e638208af66d5d5d67801259dc7a12d199e971967a9f9d33a8e3635668e",
+          "sizeBytes": 266
+        },
+        {
+          "mode": "read-only",
+          "path": "weights.npz",
+          "role": "weights",
+          "sha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+          "sizeBytes": 481307592
+        }
+      ],
+      "layoutId": "mlx-whisper-small-v1",
+      "manifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+      "modelAssetId": "voice.model.english.whisper-small-mlx-fp16.v1",
+      "modelId": "whisper-small-mlx-fp16",
+      "revision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+      "treeSha256": "e03db60e823ae5f81cdb8f17af54008fa46f6dbf2c00efe59739538c7f1287c0"
+    },
+    "profileId": "english",
+    "schemaVersion": 1,
+    "target": {
+      "architecture": "arm64",
+      "platform": "darwin"
+    }
+  },
+  "activePointer": {
+    "activationRelativePath": "activations/cea33e32-e4e1-4f56-b791-85990876ffdb/profile-activation-v1.json",
+    "activationSha256": "d876b4e65cf5724736cbfda99042dbb2fcaf8274065efc6f1babe9e8e3f6964a",
+    "compatibilityPairSha256": "d5a6b572df31561d06ae27bd6157d177bc251f57be8bbff6dd410884163fe53c",
+    "installationId": "cea33e32-e4e1-4f56-b791-85990876ffdb",
+    "profileId": "english",
+    "schemaVersion": 1,
+    "selectorGeneration": "6aed7fab-b3da-40ff-84ea-a243cefb0422",
+    "target": {
+      "architecture": "arm64",
+      "platform": "darwin"
+    },
+    "updatedAt": "2026-08-10T15:17:01.486608Z"
+  },
+  "catalogSha256": "c6930ab21fc202947259d51fb9c8751758604dc2dc3f5559271bcb2e2256a41f",
+  "decision": "pass",
+  "fileChecks": [
+    {
+      "actualSha256": "e8f58e638208af66d5d5d67801259dc7a12d199e971967a9f9d33a8e3635668e",
+      "actualSize": 266,
+      "expectedSha256": "e8f58e638208af66d5d5d67801259dc7a12d199e971967a9f9d33a8e3635668e",
+      "expectedSize": 266,
+      "pass": true,
+      "path": "config.json"
+    },
+    {
+      "actualSha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+      "actualSize": 481307592,
+      "expectedSha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+      "expectedSize": 481307592,
+      "pass": true,
+      "path": "weights.npz"
+    }
+  ],
+  "modelManifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+  "modelRoot": "/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/stores-r25-v1/english/models/voice.model.english.whisper-small-mlx-fp16.v1/623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+  "profileId": "english",
+  "scenarioId": "API-VOICE-020",
+  "schemaVersion": 1,
+  "symlinks": []
+}

@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "authorityVersion": 1,
+  "profileId": "chinese",
+  "languageMode": "zh",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "providerId": "autobyteus.voice.funasr-nano-q8",
+  "engineKind": "funasr-native",
+  "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+  "hostPackageId": "voice.host.chinese.funasr-native.darwin-arm64",
+  "compatibilityRequirement": {
+    "fileName": "model-compatibility-requirement-v1.json",
+    "sha256": "217c57429dd08e1ff5e17c02c7cc95d947a07ac541e5f3220b8e6319b57675b2"
+  },
+  "admittedModels": [
+    {
+      "manifestFileName": "voice-model-chinese-fun-asr-nano-gguf-q8-v1.json",
+      "sizeBytes": 2801,
+      "sha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da",
+      "modelAssetId": "voice.model.chinese.fun-asr-nano-gguf-q8.v1",
+      "revision": "46e849502a867080d66d351b8dfb1018b607e509",
+      "layoutId": "funasr-nano-gguf-v1",
+      "modelTreeSha256": "bfac50b188fde75790de4c350bd7d8430ec7efffa94751e4a0e5c22bb6f0e20e",
+      "totalSizeBytes": 1275804800
+    }
+  ],
+  "notice": {
+    "fileName": "THIRD_PARTY_NOTICES.json",
+    "sizeBytes": 2226,
+    "sha256": "f260d4b18a924eb4964154496a77efe42183d5a6908990c9c887be27e6719c50"
+  },
+  "updatePolicy": "new-host-required"
+}

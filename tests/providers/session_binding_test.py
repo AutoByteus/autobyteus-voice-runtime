@@ -1,131 +1,89 @@
 import hashlib
 import json
 import os
-import platform
 import stat
 import sys
 import tempfile
 import unittest
-from unittest import mock
 from pathlib import Path
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT / "providers/python"))
 from autobyteus_voice_provider.exact_json import ContractError
 from autobyteus_voice_provider.session import bind_session, cleanup_launcher_scratch, verify_complete_manifest
 
-
-def digest(data):
-    return hashlib.sha256(data).hexdigest()
-
+UUID = "00000000-0000-4000-8000-000000000001"
+SHA = "a" * 64
 
 def encoded(value):
     return (json.dumps(value, separators=(",", ":")) + "\n").encode()
 
-
-def target():
-    platform_id = "win32" if sys.platform == "win32" else "darwin" if sys.platform == "darwin" else "linux"
-    machine = platform.machine().lower()
-    architecture = "arm64" if machine in {"arm64", "aarch64"} else "x64"
-    return platform_id, architecture
-
-
-def apply_mode(path, logical):
-    os.chmod(path, stat.S_IREAD if os.name == "nt" else 0o555 if logical == "executable" else 0o444)
-
+def digest(data):
+    return hashlib.sha256(data).hexdigest()
 
 class SessionBindingTest(unittest.TestCase):
     def setUp(self):
         self.temporary = tempfile.TemporaryDirectory()
-        self.root = Path(self.temporary.name) / "package"
-        self.config_path = Path(self.temporary.name) / "session.json"
-        platform_id, architecture = target()
-        self.capabilities = {"maxInFlightRequests": 1, "rawAndNormalizedText": True, "noSpeech": True}
-        launcher = "bin/voice-provider.exe" if platform_id == "win32" else "bin/voice-provider"
-        host = "host/python/python.exe" if platform_id == "win32" else "host/python/bin/python3"
-        self.executables = {launcher, host}
-        self.files = {
-            "THIRD_PARTY_NOTICES.json": b"{}\n",
-            launcher: b"launcher",
-            host: b"python",
-            "model/model-descriptor-v1.json": b"{}\n",
-            "provider/engine-configuration-v1.json": b"{}\n",
-            "provider/package-launcher-plan-v1.json": b"{}\n",
-            "worker/worker.py": b"pass\n",
+        self.base = Path(self.temporary.name)
+        self.host = self.base / "host"
+        self.install = self.base / "store"
+        self.model = self.install / "models" / "asset" / SHA / "files"
+        self.activation_path = self.install / "activations" / UUID / "profile-activation-v1.json"
+        self.config_path = self.base / "session.json"
+        self.model.mkdir(parents=True)
+        self.activation_path.parent.mkdir(parents=True)
+        (self.host / "provider").mkdir(parents=True)
+        model_file = self.model / "weights.bin"
+        model_file.write_bytes(b"x")
+        model_file.chmod(0o400)
+        tree = digest(encoded([["weights.bin", 1, digest(b"x")]]))
+        descriptor = {"schemaVersion": 2, "hostPackageId": "host", "providerId": "provider"}
+        descriptor_bytes = encoded(descriptor)
+        (self.host / "provider/runtime-host-v2.json").write_bytes(descriptor_bytes)
+        activation = {
+            "schemaVersion": 1, "installationId": UUID, "profileId": "english", "languageMode": "en",
+            "target": {"platform": "darwin", "architecture": "arm64"},
+            "catalog": {"fileName": "catalog.json", "sha256": SHA},
+            "host": {"hostPackageId": "host", "providerId": "provider", "descriptorSha256": digest(descriptor_bytes), "fileManifestSha256": SHA, "hostSourceClosureSha256": SHA, "modelAdmissionRootSha256": SHA, "compatibilityRequirementSha256": SHA},
+            "model": {"modelAssetId": "asset", "modelId": "model", "manifestSha256": SHA, "revision": "a" * 40, "layoutId": "layout", "treeSha256": tree, "files": [{"path": "weights.bin", "role": "weights", "sizeBytes": 1, "sha256": digest(b"x"), "mode": "read-only"}]},
+            "compatibilityPairSha256": SHA, "capabilityDigest": SHA, "decision": "active", "createdAt": "2026-08-09T00:00:00Z",
         }
-        for relative, data in self.files.items():
-            path = self.root / relative
-            path.parent.mkdir(parents=True, exist_ok=True)
-            path.write_bytes(data)
-        self.descriptor = {
-            "schemaVersion": 1,
-            "packageId": "voice.english.fixture",
-            "packageVersion": "1.0.0",
-            "providerId": "fixture-provider",
-            "sourceCommit": "a" * 40,
-            "target": {"platform": platform_id, "architecture": architecture},
-            "protocolVersion": 1,
-            "sessionConfigVersion": 1,
-            "launcher": launcher,
-            "launcherPlan": {"path": "provider/package-launcher-plan-v1.json", "sha256": digest(self.files["provider/package-launcher-plan-v1.json"])},
-            "host": {"kind": "bundled-python", "version": "3.12.13", "executable": host, "sha256": digest(self.files[host])},
-            "worker": {"entrypoint": "worker/worker.py", "sha256": digest(self.files["worker/worker.py"])},
-            "engine": {"kind": "faster-whisper", "version": "1.2.1", "configuration": {"path": "provider/engine-configuration-v1.json", "sha256": digest(self.files["provider/engine-configuration-v1.json"])}},
-            "model": {"id": "fixture-model", "family": "whisper", "size": "small", "precision": "int8", "root": "model", "descriptor": "model/model-descriptor-v1.json", "sha256": digest(encoded([["model-descriptor-v1.json", len(self.files["model/model-descriptor-v1.json"]), digest(self.files["model/model-descriptor-v1.json"])]]))},
-            "profiles": [{"profileId": "english", "languageMode": "en", "normalizationProfile": "autobyteus-english-v1", "capabilities": self.capabilities}],
-            "audioContract": "autobyteus-pcm16-mono-16khz-wav-v1",
-            "fileManifestPath": "provider/package-files-v1.json",
-            "noticeInventoryPath": "THIRD_PARTY_NOTICES.json",
+        activation_bytes = encoded(activation)
+        self.activation_path.write_bytes(activation_bytes)
+        self.config = {
+            "schemaVersion": 2, "protocolVersion": 1, "sessionId": "00000000-0000-4000-8000-000000000002", "profileId": "english",
+            "installationRoot": str(self.install), "installationId": UUID, "activationSha256": digest(activation_bytes),
+            "expected": {"hostPackageId": "host", "providerId": "provider", "modelId": "model", "languageMode": "en", "platform": "darwin", "architecture": "arm64", "descriptorSha256": digest(descriptor_bytes), "fileManifestSha256": SHA, "hostSourceClosureSha256": SHA, "modelAdmissionRootSha256": SHA, "modelManifestSha256": SHA, "modelTreeSha256": tree, "compatibilityPairSha256": SHA, "capabilityDigest": SHA},
         }
-        self.write_control_files()
+        self.config_path.write_bytes(encoded(self.config))
+        self.lease = os.open(self.base / "lease", os.O_CREAT | os.O_RDWR, 0o600)
 
     def tearDown(self):
-        for item in self.root.rglob("*"):
-            if item.is_file():
-                os.chmod(item, 0o644)
+        os.close(self.lease)
         self.temporary.cleanup()
 
-    def write_control_files(self):
-        descriptor_path = self.root / "provider/provider-package-v1.json"
-        descriptor_path.parent.mkdir(parents=True, exist_ok=True)
-        descriptor_path.write_bytes(encoded(self.descriptor))
-        records = []
-        for file in sorted(item for item in self.root.rglob("*") if item.is_file() and item.name != "package-files-v1.json"):
-            relative = file.relative_to(self.root).as_posix()
-            logical = "executable" if relative in self.executables else "read-only"
-            records.append({"path": relative, "sha256": digest(file.read_bytes()), "sizeBytes": file.stat().st_size, "mode": logical})
-            apply_mode(file, logical)
-        manifest_path = self.root / "provider/package-files-v1.json"
-        manifest_path.write_bytes(encoded({"schemaVersion": 1, "packageId": self.descriptor["packageId"], "files": records}))
-        apply_mode(manifest_path, "read-only")
-        capability_digest = digest(json.dumps(self.capabilities, separators=(",", ":"), sort_keys=True).encode())
-        config = {"schemaVersion": 1, "protocolVersion": 1, "sessionId": "0198f0f0-7e65-7f72-9c3e-95b59eeb72a9", "profileId": "english", "expected": {"packageId": self.descriptor["packageId"], "providerId": self.descriptor["providerId"], "modelId": self.descriptor["model"]["id"], "languageMode": "en", "platform": self.descriptor["target"]["platform"], "architecture": self.descriptor["target"]["architecture"], "descriptorSha256": digest(descriptor_path.read_bytes()), "fileManifestSha256": digest(manifest_path.read_bytes()), "capabilityDigest": capability_digest}}
-        self.config_path.write_bytes(encoded(config))
-
-    def test_binds_immutable_session_and_verifies_complete_manifest(self):
-        session = bind_session(self.root, self.config_path)
-        self.assertEqual(session.package_id, "voice.english.fixture")
+    @mock.patch("autobyteus_voice_provider.session._actual_target", return_value=("darwin", "arm64"))
+    def test_binds_config2_activation_and_complete_external_model(self, _target):
+        session = bind_session(self.host, self.activation_path, self.model, self.lease, self.config_path)
+        self.assertEqual(session.package_id, "host")
         verify_complete_manifest(session)
 
-    def test_rejects_unknown_nested_descriptor_field_before_hello(self):
-        for item in self.root.rglob("*"):
-            if item.is_file():
-                os.chmod(item, 0o644)
-        self.descriptor["engine"]["fallback"] = "forbidden"
-        self.write_control_files()
+    @mock.patch("autobyteus_voice_provider.session._actual_target", return_value=("darwin", "arm64"))
+    def test_rejects_stale_activation_before_provider_hello(self, _target):
+        self.config["activationSha256"] = "b" * 64
+        self.config_path.write_bytes(encoded(self.config))
         with self.assertRaises(ContractError):
-            bind_session(self.root, self.config_path)
+            bind_session(self.host, self.activation_path, self.model, self.lease, self.config_path)
 
-    @unittest.skipIf(os.name == "nt", "Windows launcher owns scratch cleanup")
+    @unittest.skipIf(os.name == "nt", "POSIX scratch ownership")
     def test_removes_only_marked_launcher_scratch(self):
-        scratch = Path(self.temporary.name) / "autobyteus-voice-fixture"
+        scratch = self.base / "autobyteus-voice-fixture"
         scratch.mkdir(mode=0o700)
-        (scratch / ".autobyteus-voice-scratch-v1").write_text("autobyteus-voice-scratch-v1\n", encoding="utf-8")
-        (scratch / "provider-cache").write_text("temporary", encoding="utf-8")
+        (scratch / ".autobyteus-voice-scratch-v1").write_text("autobyteus-voice-scratch-v1\n")
         with mock.patch.dict(os.environ, {"HOME": str(scratch), "TMPDIR": str(scratch)}):
-            cleanup_launcher_scratch(self.root)
+            cleanup_launcher_scratch(self.host)
         self.assertFalse(scratch.exists())
-
 
 if __name__ == "__main__":
     unittest.main()

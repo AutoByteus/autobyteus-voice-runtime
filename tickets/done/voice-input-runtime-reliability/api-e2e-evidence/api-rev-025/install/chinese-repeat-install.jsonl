@@ -1,0 +1,2 @@
+{"schemaVersion":1,"operationId":"5350e28c-112f-47d7-a637-a2b9323bae64","operation":"install-profile","profileId":"chinese","target":{"platform":"darwin","architecture":"arm64"},"sequence":1,"phase":"checking","timestamp":"2026-08-10T15:24:43.359518Z"}
+{"schemaVersion":1,"operationId":"5350e28c-112f-47d7-a637-a2b9323bae64","operation":"install-profile","profileId":"chinese","target":{"platform":"darwin","architecture":"arm64"},"sequence":2,"phase":"already-installed","timestamp":"2026-08-10T15:24:44.037766Z","modelAssetId":"voice.model.chinese.fun-asr-nano-gguf-q8.v1"}

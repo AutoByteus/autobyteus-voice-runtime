@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 2,
+  "hostPackageId": "UNSET",
+  "target": { "platform": "darwin", "architecture": "arm64" },
+  "invocation": {
+    "kind": "native-worker",
+    "executable": "provider/voice-provider-worker"
+  }
+}

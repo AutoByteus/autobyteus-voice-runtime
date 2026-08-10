@@ -33,11 +33,11 @@ func DecodeExtractExpectation(data []byte) (ExtractExpectation, error) {
 	return expected, nil
 }
 
-func ReadManifest(filePath string) (PackageFileManifest, error) {
-	var manifest PackageFileManifest
+func ReadManifest(filePath string) (HostFileManifest, error) {
+	var manifest HostFileManifest
 	data, err := os.ReadFile(filePath)
-	if err != nil || decodeExact(data, &manifest) != nil || manifest.SchemaVersion != 1 || manifest.PackageID == "" || len(manifest.Files) == 0 {
-		return manifest, errors.New("invalid package manifest")
+	if err != nil || decodeExact(data, &manifest) != nil || manifest.SchemaVersion != 2 || manifest.HostPackageID == "" || len(manifest.Files) == 0 {
+		return manifest, errors.New("invalid host manifest")
 	}
 	paths := make([]string, len(manifest.Files))
 	for index, file := range manifest.Files {
@@ -50,7 +50,7 @@ func ReadManifest(filePath string) (PackageFileManifest, error) {
 		return manifest, errors.New("manifest paths invalid or unsorted")
 	}
 	for _, file := range manifest.Files {
-		if file.Path == "provider/package-files-v1.json" {
+		if file.Path == "provider/host-files-v2.json" {
 			return manifest, errors.New("manifest lists itself")
 		}
 	}

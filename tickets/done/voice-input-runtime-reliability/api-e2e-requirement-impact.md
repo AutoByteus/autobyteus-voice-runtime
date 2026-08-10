@@ -110,3 +110,45 @@ The revised solution must explicitly decide whether exact 30 cold / 30 warm-prep
 ### Downstream Re-entry
 
 Solution Designer should record the user's functional-first acceptance in a new solution revision and route it through Architecture Review. Implementation and Code Review must then provide a supported non-workaround execution path. API/E2E will open the next revision only after that path passes source review; it will not patch the preflight, manufacture a passing record, reduce the threshold ad hoc, or invoke package builders outside the reviewed contract.
+
+---
+
+## API-RI-003 — Local Test Ownership And GitHub Build/Release Boundary
+
+### Record
+
+- Recorded: `2026-08-09`
+- Origin: explicit user direction after `API-REV-021`
+- Historical result preserved: `API-REV-021 — Blocked / 80%`
+- Classification: `Requirement Gap / Release-Pipeline Design Impact`
+- Required owner: `solution_designer`
+
+### Explicit User Direction
+
+The user clarified the intended engineering boundary:
+
+- API/E2E, integration, inference, corpus-quality, lifecycle, and performance testing is performed locally by the API/E2E engineer before release;
+- GitHub Actions is used only for building/package construction and release work;
+- GitHub Actions must not become a second product-test or performance-qualification environment;
+- the project must not require purchasing a larger runner or provisioning a custom/self-hosted organization runner group merely to repeat tests that have already passed locally.
+
+The user added that the GitHub pipeline may perform the checks intrinsically necessary to build and release safely, but not the full qualification suite.
+
+### Current Conflict
+
+The reviewed recovery workflow requires the nonexistent organization runner group `voice-runtime-recovery` with `self-hosted`, `macOS`, and `ARM64` labels. Run `31301948625` therefore failed before executing any step. This is a workflow policy conflict, not a product functionality failure and not a GitHub-hosted-runner outage.
+
+The existing approved recovery path also couples hosted archive reconstruction/promotion to a managed locked environment. API/E2E cannot replace that authority with a standard GitHub-hosted runner or local fallback without a reviewed change.
+
+### Required Revised Boundary
+
+The new solution should separate these responsibilities explicitly:
+
+1. **Local API/E2E qualification:** all provider/profile inference, 49/200 corpus checks, lifecycle/recovery, 30/30/100 observations, resource/performance evaluation, and qualification aggregation remain local and produce immutable evidence.
+2. **GitHub build/release pipeline:** construct the release artifacts from authenticated inputs, verify build/release integrity and provenance, and perform release/promotion operations only. Hash, manifest, signature, reproducibility, and basic artifact-readability checks may remain where they are required to establish that the built bytes are exactly the intended release bytes; they must not be represented as a rerun of product qualification.
+3. **Infrastructure policy:** no paid larger-runner dependency and no custom/self-hosted organization runner requirement. The design must either fit the build/release operation on an included GitHub-hosted runner or define another user-approved release construction path that does not require new paid or administrator-managed runner infrastructure.
+4. **Evidence reuse:** GitHub build/release must consume and bind the already-approved local qualification authority rather than re-executing it.
+
+### Immediate Routing
+
+Stop retrying `recover-qualified-voice-archives.yml` under its current runner-group requirement. Preserve `API-REV-021` and run `31301948625` as truthful blocked history. Solution Designer must revise requirements, release-pipeline ownership, design, workflow boundary, admission/promotion authority, and acceptance criteria before implementation resumes. No tag, release, publication, or candidate promotion is authorized from the blocked workflow.

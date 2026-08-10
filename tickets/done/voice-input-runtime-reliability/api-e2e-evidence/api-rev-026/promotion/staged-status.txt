@@ -1,0 +1,6 @@
+A  release/admission/v1.0.0-branch-catalog-projection-v3.json
+A  release/admission/v1.0.0-branch-catalog-projection-verification-v3.json
+A  release/admission/v1.0.0-chinese-profile-execution-closure-v2.json
+A  release/admission/v1.0.0-english-profile-execution-closure-v2.json
+A  release/admission/v1.0.0-focused-qualification-set-v3.json
+A  release/admission/v1.0.0-release-source-admission-v4.json

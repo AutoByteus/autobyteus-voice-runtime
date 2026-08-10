@@ -1,0 +1,1 @@
+Excluded evidence-generation attempt: a post-materialization summary helper referenced a nonexistent provenance.files field instead of provenance.inputs. Both canonical materialization commands and both Host Source Closure derivations had already completed successfully; no product/build command failed. The corrected summaries are authoritative.
