@@ -2,7 +2,7 @@
 
 ## Status
 
-- Delivery status: **the bounded hosted-toolchain correction is reviewed, validated on real macos-26, and integrated against current main; production v1.0.0 retry remains**.
+- Delivery status: **maintained-main and hosted toolchain gates pass, but production run 31425696064 failed closed on a package.json-only Host Source Closure/Policy 3 authority inconsistency; v1.0.0 remains unpublished**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
@@ -16,6 +16,19 @@
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
 - Initial finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`; current finalized W: `743597440277e39155b059a475d6820ddc9ff831`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Host Source Closure Authority Failure — DR-012
+
+- Exact maintained-main/workflow checkout: `W = cba7445597368d1e88c386efd1be62304dcf1bd3`.
+- Production run/job: `31425696064 / 93576740354` — **Fail** — https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/31425696064.
+- Passed: source/admission gate, exact hosted Xcode/SDK/CMake selection, Host Build Environment 2, and host-only input hydration.
+- Failed before build: `SOURCE_ADMISSION_BLOCKED`; admitted English Host Source Closure `d7cfe1ff...8134` versus hosted `4f46c284...eacf`.
+- Exact isolated drift: only `package.json`; its release-test owner changed from Relevant Source Closure v2 to v3. All toolchain and materialized host inputs are equal.
+- Design conflict: Policy 3 says release-only/reuse-permitted, while Host Source Closure 1 hashes the full `package.json` and rejects the same change as host-impacting.
+- Retained audit: truthful `failure`, with composition/publication/verification/quarantine skipped.
+- No archive, model download, product/profile/performance execution, tag, release, or asset occurred.
+- Classification: **Design Impact** to `solution_designer`; Delivery will not narrow the closure, requalify, or restructure scripts without reviewed authority.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/`.
 
 ## Hosted Toolchain Correction — DR-011
 

@@ -159,3 +159,12 @@ tag publication, published-byte verification, and the deferred target set.
 - Long-lived documentation decision: `No change`. README/release notes already state standard-hosted host-only construction, exact asset scope, explicit on-demand model installation, and zero release-CI model/profile/performance work.
 - Ticket-local updates: DR-011 and handoff/release records supersede the DR-010 tool-selection blocker while preserving the failed run as historical evidence.
 - Result: `Pass / release-retry-ready`; maintained-main integration and the standard-hosted production release remain Delivery-owned.
+
+## Delivery Round 11 — Host Source Closure Authority Blocker
+
+- Maintained-main result: reviewed correction merged/pushed as `W = cba7445597368d1e88c386efd1be62304dcf1bd3`; protected R authority, focused 22/22 checks, API-REV-027 checksums, and admission lineage pass.
+- Production run `31425696064`: exact toolchain selection, environment capture, and input hydration pass; host construction stops before compilation because the derived English Host Source Closure differs from admission.
+- Isolated difference: only `package.json`, whose release-check test path changed from Relevant Source Closure v2 to v3. Policy 3 permits that release-only change, while Host Source Closure 1 hashes the complete file and rejects it.
+- Long-lived docs decision: `No product/operator prose change`. Runtime behavior, on-demand model lifecycle, supported matrix, and intended nine-asset release remain unchanged; the blocker is an authority-design inconsistency recorded in ticket-local evidence.
+- Publication result: no archive, tag, release, or asset.
+- Result: `Blocked / Design Impact` to `solution_designer`; a reviewed authority decision is required before another retry.

@@ -1,0 +1,11 @@
+--- tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/host-build/english-prebuild-host-source-closure-v1.json	2026-08-10 20:39:13
++++ tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/audit/english-prebuild-host-source-closure-v1.json	2026-08-10 21:49:47
+@@ -690,7 +690,7 @@
+     {
+       "path": "package.json",
+       "sizeBytes": 1639,
+-      "sha256": "f51b60c865299f3934df5329cda5d8163930173e6a10e0d6cca4cae81dc6fe4a"
++      "sha256": "a1d118ce550d457394faabdd3264b7141d98e19ff7486523d1ff20175d82c21f"
+     },
+     {
+       "path": "packaging/archive/canonicalzip.go",

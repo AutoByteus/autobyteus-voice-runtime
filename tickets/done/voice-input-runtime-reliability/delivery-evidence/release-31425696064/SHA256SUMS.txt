@@ -1,0 +1,8 @@
+4f46c2842d6ffb6cc2e18bb6a09eb9ff372d1ef4873d058fc3a2a3fa5e26eacf  ./audit/english-prebuild-host-source-closure-v1.json
+0ba76b9040fb2b645a63f98abe616e7bd3e2acc82f9407ca33e38635c4fb21c2  ./audit/hosted-release-audit-v1.json
+a9fe9d066f0b8d1017967f3f66c7865ee91956983c8480606c024e341468f9d7  ./audit/hosted-toolchain-selection-v1.json
+8bdb9ecd35d2c6a893a343b544808e2f8f2b1c9dc357c68c6a5a1bb4b1351679  ./english-host-source-closure.diff
+2a8c79e6560b84c509383762eb1cac4ac35ce58ff363c09f417eb978d170bae6  ./failure-summary.md
+f9b5d168564c098aa93cf09ad282ee52509d72e86d4d94a6ceafb6476708d16d  ./release-state.txt
+751279db21aa73903409bb79179124fae561355907bd71656861b141fcbb0586  ./run.json
+77912c8ad2a0d691c2c44108f04f8a8ab23a543d62361019e5fcefacba43b938  ./workflow.log

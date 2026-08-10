@@ -15,6 +15,7 @@
 | `DR-009`    | `code_reviewer` handoff after CRR-059, API-REV-026, and CRR-060                        | `DR-008 — admission design blocked`      | `Pass / release-ready — exact reviewed R integrated without rewriting; Policy 3 reuse, focused checks, and authority checks pass; final target merge pending`  | `delivery-release-authority-integration-check.log`, `delivery-release-authority-integration-SHA256SUMS.txt`, delivery handoff artifacts       |
 | `DR-010`    | Standard-hosted v1.0.0 release run `31420271551`                                      | `DR-009 — release-ready`                 | `Blocked / Local Fix — maintained-main W and admission passed; host environment lock rejected current runner before build; no tag or release created`         | `delivery-evidence/release-31420271551/`, `handoff-summary.md`, `release-deployment-report.md`                                                 |
 | `DR-011`    | `code_reviewer` handoff after CRR-061, API-REV-027, and CRR-062                        | `DR-010 — hosted tool lock blocked`      | `Pass / retry-ready — exact hosted toolchain selection and truthful early-failure audit pass on real macos-26; latest main already integrated`                 | `delivery-hosted-toolchain-integration-check.log`, `delivery-hosted-toolchain-integration-SHA256SUMS.txt`, delivery handoff artifacts          |
+| `DR-012`    | Production standard-hosted release retry `31425696064`                                | `DR-011 — retry-ready`                   | `Blocked / Design Impact — toolchain/hydration pass, but package.json-only Host Source Closure drift conflicts with Policy 3 reuse; no archive or release`      | `delivery-evidence/release-31425696064/`, `handoff-summary.md`, `release-deployment-report.md`                                                 |
 
 ## Revision Entries
 
@@ -197,3 +198,22 @@
 - User gate: the prior explicit runtime-only v1.0.0 finalize/release authorization and minimal-pipeline direction remain applicable. The correction changes only hosted toolchain selection/audit behavior, not runtime behavior, supported scope, or release assets.
 - Evidence: `delivery-hosted-toolchain-integration-check.log`, SHA-256 `078850f47bf780139a6675fa4c42ce0384f0c935e3a8133ac9afb931a5e44940`, bound by `delivery-hosted-toolchain-integration-SHA256SUMS.txt`.
 - Current result: `Pass / retry-ready`; push the ticket branch, refresh maintained main again, integrate the reviewed correction, verify exact integrated authority, then retry the production standard-hosted release without product/profile requalification.
+
+### DR-012 — Hosted closure/admission inconsistency blocks publication
+
+- Date: 2026-08-10
+- Prior authoritative result: `DR-011` — hosted toolchain selection/audit correction passed review and bounded real-host validation; production retry was ready.
+- Ticket finalization: exact ticket subject `f10cb1c3b97ade2a2af176d348b331906cd4a639` was pushed to `origin/codex/voice-runtime-qualified-recovery`.
+- Final target refresh/integration: `origin/main` remained `a486c998481a4d6649d3245c24f0c8e954785594`; exact ticket subject merged as `W = cba7445597368d1e88c386efd1be62304dcf1bd3` and was pushed to `origin/main`. R protected blobs, focused 22/22 checks, all API-REV-027 checksums, and Admission 4 lineage passed at W.
+- Release retry: production standard-hosted run `31425696064`, job `93576740354`, targeted exact W.
+- Passed stages: checkout, audit initialization, Node/Go setup, source/admission verification, exact Xcode 26.1.1/SDK 26.1/CMake 4.2.0 selection, Host Build Environment 2 capture, and host-only input hydration.
+- Direct failure: host construction failed closed before archive compilation with `SOURCE_ADMISSION_BLOCKED: Hosted Host Source Closure differs from admission.`
+- Exact evidence: admitted English closure SHA-256 `d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134`; hosted English closure SHA-256 `4f46c2842d6ffb6cc2e18bb6a09eb9ff372d1ef4873d058fc3a2a3fa5e26eacf`.
+- Difference isolation: the closure JSONs differ at exactly one repository file, `package.json`. Its only byte change replaces the release-check test owner `relevant-source-closure-v2.test.mjs` with `relevant-source-closure-v3.test.mjs` between focused source F and admitted source D. Toolchain and all materialized English host-input identities are equal.
+- Authority inconsistency: Policy 3 classifies the `package.json` transition as release-only/reuse-permitted, while Host Source Closure 1 hashes the entire file and therefore treats the same transition as host-impacting. Delivery cannot decide whether to narrow closure ownership, requalify/readmit archives, or restructure the script without changing design authority.
+- Audit result: truthful terminal audit retained; host construction `failure`, later composition/publication/download/quarantine phases `skipped`. English archive compilation never began; Chinese closure/build was unattempted.
+- Publication state: no archive, tag, GitHub Release, asset, or downloaded-byte verification. Product/profile/provider/inference/corpus/performance execution and model-weight downloads remain zero.
+- Classification: `Design Impact / Policy 3 versus Host Source Closure authority inconsistency` to `solution_designer`; follow with implementation, review, and applicable API/E2E before retry.
+- Evidence: `delivery-evidence/release-31425696064/`; `SHA256SUMS.txt` verifies run metadata, workflow log, retained audit, toolchain record, closure, exact closure diff, failure summary, and release state.
+- Historical truth: both DR-010 run `31420271551` and DR-012 run `31425696064` remain failed and must not be relabeled.
+- Current result: `Blocked` for release/publication; maintained-main finalization remains complete and is not undone.

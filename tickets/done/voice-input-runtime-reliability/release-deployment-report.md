@@ -13,8 +13,8 @@ installation, or release is part of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-011`
-- Notes: the exact hosted toolchain selection/audit correction passed review and real macos-26 validation; latest main is already integrated and the bounded production retry is ready. No tag or release exists yet.
+- Current revision: `DR-012`
+- Notes: maintained-main and exact hosted-toolchain gates pass, but production run 31425696064 failed before archive compilation on a package.json-only Host Source Closure versus Policy 3 authority inconsistency. No tag or release exists.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,11 +155,11 @@ installation, or release is part of this ticket.
 
 ## Final Status
 
-**Pass / release-retry-ready.** The reviewed correction explicitly selects and
-authenticates the exact hosted Xcode/SDK/CMake toolchain and preserves truthful
-early-failure audit evidence. Real macos-26 validation, focused 22/22 checks,
-and all API-REV-027 checksums pass. Historical run `31420271551` remains
-failed; no tag, release, or asset exists yet.
+**Blocked / Design Impact — release unpublished.** Exact W and the hosted
+toolchain gate pass, but run `31425696064` proved that Policy 3 permits a
+`package.json` release-test-path change which Host Source Closure 1 rejects by
+hashing the whole file. Delivery cannot select the authoritative correction.
+No archive, tag, release, or asset exists.
 
 ## Aggregate API Renewal Delivery Gate — DR-006
 
@@ -242,3 +242,18 @@ failed; no tag, release, or asset exists yet.
 - No product/profile/provider/inference/corpus/performance qualification and no model download occurred.
 - Documentation: explicit no long-lived prose impact; ticket-local DR-011 updates only.
 - Next action: push ticket branch, refresh/merge maintained main, validate exact integrated authority, and retry the production standard-hosted release.
+
+## Production Retry And Closure Blocker — DR-012
+
+- Final ticket subject: `f10cb1c3b97ade2a2af176d348b331906cd4a639`; maintained-main W: `cba7445597368d1e88c386efd1be62304dcf1bd3`, both pushed.
+- Pre-dispatch: exact R blobs, focused 22/22 checks, API-REV-027 checksums, and Admission 4 lineage Pass.
+- Workflow: `31425696064`, job `93576740354`, exact W, standard GitHub-hosted macos-26.
+- Passed stages: audit initialization; Node/Go; source/admission; exact Xcode 26.1.1/SDK 26.1/CMake 4.2.0; Host Build Environment 2; hydration.
+- Direct failure: `SOURCE_ADMISSION_BLOCKED` before archive compilation.
+- Closure identities: admitted English `d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134`; hosted English `4f46c2842d6ffb6cc2e18bb6a09eb9ff372d1ef4873d058fc3a2a3fa5e26eacf`.
+- Exact diff: one `package.json` SHA entry; v2-to-v3 release test path only. Toolchain and materialized host inputs are equal.
+- Authority conflict: Policy 3 classifies the change release-only/reuse-permitted; Host Source Closure 1 classifies it host-impacting through whole-file hashing.
+- Audit retention: Pass and truthful; later composition/publication/download/quarantine skipped.
+- Publication: no archive, tag, release, or asset; no heavy qualification/model download.
+- Classification/routing: `Design Impact` to `solution_designer`.
+- Evidence: `delivery-evidence/release-31425696064/`, checksum manifest Pass.
