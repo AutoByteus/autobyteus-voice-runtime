@@ -118,3 +118,14 @@ tag publication, published-byte verification, and the deferred target set.
 - Ticket-local updates: DR-007, the handoff summary, release/deployment report, corrected/invalid attempt evidence, remote registration evidence, and checksum manifest record the bootstrap truthfully.
 - Release boundary: no recovery/promotion dispatch, build, tag, release, asset, or publication occurred. API-REV-020 remains Fail; the next owner is API/E2E.
 - Result: `Pass / explicit no additional docs impact`; workflow registration bootstrap is complete, not release completion.
+
+## Delivery Round 7 — Host-Only Final Handoff And Admission Blocker
+
+- Trigger: IR-035 / CRR-055 `Pass`, API-REV-025 `Pass / 97%`, and CRR-056 proportional review `Not Applicable` for the user-approved host-only/on-demand model design.
+- Integrated state: refreshed `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b` was merged into preserved API/reviewer checkpoint `b5b44a4c87bfeb192c7e7556093e6a8383fcbb60` as ticket integration commit `5c0c4b8b47d503a1c8ae464e0675ec797f2366a9`; post-merge left/right is `0 / 19`.
+- Long-lived README result: `Already updated / accurate`. It documents two model-free Runtime Host Archive 2 assets, explicit `voice-model-manager` install/status/remove, Store 1 activation, Session Config 2, offline provider execution, exact current matrix, standard-hosted host-only release construction, nine assets, and zero release-owned model weights/product tests.
+- Release notes result: `Updated`. The former Provider Archive 1/model-contained release description is replaced with the current host/model split, explicit on-demand installation lifecycle, API-REV-025 acceptance, exact nine-asset scope, and current prepublication blocker.
+- No-impact areas: desktop UI/installation, macOS x64, Linux, Windows, and `auto` remain deferred. User/shared application state was not changed by Delivery.
+- Integrated validation: focused release checks passed 9/9 and API-REV-025 checksums passed; no heavy qualification ran.
+- Blocker: production workflow inputs below `release/admission/` are absent, and the reviewed verifier requires the committed admission's `finalMainCommit` to equal the same workflow checkout SHA. Delivery cannot truthfully fill or reinterpret that cyclic authority as a docs-only action.
+- Result: `Blocked / Design Impact`; documentation is synchronized for handoff, but hosted build/tag/publication must wait for corrected final-main admission design and review.

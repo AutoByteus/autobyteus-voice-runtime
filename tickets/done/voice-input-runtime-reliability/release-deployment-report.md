@@ -2,19 +2,19 @@
 
 ## Release / Publication / Deployment Scope
 
-This runtime-only delivery bootstraps the already-reviewed minimal recovery and
-promotion workflows onto default `main` so GitHub can register them for the
-next API/E2E stage. It does not execute recovery, promotion, or publication. No
-AutoByteus desktop/superrepo implementation, installation, or release is part
-of this ticket.
+This runtime-only delivery integrates the reviewed model-free host and
+on-demand model-manager candidate against maintained `main`, validates the
+minimal release boundary, synchronizes durable documentation, and prepares the
+standard-hosted v1.0.0 handoff. No AutoByteus desktop/superrepo implementation,
+installation, or release is part of this ticket.
 
 ## Handoff Summary
 
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-007`
-- Notes: exact reviewed workflow artifact `ec0f726...` is merged and active on default `main`; its remote ticket ref remains unchanged for API/E2E dispatch. No recovery, promotion, tag, publication, or release occurred.
+- Current revision: `DR-008`
+- Notes: integrated candidate checks and API-REV-025 checksums pass, but the production workflow cannot start because its committed `release/admission/` inputs are absent and the exact-current-SHA admission relationship is unresolved.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,11 +155,13 @@ of this ticket.
 
 ## Final Status
 
-**Pass / default-main bootstrap only; release unpublished.** Exact reviewed
-artifact `ec0f726...` is registered on default `main`, the remote ticket ref is
-preserved, and the current admission is `reuse-permitted`. API/E2E must now
-execute and verify managed recovery and hosted promotion. Delivery created no
-run, archive, candidate, tag, release, asset, or publication.
+**Blocked / Design Impact — release unpublished.** The host-only/on-demand
+candidate is integrated and its focused checks pass, but the standard-hosted
+workflow references absent committed admission files. Its verifier also
+requires the admission's final-main SHA to equal the commit containing that
+admission, leaving the record/checkout relationship cyclic or unspecified.
+Delivery cannot bypass or invent that authority. No hosted release run, tag,
+release, asset, or publication was created.
 
 ## Aggregate API Renewal Delivery Gate — DR-006
 
@@ -190,3 +192,16 @@ run, archive, candidate, tag, release, asset, or publication.
 - Docs sync: explicit no additional long-lived prose impact; reviewed workflows plus `release-pipeline-ownership.md` are authoritative.
 - Release disposition: no recovery/promotion dispatch, archive build, tag, GitHub Release, catalog, asset, publication, or published-byte verification occurred.
 - Next action: cumulative package routed to `api_e2e_engineer` for real managed recovery and hosted promotion. Delivery must not resume publication until that stage passes and returns through the required review route.
+
+## Host-Only Final Integration Blocker — DR-008
+
+- Date: 2026-08-10.
+- Reviewed chain: source `b88c230...`; implementation artifact `5a2ec1b...`; CRR-055 `Pass / 9.7`; API-REV-025 `Pass / 97%`; CRR-056 `Not Applicable`.
+- Refresh/integration: `origin/main @ 7385b65...` merged into checkpoint `b5b44a4...` as `5c0c4b8b47d503a1c8ae464e0675ec797f2366a9`; left/right `0 / 19`.
+- Integrated check: `npm run check:release-pipeline` 9/9 Pass; every API-REV-025 checksum Pass; zero product/performance qualification in Delivery.
+- Docs: README already accurately documents the reviewed host/model split; release notes updated to current v1.0.0 host-only scope.
+- Direct blocker: six `release/admission/v1.0.0-*` workflow inputs are missing from the repository. The API-local source-admission file is evidence for `b88c230...`, not a committed final-main input.
+- Design blocker: production verification requires `record.finalMainCommit == GITHUB_SHA`; committing that record changes `GITHUB_SHA`. The authoritative design must identify separate acyclic source/record/workflow subjects or another reviewed construction.
+- Classification/routing: `Design Impact / final-main admission authority` to `solution_designer`.
+- Evidence: `delivery-final-main-integration-SHA256SUMS.txt`, binding `delivery-final-main-integration-check.log` at SHA-256 `a397ae525cfb45f4b4662d8ff7f7b5d7d1039e624a8c8963157ba4c3297dd9e2`.
+- Release state: standard-hosted equality not dispatched; no branch push, maintained-main merge, tag, release, asset, publication, or downloaded-byte verification.

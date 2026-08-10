@@ -2,7 +2,7 @@
 
 ## Status
 
-- Delivery status: **default-main workflow bootstrap passed; exact reviewed ref is registered and preserved for API/E2E recovery; v1.0.0 remains unpublished**.
+- Delivery status: **integrated host-only candidate checks pass, but standard-hosted release is blocked by an absent and cyclic final-main admission contract; v1.0.0 remains unpublished**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
@@ -11,10 +11,25 @@
 - Bootstrap source baseline: `251eab80a1cfd6a6d4c4d2a1fdbe1c06c3923dde` (`v0.3.0`)
 - Latest tracked base before bootstrap: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`
 - Current maintained main: `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b`
+- Current integrated ticket candidate: `5c0c4b8b47d503a1c8ae464e0675ec797f2366a9`
 - Reviewed API/E2E artifact HEAD: `5333d1d00c31fc9fe6fe2dcfe86219e2b894bebe`
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
 - Finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Host-Only Final Integration — DR-008
+
+- Reviewed source: `b88c230663eb96e0def8c869b095ea858b0ff50b`; implementation artifact: `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`.
+- Validation: CRR-055 **Pass / 9.7**; API-REV-025 **Pass / 97%**; CRR-056 **Not Applicable** because API/E2E changed no durable test code.
+- Preserved API/reviewer checkpoint: `b5b44a4c87bfeb192c7e7556093e6a8383fcbb60`.
+- Latest-base integration: refreshed `origin/main @ 7385b65...` merged without conflict as `5c0c4b8b47d503a1c8ae464e0675ec797f2366a9`; left/right `0 / 19`.
+- Integrated checks: focused release suite **9/9 Pass**; API-REV-025 checksum manifest **Pass**. Delivery ran no provider/profile/corpus/inference/performance qualification.
+- Delivered scope: two model-free darwin-arm64 host archives; explicit on-demand immutable model installation; atomic Store 1 activation; offline provider use; exact nine prospective release assets. x64/Linux/Windows/`auto`/desktop remain deferred.
+- Blocking condition: `.github/workflows/release-voice-runtime.yml` requires six committed `release/admission/v1.0.0-*` inputs, but `release/admission/` does not exist in the integrated repository.
+- Authority conflict: the available API-local admission binds `b88c230...`; the verifier requires admission `finalMainCommit == GITHUB_SHA`. Adding the admission creates a new commit, so an exact self-bound current SHA cannot be produced by Delivery without changing the reviewed contract.
+- Classification: **Design Impact** to `solution_designer`; define an acyclic record-commit/source-commit contract, then route through implementation, review, and applicable API validation.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-final-main-integration-SHA256SUMS.txt`.
+- Not performed: ticket push, maintained-main merge, hosted build/equality, tag, GitHub Release, assets, publication, downloaded-byte verification, desktop/user-state change, or personal runner.
 
 ## Default-Main Workflow Bootstrap — DR-007
 

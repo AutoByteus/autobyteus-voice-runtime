@@ -11,6 +11,7 @@
 | `DR-005`    | User rejected full performance/profile qualification in the Delivery release pipeline  | `DR-004 — guarded retry ready`          | `Blocked / Design Impact — heavy run cancelled; no release; Solution Designer must redefine minimal CI and accepted-evidence promotion boundary`              | `delivery-evidence/prequalify-30883225852/`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                       |
 | `DR-006`    | `code_reviewer` handoff after CRR-044, API-REV-019, and CRR-045                        | `DR-005 — redesign required`            | `Pass / stage gate only — zero-profile Aggregate API Renewal is preserved and checked; admission remains aggregate-api-renewal-required; no recovery/release` | `delivery-aggregate-renewal-gate-check.log`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                       |
 | `DR-007`    | CRR-047 bootstrap authorization after API-REV-020 / API-F-015                          | `DR-006 — renewal stage gate complete`  | `Pass / bootstrap only — exact reviewed workflows merged to default main and registered; exact ticket ref preserved; API/E2E recovery still pending`          | `delivery-default-main-bootstrap-check.log`, `delivery-default-main-workflow-registration.log`, `docs-sync-report.md`, `handoff-summary.md`    |
+| `DR-008`    | `code_reviewer` handoff after IR-035, CRR-055, API-REV-025, and CRR-056                | `DR-007 — workflow bootstrap complete`  | `Blocked / Design Impact — checks pass, but production references absent committed admission inputs and exact-current-SHA binding is unresolved`              | `delivery-final-main-integration-check.log`, `release-notes.md`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`   |
 
 ## Revision Entries
 
@@ -125,3 +126,20 @@
 - Documentation impact: `No additional long-lived product-doc change`. The reviewed workflow source and `release-pipeline-ownership.md` are now the durable operator contract; Delivery updated only ticket-local audit/handoff records.
 - Authorization boundary: no recovery or promotion dispatch, archive build, tag, release, asset, publication, profile execution, or personal runner action occurred in Delivery. API-REV-020 remains a truthful Fail because its attempt created zero runs.
 - Current result: `Pass / bootstrap only`; route the cumulative package to `api_e2e_engineer` for real organization-managed recovery and hosted promotion against exact ref `ec0f726...`.
+
+### DR-008 — Final-main admission contract blocks hosted release
+
+- Date: 2026-08-10
+- Trigger: Code Reviewer handed off reviewed source `b88c230663eb96e0def8c869b095ea858b0ff50b`, implementation artifact `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`, CRR-055 `Pass / 9.7`, API-REV-025 `Pass / 97%`, and CRR-056 proportional API/E2E test-code review `Not Applicable`.
+- Prior authoritative result: `DR-007` — default-main workflow registration bootstrap passed; v1.0.0 remained unpublished.
+- Upstream preservation: API-REV-025 and CRR-054/055 uncommitted artifacts were checkpointed at `b5b44a4c87bfeb192c7e7556093e6a8383fcbb60` before integration; all 176 API-REV-025 manifest entries passed verification.
+- Base refresh: `git fetch origin --prune` passed. `origin/main` remained `7385b65e397e6f1b17495720281fe0b2e39de99b`. Before integration, base/ticket left-right was `1 / 18` after the checkpoint.
+- Integration: merged refreshed `origin/main` into the ticket branch as `5c0c4b8b47d503a1c8ae464e0675ec797f2366a9`, with exact parents `b5b44a4...` and `7385b65...`. After integration, left/right is `0 / 19`; no content conflict occurred.
+- Integrated-state checks: `npm run check:release-pipeline` passed 9/9 and every API-REV-025 checksum passed. No provider, model, corpus, inference, profile, or performance qualification ran in Delivery.
+- Docs sync: `README.md` already contains the reviewed host-only/on-demand model manager contract. Delivery updated `release-notes.md` from the obsolete model-contained Provider Archive 1 description to the current two-host/nine-asset v1.0.0 scope. No desktop docs or source changed.
+- Blocking evidence: the production workflow dereferences six files below `release/admission/`, but that directory is absent from the integrated tree. The only Release Source Admission 3 currently exists under API-REV-025 evidence and binds `finalMainCommit` to focused source `b88c230...`, not integrated candidate `5c0c4b8...`.
+- Contract ambiguity: `verify-release-source-admission.mjs` requires the committed record's `finalMainCommit` to equal workflow `GITHUB_SHA`. Committing a newly generated record necessarily produces a later commit SHA, so Delivery cannot create a truthful exact-current-SHA record or choose a parent/record commit interpretation without changing the reviewed admission design and verifier.
+- Classification: `Design Impact / final-main admission authority` to `solution_designer`. A corrected design must define the acyclic committed admission subject and workflow checkout/verification relationship; implementation, source review, and applicable API validation must follow.
+- Evidence: `delivery-final-main-integration-SHA256SUMS.txt`; integration/readiness log SHA-256 `a397ae525cfb45f4b4662d8ff7f7b5d7d1039e624a8c8963157ba4c3297dd9e2`.
+- Publication boundary: standard-hosted equality was not dispatched because its first workflow step cannot open the required files. No ticket-branch push, maintained-main merge, tag, GitHub Release, asset, publication, or downloaded-byte verification occurred.
+- Current result: `Blocked`; preserve the integrated candidate and reviewed evidence, and do not bypass the missing/self-binding admission contract.
