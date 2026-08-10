@@ -1,0 +1,12 @@
+file:///Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/release/hosted-toolchain.mjs:57
+    throw new Error("Hosted toolchain target or runner label mismatch.");
+          ^
+
+Error: Hosted toolchain target or runner label mismatch.
+    at provisionHostedToolchain (file:///Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/release/hosted-toolchain.mjs:57:11)
+    at file:///Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/release/hosted-toolchain.mjs:183:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.23.1

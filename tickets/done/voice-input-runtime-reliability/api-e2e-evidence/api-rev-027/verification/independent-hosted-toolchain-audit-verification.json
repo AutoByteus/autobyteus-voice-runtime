@@ -1,0 +1,80 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-independent-hosted-toolchain-audit-verification",
+  "apiRevision": "API-REV-027",
+  "sourceCommit": "b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636",
+  "harnessCommit": "cf1a676053fdacda10994fdd4ec46a6162bdb874",
+  "runId": "31424156708",
+  "jobId": "93571782200",
+  "checks": {
+    "exactHarnessParent": true,
+    "orchestrationOnlyDiff": true,
+    "runPass": true,
+    "oneEvidenceArtifact": true,
+    "selectionPass": true,
+    "exactXcode": true,
+    "exactCmake": true,
+    "environmentConsumed": true,
+    "boundedTruth": true,
+    "fullProjectionTransparent": true,
+    "forcedTruth": true,
+    "zeroLaterExecution": true
+  },
+  "protectedSourceOwnerIdentities": [
+    {
+      "path": "release/hosted-toolchain.mjs",
+      "sizeBytes": 6015,
+      "sha256": "9d12285a6437fe95ac74c0586ef2cf60a1a3fc722f97112abd615fd81c757a93"
+    },
+    {
+      "path": "release/hosted-release-audit.mjs",
+      "sizeBytes": 6334,
+      "sha256": "7b720eb3196ddee64c7c70dba8c4c19c14733c9ab0c25f9b748176f156e3efd4"
+    },
+    {
+      "path": "build/host-build-environment.mjs",
+      "sizeBytes": 6196,
+      "sha256": "4b1b9c089fc6442bbefc57e9e4b88bd5f07bdd292f8e18057ffb130406325e48"
+    },
+    {
+      "path": "contracts/release/hosted-toolchain-selection-v1.schema.json",
+      "sizeBytes": 2049,
+      "sha256": "8a84bffcb16ab254c17c03a9f0b5f487eea3eb25272a47d9106df472e5c133fb"
+    },
+    {
+      "path": "contracts/release/hosted-release-audit-v1.schema.json",
+      "sizeBytes": 3740,
+      "sha256": "aeee7dcb0b4ffa670f666de5505493817ef55dbbcd670bdef62a950800351476"
+    }
+  ],
+  "observed": {
+    "xcode": {
+      "developerDirectory": "/Applications/Xcode_26.1.1.app/Contents/Developer",
+      "version": "Xcode 26.1.1\nBuild version 17B100",
+      "sdkVersion": "26.1",
+      "sdkSettingsSha256": "5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff"
+    },
+    "cmake": {
+      "archiveSizeBytes": 84264582,
+      "archiveSha256": "b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d",
+      "executableSizeBytes": 25014288,
+      "executableSha256": "d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb",
+      "version": "cmake version 4.2.0"
+    },
+    "environmentCmakeBinding": {
+      "selectorPath": "/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake",
+      "environmentPath": "/Users/runner/work/_temp/voice-api-e2e-r27/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake",
+      "environmentSha256": "d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb",
+      "equal": true
+    },
+    "boundedAudit": {
+      "decision": "fail",
+      "failureCategory": "input-hydration-unattempted"
+    },
+    "forcedAudit": {
+      "decision": "fail",
+      "failureCategory": "hosted-toolchain-failed"
+    }
+  },
+  "result": "pass"
+}

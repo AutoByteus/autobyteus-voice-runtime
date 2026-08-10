@@ -2,72 +2,109 @@
 
 ## Execution Round Meta
 
-- Requirements / Design: `requirements.md`, `investigation-notes.md`, `design-spec.md`, `release-pipeline-ownership.md`, and the current SR-024 supplements under `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/`.
+- Requirements / Design: `requirements.md`, `investigation-notes.md`, `design-spec.md`, `on-demand-model-assets.md`, `release-pipeline-ownership.md`, and the current supplements under `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/`.
 - Solution / Architecture: `SR-024`; `ARCH-REV-024 Pass`.
-- Implementation: `IR-037`; admitted source `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`; reviewed artifact `f9e4cff7ea44c303bb7fd94cff07f4345d51c77d`.
-- Focused retained authority source: `F=b88c230663eb96e0def8c869b095ea858b0ff50b`.
-- Code Review: `CRR-058 Pass / 9.8`.
+- Implementation: `IR-038`; maintained-main base `a486c998481a4d6649d3245c24f0c8e954785594`; source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`; reviewed artifact `c233e2c82300e798322964c2547af3d97f507488`.
+- Code Review: `CRR-061 Pass / 97.6%`.
+- Delivery context: `DR-010`; standard-hosted toolchain selection was the bounded unresolved release prerequisite.
 - Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`.
-- API/E2E Revision: `API-REV-026`.
-- Prior Result: `API-REV-025 — Pass / 97%`.
-- Latest Authoritative Result: **`API-REV-026 — Pass / 98%`**.
+- API/E2E Revision: `API-REV-027`.
+- Prior Result: `API-REV-026 — Pass / 98%`.
+- Latest Authoritative Result: **`API-REV-027 — Pass / 99%`**.
 
 ## Investigation And Execution Basis
 
 - Mandatory coverage investigation refreshed before execution: `Yes`.
-- Changed boundary: only Release Source Admission 4 and the exact protected six-file authority promotion. Runtime hosts, providers, Store 1, model assets, corpora, performance, desktop, and publication bytes are unchanged.
-- Retained evidence decision: the exact five checksum-bound API-REV-025 aggregate subjects remain `Still Valid / Reuse Exact Bytes`. They were revalidated against all `175` API-REV-025 checksum rows and were not regenerated or relabeled.
-- Repository-resident durable API/E2E test coverage changed: `No`.
-- Repository-resident durable non-test authority changed: `Yes`; commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875` adds exactly six protected files under `release/admission/`.
-- Broader validation: `Required — Completed`, limited to production Admission 4 assembly, sole-controller promotion, real-Git commit topology, and independent protected-byte verification.
+- Changed boundary: exact GitHub-hosted `macos-26` Xcode/SDK/CMake selection, selector consumption by Host Build Environment 2, and Hosted Release Audit 1 finalization before input hydration.
+- Existing source coverage decision: `Still Valid`. The exact reviewed source passes `npm run check:release-pipeline` `22/22`.
+- Temporary executable coverage decision: `Required — Completed`. One transparent, nonpublishing workflow-only harness exercised the exact reviewed production owners on a real GitHub-hosted Apple Silicon runner and stopped before input hydration.
+- Repository-resident durable API/E2E coverage changed: `No`.
+- Product/profile qualification reused or rerun: `No`. API-REV-025 and API-REV-026 remain immutable history/current upstream authority; this round did not relabel them.
+- Prohibited work performed: `None`; no model download, input hydration, host/package build, provider launch, corpus attempt, performance trial, tag, release, asset, publication, desktop, or user/shared product-state mutation occurred.
+- Broader validation: `Required — Completed` at the real standard-hosted runner/toolchain/environment/audit boundary.
 
 ## Scenario Matrix
 
-| Scenario        | Requirement / Boundary                                                                                            | Result | Direct Evidence                                                                                                       |
-| --------------- | ----------------------------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `API-VOICE-025` | `BEH-007`, `BEH-013`, `AC-025`: exact `F -> D -> R` Admission 4 and six-add promotion with zero product execution | Pass   | `api-e2e-evidence/api-rev-026/API-VOICE-025-zero-profile-release-authority-promotion.json` and supporting directories |
+| Scenario        | Requirement / Boundary                                                                                                         | Result | Direct Evidence                                                                                                            |
+| --------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------ | -------------------------------------------------------------------------------------------------------------------------- |
+| `API-VOICE-026` | bounded real `macos-26` tool selection, Host Build Environment 2 binding, truthful success/failure audit, and zero side effect | Pass   | `api-e2e-evidence/api-rev-027/API-VOICE-026-hosted-toolchain-audit-summary.json` and its checksum-bound supporting records |
 
-## Repository And Authority Execution
+## Repository And Hosted Execution
 
-| Command / Mode                                                                                                                                       | Result      | Evidence                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- | ----------------------------------------------------------------------------- |
-| `npm ci --ignore-scripts` in clean checkout at exact `D`                                                                                             | Pass        | `repository/npm-ci.log`                                                       |
-| `npm run check:release-pipeline`                                                                                                                     | Pass, 19/19 | `repository/npm-run-check-release-pipeline.log`                               |
-| production `assembleReleaseSourceAdmission()` over exact `F..D`, Policy 3, Matrix 2, five retained authorities, and two equal retained host closures | Pass        | `admission/v1.0.0-release-source-admission-v4.json`                           |
-| independent Git/policy/identity recomputation without the production admission owner                                                                 | Pass        | `admission/admission-v4-independent-verification.json`                        |
-| `node release/promote-release-authority.mjs ...` from clean `HEAD==D`                                                                                | Pass        | `promotion/promote-release-authority.log`; `promotion/staged-name-status.txt` |
-| commit and independent `D..R` tree/parent/source-byte verification                                                                                   | Pass        | `verification/committed-release-authority-verification.json`                  |
+| Command / Mode                                                                                                                                        | Result            | Evidence                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- | ------------------------------------------------------------------------ |
+| exact-source `npm run check:release-pipeline` at `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`                                                           | Pass, `22/22`     | `repository/exact-source-check-release-pipeline.log`                     |
+| temporary harness static YAML / Actions-expression validation                                                                                         | Pass              | `repository/harness-static-validation.log`                               |
+| temporary harness-branch release-pipeline check                                                                                                       | Excluded, `20/22` | `repository/harness-branch-release-check-disposition.json`               |
+| GitHub-hosted `macos-26` Apple Silicon build-preflight harness, run `31424156708`, job `93571782200`                                                  | Pass              | `environment/harness-run-final.json`; `environment/harness-workflow.log` |
+| exact reviewed `release/hosted-toolchain.mjs` success selection                                                                                       | Pass              | `hosted/success/hosted-toolchain-selection-v1.json`                      |
+| exact reviewed `build/host-build-environment.mjs` capture and consume of the selector's authenticated CMake path                                      | Pass              | `hosted/success/host-build-environment-v2.json`                          |
+| exact reviewed `release/hosted-release-audit.mjs` bounded actual-success record, complete success contract projection, and forced tool-failure record | Pass              | `hosted/success/` and `hosted/failure/` audit records                    |
+| independent identity, binding, outcome, absence, and zero-count verification                                                                          | Pass              | `verification/independent-hosted-toolchain-audit-verification.json`      |
 
-## Release Source Admission 4 Result
+The excluded `20/22` harness-branch check is not an implementation failure. Its two failures are production-workflow-shape assertions that correctly reject the temporary workflow replacement. The harness changed only `.github/workflows/release-voice-runtime.yml`; the exact reviewed source was checked separately and passed all `22/22` release-pipeline tests.
 
-- Decision: `reuse-permitted`.
-- Policy 3 identity: `3129` bytes, SHA-256 `c7cd2e5ede4a96f6990145a4719912e6dd7dc97fa85d157ea0f68ab37af1e676`.
-- `F..D` ancestry: verified.
-- Changed paths: exactly `218`; `25` are `release-pipeline-only`, `193` are `documentation-record-only`, and no stricter category is present.
-- Changed-path canonical digest: `191b58b2a7ea1ad79e6b06b134bd525380ff88beff45a46fae46e0ee47b3f56d`.
-- English retained Host Source Closure equality: `true` (`40027` bytes / `d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134`).
-- Chinese retained Host Source Closure equality: `true` (`701449` bytes / `705cb2a11ac9c1566344abf519a581747402a6ebc9336f45e1cc414deb4ec5f4`).
-- The five focused authority identities exactly match API-REV-025 and its checksum authority.
+## Transparent Temporary Harness
 
-## Exact Promotion Commit
+- Harness commit: `cf1a676053fdacda10994fdd4ec46a6162bdb874`.
+- Parent: exact source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`.
+- Diff: exactly one workflow file, `.github/workflows/release-voice-runtime.yml`.
+- Exact production owners executed:
+  - `release/hosted-toolchain.mjs`
+  - `release/hosted-release-audit.mjs`
+  - `build/host-build-environment.mjs`
+- Orchestration difference: the temporary workflow stopped before input hydration and uploaded only API/E2E evidence.
+- Run: GitHub-hosted `macos-26` ARM64, run `31424156708`, job `93571782200`, conclusion `success`.
+- Artifact: exactly one Actions evidence artifact, `voice-runtime-api-rev-027-31424156708`; it is not a release asset.
+- Cleanup: the temporary remote branch, local branch, and temporary worktrees were removed. Maintained main remained `a486c998481a4d6649d3245c24f0c8e954785594`.
 
-- Clean promotion worktree: `/private/tmp/autobyteus-voice-api-e2e-r26-20260810-v1/repository`.
-- Promotion branch: `codex/voice-runtime-release-admission-promotion-r`.
-- Admitted parent: `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`.
-- Promotion commit: `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`.
-- Topology: one parent only, exactly `D`; worktree clean after commit.
-- Diff: exactly six `A` records, no rename or other file:
-  1. `release/admission/v1.0.0-branch-catalog-projection-v3.json`
-  2. `release/admission/v1.0.0-branch-catalog-projection-verification-v3.json`
-  3. `release/admission/v1.0.0-chinese-profile-execution-closure-v2.json`
-  4. `release/admission/v1.0.0-english-profile-execution-closure-v2.json`
-  5. `release/admission/v1.0.0-focused-qualification-set-v3.json`
-  6. `release/admission/v1.0.0-release-source-admission-v4.json`
-- All six are ordinary `100644` blobs. The first five are byte-identical to their API-REV-025 inputs; the sixth is byte-identical to the independently checked Admission 4 output.
+## Exact Hosted Toolchain Result
 
-## Zero-Profile Execution Counts
+### Xcode And SDK
 
-The required exact counters are recorded in `verification/zero-profile-execution-counts.json`:
+- Selected developer directory: `/Applications/Xcode_26.1.1.app/Contents/Developer`.
+- Xcode: `26.1.1`, build `17B100`.
+- SDK: `26.1`, contained under the selected Xcode.
+- SDK settings SHA-256: `5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff`.
+
+### Official CMake
+
+- Version: `4.2.0`.
+- Official archive: `84,264,582` bytes; SHA-256 `b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d`.
+- Extracted executable: `25,014,288` bytes; SHA-256 `d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb`.
+- The selector output path and Host Build Environment 2 CMake path are identical; the environment reverified the same executable digest.
+
+### Host Build Environment 2
+
+- The environment was independently captured and consumed on the GitHub-hosted Apple Silicon runner.
+- It binds the authenticated Node, CMake, C/C++ compilers, linker, ranlib, make, sed, shell, tar, SDK, and exact selector output.
+- The runner was Apple M1 Virtual, three logical CPUs, about 7 GiB RAM, with more than the required disk capacity. This is build-preflight environment evidence only, not product performance evidence.
+
+## Hosted Release Audit Truthfulness
+
+### Actual Bounded Success Path
+
+- Checkout, dependency setup, source verification, exact hosted tool selection, and Host Build Environment 2 consumption succeeded.
+- Input hydration and every later phase were deliberately unattempted.
+- Hosted Release Audit 1 therefore correctly finalized `decision=fail`, `failureCategory=input-hydration-unattempted`.
+- This is a truthful intentional harness stop, not an implementation failure and not a release Pass claim.
+
+### Complete Success Contract Projection
+
+- The exact production audit owner was also exercised against a complete all-success GitHub outcome projection.
+- The projection returns Pass and is explicitly labeled synthetic contract scope with `productOrReleaseExecutionClaimed=false`.
+- It proves finalization semantics; it does not claim product build, qualification, tag, release, or publication execution.
+
+### Forced Pre-Hydration Tool Failure
+
+- The exact selector was invoked with a deliberately wrong runner label.
+- The actual GitHub step outcome was `failure`, captured through `continue-on-error` solely so the always-run audit and evidence upload could complete.
+- The audit correctly finalized `decision=fail`, `failureCategory=hosted-toolchain-failed`; all later phases were `unattempted`.
+- No tool root or selection record was produced, proving the failure stopped before input/cache/build operations.
+
+## Zero Execution And Side-Effect Counts
+
+The exact counters in `hosted/verification/zero-execution-counts.json` are:
 
 | Counter                 | Value |
 | ----------------------- | ----: |
@@ -76,54 +113,62 @@ The required exact counters are recorded in `verification/zero-profile-execution
 | `modelDownloadCount`    |     0 |
 | `corpusAttemptCount`    |     0 |
 | `performanceTrialCount` |     0 |
+| `inputHydrationCount`   |     0 |
+| `hostBuildCount`        |     0 |
+| `tagCreationCount`      |     0 |
+| `releaseCreationCount`  |     0 |
+| `publicationCount`      |     0 |
+| `assetCreationCount`    |     0 |
 
-Host builds, release dispatches, tags, publications, and user/desktop mutations were also zero. This round did not download any model because model installation remains an explicit user/runtime action, not a release-authority operation.
+The v1.0.0 tag and GitHub Release remain absent, and historical production run `31420271551` remains a truthful failure. Models remain on-demand runtime assets and were not downloaded in this build/release preflight.
 
 ## Confidence Scorecard
 
-| Category                                            | Score | Basis / Residual                                                                                                                               |
-| --------------------------------------------------- | ----: | ---------------------------------------------------------------------------------------------------------------------------------------------- |
-| requirement and acceptance-criteria proof           |   99% | exact `AC-025` `F -> D -> R` admission, topology, path-set, policy, closure, and byte identities directly proved                               |
-| changed-boundary execution directness               |   99% | production assembler and sole promotion controller executed against a clean real-Git checkout, followed by independent verification            |
-| cross-boundary integration realism and mock gap     |   98% | real policy/Git/API25/admission/promotion/commit chain; maintained-main `W` and hosted verification remain correctly Delivery-owned            |
-| environment/configuration/identity/fixture fidelity |   99% | exact reviewed commits, immutable API-REV-025 subjects, Policy 3, Matrix 2, and retained closure identities                                    |
-| failure/edge/lifecycle/recovery evidence            |   97% | 19/19 fail-closed release tests plus absence, clean-checkout, exact-stage, parent, mode, and byte checks; hosted `R..W` negatives remain later |
-| user/browser/desktop confidence                     |   N/A | zero-profile repository/release authority stage; no user or desktop surface is applicable                                                      |
-| durable regression coverage quality and relevance   |   98% | current exact/prefix/rename/unknown/actual-transition release suite passes; API/E2E changed no test code                                       |
+| Category                                            | Score | Basis / Residual                                                                                                                        |
+| --------------------------------------------------- | ----: | --------------------------------------------------------------------------------------------------------------------------------------- |
+| requirement and acceptance-criteria proof           |   99% | exact bounded toolchain/environment/audit requirements directly proved; later release phases intentionally outside this round           |
+| changed-boundary execution directness               |  100% | exact reviewed production selector, environment, and audit owners executed on a real GitHub-hosted `macos-26` ARM64 runner              |
+| cross-boundary integration realism and mock gap     |   99% | real workflow step outcomes, filesystem/toolchain, environment capture/consume, audit retention, and Actions evidence artifact          |
+| environment/configuration/identity/fixture fidelity |  100% | exact source, Xcode/build/SDK/settings, official CMake archive/executable, and consumed environment identities independently verified   |
+| failure/edge/lifecycle/recovery evidence            |   99% | actual forced pre-hydration failure, correct unattempted later phases, bounded actual stop, transparent success projection, and cleanup |
+| user/browser/desktop confidence                     |   N/A | this bounded release build-preflight stage has no product UI or desktop behavior                                                        |
+| durable regression coverage quality and relevance   |   98% | exact-source `22/22` plus real temporary hosted probe; no host-specific harness was made durable                                        |
 
-Overall confidence: **`98%`**. No applicable category is below `97%`; every critical criterion in this bounded stage has direct evidence.
+Overall confidence: **`99%`**. No applicable category is below `98%`; every critical criterion in this bounded round has direct evidence.
 
 ## Durable Coverage And Repository Changes
 
 - API/E2E durable test additions: `None`.
 - API/E2E durable test updates: `None`.
 - API/E2E durable test removals: `None`.
-- Durable non-test authority additions: the exact six `release/admission/` paths listed above, committed only in `R`.
-- Required next review: full Code Review of the committed `R` authority state. A proportional test-code review is `Not Applicable` because no durable test changed.
+- Production source or authority changes by API/E2E: `None`.
+- Temporary harness: execution-only and fully removed; it is retained only as checksum-bound evidence.
+- Required next review: Code Reviewer proportional test-code review with expected disposition `Not Applicable`, then Delivery may decide the later release retry.
 
 ## Cleanup And Safety
 
-- Promotion worktree is clean and remains isolated under `/private/tmp` for reviewer inspection.
-- No host build, provider, model manager, model download, corpus, performance, workflow, merge, tag, release, publication, or desktop process was started.
-- No user/shared Store 1 or application state was touched.
-- Reviewer-owned uncommitted CRR-057/058 artifacts in the original worktree were preserved and were not included in `R`.
+- Remote temporary harness branch: absent.
+- Local harness branch and exact-source/harness worktrees: removed.
+- No owned process, cache, input, model, package, tag, release, or publication remained.
+- No user/shared Store 1 or desktop/application state was touched.
+- Reviewer-owned uncommitted CRR-061 artifacts in the assigned worktree were preserved.
 
 ## Residual Scope
 
-- Code Reviewer must review exact committed authority `R` before Delivery resumes.
-- Delivery owns maintained-main `W`, hosted `R..W` admission verification, standard-hosted host-only archive equality, tag/release/publication, and downloaded-byte verification.
-- API-REV-025 remains the current product/runtime qualification evidence. This zero-profile round neither reruns nor weakens it.
+- Delivery alone owns any later production release retry, maintained-main integration check, tag, release, publication, and downloaded release-byte proof.
+- This round proves the standard-hosted build toolchain and early audit boundary only. It neither claims nor reruns product qualification.
+- API-REV-025 product/runtime evidence and API-REV-026 admission/promotion evidence remain unchanged upstream authority.
 - macOS x64, Linux, Windows, `auto`, and desktop UI remain explicitly deferred.
 
 ## Recommended Recipient
 
-`code_reviewer` for review of the exact six-file durable non-test authority commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`. No repository-resident durable API/E2E test changed.
+`code_reviewer` for proportional API/E2E test-code review, expected `Not Applicable` because no repository-resident durable API/E2E coverage changed, followed by Delivery.
 
 ## Latest Authoritative Result
 
 - Result: **`Pass`**.
-- Confidence: **`98%`**.
+- Confidence: **`99%`**.
 - Broader validation: **`Required — Completed`**.
 - New failures or blockers: `None`.
 - Durable API/E2E test changes: `None`.
-- Durable non-test authority additions: `6`, exact and committed in `R`.
+- Model downloads / product executions / release actions: `0 / 0 / 0`.

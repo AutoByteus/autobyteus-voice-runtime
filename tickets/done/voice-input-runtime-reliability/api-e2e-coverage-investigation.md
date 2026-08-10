@@ -15,17 +15,46 @@
 - Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md` (`SR-024`; preserved SR-021 product basis)
 - Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md` (`ARCH-REV-024 Pass`)
 - Architecture Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md` (`IR-037`)
+- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md` (`IR-038`)
 - Implementation Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` (`CRR-058 Pass`)
+- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` (`CRR-061 Pass`)
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-- Delivery Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md` (`DR-008 Blocked — Design Impact`; API/E2E now returns reviewed `R` before Delivery re-entry)
+- Delivery Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md` (`DR-010 Blocked — Local Fix`; maintained-main release run `31420271551` failed before hydration)
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-026`
-- Current Investigation Round: `26`
-- Trigger: Code Reviewer `CRR-058` against focused source `F=b88c230663eb96e0def8c869b095ea858b0ff50b`, admitted source `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`, and reviewed implementation artifact `f9e4cff7ea44c303bb7fd94cff07f4345d51c77d`.
-- Prior Investigation Reviewed: `API-REV-025 — Pass / 97%`; its exact five aggregate authority subjects and checksum bundle are the immutable inputs for this zero-profile round.
-- Latest Authoritative Investigation: **`API-REV-026 — Pass / 98%`**. Production Admission 4 returns `reuse-permitted`; the sole controller created exact direct-child `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`, and independent verification proves its six-add shape and protected bytes.
+- Current API/E2E Revision ID: `API-REV-027`
+- Current Investigation Round: `27`
+- Trigger: Code Reviewer `CRR-061` for `IR-038` / Delivery `DR-010`; maintained-main base `a486c998481a4d6649d3245c24f0c8e954785594`, exact source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`, reviewed artifact `c233e2c82300e798322964c2547af3d97f507488`.
+- Prior Investigation Reviewed: `API-REV-026 — Pass / 98%`; its release authority remains unchanged and is not a product/toolchain rerun subject.
+- Latest Authoritative Investigation: **`API-REV-027 — Pass / 99%`**. Real GitHub-hosted `macos-26` run `31424156708` executes the exact reviewed source owners, selects and revalidates the locked toolchain, retains truthful bounded-success and forced-failure audits, and performs zero later product/release work.
+
+## API-REV-027 Hosted Toolchain And Early-Audit Coverage Delta
+
+- Scope classification: release-host tooling/audit only. The seven `a486c998...b5d3c2f` changed paths are already source-reviewed as `release-pipeline-only`; runtime, provider, installer, model, corpus, performance, host archive, nine-asset semantics, browser, desktop, and user/shared product state are unchanged.
+- Critical success boundary: execute the exact `release/hosted-toolchain.mjs` production owner on real Apple Silicon macOS 26 capacity. Require the installed exact `/Applications/Xcode_26.1.1.app/Contents/Developer`, Xcode `26.1.1` build `17B100`, contained macOS SDK `26.1`, exact `SDKSettings.json` digest, official CMake `4.2.0` archive digest, extracted ordinary executable digest/version, and a strict Hosted Toolchain Selection 1 Pass record.
+- Downstream-consumption boundary: pass only the selector-emitted CMake path to unchanged `build/host-build-environment.mjs`; require Host Build Environment 2 to independently revalidate the exact Node/CMake/Xcode/SDK/native tool identities without ambient CMake selection or fallback. Stop before input hydration.
+- Audit boundary: exercise the exact `release/hosted-release-audit.mjs` initialize/finalize owners. Require one truthful success-path projection for the bounded tool/environment harness and one forced pre-hydration tool failure where `hosted-toolchain=failed`, every later primary phase is `unattempted`, decision is `fail`, failure category is `hosted-toolchain-failed`, and the audit remains uploadable/retained.
+- Side-effect boundary: before and after both paths, prove no input/cache/build/bundle/tag/release/asset/product-store subject is created. No model weights, providers, profile/corpus/performance work, production workflow, tag, release, or publication may run. Any temporary hosted harness must be nonpublishing, use the exact reviewed source owners, disclose its orchestration-only difference, and be removed after evidence capture.
+- Existing durable coverage inventory:
+  - `tests/release/host-release-contracts.test.mjs`: `Still Valid / Updated Upstream`; exact source-owned success/failure/identity/schema behaviors, already reviewed in CRR-061.
+  - `tooling/check-release-pipeline.mjs` and both new schemas: `Still Valid / Updated Upstream`; strict release guard and artifact shapes.
+  - API-REV-026 authority and API-REV-025 product/runtime evidence: `Still Valid / Unchanged`; do not regenerate or relabel.
+  - API/E2E repository-resident durable test changes: `None Planned`; use temporary execution evidence unless a new stable gap is found.
+- Ordered execution: preserve reviewer artifacts; create isolated evidence/root; capture read-only host identities and side-effect baseline; run focused 22/22 release gate; execute exact selector and Host Build Environment 2 on real macOS 26; execute bounded audit success and forced tool-failure projections; independently verify identities, containment, selector/environment binding, audit semantics, and absence of later side effects; clean only API/E2E-owned temporary state.
+- Broader validation decision: `Required`, because the observed DR-010 defect existed only on mutable standard-hosted macOS tooling and early workflow failure retention. Product qualification is explicitly not required.
+- Stop rule: any runner/Xcode/SDK/CMake/digest/containment/environment/audit mismatch is a truthful failure. Do not use ambient/default/latest/Homebrew CMake, alternate Xcode, fallback runner, lock relaxation, hydration, host build, model download, product execution, tag, release, or publication.
+
+### API-REV-027 Execution Update
+
+- Local identity probe was intentionally non-authoritative for the success boundary: the current M1 has the same Xcode build/SDK/settings bytes but exposes `/Applications/Xcode.app`, not the required standard-hosted `/Applications/Xcode_26.1.1.app` path, and lacks noninteractive Xcode switching. This correctly triggered the planned real-hosted path rather than a local substitution.
+- A temporary nonpublishing harness commit `cf1a676053fdacda10994fdd4ec46a6162bdb874` changed only `.github/workflows/release-voice-runtime.yml`, checked out exact reviewed source `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`, invoked the exact source owners, and stopped before hydration. Its orchestration-only diff and source-owner identities are preserved; its remote/local branch and worktrees were removed after evidence download.
+- Exact-source local release coverage passed `22/22`. One excluded harness-branch check returned `20/22` because the two production-workflow-shape assertions correctly reject the temporary replacement workflow; it is preserved as an expected harness-shape rejection and is not implementation evidence.
+- Real GitHub-hosted `macos-26` ARM64 run `31424156708` / job `93571782200` passed. Hosted Toolchain Selection 1 switched to exact Xcode 26.1.1 build 17B100, proved SDK 26.1 containment and settings digest `51295961...63ff`, authenticated official CMake archive `b8b040a0...c5d` and executable `d03ae0d5...fbb`, and emitted only the verified executable path.
+- Unchanged Host Build Environment 2 captured and consumed that exact path/digest and independently authenticated Node, CMake, Xcode/SDK, compiler, linker, ranlib, sed, tar, and the closed environment. The independent verification record confirms selector/environment path and digest equality.
+- The bounded actual-success audit truthfully records checkout/setup/source/toolchain success and the intentional harness stop as `input-hydration-unattempted`; this is not an implementation failure. A separate explicitly synthetic contract-only full-success projection passes and claims no product/release execution.
+- An actual forced wrong-runner selector invocation produced GitHub step outcome `failure` before creating its tool root or selection record. Hosted Release Audit 1 records `hosted-toolchain-failed`, every later phase `unattempted`, and remains retained in the single workflow evidence artifact.
+- Counts remain zero for input hydration, host builds, profiles, providers, model downloads, corpora, performance trials, tags, releases, publications, and release assets. `origin/main` stayed `a486c998...`, historical production run `31420271551` remains a failure, and v1.0.0 tag/Release remain absent.
+- Durable coverage decision: API/E2E added, updated, and removed no repository-resident durable test coverage. The temporary harness was deleted and is retained only as execution evidence.
+- Final broader-validation decision: `Required — Completed`. Final confidence is `99%`; every applicable scorecard category is at least `98%`. Delivery alone owns any production release retry.
 
 ## API-REV-026 Zero-Profile Coverage Delta
 

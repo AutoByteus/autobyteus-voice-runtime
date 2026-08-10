@@ -1,0 +1,9 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-excluded-check-disposition",
+  "command": "npm run check:release-pipeline",
+  "executedSubject": "temporary-orchestration-only-harness-commit-cf1a676053fdacda10994fdd4ec46a6162bdb874",
+  "result": "excluded",
+  "reason": "The temporary harness intentionally replaces only the production workflow YAML, so the two production-workflow-shape assertions correctly reject that nonproduction orchestration. All 20 source-owner and contract tests pass; exact source b5d3c2f is rerun separately and remains authoritative.",
+  "implementationFailureClaimed": false
+}

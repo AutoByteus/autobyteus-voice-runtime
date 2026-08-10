@@ -1,0 +1,7 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "api-e2e-audit-projection-scope",
+  "scope": "contract-only-synthetic-github-outcome-projection",
+  "productOrReleaseExecutionClaimed": false,
+  "decision": "pass"
+}
