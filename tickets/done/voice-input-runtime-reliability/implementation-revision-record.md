@@ -852,3 +852,28 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go full `npm run check` passed source guards, `7/7` Python plus compileall, all Go/source/evidence checks, and `91/91` Node TAP tests. `go vet ./...`, `go test -race ./...`, focused race tests, repeated model-manager/model-store tests, Prettier, and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`.
 - Remaining limitations or risks: implementation did not run API/E2E, construct production hosts, download production models, exercise real CDN resume behavior, start providers, run retained offline clips, execute qualification, derive focused authorities, dispatch release, merge, tag, or publish. Actual macOS filesystem/signal/lease interleavings, production-manifest install/resume, offline smoke, deterministic archive equality, Profile Execution Closure 2, and exact nine-asset publication remain fail-closed downstream work. x64/Linux/Windows/`auto`, alternate models/providers, desktop integration, and personal-runner release infrastructure remain out of scope.
+
+### IR-033 — Correct runtime-host builder and verifier composition
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; focused failure-origin review `CRR-050`, with evidence at `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-050-api-f-016-f-017-origin.md`.
+- Triggering finding IDs: `CR-F-044` / `API-F-016`; `CR-F-045` / `API-F-017`.
+- Classification: `Local Fix`.
+- Prior authoritative result: `CRR-049` source Pass was superseded by `CRR-050` / `Fail — Local Fix` after `API-REV-022` failed at the host construction/independent-verification prerequisites.
+- Current authoritative result: `Implementation Complete — Ready for Code Re-review`.
+- Related solution revision IDs: `SR-021`.
+- Related architecture-review revision IDs: `ARCH-REV-021` Pass; no requirement/design reset required.
+- Related code-review revision IDs: `CRR-049`, `CRR-050`; current re-review pending.
+- Related API/E2E revision IDs: `API-REV-022` Fail / 84%; later model/install/runtime/evidence scenarios remain paused.
+- Related delivery revision IDs: prior `DR-006`; current Delivery not started.
+- Why this implementation revision is recorded: approved Chinese Runtime Host Archive 2 construction deterministically reached a real builder whose resolved-CMake imports addressed the wrong module, and independent verification reached a real extractor whose report exposed an absolute private destination instead of the logical archive-root contract.
+- Approved behavior or requirement IDs affected: `BEH-004`, `BEH-007`, `BEH-010`, `BEH-013`; `AC-028`; `API-VOICE-018`. Runtime/provider/model/matrix/catalog/store/lifecycle/release behavior is unchanged.
+- Implementation delta:
+  - Corrected `build/profile-builders/funasr-host.mjs` to import `cmakeConfigureArguments` and `verifyResolvedCmakeConfiguration` from their sole owner, `build/resolved-cmake-configuration.mjs`, while retaining `trustedHostBuildEnvironment` under `build/host-build-environment.mjs`.
+  - Changed `packaging/archive.ExtractVerified` to project the already validated `expected.Archive.RootDirectory` into `VerificationReport.hostRoot`; the absolute extraction destination remains operational state and is not published.
+  - Added direct Go assertions for exact logical `host` and non-disclosure of the destination.
+  - Added production-shaped Node coverage that loads both real host-builder module graphs through their actual entry scripts, asserts the resolved-CMake owner contract, builds a canonical host archive with the real Go tool, and passes its real extractor report through the Host Verification 2 schema/output owner.
+  - Preserved `CR-F-039`–`CR-F-043` resolutions, trusted build-environment ownership, strict Host Verification 2 schema, provider/model selection, exact nine-asset release contract, and runtime-only scope.
+- Changed files or areas: `build/profile-builders/funasr-host.mjs`, `packaging/archive/safeextract.go`, `packaging/archive/canonicalzip_test.go`, and `tests/build/host-builder-composition.test.mjs`; source commit `4db8bf26708309440c83ec56973250f77e9f1619`.
+- Local validation and result: focused real-builder/verifier composition passed `2/2`; exact pinned-Go `npm run check:release-pipeline` passed `9/9`; exact pinned-Go full `npm run check` passed `93/93` Node, `7/7` Python plus compileall, all Go/source/evidence checks; `go vet ./...`, `go test -race ./...`, Prettier, and `git diff --check` passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not rerun API/E2E or production host construction. After Source Pass, API/E2E should resume at Chinese double construction and English/Chinese independent verification; production model install/CDN resume, offline runtime, focused evidence, and release scenarios remain paused until those prerequisites pass. No merge, tag, publication, desktop, alternate target/model, or personal-runner work occurred.
