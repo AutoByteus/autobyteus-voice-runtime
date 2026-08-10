@@ -5,22 +5,34 @@ import path from "node:path";
 import test from "node:test";
 import { shaFile, writeJson } from "../../build/lib/files.mjs";
 import { assembleHostConstructionResult } from "../../release/hosted-host-construction-result.mjs";
-import { validateArtifact } from "../../release/release-contract.mjs";
+import {
+  ordinaryFileIdentity,
+  validateArtifact,
+} from "../../release/release-contract.mjs";
 
 const RESULT_SCHEMA =
-  "contracts/release/hosted-host-construction-result-v2.schema.json";
+  "contracts/release/hosted-host-construction-result-v3.schema.json";
 
 test("host construction truthfully retains first-profile and pre-build failures", async () => {
   const temporary = await fs.mkdtemp(
       path.join(os.tmpdir(), "voice-host-construction-"),
     ),
     commit = "1".repeat(40),
-    sourceAdmission = path.join(temporary, "source-admission.json");
+    sourceAdmission = path.join(temporary, "source-admission.json"),
+    releaseAdmissionVerification = path.join(
+      temporary,
+      "release-admission-verification.json",
+    );
   try {
     await writeJson(sourceAdmission, admissionFixture(commit));
+    await writeJson(
+      releaseAdmissionVerification,
+      verificationFixture(commit, await ordinaryFileIdentity(sourceAdmission)),
+    );
     const failed = await assembleHostConstructionResult({
       sourceAdmission,
-      finalMainCommit: commit,
+      releaseAdmissionVerification,
+      workflowCheckoutCommit: commit,
       builds: [
         {
           profileId: "english",
@@ -71,7 +83,8 @@ test("host construction truthfully retains first-profile and pre-build failures"
     );
     const blocked = await assembleHostConstructionResult({
       sourceAdmission,
-      finalMainCommit: commit,
+      releaseAdmissionVerification,
+      workflowCheckoutCommit: commit,
       builds: [],
       output: path.join(temporary, "blocked.json"),
     });
@@ -128,9 +141,20 @@ test("host construction truthfully retains first-profile and pre-build failures"
         },
       });
     }
+    const passingAdmission = admissionFixture(commit);
+    for (const profile of passingAdmission.profiles)
+      profile.hostArchive = builds.find(
+        (build) => build.profileId === profile.profileId,
+      ).focusedProfile.hostArchive;
+    await writeJson(sourceAdmission, passingAdmission);
+    await writeJson(
+      releaseAdmissionVerification,
+      verificationFixture(commit, await ordinaryFileIdentity(sourceAdmission)),
+    );
     const passed = await assembleHostConstructionResult({
       sourceAdmission,
-      finalMainCommit: commit,
+      releaseAdmissionVerification,
+      workflowCheckoutCommit: commit,
       builds,
       output: path.join(temporary, "passed.json"),
     });
@@ -155,35 +179,135 @@ function admissionFixture(commit) {
     sha256: digit.repeat(64),
   });
   return {
-    schemaVersion: 3,
+    schemaVersion: 4,
     artifactKind: "release-source-admission",
     focusedSourceCommit: commit,
-    finalMainCommit: commit,
+    admittedSourceCommit: commit,
+    sourceClosurePolicy: identity("relevant-source-closure-v2.json", "d"),
+    currentReleaseMatrix: identity("current-release-matrix-v2.json", "e"),
     ancestryVerified: true,
     changedPaths: [],
     changedPathsSha256: "0".repeat(64),
-    qualificationSet: identity("qset.json", "1"),
-    branchProjection: identity("projection.json", "2"),
-    projectionVerification: identity("verification.json", "3"),
-    executionClosureVerifications: [
-      identity("english-closure.json", "4"),
-      identity("chinese-closure.json", "5"),
-    ],
+    focusedQualificationSet: identity("focused-qualification-set-v3.json", "1"),
+    branchCatalogProjection: identity("branch-catalog-projection-v3.json", "2"),
+    branchCatalogProjectionVerification: identity(
+      "branch-catalog-projection-verification-v3.json",
+      "3",
+    ),
+    englishExecutionClosure: identity(
+      "english-profile-execution-closure-v2.json",
+      "4",
+    ),
+    chineseExecutionClosure: identity(
+      "chinese-profile-execution-closure-v2.json",
+      "5",
+    ),
     profiles: [
-      {
-        profileId: "english",
-        focusedHostSourceClosureSha256: "6".repeat(64),
-        finalHostSourceClosureSha256: "6".repeat(64),
-        equal: true,
-      },
-      {
-        profileId: "chinese",
-        focusedHostSourceClosureSha256: "7".repeat(64),
-        finalHostSourceClosureSha256: "7".repeat(64),
-        equal: true,
-      },
+      admissionProfile("english", "6"),
+      admissionProfile("chinese", "7"),
     ],
     decision: "reuse-permitted",
+  };
+}
+
+function admissionProfile(profileId, closureDigit) {
+  const identity = (fileName, digit) => ({
+    fileName,
+    sizeBytes: 1,
+    sha256: digit.repeat(64),
+  });
+  return {
+    profileId,
+    hostPackageId: `voice.host.${profileId}`,
+    providerId: `provider.${profileId}`,
+    modelAssetId: `model.${profileId}`,
+    hostArchive: identity(`${profileId}.zip`, "8"),
+    hostDescriptorSha256: "9".repeat(64),
+    hostFileManifestSha256: "a".repeat(64),
+    modelAdmissionRootSha256: "b".repeat(64),
+    modelManifest: identity(`${profileId}-model.json`, "c"),
+    compatibilityPairSha256: "d".repeat(64),
+    focusedHostSourceClosure: {
+      sizeBytes: 1,
+      sha256: closureDigit.repeat(64),
+    },
+    admittedHostSourceClosure: {
+      sizeBytes: 1,
+      sha256: closureDigit.repeat(64),
+    },
+    equal: true,
+  };
+}
+
+function verificationFixture(commit, sourceAdmission) {
+  const protectedNames = [
+    "release/admission/v1.0.0-branch-catalog-projection-v3.json",
+    "release/admission/v1.0.0-branch-catalog-projection-verification-v3.json",
+    "release/admission/v1.0.0-chinese-profile-execution-closure-v2.json",
+    "release/admission/v1.0.0-english-profile-execution-closure-v2.json",
+    "release/admission/v1.0.0-focused-qualification-set-v3.json",
+    "release/admission/v1.0.0-release-source-admission-v4.json",
+  ];
+  const checks = Object.fromEntries(
+    [
+      "focusedAncestorOfAdmitted",
+      "admittedAncestorOfPromotion",
+      "promotionSingleParent",
+      "promotionDirectChild",
+      "promotionExactAdditions",
+      "promotionUnique",
+      "promotionAncestorOfWorkflow",
+      "workflowCheckoutVerified",
+      "maintainedMainVerified",
+      "protectedMembersImmutable",
+    ].map((key) => [key, true]),
+  );
+  return {
+    schemaVersion: 1,
+    artifactKind: "release-admission-verification",
+    releaseSourceAdmission: sourceAdmission,
+    focusedSourceCommit: commit,
+    admittedSourceCommit: commit,
+    authorityPromotionCommit: commit,
+    workflowCheckoutCommit: commit,
+    sourceClosurePolicy: {
+      fileName: "relevant-source-closure-v2.json",
+      sizeBytes: 1,
+      sha256: "d".repeat(64),
+    },
+    protectedMembers: protectedNames.map((fileName, index) => ({
+      fileName,
+      sizeBytes: 1,
+      sha256: `${index + 1}`.repeat(64),
+    })),
+    admittedRange: {
+      changedPaths: [],
+      changedPathsSha256: "0".repeat(64),
+      decision: "reuse-permitted",
+    },
+    postPromotionRange: {
+      changedPaths: [],
+      changedPathsSha256: "0".repeat(64),
+      decision: "reuse-permitted",
+    },
+    profiles: [
+      verificationProfile("english", "6"),
+      verificationProfile("chinese", "7"),
+    ],
+    checks,
+    decision: "pass",
+  };
+}
+
+function verificationProfile(profileId, digit) {
+  const closure = { sizeBytes: 1, sha256: digit.repeat(64) };
+  return {
+    profileId,
+    focusedHostSourceClosure: closure,
+    admittedHostSourceClosure: closure,
+    workflowHostSourceClosure: closure,
+    focusedToAdmittedEqual: true,
+    admittedToWorkflowEqual: true,
   };
 }
 

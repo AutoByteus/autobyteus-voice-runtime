@@ -1,29 +1,30 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://autobyteus.local/contracts/release/hosted-host-construction-result-v2.schema.json",
+  "$id": "https://autobyteus.local/contracts/release/hosted-host-construction-result-v3.schema.json",
   "type": "object",
   "additionalProperties": false,
   "required": [
     "schemaVersion",
     "artifactKind",
     "sourceAdmission",
-    "finalMainCommit",
+    "releaseAdmissionVerification",
+    "focusedSourceCommit",
+    "admittedSourceCommit",
+    "authorityPromotionCommit",
+    "workflowCheckoutCommit",
     "runner",
     "profiles",
     "decision"
   ],
   "properties": {
     "schemaVersion": {
-      "const": 2
+      "const": 3
     },
     "artifactKind": {
       "const": "hosted-host-construction-result"
     },
     "sourceAdmission": {
       "$ref": "#/$defs/identity"
-    },
-    "finalMainCommit": {
-      "$ref": "#/$defs/commit"
     },
     "runner": {
       "type": "object",
@@ -57,6 +58,21 @@
     },
     "decision": {
       "enum": ["pass", "fail", "blocked"]
+    },
+    "releaseAdmissionVerification": {
+      "$ref": "#/$defs/identity"
+    },
+    "focusedSourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "admittedSourceCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "authorityPromotionCommit": {
+      "$ref": "#/$defs/commit"
+    },
+    "workflowCheckoutCommit": {
+      "$ref": "#/$defs/commit"
     }
   },
   "allOf": [
@@ -201,10 +217,11 @@
         "focusedSourceCommit",
         "focusedArchive",
         "hostedArchive",
-        "wholeArchiveEqual",
+        "identityComparison",
         "focusedHostSourceClosureSha256",
-        "hostedHostSourceClosureSha256",
-        "closureEqual",
+        "admittedHostSourceClosureSha256",
+        "workflowHostSourceClosureSha256",
+        "closureComparison",
         "buildReport",
         "hostVerification",
         "provenance",
@@ -220,17 +237,8 @@
         "hostedArchive": {
           "$ref": "#/$defs/identity"
         },
-        "wholeArchiveEqual": {
-          "const": true
-        },
         "focusedHostSourceClosureSha256": {
           "$ref": "#/$defs/sha"
-        },
-        "hostedHostSourceClosureSha256": {
-          "$ref": "#/$defs/sha"
-        },
-        "closureEqual": {
-          "const": true
         },
         "buildReport": {
           "$ref": "#/$defs/identity"
@@ -309,6 +317,18 @@
               "const": 0
             }
           }
+        },
+        "identityComparison": {
+          "const": "equal"
+        },
+        "admittedHostSourceClosureSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "workflowHostSourceClosureSha256": {
+          "$ref": "#/$defs/sha"
+        },
+        "closureComparison": {
+          "const": "equal"
         }
       }
     },

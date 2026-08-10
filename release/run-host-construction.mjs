@@ -7,14 +7,17 @@ import { parsePairs, readJson, ROOT } from "../build/lib/files.mjs";
 import { deriveHostSourceClosure } from "../build/host-source-closure.mjs";
 import { assembleHostConstructionResult } from "./hosted-host-construction-result.mjs";
 import { loadCurrentReleaseMatrix } from "./current-release-matrix.mjs";
-import { readValidated } from "./release-contract.mjs";
+import { ordinaryFileIdentity, readValidated } from "./release-contract.mjs";
+import { sameContentIdentity } from "./release-admission-contract.mjs";
+import { verifyReleaseSourceAdmission } from "./verify-release-source-admission.mjs";
 
 const run = promisify(execFile);
 
 export async function runHostConstruction({
   sourceAdmission,
+  releaseAdmissionVerification,
   qualificationSet,
-  finalMainCommit,
+  workflowCheckoutCommit,
   inputsRoot,
   assets,
   audit,
@@ -25,8 +28,8 @@ export async function runHostConstruction({
 }) {
   const admission = await readValidated(
       sourceAdmission,
-      "contracts/release/release-source-admission-v3.schema.json",
-      "Release Source Admission 3",
+      "contracts/release/release-source-admission-v4.schema.json",
+      "Release Source Admission 4",
     ),
     qset = await readValidated(
       qualificationSet,
@@ -35,25 +38,32 @@ export async function runHostConstruction({
     ),
     matrix = await loadCurrentReleaseMatrix(),
     native = await readJson(buildEnvironment),
-    builds = [];
+    builds = [],
+    prepared = [];
+  if (
+    !sameContentIdentity(
+      await ordinaryFileIdentity(qualificationSet),
+      admission.focusedQualificationSet,
+    )
+  )
+    throw new Error("Host construction qualification authority is unbound.");
   await fs.mkdir(assets, { recursive: true });
   await fs.mkdir(audit, { recursive: true });
   for (const profileId of ["english", "chinese"]) {
     const focusedProfile = qset.profiles.find(
         (profile) => profile.profileId === profileId,
       ),
-      archive = path.join(
-        assets,
-        `voice-host-${profileId}-darwin-arm64-${version}.zip`,
-      ),
-      verification = path.join(audit, `${profileId}-host-verification-v2.json`),
       entry = matrix.value.entries.find((row) => row.profileId === profileId),
       recipePath = path.join(
         ROOT,
         "build/input-recipes",
         entry.hostRecipeFileName,
       ),
-      item = { profileId, focusedProfile, attempted: false };
+      item = { profileId, focusedProfile, attempted: false },
+      closurePath = path.join(
+        audit,
+        `${profileId}-prebuild-host-source-closure-v1.json`,
+      );
     try {
       const closure = await deriveHostSourceClosure({
         profileId,
@@ -70,10 +80,7 @@ export async function runHostConstruction({
           profileId,
           "host-authority/model-compatibility-requirement-v1.json",
         ),
-        outputPath: path.join(
-          audit,
-          `${profileId}-prebuild-host-source-closure-v1.json`,
-        ),
+        outputPath: closurePath,
       });
       const admitted = admission.profiles.find(
         (profile) => profile.profileId === profileId,
@@ -82,20 +89,38 @@ export async function runHostConstruction({
         !focusedProfile ||
         !admitted ||
         closure.sha256 !== focusedProfile.hostSourceClosureSha256 ||
-        closure.sha256 !== admitted.finalHostSourceClosureSha256
+        closure.sha256 !== admitted.admittedHostSourceClosure.sha256
       )
         throw new Error("focused host source closure mismatch");
       item.expectedHostSourceClosure = closure.sha256;
-      item.attempted = true;
+      item.closurePath = closurePath;
+      prepared.push(item);
     } catch {
-      item.failureCategory = "host-source-closure-mismatch";
-      builds.push(item);
-      await fs.rm(path.join(inputsRoot, profileId), {
-        recursive: true,
-        force: true,
-      });
-      break;
+      await cleanInputs(inputsRoot);
+      const error = new Error(
+        "Hosted Host Source Closure differs from admission.",
+      );
+      error.code = "SOURCE_ADMISSION_BLOCKED";
+      throw error;
     }
+  }
+  await verifyReleaseSourceAdmission({
+    repository: ROOT,
+    workflowCheckoutCommit,
+    checkoutHostClosures: prepared.map((item) => ({
+      profileId: item.profileId,
+      file: item.closurePath,
+    })),
+    output: releaseAdmissionVerification,
+  });
+  for (const item of prepared) {
+    const { profileId } = item,
+      archive = path.join(
+        assets,
+        `voice-host-${profileId}-darwin-arm64-${version}.zip`,
+      ),
+      verification = path.join(audit, `${profileId}-host-verification-v2.json`);
+    item.attempted = true;
     try {
       await run(
         process.execPath,
@@ -116,7 +141,7 @@ export async function runHostConstruction({
           "--expected-host-source-closure",
           item.expectedHostSourceClosure,
           "--source-commit",
-          finalMainCommit,
+          workflowCheckoutCommit,
           "--version",
           version,
         ],
@@ -162,9 +187,11 @@ export async function runHostConstruction({
       });
     }
   }
+  await cleanInputs(inputsRoot);
   const result = await assembleHostConstructionResult({
     sourceAdmission,
-    finalMainCommit,
+    releaseAdmissionVerification,
+    workflowCheckoutCommit,
     builds,
     output,
   });
@@ -179,8 +206,9 @@ export async function runHostConstruction({
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
     "source-admission",
+    "release-admission-verification",
     "qualification-set",
-    "final-main-commit",
+    "workflow-checkout-commit",
     "inputs-root",
     "assets",
     "audit",
@@ -191,8 +219,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   ]);
   await runHostConstruction({
     sourceAdmission: args["source-admission"],
+    releaseAdmissionVerification: args["release-admission-verification"],
     qualificationSet: args["qualification-set"],
-    finalMainCommit: args["final-main-commit"],
+    workflowCheckoutCommit: args["workflow-checkout-commit"],
     inputsRoot: args["inputs-root"],
     assets: args.assets,
     audit: args.audit,
@@ -201,4 +230,12 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     version: args.version,
     output: args.output,
   });
+}
+
+async function cleanInputs(inputsRoot) {
+  for (const profileId of ["english", "chinese"])
+    await fs.rm(path.join(inputsRoot, profileId), {
+      recursive: true,
+      force: true,
+    });
 }

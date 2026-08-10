@@ -36,8 +36,7 @@ jobs:
           npm ci --ignore-scripts
           npm run check:release-pipeline
           node release/verify-release-source-admission.mjs --repository "$GITHUB_WORKSPACE" \
-            --admission release/admission/v1.0.0-release-source-admission-v3.json \
-            --final-main-commit "$GITHUB_SHA"
+            --workflow-checkout-commit "$GITHUB_SHA" --mode lineage
       - name: Capture hosted authority and hydrate host-only inputs
         run: |
           set -euo pipefail
@@ -60,19 +59,20 @@ jobs:
           ROOT="$RUNNER_TEMP/voice-release"; GO="$(go env GOROOT)/bin/go"
           /usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb \
             "$(command -v node)" release/run-host-construction.mjs \
-            --source-admission release/admission/v1.0.0-release-source-admission-v3.json \
+            --source-admission release/admission/v1.0.0-release-source-admission-v4.json \
+            --release-admission-verification "$ROOT/audit/release-admission-verification-v1.json" \
             --qualification-set release/admission/v1.0.0-focused-qualification-set-v3.json \
-            --final-main-commit "$GITHUB_SHA" --inputs-root "$ROOT/inputs" \
+            --workflow-checkout-commit "$GITHUB_SHA" --inputs-root "$ROOT/inputs" \
             --assets "$ROOT/assets" --audit "$ROOT/audit" --go "$GO" \
             --build-environment "$ROOT/host-build-environment-v2.json" \
             --version "$VOICE_RUNTIME_VERSION" \
-            --output "$ROOT/audit/hosted-host-construction-result-v2.json"
+            --output "$ROOT/audit/hosted-host-construction-result-v3.json"
       - name: Compose exact acyclic nine-asset bundle
         run: |
           set -euo pipefail
           ROOT="$RUNNER_TEMP/voice-release"; AUTH=release/admission
           node release/model-manifest-admission.mjs \
-            --source-admission "$AUTH/v1.0.0-release-source-admission-v3.json" \
+            --source-admission "$AUTH/v1.0.0-release-source-admission-v4.json" \
             --branch-projection "$AUTH/v1.0.0-branch-catalog-projection-v3.json" \
             --english-execution-closure "$AUTH/v1.0.0-english-profile-execution-closure-v2.json" \
             --chinese-execution-closure "$AUTH/v1.0.0-chinese-profile-execution-closure-v2.json" \
@@ -80,8 +80,9 @@ jobs:
           cp release/model-manifests/*.json THIRD_PARTY_NOTICES.json "$ROOT/bundle/"
           cp "$ROOT/assets"/*.zip "$ROOT/bundle/"
           node release/evidence/assemble.mjs \
-            --source-admission "$AUTH/v1.0.0-release-source-admission-v3.json" \
-            --host-construction "$ROOT/audit/hosted-host-construction-result-v2.json" \
+            --source-admission "$AUTH/v1.0.0-release-source-admission-v4.json" \
+            --release-admission-verification "$ROOT/audit/release-admission-verification-v1.json" \
+            --host-construction "$ROOT/audit/hosted-host-construction-result-v3.json" \
             --model-manifest-admission "$ROOT/audit/model-manifest-admission-v1.json" \
             --branch-projection "$AUTH/v1.0.0-branch-catalog-projection-v3.json" \
             --final-main-commit "$GITHUB_SHA" --output "$ROOT/bundle/release-qualification-evidence-v4.json"

@@ -108,9 +108,10 @@ async function fixtureEvidence() {
     releaseTag: "v1.0.0",
     finalMainCommit: "1".repeat(40),
     releaseSourceAdmission: identity("source.json", "1"),
-    hostConstruction: identity("construction.json", "2"),
-    modelManifestAdmission: identity("admission.json", "3"),
-    matrix: identity("matrix.json", "4"),
+    releaseAdmissionVerification: identity("verification.json", "2"),
+    hostConstruction: identity("construction.json", "3"),
+    modelManifestAdmission: identity("admission.json", "4"),
+    matrix: identity("matrix.json", "5"),
     profiles,
     expectedAssetNames: PUBLISHED_ASSET_NAMES,
     executionCounts: {

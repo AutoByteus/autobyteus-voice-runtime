@@ -42,8 +42,22 @@ test("one standard-hosted job builds hosts without model or product execution", 
     workflow,
     /sandbox-exec -f benchmark\/sandbox\/darwin-arm64-network-denied-v1\.sb[\s\S]+release\/run-host-construction\.mjs/,
   );
-  assert.match(workflow, /hosted-host-construction-result-v2\.json/);
+  assert.match(workflow, /hosted-host-construction-result-v3\.json/);
   assert.match(workflow, /release\/verify-release-source-admission\.mjs/);
+  assert.match(
+    workflow,
+    /--workflow-checkout-commit "\$GITHUB_SHA" --mode lineage/,
+  );
+  assert.match(workflow, /release-admission-verification-v1\.json/);
+  assert.match(
+    workflow,
+    /release\/admission\/v1\.0\.0-release-source-admission-v4\.json/,
+  );
+  assert.doesNotMatch(
+    workflow,
+    /release-source-admission-v3|final-main-commit[^\n]+run-host/,
+  );
+  assert.doesNotMatch(workflow, /promote-release-authority/);
   assert.match(workflow, /release\/prepublication-seal\.mjs/);
   assert.match(workflow, /release\/verify-published-assets\.mjs/);
   assert.match(workflow, /release\/quarantine-published-release\.mjs/);
@@ -65,6 +79,8 @@ test("managed recovery and combined-package entrypoints are absent", async () =>
     "release/qualified-release-candidate.mjs",
     "contracts/package/provider-package-v1.schema.json",
     "contracts/startup/provider-session-config-v1.schema.json",
+    "contracts/release/release-source-admission-v3.schema.json",
+    "contracts/release/hosted-host-construction-result-v2.schema.json",
   ])
     await assert.rejects(fs.access(path.join(root, relative)), {
       code: "ENOENT",

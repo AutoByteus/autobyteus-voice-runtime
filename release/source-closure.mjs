@@ -1,15 +1,20 @@
 import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { readJson, ROOT, shaFile } from "../build/lib/files.mjs";
+import { readJson, ROOT } from "../build/lib/files.mjs";
 import {
   canonicalDigest,
   compareNames,
   deepEqual,
   ordinaryFileIdentity,
-  readValidated,
   writeArtifact,
 } from "./release-contract.mjs";
+import {
+  assertCommit,
+  gitOrdinaryFileIdentity,
+  readFocusedAuthorityBundle,
+  readGitJson,
+} from "./release-admission-contract.mjs";
 
 const run = promisify(execFile);
 export const SOURCE_CLOSURE_POLICY_PATH =
@@ -22,11 +27,28 @@ const PRECEDENCE = [
   "documentation-record-only",
 ];
 
-export async function loadSourceClosurePolicy({ repository = ROOT } = {}) {
+export async function loadSourceClosurePolicy({
+  repository = ROOT,
+  commit,
+} = {}) {
   const file = path.join(repository, SOURCE_CLOSURE_POLICY_PATH),
-    value = await readJson(file);
+    value = commit
+      ? await readGitJson({
+          repository,
+          commit,
+          relativePath: SOURCE_CLOSURE_POLICY_PATH,
+          label: "Relevant Source Closure Policy 2",
+        })
+      : await readJson(file);
   assertPolicy(value);
-  return { value, sha256: await shaFile(file) };
+  const identity = commit
+    ? await gitOrdinaryFileIdentity({
+        repository,
+        commit,
+        relativePath: SOURCE_CLOSURE_POLICY_PATH,
+      })
+    : await ordinaryFileIdentity(file);
+  return { value, identity, sha256: identity.sha256 };
 }
 
 export function classifySourcePath(fileName, policy) {
@@ -103,106 +125,97 @@ export function sourceClosureDecision(changes) {
 export async function assembleReleaseSourceAdmission({
   repository = ROOT,
   focusedSourceCommit,
-  finalMainCommit,
-  qualificationSet,
-  branchProjection,
-  projectionVerification,
-  executionClosureVerifications,
-  finalHostClosures,
+  admittedSourceCommit,
+  focusedAuthorities,
+  admittedHostClosures,
   output,
 }) {
   assertCommit(focusedSourceCommit);
-  assertCommit(finalMainCommit);
+  assertCommit(admittedSourceCommit);
   const ancestor = await isAncestor(
       repository,
       focusedSourceCommit,
-      finalMainCommit,
+      admittedSourceCommit,
     ),
-    { value: policy } = await loadSourceClosurePolicy({ repository }),
+    { value: policy, identity: policyIdentity } = await loadSourceClosurePolicy(
+      {
+        repository,
+        commit: admittedSourceCommit,
+      },
+    ),
     changedPaths = await changedSourcePaths({
       repository,
       from: focusedSourceCommit,
-      to: finalMainCommit,
+      to: admittedSourceCommit,
       policy,
     }),
-    qset = await readValidated(
-      qualificationSet,
-      "contracts/release/focused-qualification-set-v3.schema.json",
-      "Focused Qualification Set 3",
-    ),
-    projection = await readValidated(
-      branchProjection,
-      "contracts/catalog/branch-catalog-projection-v3.schema.json",
-      "Branch Catalog Projection 3",
-    ),
-    verification = await readValidated(
-      projectionVerification,
-      "contracts/catalog/branch-catalog-projection-verification-v3.schema.json",
-      "Branch Catalog Projection Verification 3",
-    );
+    matrixRelative = "contracts/catalog/current-release-matrix-v2.json",
+    matrix = {
+      value: await readGitJson({
+        repository,
+        commit: admittedSourceCommit,
+        relativePath: matrixRelative,
+        schema: "contracts/catalog/current-release-matrix-v2.schema.json",
+        label: "Current Release Matrix 2",
+      }),
+      identity: await gitOrdinaryFileIdentity({
+        repository,
+        commit: admittedSourceCommit,
+        relativePath: matrixRelative,
+      }),
+    },
+    authority = await readFocusedAuthorityBundle({
+      paths: focusedAuthorities,
+      focusedSourceCommit,
+      currentReleaseMatrix: matrix,
+    }),
+    profiles = authority.profiles.map((profile) => {
+      const observed = admittedHostClosures.find(
+        (item) => item.profileId === profile.profileId,
+      );
+      if (!observed) throw new Error("Admitted Host Source Closure is absent.");
+      const admitted = {
+        sizeBytes: observed.sizeBytes,
+        sha256: observed.sha256,
+      };
+      const equal = deepEqual(profile.focusedHostSourceClosure, admitted);
+      return {
+        ...profile,
+        admittedHostSourceClosure: admitted,
+        equal,
+      };
+    });
+  let decision = sourceClosureDecision(changedPaths);
   if (
     !ancestor ||
-    qset.sourceCommit !== focusedSourceCommit ||
-    projection.sourceCommit !== focusedSourceCommit ||
-    verification.sourceCommit !== focusedSourceCommit ||
-    qset.decision !== "pass" ||
-    projection.decision !== "pass" ||
-    verification.decision !== "pass"
+    profiles.length !== 2 ||
+    profiles.some((profile) => !profile.equal)
   )
-    throw new Error("Release source admission evidence lineage mismatch.");
-  const executionIdentities = [];
-  for (const file of executionClosureVerifications) {
-    const closure = await readValidated(
-      file,
-      "contracts/qualification/profile-execution-closure-v2.schema.json",
-      "Profile Execution Closure 2",
-    );
-    if (
-      closure.decision !== "reuse-permitted" ||
-      closure.current.sourceCommit !== focusedSourceCommit
-    )
-      throw new Error("Execution closure does not authorize focused reuse.");
-    executionIdentities.push(await ordinaryFileIdentity(file));
-  }
-  const profiles = qset.profiles.map((profile) => {
-    const observed = finalHostClosures.find(
-      (item) => item.profileId === profile.profileId,
-    );
-    if (!observed || observed.sha256 !== profile.hostSourceClosureSha256)
-      throw new Error(
-        "Final Host Source Closure differs from focused authority.",
-      );
-    return {
-      profileId: profile.profileId,
-      focusedHostSourceClosureSha256: profile.hostSourceClosureSha256,
-      finalHostSourceClosureSha256: observed.sha256,
-      equal: true,
-    };
-  });
-  let decision = sourceClosureDecision(changedPaths);
-  if (!ancestor || profiles.length !== 2) decision = "blocked";
+    decision = "blocked";
   const value = {
-    schemaVersion: 3,
+    schemaVersion: 4,
     artifactKind: "release-source-admission",
     focusedSourceCommit,
-    finalMainCommit,
+    admittedSourceCommit,
+    sourceClosurePolicy: policyIdentity,
+    currentReleaseMatrix: matrix.identity,
     ancestryVerified: ancestor,
     changedPaths,
     changedPathsSha256: canonicalDigest(changedPaths),
-    qualificationSet: await ordinaryFileIdentity(qualificationSet),
-    branchProjection: await ordinaryFileIdentity(branchProjection),
-    projectionVerification: await ordinaryFileIdentity(projectionVerification),
-    executionClosureVerifications: executionIdentities.sort((left, right) =>
-      compareNames(left.fileName, right.fileName),
-    ),
+    focusedQualificationSet: authority.identities.focusedQualificationSet,
+    branchCatalogProjection: authority.identities.branchCatalogProjection,
+    branchCatalogProjectionVerification:
+      authority.identities.branchCatalogProjectionVerification,
+    englishExecutionClosure: authority.identities.englishExecutionClosure,
+    chineseExecutionClosure: authority.identities.chineseExecutionClosure,
     profiles,
     decision,
   };
   await writeArtifact(
     output,
     value,
-    "contracts/release/release-source-admission-v3.schema.json",
-    "Release Source Admission 3",
+    "contracts/release/release-source-admission-v4.schema.json",
+    "Release Source Admission 4",
   );
   if (decision !== "reuse-permitted") {
     const error = new Error(`Release source admission blocked: ${decision}`);
@@ -239,10 +252,6 @@ function assertPolicy(value) {
     !Array.isArray(value.rules)
   )
     throw new Error("Relevant Source Closure 2 policy is invalid.");
-}
-function assertCommit(value) {
-  if (!/^(?!0{40})[a-f0-9]{40}$/.test(value))
-    throw new Error("Source commit is invalid.");
 }
 export async function isAncestor(repository, ancestor, descendant) {
   return run("git", ["merge-base", "--is-ancestor", ancestor, descendant], {

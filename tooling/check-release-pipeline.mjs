@@ -12,14 +12,15 @@ const schemas = [
   "contracts/build/host-build-report-v2.schema.json",
   "contracts/build/host-verification-v2.schema.json",
   "contracts/release/focused-qualification-set-v3.schema.json",
-  "contracts/release/hosted-host-construction-result-v2.schema.json",
+  "contracts/release/hosted-host-construction-result-v3.schema.json",
   "contracts/release/model-manifest-admission-v1.schema.json",
   "contracts/release/prepublication-seal-v1.schema.json",
   "contracts/release/pretag-release-manifest-v4.schema.json",
   "contracts/release/published-asset-verification-v2.schema.json",
   "contracts/release/publication-quarantine-result-v1.schema.json",
   "contracts/release/release-qualification-evidence-v4.schema.json",
-  "contracts/release/release-source-admission-v3.schema.json",
+  "contracts/release/release-source-admission-v4.schema.json",
+  "contracts/release/release-admission-verification-v1.schema.json",
   "contracts/catalog/branch-catalog-projection-v3.schema.json",
   "contracts/catalog/branch-catalog-projection-verification-v3.schema.json",
   "contracts/catalog/voice-runtime-catalog-v4.schema.json",
@@ -52,6 +53,8 @@ for (const obsolete of [
   ".github/workflows/promote-qualified-voice-candidate.yml",
   "release/recover-qualified-voice-archives.mjs",
   "release/qualified-release-candidate.mjs",
+  "contracts/release/release-source-admission-v3.schema.json",
+  "contracts/release/hosted-host-construction-result-v2.schema.json",
 ])
   try {
     await fs.access(path.join(ROOT, obsolete));

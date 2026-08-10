@@ -10,6 +10,7 @@
     "releaseTag",
     "finalMainCommit",
     "releaseSourceAdmission",
+    "releaseAdmissionVerification",
     "hostConstruction",
     "modelManifestAdmission",
     "matrix",
@@ -228,6 +229,25 @@
     },
     "decision": {
       "const": "pass"
+    },
+    "releaseAdmissionVerification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["fileName", "sizeBytes", "sha256"],
+      "properties": {
+        "fileName": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9._-]+$"
+        },
+        "sizeBytes": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        }
+      }
     }
   }
 }

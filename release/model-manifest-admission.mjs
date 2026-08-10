@@ -8,6 +8,7 @@ import {
   readValidated,
   writeArtifact,
 } from "./release-contract.mjs";
+import { sameContentIdentity } from "./release-admission-contract.mjs";
 
 export async function admitModelManifests({
   sourceAdmission,
@@ -17,18 +18,20 @@ export async function admitModelManifests({
 }) {
   const admission = await readValidated(
       sourceAdmission,
-      "contracts/release/release-source-admission-v3.schema.json",
-      "Release Source Admission 3",
+      "contracts/release/release-source-admission-v4.schema.json",
+      "Release Source Admission 4",
     ),
     projection = await readValidated(
       branchProjection,
       "contracts/catalog/branch-catalog-projection-v3.schema.json",
       "Branch Catalog Projection 3",
     ),
-    matrix = await loadCurrentReleaseMatrix();
+    matrix = await loadCurrentReleaseMatrix(),
+    projectionIdentity = await ordinaryFileIdentity(branchProjection);
   if (
     admission.decision !== "reuse-permitted" ||
-    projection.decision !== "pass"
+    projection.decision !== "pass" ||
+    !sameContentIdentity(projectionIdentity, admission.branchCatalogProjection)
   )
     throw new Error(
       "Model manifest admission requires accepted source/projection.",
@@ -57,11 +60,19 @@ export async function admitModelManifests({
         closurePath,
         "contracts/qualification/profile-execution-closure-v2.schema.json",
         "Profile Execution Closure 2",
-      );
+      ),
+      closureIdentity = await ordinaryFileIdentity(closurePath),
+      admittedClosureIdentity =
+        admission[
+          matrixEntry.profileId === "english"
+            ? "englishExecutionClosure"
+            : "chineseExecutionClosure"
+        ];
     if (
       !projected ||
       closure.profileId !== matrixEntry.profileId ||
       closure.decision !== "reuse-permitted" ||
+      !sameContentIdentity(closureIdentity, admittedClosureIdentity) ||
       manifestIdentity.sha256 !== matrixEntry.modelManifest.sha256 ||
       projected.modelManifest.sha256 !== manifestIdentity.sha256 ||
       (await shaFile(rootPath)) !== matrixEntry.modelAdmissionRoot.sha256 ||
@@ -74,7 +85,7 @@ export async function admitModelManifests({
       profileId: matrixEntry.profileId,
       manifest: manifestIdentity,
       modelAdmissionRootSha256: matrixEntry.modelAdmissionRoot.sha256,
-      executionClosureVerification: await ordinaryFileIdentity(closurePath),
+      executionClosureVerification: closureIdentity,
       branchProjectionSha256: await shaFile(branchProjection),
       decision: "admitted",
     });

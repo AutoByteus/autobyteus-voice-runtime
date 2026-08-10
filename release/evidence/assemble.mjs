@@ -2,7 +2,9 @@
 import path from "node:path";
 import { parsePairs, readJson, ROOT } from "../../build/lib/files.mjs";
 import { loadCurrentReleaseMatrix } from "../current-release-matrix.mjs";
+import { sameContentIdentity } from "../release-admission-contract.mjs";
 import {
+  deepEqual,
   ordinaryFileIdentity,
   PUBLISHED_ASSET_NAMES,
   readValidated,
@@ -13,6 +15,7 @@ import {
 
 export async function assembleReleaseEvidence({
   sourceAdmission,
+  releaseAdmissionVerification,
   hostConstruction,
   modelManifestAdmission,
   branchProjection,
@@ -21,13 +24,18 @@ export async function assembleReleaseEvidence({
 }) {
   const admission = await readValidated(
       sourceAdmission,
-      "contracts/release/release-source-admission-v3.schema.json",
-      "Release Source Admission 3",
+      "contracts/release/release-source-admission-v4.schema.json",
+      "Release Source Admission 4",
+    ),
+    admissionVerification = await readValidated(
+      releaseAdmissionVerification,
+      "contracts/release/release-admission-verification-v1.schema.json",
+      "Release Admission Verification 1",
     ),
     construction = await readValidated(
       hostConstruction,
-      "contracts/release/hosted-host-construction-result-v2.schema.json",
-      "Hosted Host Construction Result 2",
+      "contracts/release/hosted-host-construction-result-v3.schema.json",
+      "Hosted Host Construction Result 3",
     ),
     modelAdmission = await readValidated(
       modelManifestAdmission,
@@ -40,13 +48,30 @@ export async function assembleReleaseEvidence({
       "Branch Catalog Projection 3",
     ),
     matrix = await loadCurrentReleaseMatrix();
+  const sourceAdmissionIdentity = await ordinaryFileIdentity(sourceAdmission),
+    admissionVerificationIdentity = await ordinaryFileIdentity(
+      releaseAdmissionVerification,
+    ),
+    projectionIdentity = await ordinaryFileIdentity(branchProjection);
   if (
     admission.decision !== "reuse-permitted" ||
+    admissionVerification.decision !== "pass" ||
     construction.decision !== "pass" ||
     modelAdmission.decision !== "pass" ||
     projection.decision !== "pass" ||
-    admission.finalMainCommit !== finalMainCommit ||
-    construction.finalMainCommit !== finalMainCommit
+    admissionVerification.workflowCheckoutCommit !== finalMainCommit ||
+    construction.workflowCheckoutCommit !== finalMainCommit ||
+    construction.focusedSourceCommit !== admission.focusedSourceCommit ||
+    construction.admittedSourceCommit !== admission.admittedSourceCommit ||
+    construction.authorityPromotionCommit !==
+      admissionVerification.authorityPromotionCommit ||
+    !deepEqual(construction.sourceAdmission, sourceAdmissionIdentity) ||
+    !deepEqual(
+      construction.releaseAdmissionVerification,
+      admissionVerificationIdentity,
+    ) ||
+    !deepEqual(modelAdmission.sourceAdmission, sourceAdmissionIdentity) ||
+    !sameContentIdentity(projectionIdentity, admission.branchCatalogProjection)
   )
     throw new Error("Release Evidence 4 input decision/lineage mismatch.");
   const profiles = projection.profiles.map((profile) => {
@@ -62,7 +87,7 @@ export async function assembleReleaseEvidence({
       !host.details ||
       !model ||
       host.details.hostedArchive.sha256 !== profile.hostArchive.sha256 ||
-      host.details.hostedHostSourceClosureSha256 !==
+      host.details.workflowHostSourceClosureSha256 !==
         profile.hostSourceClosureSha256 ||
       model.manifest.sha256 !== profile.modelManifest.sha256 ||
       model.modelAdmissionRootSha256 !== profile.modelAdmissionRootSha256
@@ -88,7 +113,8 @@ export async function assembleReleaseEvidence({
       runtimeVersion: RELEASE_VERSION,
       releaseTag: RELEASE_TAG,
       finalMainCommit,
-      releaseSourceAdmission: await ordinaryFileIdentity(sourceAdmission),
+      releaseSourceAdmission: sourceAdmissionIdentity,
+      releaseAdmissionVerification: admissionVerificationIdentity,
       hostConstruction: await ordinaryFileIdentity(hostConstruction),
       modelManifestAdmission: await ordinaryFileIdentity(
         modelManifestAdmission,
@@ -113,6 +139,7 @@ export async function assembleReleaseEvidence({
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
     "source-admission",
+    "release-admission-verification",
     "host-construction",
     "model-manifest-admission",
     "branch-projection",
@@ -121,6 +148,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   ]);
   await assembleReleaseEvidence({
     sourceAdmission: args["source-admission"],
+    releaseAdmissionVerification: args["release-admission-verification"],
     hostConstruction: args["host-construction"],
     modelManifestAdmission: args["model-manifest-admission"],
     branchProjection: args["branch-projection"],

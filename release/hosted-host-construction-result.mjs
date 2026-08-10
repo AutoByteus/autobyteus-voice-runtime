@@ -10,20 +10,33 @@ import {
 
 export async function assembleHostConstructionResult({
   sourceAdmission,
-  finalMainCommit,
+  releaseAdmissionVerification,
+  workflowCheckoutCommit,
   builds,
   output,
 }) {
   const admission = await readValidated(
-    sourceAdmission,
-    "contracts/release/release-source-admission-v3.schema.json",
-    "Release Source Admission 3",
-  );
+      sourceAdmission,
+      "contracts/release/release-source-admission-v4.schema.json",
+      "Release Source Admission 4",
+    ),
+    admissionVerification = await readValidated(
+      releaseAdmissionVerification,
+      "contracts/release/release-admission-verification-v1.schema.json",
+      "Release Admission Verification 1",
+    ),
+    admissionIdentity = await ordinaryFileIdentity(sourceAdmission);
   if (
     admission.decision !== "reuse-permitted" ||
-    admission.finalMainCommit !== finalMainCommit
+    admissionVerification.decision !== "pass" ||
+    admissionVerification.workflowCheckoutCommit !== workflowCheckoutCommit ||
+    admissionVerification.focusedSourceCommit !==
+      admission.focusedSourceCommit ||
+    admissionVerification.admittedSourceCommit !==
+      admission.admittedSourceCommit ||
+    !deepEqual(admissionVerification.releaseSourceAdmission, admissionIdentity)
   )
-    throw new Error("Host construction requires admitted final main.");
+    throw new Error("Host construction requires verified F/D/R/W lineage.");
   const profiles = [];
   for (const profileId of ["english", "chinese"]) {
     const item = builds.find((candidate) => candidate.profileId === profileId);
@@ -52,12 +65,19 @@ export async function assembleHostConstructionResult({
       hostedArchive = await ordinaryFileIdentity(item.archive),
       admittedProfile = admission.profiles.find(
         (profile) => profile.profileId === profileId,
+      ),
+      verifiedProfile = admissionVerification.profiles.find(
+        (profile) => profile.profileId === profileId,
       );
     if (
       !admittedProfile ||
-      report.sourceCommit !== finalMainCommit ||
+      !verifiedProfile ||
+      report.sourceCommit !== workflowCheckoutCommit ||
       report.profileId !== profileId ||
       focused.profileId !== profileId ||
+      !deepEqual(focused.hostArchive, admittedProfile.hostArchive) ||
+      focused.hostSourceClosureSha256 !==
+        admittedProfile.focusedHostSourceClosure.sha256 ||
       !deepEqual(report.archive, {
         ...hostedArchive,
         extractedSizeBytes: report.archive.extractedSizeBytes,
@@ -66,7 +86,13 @@ export async function assembleHostConstructionResult({
       !deepEqual(hostedArchive, focused.hostArchive) ||
       report.hostSourceClosure.sha256 !== focused.hostSourceClosureSha256 ||
       report.hostSourceClosure.sha256 !==
-        admittedProfile.finalHostSourceClosureSha256 ||
+        admittedProfile.admittedHostSourceClosure.sha256 ||
+      report.hostSourceClosure.sha256 !==
+        verifiedProfile.workflowHostSourceClosure.sha256 ||
+      report.hostSourceClosure.sizeBytes !==
+        admittedProfile.admittedHostSourceClosure.sizeBytes ||
+      report.hostSourceClosure.sizeBytes !==
+        verifiedProfile.workflowHostSourceClosure.sizeBytes ||
       verification.hostPackageId !== report.hostPackageId ||
       verification.archiveSha256 !== hostedArchive.sha256 ||
       verification.descriptorSha256 !== report.descriptor.sha256 ||
@@ -90,10 +116,12 @@ export async function assembleHostConstructionResult({
         hostVerification: await ordinaryFileIdentity(item.hostVerification),
         focusedArchive: focused.hostArchive,
         hostedArchive,
-        wholeArchiveEqual: true,
+        identityComparison: "equal",
         focusedHostSourceClosureSha256: focused.hostSourceClosureSha256,
-        hostedHostSourceClosureSha256: report.hostSourceClosure.sha256,
-        closureEqual: true,
+        admittedHostSourceClosureSha256:
+          admittedProfile.admittedHostSourceClosure.sha256,
+        workflowHostSourceClosureSha256: report.hostSourceClosure.sha256,
+        closureComparison: "equal",
         provenance: {
           recipe: report.recipe,
           inputManifest: report.inputManifest,
@@ -123,23 +151,30 @@ export async function assembleHostConstructionResult({
   return writeArtifact(
     output,
     {
-      schemaVersion: 2,
+      schemaVersion: 3,
       artifactKind: "hosted-host-construction-result",
-      sourceAdmission: await ordinaryFileIdentity(sourceAdmission),
-      finalMainCommit,
+      sourceAdmission: admissionIdentity,
+      releaseAdmissionVerification: await ordinaryFileIdentity(
+        releaseAdmissionVerification,
+      ),
+      focusedSourceCommit: admission.focusedSourceCommit,
+      admittedSourceCommit: admission.admittedSourceCommit,
+      authorityPromotionCommit: admissionVerification.authorityPromotionCommit,
+      workflowCheckoutCommit,
       runner: { label: "macos-26", platform: "darwin", architecture: "arm64" },
       profiles,
       decision,
     },
-    "contracts/release/hosted-host-construction-result-v2.schema.json",
-    "Hosted Host Construction Result 2",
+    "contracts/release/hosted-host-construction-result-v3.schema.json",
+    "Hosted Host Construction Result 3",
   );
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
   const args = parsePairs(process.argv.slice(2), [
     "source-admission",
-    "final-main-commit",
+    "release-admission-verification",
+    "workflow-checkout-commit",
     "english-build",
     "english-archive",
     "english-verification",
@@ -154,7 +189,8 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     (await import("../build/lib/files.mjs")).readJson(path.resolve(file));
   await assembleHostConstructionResult({
     sourceAdmission: args["source-admission"],
-    finalMainCommit: args["final-main-commit"],
+    releaseAdmissionVerification: args["release-admission-verification"],
+    workflowCheckoutCommit: args["workflow-checkout-commit"],
     builds: [
       {
         profileId: "english",
