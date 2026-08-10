@@ -2,140 +2,121 @@
 
 ## Execution Round Meta
 
-- Requirements Doc: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
-- Investigation Notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
-- Design Spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Supplemental Task Artifacts: `on-demand-model-assets.md`, `benchmark-protocol.md`, `current-platform-qualification.md`, `voice-runtime-contract.md`, `release-pipeline-ownership.md`, and preserved backend/English/Chinese/cold-preparation authority bundles.
+- Requirements / Design: `requirements.md`, `investigation-notes.md`, `design-spec.md`, and still-relevant SR-021 supplements under `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/`.
 - Solution / Architecture: `SR-021`; `ARCH-REV-021 Pass`.
-- Implementation: `IR-033`; source `4db8bf26708309440c83ec56973250f77e9f1619`; artifact `bd70e942dd6ed3b49d7db5221dfe13f14b44032f`.
-- Code Review: `CRR-051 Pass / 9.5`.
+- Implementation: `IR-034`; source `97f3007c2a62e5f48acd5fcc8c26d1e38b099850`; artifact `2a4b2ef7eab573388390274b47e1de197fe02d3e`.
+- Code Review: `CRR-053 Pass / 9.6`.
 - Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`.
-- API/E2E Revision: `API-REV-023`.
-- Prior Result: `API-REV-022 — Fail / 84%` (`API-F-016`, `API-F-017`).
-- Latest Authoritative Result: **`API-REV-023 — Fail / 84%`** (`API-F-018`).
+- API/E2E Revision: `API-REV-024`.
+- Prior Result: `API-REV-023 — Fail / 84%` (`API-F-018`).
+- Latest Authoritative Result: **`API-REV-024 — Fail / 84%`** (`API-F-019`).
 
 ## Investigation And Execution Basis
 
 - Mandatory investigation refreshed before execution: `Yes`.
-- Prior failures rechecked first: `Yes`.
-- Retained API-REV-022 archive relabeled: `No`; current evidence rematerialized against source `4db8bf2...`.
-- Repository-resident durable API/E2E coverage changed by API/E2E: `No`.
-- Broader validation decision: `Required`; started at exact production host construction and stopped at the critical first-profile failure.
-
-## Compatibility / Legacy Scope Check
-
-- Approved persisted-data decision: `Discard or Rebuild`.
-- Legacy compatibility in scope: `No`.
-- Legacy/user Store 1 touched: `No`.
-- Model-contained packages, Config 1, Catalog 3, managed recovery, and self-hosted runner paths remain outside current source and were not revived.
+- Prior failure rechecked first: `Yes`.
+- Prior host/input evidence relabeled: `No`; both profile inputs and Host Source Closure 1 records were regenerated for current source.
+- Repository-resident durable coverage changed by API/E2E: `No`.
+- Broader validation: `Required`; executed through exact current-source Chinese native construction and stopped at its critical compile failure.
 
 ## Scenario Matrix
 
-| Scenario        | Requirement / Boundary                                                   | Execution                                                                        | Result               | Evidence                                                                              |
-| --------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------- | -------------------- | ------------------------------------------------------------------------------------- |
-| `API-VOICE-017` | current repository and legacy guards                                     | focused composition, archive race, release pipeline, full pinned gate            | Pass                 | `api-e2e-evidence/api-rev-023/repository/`                                            |
-| `API-VOICE-018` | `AC-028` two deterministic model-free hosts and independent verification | current inputs/closures, then first canonical Chinese build under network denial | **Fail / API-F-018** | `host-build/API-F-018-chinese-host-input-closure-failure.json`; `build-chinese-a.log` |
-| `API-VOICE-019` | `AC-029` production Catalog 4/CDN install                                | prohibited after critical construction failure                                   | Not Tested           | fail-closed stop                                                                      |
-| `API-VOICE-020` | `AC-030`–`AC-032`, `AC-034` lifecycle/resume/cancel/status/remove/lease  | prohibited after critical construction failure                                   | Not Tested           | fail-closed stop                                                                      |
-| `API-VOICE-021` | `AC-031`, `AC-033` relocated offline retained-clip providers             | prohibited after critical construction failure                                   | Not Tested           | fail-closed stop                                                                      |
-| `API-VOICE-022` | Profile Execution Closure 2 reuse decision                               | prohibited after critical construction failure                                   | Not Tested           | fail-closed stop                                                                      |
-| `API-VOICE-023` | Focused Qualification Set 3 and Branch Catalog Projection 3              | prohibited after critical construction failure                                   | Not Tested           | fail-closed stop                                                                      |
-| `API-VOICE-024` | `AC-035` exact nonpublishing nine-member composition                     | prohibited after critical construction failure                                   | Not Tested           | fail-closed stop                                                                      |
+| Scenario        | Requirement / Boundary                                          | Result                            | Evidence                                                                                  |
+| --------------- | --------------------------------------------------------------- | --------------------------------- | ----------------------------------------------------------------------------------------- |
+| `API-VOICE-017` | current source, ownership, verifier, release, and legacy guards | Pass                              | `api-e2e-evidence/api-rev-024/repository/`                                                |
+| `API-VOICE-018` | `AC-028` two deterministic model-free hosts and verification    | **Fail / API-F-019**              | `host-build/API-F-019-chinese-native-session-compile-failure.json`; `build-chinese-a.log` |
+| `API-VOICE-019` | `AC-029` production Catalog 4/CDN install                       | Not Tested after critical failure | fail-closed stop                                                                          |
+| `API-VOICE-020` | `AC-030`–`AC-032`, `AC-034` lifecycle/interleavings             | Not Tested after critical failure | fail-closed stop                                                                          |
+| `API-VOICE-021` | `AC-031`, `AC-033` relocated offline retained-clip provider     | Not Tested after critical failure | fail-closed stop                                                                          |
+| `API-VOICE-022` | Profile Execution Closure 2 reuse decision                      | Not Tested after critical failure | fail-closed stop                                                                          |
+| `API-VOICE-023` | Focused Qualification Set 3 / Branch Catalog Projection 3       | Not Tested after critical failure | fail-closed stop                                                                          |
+| `API-VOICE-024` | `AC-035` nonpublishing nine-member composition                  | Not Tested after critical failure | fail-closed stop                                                                          |
 
 ## Repository Coverage Execution
 
-| Command / Mode                                                                                                   | Result    | Direct Evidence                                                             |
-| ---------------------------------------------------------------------------------------------------------------- | --------- | --------------------------------------------------------------------------- |
-| `VOICE_GO=/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go node --test tests/build/host-builder-composition.test.mjs` | Pass, 2/2 | both builder module graphs load; real small archive projects logical `host` |
-| `VOICE_GO=... go test -race ./packaging/archive`                                                                 | Pass      | direct logical-root/non-disclosure archive regression under race detector   |
-| `VOICE_GO=... npm run check:release-pipeline`                                                                    | Pass, 9/9 | current release contracts and clean-cut source guards                       |
-| `VOICE_GO=... npm run check`                                                                                     | Pass      | 93/93 Node TAP, 7/7 Python plus compileall, all Go/source/evidence checks   |
-
-The first focused invocation omitted required `VOICE_GO`, failed only its environment assertion, and is retained as `focused-host-builder-composition-attempt-1-invalid.*`. The exact corrected invocation above is authoritative.
+| Command                                                                  | Result    | Evidence                                                                  |
+| ------------------------------------------------------------------------ | --------- | ------------------------------------------------------------------------- |
+| `VOICE_GO=... node --test tests/build/host-builder-composition.test.mjs` | Pass, 3/3 | real builders, exact full-manifest ownership, logical verifier root       |
+| `VOICE_GO=... go test -race ./packaging/archive ./hostverify`            | Pass      | archive/verifier concurrency regression                                   |
+| `VOICE_GO=... go vet ./packaging/archive ./hostverify`                   | Pass      | focused static validation                                                 |
+| `VOICE_GO=... npm run check:release-pipeline`                            | Pass, 9/9 | current release and clean-cut contracts                                   |
+| `VOICE_GO=... npm run check`                                             | Pass      | 93/93 Node TAP, 7/7 Python plus compileall, all Go/source/evidence checks |
 
 ## Environment And Input Evidence
 
 - Host: MacBookPro18,4 / Apple M1 Max / 64 GB / macOS 26.5 / AC power.
-- Node: 22.23.1. Go: official locked 1.26.5 darwin/arm64. CMake: official 4.2.0.
-- Retained environment record SHA-256: `1ffed2538d3d65c1fbb62d319e7d66d27b840652eca8cb524ae876a68467bf2a`, byte-identical to API-REV-022.
-- Current English materialized tree: `9ac5940e086bc8c962573e27efc06c554817e332ce326e34ceaee7b7ce5ec1cc`; Host Source Closure 1: `61ffa719c21f334bf3174a52e109140aea543dbf2bea46f5ecbd34af4b44014c`.
-- Current Chinese materialized tree: `4097a48395123ee15b486ecf6d65d69dfc7b75e5c03cbb90c5e9783e19f422bf`; Host Source Closure 1: `68977e18233b2a157f4c7c2eb9085bd83e9a91657119b30fa82f5786368b6762`.
-- Network boundary: checked-in macOS deny-network Seatbelt profile.
+- Exact tools: Node 22.23.1; official locked Go 1.26.5 darwin/arm64; official CMake 4.2.0; retained Xcode/SDK/native identities.
+- Retained environment record SHA-256: `1ffed2538d3d65c1fbb62d319e7d66d27b840652eca8cb524ae876a68467bf2a`, byte-identical to API-REV-023.
+- Current Host Source Closure 1: English `d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134`; Chinese `571191f217d16369b126edfd6944d622207cd32dc8aefedff0e8b9fb4d40de02`.
+- Construction network boundary: checked-in macOS deny-network Seatbelt profile.
 - Model bytes downloaded: `0`.
 
 ## Broader Validation Execution
 
-The canonical current-source Chinese build was invoked as:
+The canonical first Chinese build used the exact network-denied production assembler, current 3,151-row materialized input subject, current closure, official locked tools, and source `97f3007...`.
 
-```text
-/usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb \
-  node build/host-package-assembler.mjs \
-  --profile chinese --target darwin-arm64 \
-  --inputs /private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/inputs-r23-v1/chinese \
-  --output /private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/builds-r23-v1/chinese-a/voice-host-chinese-darwin-arm64-1.0.0.zip \
-  --go /tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go \
-  --build-environment /private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/evidence/host-build-environment-v2.json \
-  --expected-host-source-closure 68977e18233b2a157f4c7c2eb9085bd83e9a91657119b30fa82f5786368b6762 \
-  --source-commit 4db8bf26708309440c83ec56973250f77e9f1619 --version 1.0.0
-```
+Expected: exact input ownership passes, the complete Chinese `voice-provider-worker` compiles, and construction proceeds to archive generation.
 
-Expected: the builder accepts the complete authenticated input manifest, consumes profile-native inputs, leaves the two `host-authority/*` inputs for the outer assembler, and proceeds to CMake/archive construction.
+Observed: input ownership passes and CMake runs for approximately 164 seconds. Apple Clang rejects `providers/chinese-funasr/src/session.cpp` at three digest comparisons:
 
-Observed: the corrected module loads, but `assertHostInputClosure()` rejects `host-authority/model-admission-root-v1.json` as having no consumer. The outer assembler is the later intended consumer. Exit is nonzero before CMake; no Chinese archive exists.
+- line 44: descriptor SHA `std::string` compared directly with `expected.at("descriptorSha256")` JSON;
+- line 45: activation SHA `std::string` compared directly with `config.at("activationSha256")` JSON;
+- line 52: model-file SHA `std::string` compared directly with `record.at("sha256")` JSON.
+
+No Chinese archive is created. The second Chinese build, English builds, and independent packaged-host verification are not authorized after this critical failure.
 
 ## Prior Failure Resolution
 
-| Prior Failure                                                        | Resolution                                                       | Current Evidence                                                                                                              |
-| -------------------------------------------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
-| `API-F-016` — invalid Chinese builder import                         | **Resolved at exact boundary**                                   | production builder loads and reaches input-consumer closure; focused real-builder test Pass                                   |
-| `API-F-017` — extractor disclosed absolute destination as `hostRoot` | **Resolved in direct regression; full-host recheck not reached** | real small canonical archive extraction and archive race coverage project exact logical `host` without destination disclosure |
+| Prior Failure                                                   | Resolution                                                            | Current Direct Evidence                                                                |
+| --------------------------------------------------------------- | --------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `API-F-018` — inner builder rejects outer-owned authority input | **Resolved**                                                          | exact complete Chinese manifest passes ownership and construction reaches native CMake |
+| `API-F-016` — invalid Chinese builder import                    | remains resolved                                                      | production builder executes through ownership and native build                         |
+| `API-F-017` — invalid public verification root                  | direct regression remains resolved; packaged-host recheck not reached | focused real archive extraction and race checks Pass                                   |
 
 ## New Failure
 
-- ID: `API-F-018`.
-- Acceptance/scenario: `AC-028`; `API-VOICE-018`.
+- ID: `API-F-019`.
+- Scenario / criterion: `API-VOICE-018`; `AC-028`.
 - Preliminary classification: `Local Fix`.
-- Source boundary: `build/profile-builders/funasr-host.mjs` / `build/profile-builders/host-common.mjs` complete-input consumer ownership versus `build/host-package-assembler.mjs` outer authority staging.
-- Why source review is required: the newly added durable test proves module instantiation, not canonical full-manifest builder execution; the correct owner must preserve fail-closed unused-input detection while recognizing inputs intentionally consumed by the outer assembler.
+- Source boundary: `providers/chinese-funasr/src/session.cpp` full native translation set.
+- Coverage gap: repository checks compile selected Chinese integrity/preparation components but do not compile the complete production `voice-provider-worker`; an exact native-build guard is required or must be explicitly incorporated into the current durable composition suite.
+- Required constraint: correct typed extraction without relaxing digest validation, provider/runtime protocol, model identity, or fail-closed behavior.
 
-## Validation Confidence Scorecard
+## Confidence Scorecard
 
-| Category                                            | Score | Evidence / Gap                                                                                                             |
-| --------------------------------------------------- | ----: | -------------------------------------------------------------------------------------------------------------------------- |
-| requirement and AC proof                            |   80% | repository evidence is strong, but critical `AC-028` fails and downstream ACs remain unexecuted                            |
-| changed-boundary execution directness               |   95% | exact production assembler, authenticated real inputs, and network-denied host environment directly expose the defect      |
-| cross-boundary integration realism / mock gap       |   75% | the first real builder/outer-assembler boundary fails; later boundaries are unavailable                                    |
-| environment/configuration/identity/fixture fidelity |   98% | exact current source, official locked tools, byte-identical environment record, current input/closure identities, AC power |
-| failure/edge/lifecycle/recovery evidence            |   75% | repository race/lifecycle coverage passes, but real lifecycle journeys cannot start                                        |
-| user/browser/desktop confidence                     |   N/A | explicitly out of current runtime-only scope                                                                               |
-| durable regression coverage quality/relevance       |   82% | new coverage resolves prior defects but misses the complete production manifest ownership path                             |
+| Category                                    | Score | Basis / Gap                                                                                                     |
+| ------------------------------------------- | ----: | --------------------------------------------------------------------------------------------------------------- |
+| requirement and AC proof                    |   80% | critical `AC-028` still fails; downstream ACs unavailable                                                       |
+| changed-boundary directness                 |   98% | exact authenticated production CMake/Clang build directly exposes the source defect                             |
+| cross-boundary integration realism          |   75% | ownership now crosses correctly, but the full native provider boundary fails                                    |
+| environment/configuration/identity fidelity |   98% | exact source, current inputs/closures, official tools, AC power, network denial                                 |
+| failure/lifecycle/recovery evidence         |   75% | repository race/lifecycle proof passes; real lifecycle cannot start                                             |
+| user/browser/desktop confidence             |   N/A | runtime-only scope; desktop explicitly deferred                                                                 |
+| durable regression coverage quality         |   78% | exact ownership coverage is strong, but the complete native translation set is not compiled by repository gates |
 
-Overall confidence: **`84%`** (simple average of applicable categories, rounded). A critical criterion fails, so confidence cannot produce Pass.
+Overall confidence: **`84%`** (simple average, rounded). The critical failure independently prevents Pass.
 
 ## Durable Coverage Changed In The Codebase
 
-- Added by IR-033, not API/E2E: `tests/build/host-builder-composition.test.mjs`.
-- Updated by IR-033, not API/E2E: `packaging/archive/canonicalzip_test.go`.
-- Added, updated, or removed by API/E2E in API-REV-023: `None`.
-- Current validity decision: the Go logical-root coverage remains valid; the Node production-composition coverage `Needs Update` to include a complete authenticated Chinese input manifest and outer-consumer ownership.
+- Added/updated by IR-034, not API/E2E: `tests/build/host-builder-composition.test.mjs`, `tests/fixtures/host-input-ownership/api-rev-023-english-paths.txt.gz`, and `tests/fixtures/host-input-ownership/api-rev-023-chinese-paths.txt.gz`.
+- Added, updated, or removed by API/E2E: `None`.
+- Current decision: ownership coverage remains valid; complete native Chinese provider compilation coverage `Needs Update`.
 
 ## Cleanup And Safety
 
 - Build subprocess exited naturally; no owned process remains.
-- No Chinese archive was created.
-- Current-source English build was not started after the critical Chinese failure; API-REV-022 English evidence remains historical and was not relabeled.
-- No model store, provider, user application state, desktop process, GitHub workflow, merge, tag, release, or publication was touched.
-- The isolated API/E2E root remains retained and process-free for a bounded rerun after source correction.
+- No current-source host archive was created.
+- No model store, provider, user application state, desktop process, workflow, merge, tag, release, or publication was touched.
+- The isolated API/E2E root remains process-free and retained for a bounded rerun.
 
 ## Recommended Recipient
 
-`code_reviewer` for focused failure-origin review of `API-F-018`, not successful proportional test-code review.
+`code_reviewer` for focused failure-origin review of `API-F-019`, not successful proportional test-code review.
 
 ## Latest Authoritative Result
 
 - Result: **`Fail`**.
 - Confidence: **`84%`**.
-- Broader validation: `Required and executed until critical prerequisite failure`.
-- New failure: `API-F-018` (`Local Fix`, preliminary).
-- Prior failures: `API-F-016` resolved; `API-F-017` directly resolved but full packaged-host recheck remains downstream.
-- Resume point after reviewed correction: first canonical Chinese build, Chinese double-build equality and independent verification, then current-source English double build/verification and remaining ordered scenarios.
+- New failure: `API-F-019` (`Local Fix`, preliminary).
+- Prior failures: `API-F-018` resolved; `API-F-016` remains resolved; `API-F-017` direct regression remains resolved.
+- Resume after reviewed correction: first canonical Chinese build, Chinese double-build equality and independent verification, then current-source English double-build/verification and later ordered scenarios.

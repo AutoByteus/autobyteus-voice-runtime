@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-018",
+  "reviewedSourceCommit": "97f3007c2a62e5f48acd5fcc8c26d1e38b099850",
+  "result": "fail",
+  "priorFailureRechecks": {
+    "API-F-018": "resolved-at-complete-manifest-ownership-boundary",
+    "API-F-016": "resolved-at-builder-execution-boundary",
+    "API-F-017": "repository-regression-pass-full-host-verification-not-reached"
+  },
+  "newFailure": "API-F-019",
+  "chinese": {
+    "inputMaterialization": "pass",
+    "prebuildHostSourceClosureSha256": "571191f217d16369b126edfd6944d622207cd32dc8aefedff0e8b9fb4d40de02",
+    "inputOwnership": "pass",
+    "nativeBuild": "fail/API-F-019",
+    "archiveCreated": false,
+    "secondBuild": "not-tested",
+    "verification": "not-tested"
+  },
+  "english": {
+    "currentSourceInputMaterialization": "pass",
+    "prebuildHostSourceClosureSha256": "d7cfe1ffad1c385492ae6e41283de598b4381b332c435cc2ee215c8b93768134",
+    "currentSourceBuild": "not-tested-after-critical-chinese-failure"
+  },
+  "downstreamScenarios": ["API-VOICE-019", "API-VOICE-020", "API-VOICE-021", "API-VOICE-022", "API-VOICE-023", "API-VOICE-024"],
+  "stopReason": "Critical AC-028 current-source native host construction failed; downstream archive verification, model installation, lifecycle, provider, closure, and aggregate execution is prohibited."
+}

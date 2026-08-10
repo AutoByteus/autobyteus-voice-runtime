@@ -27,6 +27,7 @@
 | `API-REV-021` | Delivery Engineer / `delivery-revision-record.md` / `DR-007`   | `SR-018`, `ARCH-REV-019`, `CRR-047`, `DR-007`                      | `Fail / 78%`              | `Blocked / 80%`             |
 | `API-REV-022` | Code Reviewer / `code-review-report.md` / `CRR-049`            | `SR-021`, `ARCH-REV-021`, `IR-032`, `CRR-048`, `CRR-049`           | `Blocked / 80%`           | `Fail / 84%`                |
 | `API-REV-023` | Code Reviewer / `code-review-report.md` / `CRR-051`            | `SR-021`, `ARCH-REV-021`, `IR-033`, `CRR-050`, `CRR-051`           | `Fail / 84%`              | `Fail / 84%`                |
+| `API-REV-024` | Code Reviewer / `code-review-report.md` / `CRR-053`            | `SR-021`, `ARCH-REV-021`, `IR-034`, `CRR-052`, `CRR-053`           | `Fail / 84%`              | `Fail / 84%`                |
 
 ## Revision Entries
 
@@ -813,3 +814,43 @@ None.
 - New failure ID: `API-F-018`.
 - Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
 - Remaining proof after resolution: Chinese double construction and verification, current-source English double construction and verification, production model installation and Store 1 lifecycle, relocated offline retained-clip providers, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and exact nonpublishing nine-member composition.
+
+### API-REV-024 — Exact ownership passes; full Chinese provider fails to compile
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-053`; API/E2E round 24.
+- Triggering scenarios/criteria: recheck `API-F-018` in `API-VOICE-018`; continue `API-VOICE-019`–`API-VOICE-024` only after `AC-028` passes.
+- Related revisions: `SR-021`, `ARCH-REV-021`, `IR-034`, `CRR-052`, `CRR-053`, `API-REV-023`.
+- Reviewed source/artifact: source `97f3007c2a62e5f48acd5fcc8c26d1e38b099850`; artifact `2a4b2ef7eab573388390274b47e1de197fe02d3e`.
+- Why recorded: repository gates and exact complete-manifest fixtures pass, and the first canonical Chinese construction directly resolves the prior ownership failure by reaching native CMake. The production build then exposes `API-F-019`: the full provider does not compile because three validated JSON digest values are compared to `std::string` results without typed extraction.
+- Coverage decisions/durable test paths changed: API/E2E changed no repository-resident durable coverage. IR-034 ownership fixtures/tests remain valid. Existing Chinese preparation/integrity tests and source guards are `Needs Update` for the complete `voice-provider-worker` translation set because all repository checks pass while production compilation fails.
+- Scenario delta:
+  - `API-VOICE-017` Pass: focused ownership/builder/verifier 3/3, targeted race/vet, release pipeline 9/9, and full 93/93 Node plus 7/7 Python/all Go/source/evidence checks.
+  - `API-VOICE-018` Fail as `API-F-019`: current inputs/closures and complete input ownership pass; first Chinese native build fails after about 164 seconds; no archive.
+  - `API-VOICE-019`–`API-VOICE-024` Not Tested after the critical `AC-028` failure.
+- Execution delta: exact M1 Max/64 GB/macOS host on AC; official Node 22.23.1, Go 1.26.5, CMake 4.2.0; retained environment record byte-identical; source-bound current inputs and closures; checked-in deny-network Seatbelt profile; zero model downloads.
+
+#### Prior Failure Resolution
+
+| Prior Failure                                                     | Previous Classification                 | Current Resolution                                                | Evidence                                                                    |
+| ----------------------------------------------------------------- | --------------------------------------- | ----------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `API-F-018` — Chinese builder rejects outer-owned authority input | `Local Fix`                             | **Resolved**                                                      | exact complete 3,151-row manifest passes ownership and reaches native CMake |
+| `API-F-016` — invalid Chinese builder import                      | `Local Fix`, resolved in API-REV-023    | remains resolved                                                  | production builder executes through native build                            |
+| `API-F-017` — extraction report root mismatch                     | `Local Fix`, direct regression resolved | remains directly resolved; packaged-host verification not reached | focused real archive and targeted race checks Pass                          |
+
+#### New Failure
+
+- ID: `API-F-019`.
+- Expected: the authenticated native build compiles the complete Chinese `voice-provider-worker` and proceeds to archive assembly.
+- Observed: Apple Clang rejects `providers/chinese-funasr/src/session.cpp` lines 44, 45, and 52 because `std::string` SHA results are compared directly to `nlohmann::json` values for descriptor, activation, and model-file digests.
+- Preliminary classification: `Local Fix`; preserve strict digest/schema validation and add full native translation-set compilation coverage.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-024/`
+- Prior result/confidence: `Fail / 84%`.
+- Current result/confidence: **`Fail / 84%`**.
+- New failure ID: `API-F-019`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
+- Remaining proof after resolution: Chinese double construction/verification, English double construction/verification, production model installation and Store 1 lifecycle, relocated offline retained-clip providers, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and exact nonpublishing nine-member composition.
