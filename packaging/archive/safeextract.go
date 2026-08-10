@@ -132,7 +132,17 @@ func ExtractVerified(archivePath, destination string, expected ExtractExpectatio
 		}
 	}
 	_ = os.Remove(staging)
-	return VerificationReport{2, expected.HostPackageID, destination, digest, descriptorDigest, expected.FileManifest.SHA256, extracted, len(records), true}, nil
+	return VerificationReport{
+		SchemaVersion:      2,
+		HostPackageID:      expected.HostPackageID,
+		HostRoot:           expected.Archive.RootDirectory,
+		ArchiveSHA256:      digest,
+		DescriptorSHA256:   descriptorDigest,
+		FileManifestSHA256: expected.FileManifest.SHA256,
+		ExtractedSizeBytes: extracted,
+		EntryCount:         len(records),
+		ModesVerified:      true,
+	}, nil
 }
 
 func verifyExtractedClosure(root string, manifest HostFileManifest) error {

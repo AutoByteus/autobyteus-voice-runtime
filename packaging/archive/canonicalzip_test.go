@@ -58,6 +58,12 @@ func TestCanonicalBuildAndVerifiedExtraction(t *testing.T) {
 	if !report.ModesVerified {
 		t.Fatal("modes not verified")
 	}
+	if report.HostRoot != expected.Archive.RootDirectory || report.HostRoot != "host" {
+		t.Fatalf("verification report exposed the wrong host root: %q", report.HostRoot)
+	}
+	if report.HostRoot == destination {
+		t.Fatal("verification report exposed the private extraction destination")
+	}
 	if _, err := os.Stat(filepath.Join(destination, "bin", "voice-provider")); err != nil {
 		t.Fatal(err)
 	}

@@ -11,11 +11,11 @@ import {
   copyHostNotices,
   writeEngineConfiguration,
 } from "./host-common.mjs";
+import { trustedHostBuildEnvironment } from "../host-build-environment.mjs";
 import {
   cmakeConfigureArguments,
-  trustedHostBuildEnvironment,
   verifyResolvedCmakeConfiguration,
-} from "../host-build-environment.mjs";
+} from "../resolved-cmake-configuration.mjs";
 const run = promisify(execFile);
 const args = parsePairs(process.argv.slice(2), [
   "target",
