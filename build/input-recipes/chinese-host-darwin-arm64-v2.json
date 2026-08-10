@@ -274,8 +274,8 @@
       "role": "runtime-source",
       "destination": "runtime-source/providers/chinese-funasr/src/session.cpp",
       "sourcePath": "providers/chinese-funasr/src/session.cpp",
-      "sizeBytes": 10009,
-      "sha256": "cde8f7ee2790ec3c9bb19d1a42fc9d955d73a492095020879ea4cc9ad764039b",
+      "sizeBytes": 10253,
+      "sha256": "98960e0c4abef6daa06b3606e8fd3a4871a5d84519de3807b7138b2bd4088e59",
       "licenseComponentId": "funasr"
     },
     {
