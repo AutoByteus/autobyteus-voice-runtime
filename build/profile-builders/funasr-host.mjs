@@ -7,7 +7,6 @@ import { promisify } from "node:util";
 import { parsePairs, shaFile, ROOT } from "../lib/files.mjs";
 import {
   prepareHost,
-  assertHostInputClosure,
   copyHostNotices,
   writeEngineConfiguration,
 } from "./host-common.mjs";
@@ -25,13 +24,6 @@ const args = parsePairs(process.argv.slice(2), [
   "trusted-tools",
 ]);
 const context = await prepareHost(args, "chinese-funasr");
-assertHostInputClosure(context, [
-  "funasr-source/",
-  "llama-cpp-source/",
-  "utf8proc-source/",
-  "package-notices/",
-  "runtime-source/",
-]);
 for (const [directory, commit] of [
   ["funasr-source", context.lock.engine.funAsrCommit],
   ["llama-cpp-source", context.lock.engine.llamaCppCommit],

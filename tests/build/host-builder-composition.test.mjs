@@ -2,9 +2,11 @@ import assert from "node:assert/strict";
 import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
+import { createHash } from "node:crypto";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import test from "node:test";
+import { gunzipSync } from "node:zlib";
 import { readJson, ROOT, shaFile, writeJson } from "../../build/lib/files.mjs";
 import {
   trustedGoEnvironment,
@@ -15,8 +17,25 @@ import {
   verifyResolvedCmakeConfiguration,
 } from "../../build/resolved-cmake-configuration.mjs";
 import { verifyHostArchive } from "../../build/host-package-verifier.mjs";
+import {
+  ASSEMBLER_HOST_AUTHORITY_INPUTS,
+  assertHostInputOwnership,
+} from "../../build/host-package-staging.mjs";
+import { PROFILE_BUILDER_INPUT_PATTERNS } from "../../build/profile-builders/host-input-ownership.mjs";
 
 const run = promisify(execFile);
+const CURRENT_MANIFESTS = Object.freeze({
+  english: Object.freeze({
+    count: 48,
+    pathsSha256:
+      "062b14ea35ac306747caebd05c1e8579104b679e36578b963a067e70e0077870",
+  }),
+  chinese: Object.freeze({
+    count: 3151,
+    pathsSha256:
+      "f6ae6f8e9339b584fb0be4423ea486bb5f5b05ac3f3bddccb02905e1005b5659",
+  }),
+});
 
 test("both real host builders load their production module contracts", async () => {
   assert.equal(typeof cmakeConfigureArguments, "function");
@@ -34,6 +53,73 @@ test("both real host builders load their production module contracts", async () 
         return true;
       },
     );
+});
+
+test("complete current host manifests have exactly one construction owner", async () => {
+  for (const profile of ["english", "chinese"]) {
+    const recipe = await readJson(
+        path.join(
+          ROOT,
+          `build/input-recipes/${profile}-host-darwin-arm64-v2.json`,
+        ),
+      ),
+      manifest = await currentManifest(profile),
+      ownership = assertHostInputOwnership(
+        manifest,
+        PROFILE_BUILDER_INPUT_PATTERNS[profile],
+      );
+    assertRecipeClosesManifest(recipe, manifest);
+    assert.deepEqual(
+      ownership.assemblerOwned,
+      ASSEMBLER_HOST_AUTHORITY_INPUTS,
+      profile,
+    );
+    assert.equal(
+      ownership.profileOwnedCount,
+      manifest.files.length - 1 - ASSEMBLER_HOST_AUTHORITY_INPUTS.length,
+      profile,
+    );
+    assert.throws(
+      () =>
+        assertHostInputOwnership(
+          appendPath(manifest, "host-authority/unexpected-v1.json"),
+          PROFILE_BUILDER_INPUT_PATTERNS[profile],
+        ),
+      /exactly one construction owner/,
+      `${profile} accepted an unexpected third host authority`,
+    );
+    assert.throws(
+      () =>
+        assertHostInputOwnership(
+          appendPath(manifest, "operator-materialized/unrelated.bin"),
+          PROFILE_BUILDER_INPUT_PATTERNS[profile],
+        ),
+      /exactly one construction owner/,
+      `${profile} accepted an unrelated unused input`,
+    );
+    assert.throws(
+      () =>
+        assertHostInputOwnership(manifest, [
+          ...PROFILE_BUILDER_INPUT_PATTERNS[profile],
+          "host-authority/",
+        ]),
+      /exactly one construction owner/,
+      `${profile} accepted ambiguous broad authority ownership`,
+    );
+    assert.throws(
+      () =>
+        assertHostInputOwnership(
+          {
+            files: manifest.files.filter(
+              (item) => item.path !== ASSEMBLER_HOST_AUTHORITY_INPUTS.at(-1),
+            ),
+          },
+          PROFILE_BUILDER_INPUT_PATTERNS[profile],
+        ),
+      /authority input set is incomplete/,
+      `${profile} accepted an incomplete outer authority set`,
+    );
+  }
 });
 
 test("real host extraction reports the logical archive root", async () => {
@@ -220,4 +306,50 @@ async function identity(file, fileName) {
     sizeBytes: (await fs.stat(file)).size,
     sha256: await shaFile(file),
   };
+}
+
+function appendPath(manifest, pathValue) {
+  return { files: [...manifest.files, { path: pathValue }] };
+}
+
+async function currentManifest(profile) {
+  const bytes = gunzipSync(
+      await fs.readFile(
+        path.join(
+          ROOT,
+          `tests/fixtures/host-input-ownership/api-rev-023-${profile}-paths.txt.gz`,
+        ),
+      ),
+    ),
+    authority = CURRENT_MANIFESTS[profile],
+    paths = bytes.toString("utf8").trimEnd().split("\n");
+  assert.equal(paths.length, authority.count, profile);
+  assert.equal(
+    createHash("sha256").update(bytes).digest("hex"),
+    authority.pathsSha256,
+    profile,
+  );
+  return { files: paths.map((pathValue) => ({ path: pathValue })) };
+}
+
+function assertRecipeClosesManifest(recipe, manifest) {
+  const materialized = manifest.files
+    .map((item) => item.path)
+    .filter((item) => item !== "host-input-provenance-v2.json");
+  for (const input of recipe.inputs) {
+    const owns = (item) =>
+      input.kind === "git-checkout"
+        ? item.startsWith(`${input.destination}/`)
+        : item === input.destination;
+    assert.ok(materialized.some(owns), input.destination);
+  }
+  for (const item of materialized)
+    assert.ok(
+      recipe.inputs.some((input) =>
+        input.kind === "git-checkout"
+          ? item.startsWith(`${input.destination}/`)
+          : item === input.destination,
+      ),
+      item,
+    );
 }

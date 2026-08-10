@@ -87,14 +87,6 @@ export async function copyHostNotices(context) {
   );
 }
 export async function copyPythonHost(context, adapter) {
-  assertHostInputClosure(context, [
-    "python-host-archive",
-    "python-wheelhouse/",
-    "package-notices/",
-    "host-authority/",
-    "python-dependencies.lock",
-    "runtime-source/",
-  ]);
   const materialized = await materializePythonRuntime(context);
   try {
     await copyClean(materialized.root, path.join(context.stage, "host/python"));
@@ -157,16 +149,4 @@ export async function writeEngineConfiguration(context, configuration) {
     path.join(context.stage, "provider/engine-configuration-v1.json"),
     { schemaVersion: 1, ...configuration },
   );
-}
-export function assertHostInputClosure(context, prefixes) {
-  for (const item of context.inputManifest.files)
-    if (
-      item.path !== "host-input-provenance-v2.json" &&
-      !prefixes.some((prefix) =>
-        prefix.endsWith("/")
-          ? item.path.startsWith(prefix)
-          : item.path === prefix,
-      )
-    )
-      throw new Error(`Host input has no consumer: ${item.path}`);
 }

@@ -18,6 +18,52 @@ const HOST_CONTRACTS = [
   ["contracts/audio/pcm-wav-v1.md", "pcm-wav-v1.md"],
 ];
 
+export const ASSEMBLER_HOST_AUTHORITY_INPUTS = Object.freeze([
+  "host-authority/model-admission-root-v1.json",
+  "host-authority/model-compatibility-requirement-v1.json",
+]);
+
+export function assertHostInputOwnership(inputManifest, profileInputPatterns) {
+  if (
+    !Array.isArray(inputManifest?.files) ||
+    !Array.isArray(profileInputPatterns) ||
+    profileInputPatterns.length === 0
+  )
+    throw new Error("Host input ownership contract is invalid.");
+  const assemblerInputs = new Set(ASSEMBLER_HOST_AUTHORITY_INPUTS),
+    seenAssemblerInputs = new Set(),
+    seenPaths = new Set();
+  let profileOwnedCount = 0;
+  for (const item of inputManifest.files) {
+    if (!item || typeof item.path !== "string" || seenPaths.has(item.path))
+      throw new Error("Host input ownership path is invalid or duplicated.");
+    seenPaths.add(item.path);
+    if (item.path === "host-input-provenance-v2.json") continue;
+    const assemblerOwned = assemblerInputs.has(item.path),
+      profileOwned = profileInputPatterns.some((pattern) =>
+        pattern.endsWith("/")
+          ? item.path.startsWith(pattern)
+          : item.path === pattern,
+      ),
+      ownerCount = Number(assemblerOwned) + Number(profileOwned);
+    if (ownerCount !== 1)
+      throw new Error(
+        `Host input must have exactly one construction owner: ${item.path}`,
+      );
+    if (assemblerOwned) seenAssemblerInputs.add(item.path);
+    else profileOwnedCount++;
+  }
+  if (
+    seenAssemblerInputs.size !== assemblerInputs.size ||
+    [...assemblerInputs].some((item) => !seenAssemblerInputs.has(item))
+  )
+    throw new Error("Host assembler authority input set is incomplete.");
+  return {
+    assemblerOwned: [...ASSEMBLER_HOST_AUTHORITY_INPUTS],
+    profileOwnedCount,
+  };
+}
+
 export async function stageHostContracts({ stage, profileId }) {
   for (const directory of ["bin", "contracts", "provider"])
     await fs.mkdir(path.join(stage, directory), { recursive: true });
@@ -34,14 +80,10 @@ export async function stageHostContracts({ stage, profileId }) {
 }
 
 export async function stageHostAuthorities({ stage, inputs, entry }) {
-  const admissionInput = path.join(
-      inputs,
-      "host-authority/model-admission-root-v1.json",
-    ),
-    compatibilityInput = path.join(
-      inputs,
-      "host-authority/model-compatibility-requirement-v1.json",
-    );
+  const [admissionRelative, compatibilityRelative] =
+      ASSEMBLER_HOST_AUTHORITY_INPUTS,
+    admissionInput = path.join(inputs, admissionRelative),
+    compatibilityInput = path.join(inputs, compatibilityRelative);
   if (
     (await shaFile(admissionInput)) !== entry.modelAdmissionRoot.sha256 ||
     (await shaFile(compatibilityInput)) !== entry.compatibilityRequirementSha256

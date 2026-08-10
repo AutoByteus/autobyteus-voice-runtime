@@ -22,6 +22,7 @@ const COMMON = [
   "build/host-package-metadata.mjs",
   "build/host-build-environment.mjs",
   "build/profile-builders/host-common.mjs",
+  "build/profile-builders/host-input-ownership.mjs",
   "build/profile-builders/mlx-host.mjs",
   "build/profile-builders/funasr-host.mjs",
   "build/materialize-release-inputs.mjs",

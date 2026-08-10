@@ -13,7 +13,11 @@ import {
   targetParts,
   writeJson,
 } from "./lib/files.mjs";
-import { trustedGoEnvironment, verifyGoToolchain } from "./locked-inputs.mjs";
+import {
+  trustedGoEnvironment,
+  verifyGoToolchain,
+  verifyInputManifest,
+} from "./locked-inputs.mjs";
 import { assertNoUntrustedNativeBuildOverrides } from "./trusted-native-environment.mjs";
 import {
   consumeHostBuildEnvironment,
@@ -29,9 +33,11 @@ import {
   writeHostManifest,
 } from "./host-package-metadata.mjs";
 import {
+  assertHostInputOwnership,
   stageHostAuthorities,
   stageHostContracts,
 } from "./host-package-staging.mjs";
+import { PROFILE_BUILDER_INPUT_PATTERNS } from "./profile-builders/host-input-ownership.mjs";
 import { compileStagedHostTools } from "./host-tool-build.mjs";
 const run = promisify(execFile),
   args = parsePairs(process.argv.slice(2), [
@@ -61,10 +67,13 @@ const target = targetParts(args.target),
       row.architecture === target.architecture,
   );
 if (!entry) throw new Error("Host is outside Current Release Matrix 2.");
-const provenancePath = path.join(
-    path.resolve(args.inputs),
-    "host-input-provenance-v2.json",
-  ),
+const inputs = path.resolve(args.inputs),
+  inputManifest = await verifyInputManifest(inputs),
+  profileInputPatterns = PROFILE_BUILDER_INPUT_PATTERNS[args.profile];
+if (!profileInputPatterns)
+  throw new Error("Host profile has no input ownership contract.");
+assertHostInputOwnership(inputManifest, profileInputPatterns);
+const provenancePath = path.join(inputs, "host-input-provenance-v2.json"),
   provenance = await readJson(provenancePath),
   recipePath = path.join(ROOT, "build/input-recipes", entry.hostRecipeFileName);
 if (
@@ -100,7 +109,7 @@ try {
       "--target",
       args.target,
       "--inputs",
-      path.resolve(args.inputs),
+      inputs,
       "--stage",
       stage,
       "--build-environment",
@@ -122,14 +131,14 @@ try {
     compatibilityPath,
   } = await stageHostAuthorities({
     stage,
-    inputs: args.inputs,
+    inputs,
     entry,
   });
   const closurePath = path.join(stage, "provider/host-source-closure-v1.json"),
     closure = await deriveHostSourceClosure({
       profileId: args.profile,
       recipePath,
-      inputManifestPath: path.join(args.inputs, "SHA256SUMS.json"),
+      inputManifestPath: path.join(inputs, "SHA256SUMS.json"),
       buildEnvironment: native,
       admissionRootPath: admissionInput,
       compatibilityPath: compatibilityInput,
@@ -203,7 +212,7 @@ try {
   const archive = await readArchiveReport(archiveReport);
   await preserveHostBuildEvidence({
     output: args.output,
-    inputs: args.inputs,
+    inputs,
     recipePath,
     provenancePath,
     native,

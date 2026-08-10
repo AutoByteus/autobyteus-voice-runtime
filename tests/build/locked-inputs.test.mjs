@@ -15,7 +15,6 @@ import {
 } from "../../build/locked-inputs.mjs";
 import { verifyGitSource } from "../../build/native/locked-source.mjs";
 import { verifyWheelhouse } from "../../build/python/materialize-runtime.mjs";
-import { assertHostInputClosure } from "../../build/profile-builders/host-common.mjs";
 
 const run = promisify(execFile);
 const digest = (bytes) => createHash("sha256").update(bytes).digest("hex");
@@ -256,22 +255,6 @@ test("wheelhouse rejects target wheel bytes changed without a version change", a
   } finally {
     await fs.rm(directory, { recursive: true, force: true });
   }
-});
-
-test("operator-materialized Python trees are not accepted as build inputs", () => {
-  assert.throws(
-    () =>
-      assertHostInputClosure(
-        { inputManifest: { files: [{ path: "python-root/lib/modified.py" }] } },
-        [
-          "python-host-archive",
-          "python-wheelhouse/",
-          "model/",
-          "package-notices/",
-        ],
-      ),
-    /Host input has no consumer/,
-  );
 });
 
 async function createGoToolchainFixture() {
