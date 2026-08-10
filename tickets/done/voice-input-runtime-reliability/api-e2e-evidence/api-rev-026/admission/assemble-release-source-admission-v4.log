@@ -1,0 +1,15 @@
+{
+  "decision": "reuse-permitted",
+  "changedPathCount": 218,
+  "changedPathsSha256": "191b58b2a7ea1ad79e6b06b134bd525380ff88beff45a46fae46e0ee47b3f56d",
+  "profiles": [
+    {
+      "profileId": "english",
+      "equal": true
+    },
+    {
+      "profileId": "chinese",
+      "equal": true
+    }
+  ]
+}

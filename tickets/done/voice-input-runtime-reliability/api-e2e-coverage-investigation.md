@@ -12,20 +12,45 @@
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/voice-runtime-contract.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/release-pipeline-ownership.md`
   - preserved backend-selection, English-v2, Chinese-v2, and cold-preparation studies and checksum bundles under the same ticket root
-- Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md` (`SR-021`)
-- Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md` (`ARCH-REV-021 Pass`)
+- Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md` (`SR-024`; preserved SR-021 product basis)
+- Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md` (`ARCH-REV-024 Pass`)
 - Architecture Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md` (`IR-035`)
+- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md` (`IR-037`)
 - Implementation Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` (`CRR-055 Pass`)
+- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` (`CRR-058 Pass`)
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-- Delivery Revision Record: historical only; no SR-021 Delivery execution is in scope
+- Delivery Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md` (`DR-008 Blocked — Design Impact`; API/E2E now returns reviewed `R` before Delivery re-entry)
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-025`
-- Current Investigation Round: `25`
-- Trigger: Code Reviewer `CRR-055` against exact source commit `b88c230663eb96e0def8c869b095ea858b0ff50b` and reviewed artifact/HEAD `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`.
-- Prior Investigation Reviewed: `API-REV-024 — Fail / 84%`; `API-F-019` is the mandatory first recheck.
-- Latest Authoritative Investigation: **`API-REV-025 — Pass / 97%`**. Exact current-source local execution now proves the complete host-build, install/store, relocated offline provider, execution-closure, focused-authority, and nonpublishing release-composition boundaries. `API-F-019` is directly resolved at the actual CMake link/archive boundary.
+- Current API/E2E Revision ID: `API-REV-026`
+- Current Investigation Round: `26`
+- Trigger: Code Reviewer `CRR-058` against focused source `F=b88c230663eb96e0def8c869b095ea858b0ff50b`, admitted source `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`, and reviewed implementation artifact `f9e4cff7ea44c303bb7fd94cff07f4345d51c77d`.
+- Prior Investigation Reviewed: `API-REV-025 — Pass / 97%`; its exact five aggregate authority subjects and checksum bundle are the immutable inputs for this zero-profile round.
+- Latest Authoritative Investigation: **`API-REV-026 — Pass / 98%`**. Production Admission 4 returns `reuse-permitted`; the sole controller created exact direct-child `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`, and independent verification proves its six-add shape and protected bytes.
+
+## API-REV-026 Zero-Profile Coverage Delta
+
+- Scope classification: repository/release authority only. No runtime, provider, model manager, Store 1, corpus, performance, host archive, browser, desktop, user-state, or external-service execution is justified.
+- Exact retained inputs: the five checksum-bound API-REV-025 subjects—Focused Qualification Set 3, Branch Catalog Projection 3, its independent verification, and English/Chinese Profile Execution Closure 2—remain `Still Valid` only if their exact bytes match API-REV-025 `SHA256SUMS.txt`.
+- Source/closure decision: from a clean checkout at exactly `D=3e847421...`, run the production Admission 4 assembler over `F..D`, Policy 3, Matrix 2, and the retained equal English/Chinese Host Source Closure 1 identities. Require `218` classified paths, changed-path digest `191b58b2a7ea1ad79e6b06b134bd525380ff88beff45a46fae46e0ee47b3f56d`, both closure equalities, and `reuse-permitted`.
+- Promotion decision: invoke only `release/promote-release-authority.mjs`; require it to start from clean `HEAD==D`, find all protected paths absent, validate Admission 4 and API checksums, and stage exactly the fixed six additions under `release/admission/`.
+- Commit decision: create one single-parent direct child `R` of `D` containing only those six additions. Independently verify `parent(R)=D`, exact add-only `D..R` shape, ordinary-file modes, protected byte identities, and zero profile/product execution counters.
+- Durable coverage inventory:
+  - `tests/release/relevant-source-closure-v3.test.mjs`, `tests/release/release-source-admission-verifier.test.mjs`, `tests/release/release-admission-fixture.mjs`, and `tests/release/fixtures/ir-036-f-to-d-changed-paths-v1.json`: `Still Valid`; CRR-058 directly confirms their exact/prefix/rename/fail-closed decisions.
+  - API-REV-025 aggregate authority files: `Still Valid / Reuse Exact Bytes`; do not regenerate or relabel them.
+  - Fixed six `release/admission/` files: `Add Repository-Resident Durable Non-Test Authority`; these are production inputs, not test coverage, and must return through Code Review after commit.
+  - API/E2E repository-resident test changes: `None Planned`.
+- Broader validation decision: `Required`, limited to the real Git Admission 4/promotion/commit/independent-verification boundary. Expected product/profile execution counts are all zero.
+- Stop rule: any subject checksum, Policy 3, closure, ancestry, changed-path, staged-shape, parent, mode, or protected-byte mismatch stops before commit or immediately records a truthful failure. No host/profile rerun, merge, workflow, tag, publication, fallback, or manual file copying outside the promotion owner is permitted.
+
+### API-REV-026 Execution Update
+
+- Exact API-REV-025 authority reuse passed: all `175` checksum rows verify; the five focused subjects keep their original identities and are not regenerated or relabeled.
+- Clean-checkout repository proof passed: `npm ci --ignore-scripts`, followed by `npm run check:release-pipeline` at exact `D`, passed `19/19`.
+- Production Release Source Admission 4 passed with Policy 3 identity `c7cd2e5e...1e676`, exact `218` changed paths (`25` release-pipeline-only and `193` documentation-record-only), changed-path digest `191b58b2...3f56d`, equal English/Chinese retained Host Source Closures, verified ancestry, and decision `reuse-permitted`. An independent implementation recomputed the Git inventory, classifications, canonical digest, policy identity, five authority identities, and closure equalities.
+- The sole promotion controller began from clean `HEAD==D`, validated the checksum/admission authority, and staged exactly the fixed six protected additions. Commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875` has exactly one parent `D`, only six ordinary `100644` added blobs, and a clean post-commit worktree. Every promoted blob is byte-identical to its admitted source.
+- Required counters are all zero: `profileExecutionCount`, `providerLaunchCount`, `modelDownloadCount`, `corpusAttemptCount`, and `performanceTrialCount`. Host builds, release dispatch, tags, publications, and user/desktop-state mutations are also zero.
+- Durable coverage decision after execution: API/E2E added, updated, and removed no repository-resident test coverage. The exact six `release/admission/` additions are durable non-test production authority and therefore require full Code Review of `R` before Delivery.
+- Final broader-validation decision: `Required — Completed`. Final confidence is `98%`; every applicable scorecard category is at least `97%`. API-REV-025 remains the current product/runtime qualification and is unchanged.
 
 ## API-REV-025 Recheck And Coverage Delta
 

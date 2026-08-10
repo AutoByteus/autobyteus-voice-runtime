@@ -28,6 +28,8 @@
 | `API-REV-022` | Code Reviewer / `code-review-report.md` / `CRR-049`            | `SR-021`, `ARCH-REV-021`, `IR-032`, `CRR-048`, `CRR-049`           | `Blocked / 80%`           | `Fail / 84%`                |
 | `API-REV-023` | Code Reviewer / `code-review-report.md` / `CRR-051`            | `SR-021`, `ARCH-REV-021`, `IR-033`, `CRR-050`, `CRR-051`           | `Fail / 84%`              | `Fail / 84%`                |
 | `API-REV-024` | Code Reviewer / `code-review-report.md` / `CRR-053`            | `SR-021`, `ARCH-REV-021`, `IR-034`, `CRR-052`, `CRR-053`           | `Fail / 84%`              | `Fail / 84%`                |
+| `API-REV-025` | Code Reviewer / `code-review-report.md` / `CRR-055`            | `SR-021`, `ARCH-REV-021`, `IR-035`, `CRR-054`, `CRR-055`           | `Fail / 84%`              | `Pass / 97%`                |
+| `API-REV-026` | Code Reviewer / `code-review-report.md` / `CRR-058`            | `SR-024`, `ARCH-REV-024`, `IR-037`, `CRR-057`, `CRR-058`, `DR-008` | `Pass / 97%`              | `Pass / 98%`                |
 
 ## Revision Entries
 
@@ -895,3 +897,27 @@ None.
 - Durable API/E2E coverage changes: `None`.
 - Recommended recipient: `code_reviewer` for proportional API/E2E test-code review; expected disposition `Not Applicable` before Delivery resumes.
 - Residual scope: maintained-main/standard-hosted equality, tag/release/publication/downloaded-byte verification are Delivery-owned; x64/Linux/Windows/auto/desktop remain explicitly deferred.
+
+### API-REV-026 — Zero-profile release source admission and exact authority promotion pass
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-058`; API/E2E round 26.
+- Triggering scenario/criteria: `API-VOICE-025`; `BEH-007`, `BEH-013`, and `AC-025` bounded `F -> D -> R` source-admission/promotion stage.
+- Related revisions: `SR-024`, `ARCH-REV-024`, `IR-037`, `CRR-057`, `CRR-058`, preserved `API-REV-025`, and blocked Delivery round `DR-008`.
+- Reviewed subjects: focused authority source `F=b88c230663eb96e0def8c869b095ea858b0ff50b`; admitted source `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`; implementation artifact `f9e4cff7ea44c303bb7fd94cff07f4345d51c77d`.
+- Why recorded: production Release Source Admission 4 and the sole promotion controller were executed from a clean exact-`D` checkout against the exact five checksum-bound API-REV-025 authorities and equal retained Host Source Closures. The result is one independently verified six-add direct-child promotion commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875`.
+- Coverage decisions/durable test paths changed: API/E2E added, updated, and removed no repository-resident durable test coverage. The exact six `release/admission/` files are new durable non-test production authority and require Code Review before Delivery.
+- Scenario delta: `API-VOICE-025` Pass. API-REV-025 product/runtime evidence remains unchanged and was not rerun or relabeled.
+- Execution delta: all `175` API-REV-025 checksum rows Pass; clean-checkout `npm ci --ignore-scripts` Pass; release pipeline `19/19` Pass; Admission 4 returns `reuse-permitted` for exact `218` paths (`25` release-only, `193` documentation-only), digest `191b58b2...3f56d`, Policy 3 `c7cd2e5e...1e676`, verified ancestry, and equal English/Chinese closures. Independent verification confirms the same result.
+- Promotion delta: `R` has exactly one parent `D`, exactly six ordinary `100644` additions, no other change, and byte identity with all admitted sources. The isolated promotion worktree is clean after commit.
+- Required zero counts: `profileExecutionCount=0`, `providerLaunchCount=0`, `modelDownloadCount=0`, `corpusAttemptCount=0`, and `performanceTrialCount=0`; host build, dispatch, tag, publication, and user/desktop mutation counts are also zero.
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/`
+- Prior result/confidence: `Pass / 97%`.
+- Current result/confidence: **`Pass / 98%`**.
+- Broader validation: `Required — Completed` at the real Git admission/promotion/commit boundary.
+- New failures/blockers: `None`.
+- Recommended recipient: `code_reviewer` for review of exact durable authority commit `R`; proportional test-code review is `Not Applicable` because no test changed.
+- Remaining scope: Delivery-owned maintained-main `W`, hosted `R..W` verification, standard-hosted host-only equality, tag/release/publication, and downloaded-byte proof. Alternate targets and desktop remain deferred.

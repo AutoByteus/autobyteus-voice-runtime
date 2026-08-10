@@ -1,0 +1,21 @@
+commit 71f8e7823d876b9c0914bfc7b90b143d851d4875
+Author:     normy <normy@macbookpro.speedport.ip>
+AuthorDate: Mon Aug 10 20:20:12 2026 +0200
+Commit:     normy <normy@macbookpro.speedport.ip>
+CommitDate: Mon Aug 10 20:20:12 2026 +0200
+
+    release: promote v1.0.0 admission authority
+
+ .../v1.0.0-branch-catalog-projection-v3.json       |   51 +
+ ...-branch-catalog-projection-verification-v3.json |   12 +
+ ...1.0.0-chinese-profile-execution-closure-v2.json |   32 +
+ ...1.0.0-english-profile-execution-closure-v2.json |   32 +
+ .../v1.0.0-focused-qualification-set-v3.json       |   46 +
+ .../v1.0.0-release-source-admission-v4.json        | 1198 ++++++++++++++++++++
+ 6 files changed, 1371 insertions(+)
+ create mode 100644 release/admission/v1.0.0-branch-catalog-projection-v3.json
+ create mode 100644 release/admission/v1.0.0-branch-catalog-projection-verification-v3.json
+ create mode 100644 release/admission/v1.0.0-chinese-profile-execution-closure-v2.json
+ create mode 100644 release/admission/v1.0.0-english-profile-execution-closure-v2.json
+ create mode 100644 release/admission/v1.0.0-focused-qualification-set-v3.json
+ create mode 100644 release/admission/v1.0.0-release-source-admission-v4.json

@@ -6,100 +6,95 @@
 - Requirements Doc Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
 - Investigation Notes Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
 - Design Spec Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Supplemental Task Artifacts Reviewed As Context: `on-demand-model-assets.md`, `voice-runtime-contract.md`, `current-platform-qualification.md`, `benchmark-protocol.md`, `release-pipeline-ownership.md`, and retained backend/English/Chinese/cold-preparation authorities
+- Supplemental Task Artifacts Reviewed As Context: `release-pipeline-ownership.md`, `benchmark-protocol.md`, `current-platform-qualification.md`, `voice-runtime-contract.md`, `on-demand-model-assets.md`, and preserved backend/English/Chinese/cold-preparation authorities
 - Solution Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
-- Relevant Solution Revision IDs: `SR-021`
+- Relevant Solution Revision IDs: current `SR-024`; preserved `SR-022` and `SR-021`
 - Design Review Report Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
 - Architecture Review Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Relevant Architecture Review Revision IDs: `ARCH-REV-021 Pass`
+- Relevant Architecture Review Revision IDs: `ARCH-REV-024 Pass`; preserved `ARCH-REV-022` and `ARCH-REV-021`
 - Implementation Handoff Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`
 - Implementation Revision Record Reviewed As Context: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Relevant Implementation Revision IDs: `IR-035`; source `b88c230663eb96e0def8c869b095ea858b0ff50b`; artifact/reviewed HEAD `5a2ec1b95536e8490d00e0359ff75e74f199d8f0`
+- Relevant Implementation Revision IDs: `IR-037`; source/admitted commit `D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`; reviewed artifact `f9e4cff7ea44c303bb7fd94cff07f4345d51c77d`
 - Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-- Current Code Review Revision ID: `CRR-055`
-- Current Review Round: `55`
-- Trigger: `IR-035` bounded correction for `CR-F-047` / `API-F-019`
-- Prior Review Round Reviewed: `CRR-054 Fail — Local Fix`
-- Latest Authoritative Round: `CRR-055`
+- Current Code Review Revision ID: `CRR-059`
+- Current Review Round: `59`
+- Trigger: successful `API-REV-026` created repository-resident durable production authority commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875` after CRR-058
+- Prior Review Round Reviewed: `CRR-058 Pass`
+- Latest Authoritative Round: `CRR-059`
 - Coverage Investigation Reviewed: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
 - Execution Coverage Report Reviewed: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
 - API/E2E Revision Record Reviewed: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Relevant API/E2E Revision IDs: `API-REV-024 Fail / 84%` triggered this correction; no later API/E2E result exists
-- Delivery Revision Record Reviewed: historical `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Relevant Delivery Revision IDs: historical `DR-006`; no current SR-021 Delivery result
-- Failing Scenario IDs: prior `API-VOICE-018`, `API-F-019`; source resolution under review
-- Exact Failing Commands / Execution Mode: prior exact network-denied canonical Chinese Runtime Host Archive 2 construction with current authenticated inputs, official locked toolchain, and Host Source Closure `571191f217d16369b126edfd6944d622207cd32dc8aefedff0e8b9fb4d40de02`; reviewer rechecks the corrected source and complete production translation-set compile boundary
-- Failure Evidence Paths: origin `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-054-api-f-019-origin.md`; resolution `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-055-chinese-worker-compilation-resolution.md`
+- Relevant API/E2E Revision IDs: `API-REV-026 Pass / 98%`; retained `API-REV-025 Pass / 97%`
+- Delivery Revision Record Reviewed: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
+- Relevant Delivery Revision IDs: `DR-008 Blocked — Design Impact`; exact-R integration may resume after the separate proportional test review
+- Failing Scenario IDs: none
+- Exact Failing Commands / Execution Mode: N/A; exact zero-profile `API-VOICE-025` passed
+- Failure Evidence Paths: N/A; authority-review evidence is `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-059-release-authority-commit-review.md`
 
 ## Review Scope
 
-- Changed implementation and behavior reviewed: IR-035's four typed digest bindings, Chinese input-recipe source identity update, deterministic Apple-native compile fixture, complete production translation-set coverage, and preservation of strict session/model validation.
-- Files / areas reviewed: `providers/chinese-funasr/src/session.cpp`, `providers/chinese-funasr/CMakeLists.txt`, `build/input-recipes/chinese-host-darwin-arm64-v2.json`, `tests/build/chinese-worker-native-compile.test.mjs`, its manifest/archive fixture, IR-035 diff/handoff/revision, CRR-054, and API-REV-024 evidence/coverage decisions.
-- Explicit exclusions: no production CMake link, Runtime Host Archive 2 construction, independent archive verification, model download/install, provider execution, Store 1 mutation, focused authority derivation, API/E2E rerun, merge, tag, publication, desktop, or user-state work.
+- Changed implementation and behavior reviewed: exact repository-resident Production Admission Bundle 1 created by API/E2E as release authority commit `R`; Git parent/tree/mode shape; five retained authority byte identities; Admission 4 semantics and reproducibility; zero-profile boundary.
+- Files / areas reviewed: the six added `release/admission/v1.0.0-*` JSON files in exact `D..R`; API-REV-026 coverage/execution/revision/evidence; retained API-REV-025 aggregate authority; SR-024 F/D/R/W contract; promotion and hosted-verifier owners from IR-036/IR-037.
+- Explicit exclusions: no implementation source, schema, workflow, or test file changed in `D..R`; no host build, provider/profile execution, model download, corpus/performance run, maintained-main integration, release dispatch, tag, publication, desktop action, or user-state mutation occurred.
 
 ## Upstream Behavior And Production-Path Basis Confirmation
 
-- Approved requirements basis understood: `R-005`, `R-025`, and `AC-028` require the exact model-free Chinese Runtime Host Archive 2 to compile, link, assemble, and verify under the current authenticated source/toolchain.
-- Design-spec behavior map verified against the implementation: `Yes`; canonical construction -> outer assembler -> FunASR builder -> authenticated CMake `voice-provider-worker` -> archive remains unchanged. IR-035 repairs the worker's existing digest-binding implementation and closes its native compilation coverage.
-- Design review report and round confirmed: `ARCH-REV-021 Pass` against `SR-021`.
-- Behavior-basis status: `Confirmed` at the reviewed source/compile boundary.
-- Changed or newly discovered behavior, if any: `None`.
-- Remaining material ambiguity, if any: `None` for source review; actual link/archive/runtime results remain downstream evidence.
+- Approved requirements basis understood: `BEH-007`, `BEH-013`, `R-014`, `R-024`, `R-029`, and `AC-025` require API/E2E to commit exact Admission 4 plus the five retained focused authorities once as a six-add, single-parent direct child `R` of admitted source `D`.
+- Design-spec behavior map verified against the implementation: actual `F -> D -> R` is now present; `R` is immutable production input for later maintained-main `W` verification and hosted equality, not a qualification or Delivery-authored record.
+- Design review report and round confirmed: `ARCH-REV-024 Pass` against `SR-024`.
+- Behavior-basis status: `Confirmed`.
+- Changed or newly discovered behavior, if any: none. API-REV-026 executes the already-approved zero-profile promotion boundary.
+- Remaining material ambiguity, if any: none.
 
-| Behavior ID           | Current Status                 | Current Implementation Path And Lifecycle Evidence                                                                         | Contradicting Or Newly Discovered Supported Behavior Evidence                                                                                    |
-| --------------------- | ------------------------------ | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `BEH-004` / `BEH-010` | `Confirmed`                    | canonical construction -> authenticated CMake production source list -> all C++/C units compile -> downstream link/archive | All four computed digest operands are typed strings after existing validation; reviewer-executed complete translation-set coverage passes `1/1`. |
-| `AC-028`              | `Confirmed at source boundary` | exact repository source -> Chinese recipe size/SHA binding -> complete native compile -> later archive inspection/closure  | Corrected `session.cpp` is exactly recipe-bound; all eleven external fixture files match API-REV-024's authenticated materialized source bytes.  |
-| `DS-001` / `DS-002`   | `Confirmed / unchanged`        | verified host -> explicit model install/activation -> Config 2/lifetime lease -> offline provider                          | IR-035 changes no model, store, activation, lease, protocol, provider selection, or runtime behavior.                                            |
-| `DS-003` / `DS-004`   | `Confirmed / unchanged`        | current hosts/runtime -> Execution Closure 2/QSet 3/Projection 3 -> exact nine-asset release                               | No focused authority or release subject was generated or relabeled.                                                                              |
+| Behavior ID                                | Current Status                   | Current Implementation Path And Lifecycle Evidence                                                                                                   | Contradicting Or Newly Discovered Supported Behavior Evidence                 |
+| ------------------------------------------ | -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `BEH-007`                                  | `Confirmed`                      | exact API-REV-025 `F` -> admitted source `D` -> reproduced Admission 4 -> sole promotion controller -> exact six-add direct-child `R`                | None. Exact Git and byte evidence independently passes.                       |
+| `BEH-013`                                  | `Confirmed / downstream pending` | reviewed `R` -> Delivery integrates exact commit to maintained-main `W` -> hosted verifier derives and checks F/D/R/W -> host build/equality/release | None. `R` is now valid immutable input; no W/release action has yet occurred. |
+| `BEH-004`, `BEH-005`, `BEH-010`, `BEH-014` | `Confirmed / unchanged`          | host-only archive -> authorized on-demand model install -> activated offline provider                                                                | None. API-REV-026 records all product/runtime execution counts as zero.       |
 
 ## Structural / Design Checks
 
-| Check                                                                                          | Result | Evidence                                                                                                                                                            | Required Action                         |
-| ---------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| Task design health assessment is present, evidence-backed, and preserved by the implementation | Pass   | IR-035 is the bounded CRR-054 Local Fix; no design reset or expanded behavior is introduced.                                                                        | None.                                   |
-| Implementation matches approved behavior-defining supplemental artifacts                       | Pass   | Runtime Host Archive 2/session/model identities and strict fail-closed validation remain intact.                                                                    | None.                                   |
-| Data-flow spine inventory clarity and preservation under shared principles                     | Pass   | Construction and worker session spines are unchanged; typed digest values remain local to the session owner.                                                        | None.                                   |
-| Ownership boundary preservation and clarity                                                    | Pass   | `session.cpp` owns session/model digest comparison; the input recipe owns packaged source identity; the test owns compile readiness only.                           | None.                                   |
-| Off-spine concern clarity                                                                      | Pass   | The minimal fixture serves durable compile coverage without entering production construction or runtime.                                                            | None.                                   |
-| Existing capability/subsystem reuse check                                                      | Pass   | Existing digest validator, native identity owner, file hash utilities, production CMake target, and input recipe are reused.                                        | None.                                   |
-| Reusable owned structures check                                                                | Pass   | Production source order is derived from CMake and compared with one exact expected list; no second production target definition is introduced.                      | None.                                   |
-| Shared-structure/data-model tightness check                                                    | Pass   | The fixture contains only eleven exact required external compile files and one manifest; no broad source snapshot or optional shape.                                | None.                                   |
-| Repeated coordination ownership check                                                          | Pass   | Native tool identity stays under `native-tool-identities.mjs`; the test consumes it rather than duplicating alias logic.                                            | None.                                   |
-| Empty indirection check                                                                        | Pass   | No new production wrapper/indirection exists; test helpers own deterministic file inventory and Git-blob calculation.                                               | None.                                   |
-| Scope-appropriate separation of concerns and file responsibility clarity                       | Pass   | Runtime correction, recipe binding, compile harness, and immutable fixture are separated by concrete responsibility.                                                | None.                                   |
-| Ownership-driven dependency check                                                              | Pass   | Production source takes no test dependency; the test depends on public native/file identity owners and production declarations.                                     | None.                                   |
-| Authoritative Boundary Rule check                                                              | Pass   | No production caller bypasses the session, builder, recipe, or native identity authority.                                                                           | None.                                   |
-| File placement check                                                                           | Pass   | Runtime code remains under the Chinese provider; compile coverage/fixture stay under `tests/build` and `tests/fixtures`.                                            | None.                                   |
-| Flat-vs-over-split layout judgment                                                             | Pass   | One coherent 216-line test plus one data manifest is proportionate; no artificial helper module is needed.                                                          | None.                                   |
-| Interface/API/query/command/service-method boundary clarity                                    | Pass   | No public API changed; local typed values make operand identity explicit.                                                                                           | None.                                   |
-| Naming quality and naming-to-responsibility alignment check                                    | Pass   | `descriptor_sha256`, `activation_sha256`, `file_sha256`, and `tree_sha256` identify their validated subjects directly.                                              | None.                                   |
-| No unjustified duplication of code / repeated structures in changed scope                      | Pass   | CMake source list and warning policy are consumed/guarded; existing hash/native owners are reused.                                                                  | None.                                   |
-| Patch-on-patch complexity control                                                              | Pass   | Four direct typed extractions replace invalid operands; no fallback, adapter, or compatibility branch was added.                                                    | None.                                   |
-| Dead/obsolete code cleanup completeness in changed scope                                       | Pass   | All four invalid string/JSON comparisons are gone; recipe identity is updated atomically.                                                                           | None.                                   |
-| Relevant test scenarios and assertions are clear and requirement-aligned                       | Pass   | Coverage proves exact production translation membership, locked external bytes/toolchain, warnings-as-errors, and compilation without claiming link/runtime.        | None.                                   |
-| Test fixtures/helpers are reasonably reusable and test structure remains coherent              | Pass   | One compact deterministic archive and manifest cover the sole current Apple-native Chinese target; cleanup is bounded.                                              | None.                                   |
-| No stale, duplicated, or compatibility-only tests are retained in changed scope                | Pass   | Existing selected-component tests remain distinct; new coverage closes the complete-target gap without copying their assertions.                                    | None.                                   |
-| API/E2E readiness for the next workflow stage                                                  | Pass   | Reviewer focused `1/1`, release `9/9`, full `94/94` Node + `7/7` Python/all Go/source/evidence, exact fixture/source binding, and diff checks pass with zero skips. | Restart canonical Chinese construction. |
+| Check                                                                                          | Result | Evidence                                                                                                                        | Required Action                                                                 |
+| ---------------------------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Task design health assessment is present, evidence-backed, and preserved by the implementation | Pass   | The exact authority bundle is the reviewed acyclic response to DR-008 and CR-F-048; no broader mechanism was added.             | None.                                                                           |
+| Implementation matches approved behavior-defining supplemental artifacts                       | Pass   | Six fixed additions, exact parent D, byte-identical five subjects, and Admission 4 match release/qualification supplements.     | None.                                                                           |
+| Data-flow spine inventory clarity and preservation under shared principles                     | Pass   | `F -> D -> R -> W` now has its exact reviewed first three Git subjects; W remains separately observed later.                    | None.                                                                           |
+| Ownership boundary preservation and clarity                                                    | Pass   | API/E2E created R through the sole controller; Delivery did not manufacture or edit authority.                                  | None.                                                                           |
+| Off-spine concern clarity                                                                      | Pass   | Checksum, Git-tree, schema, and zero-count evidence serve authority verification without joining production bytes.              | None.                                                                           |
+| Existing capability/subsystem reuse check                                                      | Pass   | Existing Admission 4 and promotion owners produced the bundle; no second writer or parser was introduced.                       | None.                                                                           |
+| Reusable owned structures check                                                                | Pass   | The five retained artifact contracts and Admission 4 identity structure remain canonical and byte-bound.                        | None.                                                                           |
+| Shared-structure/data-model tightness check                                                    | Pass   | Each of F, D, R, the five authority identities, and both closure subjects has one non-overlapping meaning.                      | None.                                                                           |
+| Repeated coordination ownership check                                                          | Pass   | Exact member names and validation remain centralized in `release-admission-contract.mjs` and promotion source.                  | None.                                                                           |
+| Empty indirection check                                                                        | Pass   | R closes concrete immutable bytes and Git lineage; it is not a pass-through or self-asserted pointer.                           | None.                                                                           |
+| Scope-appropriate separation of concerns and file responsibility clarity                       | Pass   | Five preserved qualification artifacts and one source admission record remain distinct fixed members.                           | None.                                                                           |
+| Ownership-driven dependency check                                                              | Pass   | Admission depends only on F/D/policy/focused authority; R contains it; later W verification may depend on R, never the reverse. | None.                                                                           |
+| Authoritative Boundary Rule check                                                              | Pass   | No API/E2E or Delivery caller bypasses the promotion owner or mixes its internal Git staging mechanics with a second writer.    | None.                                                                           |
+| File placement check                                                                           | Pass   | All six protected production inputs reside under the exact reviewed `release/admission/` boundary.                              | None.                                                                           |
+| Flat-vs-over-split layout judgment                                                             | Pass   | One closed directory with six versioned subjects is proportionate and directly auditable.                                       | None.                                                                           |
+| Interface/API/query/command/service-method boundary clarity                                    | Pass   | Admission names F/D and five identities; Git supplies R; later verifier derives R/W instead of accepting caller assertions.     | None.                                                                           |
+| Naming quality and naming-to-responsibility alignment check                                    | Pass   | Version/profile/artifact names match their exact contract subjects.                                                             | None.                                                                           |
+| No unjustified duplication of code / repeated structures in changed scope                      | Pass   | The five files are exact promoted bytes, not rewritten projections; Admission is reproduced byte-identically.                   | None.                                                                           |
+| Patch-on-patch complexity control                                                              | Pass   | R adds only the reviewed terminal authority bundle and no compatibility layer or workaround.                                    | None.                                                                           |
+| Dead/obsolete code cleanup completeness in changed scope                                       | Pass   | No obsolete path is introduced; bundle contains only current v2/v3/v4 contract subjects as designed.                            | None.                                                                           |
+| Relevant test scenarios and assertions are clear and requirement-aligned                       | Pass   | Existing 19/19 release coverage and API-VOICE-025 prove the exact six-add/lineage/identity boundary; no test was changed.       | None.                                                                           |
+| Test fixtures/helpers are reasonably reusable and test structure remains coherent              | Pass   | No new fixture/test code; retained source-reviewed coverage remains valid.                                                      | None.                                                                           |
+| No stale, duplicated, or compatibility-only tests are retained in changed scope                | Pass   | D..R contains no test change; API coverage investigation reports no durable test delta.                                         | None.                                                                           |
+| API/E2E readiness for the next workflow stage                                                  | Pass   | API-REV-026 is complete at 98%; exact R is clean, reproducible, and source-reviewed.                                            | Complete the separate proportional test review, then route exact R to Delivery. |
 
 ## Source File Size And Structure Audit
 
-Tests, manifests, fixtures, and input-recipe data are excluded from implementation-source thresholds. The only changed implementation source remains well below both limits.
-
-| Source File                                | Effective Non-Empty Lines | `>500` Hard-Limit Check | `>220` Delta Check                   | SoC / Ownership Check                                                                                 | Placement Check | Preliminary Classification | Required Action |
-| ------------------------------------------ | ------------------------: | ----------------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------- | --------------- | -------------------------- | --------------- |
-| `providers/chinese-funasr/src/session.cpp` |                        56 | Pass                    | Pass — `4` additions / `4` deletions | Coherent session/model binding and verification owner; typed locals clarify the four digest operands. | Pass            | Accept                     | None.           |
+No implementation-source file changed in `D..R`. The six JSON members are immutable production authority/evidence inputs, not implementation source; source-size thresholds are therefore not applicable. The 50,284-byte Admission file is generated canonical data and was reviewed semantically and reproduced byte-for-byte rather than judged as hand-authored source.
 
 ## Legacy / Backward-Compatibility Verdict
 
-| Check                                                                                      | Result | Notes                                                                       |
-| ------------------------------------------------------------------------------------------ | ------ | --------------------------------------------------------------------------- |
-| No backward-compatibility mechanisms in changed scope                                      | Pass   | No alternate JSON conversion, schema version branch, or fallback was added. |
-| No legacy old-behavior retention in changed scope                                          | Pass   | Invalid implicit comparisons are replaced directly.                         |
-| Dead/obsolete code cleanup completeness in changed scope                                   | Pass   | All four same-class invalid expressions are removed.                        |
-| Approved persisted-data transition decision is followed without unnecessary migration work | Pass   | Store/state schemas and persisted data are unaffected.                      |
-| No version-specific dual reads/writes or request-time old-shape fallback exists            | Pass   | One current Config 2/Activation Record 1 validation path remains.           |
-| Approved transition mechanics match the reviewed design                                    | Pass   | Existing discard/rebuild model-store decision remains unchanged.            |
+| Check                                                                                                  | Result | Notes                                                                                       |
+| ------------------------------------------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------------------- |
+| No backward-compatibility mechanisms in changed scope                                                  | Pass   | R contains only current approved contract subjects and no reader/fallback.                  |
+| No legacy old-behavior retention in changed scope                                                      | Pass   | Historical qualification is reused by exact current authority, not by a compatibility path. |
+| Dead/obsolete code cleanup completeness in changed scope                                               | Pass   | No obsolete member or additional file exists.                                               |
+| Approved persisted-data transition decision is followed without unnecessary migration work             | Pass   | Runtime Store 1 and user state are untouched.                                               |
+| No version-specific dual reads/writes or request-time old-shape fallback exists                        | Pass   | Production bundle is immutable release input only.                                          |
+| Approved transition mechanics match the reviewed design, including migration safety only when required | Pass   | Exact direct-child promotion is used; no migration applies.                                 |
 
 ## Dead / Obsolete / Legacy Items Requiring Removal
 
@@ -107,68 +102,68 @@ None.
 
 ## Docs-Impact Verdict
 
-- Docs impact: `No`.
-- Why: external host/model/install/provider behavior and release composition are unchanged; this is an internal compile correction and durable regression.
-- Files or areas likely affected: implementation/review evidence only.
+- Docs impact: `Yes`.
+- Why: the exact reviewed `R` identity and six protected production inputs are now durable release facts.
+- Files or areas likely affected: Delivery revision/final handoff/release-deployment records must name exact `R=71f8e782...` and preserve the zero-profile/reused-authority boundary. No user-facing runtime documentation change is required.
 
 ## Material Premise Validation
 
 ### Upstream Design-Review Material-Premise Decisions
 
-| Premise ID      | Current Status                            | Changed Evidence / Reason                                                                                                                                 |
-| --------------- | ----------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `MP-CRR-054-01` | `Confirmed / resolved at source boundary` | The required production worker translation set now compiles under exact authenticated Apple inputs; actual CMake link/archive remains downstream API/E2E. |
+| Premise ID      | Current Status | Changed Evidence / Reason                                                                                                                   |
+| --------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `MP-AR-022A`    | `Confirmed`    | The approved D -> R -> W lifecycle is directly observed through exact direct-child R; W remains the downstream maintained-main observation. |
+| `MP-AR-024A`    | `Confirmed`    | Policy 3 admitted exact D and the resulting Admission bytes remain independently reproducible.                                              |
+| `MP-CRR-057-01` | `Confirmed`    | The corrected operational decision produced the exact authorized promotion rather than a bypass or relabeling.                              |
 
-No new or reclassified material premise is needed.
+No new or unclear material premise drives this review. The governing release contract and actual Git execution establish reachability directly.
 
 ## Review Scorecard
 
-- Overall score (`/10`): `9.7`
-- Overall score (`/100`): `96.5`
-- Score calculation note: simple average across the ten mandatory categories; decision also requires every category to meet `9.0`.
+- Overall score (`/10`): `9.9`
+- Overall score (`/100`): `98.7`
+- Score calculation note: simple average across the ten categories; every category meets the clean-pass threshold.
 
-| Priority | Category                                                                |  Score | Why This Score                                                                                    | What Is Weak / Holding It Down                                                      | What Should Improve                                           |
-| -------- | ----------------------------------------------------------------------- | -----: | ------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `1`      | `Data-Flow Spine Inventory and Clarity`                                 |  `9.7` | Correction stays on the existing construction/session spine with explicit digest subjects.        | Actual archive execution remains downstream.                                        | Confirm the same source through canonical construction.       |
-| `2`      | `Ownership Clarity and Boundary Encapsulation`                          |  `9.7` | Session, recipe, native identity, and test fixture responsibilities remain singular.              | None material in reviewed scope.                                                    | Preserve the boundary as native coverage evolves.             |
-| `3`      | `API / Interface / Query / Command Clarity`                             |  `9.6` | No public API changed; typed locals remove ambiguous operand conversion.                          | The production file intentionally retains compact one-line statements.              | Keep future local values explicitly typed/named.              |
-| `4`      | `Separation of Concerns and File Placement`                             |  `9.6` | Runtime correction, source identity, test harness, and fixture are cleanly separated.             | Compile fixture adds one target-specific test asset.                                | Retain it only while this exact target remains current.       |
-| `5`      | `Shared-Structure / Data-Model Tightness and Reusable Owned Structures` |  `9.6` | Minimal exact fixture and production-derived source set avoid broad snapshots/parallel authority. | Fixture provenance labels depend on reviewed recipe plus immutable byte identities. | Keep manifest and recipe bindings synchronized.               |
-| `6`      | `Naming Quality and Local Readability`                                  |  `9.4` | New digest names are precise and improve type readability.                                        | Inherited compressed C++ lines remain denser than ideal.                            | Avoid increasing local statement density in later edits.      |
-| `7`      | `API/E2E Readiness`                                                     |  `9.6` | Complete source set compiles and all reviewer gates pass with no skip.                            | Production link/archive has not rerun.                                              | API/E2E must restart at the exact Chinese command.            |
-| `8`      | `Runtime Correctness And Behavioral Fidelity`                           |  `9.7` | Strict validation and all identity checks are preserved while invalid comparisons are corrected.  | Runtime/provider execution is intentionally unproven here.                          | Confirm link, archive, install, and offline smoke downstream. |
-| `9`      | `No Backward-Compatibility / No Legacy Retention`                       | `10.0` | No fallback, dual path, relaxed schema, or old operand behavior remains.                          | None.                                                                               | Maintain clean-cut current contracts.                         |
-| `10`     | `Cleanup Completeness`                                                  |  `9.6` | Four expressions, recipe identity, exact regression, and fixture are updated coherently.          | Reviewer artifacts remain intentionally uncommitted.                                | Preserve them through API/E2E handoff.                        |
+| Priority | Category                                                                |  Score | Why This Score                                                                           | What Is Weak / Holding It Down                                                | What Should Improve                                |
+| -------- | ----------------------------------------------------------------------- | -----: | ---------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | -------------------------------------------------- |
+| `1`      | `Data-Flow Spine Inventory and Clarity`                                 |  `9.9` | Exact F/D/R subjects and later W boundary are explicit and Git-verifiable.               | W is appropriately downstream, not missing source behavior.                   | Preserve exact R during integration.               |
+| `2`      | `Ownership Clarity and Boundary Encapsulation`                          |  `9.9` | API/E2E alone authored R; Delivery remains a verifier/integrator.                        | No material weakness.                                                         | Maintain the ownership split.                      |
+| `3`      | `API / Interface / Query / Command Clarity`                             |  `9.8` | Admission and five identity inputs are exact and acyclic.                                | The strict bundle is identity-dense by necessity.                             | Do not add aliases or overrides.                   |
+| `4`      | `Separation of Concerns and File Placement`                             |  `9.8` | Six fixed subjects are separated but colocated within one production authority boundary. | Admission is large canonical data.                                            | Keep it generated and independently reproducible.  |
+| `5`      | `Shared-Structure / Data-Model Tightness and Reusable Owned Structures` |  `9.9` | Five unchanged contracts plus one admission record have singular meanings.               | No material weakness.                                                         | Preserve byte identities.                          |
+| `6`      | `Naming Quality and Local Readability`                                  |  `9.7` | Versioned names expose subject/profile clearly.                                          | Reviewing the 218-row Admission requires tooling rather than manual scanning. | Retain canonical digest and reproduction evidence. |
+| `7`      | `API/E2E Readiness`                                                     |  `9.9` | API-REV-026 passes at the exact production promotion boundary with zero product work.    | Proportional test review remains a required procedural step.                  | Record N/A, then hand exact R to Delivery.         |
+| `8`      | `Runtime Correctness And Behavioral Fidelity`                           |  `9.9` | Product evidence is reused exactly; all runtime execution counts remain zero.            | No new runtime execution was intended.                                        | Preserve API-REV-025 authority unchanged.          |
+| `9`      | `No Backward-Compatibility / No Legacy Retention`                       | `10.0` | No fallback, dual path, or historical reader is added.                                   | None.                                                                         | Maintain the clean contract.                       |
+| `10`     | `Cleanup Completeness`                                                  |  `9.9` | Commit contains exactly six additions and nothing else.                                  | No material weakness.                                                         | None.                                              |
 
 ## Findings
 
-- `CR-F-047`: `Resolved` — all four already-validated digest values are extracted as `std::string` before computed comparison; exact source size/SHA is recipe-bound; durable Apple-native coverage compiles every production worker translation unit under exact locked bytes/toolchain and warnings-as-errors.
-- `CR-F-046` / `API-F-018`: remains resolved — complete-manifest ownership is unchanged and covered.
-- `CR-F-044` / `API-F-016`: remains resolved — real Chinese builder composition is unchanged.
-- `CR-F-045` / `API-F-017`: remains resolved at direct regression; full packaged-host verification remains downstream.
-- `CR-F-039`–`CR-F-043`: remain resolved and unchanged.
-- New findings: `None`.
+None.
+
+`CR-F-048` remains resolved. Prior `CR-F-039` through `CR-F-047` remain resolved and unaffected. API-REV-026 introduces no source/test/runtime change.
 
 ## Classification
 
-`N/A — Pass`.
+N/A — `Pass`.
 
 ## Recommended Recipient
 
-`api_e2e_engineer`.
+`delivery_engineer` after the separate proportional API/E2E test review records `Not Applicable`.
 
 ## Residual Risks
 
-- API/E2E must restart at canonical Chinese construction, prove the actual CMake target compiles/links, complete Chinese double-archive equality/verification, and then current-source English construction/verification.
-- Production Catalog 4/CDN installation, Store 1 lifecycle and macOS interleavings, relocated offline retained-clip providers, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and exact nine-asset composition remain unexecuted.
-- The durable test correctly proves compilation, not link/package/runtime. Merge, tag, publication, desktop, alternate targets/models/providers, and user-state work remain unauthorized.
+- Delivery must preserve exact commit `R=71f8e7823d876b9c0914bfc7b90b143d851d4875` and its six blobs while integrating maintained main; it must not cherry-pick/recreate different authority bytes under an unreviewed commit.
+- The hosted verifier must derive R from W, recheck every protected parent edge, classify R..W, recompute Host Source Closure, and prove hosted archive equality before release.
+- Tag/release/publication, downloaded-byte verification, and quarantine remain downstream.
+- Alternate operating systems/architectures, `auto`, desktop integration, alternate models/providers, and personal-runner infrastructure remain out of scope.
 
 ## Latest Authoritative Result
 
 - Review Decision: `Pass`.
 - Review Entry Point: `Implementation Review`.
-- Material-Premise Gate: `Pass` — the exact required production compile boundary is independently reachable and its source defect is resolved without speculative machinery.
-- Score Summary: `9.7/10` (`96.5/100`); every category meets the clean-pass threshold.
-- Failure Origin: prior `CR-F-047` / `API-F-019` implementation compile defect and API-readiness coverage gap are resolved at source/test boundaries.
-- Recommended Recipient: `api_e2e_engineer`.
-- Notes: source review authorizes API/E2E to restart at canonical Chinese construction only; it does not authorize merge, tag, publication, desktop, or user-state work.
+- Material-Premise Gate: `Pass` — the governing F/D/R/W contract is directly exercised through exact single-parent R, and no unsupported lifecycle premise drives the result.
+- Score Summary: `9.9/10` (`98.7/100`); every category is at least `9.7`.
+- Failure Origin: N/A.
+- Recommended Recipient: `delivery_engineer` after `CRR-060` records the proportional test review as `Not Applicable`.
+- Notes: exact durable authority R passes. Delivery must integrate this commit without rewriting its six protected additions and must independently validate W before hosted construction or release.

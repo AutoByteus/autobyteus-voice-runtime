@@ -1,0 +1,13 @@
+{
+  "apiRevision": "API-REV-026",
+  "decision": "zero-profile-authority-only",
+  "durableApiE2eTestChangesPlanned": [],
+  "profileExecutionPlanned": false,
+  "hostBuildPlanned": false,
+  "modelDownloadPlanned": false,
+  "providerLaunchPlanned": false,
+  "corpusExecutionPlanned": false,
+  "performanceExecutionPlanned": false,
+  "releaseAdmissionAdditionsExpected": 6,
+  "sourceCommit": "3e8474213f79b26cc7a68c4dd42d2994ebf2d42d"
+}
