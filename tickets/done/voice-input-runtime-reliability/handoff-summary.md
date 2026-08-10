@@ -2,7 +2,7 @@
 
 ## Status
 
-- Delivery status: **reviewed release authority is integrated and all focused authority checks pass; maintained-main W integration and the authorized standard-hosted v1.0.0 publication remain**.
+- Delivery status: **maintained-main W is finalized and its source/admission gate passes, but standard-hosted release run 31420271551 failed closed on host tool selection before build; v1.0.0 remains unpublished**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
@@ -10,12 +10,25 @@
 - Recorded finalization target: `origin/main` / local `main`
 - Bootstrap source baseline: `251eab80a1cfd6a6d4c4d2a1fdbe1c06c3923dde` (`v0.3.0`)
 - Latest tracked base before bootstrap: `origin/main @ fd83e8681dfd4e98afdfa46cb691d31400565d70`
-- Current maintained main: `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b`
+- Current maintained main/workflow checkout W: `origin/main @ 743597440277e39155b059a475d6820ddc9ff831`
 - Current integrated authority candidate before the DR-009 record commit: `3c091aae1a7acb12f3d021a2b0b8d49336f730e5`
 - Reviewed API/E2E artifact HEAD: `5333d1d00c31fc9fe6fe2dcfe86219e2b894bebe`
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
-- Finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`
+- Initial finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`; current finalized W: `743597440277e39155b059a475d6820ddc9ff831`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Standard-Hosted Release Failure — DR-010
+
+- Ticket branch finalized/pushed: `27577ed1108db3a6e07c652d5d52df912df3c452`.
+- Maintained main finalized/pushed: `W = 743597440277e39155b059a475d6820ddc9ff831`; parents are exact prior main `7385b65...` and ticket subject `27577ed...`.
+- W validation: exact R protected blobs, focused release suite 19/19, and Admission 4 lineage pass.
+- Workflow: run `31420271551` on standard GitHub-hosted `macos-26-arm64`, exact W — **Fail** — https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/31420271551.
+- Passed before failure: exact-main/tag/release guards, Node 22.23.1 and Go 1.26.5 setup, dependencies, focused 19/19 checks, and release-source admission.
+- Failure: the host environment owner rejected the runner before input hydration because the code locks CMake 4.2.0/Xcode 26.1.1/SDK 26.1 while the current image exposes CMake 4.4.0 and defaults to Xcode 26.6/SDK 26.5.
+- Scope executed: zero host builds, product/profile/performance qualification, inference, or model downloads.
+- Publication: no `v1.0.0` tag, GitHub Release, or asset exists.
+- Classification: **Local Fix / release-host tool selection and early failure evidence** to `implementation_engineer`; correction requires review and applicable API/E2E before Delivery retries.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31420271551/`.
 
 ## Release Authority Integration — DR-009
 

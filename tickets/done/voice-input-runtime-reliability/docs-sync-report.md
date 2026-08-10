@@ -140,3 +140,12 @@ tag publication, published-byte verification, and the deferred target set.
 - Ticket-local updates: DR-009, handoff status, and release/deployment status supersede the resolved DR-008 admission blocker and record the exact F/D/R authority chain.
 - Execution boundary: no product/profile/performance qualification and no model-weight download occurred in Delivery.
 - Result: `Pass / release-ready`; v1.0.0 remains absent until the maintained-main W integration and hosted publication workflow complete.
+
+## Delivery Round 9 — Finalized W And Hosted Tool-Lock Failure
+
+- Maintained-main result: ticket branch `27577ed1108db3a6e07c652d5d52df912df3c452` merged into unchanged `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b` as `W = 743597440277e39155b059a475d6820ddc9ff831` and was pushed.
+- Integrated verification: exact R blobs, focused 19/19 checks, and Admission 4 lineage pass at W.
+- Hosted execution: run `31420271551` passed source/admission verification but failed before build because the current `macos-26-arm64` image's default CMake/Xcode/SDK did not equal the production lock.
+- Long-lived documentation decision: `No product/operator prose change`. The host/model lifecycle, supported matrix, release boundary, and release notes remain accurate. This is a release-host tool-selection implementation failure, recorded in ticket-local Delivery evidence.
+- Publication result: no tag, release, or asset was created.
+- Result: `Blocked / Local Fix` to `implementation_engineer`; after reviewed correction and applicable validation, Delivery may retry the standard-hosted release without repeating product/profile/performance qualification.

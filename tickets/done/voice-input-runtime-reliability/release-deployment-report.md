@@ -13,8 +13,8 @@ installation, or release is part of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-009`
-- Notes: exact reviewed release-authority commit R is integrated unchanged; Policy 3 reuse, 19/19 focused checks, and API-REV-026 checksums pass. Maintained-main W integration and hosted release execution remain.
+- Current revision: `DR-010`
+- Notes: maintained-main W is finalized and admission checks pass, but standard-hosted run 31420271551 failed before build on the current runner's tool-version selection. No tag or release exists.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,12 +155,12 @@ installation, or release is part of this ticket.
 
 ## Final Status
 
-**Pass / authorized release preparation.** The reviewed acyclic F/D/R/W
-authority design resolves DR-008. Exact R is integrated unchanged, its six
-protected admission blobs remain immutable, Policy 3 returns
-`reuse-permitted`, and focused checks pass. No tag, release, or asset exists
-yet; maintained-main W integration and the standard-hosted publication run
-remain Delivery-owned.
+**Blocked / Local Fix — repository finalized, release unpublished.** Exact W is
+on maintained main and its source/admission gate passes. Standard-hosted run
+`31420271551` then failed closed before hydration/build because its default
+host tools did not satisfy the exact production lock. No tag, release, or
+asset exists. The correction is routed to Implementation and must pass review
+and applicable API/E2E validation before Delivery retries.
 
 ## Aggregate API Renewal Delivery Gate — DR-006
 
@@ -218,3 +218,16 @@ remain Delivery-owned.
 - Pipeline boundary: standard GitHub-hosted macOS; host-only build/equality and exact nine-asset publication; zero product/profile/performance qualification and zero model-weight downloads.
 - Authorization: the prior explicit user verification/finalize-and-release instruction remains applicable to the unchanged runtime-only v1.0.0 scope.
 - Current release state: ticket branch push, maintained-main W integration, tag, GitHub Release, assets, and downloaded-byte verification remain pending.
+
+## Standard-Hosted Release Attempt — DR-010
+
+- Final ticket subject: `27577ed1108db3a6e07c652d5d52df912df3c452`, pushed to `origin/codex/voice-runtime-qualified-recovery`.
+- Exact W: `743597440277e39155b059a475d6820ddc9ff831`, merged and pushed to `origin/main`; exact prior main remained unchanged at final refresh.
+- Pre-dispatch checks: protected R blobs, focused 19/19 suite, and Admission 4 lineage pass; user-owned untracked paths remain untouched.
+- Workflow: `31420271551`, exact W, standard-hosted `macos-26-arm64` image `20260728.0273.1`.
+- Passed: exact-main/tag/release guards, Node/Go setup, dependencies, focused source gate, and committed admission verification.
+- Failed: host environment capture rejected the current default CMake 4.4.0/Xcode 26.6/SDK 26.5 against the exact CMake 4.2.0/Xcode 26.1.1/SDK 26.1 lock before writing audit or hydrating inputs.
+- Audit-retention step: consequential failure because no audit file existed; implementation must preserve truthful early failure evidence.
+- Publication boundary: build/composition/publish/download verification skipped; no v1.0.0 tag, release, or assets.
+- Classification: `Local Fix / release-host tool selection and early failure evidence` to `implementation_engineer`.
+- Evidence: `delivery-evidence/release-31420271551/`, checksum manifest Pass.

@@ -13,6 +13,7 @@
 | `DR-007`    | CRR-047 bootstrap authorization after API-REV-020 / API-F-015                          | `DR-006 — renewal stage gate complete`  | `Pass / bootstrap only — exact reviewed workflows merged to default main and registered; exact ticket ref preserved; API/E2E recovery still pending`          | `delivery-default-main-bootstrap-check.log`, `delivery-default-main-workflow-registration.log`, `docs-sync-report.md`, `handoff-summary.md`    |
 | `DR-008`    | `code_reviewer` handoff after IR-035, CRR-055, API-REV-025, and CRR-056                | `DR-007 — workflow bootstrap complete`  | `Blocked / Design Impact — checks pass, but production references absent committed admission inputs and exact-current-SHA binding is unresolved`              | `delivery-final-main-integration-check.log`, `release-notes.md`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`   |
 | `DR-009`    | `code_reviewer` handoff after CRR-059, API-REV-026, and CRR-060                        | `DR-008 — admission design blocked`      | `Pass / release-ready — exact reviewed R integrated without rewriting; Policy 3 reuse, focused checks, and authority checks pass; final target merge pending`  | `delivery-release-authority-integration-check.log`, `delivery-release-authority-integration-SHA256SUMS.txt`, delivery handoff artifacts       |
+| `DR-010`    | Standard-hosted v1.0.0 release run `31420271551`                                      | `DR-009 — release-ready`                 | `Blocked / Local Fix — maintained-main W and admission passed; host environment lock rejected current runner before build; no tag or release created`         | `delivery-evidence/release-31420271551/`, `handoff-summary.md`, `release-deployment-report.md`                                                 |
 
 ## Revision Entries
 
@@ -161,3 +162,20 @@
 - User gate: satisfied by the user's repeated explicit runtime-only instruction to finalize and release v1.0.0, together with the later explicit minimal standard-hosted/no-heavy-qualification boundary. The reviewed redesign changes the release authority mechanism, not the verified runtime behavior or release scope; renewed verification is not required.
 - Evidence: `delivery-release-authority-integration-check.log`, SHA-256 `557692491a4f66f72a4939c3d06cc7839d5c75fbba828a1e1633b17b1c4d8711`, bound by `delivery-release-authority-integration-SHA256SUMS.txt`.
 - Current result: `Pass / release-ready`; next actions are ticket-branch commit/push, latest-base target refresh, maintained-main integration as workflow checkout `W`, exact W lineage/host-only validation, and the authorized v1.0.0 standard-hosted release workflow.
+
+### DR-010 — Maintained-main finalized; hosted tool lock blocks release
+
+- Date: 2026-08-10
+- Prior authoritative result: `DR-009` — exact reviewed R integrated unchanged and ready for maintained-main W integration and the authorized standard-hosted release.
+- Ticket finalization: ticket branch `codex/voice-runtime-qualified-recovery` was pushed at `27577ed1108db3a6e07c652d5d52df912df3c452`.
+- Final target refresh: `origin/main` still equaled `7385b65e397e6f1b17495720281fe0b2e39de99b`; no post-verification drift occurred.
+- Maintained-main integration: exact ticket subject merged with no conflict as `W = 743597440277e39155b059a475d6820ddc9ff831`, with parents exact prior main and `27577ed...`; W was pushed and now equals `origin/main`.
+- Pre-dispatch validation: exact R protected blobs remained unchanged; the focused release-pipeline suite passed 19/19; Admission 4 lineage verification passed; the tracked main tree was clean. User-owned untracked `lea-termin-erinnerung-2026-03-26.ics` and `research/` remained untouched.
+- Release execution: standard-hosted workflow run `31420271551` targeted exact W. Checkout, pinned Node/Go setup, exact-main/tag/release guards, dependency installation, focused 19/19 gate, and Admission 4 verification passed.
+- Direct failure: `Capture hosted authority and hydrate host-only inputs` failed before hydration with `Standard host tool version lock mismatch.` The code expects CMake 4.2.0 plus Xcode 26.1.1/macOS SDK 26.1; runner image `macos-26-arm64 20260728.0273.1` exposed CMake 4.4.0 and default Xcode 26.6/macOS SDK 26.5. Xcode 26.1.1 remains installed but was not selected.
+- Consequence: no host input hydration, archive build, bundle composition, tag, GitHub Release, asset, publication, or downloaded-byte verification occurred. Product/profile/provider/inference/corpus/performance execution and model-weight downloads remained zero.
+- Audit limitation: the source failed before writing the environment record, and the always-run audit upload also failed because its audit directory contained no files. This must be corrected without masking the primary failure.
+- Classification: `Local Fix / release-host tool selection and early failure evidence` to `implementation_engineer`; explicit exact Xcode/SDK selection and exact CMake provisioning must pass source review and applicable API/E2E before retry.
+- Evidence: `delivery-evidence/release-31420271551/`; its `SHA256SUMS.txt` verifies the run metadata, full workflow log, failure summary, and release-state record.
+- Historical truth: run `31420271551` remains `failure` and must not be relabeled. v1.0.0 remains absent.
+- Current result: `Blocked` for release/publication; maintained-main repository finalization is complete and is not undone.
