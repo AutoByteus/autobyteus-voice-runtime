@@ -25,6 +25,7 @@
 | `API-REV-019` | Code Reviewer / `code-review-report.md` / `CRR-044`            | `SR-018`, `ARCH-REV-019`, `IR-029`, `CRR-044`                      | `Pass / 99%`              | `Pass / 99%`                |
 | `API-REV-020` | Code Reviewer / `code-review-report.md` / `CRR-046`            | `SR-018`, `ARCH-REV-019`, `IR-030`, `CRR-046`, `DR-006`            | `Pass / 99%`              | `Fail / 78%`                |
 | `API-REV-021` | Delivery Engineer / `delivery-revision-record.md` / `DR-007`   | `SR-018`, `ARCH-REV-019`, `CRR-047`, `DR-007`                      | `Fail / 78%`              | `Blocked / 80%`             |
+| `API-REV-022` | Code Reviewer / `code-review-report.md` / `CRR-049`            | `SR-021`, `ARCH-REV-021`, `IR-032`, `CRR-048`, `CRR-049`           | `Blocked / 80%`           | `Fail / 84%`                |
 
 ## Revision Entries
 
@@ -736,3 +737,39 @@ None.
 - New blocker: `API-B-001`; prior `API-F-015` resolved.
 - Recommended recipient: user request for the exact external dependency; no teammate handoff while Blocked.
 - Remaining proof: exact managed two-archive recovery, raw/manifest/Result and archive verification, hosted 19-member promotion, and Promotion Record verification. Release actions remain later Delivery-owned.
+
+### API-REV-022 — Model-free host construction exposes two production composition defects
+
+- Triggering role/report/round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-049`; API/E2E round 22.
+- Triggering scenarios/criteria: `API-VOICE-017`–`API-VOICE-024`; `R-025`–`R-029`; `AC-028`–`AC-035`.
+- Related revisions: `SR-021`, `ARCH-REV-021`, `IR-032`, `CRR-048`, `CRR-049`.
+- Reviewed source/artifact: source `ad7c402d224690584e2da98ec71a73e8b6d4ca36`; artifact `93c9a6e579d253cfc1e9b5b8f69f22e4f688df9c`.
+- Why recorded: the clean model-free design supersedes the managed model-contained recovery blocker and makes local host/package validation authoritative. Repository checks and a real English double build pass, but the mandatory production boundary finds two source integration defects: the Chinese builder cannot load, and the canonical verifier rejects the real Go extraction report. Execution stopped fail closed before any model installation or provider execution.
+- Coverage decisions/durable test paths changed: no repository-resident durable API/E2E coverage changed. Existing reproducibility/schema coverage is now `Needs Update` because it neither imports the production Chinese builder nor validates the real Go extraction-report projection. Those changes belong to the source fix and subsequent source review.
+- Scenario delta:
+  - `API-VOICE-017` Pass: current repository/race/source/evidence checks and clean-cut legacy guards pass.
+  - `API-VOICE-018` Fail: English builds twice byte-identically, but Chinese construction fails as `API-F-016` and English verification fails as `API-F-017`.
+  - `API-VOICE-019`–`API-VOICE-024` Not Tested: downstream install/lifecycle/provider/closure/QSet/projection/release-composition execution is not authorized after the critical prerequisite failure.
+- Execution delta: actual MacBookPro18,4 Apple M1 Max / 64 GB / macOS 26.5 on AC; Node 22.23.1; official Go 1.26.5; official CMake 4.2.0; exact isolated inputs; full pinned repository check Pass; race and ten-repeat suites Pass; English double archives and build reports exact at SHA-256 `a2463fc5fedcf2c7e96924d4f5df69045b70ca7b5983dad094a40fe9504e53dc`, size `207492896`; zero model bytes downloaded.
+
+#### Prior Blocker Resolution
+
+| Prior Scenario / Blocker Reference                                                                 | Previous Classification                     | Current Resolution                                              | Evidence                                                                                                                                |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
+| `API-B-001` — organization-managed runner group absent under prior model-contained recovery design | `Blocked`; exact external runner dependency | Superseded prospectively by SR-021, not retroactively relabeled | SR-021 requires local product proof, standard-hosted build/release only, and model-free host archives with on-demand model installation |
+
+#### New Failures
+
+- `API-F-016` — expected the canonical Chinese host builder to load and begin construction from authenticated materialized inputs; observed Node ESM rejection because `build/profile-builders/funasr-host.mjs` imports `cmakeConfigureArguments` from `build/host-build-environment.mjs`, which does not export it. Preliminary classification: `Local Fix`.
+- `API-F-017` — expected the canonical verifier to validate the real extracted English host under canonical logical root `host`; observed the Go extractor report projects its absolute temporary destination as `hostRoot`, which violates Host Verification 2's required constant `host`. Preliminary classification: `Local Fix`.
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-022/`
+- Prior result/confidence: `Blocked / 80%`.
+- Current result/confidence: **`Fail / 84%`**.
+- New failure IDs: `API-F-016`, `API-F-017`.
+- Recommended recipient: `code_reviewer` for focused failure-origin review and bounded source/test routing.
+- Remaining proof after resolution: Chinese double construction, both host verifications/model-free inspections, production CDN install/resume and actual lifecycle interleavings, relocated offline retained-clip provider smoke, Profile Execution Closure 2, Focused Qualification Set 3, Branch Catalog Projection 3, and independent nine-member release-composition verification. No tag, publication, desktop, or user-state action is part of API/E2E.

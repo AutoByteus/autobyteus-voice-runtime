@@ -1,0 +1,1080 @@
+{
+  "schemaVersion": 1,
+  "closureId": "voice-host-english-darwin-arm64-v1",
+  "profileId": "english",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "repositoryFiles": [
+    {
+      "path": "THIRD_PARTY_NOTICES.json",
+      "sizeBytes": 2226,
+      "sha256": "f260d4b18a924eb4964154496a77efe42183d5a6908990c9c887be27e6719c50"
+    },
+    {
+      "path": "build/build-input-path-policy.mjs",
+      "sizeBytes": 1203,
+      "sha256": "79de49f83d2f93fda3b9e028d2c24dee1b552d0596ada19578f311d281a92895"
+    },
+    {
+      "path": "build/host-build-environment.mjs",
+      "sizeBytes": 6196,
+      "sha256": "4b1b9c089fc6442bbefc57e9e4b88bd5f07bdd292f8e18057ffb130406325e48"
+    },
+    {
+      "path": "build/host-build-evidence.mjs",
+      "sizeBytes": 2663,
+      "sha256": "a1c447c4a6bdebda6ff1578093581d047736bf2744bd95afc6789929c9de2df9"
+    },
+    {
+      "path": "build/host-package-assembler.mjs",
+      "sizeBytes": 6551,
+      "sha256": "2d4d8866b34eadc6fbedacd656c590f6daa54647b1ac68dfde7687db441ac5ad"
+    },
+    {
+      "path": "build/host-package-metadata.mjs",
+      "sizeBytes": 4313,
+      "sha256": "efb13b02065652ab97f19596a4b5e16ea42bfaff97dec4d1f998cbd790b223fc"
+    },
+    {
+      "path": "build/host-package-staging.mjs",
+      "sizeBytes": 2760,
+      "sha256": "3c5c67722f7d3070e766544410dd7255ee3ff7b07a7784d24de1a74d56f0e048"
+    },
+    {
+      "path": "build/host-source-closure.mjs",
+      "sizeBytes": 5352,
+      "sha256": "df006dac352aa712b2bb6b902ffeba63d436c751125da0206cc175c41e7fb77d"
+    },
+    {
+      "path": "build/host-tool-build.mjs",
+      "sizeBytes": 1953,
+      "sha256": "22aa626cc170a0856f4c0bd5895d38ebba49606b05e6d8bae508e0801092874e"
+    },
+    {
+      "path": "build/lib/files.mjs",
+      "sizeBytes": 3304,
+      "sha256": "669074d0a918aa95007016bd22d0618a496ce71ff9a7ab6a8cb6e932645629b3"
+    },
+    {
+      "path": "build/locked-inputs.json",
+      "sizeBytes": 3519,
+      "sha256": "2c15bf6f75d6a3ba2caaf8f14c3b61c3f14108b146be6175f8f1e08835150747"
+    },
+    {
+      "path": "build/locked-inputs.mjs",
+      "sizeBytes": 13155,
+      "sha256": "d1ebd0a2ae3ea99cb2acd009b29cbfb835b6f1f506c2556d5d713a086a6d3ad3"
+    },
+    {
+      "path": "build/materialize-release-inputs.mjs",
+      "sizeBytes": 9668,
+      "sha256": "f41ba6e7fc8c96c789992d6f50f810ada9021c10290bcbfc7175794dae4eb557"
+    },
+    {
+      "path": "build/native-tool-identities.mjs",
+      "sizeBytes": 6002,
+      "sha256": "fc2a327eddf57644665659469b28fc54bd84a6ea6877219d5e6ac9acdc92ac80"
+    },
+    {
+      "path": "build/profile-builders/funasr-host.mjs",
+      "sizeBytes": 4500,
+      "sha256": "7a9213976b83f49a37d16c03e4424f54e4203ee8aa206266a1047def12b30d4a"
+    },
+    {
+      "path": "build/profile-builders/host-common.mjs",
+      "sizeBytes": 5802,
+      "sha256": "85ab1b1d457974ccde9c71375148fc866ea12e19f490810953885583116cdad8"
+    },
+    {
+      "path": "build/profile-builders/mlx-host.mjs",
+      "sizeBytes": 1326,
+      "sha256": "7b43b5febedf542e71463ef5b57cf6306443d420b96cfc3d65fb059dde7eb62c"
+    },
+    {
+      "path": "build/python-wheel-locks/darwin-arm64.json",
+      "sizeBytes": 11827,
+      "sha256": "efa4cd94ceb9fa5c67fb49281973c7b5e4210e5db564b7b96af25329dbbd4700"
+    },
+    {
+      "path": "build/python/archive-link-normalization.mjs",
+      "sizeBytes": 5935,
+      "sha256": "447638bdf2dfb9a5d5367611de7289eeb0c06678771335d9ce003bc969904ead"
+    },
+    {
+      "path": "build/python/materialize-runtime.mjs",
+      "sizeBytes": 5290,
+      "sha256": "2592236bebf124baf8b44075c02afbc9fa75225768b62a7ccb9d6b9cbaabb1c4"
+    },
+    {
+      "path": "build/python/runtime-closure.mjs",
+      "sizeBytes": 2772,
+      "sha256": "be782fedbc0c706b8bb59af0a9887c8b24bc4c422235cf63980d2ecdaf29fea1"
+    },
+    {
+      "path": "build/repository-lock-set.mjs",
+      "sizeBytes": 871,
+      "sha256": "00f3c0850be92b9eb3989d19ac47d3bf144a3170290aa974c006652a26fc4409"
+    },
+    {
+      "path": "build/resolved-cmake-configuration.mjs",
+      "sizeBytes": 2060,
+      "sha256": "0dcfe18316d30472cf5b8e51396ca406fae98b910c41d89c3c17336e0ce756a9"
+    },
+    {
+      "path": "build/trusted-native-environment.mjs",
+      "sizeBytes": 7060,
+      "sha256": "3e528ec71ab397c435b5bb3f81a850ab5d3b50a74975bc8be3e486ddda1ccebd"
+    },
+    {
+      "path": "contracts/audio/fixtures/malformed.wav",
+      "sizeBytes": 10,
+      "sha256": "471a4a1e8aba0726de9066ce8fdb64b4957aed24450eae0423278f4ea7a3b790"
+    },
+    {
+      "path": "contracts/audio/fixtures/silence.wav",
+      "sizeBytes": 6444,
+      "sha256": "946c3f59f3e671ef87ad6655ece8bfc00c451f868f751787278c2d462f4bde26"
+    },
+    {
+      "path": "contracts/audio/fixtures/speech.wav",
+      "sizeBytes": 6444,
+      "sha256": "0a10eb8fd521a9326058d30881bf7444089e892f65455aa3aca5165bfd65abc9"
+    },
+    {
+      "path": "contracts/audio/fixtures/stereo.wav",
+      "sizeBytes": 12844,
+      "sha256": "291eee09a735d2d5de30f6faf2d7a05bbbf35a626bec96cbe5fc237f46aae54c"
+    },
+    {
+      "path": "contracts/audio/fixtures/too-short.wav",
+      "sizeBytes": 3244,
+      "sha256": "5e08fc4b98dcbd022cae10c8c80332e603df31c1be4c3156ea71790c28c8cf88"
+    },
+    {
+      "path": "contracts/audio/fixtures/truncated.wav",
+      "sizeBytes": 6441,
+      "sha256": "55b39b1a8f9a5c1805d00c78feaa2d54e44530397494fb9002ffdbc384d80e33"
+    },
+    {
+      "path": "contracts/audio/fixtures/wrong-rate.wav",
+      "sizeBytes": 3244,
+      "sha256": "34da86c65a5aaa7b71fb8d891ac82c567546ac718c41badae8b63fe898bd0c13"
+    },
+    {
+      "path": "contracts/audio/pcm-wav-v1.md",
+      "sizeBytes": 526,
+      "sha256": "0f37e24ef9b5792504346bd77a6adcc803ad8b5bb547a682044989bf6d8a3213"
+    },
+    {
+      "path": "contracts/build/build-input-path-v1.md",
+      "sizeBytes": 1210,
+      "sha256": "9ee1bcd928882da7a6fd0c340bf60e92faf756d4f9013abdd4d59c85f1e5bb94"
+    },
+    {
+      "path": "contracts/build/host-build-environment-v2.schema.json",
+      "sizeBytes": 5698,
+      "sha256": "a2c8fbd89b798e4a39f22ce38f8168d9fc81940f17bc95a5e57dfdc445ec1d2b"
+    },
+    {
+      "path": "contracts/build/host-build-input-provenance-v2.schema.json",
+      "sizeBytes": 2425,
+      "sha256": "92514d46fe342d5b4a23c4f674100920fcff74168ce5ad69b7d47dd6d5ca360e"
+    },
+    {
+      "path": "contracts/build/host-build-input-recipe-v2.schema.json",
+      "sizeBytes": 6510,
+      "sha256": "47f8ed82eaaa63a557e363ed4d606e1cea2e056fb743873c62017f8f4707597c"
+    },
+    {
+      "path": "contracts/build/host-build-report-v2.schema.json",
+      "sizeBytes": 8582,
+      "sha256": "b1b4be5486b4986a3ffd98a3d6d8281da2b0a26a714a0bae163f2072dd3555ba"
+    },
+    {
+      "path": "contracts/build/host-reproducibility-proof-v2.schema.json",
+      "sizeBytes": 1570,
+      "sha256": "18e8623fc51241888304b35bf5a4d6f32ab8875d7b608d8b2f9bfefe9dd97100"
+    },
+    {
+      "path": "contracts/build/host-verification-v2.schema.json",
+      "sizeBytes": 1183,
+      "sha256": "b60204fd12e7f27d35afde0d9a98b1386b529f62b2ecc96cf15c1bc314199544"
+    },
+    {
+      "path": "contracts/build/native-build-environment-v1.schema.json",
+      "sizeBytes": 3896,
+      "sha256": "56897552b18c957db62d62ffada663714b16b4e389e80c9cf5d72e396ba134dc"
+    },
+    {
+      "path": "contracts/catalog/branch-catalog-projection-v3.schema.json",
+      "sizeBytes": 3604,
+      "sha256": "359c49743e8f3d3f1882a6d22da9757ab58c89fea941044fc55c00e9be120088"
+    },
+    {
+      "path": "contracts/catalog/branch-catalog-projection-verification-v3.schema.json",
+      "sizeBytes": 1181,
+      "sha256": "fe1d221644ec0808c90ed5615dd5dd01f37fe9f43995e987018ae0a074dfb0fe"
+    },
+    {
+      "path": "contracts/catalog/current-release-matrix-v2.json",
+      "sizeBytes": 2450,
+      "sha256": "32510b0dfd6493a0c6066d309c361555791b5ecc2a5b5ace72fdadc85a52eebb"
+    },
+    {
+      "path": "contracts/catalog/current-release-matrix-v2.schema.json",
+      "sizeBytes": 3857,
+      "sha256": "792b5ef4ba753a5b336961e2981511e7db2bc037b5fb55b5896e11df68324f6a"
+    },
+    {
+      "path": "contracts/catalog/current.go",
+      "sizeBytes": 2344,
+      "sha256": "387bf1a38e8151b3fc6327042473ec0955a92ce947414d5752d9ec80d49f1236"
+    },
+    {
+      "path": "contracts/catalog/types.go",
+      "sizeBytes": 2185,
+      "sha256": "c9cf50d7097a0bbeb418797b7521fd23b34260b13b343cf9e7528ec88b8da886"
+    },
+    {
+      "path": "contracts/catalog/voice-runtime-catalog-v4.schema.json",
+      "sizeBytes": 7813,
+      "sha256": "0c1d5a0515d908f3df5309ecf88e4f5fb7d567be0c57305ad601051d34b4f2ae"
+    },
+    {
+      "path": "contracts/diagnostics/preparation-diagnostics-v1.json",
+      "sizeBytes": 491,
+      "sha256": "cc608a1bb92e1d4b8dc85a135cfb36e052c39151ef69d44b98dafc3a676f728c"
+    },
+    {
+      "path": "contracts/install/active-profile-pointer-v1.schema.json",
+      "sizeBytes": 1635,
+      "sha256": "8e8a75995d959815cfe9987961197ac682281928d1124a175a92fcd0cd2d7fb1"
+    },
+    {
+      "path": "contracts/install/model-installation-events-v1.schema.json",
+      "sizeBytes": 6073,
+      "sha256": "5e8254b41670467776b45cc5408f1d751164d0b9a82c4ca29920ca389e268a1f"
+    },
+    {
+      "path": "contracts/install/partial-download-v1.schema.json",
+      "sizeBytes": 1484,
+      "sha256": "3e19f81c5c00dcbb37916b5b343942c8189496329b33f9b54c690d858bf52ef3"
+    },
+    {
+      "path": "contracts/install/profile-activation-v1.schema.json",
+      "sizeBytes": 4694,
+      "sha256": "4e6990092b9fa06cd6cdb57e8782838b6dfe2c2cb9d11e0627d7baee41f4e985"
+    },
+    {
+      "path": "contracts/install/types.go",
+      "sizeBytes": 3317,
+      "sha256": "83bd1a7735e489562bd8bf8755fb79d3bc3d0455b5bbe0d76bb767b81c5032db"
+    },
+    {
+      "path": "contracts/launcher/package-launcher-plan-v2.schema.json",
+      "sizeBytes": 1247,
+      "sha256": "58e1732af568eca1be54bac3727ada13f4a7db2e49cd7edf4eadc4e8f2d0136b"
+    },
+    {
+      "path": "contracts/model/admission/chinese-darwin-arm64-v1.json",
+      "sizeBytes": 1324,
+      "sha256": "7a49df7e07d907818a02e3f5f12a58c47b5116d5e9deb2fd67caad1dcc97f0a8"
+    },
+    {
+      "path": "contracts/model/admission/english-darwin-arm64-v1.json",
+      "sizeBytes": 1327,
+      "sha256": "7cbf9799670b42482a29404c7a2acfb3a7f701a5e890d3cc22f3245bddfb5448"
+    },
+    {
+      "path": "contracts/model/compatibility/chinese-darwin-arm64-v1.json",
+      "sizeBytes": 1005,
+      "sha256": "217c57429dd08e1ff5e17c02c7cc95d947a07ac541e5f3220b8e6319b57675b2"
+    },
+    {
+      "path": "contracts/model/compatibility/english-darwin-arm64-v1.json",
+      "sizeBytes": 888,
+      "sha256": "70e676b166b2d5587ace83b6e9a5ee352a54fe1086cd45b55f6f4ef38cbb8b56"
+    },
+    {
+      "path": "contracts/model/current.go",
+      "sizeBytes": 938,
+      "sha256": "6138a77fa8b8cc8d5b0da910b050d9a1a021ab97ea809326208f8541a5c06992"
+    },
+    {
+      "path": "contracts/model/model-admission-root-v1.schema.json",
+      "sizeBytes": 3588,
+      "sha256": "af597c588b4b18c53dbb977762cc90bbebccef73ffc0ae9ce4efaccf5fc4d9a5"
+    },
+    {
+      "path": "contracts/model/model-asset-manifest-v1.schema.json",
+      "sizeBytes": 5286,
+      "sha256": "ecad46a29f485a5bd48c951ff54f0165f9aebda3372505cf15fff3bf444e64ef"
+    },
+    {
+      "path": "contracts/model/model-compatibility-requirement-v1.schema.json",
+      "sizeBytes": 2870,
+      "sha256": "812b153d007955f594b6783c3ba8d9f06da36698669c4abc50760faab9156afa"
+    },
+    {
+      "path": "contracts/model/types.go",
+      "sizeBytes": 5292,
+      "sha256": "aff92f328a7638cda36ab45370c7cd7c84e179999a239821cbb1bc0bb559dd71"
+    },
+    {
+      "path": "contracts/package/host-files-v2.schema.json",
+      "sizeBytes": 1068,
+      "sha256": "38943e37fb49d45c8370e860d1ff4eabdc09287dce8bb85c2267b3c0f0ed2c2d"
+    },
+    {
+      "path": "contracts/package/host-source-closure-v1.schema.json",
+      "sizeBytes": 3754,
+      "sha256": "ef08ec86d3f639c5768b2070f046b39c9f364284af96427e0c4c2b56a54a1f63"
+    },
+    {
+      "path": "contracts/package/runtime-host-v2.schema.json",
+      "sizeBytes": 5790,
+      "sha256": "222e56ee3997c1d4bfbfc4d2721d8b3783e74082c9e8319fc94a1e0849729ee4"
+    },
+    {
+      "path": "contracts/protocol/fixtures/invalid/context-terms.json",
+      "sizeBytes": 178,
+      "sha256": "b432caf0c86af7fa641256ede2f2abb0f2d621fb6b5e9f9cc5ffa727b3d51d97"
+    },
+    {
+      "path": "contracts/protocol/fixtures/invalid/no-speech-text.json",
+      "sizeBytes": 305,
+      "sha256": "9e8546c4112344c966b086188897f65ae2576880e86f0f6fa06b3d6153740165"
+    },
+    {
+      "path": "contracts/protocol/fixtures/invalid/protocol-zero.json",
+      "sizeBytes": 104,
+      "sha256": "33dedee527a5e4cb875eed85bf7eadf61e4ea7a2ccd705c5196033dbac08e50a"
+    },
+    {
+      "path": "contracts/protocol/fixtures/invalid/request-language.json",
+      "sizeBytes": 168,
+      "sha256": "28b2c88d84c0861683892197dc5914c1319b84119fbe91a21eb2ee1033692d46"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/hello.json",
+      "sizeBytes": 452,
+      "sha256": "51281d00a044dac33c75a89815584166ef04ca2ca60040dcd6550538b0c932de"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/inference-ready.json",
+      "sizeBytes": 74,
+      "sha256": "02cce2bce2c7841601dd431f84bcdc6002fd8f81b72620fb788cd56c95df1d0d"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/model-preparing.json",
+      "sizeBytes": 74,
+      "sha256": "350707d0c21c3b9076bb5e8f56950b80d3d8cfce80a7b5ab3c0147a0b665973c"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/no-speech.json",
+      "sizeBytes": 298,
+      "sha256": "779d55f4010be888de2f1d2bd844500b409bd23737a186a66b8c7c67ee96916c"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/request-error.json",
+      "sizeBytes": 158,
+      "sha256": "7cf87553106aa150420144c4191f3d7185e70d092ce61c91666efd5699bd3e05"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/result.json",
+      "sizeBytes": 357,
+      "sha256": "863495da22e634673c8e1cc6dd20ed5542d0d0244cb6f29398b10fe1b93f4582"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/shutdown-ack.json",
+      "sizeBytes": 108,
+      "sha256": "d753bde6597a7543cef9989691224323e649fd7c3803e2445a9175983000dd8d"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/shutdown.json",
+      "sizeBytes": 104,
+      "sha256": "0d7001315aa4a21085d8a8a324de37e96addf8627d1aa0a30a3aeb1ef621b058"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/shutting-down.json",
+      "sizeBytes": 72,
+      "sha256": "8466e72c321a673e54e086980607e33b9abde74c494ae9934f3cc2c9f63c4c93"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/stopped.json",
+      "sizeBytes": 66,
+      "sha256": "cd27fec6e6fee41a32a6d0d7af915b39f3922160f4786af3c085e387b5ca1b56"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/transcribe-file.json",
+      "sizeBytes": 144,
+      "sha256": "9f0f65e6541f7ba275199b344d147141e385feaa6227ff177ebac0dc5f5edf3e"
+    },
+    {
+      "path": "contracts/protocol/fixtures/valid/transcribing.json",
+      "sizeBytes": 132,
+      "sha256": "e377104f9707cb25b50b7321f524a358dc53c5a7a1276dace48701644bf7845c"
+    },
+    {
+      "path": "contracts/protocol/voice-input-protocol-v1.schema.json",
+      "sizeBytes": 6194,
+      "sha256": "8ad5b79320f01bc2b01821b2a592b337f8b62521929adf0f4ad281b34cbb7b27"
+    },
+    {
+      "path": "contracts/startup/provider-session-config-v2.schema.json",
+      "sizeBytes": 3015,
+      "sha256": "d73e4238758cabe5521ca2d9bfb7cea8ba5ab308182489d476a9ff0dd586b5c0"
+    },
+    {
+      "path": "go.mod",
+      "sizeBytes": 83,
+      "sha256": "92a50c74c7f5ee291199cd5375204bd2b027bd99eb623c4b3a2fc9b180326c27"
+    },
+    {
+      "path": "go.sum",
+      "sizeBytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "hostverify/verify.go",
+      "sizeBytes": 8259,
+      "sha256": "804751e7d7f271a01d9787314108d59424c59731fdd6b98493e8098f5b36d925"
+    },
+    {
+      "path": "hostverify/verify_test.go",
+      "sizeBytes": 1984,
+      "sha256": "3ff36ae0914fa28b883b39ff8ec791ea8dc1955ddbd2de301d4a8b9dd169d6f3"
+    },
+    {
+      "path": "integrity/modeltree.go",
+      "sizeBytes": 6550,
+      "sha256": "7b442abcd1abe73775ab830c0573b46a344c90b383af7528aeee954157577ff4"
+    },
+    {
+      "path": "internal/contractjson/contractjson.go",
+      "sizeBytes": 959,
+      "sha256": "5ba85447fa1175605d6e4ee137afc3fce53858749b7cb600cf5b240c30c9033a"
+    },
+    {
+      "path": "launcher/cmd/voice-provider-launcher/main.go",
+      "sizeBytes": 156,
+      "sha256": "b60f44d5395250254471ca9f0dcceeff029cdc1f72f1234753761f49720e55b9"
+    },
+    {
+      "path": "launcher/internal/decode.go",
+      "sizeBytes": 3251,
+      "sha256": "50f74caa1c19709e8b3bb6c0a1f8cc8dc641439b4c98e2496189047d82ae7f9d"
+    },
+    {
+      "path": "launcher/internal/decode_test.go",
+      "sizeBytes": 1230,
+      "sha256": "c7931caeb15bdc9577bea38a5a98b303b18c27eafd50319d5eeba492fbc29125"
+    },
+    {
+      "path": "launcher/internal/embeddedplan/embed.go",
+      "sizeBytes": 177,
+      "sha256": "b2006223268f4ad5c5fa737c72e336e3bfc4eda673b68641b0452e302f4840ea"
+    },
+    {
+      "path": "launcher/internal/embeddedplan/package-launcher-plan-v2.json",
+      "sizeBytes": 219,
+      "sha256": "724a16a6b7646dd563cdcc57727a2c18d07f8d9164ba140cf4793d1b312e2817"
+    },
+    {
+      "path": "launcher/internal/environment.go",
+      "sizeBytes": 1431,
+      "sha256": "a88469553b732b01eb96668542665415c939c2b1f4c2a982de7425437dcf4e3b"
+    },
+    {
+      "path": "launcher/internal/environment_posix.go",
+      "sizeBytes": 123,
+      "sha256": "123ac7a24ff8ded8d414c5cc6e0ed4146b83e5df2ac840af8acaf2674ef550f9"
+    },
+    {
+      "path": "launcher/internal/environment_test.go",
+      "sizeBytes": 510,
+      "sha256": "0cd60959b4741f4f48e0b201da7f25522dc4783e014fad16def303954c83fa6b"
+    },
+    {
+      "path": "launcher/internal/environment_windows.go",
+      "sizeBytes": 1146,
+      "sha256": "f78812c5ef692882af40a80aebf1b80ac980969d3bf117cbb0913c02b8096b88"
+    },
+    {
+      "path": "launcher/internal/manifest.go",
+      "sizeBytes": 1069,
+      "sha256": "fe8a4052815c6e6f771e0b4d50f26c6c4bac7d38f11a32d89bb702c2dc1106e8"
+    },
+    {
+      "path": "launcher/internal/path.go",
+      "sizeBytes": 2181,
+      "sha256": "158db38e74ebb243ef2717ca77adb7955cb6abf51ab4759d75e787798af0e604"
+    },
+    {
+      "path": "launcher/internal/path_reparse_posix.go",
+      "sizeBytes": 96,
+      "sha256": "d5cd1ea45fb8c3c872a9d3f0056efae828326c8b91e8bb83ccbd37c3815bbc50"
+    },
+    {
+      "path": "launcher/internal/path_reparse_windows.go",
+      "sizeBytes": 319,
+      "sha256": "c9cc13358ddb30f9217f2c0d3b02669b66a1014b0c70ccd58c39fe3c47e6cc72"
+    },
+    {
+      "path": "launcher/internal/process_posix.go",
+      "sizeBytes": 256,
+      "sha256": "0467260bac31e8a47fea453275d4a4a308aa2d66ac227fb3dd8cf1ccc4bde96a"
+    },
+    {
+      "path": "launcher/internal/process_windows.go",
+      "sizeBytes": 3476,
+      "sha256": "2310041666e067f3c736347e7ea7887cb1c45d1cc8a16c8d5f0b7c7344746330"
+    },
+    {
+      "path": "launcher/internal/run.go",
+      "sizeBytes": 2651,
+      "sha256": "42faf444d92d908012626088d4c6c9fee56aac8107abfa5949658ec1fdef9060"
+    },
+    {
+      "path": "launcher/internal/session.go",
+      "sizeBytes": 6251,
+      "sha256": "325d953f30fdbc2491071f180c77c1edcd9a8df87eec8a1dcc923c47e34bb44f"
+    },
+    {
+      "path": "launcher/internal/types.go",
+      "sizeBytes": 2103,
+      "sha256": "2f5ddf2b204c4b92332482b928f412b20b4c11b93c4c2e2243d0c78ffd150260"
+    },
+    {
+      "path": "modelmanager/cmd/voice-model-manager/main.go",
+      "sizeBytes": 1753,
+      "sha256": "eb4f2ea008cc3ff7af7171e42d81be981f189e5cb4dbae0884e42478bc0d40d4"
+    },
+    {
+      "path": "modelmanager/internal/arguments.go",
+      "sizeBytes": 1541,
+      "sha256": "51e906466af915fd3cbdbe9ecd293769c832c62f575d33bda466f06bd683a16a"
+    },
+    {
+      "path": "modelmanager/internal/authority.go",
+      "sizeBytes": 1103,
+      "sha256": "1ad4fbb3110a486fbaca9ced82cd6bc8f79b463f357efe8256a7d4107f4a40f0"
+    },
+    {
+      "path": "modelmanager/internal/catalog.go",
+      "sizeBytes": 3455,
+      "sha256": "8759dd4507a3e66a05c2a033668ada25ec3fde658449b86f004e99be90fcc8b6"
+    },
+    {
+      "path": "modelmanager/internal/catalog_validation.go",
+      "sizeBytes": 8261,
+      "sha256": "fcf0aeae19c9dc175e741a0dbd77fd03d8c40c9234b7c69ddbb2c1eccecc96e2"
+    },
+    {
+      "path": "modelmanager/internal/catalog_validation_test.go",
+      "sizeBytes": 6970,
+      "sha256": "5c54787be88b53588a816b8e42d2c62370431a9a0122211740b44c3c5bbfc5d1"
+    },
+    {
+      "path": "modelmanager/internal/downloader.go",
+      "sizeBytes": 12768,
+      "sha256": "eb2721d17a30d8f800201df26a543aa0dfe8dd4eb8c7c3ff75043bdcf3773e1f"
+    },
+    {
+      "path": "modelmanager/internal/downloader_test.go",
+      "sizeBytes": 6945,
+      "sha256": "0ffe134cefff26f42682cfcd48a01e5868502549aa45726de984d680354e9dfe"
+    },
+    {
+      "path": "modelmanager/internal/events.go",
+      "sizeBytes": 6087,
+      "sha256": "655db3aad19c49a91507b497a0eac4e677429af1b95ba2093a740245cc71d16e"
+    },
+    {
+      "path": "modelmanager/internal/events_test.go",
+      "sizeBytes": 3584,
+      "sha256": "1518c43a72a9a6f27e94331aa39364b887c3aceb241b8180c16f0166dddee31a"
+    },
+    {
+      "path": "modelmanager/internal/install.go",
+      "sizeBytes": 6665,
+      "sha256": "b8113448a7ebae45127a8b25293e4f55274ec48ecc97fb1d072eff6a91b1a6b8"
+    },
+    {
+      "path": "modelmanager/internal/lifecycle.go",
+      "sizeBytes": 1447,
+      "sha256": "4c6d996b4fdf75dd90c8bada871341b7e4bc139563de83c52eb0672405c335d7"
+    },
+    {
+      "path": "modelmanager/internal/service.go",
+      "sizeBytes": 4932,
+      "sha256": "6e8865abc523a3691241e02bebed7378ba3723b5d0fc05165fc4c1f8d6e69474"
+    },
+    {
+      "path": "modelmanager/internal/status_remove.go",
+      "sizeBytes": 3117,
+      "sha256": "64fcd40db1e4e95b8acdc22aaacfe5142264fb9630d38db2f3578b765bdafd2c"
+    },
+    {
+      "path": "modelstore/activation.go",
+      "sizeBytes": 10347,
+      "sha256": "3e6e6d5c762bfc0bc32ac4ff0c8c1689f8431a44068a0f0e142b729769e1cbd5"
+    },
+    {
+      "path": "modelstore/activation_test.go",
+      "sizeBytes": 4016,
+      "sha256": "04c3c2dfc583ee3fb66d5062730e20c1d71f88522e0959e94085677bde8d6165"
+    },
+    {
+      "path": "modelstore/leases.go",
+      "sizeBytes": 2055,
+      "sha256": "846f2734f7022f9a38ee8efd96b392dd5dc85fa8b05d7f33afbee5c84fa3f171"
+    },
+    {
+      "path": "modelstore/partials.go",
+      "sizeBytes": 2734,
+      "sha256": "87ca2010decd475b84a3da44f3c4ee11a49bea8a605461d4e4ba38916a5e86c0"
+    },
+    {
+      "path": "modelstore/paths.go",
+      "sizeBytes": 4465,
+      "sha256": "1c6d6c7200e9bd33d1308f9f009885856a7d771f9d70aa47df050eefeed595c9"
+    },
+    {
+      "path": "modelstore/prune.go",
+      "sizeBytes": 4717,
+      "sha256": "e9c4784e3181e0f7b34761d3eb46f7f058dba8a017e52128d5ff2ec24a99b1fb"
+    },
+    {
+      "path": "modelstore/prune_test.go",
+      "sizeBytes": 5498,
+      "sha256": "b75767ddd6bc16c5600a7e395d8e4e9c42adf83eaa44c8c4c9fa33b0f29c232d"
+    },
+    {
+      "path": "modelstore/safefs.go",
+      "sizeBytes": 6214,
+      "sha256": "36ecb8755c9049e06911cf2e8f836e8955c688872ec9bfa34ea1b6e3946ce7f9"
+    },
+    {
+      "path": "modelstore/safefs_test.go",
+      "sizeBytes": 8579,
+      "sha256": "cff046b4e924d1702477db8ce1bf5501f801d46589a4569e6738e8599f9c4824"
+    },
+    {
+      "path": "modelstore/safetree.go",
+      "sizeBytes": 3818,
+      "sha256": "c220f1a4711be5a463c22d8246727edfb9168d8ebd3bbfcb67e71afc0ed122fe"
+    },
+    {
+      "path": "modelstore/store.go",
+      "sizeBytes": 6353,
+      "sha256": "1f7c2c5ffd3dbf44d672fe5384a242569024a750a4f308bbe6b6367d4c4b1a98"
+    },
+    {
+      "path": "modelstore/verify.go",
+      "sizeBytes": 2765,
+      "sha256": "27693d14fa2c2073cbaeb752b1a057d6c0469693e56de07e2b5f4e4e66575e60"
+    },
+    {
+      "path": "package-lock.json",
+      "sizeBytes": 4030,
+      "sha256": "efa4cfc0f045ef26c30884136b2be317d9892a0921fbd0382be48bec382f0b7e"
+    },
+    {
+      "path": "package.json",
+      "sizeBytes": 1639,
+      "sha256": "f51b60c865299f3934df5329cda5d8163930173e6a10e0d6cca4cae81dc6fe4a"
+    },
+    {
+      "path": "packaging/archive/canonicalzip.go",
+      "sizeBytes": 4544,
+      "sha256": "64fe25b948ae74958942a724f24d04124475a4e8178d207cb64e86cef245baff"
+    },
+    {
+      "path": "packaging/archive/canonicalzip_test.go",
+      "sizeBytes": 4514,
+      "sha256": "c9c3c92147670ebd0993d1dd9bf6999c4cc1fa640c4e053900aff54bf7644f8e"
+    },
+    {
+      "path": "packaging/archive/hash.go",
+      "sizeBytes": 325,
+      "sha256": "e9ef2f20faad3a450310277c7fcfbc46f94e1d4a74f314bc256e88ce1d0d532f"
+    },
+    {
+      "path": "packaging/archive/json.go",
+      "sizeBytes": 1726,
+      "sha256": "6fcaf1763eb9ea51df2c7b06ef7b585a1b3fc2926c6b0c5ec36aa613393bb722"
+    },
+    {
+      "path": "packaging/archive/mode_posix.go",
+      "sizeBytes": 1208,
+      "sha256": "22425e6cf583edc7ce0751fd5db5b9b71423fff38f153c96d95d1c43b0b35cd7"
+    },
+    {
+      "path": "packaging/archive/mode_windows.go",
+      "sizeBytes": 1580,
+      "sha256": "bd4df7653a07410d415c1dca7bc2eef368efa3980c06abd8960f08849109d33a"
+    },
+    {
+      "path": "packaging/archive/pathpolicy.go",
+      "sizeBytes": 1186,
+      "sha256": "260f58daacc573cfdd4294d225b4051270a012e872b958856bbf50ac06627c07"
+    },
+    {
+      "path": "packaging/archive/pathpolicy_test.go",
+      "sizeBytes": 532,
+      "sha256": "8665d5a28ea900ebe52716570aac84a8b3746b794c9570be9fe78162ba640287"
+    },
+    {
+      "path": "packaging/archive/records.go",
+      "sizeBytes": 6393,
+      "sha256": "57ba4de13a2ca04ac33a1a3991f7229bc5944fa88470446030bb674db283b50d"
+    },
+    {
+      "path": "packaging/archive/runtime_closure_manifest_test.go",
+      "sizeBytes": 895,
+      "sha256": "30cbc390dcdab6714e8534c210bd1d89860ac107c4a36a0b2aede03bc7fdab81"
+    },
+    {
+      "path": "packaging/archive/safeextract.go",
+      "sizeBytes": 7642,
+      "sha256": "e6e9e437a52bed8c21678411ff1d7d49d8170cecb7d6f40f4996688cc531c562"
+    },
+    {
+      "path": "packaging/archive/types.go",
+      "sizeBytes": 2131,
+      "sha256": "ffe6e301ec7edbc1f213482584cd6fca84485af6817c0d2cb857281bbf05fae9"
+    },
+    {
+      "path": "packaging/cmd/runtime-host-tool/main.go",
+      "sizeBytes": 2029,
+      "sha256": "7b6e844f8592c9d3cd250b6fed6472c4694961434c5d32c11a5cfdb0a6619e70"
+    },
+    {
+      "path": "packaging/launcher/compile-host-tools.mjs",
+      "sizeBytes": 4824,
+      "sha256": "0496a7a81731d3a7c4032f9d4380077a3d5f11b6ebb0761ac67193291c0c7941"
+    },
+    {
+      "path": "providers/english-mlx/provider-lock.json",
+      "sizeBytes": 1286,
+      "sha256": "f90052ddb57b322ff4297f63559061ee32d6f73aa46eee7e8f6ab3c0c44882bd"
+    },
+    {
+      "path": "providers/english-mlx/recognizer.py",
+      "sizeBytes": 827,
+      "sha256": "127201f08460fb20815c8e582637e44d253c9504d4a1067dd107989ea5a6fd2a"
+    },
+    {
+      "path": "providers/english-mlx/worker.py",
+      "sizeBytes": 173,
+      "sha256": "3be3380fc089f8fad6c03e71cf5aad82a7ebd20dc733eb7947e344c1b5ff5ae4"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/__init__.py",
+      "sizeBytes": 49,
+      "sha256": "b84254f6da14110418f8fcf8f1451d3185ba5724c150bc94f9fe7d7145d09081"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/audio.py",
+      "sizeBytes": 1589,
+      "sha256": "940b370bc34fe25471e53c5dc128f22ca79dacad837e495de5fdc15cdf1b8c4f"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/bootstrap.py",
+      "sizeBytes": 1533,
+      "sha256": "684a3ec1cf8515bf5920dfbc1d601427f0a5f4cfd760eacf093f4d106575780f"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/exact_json.py",
+      "sizeBytes": 727,
+      "sha256": "31de5c1694d5580bfe28cf1dff6f0cc72f9b85f4bcad8a58846a0565e837e76b"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/normalization.py",
+      "sizeBytes": 4586,
+      "sha256": "d20801fb9b2bc96e8b9af55a5f4939b362f855a3a3d25ba5ad40e3710d926c27"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/protocol.py",
+      "sizeBytes": 5440,
+      "sha256": "e32075631c52589ef2adf88c6ce23f0c91e43f1cd1b25121aff761aceb20ce32"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/session.py",
+      "sizeBytes": 10194,
+      "sha256": "badf5376d306903de78acf02163e8094785aba50c2c078e1e2709801999b0cc2"
+    },
+    {
+      "path": "release/current-release-matrix.mjs",
+      "sizeBytes": 2848,
+      "sha256": "b3d41b9396d0022ebd0c45f1e453e3697ba814e75e92475890deb3e6abf45222"
+    }
+  ],
+  "externalInputs": [
+    {
+      "id": "host-authority/model-admission-root-v1.json",
+      "kind": "materialized-host-input",
+      "identity": "5efb2e12bf75cef2c90059157df3897d6f78e7f72aff3be3e36e54758e9f2c16"
+    },
+    {
+      "id": "host-authority/model-compatibility-requirement-v1.json",
+      "kind": "materialized-host-input",
+      "identity": "e6af8e56d7a2ec559977bdb61f9dbf25846750788e2aec8596d736656a2c1fd8"
+    },
+    {
+      "id": "package-notices/THIRD_PARTY_NOTICES.json",
+      "kind": "materialized-host-input",
+      "identity": "1519a8274e79cd660db206b7424ec9d52b7689d402ec85ada96f3985666c37b2"
+    },
+    {
+      "id": "package-notices/licenses/GO-LICENSE.txt",
+      "kind": "materialized-host-input",
+      "identity": "f85effe90e9936f804a227911b1dddc935f2b1006df4f65e633961c1a53340e0"
+    },
+    {
+      "id": "package-notices/licenses/MIT-LICENSE.txt",
+      "kind": "materialized-host-input",
+      "identity": "949403a8224423ae0032eb8987e92390ab1d8f6fba425a914913062eeeb130ab"
+    },
+    {
+      "id": "package-notices/licenses/PYTHON-BUILD-STANDALONE-LICENSE.txt",
+      "kind": "materialized-host-input",
+      "identity": "26c87484deec16c5d9acb9a06bcccf44c7d36fcfb1757de3ab6075beabeced7e"
+    },
+    {
+      "id": "package-notices/licenses/PYTHON-WHEEL-LICENSE-INDEX.json",
+      "kind": "materialized-host-input",
+      "identity": "164bdd9b6e226b3f3d74d55b3a2b5450ebacd7f4bf66a2bc07bb9ad950ec40f4"
+    },
+    {
+      "id": "python-dependencies.lock",
+      "kind": "materialized-host-input",
+      "identity": "3ddde4ca3315787d2ee832dd10233d526c4bc0452fbab5d0bce577f59e5cb40c"
+    },
+    {
+      "id": "python-host-archive",
+      "kind": "materialized-host-input",
+      "identity": "21ed1d8e7e12d682290c1ead12cd4aee044952aaa7d487890b1d38fd21c94695"
+    },
+    {
+      "id": "python-wheelhouse/certifi-2026.2.25-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "71fe4cff6268666fe55c3c9aa7be6271b0c5f26fb40d1a726016aa7f54418ed5"
+    },
+    {
+      "id": "python-wheelhouse/charset_normalizer-3.4.5-cp312-cp312-macosx_10_13_universal2.whl",
+      "kind": "materialized-host-input",
+      "identity": "3227eebb3f83cc582b11dc6099444500d208ef997353645e28a0b3cb491e243c"
+    },
+    {
+      "id": "python-wheelhouse/filelock-3.19.1-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "439a94016a83d5042c8d7dd930b98f3a9370da4d23639d25ba518096c25b5150"
+    },
+    {
+      "id": "python-wheelhouse/fsspec-2025.10.0-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "2ce2e17c632bec64c9cc769744e990352996c7650d6257c0a3216bb50c9eeb91"
+    },
+    {
+      "id": "python-wheelhouse/hf_xet-1.3.2-cp37-abi3-macosx_11_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "42c0fa3e688de3fb022ebb4ecc15fe989545d53b7e56f134297dae3646a111df"
+    },
+    {
+      "id": "python-wheelhouse/huggingface_hub-0.36.2-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "7dab1220e4164280d27288775686fdd55cf0f825186fa5d1c430edc62f8b73d8"
+    },
+    {
+      "id": "python-wheelhouse/idna-3.11-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "0016a729c0e802d3247cbcfe62d404e0d7db6dcc0100b1b3347b52530a408bd7"
+    },
+    {
+      "id": "python-wheelhouse/jinja2-3.1.6-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "90405ac2e7034955a1f62710a7a03c20b1dca0aea30861d9ce4406667aace032"
+    },
+    {
+      "id": "python-wheelhouse/llvmlite-0.43.0-cp312-cp312-macosx_11_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "4d430896f4d7c14db357254ca93d33cd9d233a0cc79f7097c1625b3fed8c0f42"
+    },
+    {
+      "id": "python-wheelhouse/markupsafe-3.0.3-cp312-cp312-macosx_11_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "2ce6f62dfa1c324fabba80ce0dc0233773dfd6857fbda5684a3e1d1e8af96a1f"
+    },
+    {
+      "id": "python-wheelhouse/mlx-0.29.3-cp312-cp312-macosx_14_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "64f3ffb36d04aaded1f357f91f00543ecb7be198c6c7c9626a1be0f2c4f93e29"
+    },
+    {
+      "id": "python-wheelhouse/mlx_metal-0.29.3-py3-none-macosx_14_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "c9645bef8e11d0b46712d1a2f8f2d6720a776e1f3ac9a03412c31369f618e01e"
+    },
+    {
+      "id": "python-wheelhouse/mlx_whisper-0.4.3-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "62a906f7cd4079156a33b38022f119d057222d68b5b4ef66ed1cf2e6e79397a1"
+    },
+    {
+      "id": "python-wheelhouse/more_itertools-10.8.0-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "632d0988407a31dfaec87a76a751230540f602a774cf0cfeb93bfba4867e1dfa"
+    },
+    {
+      "id": "python-wheelhouse/mpmath-1.3.0-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "3741c9e4583c554ca5e514c1fc4b292fc2afb313a1d52ebf7d461a0d09140d52"
+    },
+    {
+      "id": "python-wheelhouse/networkx-3.2.1-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "38206587b85c5bace77d705ee6fc8ed076fb65ebeb8f4e7e074a030ac720e1a9"
+    },
+    {
+      "id": "python-wheelhouse/numba-0.60.0-cp312-cp312-macosx_11_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "ceb813ba628168fafeb9b433462b2b99f71ce2614429ceae7fe1263a84332285"
+    },
+    {
+      "id": "python-wheelhouse/numpy-2.0.2-cp312-cp312-macosx_14_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "8c5feacc87378d6d9d3bab669cd165c35d651e3878feb6e2ba520a8326a011d6"
+    },
+    {
+      "id": "python-wheelhouse/packaging-26.0-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "43536ab6e02ebbd58621cc23b3bfe0a97cf1733ea1eca5d645a89205da70cb90"
+    },
+    {
+      "id": "python-wheelhouse/pyyaml-6.0.3-cp312-cp312-macosx_11_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "8acc3e47a43215b19396ec5b9a0a8a36b2c8f211117c7033b48decf9ab300623"
+    },
+    {
+      "id": "python-wheelhouse/regex-2026.1.15-cp312-cp312-macosx_11_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "320f6286bbe7c52c0091ea04fe88a439410ec3fcb72fb1a7388d2eb01dd04ee3"
+    },
+    {
+      "id": "python-wheelhouse/requests-2.32.5-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "f6687cabe05888ad76c47b656d71bf94cc0df7f8b54f83e918437749fedb231b"
+    },
+    {
+      "id": "python-wheelhouse/scipy-1.13.1-cp312-cp312-macosx_12_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "77b5b0eefc307b3e94a965779e60e2689251e9b88007a8468961fd3a78f1480c"
+    },
+    {
+      "id": "python-wheelhouse/sympy-1.14.0-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "2c04a0a18a6c45101eee8fae264476e56936f68a91432ab7ccf99d81fee4f86c"
+    },
+    {
+      "id": "python-wheelhouse/tiktoken-0.12.0-cp312-cp312-macosx_11_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "4a293fa19d58b75a8e91a63e769813ed4b1f91737d90204d23bb192e61069920"
+    },
+    {
+      "id": "python-wheelhouse/torch-2.8.0-cp312-none-macosx_11_0_arm64.whl",
+      "kind": "materialized-host-input",
+      "identity": "5e5361775ceee198f7f23213d4cfd0392b73b08aef7fe869d93a52ef0da64d8b"
+    },
+    {
+      "id": "python-wheelhouse/tqdm-4.67.3-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "aec899244fbdfcb66857f10e70c03850757cacd301d88fc223592d88efbda9ca"
+    },
+    {
+      "id": "python-wheelhouse/typing_extensions-4.15.0-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "006b652185ad13642fd60e2ba6dfb97b43ea7203545a456eab4573d654388912"
+    },
+    {
+      "id": "python-wheelhouse/urllib3-2.6.3-py3-none-any.whl",
+      "kind": "materialized-host-input",
+      "identity": "72344ed79b528be4092dfe5199379bdb821b7c223e8f807a463ab153cfdaca46"
+    },
+    {
+      "id": "runtime-source/providers/english-mlx/recognizer.py",
+      "kind": "materialized-host-input",
+      "identity": "5861e7d885250514b251b6d2f6a3a4a8b0d90f33f6d8d4f0d7d216ffc5532656"
+    },
+    {
+      "id": "runtime-source/providers/english-mlx/worker.py",
+      "kind": "materialized-host-input",
+      "identity": "89a872b3c779b45b7b3c77f3d0e95fbca61c7f2835fb19522e88502e1471b383"
+    },
+    {
+      "id": "runtime-source/providers/python/autobyteus_voice_provider/__init__.py",
+      "kind": "materialized-host-input",
+      "identity": "1cef8ef740c39ff2ad17318b557b86bc04455bbee9745007af40f59bfe80b725"
+    },
+    {
+      "id": "runtime-source/providers/python/autobyteus_voice_provider/audio.py",
+      "kind": "materialized-host-input",
+      "identity": "6437278c8b6c498a1c6882eae69a8ce8097001599f281544c56137309746a0e8"
+    },
+    {
+      "id": "runtime-source/providers/python/autobyteus_voice_provider/bootstrap.py",
+      "kind": "materialized-host-input",
+      "identity": "b6f80af9ad32b8d83d2b389c1d6f1046c2323a03f99d293f792d59ad8cab5206"
+    },
+    {
+      "id": "runtime-source/providers/python/autobyteus_voice_provider/exact_json.py",
+      "kind": "materialized-host-input",
+      "identity": "e0b28e6c6738541e67da3ed05a56df150e6efbd8f538f8249ece49b353b37569"
+    },
+    {
+      "id": "runtime-source/providers/python/autobyteus_voice_provider/normalization.py",
+      "kind": "materialized-host-input",
+      "identity": "6608e94ca35e44559dd812b2ada93128234dfde096d7dbae6b1c583e696b89bb"
+    },
+    {
+      "id": "runtime-source/providers/python/autobyteus_voice_provider/protocol.py",
+      "kind": "materialized-host-input",
+      "identity": "deae48a48cb72f3ea0cdc8ac3046390c8eba09d6e7905d5e871d139a4b6e7207"
+    },
+    {
+      "id": "runtime-source/providers/python/autobyteus_voice_provider/session.py",
+      "kind": "materialized-host-input",
+      "identity": "77c6aa9fb8383174be591436c715570e83d525327118d67f595f64ce109c8ca3"
+    }
+  ],
+  "toolchain": {
+    "node": "22.23.1/2e3f1286a7eb3736346ed1803e458a0ff909e2b2d5bc746144dcb76970e9b99d",
+    "go": "1.26.5/27fd7f0918282550923f1820c890432b262feb7e574cb6bfd3c9f4962cdbb9ee",
+    "cmake": "4.2.0/d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb",
+    "xcode": "26.1.1 (17B100)/Xcode 26.1.1\nBuild version 17B100",
+    "sdk": "macOS 26.1/5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff",
+    "compiler": "17.0.0 (clang-1700.4.4.1)/d5ba7be6de1bac17bfd018e1591711e69cb94d199a0ba763427c8b2d67c50697"
+  },
+  "buildFlags": [
+    "-trimpath",
+    "-buildvcs=false",
+    "-buildid=",
+    "cmake-generator=Unix Makefiles",
+    "cmake-build-type=Release",
+    "cmake-parallelism=1",
+    "native-flag-policy=empty-external-native-flags-v1"
+  ],
+  "hostRecipe": {
+    "fileName": "english-host-darwin-arm64-v2.json",
+    "sha256": "eedc7ce5e98ad0ebb7734e4eb49566867cb7119e8c5989e2f1a50b9745768e3e"
+  },
+  "modelCompatibilityRequirement": {
+    "sha256": "70e676b166b2d5587ace83b6e9a5ee352a54fe1086cd45b55f6f4ef38cbb8b56"
+  },
+  "modelAdmissionRoot": {
+    "sha256": "7cbf9799670b42482a29404c7a2acfb3a7f701a5e890d3cc22f3245bddfb5448"
+  }
+}

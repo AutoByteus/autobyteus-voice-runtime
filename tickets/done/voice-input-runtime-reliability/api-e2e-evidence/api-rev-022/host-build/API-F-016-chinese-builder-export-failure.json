@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "failureId": "API-F-016",
+  "scenarioId": "API-VOICE-018",
+  "reviewedSourceCommit": "ad7c402d224690584e2da98ec71a73e8b6d4ca36",
+  "classification": "Local Fix",
+  "boundary": "Chinese Runtime Host Archive 2 construction",
+  "expected": "The exact current-source Chinese host builder loads and completes the first canonical model-free host archive.",
+  "observed": "The production builder terminates before CMake configuration because funasr-host.mjs imports cmakeConfigureArguments from host-build-environment.mjs, which does not export that symbol.",
+  "command": "/usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb node build/host-package-assembler.mjs --profile chinese ...",
+  "exitCode": 1,
+  "sideEffects": {
+    "chineseArchiveCreated": false,
+    "modelDownloaded": false,
+    "providerLaunched": false
+  },
+  "evidence": "API-F-016-chinese-host-construction.log"
+}

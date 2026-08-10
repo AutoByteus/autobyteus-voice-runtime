@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "failureId": "API-F-017",
+  "scenarioId": "API-VOICE-018",
+  "reviewedSourceCommit": "ad7c402d224690584e2da98ec71a73e8b6d4ca36",
+  "classification": "Local Fix",
+  "boundary": "Runtime Host Archive 2 independent verification",
+  "expected": "The canonical verifier accepts the exact reproducible English host and emits schema-valid Host Verification 2 with hostRoot equal to the archive root subject host.",
+  "observed": "Archive extraction succeeds, but the Go extractor reports the absolute temporary destination in hostRoot; host-verification-v2.schema.json requires the constant host, so production verification rejects its own real output.",
+  "command": "node build/host-package-verifier.mjs --archive <english-host> --build-report <english-build-report> --go <pinned-go> --output <verification>",
+  "exitCode": 1,
+  "englishArchive": {
+    "path": "/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2/builds/english-a/voice-host-english-darwin-arm64-1.0.0.zip",
+    "sizeBytes": 207492896,
+    "sha256": "a2463fc5fedcf2c7e96924d4f5df69045b70ca7b5983dad094a40fe9504e53dc"
+  },
+  "englishReproducibilityDecision": "pass",
+  "sideEffects": {
+    "modelDownloaded": false,
+    "providerLaunched": false
+  },
+  "evidence": "API-F-017-english-host-verification.log"
+}

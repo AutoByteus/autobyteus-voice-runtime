@@ -5,156 +5,150 @@
 - Requirements Doc: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
 - Investigation Notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
 - Design Spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Release Ownership: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/release-pipeline-ownership.md`
-- Solution Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
-- Design Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
-- Architecture Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Implementation Handoff: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`
-- Implementation Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Code Review Report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
-- Code Review Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-- Delivery Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Relevant Delivery Revision: `DR-007`.
+- Supplemental Task Artifacts: `on-demand-model-assets.md`, `benchmark-protocol.md`, `current-platform-qualification.md`, `voice-runtime-contract.md`, `release-pipeline-ownership.md`, and the preserved backend/English/Chinese/cold-preparation evidence bundles under the requirements ticket root.
+- Solution Revision Record: `solution-revision-record.md` (`SR-021`)
+- Design Review / Architecture Record: `design-review-report.md`; `architecture-review-revision-record.md` (`ARCH-REV-021 Pass`)
+- Implementation Handoff / Revision: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`; `implementation-revision-record.md` (`IR-032`)
+- Code Review Report / Revision: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `code-review-revision-record.md` (`CRR-049 Pass`)
 - Coverage Investigation: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
 - API/E2E Revision Record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-021`
-- Current Execution Round: `21`
-- Trigger: DR-007 default-main bootstrap after CRR-047; exact dispatch ref `ec0f726afd252448784855665a08d1de2ee0521c`.
-- Prior Round: `API-REV-020 — Fail / 78%`; `API-F-015` remained open.
-- Latest Authoritative Round: **`API-REV-021 — Blocked / 80%`**.
+- Current API/E2E Revision ID: `API-REV-022`
+- Current Execution Round: `22`
+- Trigger: `CRR-049` against source `ad7c402d224690584e2da98ec71a73e8b6d4ca36`, reviewed artifact `93c9a6e579d253cfc1e9b5b8f69f22e4f688df9c`.
+- Prior Round Reviewed: `API-REV-021 — Blocked / 80%` under the superseded managed model-contained recovery design.
+- Latest Authoritative Round: **`API-REV-022 — Fail / 84%`**.
 
 ## Investigation And Execution Basis
 
-- Coverage investigation refreshed before execution: `Yes`.
-- Plan followed: `Yes`; stopped at the first unavailable external dependency.
-- Scenario: `API-VOICE-016`; `R-022`, `R-023`, `R-024`; `AC-025`, `AC-026`.
-- API-F-015 recheck: `Resolved`; GitHub created exact run `31301948625` at reviewed head.
-- New blocker: `API-B-001`; required runner group `voice-runtime-recovery` not found.
-- Profile/provider/audio/corpus/performance execution count: `0`.
-- Recovery build attempt count: `0`.
-- Promotion count: `0`.
+- Investigation completed before durable coverage changes or final execution: `Yes`.
+- Investigation plan followed: `Yes`; execution stopped at the critical actual-host construction/verification prerequisite as required.
+- Existing coverage decisions revised during execution: `Yes`. Generic reproducibility/schema coverage remains useful but is now `Needs Update` because it did not load the real Chinese builder or validate a real Go extraction-report projection.
+- Reroute required during execution: `Yes`, after `API-F-016` and `API-F-017`.
+- Repository-resident durable API/E2E coverage changed: `No`.
 
-## Compatibility / Persisted Data
+## Compatibility / Legacy Scope Check
 
-- Backward compatibility or legacy fallback introduced: `No`.
-- Aggregate renewal authority: `Directly Usable — No Migration`; exact retained record passed.
-- Recovery/candidate outputs: `Discard or Rebuild`; no partial output exists.
-- User/application state: `Not Affected`.
+- Upstream backward compatibility in scope: `No`.
+- Compatibility-only behavior observed: `No`.
+- Persisted-state decision: `Discard or Rebuild`; no legacy v0.3 state was read or modified.
+- Old Catalog 3, Config 1, contained-model, managed recovery/candidate, and self-hosted runner paths remain absent under repository source guards.
 
 ## Changed Boundary And Evidence Matrix
 
-| Scenario          | Boundary / Criteria                                                        | Mode                | Result      | Evidence                                                                                   |
-| ----------------- | -------------------------------------------------------------------------- | ------------------- | ----------- | ------------------------------------------------------------------------------------------ |
-| `API-VOICE-016-A` | Exact renewed admission; `R-024`, `AC-026`                                 | Real Git/CLI        | Pass        | `api-e2e-evidence/api-rev-021/repository/current-preliminary-source-admission.json`        |
-| `API-VOICE-016-B` | Default registration and managed recovery; `R-022`, `R-023`, `AC-025`      | GitHub Actions      | **Blocked** | Run `31301948625`; `recovery/API-B-001-managed-runner-group-missing.json`; annotation JSON |
-| `API-VOICE-016-C` | Hosted 19-member candidate promotion; `R-022`, `R-024`, `AC-025`, `AC-026` | GitHub-hosted Linux | Not Tested  | Correctly prohibited without passing recovery artifact; zero promotion runs                |
+| Scenario ID     | Behavior / Criteria                                                | Execution Surface                                                       | Evidence Type       | Result     | Evidence                                                       |
+| --------------- | ------------------------------------------------------------------ | ----------------------------------------------------------------------- | ------------------- | ---------- | -------------------------------------------------------------- |
+| `API-VOICE-017` | current-schema repository and legacy removal; `R-025`–`R-029`      | pinned Go/Node/Python repository checks                                 | Durable execution   | Pass       | `api-e2e-evidence/api-rev-022/repository/`                     |
+| `API-VOICE-018` | double host construction/equality/verification; `AC-028`, `AC-035` | clean detached actual M1 build, network-denied assembler, real verifier | Live/temporary      | **Fail**   | `host-build/API-VOICE-018-host-build-result.json`              |
+| `API-VOICE-019` | complete Catalog 4/host admission before side effects              | public binaries                                                         | Live                | Not Tested | critical host prerequisite failed                              |
+| `API-VOICE-020` | production-manifest English/Chinese download, resume, activation   | public HTTPS + isolated Store 1                                         | Live                | Not Tested | critical host prerequisite failed; zero model bytes downloaded |
+| `API-VOICE-021` | macOS signal/status/remove/writer/lease/filesystem interleavings   | CLI/process/lifecycle                                                   | Live                | Not Tested | critical host prerequisite failed                              |
+| `API-VOICE-022` | relocated offline retained-clip provider smoke                     | public provider under network denial                                    | Live                | Not Tested | critical host prerequisite failed; zero providers launched     |
+| `API-VOICE-023` | Profile Execution Closure 2                                        | generator + independent verifier                                        | Temporary authority | Not Tested | requires two verified hosts and smoke results                  |
+| `API-VOICE-024` | QSet 3, Projection 3, exact nine assets                            | local nonpublishing release tools                                       | Temporary authority | Not Tested | requires passing profiles/closures                             |
 
-## Repository And Bootstrap Execution
+## Repository Coverage Execution
 
-| Order | Operation                                                                      | Result                                             | Evidence                                               |
-| ----- | ------------------------------------------------------------------------------ | -------------------------------------------------- | ------------------------------------------------------ |
-| 1     | Verify `delivery-default-main-bootstrap-SHA256SUMS.txt`                        | Pass                                               | `bootstrap/delivery-bootstrap-checksums.log`           |
-| 2     | Fetch and verify main `7385b65...`, exact two parents, ticket ref `ec0f726...` | Pass                                               | `bootstrap/exact-remote-bootstrap.json`                |
-| 3     | Verify workflow IDs `330372978`/`330372979` active                             | Pass                                               | `bootstrap/workflow-catalog.json`                      |
-| 4     | Verify all API-REV-019 and API-REV-020 checksums                               | Pass                                               | `repository/retained-api-checksums.log`                |
-| 5     | Production Preliminary Source Admission recheck                                | Pass — decision `reuse-permitted`; all checks true | `repository/current-preliminary-source-admission.json` |
+| Order | Command                                                                               | Result                                                                           | Evidence                                                               |
+| ----- | ------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| 1     | `go test -race ./modelmanager/internal ./modelstore ./launcher/internal ./hostverify` | Pass                                                                             | `repository/focused-go-race.log`                                       |
+| 2     | `go test -count=10 ./modelmanager/internal ./modelstore`                              | Pass                                                                             | `repository/focused-go-repeat-10.log`                                  |
+| 3     | `VOICE_GO=... npm run check:release-pipeline`                                         | Pass — 9/9                                                                       | `repository/npm-run-check-release-pipeline.log`                        |
+| 4     | `VOICE_GO=... npm run check`                                                          | Pass — 91/91 Node TAP, 7/7 Python plus compileall, all Go/source/evidence checks | `repository/npm-run-check.log`                                         |
+| 5     | six preserved checksum manifests and JSON parse audit                                 | Pass                                                                             | `repository/preserved-authority-checksums.log`; `json-parse-audit.txt` |
 
-## Managed Recovery Execution
+## Validation Confidence Scorecard
 
-- Workflow: `Recover exact qualified voice archives`; ID `330372979`.
-- Dispatch ref: `codex/voice-runtime-qualified-recovery` at exact head `ec0f726afd252448784855665a08d1de2ee0521c`.
-- Input: runtime version `1.0.0`.
-- Run: `31301948625`; attempt `1`; event `workflow_dispatch`.
-- URL: `https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/31301948625`.
-- Dispatch result: the prior API-F-015 HTTP 404 is resolved; GitHub created the exact run.
-- Job: `recover`, ID `93216043982`.
-- Terminal result: `failure` in zero seconds with zero steps.
-- GitHub annotation: **`Required runner group 'voice-runtime-recovery' not found`**.
-- Runner identity: none (`runner_id: 0`, empty name, group ID `0`).
-- Archive builds attempted: `0`.
-- Artifacts: `0`.
-- Recovery Result/raw evidence/archives: none.
+| Confidence Category                                 | Post-Repository | Final | Change | Final Evidence / Residual                                                                                             |
+| --------------------------------------------------- | --------------: | ----: | -----: | --------------------------------------------------------------------------------------------------------------------- |
+| Requirement and acceptance-criteria proof           |             90% |   80% |    -10 | AC-028 actual host prerequisite fails; AC-029–035 live path cannot proceed.                                           |
+| Changed-boundary execution directness               |             85% |   90% |     +5 | Actual M1 production commands directly exposed both defects.                                                          |
+| Cross-boundary integration realism and mock gap     |             75% |   65% |    -10 | English build crosses real packaging, but verification fails and Chinese/model/provider chain is absent.              |
+| Environment/configuration/identity/fixture fidelity |             90% |   98% |     +8 | Exact source, M1 Max, Node 22.23.1, Go 1.26.5, CMake 4.2.0, Xcode/SDK 26.1.1/26.1, authenticated recipes/inputs.      |
+| Failure/edge/lifecycle/recovery evidence            |             90% |   90% |      0 | Repository race/negative evidence is strong; live lifecycle was correctly not entered.                                |
+| User-surface/browser/desktop-shell confidence       |             N/A |   N/A |      — | runtime-only; desktop deferred.                                                                                       |
+| Durable regression coverage quality/relevance       |             98% |   80% |    -18 | Existing suites passed while missing both production composition defects; specific regression additions are required. |
 
-One first local dispatch harness invocation was invalid and stopped before `gh workflow run` because its local JSON helper used a non-relative `require()` path. It created no remote run and is excluded. The corrected invocation above is the only recovery dispatch in this API revision.
-
-## Promotion Boundary
-
-- Promotion workflow ID `330372978` is active.
-- Promotion dispatch: not attempted, as required by the Pass-only gate.
-- Existing promotion runs for the ticket ref: `0`.
-- Candidate/Promotion Record: none.
-
-## Confidence Scorecard
-
-| Category                                            | Post-Repository | Final | Evidence / Gap                                                        |
-| --------------------------------------------------- | --------------: | ----: | --------------------------------------------------------------------- |
-| Requirement and acceptance-criteria proof           |             95% |   75% | Admission/dispatch pass; AC-025 recovery and promotion absent         |
-| Changed-boundary execution directness               |             95% |   80% | Real zero-step run proves missing group directly                      |
-| Cross-boundary integration realism and mock gap     |             85% |   50% | Managed runner/build/artifact and promotion never execute             |
-| Environment/configuration/identity/fixture fidelity |            100% |  100% | Exact main/ref/workflows/authority plus direct missing-group evidence |
-| Failure/edge/lifecycle/recovery evidence            |             90% |   75% | Direct no-runner failure; no recovery terminal evidence               |
-| User-surface/browser/desktop-shell confidence       |             N/A |   N/A | No user surface in scope                                              |
-| Durable regression coverage quality/relevance       |             98% |   98% | Valid reviewed coverage; no API/E2E test edit                         |
-
-- Overall post-repository confidence: `93.8%`.
-- Overall final confidence: `79.7%`, reported as `80%`.
+- Overall post-repository confidence: `88.0%`.
+- Overall final confidence: `83.8%`, reported as **`84%`**.
+- Calculation: simple average across six applicable categories.
+- Critical acceptance criteria directly proven: `No`; `AC-028` fails.
+- Applicable categories below 90%: requirements proof, cross-boundary integration realism, and durable regression relevance.
 - Default 95% target met: `No`.
-- Applicable categories below 90%: requirement proof, changed-boundary directness, cross-boundary integration, recovery evidence.
-- Critical acceptance criterion lacking proof: `AC-025`.
 
-## Broader Validation Decision
+## Broader Validation Execution
 
-- Decision: **`Blocked`**.
-- Exact unavailable dependency: organization-managed GitHub runner group `voice-runtime-recovery`.
-- Required group contents: approved macOS ARM64 runner with labels `self-hosted`, `macOS`, `ARM64`; Node `v22.23.1`; runner-owned exact `VOICE_INPUT_CACHE_ROOT`, `VOICE_GO`, and `VOICE_CMAKE` environment.
-- Attempted alternatives: default-main registration and exact ticket-ref dispatch succeeded. No safe/project-approved emulation can prove the real target toolchain/archive boundary.
-- Prohibited alternatives not used: personal/user workstation runner, local archive build, old heavy workflow, profile rerun, provider/model substitution, threshold change, Delivery build, release action.
+- Mode: local actual-M1 host construction and independent archive verification.
+- Setup root: `/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2`.
+- Clean source worktree: exact detached `ad7c402d224690584e2da98ec71a73e8b6d4ca36`.
+- Tools: Node `v22.23.1`; authenticated Go `1.26.5`; official CMake `4.2.0`; Xcode `26.1.1 (17B100)`; macOS SDK `26.1`; Apple M1 Max / 64 GB; 285+ GiB observed free disk.
+- Inputs: exact v2 English/Chinese host recipes hydrated from immutable HTTPS/Git revisions and materialized from clean reviewed source. No model weight was part of the host inputs.
+
+| Step                                    | Expected                                                      | Observed                                                                                                                         | Result                 |
+| --------------------------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| English double construction             | identical archive and reports                                 | identical 207,492,896-byte archive SHA `a2463fc5fedcf2c7e96924d4f5df69045b70ca7b5983dad094a40fe9504e53dc`; exact report equality | Pass                   |
+| Chinese first construction              | builder loads and reaches native configuration                | ESM link failure: requested `cmakeConfigureArguments` is absent from `host-build-environment.mjs` exports                        | **Fail / API-F-016**   |
+| English canonical verification          | verified extraction produces schema-valid Host Verification 2 | Go extractor reports absolute temporary destination in `hostRoot`; schema requires constant `host`                               | **Fail / API-F-017**   |
+| Production model/install/provider chain | begins only after both host construction/verification pass    | not entered                                                                                                                      | Not Tested as required |
+
+One earlier verifier invocation followed the README example and omitted the now-required `--build-report`; it failed before verification and is excluded from acceptance. The corrected production command then exposed API-F-017. Delivery documentation must later synchronize the example, but that documentation issue is not the critical source failure classification.
+
+## Platform / Runtime Targets
+
+- OS/platform: macOS 26.5, `darwin-arm64`.
+- Hardware: MacBookPro18,4, Apple M1 Max, 64 GB.
+- Power/thermal observation: AC power, charged, no recorded thermal/performance/CPU-power warning.
+- Browser/desktop: not applicable.
+
+## Lifecycle / Persisted-Data Checks
+
+- Approved decision: `Discard or Rebuild`.
+- Representative Store 1 execution: not started because public verified hosts are a prerequisite.
+- Legacy state touched: `No`.
+- Compatibility fallback observed: `No`.
 
 ## Durable Coverage Changed In The Codebase
 
-- Added/updated/removed repository-resident durable API/E2E coverage: `No`.
-- Test paths: `None`.
-- Successful proportional test review: not applicable while Blocked.
+- Added/updated/removed by API/E2E: `No`.
+- Required source-fix regression coverage: load both real host builders; run the real Host Verification 2 projection against a production-shaped extractor report.
+- Proportional successful-test review: not applicable because this is a Fail routed for failure-origin review.
 
-## Evidence Artifacts
+## Other Execution Artifacts
 
-| Artifact                                                                            | Purpose                           |
-| ----------------------------------------------------------------------------------- | --------------------------------- |
-| `api-e2e-evidence/api-rev-021/bootstrap/exact-remote-bootstrap.json`                | Exact main parents and ticket ref |
-| `api-e2e-evidence/api-rev-021/bootstrap/workflow-catalog.json`                      | Active workflow IDs               |
-| `api-e2e-evidence/api-rev-021/repository/current-preliminary-source-admission.json` | Exact reuse admission             |
-| `api-e2e-evidence/api-rev-021/recovery/dispatch.json`                               | Exact run identity                |
-| `api-e2e-evidence/api-rev-021/recovery/job-annotations.json`                        | GitHub missing-group annotation   |
-| `api-e2e-evidence/api-rev-021/recovery/API-B-001-managed-runner-group-missing.json` | Canonical blocker summary         |
-| `api-e2e-evidence/api-rev-021/recovery/artifacts.json`                              | Zero recovery artifacts           |
-| `api-e2e-evidence/api-rev-021/promotion/runs-before.json`                           | Zero promotion runs               |
+| Artifact                                                                             | Purpose                                                               | Retention                                       |
+| ------------------------------------------------------------------------------------ | --------------------------------------------------------------------- | ----------------------------------------------- |
+| `api-e2e-evidence/api-rev-022/repository/`                                           | exact repository/race/checksum evidence                               | durable                                         |
+| `api-e2e-evidence/api-rev-022/environment/host-build-environment-v2.json`            | actual authenticated M1 build environment                             | durable                                         |
+| `api-e2e-evidence/api-rev-022/host-build/english-host-reproducibility-proof-v2.json` | exact passing English double-build authority                          | durable                                         |
+| `api-e2e-evidence/api-rev-022/host-build/API-F-016-*`                                | Chinese production-builder failure                                    | durable                                         |
+| `api-e2e-evidence/api-rev-022/host-build/API-F-017-*`                                | English production-verifier failure                                   | durable                                         |
+| `/private/tmp/autobyteus-voice-api-e2e-r22-20260810-v2`                              | authenticated 2.0-GiB cache/inputs/English archives for bounded rerun | temporarily retained; isolated and process-free |
 
-## Cleanup And Safety
+## Cleanup Performed
 
-- Local processes/services/data: none.
-- Remote run created: one immutable failed workflow run; retained as evidence.
-- User/shared state changed: no.
-- Personal runner, sudo, purge, microphone/audio: none.
-- Tag/release/publication: none.
+| Resource                                         | Cleanup / Retention                                                                       | Result                      |
+| ------------------------------------------------ | ----------------------------------------------------------------------------------------- | --------------------------- |
+| model manager/provider/network fixture processes | never started                                                                             | none present                |
+| build subprocesses                               | exited naturally                                                                          | process scan empty          |
+| application/user/legacy store                    | never touched                                                                             | unchanged                   |
+| isolated r22 root                                | retained for exact bounded rework rerun to avoid re-downloading authenticated host inputs | 2.0 GiB, no running process |
 
-## Result Summary
+## Preliminary Classification
 
-| Result                 | Scenario                        | Summary                                                                            |
-| ---------------------- | ------------------------------- | ---------------------------------------------------------------------------------- |
-| Pass                   | `API-VOICE-016-A`               | Exact renewed authority remains `reuse-permitted`.                                 |
-| Resolved prior failure | `API-F-015`                     | Default-main registration now permits exact workflow-run creation.                 |
-| **Blocked**            | `API-VOICE-016-B` / `API-B-001` | Required organization-managed runner group is absent; zero steps/builds/artifacts. |
-| Not Tested             | `API-VOICE-016-C`               | Promotion correctly stopped without recovery Pass.                                 |
+- `API-F-016`: `Local Fix` — production Chinese builder imports `cmakeConfigureArguments` from `build/host-build-environment.mjs`, but the symbol is exported by `build/trusted-native-environment.mjs` / `build/resolved-cmake-configuration.mjs`, not by the imported module.
+- `API-F-017`: `Local Fix` — the real Go extractor exposes an absolute destination as `VerificationReport.hostRoot`; the strict Host Verification 2 schema and public subject require the canonical root label `host`.
+- Both failures are source integration defects missed by the passing repository suites and prior source review. Code Reviewer must confirm origin and route the bounded source/test rework.
 
 ## Recommended Recipient
 
-User request for the exact missing external dependency. Per API/E2E workflow, no teammate handoff occurs while Blocked.
+`code_reviewer` for focused failure-origin review of API-F-016/API-F-017. After implementation and source re-review, API/E2E should resume at Chinese double construction and English/Chinese independent verification, reusing the authenticated r22 environment only if all relevant identities remain exact.
 
 ## Latest Authoritative Result
 
-- Result: **Blocked**.
-- Final validation confidence: **80%**.
+- Result: **`Fail`**.
+- Final validation confidence: **`84%`**.
 - Default 95% target met: `No`.
-- Broader validation: `Blocked — required organization-managed runner group absent`.
-- Resume condition: an organization administrator provisions exact group `voice-runtime-recovery` with an approved macOS ARM64 runner and locked runner environment; then API/E2E opens a new revision and dispatches a new run once.
-- No profile/audio/performance test, archive, candidate, tag, release, or publication occurred.
+- Applicable category below 90%: requirements proof, cross-boundary integration realism, durable regression relevance.
+- Broader validation decision: `Required and executed until critical prerequisite failure`.
+- Critical criteria lacking direct proof: `AC-028` fails; `AC-029`–`AC-035` remain not tested downstream of it.
+- Required next recipient: `code_reviewer` for focused failure-origin review.
+- Notes: zero production model bytes downloaded, zero providers launched, zero GitHub workflows/tags/releases/publications, zero user/shared-state changes.
