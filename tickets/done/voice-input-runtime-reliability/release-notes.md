@@ -21,12 +21,8 @@
 - The prospective GitHub Release contains exactly nine assets: two host archives, two model manifests, Catalog 4, Release Qualification Evidence 4, Pre-Tag Release Manifest 4, `THIRD_PARTY_NOTICES.json`, and `release-SHA256SUMS.txt`.
 - Model weights and product/performance qualification are not part of release CI.
 
-## Current release gate
+## Release integrity
 
-The runtime-only v1.0.0 release remains authorized in principle but is not yet
-published. Delivery integration checks pass; however, the production workflow
-references committed `release/admission/` inputs that are absent, while the
-reviewed verifier requires the admission's final-main SHA to equal the workflow
-checkout containing that record. This admission-authority relationship must be
-made acyclic through reviewed design and implementation before hosted equality,
-tagging, publication, and downloaded-byte verification can proceed.
+- The reviewed acyclic F/D/R/W release-authority chain admits the exact API/E2E-qualified source while allowing later documentation-only integration under closed Policy 3 classification.
+- Release CI runs on a standard GitHub-hosted macOS runner and performs host-only construction, archive equality, exact nine-asset sealing, publication, and downloaded-byte verification.
+- Release CI does not repeat product/profile/performance qualification and does not download model weights.

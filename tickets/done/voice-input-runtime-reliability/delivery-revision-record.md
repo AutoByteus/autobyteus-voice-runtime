@@ -12,6 +12,7 @@
 | `DR-006`    | `code_reviewer` handoff after CRR-044, API-REV-019, and CRR-045                        | `DR-005 — redesign required`            | `Pass / stage gate only — zero-profile Aggregate API Renewal is preserved and checked; admission remains aggregate-api-renewal-required; no recovery/release` | `delivery-aggregate-renewal-gate-check.log`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`                       |
 | `DR-007`    | CRR-047 bootstrap authorization after API-REV-020 / API-F-015                          | `DR-006 — renewal stage gate complete`  | `Pass / bootstrap only — exact reviewed workflows merged to default main and registered; exact ticket ref preserved; API/E2E recovery still pending`          | `delivery-default-main-bootstrap-check.log`, `delivery-default-main-workflow-registration.log`, `docs-sync-report.md`, `handoff-summary.md`    |
 | `DR-008`    | `code_reviewer` handoff after IR-035, CRR-055, API-REV-025, and CRR-056                | `DR-007 — workflow bootstrap complete`  | `Blocked / Design Impact — checks pass, but production references absent committed admission inputs and exact-current-SHA binding is unresolved`              | `delivery-final-main-integration-check.log`, `release-notes.md`, `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`   |
+| `DR-009`    | `code_reviewer` handoff after CRR-059, API-REV-026, and CRR-060                        | `DR-008 — admission design blocked`      | `Pass / release-ready — exact reviewed R integrated without rewriting; Policy 3 reuse, focused checks, and authority checks pass; final target merge pending`  | `delivery-release-authority-integration-check.log`, `delivery-release-authority-integration-SHA256SUMS.txt`, delivery handoff artifacts       |
 
 ## Revision Entries
 
@@ -143,3 +144,20 @@
 - Evidence: `delivery-final-main-integration-SHA256SUMS.txt`; integration/readiness log SHA-256 `a397ae525cfb45f4b4662d8ff7f7b5d7d1039e624a8c8963157ba4c3297dd9e2`.
 - Publication boundary: standard-hosted equality was not dispatched because its first workflow step cannot open the required files. No ticket-branch push, maintained-main merge, tag, GitHub Release, asset, publication, or downloaded-byte verification occurred.
 - Current result: `Blocked`; preserve the integrated candidate and reviewed evidence, and do not bypass the missing/self-binding admission contract.
+
+### DR-009 — Exact release authority integrated and release-ready
+
+- Date: 2026-08-10
+- Trigger: Code Reviewer returned CRR-059 `Pass / 9.9`, API-REV-026 `Pass / 98%`, and CRR-060 proportional test-code review `Not Applicable` with no findings.
+- Prior authoritative result: `DR-008` — hosted release blocked by absent admission inputs and a cyclic final-main authority relationship.
+- Reviewed lineage: focused source `F = b88c230663eb96e0def8c869b095ea858b0ff50b`; admitted source `D = 3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`; exact release-authority promotion `R = 71f8e7823d876b9c0914bfc7b90b143d851d4875`.
+- Base refresh: `git fetch origin --prune` passed. `origin/main` remained `7385b65e397e6f1b17495720281fe0b2e39de99b`; no newly advanced maintained-main commit required another base merge.
+- Upstream preservation: uncommitted API-REV-026/reviewer artifacts were checkpointed as `795d2dd44d990a32376a75410cfba11a48c70095`; all 34 API-REV-026 checksum entries passed.
+- Exact-R integration: merged the existing reviewed `R` without cherry-picking, recreating, amending, or rewriting it. Integration commit `3c091aae1a7acb12f3d021a2b0b8d49336f730e5` has parents `795d2dd...` and exact `R`.
+- Protected authority: `R` has exactly one parent, exact `D`, and adds exactly six `100644` files below `release/admission/`. Their blob identities are unchanged at the integrated candidate.
+- Integrated authority check: `Pass`; all 45 `R..candidate` paths classify as documentation-record-only, Policy 3 returns `reuse-permitted` with identity `c7cd2e5ede4a96f6990145a4719912e6dd7dc97fa85d157ea0f68ab37af1e676`, the focused release pipeline passes 19/19, and every API-REV-026 checksum passes.
+- Execution boundary: Delivery executed zero product tests, profile qualification, provider/inference/performance work, or model-weight downloads. No tag, GitHub Release, or asset was created by this stage.
+- Docs sync: `No new long-lived product behavior impact`. README already documents the host-only/on-demand model contract. Ticket-local release/handoff records now supersede the resolved DR-008 blocker; release notes retain the exact two-host/nine-asset scope.
+- User gate: satisfied by the user's repeated explicit runtime-only instruction to finalize and release v1.0.0, together with the later explicit minimal standard-hosted/no-heavy-qualification boundary. The reviewed redesign changes the release authority mechanism, not the verified runtime behavior or release scope; renewed verification is not required.
+- Evidence: `delivery-release-authority-integration-check.log`, SHA-256 `557692491a4f66f72a4939c3d06cc7839d5c75fbba828a1e1633b17b1c4d8711`, bound by `delivery-release-authority-integration-SHA256SUMS.txt`.
+- Current result: `Pass / release-ready`; next actions are ticket-branch commit/push, latest-base target refresh, maintained-main integration as workflow checkout `W`, exact W lineage/host-only validation, and the authorized v1.0.0 standard-hosted release workflow.

@@ -1,0 +1,429 @@
+Voice Input Runtime Reliability — reviewed release authority integration check
+timestamp_utc=2026-08-10T18:34:43Z
+F=b88c230663eb96e0def8c869b095ea858b0ff50b
+D=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d
+R=71f8e7823d876b9c0914bfc7b90b143d851d4875
+W_candidate=3c091aae1a7acb12f3d021a2b0b8d49336f730e5
+origin_main=7385b65e397e6f1b17495720281fe0b2e39de99b
+R_parents=3e8474213f79b26cc7a68c4dd42d2994ebf2d42d
+lineage_ancestry=PASS
+
+== exact protected R additions and current blobs ==
+80420cdd8fa44e85d0cf27b1f1aea437aaa9abb2 release/admission/v1.0.0-branch-catalog-projection-v3.json
+e31e71e0f6bb98e607b7d7a6b1971b828e9b656b release/admission/v1.0.0-branch-catalog-projection-verification-v3.json
+c996fc4a78ba8eeddaaa1469777d25eeac870113 release/admission/v1.0.0-chinese-profile-execution-closure-v2.json
+64a65a41634ea83e8c7ebbe22d87d969df7da879 release/admission/v1.0.0-english-profile-execution-closure-v2.json
+14f0a15df2147b6d69acf91f45b350a45549b0f6 release/admission/v1.0.0-focused-qualification-set-v3.json
+6ae3d55356caea6650098c704eeb4a6424c4b798 release/admission/v1.0.0-release-source-admission-v4.json
+protected_authority=PASS
+
+== R..W candidate Policy 3 classification ==
+{
+  "policy": {
+    "fileName": "relevant-source-closure-v3.json",
+    "sizeBytes": 3129,
+    "sha256": "c7cd2e5ede4a96f6990145a4719912e6dd7dc97fa85d157ea0f68ab37af1e676"
+  },
+  "changeCount": 45,
+  "decision": "reuse-permitted",
+  "changes": [
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/API-VOICE-025-zero-profile-release-authority-promotion.json",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/SHA256SUMS.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/admission/admission-v4-independent-verification.json",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/admission/assemble-release-source-admission-v4.exit-code",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/admission/assemble-release-source-admission-v4.log",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/admission/post-admission-clean-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/admission/v1.0.0-release-source-admission-v4.json",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/commit.log",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/committed-show.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/post-commit-clean-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/promote-release-authority.exit-code",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/promote-release-authority.log",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/release-authority-commit.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/staged-diff-check.log",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/staged-diff-stat.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/staged-name-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/promotion/staged-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/admitted-source-identity.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/api-rev-025-checksums.log",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/api-rev-026-checksums-final.log",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/clean-d-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/coverage-impact-decision.json",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/execution-subjects.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/npm-ci.exit-code",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/npm-ci.log",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/npm-run-check-release-pipeline.exit-code",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/npm-run-check-release-pipeline.log",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/post-npm-ci-clean-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/repository/pre-admission-clean-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/verification/committed-release-authority-verification.json",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/verification/d-to-r-name-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/verification/final-clean-status.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/verification/release-authority-commit-identity.txt",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/verification/zero-profile-execution-counts.json",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-057-release-admission-policy-conflict.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-058-relevant-source-closure-policy-resolution.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "A",
+      "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-059-release-authority-commit-review.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "M",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "M",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "M",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "M",
+      "path": "tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "M",
+      "path": "tickets/done/voice-input-runtime-reliability/code-review-report.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "M",
+      "path": "tickets/done/voice-input-runtime-reliability/code-review-revision-record.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "M",
+      "path": "tickets/done/voice-input-runtime-reliability/implementation-handoff.md",
+      "classification": "documentation-record-only"
+    },
+    {
+      "status": "M",
+      "path": "tickets/done/voice-input-runtime-reliability/implementation-revision-record.md",
+      "classification": "documentation-record-only"
+    }
+  ]
+}
+
+== focused release-pipeline checks ==
+
+> @autobyteus/voice-input-runtime@1.0.0 check:release-pipeline
+> node tooling/check-release-pipeline.mjs && node --test tests/release/catalog-v4.test.mjs tests/release/host-construction-result.test.mjs tests/release/host-release-contracts.test.mjs tests/release/prepublication-chain.test.mjs tests/release/release-source-admission-verifier.test.mjs tests/release/relevant-source-closure-v3.test.mjs
+
+TAP version 13
+# Subtest: Catalog 4 binds exact admitted host/model compatibility pairs
+ok 1 - Catalog 4 binds exact admitted host/model compatibility pairs
+  ---
+  duration_ms: 186.255791
+  type: 'test'
+  ...
+# Subtest: host construction truthfully retains first-profile and pre-build failures
+ok 2 - host construction truthfully retains first-profile and pre-build failures
+  ---
+  duration_ms: 247.968125
+  type: 'test'
+  ...
+# Subtest: the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+ok 3 - the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+  ---
+  duration_ms: 0.859792
+  type: 'test'
+  ...
+# Subtest: one standard-hosted job builds hosts without model or product execution
+ok 4 - one standard-hosted job builds hosts without model or product execution
+  ---
+  duration_ms: 3.354959
+  type: 'test'
+  ...
+# Subtest: managed recovery and combined-package entrypoints are absent
+ok 5 - managed recovery and combined-package entrypoints are absent
+  ---
+  duration_ms: 1.326291
+  type: 'test'
+  ...
+# Subtest: the prepublication seal closes exactly eight prior assets plus checksums
+ok 6 - the prepublication seal closes exactly eight prior assets plus checksums
+  ---
+  duration_ms: 83.431584
+  type: 'test'
+  ...
+# Subtest: Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+ok 7 - Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+  ---
+  duration_ms: 2901.236375
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts later documentation-only W and rejects archive impact
+ok 8 - lineage verifier accepts later documentation-only W and rejects archive impact
+  ---
+  duration_ms: 3901.190792
+  type: 'test'
+  ...
+# Subtest: lineage-aware protection rejects mutation followed by byte-identical revert
+ok 9 - lineage-aware protection rejects mutation followed by byte-identical revert
+  ---
+  duration_ms: 1819.506375
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts an integration merge that preserves the R-bearing tree
+ok 10 - lineage verifier accepts an integration merge that preserves the R-bearing tree
+  ---
+  duration_ms: 2413.047375
+  type: 'test'
+  ...
+# Subtest: lineage verifier rejects bound policy drift and checkout closure drift
+ok 11 - lineage verifier rejects bound policy drift and checkout closure drift
+  ---
+  duration_ms: 3170.516125
+  type: 'test'
+  ...
+# Subtest: Admission 4 schema forbids self and later lineage edges
+ok 12 - Admission 4 schema forbids self and later lineage edges
+  ---
+  duration_ms: 784.375167
+  type: 'test'
+  ...
+# Subtest: promotion rejects checksum drift and verifier rejects a seventh promoted path
+ok 13 - promotion rejects checksum drift and verifier rejects a seventh promoted path
+  ---
+  duration_ms: 1538.36275
+  type: 'test'
+  ...
+# Subtest: Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+ok 14 - Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+  ---
+  duration_ms: 3.344791
+  type: 'test'
+  ...
+# Subtest: same-specificity matches choose their strictest result without reintroducing broader prefixes
+ok 15 - same-specificity matches choose their strictest result without reintroducing broader prefixes
+  ---
+  duration_ms: 1.252791
+  type: 'test'
+  ...
+# Subtest: complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+ok 16 - complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+  ---
+  duration_ms: 314.754416
+  type: 'test'
+  ...
+# Subtest: mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+ok 17 - mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+  ---
+  duration_ms: 324.27125
+  type: 'test'
+  ...
+# Subtest: frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+ok 18 - frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+  ---
+  duration_ms: 37.114458
+  type: 'test'
+  ...
+# Subtest: production Admission 4 assembler accepts actual current F..D with exact API-REV-025 subjects
+ok 19 - production Admission 4 assembler accepts actual current F..D with exact API-REV-025 subjects
+  ---
+  duration_ms: 310.310083
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16622.564
+
+== API-REV-026 checksums ==
+./API-VOICE-025-zero-profile-release-authority-promotion.json: OK
+./admission/admission-v4-independent-verification.json: OK
+./admission/assemble-release-source-admission-v4.exit-code: OK
+./admission/assemble-release-source-admission-v4.log: OK
+./admission/post-admission-clean-status.txt: OK
+./admission/v1.0.0-release-source-admission-v4.json: OK
+./promotion/commit.log: OK
+./promotion/committed-show.txt: OK
+./promotion/post-commit-clean-status.txt: OK
+./promotion/promote-release-authority.exit-code: OK
+./promotion/promote-release-authority.log: OK
+./promotion/release-authority-commit.txt: OK
+./promotion/staged-diff-check.log: OK
+./promotion/staged-diff-stat.txt: OK
+./promotion/staged-name-status.txt: OK
+./promotion/staged-status.txt: OK
+./repository/admitted-source-identity.txt: OK
+./repository/api-rev-025-checksums.log: OK
+./repository/api-rev-026-checksums-final.log: OK
+./repository/clean-d-status.txt: OK
+./repository/coverage-impact-decision.json: OK
+./repository/execution-subjects.txt: OK
+./repository/npm-ci.exit-code: OK
+./repository/npm-ci.log: OK
+./repository/npm-run-check-release-pipeline.exit-code: OK
+./repository/npm-run-check-release-pipeline.log: OK
+./repository/post-npm-ci-clean-status.txt: OK
+./repository/pre-admission-clean-status.txt: OK
+./verification/committed-release-authority-verification.json: OK
+./verification/d-to-r-name-status.txt: OK
+./verification/final-clean-status.txt: OK
+./verification/release-authority-commit-identity.txt: OK
+./verification/zero-profile-execution-counts.json: OK
+
+RESULT=PASS_INTEGRATED_AUTHORITY_CANDIDATE
+PRODUCT_TESTS_EXECUTED=0
+PROFILE_QUALIFICATION_EXECUTED=0
+MODEL_WEIGHTS_DOWNLOADED=0
+TAG_CREATED=NO
+RELEASE_CREATED=NO
+exit=0

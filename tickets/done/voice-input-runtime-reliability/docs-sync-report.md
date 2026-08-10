@@ -129,3 +129,14 @@ tag publication, published-byte verification, and the deferred target set.
 - Integrated validation: focused release checks passed 9/9 and API-REV-025 checksums passed; no heavy qualification ran.
 - Blocker: production workflow inputs below `release/admission/` are absent, and the reviewed verifier requires the committed admission's `finalMainCommit` to equal the same workflow checkout SHA. Delivery cannot truthfully fill or reinterpret that cyclic authority as a docs-only action.
 - Result: `Blocked / Design Impact`; documentation is synchronized for handoff, but hosted build/tag/publication must wait for corrected final-main admission design and review.
+
+## Delivery Round 8 — Reviewed Release Authority Integration
+
+- Refreshed base: `origin/main @ 7385b65e397e6f1b17495720281fe0b2e39de99b`; it had not advanced since the prior Delivery refresh.
+- Exact reviewed authority: `R = 71f8e7823d876b9c0914bfc7b90b143d851d4875`, with sole parent `D = 3e8474213f79b26cc7a68c4dd42d2994ebf2d42d` and exactly six protected `release/admission/` additions.
+- Integration result: `Pass`; exact `R` was merged without recreation or blob mutation. The integrated candidate is `3c091aae1a7acb12f3d021a2b0b8d49336f730e5` before this delivery-record update.
+- Authority result: all 45 `R..candidate` paths are documentation-record-only; Policy 3 is `reuse-permitted`; focused release checks pass 19/19; API-REV-026 checksums pass.
+- Long-lived docs decision: `No additional change`. README, workflow source, on-demand model documentation, supported matrix, and release notes already describe the reviewed two model-free hosts, explicit model installation, standard-hosted construction, and exact nine-asset release.
+- Ticket-local updates: DR-009, handoff status, and release/deployment status supersede the resolved DR-008 admission blocker and record the exact F/D/R authority chain.
+- Execution boundary: no product/profile/performance qualification and no model-weight download occurred in Delivery.
+- Result: `Pass / release-ready`; v1.0.0 remains absent until the maintained-main W integration and hosted publication workflow complete.
