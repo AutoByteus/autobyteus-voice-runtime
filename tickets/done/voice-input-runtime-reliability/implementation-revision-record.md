@@ -42,6 +42,7 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 | `IR-034`    | Code Reviewer / `code-review-report.md` / `CRR-052`                | `CR-F-046` / `API-F-018`                                    | `Local Fix`           | `SR-021`; `ARCH-REV-021`; `CRR-051`, `CRR-052`; `API-REV-023`; `DR-006`                                                | `Implementation Complete — Ready for Code Re-review` |
 | `IR-035`    | Code Reviewer / `code-review-report.md` / `CRR-054`                | `CR-F-047` / `API-F-019`                                    | `Local Fix`           | `SR-021`; `ARCH-REV-021`; `CRR-053`–`CRR-055`; `API-REV-024`; `DR-006`                                                 | `Implementation Complete — Ready for Code Re-review` |
 | `IR-036`    | Architecture Reviewer / `design-review-report.md` / round 22       | `DR-008` final-main admission self-reference                | `Design Impact`       | `SR-022`; `ARCH-REV-022`; prior `CRR-055`, `CRR-056`; `API-REV-025`; `DR-008`                                          | `Implementation Complete — Ready for Code Review`    |
+| `IR-037`    | Architecture Reviewer / `design-review-report.md` / round 24       | `CR-F-048`; resolved `AR-F-020`                             | `Design Impact`       | `SR-023`, `SR-024`; `ARCH-REV-023`, `ARCH-REV-024`; `CRR-057`; `API-REV-025`; `DR-008`                                 | `Implementation Complete — Ready for Code Review`    |
 
 ## Revision Entries
 
@@ -958,3 +959,29 @@ The current code and `implementation-handoff.md` are authoritative. This record 
 - Local validation and result: exact pinned-Go `npm run check:release-pipeline` passed `15/15`; exact pinned-Go full `npm run check` passed `100/100` Node, `7/7` Python plus compileall, all Go/source/evidence checks; focused final admission/result tests passed `8/8`; changed-file Prettier, active-v3 absence search, source-size assessment, and `git diff --check` passed.
 - Next recipient or routing: `code_reviewer`.
 - Remaining limitations or risks: implementation did not generate production Admission 4, invoke/stage/commit Production Admission Bundle 1, create `R`, integrate maintained-main `W`, run API/E2E, construct hosts, run provider/model/corpus/qualification work, merge, tag, publish, or modify desktop/user state. API/E2E must create the exact six-file direct-child promotion and return it through Code Review; Delivery must later verify exact `W`, closure/archive equality, and publication. x64/Linux/Windows/`auto`, alternate providers/models, desktop integration, and personal-runner release infrastructure remain out of scope.
+
+### IR-037 — Resolve source impact by exact policy specificity
+
+- Triggering role, report path, and round: Architecture Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`; round 24 / `ARCH-REV-024`, following Code Reviewer `CRR-057`.
+- Triggering finding IDs: `CR-F-048`; resolved `AR-F-020`.
+- Classification: `Design Impact`.
+- Prior authoritative result: `CRR-057` / `Fail — Design Impact`; Policy 2 made five release-policy tests aggregate-impact on the real IR-036 `F..D`, and SR-023 initially omitted its own mandatory regression fixture from the closed exception set.
+- Current authoritative result: `Implementation Complete — Ready for Code Review`.
+- Related solution revision IDs: `SR-023`, `SR-024` (`SR-024` current).
+- Related architecture-review revision IDs: `ARCH-REV-023` Fail, `ARCH-REV-024` Pass.
+- Related code-review revision IDs: `CRR-057`; current source review pending.
+- Related API/E2E revision IDs: `API-REV-025` remains the exact accepted focused authority; no new API/E2E execution occurred.
+- Related delivery revision IDs: `DR-008` remains blocked pending reviewed promotion and hosted verification.
+- Why this implementation revision is recorded: Policy 2 flattened exact and prefix matches, so the broad `tests/release/` aggregate guard overrode five reviewed release-policy/contract tests. The first Policy 3 proposal also omitted the mandatory historical regression fixture, which would have blocked its own addition. SR-024 defines one exact-before-prefix owner and a closed eight-path test/fixture exception set.
+- Approved behavior or requirement IDs affected: `BEH-007`, `BEH-013`; `R-008`, `R-014`, `R-022`–`R-024`, `R-029`; `AC-010`, `AC-025`–`AC-027`, `AC-035`. Runtime/provider/model/Protocol/archive/asset/desktop behavior is unchanged.
+- Implementation delta:
+  - Replaced active Relevant Source Closure Policy 2 with Policy 3 and updated the sole reader/check gate/test fixtures. No active v2 policy or test reader remains.
+  - Changed `classifySourcePath()` to select all exact matches when present, otherwise matching prefixes, then choose the unchanged strictest precedence only within that specificity. Unknown paths and both independently resolved rename endpoints remain fail-closed.
+  - Added exact release-only ownership for the five CRR-057 release tests/helper, removed-v2/current-v3 policy test filenames, and mandatory IR-036 fixture. Kept all other `tests/release/**` paths aggregate by prefix.
+  - Added exact aggregate protection for the four aggregate-authority producers and Focused Qualification Set 3 schema so broader release prefixes cannot weaken them.
+  - Added a frozen 213-row CRR-057 fixture with 20 release-only and 193 documentation-only rows and expected `reuse-permitted`; direct tests prove its own add/modify classification and an unlisted sibling's aggregate classification.
+  - Added focused specificity/strictness/rename/protection coverage and a committed production-shaped test that assembles Admission 4 over the actual current `F..D` using the exact five API-REV-025 subjects and retained equal host closures.
+- Changed files or areas: `contracts/release/relevant-source-closure-v3.json`, `release/source-closure.mjs`, `tests/release/relevant-source-closure-v3.test.mjs`, `tests/release/fixtures/ir-036-f-to-d-changed-paths-v1.json`, current release fixtures/check tooling, and `package.json`; source commit `3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`.
+- Local validation and result: `npm run check:release-pipeline` passed `19/19`; exact pinned-Go full `npm run check` passed source guards, `7/7` Python plus compileall, all Go/evidence checks, and `104/104` Node TAP tests. Focused Policy 3/historical/current Admission coverage, Prettier, and commit diff checks passed.
+- Next recipient or routing: `code_reviewer`.
+- Remaining limitations or risks: implementation did not create production Admission 4, promote the exact six-file direct-child `R`, run API/E2E/product qualification, build release hosts, integrate maintained main, tag, publish, or edit desktop/user state. Source Review must independently reproduce the actual current admission result before API/E2E may promote authority; any broader relevant-byte change invalidates reuse and remains fail-closed.

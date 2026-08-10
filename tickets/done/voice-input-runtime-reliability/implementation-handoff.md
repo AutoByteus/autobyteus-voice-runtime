@@ -26,6 +26,7 @@
 - Still-relevant prior review/API/Delivery records:
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-057-release-admission-policy-conflict.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
@@ -42,107 +43,105 @@
 
 ## Current Implementation Summary
 
-`IR-036` implements the reviewed SR-022 release-admission correction. Release Source Admission 4 now binds only earlier focused/admitted subjects `F/D`, the immutable source-closure policy, exact current matrix, five focused authorities, complete `F..D` classification, and equal focused/admitted Host Source Closure 1 identities. The API/E2E-only promotion controller validates those subjects and stages exactly six fixed additions without committing. At maintained-main checkout `W`, the sole verifier derives the unique direct-child promotion commit `R`, validates every protected blob and later `R`-bearing parent edge, revalidates both source ranges and checkout closures, and writes Release Admission Verification 1. Host construction and release evidence consume the verified `F/D/R/W` chain while Host Build Report 2 truthfully records only `W`. Active Admission 3 / Hosted Result 2 contracts and readers are removed; historical ticket evidence remains untouched.
+`IR-037` implements the bounded SR-024 Relevant Source Closure Policy 3 correction. Policy 2 is removed from the active tree. The sole source-impact classifier now selects exact rules before prefixes, applies unchanged strictest precedence only within the selected specificity, fails unknown paths closed, and continues resolving rename endpoints independently. The eight reviewed release-test/fixture subjects are exact release-only exceptions; every unlisted `tests/release/**` path remains aggregate-protected, as do the four aggregate producers and Focused Qualification Set schema. A frozen 213-row CRR-057 transition fixture proves IR-036's historical `F..D` classifies as 20 release-only plus 193 documentation-only rows and `reuse-permitted`. The committed production-shaped Admission 4 test independently assembles the actual current `F..D` with the exact five API-REV-025 files and equal retained host closures.
 
-- Implementation cycle: `Design Impact implementation after Delivery blocker and Architecture Pass`
+- Implementation cycle: `Design Impact rework after CRR-057, SR-024, and ARCH-REV-024`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision: `IR-036`
-- Related solution revision: `SR-022`
-- Related architecture revision: `ARCH-REV-022` Pass
-- Related code reviews: prior `CRR-055` source Pass and `CRR-056` proportional test review Not Applicable; current source review pending
-- Related API/E2E revision: `API-REV-025` Pass / 97%; repository-resident authority promotion remains pending and API/E2E-owned
-- Related Delivery revision: `DR-008` Blocked / Design Impact
-- Triggering finding: `DR-008` final-main admission self-reference and absent production authority bundle; no open architecture finding
-- Source commit: `8111f3fe27f2d551676fd891f1f98ac2615da526`
+- Current implementation revision: `IR-037`
+- Related solution revision: `SR-024`
+- Related architecture revision: `ARCH-REV-024` Pass; `AR-F-020` resolved
+- Related code review: `CRR-057` Design Impact / `CR-F-048`; current source review pending
+- Related API/E2E revision: `API-REV-025` remains the exact accepted focused authority; no new API/E2E execution occurred
+- Related Delivery revision: `DR-008` remains blocked pending the separately gated admission promotion/release chain
+- Source commit: `3e8474213f79b26cc7a68c4dd42d2994ebf2d42d`
 - Result: `Implementation Complete — Ready for Code Review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior / Requirements                                                             | Approved Change / Preserved Outcome                                                                                                                                                    | Implemented Production Path / Key Files                                                                                                                                                                 | Result / Notes                                                                                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BEH-007`; `R-014`, `R-022`–`R-024`, `R-029`; `AC-010`, `AC-022`, `AC-025`–`AC-027` | Replace the self-referential admission with acyclic `F -> D -> R -> W`; API/E2E alone promotes the six fixed authority files.                                                          | `release/source-closure.mjs`; `release/release-admission-contract.mjs`; `release/promote-release-authority.mjs`; Admission 4 schema.                                                                    | Admission names no `R`, `W`, own digest, containing commit, or later result. Promotion requires clean `HEAD == D`, accepted five-file checksum authority, absent destinations, and exact six staged `A` rows. It does not commit or appear in Delivery workflow.                                                                                                |
-| `BEH-013`; `R-024`, `R-029`; `AC-010`, `AC-025`, `AC-035`                           | At maintained-main `W`, independently derive unique one-parent/direct-child `R`, protect exact authority history, classify `F..D` and `R..W`, and compare `W` closures.                | `release/verify-release-source-admission.mjs`; Release Admission Verification 1 schema; `.github/workflows/release-voice-runtime.yml`.                                                                  | The verifier accepts no caller-supplied `R`, requires clean `HEAD == origin/main == W`, exact six-add `D..R`, immutable protected blobs on every later `R`-bearing parent edge, Admission-bound policy/matrix/authority identities, reusable ranges, and equal ordered closures. Integration merges may introduce unchanged `R` blobs only to a non-`R` parent. |
-| `BEH-004`, `BEH-007`, `BEH-013`; `R-005`, `R-014`, `R-029`; `AC-035`                | Host Build Report 2 names the actual build checkout `W`; Hosted Result 3 binds Admission 4, Verification 1, `F/D/R/W`, closure equality, and exact focused-to-hosted archive equality. | `release/run-host-construction.mjs`; `release/hosted-host-construction-result.mjs`; Hosted Result 3 schema; `release/model-manifest-admission.mjs`; `release/evidence/assemble.mjs`; Evidence 4 schema. | Verification 1 is completed after closure derivation and before either host build. Result 3 requires exact two-profile lineage/closure/archive bindings and zero product/model/provider execution counts. The public nine-asset set and model-free host behavior remain unchanged.                                                                              |
-| Clean-cut current contract                                                          | Remove active Admission 3 / Hosted Result 2 readers and self-binding checks while preserving historical API-local evidence.                                                            | Removed v3/v2 schemas; current workflow, consumers, schema gate, and tests use Admission 4 / Verification 1 / Result 3 only.                                                                            | No compatibility reader or dual schema remains outside explicit absence regressions. `tickets/**` historical evidence was not modified.                                                                                                                                                                                                                         |
+| Behavior / Requirements                                    | Approved Change / Preserved Outcome                                                                                                                                                    | Implemented Production Path / Key Files                                                                                                           | Result / Notes                                                                                                                                                                                                                                                                                                                                                   |
+| ---------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEH-007`; `R-008`, `R-014`, `R-022`–`R-024`; `AC-025`     | Replace Policy 2 with one Policy 3 owner that applies exact-before-prefix specificity, unchanged strictest precedence, independent rename endpoints, and unknown fail-closed behavior. | `contracts/release/relevant-source-closure-v3.json`; `release/source-closure.mjs`                                                                 | `classifySourcePath()` ignores prefix matches whenever an exact rule exists; multiple rules at the selected specificity still choose the strictest result. Active readers and tooling use only Policy 3.                                                                                                                                                         |
+| `BEH-007`; `R-024`; `AC-025`                               | Exempt only the eight reviewed release-policy test/fixture subjects while keeping the broad release-test default and genuine aggregate authorities protected.                          | Policy 3 exact rules; `tests/release/relevant-source-closure-v3.test.mjs`                                                                         | All eight reviewed subjects classify release-only. An unlisted sibling fixture and any other unlisted release test classify aggregate. Four aggregate producers plus Focused Qualification Set schema remain exact aggregate even below broad release-only prefixes.                                                                                             |
+| `BEH-007`, `BEH-013`; `R-024`, `R-029`; `AC-025`, `AC-035` | Prove the historical failure witness and separately exercise the real current admission path without creating production authority.                                                    | `tests/release/fixtures/ir-036-f-to-d-changed-paths-v1.json`; `tests/release/relevant-source-closure-v3.test.mjs`; existing Admission 4 assembler | The frozen 213-row inventory is byte-stable at 20 release-only / 193 documentation-only and `reuse-permitted`. On committed source, the production assembler accepts actual `F=b88c230...` to current `D=3e84742...` with the exact five API-REV-025 subjects and both retained closure identities. No Admission 4 production file or promotion `R` was created. |
+| Preserved release/runtime authority                        | Keep acyclic Admission 4 / Verification 1 / Hosted Result 3, exact six-add promotion, host/model/runtime/archive behavior, and exact nine-asset design unchanged.                      | Existing release pipeline owners and schemas; `tooling/check-release-pipeline.mjs`; focused release fixtures                                      | Only policy, classifier, release-policy fixtures/tests, current policy references, and the release check script changed. No provider, model, runtime, archive, workflow, asset, qualification, desktop, or user-state behavior changed.                                                                                                                          |
 
 ## Key Files Or Areas
 
-- Shared authority contract and Git identities: `release/release-admission-contract.mjs`
-- Admission assembly/source classification: `release/source-closure.mjs`
-- API/E2E-only fixed promotion staging: `release/promote-release-authority.mjs`
-- Hosted maintained-main verifier: `release/verify-release-source-admission.mjs`
-- Host build/result/evidence consumers: `release/run-host-construction.mjs`, `release/hosted-host-construction-result.mjs`, `release/model-manifest-admission.mjs`, `release/evidence/assemble.mjs`
-- Current schemas: `contracts/release/release-source-admission-v4.schema.json`, `release-admission-verification-v1.schema.json`, `hosted-host-construction-result-v3.schema.json`
-- Durable focused coverage: `tests/release/release-admission-fixture.mjs`, `release-source-admission-verifier.test.mjs`, `host-construction-result.test.mjs`, `host-release-contracts.test.mjs`
+- Current source-impact authority: `contracts/release/relevant-source-closure-v3.json`
+- Sole classifier/admission owner: `release/source-closure.mjs`
+- Frozen real-transition witness: `tests/release/fixtures/ir-036-f-to-d-changed-paths-v1.json`
+- Specificity, protection, rename, historical, and actual-current coverage: `tests/release/relevant-source-closure-v3.test.mjs`
+- Updated current-policy consumers/fixtures: `tests/release/release-admission-fixture.mjs`, `tests/release/release-source-admission-verifier.test.mjs`, `tests/release/host-construction-result.test.mjs`
+- Active release gate: `tooling/check-release-pipeline.mjs`, `package.json`
 
 ## Important Assumptions
 
-- API/E2E will produce Admission 4 at exact reviewed `D`, invoke the checked-in promoter with the exact accepted API-REV-025 five-file/checksum authority, and commit only the six staged files as direct-child `R`.
-- Delivery will integrate reviewed `R` to maintained main and dispatch only at exact clean `W == origin/main == GITHUB_SHA`.
-- Host Source Closure 1 remains content-derived; the verifier derives both checkout closures from hydrated, authenticated host inputs before any host build.
+- The five accepted API-REV-025 focused authority files and two retained prebuild Host Source Closure 1 files remain immutable inputs; API/E2E owns any production Admission 4 assembly and six-file promotion.
+- The exact `package.json` release classification is preserved from Policy 2 so the current release test-script rename does not manufacture product impact; the newly reviewed exception set itself remains the closed eight-path test/fixture list.
+- Source Review will independently rerun the actual current `F..D` assembler rather than treating the frozen 213-row regression as current admission authority.
 
 ## Known Risks
 
-- The actual six production authority files do not yet exist; creating and committing them is deliberately downstream API/E2E work, not this implementation round.
-- No real `R`/maintained-main `W` release workflow was run here. Focused real-Git fixtures exercise direct-child, later-doc, archive-impact, mutation/revert, merge, policy, closure, checksum, and extra-path cases, but downstream must validate the exact repository subjects.
-- Hosted archive equality, publication, and downloaded-byte verification remain unopened downstream gates. Runtime/provider/model/archive content and exact nine assets were not changed.
+- No repository-resident Admission 4 or direct-child promotion `R` exists yet. A local production-shaped test proves reachability only; it is not API/E2E authority or release evidence.
+- Any later unlisted release test, aggregate producer/schema change, host/runtime/input change, or unknown path remains fail-closed and may require renewed downstream evidence.
+- Hosted construction, whole-archive equality, promotion, maintained-main verification, tagging, publication, and downloaded-byte verification remain unopened downstream gates.
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: `Release-authority design correction after DR-008`
-- Reviewed root-cause classification: `Boundary/ownership issue and self-referential immutable-authority graph`
-- Reviewed refactor decision: `Refactor Needed Now — bounded release admission/promotion/verifier replacement`
+- Reviewed change posture: `Bounded release source-impact policy correction`
+- Reviewed root-cause classification: `Duplicated Policy Or Coordination`
+- Reviewed refactor decision: `Refactor Needed Now — clean Policy 2 replacement with one specificity-aware Policy 3 owner`
 - Implementation matched the reviewed assessment: `Yes`
-- If challenged, routed as Design Impact: `N/A`
-- Evidence / notes: one shared exact authority contract owns paths and identities; Admission, API/E2E promotion, hosted verification, construction, and evidence depend in one direction without caller-supplied promotion identity or Delivery writer.
+- If challenged, routed as Design Impact: `N/A — SR-024 and ARCH-REV-024 resolved CR-F-048/AR-F-020 before implementation`
+- Evidence / notes: policy bytes remain the sole classification authority; no caller override, folder-wide exception, second parser, or bypass was introduced.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`
 - Legacy old behavior retained in scope: `No`
-- Obsolete paths removed: `Yes` — active Admission 3 and Hosted Result 2 schemas/readers/self-binding checks are removed; historical ticket evidence is preserved only as history.
+- Obsolete paths removed: `Yes` — active Policy 2 JSON and v2 test are removed; the v2 test filename remains only as an exact classification subject for its deletion and an explicit absence check.
 - Shared structures remain tight: `Yes`
 - Canonical shared design guidance reapplied: `Yes`
-- Changed source size guardrails: `Yes` — every changed implementation file is below 500 effective lines. The >220-line pressure signal was addressed by separating the shared admission contract, API/E2E promotion controller, hosted verifier, and existing orchestration owners; the largest changed implementation owner is the cohesive verifier at 417 effective lines.
+- Changed source size guardrails: `Yes` — `release/source-closure.mjs` remains 269 effective non-empty lines; no changed source implementation file exceeds 500 lines or crosses the >220 changed-line pressure threshold.
 
 ## Persisted Data Transition Check
 
 - Approved decision: `Not Affected`
-- Design reference: SR-022 clean-cut current admission contract; no production `release/admission/` bundle yet exists.
+- Design reference: SR-024 changes source-impact policy and frozen test evidence only.
 - Implementation follows the reviewed decision: `Yes`
-- Evidence: current readers accept only Admission 4 / Verification 1 / Result 3. Historical API-local v3 ticket evidence remains immutable and is not migrated, copied, or treated as production authority.
+- Evidence: no runtime store, model, host archive, release authority, historical API evidence, tag, or published asset was migrated or rewritten.
 - Deviation: `None`
 
 ## Environment Or Dependency Notes
 
 - Repository: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
 - Branch: `codex/voice-runtime-qualified-recovery`
-- Exact Go used for implementation checks: `/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go` (`go1.26.5 darwin/arm64`)
+- Exact Go used for the full implementation gate: `/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go` (`go1.26.5 darwin/arm64`)
 - No dependency or lockfile change was introduced.
+- An initial unqualified `npm run check` stopped at the repository's intentional `VOICE_GO` guard; the required pinned-Go invocation then passed in full.
 
 ## Local Implementation Checks Run
 
-- `VOICE_GO=/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go npm run check:release-pipeline` — Pass, `15/15` Node TAP tests.
-- `VOICE_GO=/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go npm run check` — Pass: source guards; `7/7` Python plus compileall; all Go and evidence checks; `100/100` Node TAP tests.
-- Focused real-Git admission/result tests — Pass: `8/8` after final fixture updates (included in the release gate).
-- Prettier over every changed workflow/schema/source/test file — Pass.
-- `git diff --check` — Pass.
-- Active-tree search found no Admission 3 / Hosted Result 2 reader; remaining names occur only in explicit obsolete-path assertions.
+- `npm run check:release-pipeline` — Pass, `19/19` Node TAP tests, including the committed actual-current Admission 4 assembler.
+- `VOICE_GO=/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go npm run check` — Pass: source guards; `7/7` Python plus compileall; all Go and evidence checks; `104/104` Node TAP tests with no skips or failures.
+- Focused Policy 3 tests — Pass: exact-before-prefix, same-specificity strictest, A/M/D/R plus rename endpoint strictness, fixture add/modify, unlisted sibling aggregate protection, the full 213-row historical regression, and current production-shaped Admission 4 assembly.
+- Prettier over every changed JSON/source/test file — Pass.
+- `git show --check 3e8474213f79b26cc7a68c4dd42d2994ebf2d42d` — Pass.
+- Active-tree search found Policy 2 only in its deliberate removal-classification rule and obsolete-path assertions.
 
 These are implementation-scoped source/contract/unit checks, not API/E2E or release sign-off.
 
 ## Frontend Rendered-Result Check
 
-Not Applicable — the change is runtime release-authority source, schema, workflow, and tests only; no rendered frontend or desktop source changed.
+Not Applicable — this is a runtime release-policy/source-test correction; no rendered frontend or desktop source changed.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-1. At reviewed `D`, generate Admission 4 from exact API-REV-025 focused authorities and independently recomputed admitted Host Source Closure 1 subjects; confirm it contains no `R/W` or self/later identities.
-2. Invoke only `release/promote-release-authority.mjs`; confirm the index contains exactly the six fixed additions, commit direct-child `R`, and return that repository-resident authority change through Code Review.
-3. After maintained-main integration, verify clean `W == origin/main == GITHUB_SHA`, unique direct-child `R`, exact protected history, reusable `R..W` classification, and equal checkout closures; retain Verification 1.
-4. Build both hosted host archives with Host Build Report 2 `sourceCommit=W`; require exact whole-file equality to Branch Projection 3 before the unchanged nine-asset pretag/publication chain.
-5. Negative repository fixtures should continue covering a merge `R`, second parent, missing/extra/modified member, seventh path, protected mutation/revert, policy drift, archive-affecting later source, closure drift, and caller-supplied promotion identity.
+1. Independently run the production Admission 4 assembler at the reviewed current source against exact `F=b88c230...`, the five API-REV-025 focused files, and both retained Host Source Closure 1 identities; require `reuse-permitted` and exact Policy 3 identity.
+2. Recompute the complete actual current `F..D` A/M/D/R inventory; confirm the eight reviewed test/fixture subjects are release-only, all unlisted release tests are aggregate, and all five genuine aggregate subjects remain aggregate.
+3. Only after Source Pass, API/E2E may create production Admission 4 and the exact six-add direct-child promotion `R`; that repository-resident authority change must return through Code Review.
+4. Delivery may later integrate reviewed `R` and independently verify `F/D/R/W`, protected bytes, Host Source Closure 1, exact host archive equality, and the unchanged nine-asset chain.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-Required and owned downstream. API/E2E must investigate/execute the exact six-file authority promotion and return repository-resident durable authority through Code Review. Delivery may proceed only after that review and a passing maintained-main `W` verifier/build/archive-equality gate. This implementation did not create Admission 4 production evidence, invoke the promoter, commit `R`, build hosts, run providers/models/corpora/qualification, merge, tag, publish, or modify desktop/user state.
+Required and owned downstream. API/E2E remains paused until Source Pass. This implementation did not create or promote production admission authority, start providers, download models, run corpora/profile/performance qualification, build release hosts, merge, tag, publish, or modify desktop/user state.
