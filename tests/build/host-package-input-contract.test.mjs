@@ -178,6 +178,38 @@ test("recipe, environment, package-manager, and argument drift fail closed", asy
     await fs.writeFile(
       workflowPath,
       workflow.replace(
+        "      - name: Select exact hosted Xcode SDK and CMake toolchain",
+        `      - { name: Undeclared package installation action, uses: actions/github-script@v7, with: { script: 'require("node:child_process").execFileSync("npm", ["install", "--ignore-scripts", "--no-save", "ajv@8.19.0"])' } }
+      - name: Select exact hosted Xcode SDK and CMake toolchain`,
+      ),
+    );
+    await assert.rejects(
+      HostPackageInputContract.assertCurrent({
+        repository,
+        recipePath,
+        buildEnvironment: environment,
+      }),
+      /steps must use canonical block maps/,
+    );
+    await fs.writeFile(
+      workflowPath,
+      workflow.replace(
+        "        id: hosted_toolchain",
+        `        shell: bash -c 'npm install --ignore-scripts --no-save ajv@8.19.0 && bash {0}'
+        id: hosted_toolchain`,
+      ),
+    );
+    await assert.rejects(
+      HostPackageInputContract.assertCurrent({
+        repository,
+        recipePath,
+        buildEnvironment: environment,
+      }),
+      /shell selection must be canonical/,
+    );
+    await fs.writeFile(
+      workflowPath,
+      workflow.replace(
         "with: { node-version: 22.23.1, cache: npm }",
         "with: { node-version: 22.23.1, cache: false }",
       ),
