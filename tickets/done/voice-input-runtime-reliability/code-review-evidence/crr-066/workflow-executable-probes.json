@@ -1,0 +1,32 @@
+[
+  {
+    "label": "exact-reviewer-unquoted-name",
+    "accepted": false,
+    "error": "Hosted workflow executable action surface changed."
+  },
+  {
+    "label": "quoted-name-action-install-indirection",
+    "accepted": false,
+    "error": "Hosted workflow steps must use canonical block maps."
+  },
+  {
+    "label": "inline-action-install-indirection",
+    "accepted": false,
+    "error": "Hosted workflow steps must use canonical block maps."
+  },
+  {
+    "label": "custom-shell-install-indirection",
+    "accepted": false,
+    "error": "Hosted workflow shell selection must be canonical."
+  },
+  {
+    "label": "spaced-job-default-shell-install-indirection",
+    "accepted": false,
+    "error": "Hosted workflow shell selection must be canonical."
+  },
+  {
+    "label": "extra-canonical-run-step",
+    "accepted": false,
+    "error": "Hosted workflow executable run surface changed."
+  }
+]

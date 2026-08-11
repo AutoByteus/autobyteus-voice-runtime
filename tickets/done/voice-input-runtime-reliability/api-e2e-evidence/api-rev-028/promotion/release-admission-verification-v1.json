@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "release-admission-verification",
+  "releaseSourceAdmission": {
+    "fileName": "v1.0.0-release-source-admission-v4.json",
+    "sizeBytes": 4607,
+    "sha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7"
+  },
+  "focusedSourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "admittedSourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "authorityPromotionCommit": "ef0874577b2d96a8e2afc59b2334a484a9699cda",
+  "workflowCheckoutCommit": "ef0874577b2d96a8e2afc59b2334a484a9699cda",
+  "sourceClosurePolicy": {
+    "fileName": "relevant-source-closure-v3.json",
+    "sizeBytes": 3129,
+    "sha256": "c7cd2e5ede4a96f6990145a4719912e6dd7dc97fa85d157ea0f68ab37af1e676"
+  },
+  "protectedMembers": [
+    {
+      "fileName": "release/admission/v1.0.0-branch-catalog-projection-v3.json",
+      "sizeBytes": 2401,
+      "sha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-branch-catalog-projection-verification-v3.json",
+      "sizeBytes": 370,
+      "sha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-chinese-profile-execution-closure-v2.json",
+      "sizeBytes": 1426,
+      "sha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-english-profile-execution-closure-v2.json",
+      "sizeBytes": 1454,
+      "sha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-focused-qualification-set-v3.json",
+      "sizeBytes": 2215,
+      "sha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-release-source-admission-v4.json",
+      "sizeBytes": 4607,
+      "sha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7"
+    }
+  ],
+  "admittedRange": {
+    "changedPaths": [],
+    "changedPathsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "decision": "reuse-permitted"
+  },
+  "postPromotionRange": {
+    "changedPaths": [],
+    "changedPathsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "decision": "reuse-permitted"
+  },
+  "profiles": [
+    {
+      "profileId": "english",
+      "focusedHostSourceClosure": {
+        "sizeBytes": 43398,
+        "sha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+      },
+      "admittedHostSourceClosure": {
+        "sizeBytes": 43398,
+        "sha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+      },
+      "workflowHostSourceClosure": {
+        "sizeBytes": 43398,
+        "sha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+      },
+      "focusedToAdmittedEqual": true,
+      "admittedToWorkflowEqual": true
+    },
+    {
+      "profileId": "chinese",
+      "focusedHostSourceClosure": {
+        "sizeBytes": 704820,
+        "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+      },
+      "admittedHostSourceClosure": {
+        "sizeBytes": 704820,
+        "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+      },
+      "workflowHostSourceClosure": {
+        "sizeBytes": 704820,
+        "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+      },
+      "focusedToAdmittedEqual": true,
+      "admittedToWorkflowEqual": true
+    }
+  ],
+  "checks": {
+    "focusedAncestorOfAdmitted": true,
+    "admittedAncestorOfPromotion": true,
+    "promotionSingleParent": true,
+    "promotionDirectChild": true,
+    "promotionExactAdditions": true,
+    "promotionUnique": true,
+    "promotionAncestorOfWorkflow": true,
+    "workflowCheckoutVerified": true,
+    "maintainedMainVerified": true,
+    "protectedMembersImmutable": true
+  },
+  "decision": "pass"
+}

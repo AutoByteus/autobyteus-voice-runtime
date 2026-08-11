@@ -69,6 +69,15 @@ The latest `code-review-report.md` remains authoritative. This record retains th
 | `CRR-061`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`                        | Implementation Review round 61 / `IR-038` after `DR-010`               | `CRR-059 Pass`; `CRR-060 N/A`; `DR-010` Fail | `Pass`                      | No new finding; hosted tool selection and early audit correction pass        |
 | `CRR-062`   | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md`                | Proportional Test Review / successful `API-REV-027`                    | `CRR-061 Pass`                               | `Not Applicable`            | None — no durable API/E2E test change                                        |
 
+| `CRR-063` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 63 / `IR-039` after `DR-012` | `CRR-061 Pass`; `CRR-062 N/A`; `DR-012` Fail | `Fail — Local Fix` | New `CR-F-049`, `CR-F-050` |
+
+| `CRR-064` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 64 / `IR-040` rework | `CRR-063 Fail — Local Fix` | `Fail — Local Fix` | Resolved `CR-F-049`; `CR-F-050` partially resolved / remains open |
+| `CRR-065` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 65 / `IR-041` rework | `CRR-064 Fail — Local Fix` | `Fail — Local Fix` | `CR-F-049` resolved/unchanged; `CR-F-050` improved but remains open |
+| `CRR-066` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` | Implementation Review round 66 / `IR-042` rework | `CRR-065 Fail — Local Fix` | `Pass` | Resolved `CR-F-050`; `CR-F-049` remains resolved |
+
+| `CRR-067` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md` | Post-API durable authority review / exact `R` from `API-REV-028` | `CRR-066 Pass`; `API-REV-028 Pass` | `Pass` | No new finding; exact renewed six-file production authority reviewed |
+| `CRR-068` | `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md` | Proportional Test Review / successful `API-REV-028` | `CRR-067 Pass` | `Not Applicable` | None — no durable API/E2E test change |
+
 ## Revision Entries
 
 ### CRR-001 — Initial runtime-provider source review finds client and release-proof gaps
@@ -1841,3 +1850,167 @@ None.
 - Material score or classification changes: no implementation scorecard applies. The proportional test-code result is `Not Applicable`; API/E2E remains `Pass / 99%` and the exact source review remains Pass.
 - Recommended recipient: `delivery_engineer`
 - Remaining risks or uncertainty: Delivery alone must refresh and integrate the exact reviewed state, retry the production standard-hosted workflow, preserve fail-closed release audit evidence, and complete host/archive/nine-asset equality, tag/release/publication, downloaded-byte verification, and quarantine handling as applicable. This test-review result does not authorize product/profile requalification.
+
+### CRR-063 — Host package input correction fails source review
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `63`
+- Triggering role, report path, and finding IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`; `IR-039`; new `CR-F-049`, `CR-F-050`; Delivery trigger `DR-012` / run `31425696064`
+- Relevant solution revision IDs: current `SR-025`; preserved `SR-024`, `SR-022`, `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-025 Pass`; preserved `ARCH-REV-024`, `ARCH-REV-022`, `ARCH-REV-021`
+- Relevant implementation revision IDs: `IR-039`; source `d334c474c264bb59594f5c03ef6246d71d87b707`; artifact/reviewed HEAD `d51536be29f72a486000a52ce0d7054da798e045`; base `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`
+- Relevant API/E2E revision IDs: historical `API-REV-025 Pass / 97%`; preserved hosted proof `API-REV-027 Pass / 99%`; no IR-039 API/E2E execution authorized
+- Relevant delivery revision IDs: `DR-012 Fail — Design Impact`; production run `31425696064`
+- Prior authoritative result: implementation `CRR-061 Pass`; proportional test review `CRR-062 Not Applicable`; subsequent `DR-012` failed at the over-broad raw package-manifest closure
+- Current authoritative result: `Fail — Local Fix -> implementation_engineer`
+- What changed in the review result and why: IR-039 correctly removes raw package façade bytes from Host Source Closure, binds manifest/lock/recipe/environment/arguments through one semantic owner, and removes the exact six stale active API-REV-025 authorities. Two bounded gaps prevent Pass. First, the production-shaped current admission test still expects historical API-REV-025 authority to pass, while SR-025 correctly requires focused renewal; both required repository gates therefore fail. Second, the sole workflow validator accepts another `npm install` while still emitting the unchanged `npm ci --ignore-scripts`/lock projection, so actual installed validation/build state can escape the closure-bound semantic authority on the confirmed maintained-main release path.
+
+#### Prior Finding Resolution
+
+| Finding ID / Boundary                                  | Prior Status                                     | Current Status                       | Related Revision References                             | Verification Evidence                                                                                                                                                                             |
+| ------------------------------------------------------ | ------------------------------------------------ | ------------------------------------ | ------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `DR-012` raw-manifest closure overreach                | Open Design Impact; resolved at design by SR-025 | Partially resolved in implementation | `DR-012`, `SR-025`, `ARCH-REV-025`, `IR-039`, `CRR-063` | Raw `package.json` is removed from closure, semantic projection is bound, and exact stale production authorities are removed. The semantic workflow boundary remains incomplete under `CR-F-050`. |
+| `CR-F-048` / actual source-admission Policy 3 conflict | Resolved                                         | Resolved / unchanged                 | `SR-024`, `IR-037`, `CRR-057`, `CRR-058`, `IR-039`      | Policy 3 and its frozen 213-row transition remain unchanged; IR-039 intentionally requires focused renewal because host-closure/build source changed.                                             |
+| `CRR-061` / `API-REV-027` hosted toolchain boundary    | Passed                                           | Passed / unchanged                   | `IR-038`, `CRR-061`, `API-REV-027`, `IR-039`            | IR-039 changes no Xcode/SDK/CMake selector or hosted audit owner; exact hosted proof remains applicable before the corrected construction boundary.                                               |
+| Six stale API-REV-025 active authority files           | Required removal                                 | Resolved                             | `SR-025`, `ARCH-REV-025`, `IR-039`, `CRR-063`           | All six `release/admission/v1.0.0-*` files are deleted together; immutable API-REV-025 ticket evidence remains.                                                                                   |
+
+- New or remaining finding IDs: `CR-F-049`, `CR-F-050`
+- Material score or classification changes: source result is `Fail — Local Fix`; `9.0/10` (`89.6/100`) with ownership, API/E2E readiness, runtime fidelity, and cleanup below the clean-pass threshold. The IR-039 claimed `22/22` and `112/112` results are not reproducible: reviewer execution is `21/22` and `111/112`.
+- Recommended recipient: `implementation_engineer`
+- Remaining risks or uncertainty: API/E2E remains paused. After bounded fixes and source Pass, API/E2E must create new focused host/archive/Execution Closure/QSet/Projection/Admission authority and exact-six promotion. Any Execution Closure mismatch still routes to full qualification. No release, tag, publication, desktop, or user-state action is authorized.
+
+### CRR-064 — Direct package commands close, executable action indirection remains
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `64`
+- Triggering role, report path, and finding IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`; `IR-040`; prior `CR-F-049`, `CR-F-050`
+- Relevant solution revision IDs: current `SR-025`; preserved `SR-024`, `SR-022`, `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-025 Pass`; preserved `ARCH-REV-024`, `ARCH-REV-022`, `ARCH-REV-021`
+- Relevant implementation revision IDs: `IR-040`; source `a66a7eeb604a94445070b7573abe5a5d6238efc1`; artifact/reviewed HEAD `908ebcb8505f3e3330ae9d5d15847deb616ffe63`; prior IR-039 source `d334c474c264bb59594f5c03ef6246d71d87b707`; base `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`
+- Relevant API/E2E revision IDs: historical `API-REV-025 Pass / 97%`; preserved `API-REV-027 Pass / 99%`; no IR-040 API/E2E execution authorized
+- Relevant delivery revision IDs: `DR-012 Fail — Design Impact`; production run `31425696064`
+- Prior authoritative result: `CRR-063 Fail — Local Fix -> implementation_engineer`
+- Current authoritative result: `Fail — Local Fix -> implementation_engineer`
+- What changed in the review result and why: IR-040 resolves the stale current Admission 4 assertion, derives the package projection from the exact admitted `npm ci --ignore-scripts` command, rejects direct second/altered/alternate manager commands, and restores all required gates. The remaining semantic owner enumerates only workflow `run:` scalars. Policy 3 permits workflow-only `R..W` changes, while GitHub executes both `run:` and `uses:` steps. A production-shaped preconstruction `actions/github-script` step can perform the same undeclared install and is accepted with the unchanged projection. CR-F-050 therefore remains open at an equivalent executable workflow surface.
+
+#### Prior Finding Resolution
+
+| Finding ID / Boundary                                  | Prior Status                  | Current Status                                                              | Related Revision References                                       | Verification Evidence                                                                                                                                                                           |
+| ------------------------------------------------------ | ----------------------------- | --------------------------------------------------------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CR-F-049` stale API-REV-025/current-source acceptance | Open / Local Fix              | Resolved                                                                    | `CRR-063`, `IR-040`, `CRR-064`                                    | Current test expects/writes `focused-qualification-required`, retains equal historical profiles, asserts current contract source is focused-impact, and required gates pass `22/22`, `112/112`. |
+| `CR-F-050` package-manager semantic authority          | Open / Local Fix              | Partially resolved; remains open                                            | `CRR-063`, `IR-040`, `CRR-064`                                    | Direct reviewer second install, npm script, altered arguments, and alternate manager reject; action-based executable install indirection is accepted with unchanged projection.                 |
+| `DR-012` raw-manifest closure overreach                | Partially resolved at CRR-063 | Raw overreach resolved; semantic correction still incomplete under CR-F-050 | `DR-012`, `SR-025`, `ARCH-REV-025`, `IR-039`, `IR-040`, `CRR-064` | Raw package bytes remain excluded correctly and current source requires focused renewal; sole package-input authority still misses executable action indirection.                               |
+| Six stale API-REV-025 active authority files           | Resolved                      | Resolved / unchanged                                                        | `IR-039`, `CRR-063`, `IR-040`                                     | Active files remain absent; historical evidence remains immutable.                                                                                                                              |
+| `CRR-061` / `API-REV-027` hosted tool boundary         | Passed                        | Passed / unchanged                                                          | `IR-038`, `CRR-061`, `API-REV-027`, `IR-040`                      | No tool selector/audit identity changed.                                                                                                                                                        |
+
+- New or remaining finding IDs: remaining `CR-F-050`; no new finding ID
+- Material score or classification changes: overall rises from `89.6/100` to `92.6/100`; cleanup and current admission readiness recover, but ownership/API-readiness/runtime-fidelity remain below clean Pass because the same package-install authority finding is incomplete. Required reviewer gates pass `18/18`, `22/22`, and full `112/112` Node plus `7/7` Python/all Go/source/evidence.
+- Recommended recipient: `implementation_engineer`
+- Remaining risks or uncertainty: API/E2E remains paused. The contract is 461 effective lines and the correction must stay below 500 or use one cohesive private closure-bound helper. After source Pass, API/E2E owns focused archive/evidence renewal and exact-six promotion; no release, tag, publication, desktop, or user-state action is authorized.
+
+### CRR-065 — Canonical action closure improves, supported executable forms remain
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `65`
+- Triggering role, report path, and finding IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`; `IR-041`; remaining `CR-F-050`; `CR-F-049` resolved
+- Relevant solution revision IDs: current `SR-025`; preserved `SR-024`, `SR-022`, `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-025 Pass`; preserved `ARCH-REV-024`, `ARCH-REV-022`, `ARCH-REV-021`
+- Relevant implementation revision IDs: `IR-041`; source `447d34148500ef56aad94a62da215e7f3066e2b6`; artifact/reviewed HEAD `847b5fa726017078219533512c6188559c31eebd`; prior IR-040 source `a66a7eeb604a94445070b7573abe5a5d6238efc1`; base `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`
+- Relevant API/E2E revision IDs: historical `API-REV-025 Pass / 97%`; preserved `API-REV-027 Pass / 99%`; no IR-041 API/E2E execution authorized
+- Relevant delivery revision IDs: `DR-012 Fail — Design Impact`; production run `31425696064`
+- Prior authoritative result: `CRR-064 Fail — Local Fix -> implementation_engineer`
+- Current authoritative result: `Fail — Local Fix -> implementation_engineer`
+- What changed in the review result and why: IR-041 extracts one cohesive closure-bound private helper, preserves the sole public Host Package Input Contract owner, closes the exact canonical block-style action negative, admits only the four current block-style actions, and reduces the public contract to 413 effective lines. The same helper recognizes action steps only through one canonical start-line form and run bodies only through `run:` scalars. A valid YAML flow-style version of the same `actions/github-script@v7` install action and a supported custom-shell install both pass `actionlint`, are accepted by `assertCurrent()`, and retain the unchanged `npm ci --ignore-scripts` projection. The same `CR-F-050` authority gap therefore remains.
+
+#### Prior Finding Resolution
+
+| Finding ID / Boundary                                  | Prior Status                                 | Current Status                                                        | Related Revision References                                      | Verification Evidence                                                                                                                                  |
+| ------------------------------------------------------ | -------------------------------------------- | --------------------------------------------------------------------- | ---------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CR-F-049` stale API-REV-025/current-source acceptance | Resolved                                     | Resolved / unchanged                                                  | `CRR-063`, `IR-040`, `CRR-064`, `IR-041`, `CRR-065`              | Current Admission 4 regression still requires/writes `focused-qualification-required`; required gates pass.                                            |
+| `CR-F-050` package-manager semantic authority          | Partially resolved; open                     | Improved but remains open                                             | `CRR-063`, `CRR-064`, `IR-041`, `CRR-065`                        | Canonical block action rejects; equivalent flow-style action and custom shell are accepted with unchanged projection.                                  |
+| Public-owner/helper structure and size pressure        | Contract at 461 lines; correction required   | Structurally resolved                                                 | `CRR-064`, `IR-041`, `CRR-065`                                   | Public facade is 413 effective lines; private helper is 176, cohesive, imported only by the facade, and bound in Host Source Closure.                  |
+| `DR-012` raw-manifest closure overreach                | Raw overreach resolved; semantics incomplete | Raw overreach remains resolved; semantics incomplete under `CR-F-050` | `DR-012`, `SR-025`, `ARCH-REV-025`, `IR-039`–`IR-041`, `CRR-065` | Raw package bytes remain excluded correctly; current source requires focused renewal; alternate executable install semantics remain outside the owner. |
+| Six stale API-REV-025 active authority files           | Resolved                                     | Resolved / unchanged                                                  | `IR-039`, `CRR-063`–`CRR-065`                                    | Active files remain absent; historical evidence remains immutable.                                                                                     |
+| `CRR-061` / `API-REV-027` hosted tool boundary         | Passed                                       | Passed / unchanged                                                    | `IR-038`, `CRR-061`, `API-REV-027`, `IR-041`                     | No tool selector/audit identity changed.                                                                                                               |
+
+- New or remaining finding IDs: remaining `CR-F-050`; no new finding ID
+- Material score or classification changes: result remains `Fail — Local Fix`; overall `92.0/100`. Structure and size improve, and required reviewer gates pass `18/18`, `22/22`, and full `112/112` Node plus `7/7` Python/all Go/source/evidence, but ownership/API-readiness/runtime-fidelity remain below clean Pass because supported executable workflow forms still escape the semantic owner.
+- Recommended recipient: `implementation_engineer`
+- Remaining risks or uncertainty: API/E2E remains paused. After Source Pass, API/E2E owns focused archive/evidence renewal and exact-six promotion. No release, tag, publication, desktop, or user-state action is authorized.
+
+### CRR-066 — Complete executable workflow admission resolves CR-F-050
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review`, round `66`
+- Triggering role, report path, and finding IDs: Implementation Engineer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`; `IR-042`; remaining `CR-F-050`; `CR-F-049` resolved
+- Relevant solution revision IDs: current `SR-025`; preserved `SR-024`, `SR-022`, `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-025 Pass`; preserved `ARCH-REV-024`, `ARCH-REV-022`, `ARCH-REV-021`
+- Relevant implementation revision IDs: `IR-042`; source `77092392ce565f887c4698a3a12f384ea41b5e02`; artifact/reviewed HEAD `7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203`; prior IR-041 source `447d34148500ef56aad94a62da215e7f3066e2b6`; base `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`
+- Relevant API/E2E revision IDs: historical `API-REV-025 Pass / 97%`; preserved `API-REV-027 Pass / 99%`; focused SR-025 renewal now authorized
+- Relevant delivery revision IDs: `DR-012 Fail — Design Impact`; production run `31425696064`
+- Prior authoritative result: `CRR-065 Fail — Local Fix -> implementation_engineer`
+- Current authoritative result: `Pass -> api_e2e_engineer`
+- What changed in the review result and why: IR-042 replaces partial line discovery with one complete canonical-step parser. Every step is a canonical block map with exactly one execution mechanism and reviewed fields; action and run surfaces are projected in order; run conditions/environment/continuation are closed; workflow/job defaults and custom shell selection reject. The exact CRR-065 flow-action/custom-shell probes now reject, as do reviewer job-default-shell and added-run probes, while metadata-only equality remains. The sole public contract/private helper/closure owner chain remains intact and all required gates pass.
+
+#### Prior Finding Resolution
+
+| Finding ID / Boundary                                  | Prior Status                                 | Current Status                    | Related Revision References                                      | Verification Evidence                                                                                                                                                                           |
+| ------------------------------------------------------ | -------------------------------------------- | --------------------------------- | ---------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `CR-F-049` stale API-REV-025/current-source acceptance | Resolved                                     | Resolved / unchanged              | `CRR-063`–`CRR-066`; `IR-040`–`IR-042`                           | Current Admission 4 regression still requires/writes `focused-qualification-required`; all required gates pass.                                                                                 |
+| `CR-F-050` package-manager semantic authority          | Improved but open                            | Resolved                          | `CRR-063`–`CRR-066`; `IR-039`–`IR-042`                           | Exact direct/block/flow/custom-shell/job-default-shell/extra-run probes fail closed; canonical metadata equality passes; public projection remains singular and helper source is closure-bound. |
+| Public-owner/helper structure and size pressure        | Structurally resolved                        | Resolved / unchanged              | `CRR-064`–`CRR-066`; `IR-041`, `IR-042`                          | Public facade is 413 effective lines; cohesive private helper is 283, below 500, imported only by the facade, and bound in Host Source Closure.                                                 |
+| `DR-012` raw-manifest closure overreach                | Raw overreach resolved; semantics incomplete | Fully resolved in reviewed source | `DR-012`, `SR-025`, `ARCH-REV-025`, `IR-039`–`IR-042`, `CRR-066` | Raw package bytes remain excluded; semantic projection is fail-closed; current source truthfully requires focused renewal.                                                                      |
+| Six stale API-REV-025 active authority files           | Resolved                                     | Resolved / unchanged              | `IR-039`, `CRR-063`–`CRR-066`                                    | Active files remain absent; historical evidence remains immutable.                                                                                                                              |
+| `CRR-061` / `API-REV-027` hosted tool boundary         | Passed                                       | Passed / unchanged                | `IR-038`, `CRR-061`, `API-REV-027`, `IR-042`                     | No tool selector/audit identity changed.                                                                                                                                                        |
+
+- New or remaining finding IDs: None
+- Material score or classification changes: result advances from `Fail — Local Fix` at `92.0/100` to `Pass` at `95.9/100`; every category meets the clean-pass threshold. Required reviewer gates pass `18/18`, `22/22`, and full `112/112` Node plus `7/7` Python/all Go/source/evidence; actionlint and all production-shaped reviewer negatives pass.
+- Recommended recipient: `api_e2e_engineer`
+- Remaining risks or uncertainty: API/E2E must create the renewed focused host/archive/Execution Closure/QSet/Projection/Admission authority and exact-six promotion; any Execution Closure mismatch routes to full qualification. Repository-resident promoted authority returns through Code Review before Delivery. No release, tag, publication, desktop, or user-state action is authorized.
+
+### CRR-067 — Renewed exact-six production authority passes full review
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
+- Review entry point and round: `Implementation Review` (post-API durable production-authority review), round `67`
+- Triggering role, report path, and finding IDs: API/E2E Engineer; `API-REV-028 Pass / 98%`; promotion `R=ef0874577b2d96a8e2afc59b2334a484a9699cda`; no finding ID
+- Relevant solution revision IDs: current `SR-025`; preserved `SR-024`, `SR-022`, `SR-021`
+- Relevant architecture-review revision IDs: `ARCH-REV-025 Pass`; preserved `ARCH-REV-024`, `ARCH-REV-022`, `ARCH-REV-021`
+- Relevant implementation revision IDs: `IR-042`; exact source/admitted commit `D=77092392ce565f887c4698a3a12f384ea41b5e02`; reviewed artifact `7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203`
+- Relevant API/E2E revision IDs: current `API-REV-028 Pass / 98%`; preserved `API-REV-025 Pass / 97%`, `API-REV-027 Pass / 99%`
+- Relevant delivery revision IDs: `DR-012`
+- Prior authoritative result: `CRR-066 Pass -> api_e2e_engineer`
+- Current authoritative result: `Pass -> proportional test-code review / delivery_engineer`
+- What changed in the review result and why: API/E2E completed the bounded focused renewal and used the sole promotion controller to commit the exact six production-authority additions. Independent review confirms one parent exactly at `D`, six ordinary additions only, byte equality to all API-REV-028 aggregate sources, acyclic Admission 4, exact cross-record identities, equal execution closures, and the approved reuse decision. The production lineage verifier passes in a maintained-main-shaped exact-`R` clone; release coverage, full pinned-Go checks, and all API checksums pass.
+
+#### Prior Finding Resolution
+
+| Finding ID / Boundary                                  | Prior Status                          | Current Status                                   | Related Revision References                                     | Verification Evidence                                                                                                                            |
+| ------------------------------------------------------ | ------------------------------------- | ------------------------------------------------ | --------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `CR-F-049` stale API-REV-025/current-source acceptance | Resolved                              | Resolved / superseded by renewed authority       | `CRR-063`–`CRR-067`; `API-REV-028`                              | Admission 4 binds exact current `F=D=77092392...`; promoted records equal API-REV-028, not historical API-REV-025.                               |
+| `CR-F-050` package-manager semantic authority          | Resolved                              | Resolved / unchanged                             | `CRR-063`–`CRR-067`; `IR-042`; `API-REV-028`                    | Current focused builds and source closures passed the reviewed package-input authority; no package/workflow source changed in `R`.               |
+| Exact-six API/E2E production-authority promotion       | Required downstream review            | Resolved / Pass                                  | `SR-025`, `ARCH-REV-025`, `CRR-066`, `API-REV-028`, `CRR-067`   | `R` has one parent `D`, six exact 100644 additions, 51 independent semantic checks, production lineage verification, and 22/22 release coverage. |
+| `DR-012` closure correction lifecycle                  | Source fixed; focused renewal pending | Focused renewal and authority promotion complete | `DR-012`, `IR-039`–`IR-042`, `CRR-063`–`CRR-067`, `API-REV-028` | Four deterministic current hosts, two installs/providers/clips, exact closures/QSet/Projection/Admission, and promotion passed.                  |
+| `CRR-061` / `API-REV-027` hosted tool boundary         | Passed                                | Passed / unchanged                               | `CRR-061`, `API-REV-027`, `CRR-067`                             | No tool selector/audit source changed; hosted proof remains applicable downstream.                                                               |
+
+- New or remaining finding IDs: None
+- Material score or classification changes: source result remains `Pass`, rising from `95.9/100` to `98.1/100` for the reviewed durable authority. Exact `R` passes 51 independent semantic checks, production lineage verification, `22/22` release coverage, full pinned-Go `112/112` Node plus `7/7` Python/all Go/source/evidence, and all 141 API-REV-028 checksums.
+- Recommended recipient: proportional API/E2E test-code review, then `delivery_engineer`
+- Remaining risks or uncertainty: Delivery must refresh/integrate exact `R`, derive actual maintained-main `W`, and execute the hosted verification/release/publication/download/quarantine chain. No alternate platform or desktop scope is implied.
+
+### CRR-068 — API-REV-028 durable test-code review is not applicable
+
+- Canonical review report updated: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md`
+- Review entry point and round: `Proportional Test Review`, round `68`
+- Triggering role, report path, and finding IDs: API/E2E Engineer; successful `API-REV-028 Pass / 98%`; no test-review finding
+- Relevant solution revision IDs: `SR-025`
+- Relevant architecture-review revision IDs: `ARCH-REV-025 Pass`
+- Relevant implementation revision IDs: `IR-042`; source `77092392ce565f887c4698a3a12f384ea41b5e02`; artifact `7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203`
+- Relevant API/E2E revision IDs: `API-REV-028`
+- Relevant delivery revision IDs: `DR-012`
+- Prior authoritative result: `CRR-067 Pass`
+- Current authoritative result: `Not Applicable -> delivery_engineer`
+- What changed in the review result and why: API/E2E added, updated, or removed no repository-resident durable test code. The only repository delta after source review was the exact-six non-test production authority already reviewed at CRR-067. Coverage investigation, execution report, revision record, Git delta, and API summary agree that the durable test delta is empty.
+- New or remaining finding IDs: None
+- Material score or classification changes: no test score applies; result is `Not Applicable`.
+- Recommended recipient: `delivery_engineer`
+- Remaining risks or uncertainty: Delivery-owned maintained-main integration, actual `W` verification, hosted release, downloaded-byte proof, and publication/quarantine evidence remain outstanding.

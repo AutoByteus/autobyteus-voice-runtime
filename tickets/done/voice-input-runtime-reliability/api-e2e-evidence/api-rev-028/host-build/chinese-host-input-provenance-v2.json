@@ -1,0 +1,246 @@
+{
+  "schemaVersion": 2,
+  "recipe": {
+    "fileName": "chinese-host-darwin-arm64-v2.json",
+    "sha256": "6ca6b45f060310a994b9fd3023123765c89ec730740ee12531df87c28061a1b3"
+  },
+  "releaseMatrix": {
+    "matrixId": "voice-runtime-darwin-arm64-v2",
+    "sha256": "32510b0dfd6493a0c6066d309c361555791b5ecc2a5b5ace72fdadc85a52eebb"
+  },
+  "package": {
+    "profileId": "chinese",
+    "languageMode": "zh",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "hostPackageId": "voice.host.chinese.funasr-native.darwin-arm64",
+    "providerId": "autobyteus.voice.funasr-nano-q8",
+    "modelId": "fun-asr-nano-gguf-q8",
+    "modelAssetId": "voice.model.chinese.fun-asr-nano-gguf-q8.v1",
+    "candidateDecision": "select"
+  },
+  "repository": {
+    "sourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+    "lockSha256": "742618f8859bb5c7c4300f2e5fec54a80afa0fe31a1392230eb24480a078680f"
+  },
+  "inputs": [
+    {
+      "kind": "git-checkout",
+      "role": "funasr-source",
+      "destination": "funasr-source",
+      "identity": "60ab5bc5658100856984773714347f1d03b73e7d",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "host-authority",
+      "destination": "host-authority/model-admission-root-v1.json",
+      "identity": "7a49df7e07d907818a02e3f5f12a58c47b5116d5e9deb2fd67caad1dcc97f0a8",
+      "licenseComponentId": "autobyteus-voice-runtime"
+    },
+    {
+      "kind": "repository-file",
+      "role": "host-authority",
+      "destination": "host-authority/model-compatibility-requirement-v1.json",
+      "identity": "217c57429dd08e1ff5e17c02c7cc95d947a07ac541e5f3220b8e6319b57675b2",
+      "licenseComponentId": "autobyteus-voice-runtime"
+    },
+    {
+      "kind": "git-checkout",
+      "role": "llama-cpp-source",
+      "destination": "llama-cpp-source",
+      "identity": "6de5862fca5eb1d6241e75b65df90257ee362f6a",
+      "licenseComponentId": "llama.cpp"
+    },
+    {
+      "kind": "repository-file",
+      "role": "package-notice",
+      "destination": "package-notices/THIRD_PARTY_NOTICES.json",
+      "identity": "f260d4b18a924eb4964154496a77efe42183d5a6908990c9c887be27e6719c50",
+      "licenseComponentId": "autobyteus-voice-runtime"
+    },
+    {
+      "kind": "repository-file",
+      "role": "package-notice",
+      "destination": "package-notices/licenses/FUNASR-LICENSE.txt",
+      "identity": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "package-notice",
+      "destination": "package-notices/licenses/GO-LICENSE.txt",
+      "identity": "911f8f5782931320f5b8d1160a76365b83aea6447ee6c04fa6d5591467db9dad",
+      "licenseComponentId": "go"
+    },
+    {
+      "kind": "repository-file",
+      "role": "package-notice",
+      "destination": "package-notices/licenses/MIT-LICENSE.txt",
+      "identity": "508a77d2e7b51d98adeed32648ad124b7b30241a8e70b2e72c99f92d8e5874d1",
+      "licenseComponentId": "llama.cpp"
+    },
+    {
+      "kind": "repository-file",
+      "role": "package-notice",
+      "destination": "package-notices/licenses/OPENCC-DATA-APACHE-2.0.txt",
+      "identity": "b534e465949558eec2597b04f5092b5e161236a68dfbfd04d547592ac3964308",
+      "licenseComponentId": "opencc-data"
+    },
+    {
+      "kind": "repository-file",
+      "role": "package-notice",
+      "destination": "package-notices/licenses/UTF8PROC-LICENSE.md",
+      "identity": "3b510150d34f248a221bb88e1d811238d6c6c18b51231822c42974c39bb07256",
+      "licenseComponentId": "utf8proc"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/contracts/normalization/twp-to-cn-v1.json",
+      "identity": "6ca27c5bb7152d9e7276075322241c8ef54821f9142c12fa62a90a8bb3bde7a4",
+      "licenseComponentId": "opencc-data"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/CMakeLists.txt",
+      "identity": "24fdb921ddcc33f6e834069f6a87c1b3e2e7e368c858b2ca122fe38d80410b35",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/audio.cpp",
+      "identity": "f02673b09cdf89e432a2131ada57f1317a1d64c8c52b3343ea449632143491ff",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/audio.h",
+      "identity": "f450bebadbfc18e24c3b97fb21b2546ecba406739748a459789aeac7a6f450d2",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/audio_features.cpp",
+      "identity": "ac62276109362a1e4588e711e622a86e1140d0157157e28872e4791f516cb27d",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/audio_features.h",
+      "identity": "c6ab4f8c1db60eb52a77590dcc531be8c0523326df55dd66a92c2a705d948b06",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/funasr_engine.cpp",
+      "identity": "e2c2db6290b98abe55440c10d90683e99ceafdc67e2e2327b3230b4713ab943d",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/funasr_engine.h",
+      "identity": "285662e176acab00b82079d79da2ef6463c8aa9345da3fabf424b094c63a638b",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/main.cpp",
+      "identity": "2c6d8f3aa819bfbee8b16058f39ce7a9ac337570a1ff7305e3dcf7fb4422e752",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/normalization.cpp",
+      "identity": "bc79d3026ab8c4ff50e96b7b060b4951a8bd8602afcd0878783d1d6f0736d622",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/normalization.h",
+      "identity": "e0eaaeb54fb51fff982488df97bde948943a4063b7b85cb85a7e9446d7f30949",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/package_integrity.cpp",
+      "identity": "be743a06e21b61b31af0efab0bd0dc797fb8ac3a17604b00c2b3836dbb130be0",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/package_integrity.h",
+      "identity": "ebf923a82874051ba813f576538be2fc920744bbb41efaad1f97cfb3a23c7123",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/package_integrity_apple.cpp",
+      "identity": "62c9e5bbf3a6efb6fd7df9c4c1fa7d94e59187ad4f1897dd1ac76e2ef16abd01",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/preparation_diagnostics.cpp",
+      "identity": "67d28aaee49a7a78b837f42a5b3138d4bcaa6222c1b78a8847e3787410090e5c",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/preparation_diagnostics.h",
+      "identity": "99f5172763b85673bd2cc0f85052fe3ef9986713ee4d080c80f8df6bc4468ff7",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/result_policy.cpp",
+      "identity": "e2ecf9b95f4a2d9c486f53d412971a3b6268a0830a31b5c46ad8706f8a8047e6",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/result_policy.h",
+      "identity": "4227a39c839964de12bc313c074cbba17da319e559e160fc10d8c6b27c6ccd70",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/session.cpp",
+      "identity": "98960e0c4abef6daa06b3606e8fd3a4871a5d84519de3807b7138b2bd4088e59",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "repository-file",
+      "role": "runtime-source",
+      "destination": "runtime-source/providers/chinese-funasr/src/session.h",
+      "identity": "26d84aa9d3a424d4ca14177d721baed19c5f8d10ce5a94407af9f70a1e1cb274",
+      "licenseComponentId": "funasr"
+    },
+    {
+      "kind": "git-checkout",
+      "role": "utf8proc-source",
+      "destination": "utf8proc-source",
+      "identity": "b5b227d68996d6e0cdafd9bf4bdb53cf5f05f339",
+      "licenseComponentId": "utf8proc"
+    }
+  ],
+  "materializedTreeSha256": "d532c9deacce9b2aa295facd13c0fd47091ef90a770b07c9fa432d2e19b46cac"
+}

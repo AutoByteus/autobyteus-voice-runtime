@@ -1,0 +1,4 @@
+646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8  /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/clips/audio/fleurs-en-1660.wav
+f24a03299a08b700c7096fdb5f9c9debaf35cad48f04d343126dcc84c9e7f865  /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/clips/audio/fleurs-zh-1660-r235.wav
+00ee547924522782a25b0f25a3d96746ae588232043c056579bc264b14603dfe  /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/expected/chinese.json
+037e9d1fc9def9bac6e465a2cc98fc1775f07962a6d544a4a6dd940a98d1bee3  /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/expected/english.json

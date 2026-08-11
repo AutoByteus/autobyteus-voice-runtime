@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-026",
+  "decision": "pass",
+  "promotionCommit": "ef0874577b2d96a8e2afc59b2334a484a9699cda",
+  "parentCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "singleParentDirectChild": true,
+  "exactSixOrdinaryFileAdditions": true,
+  "sourceToPromotedIdentities": [
+    {
+      "source": "focused-qualification-set-v3.json",
+      "promoted": "v1.0.0-focused-qualification-set-v3.json",
+      "sourceSha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7",
+      "promotedSha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7",
+      "equal": true
+    },
+    {
+      "source": "branch-catalog-projection-v3.json",
+      "promoted": "v1.0.0-branch-catalog-projection-v3.json",
+      "sourceSha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97",
+      "promotedSha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97",
+      "equal": true
+    },
+    {
+      "source": "branch-catalog-projection-verification-v3.json",
+      "promoted": "v1.0.0-branch-catalog-projection-verification-v3.json",
+      "sourceSha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f",
+      "promotedSha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f",
+      "equal": true
+    },
+    {
+      "source": "english-profile-execution-closure-v2.json",
+      "promoted": "v1.0.0-english-profile-execution-closure-v2.json",
+      "sourceSha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299",
+      "promotedSha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299",
+      "equal": true
+    },
+    {
+      "source": "chinese-profile-execution-closure-v2.json",
+      "promoted": "v1.0.0-chinese-profile-execution-closure-v2.json",
+      "sourceSha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75",
+      "promotedSha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75",
+      "equal": true
+    },
+    {
+      "source": "release-source-admission-v4.json",
+      "promoted": "v1.0.0-release-source-admission-v4.json",
+      "sourceSha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7",
+      "promotedSha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7",
+      "equal": true
+    }
+  ],
+  "productionVerifierDecision": "pass"
+}

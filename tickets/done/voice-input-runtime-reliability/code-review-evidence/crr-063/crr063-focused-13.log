@@ -1,0 +1,88 @@
+TAP version 13
+# Subtest: DR-012 script and workflow metadata changes retain one canonical package input
+ok 1 - DR-012 script and workflow metadata changes retain one canonical package input
+  ---
+  duration_ms: 249.362875
+  type: 'test'
+  ...
+# Subtest: Host Package Input Contract 1 rejects every DR-012 install-semantic negative
+ok 2 - Host Package Input Contract 1 rejects every DR-012 install-semantic negative
+  ---
+  duration_ms: 87.169833
+  type: 'test'
+  ...
+# Subtest: recipe, environment, workflow indirection, and argument drift fail closed
+ok 3 - recipe, environment, workflow indirection, and argument drift fail closed
+  ---
+  duration_ms: 151.137667
+  type: 'test'
+  ...
+# Subtest: direct child invocations have exact argument and environment closure
+ok 4 - direct child invocations have exact argument and environment closure
+  ---
+  duration_ms: 0.640666
+  type: 'test'
+  ...
+# Subtest: Host Source Closure 1 binds exact repository and hosted tool subjects
+ok 5 - Host Source Closure 1 binds exact repository and hosted tool subjects
+  ---
+  duration_ms: 214.173125
+  type: 'test'
+  ...
+# Subtest: DR-012 command facade changes preserve closure while direct source changes renew it
+ok 6 - DR-012 command facade changes preserve closure while direct source changes renew it
+  ---
+  duration_ms: 439.291917
+  type: 'test'
+  ...
+# Subtest: Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+ok 7 - Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+  ---
+  duration_ms: 2470.9205
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts later documentation-only W and rejects archive impact
+ok 8 - lineage verifier accepts later documentation-only W and rejects archive impact
+  ---
+  duration_ms: 3069.727417
+  type: 'test'
+  ...
+# Subtest: lineage-aware protection rejects mutation followed by byte-identical revert
+ok 9 - lineage-aware protection rejects mutation followed by byte-identical revert
+  ---
+  duration_ms: 1384.584583
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts an integration merge that preserves the R-bearing tree
+ok 10 - lineage verifier accepts an integration merge that preserves the R-bearing tree
+  ---
+  duration_ms: 1842.324291
+  type: 'test'
+  ...
+# Subtest: lineage verifier rejects bound policy drift and checkout closure drift
+ok 11 - lineage verifier rejects bound policy drift and checkout closure drift
+  ---
+  duration_ms: 2601.571084
+  type: 'test'
+  ...
+# Subtest: Admission 4 schema forbids self and later lineage edges
+ok 12 - Admission 4 schema forbids self and later lineage edges
+  ---
+  duration_ms: 738.056416
+  type: 'test'
+  ...
+# Subtest: promotion rejects checksum drift and verifier rejects a seventh promoted path
+ok 13 - promotion rejects checksum drift and verifier rejects a seventh promoted path
+  ---
+  duration_ms: 1360.606334
+  type: 'test'
+  ...
+1..13
+# tests 13
+# suites 0
+# pass 13
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 13550.267958

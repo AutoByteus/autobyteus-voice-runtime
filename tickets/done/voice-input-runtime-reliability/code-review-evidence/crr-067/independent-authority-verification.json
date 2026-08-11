@@ -1,0 +1,316 @@
+{
+  "schemaVersion": 1,
+  "reviewRevision": "CRR-067",
+  "decision": "pass",
+  "promotionCommit": "ef0874577b2d96a8e2afc59b2334a484a9699cda",
+  "parentCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "checks": [
+    {
+      "check": "exact promotion commit",
+      "pass": true,
+      "detail": "ef0874577b2d96a8e2afc59b2334a484a9699cda"
+    },
+    {
+      "check": "single direct parent",
+      "pass": true,
+      "detail": [
+        "77092392ce565f887c4698a3a12f384ea41b5e02"
+      ]
+    },
+    {
+      "check": "exact six additions",
+      "pass": true,
+      "detail": [
+        "A\trelease/admission/v1.0.0-branch-catalog-projection-v3.json",
+        "A\trelease/admission/v1.0.0-branch-catalog-projection-verification-v3.json",
+        "A\trelease/admission/v1.0.0-chinese-profile-execution-closure-v2.json",
+        "A\trelease/admission/v1.0.0-english-profile-execution-closure-v2.json",
+        "A\trelease/admission/v1.0.0-focused-qualification-set-v3.json",
+        "A\trelease/admission/v1.0.0-release-source-admission-v4.json"
+      ]
+    },
+    {
+      "check": "byte equality v1.0.0-branch-catalog-projection-v3.json",
+      "pass": true,
+      "detail": {
+        "sizeBytes": 2401,
+        "sha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97"
+      }
+    },
+    {
+      "check": "ordinary mode v1.0.0-branch-catalog-projection-v3.json",
+      "pass": true,
+      "detail": "100644"
+    },
+    {
+      "check": "byte equality v1.0.0-branch-catalog-projection-verification-v3.json",
+      "pass": true,
+      "detail": {
+        "sizeBytes": 370,
+        "sha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f"
+      }
+    },
+    {
+      "check": "ordinary mode v1.0.0-branch-catalog-projection-verification-v3.json",
+      "pass": true,
+      "detail": "100644"
+    },
+    {
+      "check": "byte equality v1.0.0-chinese-profile-execution-closure-v2.json",
+      "pass": true,
+      "detail": {
+        "sizeBytes": 1426,
+        "sha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75"
+      }
+    },
+    {
+      "check": "ordinary mode v1.0.0-chinese-profile-execution-closure-v2.json",
+      "pass": true,
+      "detail": "100644"
+    },
+    {
+      "check": "byte equality v1.0.0-english-profile-execution-closure-v2.json",
+      "pass": true,
+      "detail": {
+        "sizeBytes": 1454,
+        "sha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299"
+      }
+    },
+    {
+      "check": "ordinary mode v1.0.0-english-profile-execution-closure-v2.json",
+      "pass": true,
+      "detail": "100644"
+    },
+    {
+      "check": "byte equality v1.0.0-focused-qualification-set-v3.json",
+      "pass": true,
+      "detail": {
+        "sizeBytes": 2215,
+        "sha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7"
+      }
+    },
+    {
+      "check": "ordinary mode v1.0.0-focused-qualification-set-v3.json",
+      "pass": true,
+      "detail": "100644"
+    },
+    {
+      "check": "byte equality v1.0.0-release-source-admission-v4.json",
+      "pass": true,
+      "detail": {
+        "sizeBytes": 4607,
+        "sha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7"
+      }
+    },
+    {
+      "check": "ordinary mode v1.0.0-release-source-admission-v4.json",
+      "pass": true,
+      "detail": "100644"
+    },
+    {
+      "check": "admission exact F and D",
+      "pass": true
+    },
+    {
+      "check": "admission acyclic",
+      "pass": true,
+      "detail": "R absent"
+    },
+    {
+      "check": "empty F..D inventory",
+      "pass": true
+    },
+    {
+      "check": "admission decision",
+      "pass": true
+    },
+    {
+      "check": "admission identity focusedQualificationSet",
+      "pass": true,
+      "detail": {
+        "actual": {
+          "fileName": "focused-qualification-set-v3.json",
+          "sizeBytes": 2215,
+          "sha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7"
+        },
+        "expected": {
+          "fileName": "focused-qualification-set-v3.json",
+          "sizeBytes": 2215,
+          "sha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7"
+        }
+      }
+    },
+    {
+      "check": "admission identity branchCatalogProjection",
+      "pass": true,
+      "detail": {
+        "actual": {
+          "fileName": "branch-catalog-projection-v3.json",
+          "sizeBytes": 2401,
+          "sha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97"
+        },
+        "expected": {
+          "fileName": "branch-catalog-projection-v3.json",
+          "sizeBytes": 2401,
+          "sha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97"
+        }
+      }
+    },
+    {
+      "check": "admission identity branchCatalogProjectionVerification",
+      "pass": true,
+      "detail": {
+        "actual": {
+          "fileName": "branch-catalog-projection-verification-v3.json",
+          "sizeBytes": 370,
+          "sha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f"
+        },
+        "expected": {
+          "fileName": "branch-catalog-projection-verification-v3.json",
+          "sizeBytes": 370,
+          "sha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f"
+        }
+      }
+    },
+    {
+      "check": "admission identity englishExecutionClosure",
+      "pass": true,
+      "detail": {
+        "actual": {
+          "fileName": "english-profile-execution-closure-v2.json",
+          "sizeBytes": 1454,
+          "sha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299"
+        },
+        "expected": {
+          "fileName": "english-profile-execution-closure-v2.json",
+          "sizeBytes": 1454,
+          "sha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299"
+        }
+      }
+    },
+    {
+      "check": "admission identity chineseExecutionClosure",
+      "pass": true,
+      "detail": {
+        "actual": {
+          "fileName": "chinese-profile-execution-closure-v2.json",
+          "sizeBytes": 1426,
+          "sha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75"
+        },
+        "expected": {
+          "fileName": "chinese-profile-execution-closure-v2.json",
+          "sizeBytes": 1426,
+          "sha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75"
+        }
+      }
+    },
+    {
+      "check": "projection binds qset",
+      "pass": true
+    },
+    {
+      "check": "verification binds projection",
+      "pass": true
+    },
+    {
+      "check": "qset/projection subject equality",
+      "pass": true
+    },
+    {
+      "check": "projection decisions",
+      "pass": true
+    },
+    {
+      "check": "exact profile set",
+      "pass": true
+    },
+    {
+      "check": "english closure current source",
+      "pass": true
+    },
+    {
+      "check": "english closure reuse decision",
+      "pass": true
+    },
+    {
+      "check": "english execution subject equality",
+      "pass": true
+    },
+    {
+      "check": "english admission matches focused hostArchive",
+      "pass": true
+    },
+    {
+      "check": "english admission matches focused hostDescriptorSha256",
+      "pass": true
+    },
+    {
+      "check": "english admission matches focused hostFileManifestSha256",
+      "pass": true
+    },
+    {
+      "check": "english admission matches focused modelAdmissionRootSha256",
+      "pass": true
+    },
+    {
+      "check": "english admission matches focused modelManifest",
+      "pass": true
+    },
+    {
+      "check": "english admission matches focused compatibilityPairSha256",
+      "pass": true
+    },
+    {
+      "check": "english closure equality",
+      "pass": true
+    },
+    {
+      "check": "chinese closure current source",
+      "pass": true
+    },
+    {
+      "check": "chinese closure reuse decision",
+      "pass": true
+    },
+    {
+      "check": "chinese execution subject equality",
+      "pass": true
+    },
+    {
+      "check": "chinese admission matches focused hostArchive",
+      "pass": true
+    },
+    {
+      "check": "chinese admission matches focused hostDescriptorSha256",
+      "pass": true
+    },
+    {
+      "check": "chinese admission matches focused hostFileManifestSha256",
+      "pass": true
+    },
+    {
+      "check": "chinese admission matches focused modelAdmissionRootSha256",
+      "pass": true
+    },
+    {
+      "check": "chinese admission matches focused modelManifest",
+      "pass": true
+    },
+    {
+      "check": "chinese admission matches focused compatibilityPairSha256",
+      "pass": true
+    },
+    {
+      "check": "chinese closure equality",
+      "pass": true
+    },
+    {
+      "check": "policy identity",
+      "pass": true
+    },
+    {
+      "check": "matrix identity",
+      "pass": true
+    }
+  ]
+}

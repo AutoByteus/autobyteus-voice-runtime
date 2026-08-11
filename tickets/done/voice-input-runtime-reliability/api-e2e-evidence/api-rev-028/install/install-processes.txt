@@ -1,0 +1,3 @@
+The initial detached wrapper attempt exited without launching or retaining product evidence and is excluded.
+The authoritative foreground unified execution launched English and Chinese installs concurrently, waited for both, and returned english=0/chinese=0.
+No install or provider process remained at cleanup.

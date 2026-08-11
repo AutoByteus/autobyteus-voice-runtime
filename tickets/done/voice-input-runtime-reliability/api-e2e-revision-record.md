@@ -31,6 +31,7 @@
 | `API-REV-025` | Code Reviewer / `code-review-report.md` / `CRR-055`            | `SR-021`, `ARCH-REV-021`, `IR-035`, `CRR-054`, `CRR-055`           | `Fail / 84%`              | `Pass / 97%`                |
 | `API-REV-026` | Code Reviewer / `code-review-report.md` / `CRR-058`            | `SR-024`, `ARCH-REV-024`, `IR-037`, `CRR-057`, `CRR-058`, `DR-008` | `Pass / 97%`              | `Pass / 98%`                |
 | `API-REV-027` | Code Reviewer / `code-review-report.md` / `CRR-061`            | `SR-024`, `ARCH-REV-024`, `IR-038`, `CRR-061`, `DR-010`            | `Pass / 98%`              | `Pass / 99%`                |
+| `API-REV-028` | Code Reviewer / `code-review-report.md` / `CRR-066`            | `SR-025`, `ARCH-REV-025`, `IR-042`, `CRR-066`, `DR-012`            | `Pass / 99%`              | `Pass / 98%`                |
 
 ## Revision Entries
 
@@ -950,3 +951,40 @@ None.
 - Durable API/E2E coverage changes: `None`.
 - Recommended recipient: `code_reviewer` for proportional test-code review, expected `Not Applicable`, then Delivery.
 - Remaining scope: Delivery alone owns the later production release retry, maintained-main integration verification, tag, release, publication, and downloaded-byte proof. Product qualification remains the unchanged API-REV-025 authority; alternate targets and desktop remain deferred.
+
+### API-REV-028 — Current focused host authority renewal and exact-six promotion pass
+
+- Triggering role, report path, and round: Code Reviewer; `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`; `CRR-066`; API/E2E round 28.
+- Triggering scenarios/criteria: `API-VOICE-017`, `API-VOICE-018`, `API-VOICE-019`, `API-VOICE-021`, `API-VOICE-022`, `API-VOICE-023`, and `API-VOICE-026`; SR-025 focused current-source renewal after DR-012.
+- Related revisions: `SR-025`, `ARCH-REV-025`, `IR-042`, `CRR-063`–`CRR-066`, `DR-012`, and preserved `API-REV-025`/`API-REV-027` authority.
+- Reviewed subjects: exact source/admitted commit `D=77092392ce565f887c4698a3a12f384ea41b5e02`; reviewed artifact `7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203`.
+- Why recorded: both current model-free profiles built twice byte-identically, independently verified, installed exact models only on demand, produced exact retained transcripts offline, and returned `reuse-permitted` from Profile Execution Closure 2. Renewed focused aggregate/admission authority passed and the sole production controller created exact-six direct-child promotion commit `R=ef0874577b2d96a8e2afc59b2334a484a9699cda`.
+- Coverage decisions/durable test paths changed: no repository-resident API/E2E test was added, updated, or removed. Exact six durable non-test `release/admission/` production-authority files were added in `R` and require Code Review.
+- Scenario delta:
+  - `API-VOICE-017` Pass: focused `18/18`, release `22/22`, full `112/112` Node plus `7/7` Python/all Go/source/evidence.
+  - `API-VOICE-018` Pass: four actual builds; English archive `9d7d7b50...cdc4a`, Chinese `b12e5669...63df`; archive/report equality and model-free Host Verification 2 pass.
+  - `API-VOICE-019` Pass: two actual production-manifest installs authenticate 2 English files / 481,307,858 bytes and 3 Chinese files / 1,275,804,800 bytes.
+  - `API-VOICE-021` Pass: both relocated providers reproduce exact retained transcripts under network denial.
+  - `API-VOICE-022` Pass: both Closure 2 decisions are `reuse-permitted`; full corpus/performance rerun is not required.
+  - `API-VOICE-023` Pass: renewed QSet 3, Projection 3, and independent verification.
+  - `API-VOICE-026` Pass: Admission 4 and exact-six single-parent promotion; independent production verification passes.
+- Execution counts: `hostBuildCount=4`, `productionModelInstallCount=2`, `modelDownloadCount=2`, `providerLaunchCount=2`, `retainedClipAttemptCount=2`, `profileExecutionClosureCount=2`, `fullCorpusAttemptCount=0`, `performanceTrialCount=0`, and tag/release/publication counts all `0`.
+
+#### Prior Failure Resolution
+
+| Prior Scenario / Failure Reference                    | Previous Classification                       | Current Resolution                                 | Evidence                                                    |
+| ----------------------------------------------------- | --------------------------------------------- | -------------------------------------------------- | ----------------------------------------------------------- |
+| DR-012 host package input/workflow ownership mismatch | source correction, resolved by IR-042/CRR-066 | **Resolved at real host and aggregate boundaries** | four current builds, exact closures, post-promotion `22/22` |
+
+- Canonical artifacts updated:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/`
+  - promotion worktree `/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/repository` at `R=ef0874577b2d96a8e2afc59b2334a484a9699cda`.
+- Prior result/confidence: `Pass / 99%` for API-REV-027's separate hosted-toolchain boundary.
+- Current result/confidence: **`Pass / 98%`** for the focused product/authority renewal.
+- New or remaining failure IDs: `None`.
+- Broader validation: `Required — Completed`.
+- Recommended recipient: `code_reviewer` for full review of the durable exact-six non-test authority; proportional API/E2E test-code review is `Not Applicable`.
+- Remaining scope: Delivery-owned maintained-main integration, release/tag/publication, and downloaded release-byte verification; alternate targets and desktop remain deferred.

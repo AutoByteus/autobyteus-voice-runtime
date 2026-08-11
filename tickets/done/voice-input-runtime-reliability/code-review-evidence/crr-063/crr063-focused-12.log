@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: DR-012 script and workflow metadata changes retain one canonical package input
+ok 1 - DR-012 script and workflow metadata changes retain one canonical package input
+  ---
+  duration_ms: 244.277833
+  type: 'test'
+  ...
+# Subtest: Host Package Input Contract 1 rejects every DR-012 install-semantic negative
+ok 2 - Host Package Input Contract 1 rejects every DR-012 install-semantic negative
+  ---
+  duration_ms: 106.6585
+  type: 'test'
+  ...
+# Subtest: recipe, environment, workflow indirection, and argument drift fail closed
+ok 3 - recipe, environment, workflow indirection, and argument drift fail closed
+  ---
+  duration_ms: 159.359166
+  type: 'test'
+  ...
+# Subtest: direct child invocations have exact argument and environment closure
+ok 4 - direct child invocations have exact argument and environment closure
+  ---
+  duration_ms: 0.669958
+  type: 'test'
+  ...
+# Subtest: Host Source Closure 1 binds exact repository and hosted tool subjects
+ok 5 - Host Source Closure 1 binds exact repository and hosted tool subjects
+  ---
+  duration_ms: 203.726292
+  type: 'test'
+  ...
+# Subtest: DR-012 command facade changes preserve closure while direct source changes renew it
+ok 6 - DR-012 command facade changes preserve closure while direct source changes renew it
+  ---
+  duration_ms: 430.405
+  type: 'test'
+  ...
+# Subtest: the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+ok 7 - the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+  ---
+  duration_ms: 0.834333
+  type: 'test'
+  ...
+# Subtest: one standard-hosted job builds hosts without model or product execution
+ok 8 - one standard-hosted job builds hosts without model or product execution
+  ---
+  duration_ms: 2.777459
+  type: 'test'
+  ...
+# Subtest: the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+ok 9 - the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+  ---
+  duration_ms: 0.621417
+  type: 'test'
+  ...
+# Subtest: the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+ok 10 - the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+  ---
+  duration_ms: 31.126209
+  type: 'test'
+  ...
+# Subtest: an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+ok 11 - an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+  ---
+  duration_ms: 4.586208
+  type: 'test'
+  ...
+# Subtest: managed recovery and combined-package entrypoints are absent
+ok 12 - managed recovery and combined-package entrypoints are absent
+  ---
+  duration_ms: 1.049709
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 769.603084

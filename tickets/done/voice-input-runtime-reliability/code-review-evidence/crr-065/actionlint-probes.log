@@ -1,0 +1,4 @@
+$ actionlint -ignore SC2251 /tmp/crr065-inline.yml
+exit=0
+$ actionlint -ignore SC2251 /tmp/crr065-shell.yml
+exit=0

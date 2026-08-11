@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 4,
+  "artifactKind": "release-qualification-evidence",
+  "runtimeVersion": "1.0.0",
+  "releaseTag": "v1.0.0",
+  "finalMainCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "releaseSourceAdmission": {
+    "fileName": "api-e2e-source-admission.json",
+    "sizeBytes": 1,
+    "sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+  },
+  "releaseAdmissionVerification": {
+    "fileName": "api-e2e-source-admission-verification.json",
+    "sizeBytes": 1,
+    "sha256": "5555555555555555555555555555555555555555555555555555555555555555"
+  },
+  "hostConstruction": {
+    "fileName": "api-e2e-host-construction.json",
+    "sizeBytes": 1,
+    "sha256": "2222222222222222222222222222222222222222222222222222222222222222"
+  },
+  "modelManifestAdmission": {
+    "fileName": "api-e2e-model-admission.json",
+    "sizeBytes": 1,
+    "sha256": "3333333333333333333333333333333333333333333333333333333333333333"
+  },
+  "matrix": {
+    "fileName": "api-e2e-matrix.json",
+    "sizeBytes": 1,
+    "sha256": "4444444444444444444444444444444444444444444444444444444444444444"
+  },
+  "profiles": [
+    {
+      "profileId": "english",
+      "hostArchive": {
+        "fileName": "voice-host-english-darwin-arm64-1.0.0.zip",
+        "sizeBytes": 207494198,
+        "sha256": "9d7d7b501229e85fc2ad54996f716d79eb59077a56c30ce3ce580c619fbcdc4a"
+      },
+      "hostSourceClosureSha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab",
+      "hostSourceClosureSizeBytes": 43398,
+      "hostDescriptorSha256": "e6b46a9445d2268f0d82deb506d0d7b993c4eca89aa163ffd16c0a364b202f2a",
+      "hostFileManifestSha256": "b45187206bbfa7ded2d806c2605f8b186efa28dfb66dde860ca8f9f405bd5433",
+      "modelAdmissionRootSha256": "7cbf9799670b42482a29404c7a2acfb3a7f701a5e890d3cc22f3245bddfb5448",
+      "modelManifest": {
+        "fileName": "voice-model-english-whisper-small-mlx-fp16-v1.json",
+        "sizeBytes": 2335,
+        "sha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593"
+      },
+      "compatibilityPairSha256": "0271dd3cea86625add1bd88d9c8583f72229777e10d77070ecfa35f226d302ec"
+    },
+    {
+      "profileId": "chinese",
+      "hostArchive": {
+        "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip",
+        "sizeBytes": 9663578,
+        "sha256": "b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df"
+      },
+      "hostSourceClosureSha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39",
+      "hostSourceClosureSizeBytes": 704820,
+      "hostDescriptorSha256": "0cc487ac20aec67cdededce22d6f4660e3a7f7ac90f6ab5293443627865af960",
+      "hostFileManifestSha256": "a6b979b1365cc6849b27402c830869bb884d185b25dec5fc7811148ef4b43a7a",
+      "modelAdmissionRootSha256": "7a49df7e07d907818a02e3f5f12a58c47b5116d5e9deb2fd67caad1dcc97f0a8",
+      "modelManifest": {
+        "fileName": "voice-model-chinese-fun-asr-nano-gguf-q8-v1.json",
+        "sizeBytes": 2801,
+        "sha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da"
+      },
+      "compatibilityPairSha256": "44bdf379680c06a34610d09e0185544b84082120d41488f7698cd54b5eda75f8"
+    }
+  ],
+  "expectedAssetNames": [
+    "THIRD_PARTY_NOTICES.json",
+    "pretag-release-manifest-v4.json",
+    "release-SHA256SUMS.txt",
+    "release-qualification-evidence-v4.json",
+    "voice-host-chinese-darwin-arm64-1.0.0.zip",
+    "voice-host-english-darwin-arm64-1.0.0.zip",
+    "voice-model-chinese-fun-asr-nano-gguf-q8-v1.json",
+    "voice-model-english-whisper-small-mlx-fp16-v1.json",
+    "voice-runtime-catalog-v4.json"
+  ],
+  "executionCounts": {
+    "productTests": 0,
+    "modelDownloads": 0,
+    "providerLaunches": 0
+  },
+  "decision": "pass"
+}

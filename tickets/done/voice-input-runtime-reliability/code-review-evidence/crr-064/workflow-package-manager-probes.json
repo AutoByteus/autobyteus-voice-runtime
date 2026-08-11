@@ -1,0 +1,17 @@
+{
+  "direct": {
+    "label": "direct-second-install",
+    "accepted": false,
+    "error": "Hosted workflow package-manager command must be exact npm ci --ignore-scripts."
+  },
+  "action": {
+    "label": "uses-action-install-indirection",
+    "accepted": true,
+    "packageManager": "npm",
+    "installArguments": [
+      "ci",
+      "--ignore-scripts"
+    ],
+    "declaredAjv": "8.20.0"
+  }
+}

@@ -1,0 +1,35 @@
+IR-042 changed implementation source effective non-empty lines
+build/workflow-executable-surface.mjs	283
+IR-039..IR-042 affected implementation source effective non-empty lines
+.github/workflows/release-voice-runtime.yml	212
+build/host-package-input-contract.mjs	413
+build/host-package-assembler.mjs	226
+build/host-package-verifier.mjs	126
+build/host-source-closure.mjs	170
+build/workflow-executable-surface.mjs	283
+contracts/package/host-source-closure-v1.schema.json	319
+release/run-host-construction.mjs	236
+tooling/check-release-pipeline.mjs	66
+identities
+7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203
+847b5fa726017078219533512c6188559c31eebd
+77092392ce565f887c4698a3a12f384ea41b5e02
+7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203
+source-to-artifact
+M	tickets/done/voice-input-runtime-reliability/implementation-handoff.md
+M	tickets/done/voice-input-runtime-reliability/implementation-revision-record.md
+ownership
+build/host-source-closure.mjs:18:  "build/workflow-executable-surface.mjs",
+build/workflow-executable-surface.mjs:47:export function assertHostWorkflowExecutableSurface(workflow) {
+build/host-package-input-contract.mjs:5:import { assertHostWorkflowExecutableSurface } from "./workflow-executable-surface.mjs";
+build/host-package-input-contract.mjs:299:  const installCommand = assertHostWorkflowExecutableSurface(workflow);
+worktree
+ M tickets/done/voice-input-runtime-reliability/code-review-report.md
+ M tickets/done/voice-input-runtime-reliability/code-review-revision-record.md
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-063-host-package-input-source-review.md
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-064-package-action-indirection-review.md
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-065-workflow-executable-resolution-review.md
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-064/
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/

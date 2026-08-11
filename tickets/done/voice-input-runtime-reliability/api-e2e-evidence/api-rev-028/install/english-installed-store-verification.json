@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-026",
+  "profileId": "english",
+  "decision": "pass",
+  "catalogSha256": "cb782c54c5eaad8fd5515e7dac7eea05ed3bcf05dabd729af55165e5018cf270",
+  "modelManifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+  "modelRoot": "/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/stores-v2/english/models/voice.model.english.whisper-small-mlx-fp16.v1/623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+  "fileChecks": [
+    {
+      "path": "config.json",
+      "expectedSize": 266,
+      "actualSize": 266,
+      "expectedSha256": "e8f58e638208af66d5d5d67801259dc7a12d199e971967a9f9d33a8e3635668e",
+      "actualSha256": "e8f58e638208af66d5d5d67801259dc7a12d199e971967a9f9d33a8e3635668e",
+      "mode": "400",
+      "pass": true
+    },
+    {
+      "path": "weights.npz",
+      "expectedSize": 481307592,
+      "actualSize": 481307592,
+      "expectedSha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+      "actualSha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+      "mode": "400",
+      "pass": true
+    }
+  ],
+  "symlinks": [],
+  "activePointer": {
+    "schemaVersion": 1,
+    "profileId": "english",
+    "target": {
+      "platform": "darwin",
+      "architecture": "arm64"
+    },
+    "installationId": "8a0036fd-1bb5-4df2-8c1d-b04098536256",
+    "selectorGeneration": "a907bd9a-186d-410c-8d3c-4fd37f0ba3d2",
+    "activationRelativePath": "activations/8a0036fd-1bb5-4df2-8c1d-b04098536256/profile-activation-v1.json",
+    "activationSha256": "591ccedcaeb4b95b6214a2b3f2dff80883e977abdf727cb2b5783284329dcab9",
+    "compatibilityPairSha256": "0271dd3cea86625add1bd88d9c8583f72229777e10d77070ecfa35f226d302ec",
+    "updatedAt": "2026-08-11T06:34:36.856117Z"
+  },
+  "activation": {
+    "schemaVersion": 1,
+    "installationId": "8a0036fd-1bb5-4df2-8c1d-b04098536256",
+    "profileId": "english",
+    "languageMode": "en",
+    "target": {
+      "platform": "darwin",
+      "architecture": "arm64"
+    },
+    "catalog": {
+      "fileName": "voice-runtime-catalog-v4.json",
+      "sha256": "cb782c54c5eaad8fd5515e7dac7eea05ed3bcf05dabd729af55165e5018cf270"
+    },
+    "host": {
+      "hostPackageId": "voice.host.english.mlx-whisper.darwin-arm64",
+      "providerId": "autobyteus.voice.mlx-whisper-small",
+      "descriptorSha256": "e6b46a9445d2268f0d82deb506d0d7b993c4eca89aa163ffd16c0a364b202f2a",
+      "fileManifestSha256": "b45187206bbfa7ded2d806c2605f8b186efa28dfb66dde860ca8f9f405bd5433",
+      "hostSourceClosureSha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab",
+      "modelAdmissionRootSha256": "7cbf9799670b42482a29404c7a2acfb3a7f701a5e890d3cc22f3245bddfb5448",
+      "compatibilityRequirementSha256": "70e676b166b2d5587ace83b6e9a5ee352a54fe1086cd45b55f6f4ef38cbb8b56"
+    },
+    "model": {
+      "modelAssetId": "voice.model.english.whisper-small-mlx-fp16.v1",
+      "modelId": "whisper-small-mlx-fp16",
+      "manifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+      "revision": "45f3915923c7a79a5a5b5a7d909d39aeb0e5630e",
+      "layoutId": "mlx-whisper-small-v1",
+      "treeSha256": "e03db60e823ae5f81cdb8f17af54008fa46f6dbf2c00efe59739538c7f1287c0",
+      "files": [
+        {
+          "path": "config.json",
+          "role": "configuration",
+          "sizeBytes": 266,
+          "sha256": "e8f58e638208af66d5d5d67801259dc7a12d199e971967a9f9d33a8e3635668e",
+          "mode": "read-only"
+        },
+        {
+          "path": "weights.npz",
+          "role": "weights",
+          "sizeBytes": 481307592,
+          "sha256": "55b6674c9b339702d486e2b1573839a66f8ec8f821ed2886993ef717a86b09f5",
+          "mode": "read-only"
+        }
+      ]
+    },
+    "compatibilityPairSha256": "0271dd3cea86625add1bd88d9c8583f72229777e10d77070ecfa35f226d302ec",
+    "capabilityDigest": "e69d9facc681a575e4b7e20b27434ce16ff502b19696bffc445dc6d43ec3f3a8",
+    "decision": "active",
+    "createdAt": "2026-08-11T06:34:36.843001Z"
+  }
+}

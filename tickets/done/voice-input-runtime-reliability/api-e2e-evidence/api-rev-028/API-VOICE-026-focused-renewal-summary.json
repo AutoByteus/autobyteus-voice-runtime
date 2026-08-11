@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-026",
+  "apiRevision": "API-REV-028",
+  "sourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "reviewedArtifact": "7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203",
+  "decision": "pass",
+  "profiles": [
+    {
+      "profileId": "english",
+      "hostBuildCount": 2,
+      "archiveSha256": "9d7d7b501229e85fc2ad54996f716d79eb59077a56c30ce3ce580c619fbcdc4a",
+      "archiveSizeBytes": 207494198,
+      "buildReportsEqual": true,
+      "wholeArchiveEqual": true,
+      "independentHostVerification": "pass",
+      "modelPayloadAbsent": true,
+      "modelInstallDecision": "pass",
+      "modelDownloadedFileCount": 2,
+      "modelDownloadedBytes": 481307858,
+      "storeVerification": "pass",
+      "offlineRetainedClipDecision": "pass",
+      "offlineTranscript": "Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.",
+      "executionClosureDecision": "reuse-permitted"
+    },
+    {
+      "profileId": "chinese",
+      "hostBuildCount": 2,
+      "archiveSha256": "b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df",
+      "archiveSizeBytes": 9663578,
+      "buildReportsEqual": true,
+      "wholeArchiveEqual": true,
+      "independentHostVerification": "pass",
+      "modelPayloadAbsent": true,
+      "modelInstallDecision": "pass",
+      "modelDownloadedFileCount": 3,
+      "modelDownloadedBytes": 1275804800,
+      "storeVerification": "pass",
+      "offlineRetainedClipDecision": "pass",
+      "offlineTranscript": "浪漫主义具有很强的文化决定论色彩，这源于歌德、费希特和施莱德格尔等作家。",
+      "executionClosureDecision": "reuse-permitted"
+    }
+  ],
+  "focusedQualificationSetDecision": "pass",
+  "branchCatalogProjectionVerificationDecision": "pass",
+  "releaseSourceAdmissionDecision": "reuse-permitted",
+  "promotion": {
+    "schemaVersion": 1,
+    "scenarioId": "API-VOICE-026",
+    "decision": "pass",
+    "promotionCommit": "ef0874577b2d96a8e2afc59b2334a484a9699cda",
+    "parentCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+    "singleParentDirectChild": true,
+    "exactSixOrdinaryFileAdditions": true,
+    "sourceToPromotedIdentities": [
+      {
+        "source": "focused-qualification-set-v3.json",
+        "promoted": "v1.0.0-focused-qualification-set-v3.json",
+        "sourceSha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7",
+        "promotedSha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7",
+        "equal": true
+      },
+      {
+        "source": "branch-catalog-projection-v3.json",
+        "promoted": "v1.0.0-branch-catalog-projection-v3.json",
+        "sourceSha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97",
+        "promotedSha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97",
+        "equal": true
+      },
+      {
+        "source": "branch-catalog-projection-verification-v3.json",
+        "promoted": "v1.0.0-branch-catalog-projection-verification-v3.json",
+        "sourceSha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f",
+        "promotedSha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f",
+        "equal": true
+      },
+      {
+        "source": "english-profile-execution-closure-v2.json",
+        "promoted": "v1.0.0-english-profile-execution-closure-v2.json",
+        "sourceSha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299",
+        "promotedSha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299",
+        "equal": true
+      },
+      {
+        "source": "chinese-profile-execution-closure-v2.json",
+        "promoted": "v1.0.0-chinese-profile-execution-closure-v2.json",
+        "sourceSha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75",
+        "promotedSha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75",
+        "equal": true
+      },
+      {
+        "source": "release-source-admission-v4.json",
+        "promoted": "v1.0.0-release-source-admission-v4.json",
+        "sourceSha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7",
+        "promotedSha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7",
+        "equal": true
+      }
+    ],
+    "productionVerifierDecision": "pass"
+  },
+  "executionCounts": {
+    "hostBuildCount": 4,
+    "productionModelInstallCount": 2,
+    "modelDownloadCount": 2,
+    "providerLaunchCount": 2,
+    "retainedClipAttemptCount": 2,
+    "profileExecutionClosureCount": 2,
+    "fullCorpusAttemptCount": 0,
+    "performanceTrialCount": 0,
+    "tagCount": 0,
+    "releaseCount": 0,
+    "publicationCount": 0
+  },
+  "broaderFullQualificationDecision": "not-required-execution-closure-reuse-permitted",
+  "durableApiE2eTestChanges": 0,
+  "durableNonTestAuthorityAdditions": 6
+}

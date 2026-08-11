@@ -1,0 +1,5 @@
+50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97  ./aggregate/branch-catalog-projection-v3.json
+86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75  ./aggregate/chinese-profile-execution-closure-v2.json
+cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299  ./aggregate/english-profile-execution-closure-v2.json
+e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7  ./aggregate/focused-qualification-set-v3.json
+f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f  ./aggregate/branch-catalog-projection-verification-v3.json

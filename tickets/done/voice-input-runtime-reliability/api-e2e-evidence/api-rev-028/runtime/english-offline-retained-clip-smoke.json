@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-021",
+  "profileId": "english",
+  "decision": "pass",
+  "networkDeniedSandbox": "/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/repository/benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+  "audio": {
+    "path": "/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/clips/audio/fleurs-en-1660.wav",
+    "sha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8"
+  },
+  "approved": {
+    "clipId": "fleurs-en-1660",
+    "audioSha256": "646dc6c5f02a6b4ebf827bf0ec7416de58aafeb66249778e4684c7699530b8e8",
+    "outcome": "transcript",
+    "rawText": " Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.",
+    "normalizedText": "Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.",
+    "detectedLanguage": "en"
+  },
+  "observed": {
+    "type": "transcription-result",
+    "protocolVersion": 1,
+    "requestId": "a4ba76dd-3a20-4aa3-b611-4ca8eb704e57",
+    "outcome": "transcript",
+    "rawText": " Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.",
+    "normalizedText": "Romanticism had a large element of cultural determinism drawn from writers such as Goeth, Fitcht, and Schlegel.",
+    "detectedLanguage": "en",
+    "metrics": {
+      "audioDurationMs": 11520,
+      "inferenceMs": 739.501667,
+      "normalizationMs": 0.012583
+    }
+  },
+  "timings": {
+    "handshakeMs": 1923.6111669999998,
+    "preparationMs": 25854.666333,
+    "startToReadyMs": 27778.283208,
+    "lastRequestMs": 750.0470840000016
+  },
+  "shutdown": {
+    "code": 0,
+    "signal": null
+  },
+  "error": null,
+  "providerStderr": "",
+  "providerStderrBytes": 0
+}

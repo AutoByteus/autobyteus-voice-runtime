@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-026",
+  "profileId": "english",
+  "decision": "pass",
+  "eventCount": 29825,
+  "operationId": "a490b8fd-26b6-4db3-850c-37b916ab2f88",
+  "sequenceContiguous": true,
+  "downloadedFileCount": 2,
+  "completedBytesByFile": {
+    "1": 266,
+    "2": 481307592
+  },
+  "verifiedBytesByFile": {
+    "1": 266,
+    "2": 481307592
+  },
+  "terminal": {
+    "schemaVersion": 1,
+    "operationId": "a490b8fd-26b6-4db3-850c-37b916ab2f88",
+    "operation": "install-profile",
+    "profileId": "english",
+    "target": {
+      "platform": "darwin",
+      "architecture": "arm64"
+    },
+    "sequence": 29825,
+    "phase": "installed",
+    "timestamp": "2026-08-11T06:34:36.868108Z",
+    "modelAssetId": "voice.model.english.whisper-small-mlx-fp16.v1"
+  }
+}
