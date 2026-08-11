@@ -90,7 +90,7 @@ test("Host Package Input Contract 1 rejects every DR-012 install-semantic negati
   }
 });
 
-test("recipe, environment, workflow indirection, and argument drift fail closed", async () => {
+test("recipe, environment, package-manager, and argument drift fail closed", async () => {
   const environment = await fixtureEnvironment(),
     repository = await fixtureRepository("dr-012-package-w.json"),
     temporary = await fs.mkdtemp(path.join(os.tmpdir(), "voice-host-recipe-"));
@@ -134,14 +134,62 @@ test("recipe, environment, workflow indirection, and argument drift fail closed"
         ".github/workflows/release-voice-runtime.yml",
       ),
       workflow = await fs.readFile(workflowPath, "utf8");
-    await fs.writeFile(workflowPath, `${workflow}\n# npm run build:host\n`);
+    await fs.writeFile(
+      workflowPath,
+      workflow.replace(
+        "          npm ci --ignore-scripts",
+        "          npm ci --ignore-scripts\n          npm run build:host",
+      ),
+    );
     await assert.rejects(
       HostPackageInputContract.assertCurrent({
         repository,
         recipePath,
         buildEnvironment: environment,
       }),
-      /must not use npm script indirection/,
+      /package-manager command must be exact/,
+    );
+    await fs.writeFile(
+      workflowPath,
+      workflow.replace(
+        "          npm ci --ignore-scripts",
+        "          npm ci --ignore-scripts\n          npm install --ignore-scripts --no-save ajv@8.19.0",
+      ),
+    );
+    await assert.rejects(
+      HostPackageInputContract.assertCurrent({
+        repository,
+        recipePath,
+        buildEnvironment: environment,
+      }),
+      /package-manager command must be exact/,
+    );
+    await fs.writeFile(
+      workflowPath,
+      workflow.replace(
+        "npm ci --ignore-scripts",
+        "npm ci --ignore-scripts --no-audit",
+      ),
+    );
+    await assert.rejects(
+      HostPackageInputContract.assertCurrent({
+        repository,
+        recipePath,
+        buildEnvironment: environment,
+      }),
+      /package-manager command must be exact/,
+    );
+    await fs.writeFile(
+      workflowPath,
+      workflow.replace("npm ci --ignore-scripts", "pnpm install --offline"),
+    );
+    await assert.rejects(
+      HostPackageInputContract.assertCurrent({
+        repository,
+        recipePath,
+        buildEnvironment: environment,
+      }),
+      /package-manager command must be exact/,
     );
     await fs.writeFile(
       workflowPath,

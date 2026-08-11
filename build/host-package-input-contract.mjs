@@ -66,7 +66,14 @@ const DEPENDENCY_FIELDS = Object.freeze([
     LC_ALL: "C",
     PATH: "",
     TZ: "UTC",
-  });
+  }),
+  EXPECTED_PACKAGE_MANAGER_COMMAND = Object.freeze([
+    "npm",
+    "ci",
+    "--ignore-scripts",
+  ]),
+  PACKAGE_MANAGER_EXECUTABLE =
+    /(^|[^A-Za-z0-9_.-])(npm|npx|pnpm|yarn|bun|corepack)(?=$|[^A-Za-z0-9_.-])/g;
 
 export const HOST_CONSTRUCTION_CONTROLLER_ARGUMENTS = Object.freeze([
   "source-admission",
@@ -132,7 +139,7 @@ export const HostPackageInputContract = Object.freeze({
       "Host Build Environment 2",
     );
     assertPackageShape(packageManifest, packageLock);
-    assertWorkflowInvocation(workflow);
+    const installCommand = assertWorkflowInvocation(workflow);
     const nodeVersion = packageManifest.engines.node;
     const executingNode = await fs.realpath(process.execPath);
     if (
@@ -147,6 +154,7 @@ export const HostPackageInputContract = Object.freeze({
       packageManifest,
       buildEnvironment,
       nodeVersion,
+      installCommand,
     });
   },
 });
@@ -259,11 +267,12 @@ function canonicalProjection({
   packageManifest,
   buildEnvironment,
   nodeVersion,
+  installCommand,
 }) {
   return {
     schemaVersion: 1,
-    packageManager: "npm",
-    installArguments: ["ci", "--ignore-scripts"],
+    packageManager: installCommand[0],
+    installArguments: installCommand.slice(1),
     lockfileVersion: 3,
     nodeVersion,
     dependencyMaps: Object.fromEntries(
@@ -293,13 +302,24 @@ function canonicalProjection({
 }
 
 function assertWorkflowInvocation(workflow) {
-  if ((workflow.match(/\bnpm ci --ignore-scripts\b/g) ?? []).length !== 1)
+  const packageManagerCommands = [];
+  for (const line of workflowRunLines(workflow)) {
+    const managers = [...line.matchAll(PACKAGE_MANAGER_EXECUTABLE)];
+    if (!managers.length) continue;
+    const command = line.trim().split(/\s+/);
+    if (
+      managers.length !== 1 ||
+      JSON.stringify(command) !==
+        JSON.stringify(EXPECTED_PACKAGE_MANAGER_COMMAND)
+    )
+      throw new Error(
+        "Hosted workflow package-manager command must be exact npm ci --ignore-scripts.",
+      );
+    packageManagerCommands.push(command);
+  }
+  if (packageManagerCommands.length !== 1)
     throw new Error(
-      "Hosted workflow must hydrate with exact npm ci --ignore-scripts.",
-    );
-  if (/npm (?:run build:host|exec\b)|\bnpx\b/.test(workflow))
-    throw new Error(
-      "Hosted host construction must not use npm script indirection.",
+      "Hosted workflow must contain exactly one package-manager command.",
     );
   if (workflow.includes(ASSEMBLER_PATH) || workflow.includes(VERIFIER_PATH))
     throw new Error(
@@ -322,6 +342,32 @@ function assertWorkflowInvocation(workflow) {
     JSON.stringify(HOST_CONSTRUCTION_CONTROLLER_ARGUMENTS)
   )
     throw new Error("Hosted construction controller arguments changed.");
+  return packageManagerCommands[0];
+}
+
+function workflowRunLines(workflow) {
+  if (workflow.includes("\t"))
+    throw new Error("Hosted workflow YAML must not contain tabs.");
+  const source = workflow.split(/\r?\n/),
+    result = [];
+  for (let index = 0; index < source.length; index += 1) {
+    const match = source[index].match(/^(\s*)run:\s*(.*?)\s*$/);
+    if (!match) continue;
+    const marker = match[2];
+    if (!/^[|>][+-]?$/.test(marker)) {
+      result.push(marker);
+      continue;
+    }
+    const ownerIndent = match[1].length;
+    while (index + 1 < source.length) {
+      const candidate = source[index + 1],
+        candidateIndent = candidate.match(/^\s*/)[0].length;
+      if (candidate.trim() && candidateIndent <= ownerIndent) break;
+      index += 1;
+      if (candidate.trim()) result.push(candidate.trim());
+    }
+  }
+  return result;
 }
 
 function parseExactPairs(values, expected, label) {
