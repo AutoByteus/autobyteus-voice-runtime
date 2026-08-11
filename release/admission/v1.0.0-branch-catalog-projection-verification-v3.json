@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 3,
+  "artifactKind": "branch-catalog-projection-verification",
+  "projection": {
+    "fileName": "branch-catalog-projection-v3.json",
+    "sizeBytes": 2401,
+    "sha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97"
+  },
+  "sourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "profileCount": 2,
+  "decision": "pass"
+}
