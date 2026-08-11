@@ -12,6 +12,7 @@
     "externalInputs",
     "toolchain",
     "buildFlags",
+    "hostPackageInput",
     "hostRecipe",
     "modelCompatibilityRequirement",
     "modelAdmissionRoot"
@@ -125,6 +126,145 @@
         "minLength": 1
       }
     },
+    "hostPackageInput": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schemaVersion",
+        "packageManager",
+        "installArguments",
+        "lockfileVersion",
+        "nodeVersion",
+        "dependencyMaps",
+        "selectedEnvironment",
+        "directInvocation"
+      ],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "packageManager": { "const": "npm" },
+        "installArguments": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [{ "const": "ci" }, { "const": "--ignore-scripts" }],
+          "items": false
+        },
+        "lockfileVersion": { "const": 3 },
+        "nodeVersion": { "const": "22.23.1" },
+        "dependencyMaps": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "dependencies",
+            "devDependencies",
+            "optionalDependencies",
+            "peerDependencies"
+          ],
+          "properties": {
+            "dependencies": { "$ref": "#/$defs/dependencyMap" },
+            "devDependencies": { "$ref": "#/$defs/dependencyMap" },
+            "optionalDependencies": { "$ref": "#/$defs/dependencyMap" },
+            "peerDependencies": { "$ref": "#/$defs/dependencyMap" }
+          }
+        },
+        "selectedEnvironment": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "target",
+            "nodeExecutableSha256",
+            "pathPolicy",
+            "locale",
+            "clearedOverrides"
+          ],
+          "properties": {
+            "target": { "const": "darwin-arm64" },
+            "nodeExecutableSha256": { "$ref": "#/$defs/sha" },
+            "pathPolicy": { "const": "isolated-verified-tools-v1" },
+            "locale": { "const": "C" },
+            "clearedOverrides": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": { "type": "string", "pattern": "^[A-Z0-9_]+$" }
+            }
+          }
+        },
+        "directInvocation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "controller",
+            "controllerArguments",
+            "assembler",
+            "assemblerArguments",
+            "verifier",
+            "verifierArguments",
+            "childEnvironmentKeys",
+            "fixedChildEnvironment"
+          ],
+          "properties": {
+            "controller": { "const": "release/run-host-construction.mjs" },
+            "controllerArguments": {
+              "const": [
+                "source-admission",
+                "release-admission-verification",
+                "qualification-set",
+                "workflow-checkout-commit",
+                "inputs-root",
+                "assets",
+                "audit",
+                "go",
+                "build-environment",
+                "version",
+                "output"
+              ]
+            },
+            "assembler": { "const": "build/host-package-assembler.mjs" },
+            "assemblerArguments": {
+              "const": [
+                "profile",
+                "target",
+                "inputs",
+                "output",
+                "go",
+                "build-environment",
+                "expected-host-source-closure",
+                "source-commit",
+                "version"
+              ]
+            },
+            "verifier": { "const": "build/host-package-verifier.mjs" },
+            "verifierArguments": {
+              "const": ["archive", "build-report", "go", "output"]
+            },
+            "childEnvironmentKeys": {
+              "const": [
+                "HOME",
+                "LANG",
+                "LC_ALL",
+                "PATH",
+                "TEMP",
+                "TMP",
+                "TMPDIR",
+                "TZ"
+              ]
+            },
+            "fixedChildEnvironment": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["LANG", "LC_ALL", "PATH", "TZ"],
+              "properties": {
+                "LANG": { "const": "C" },
+                "LC_ALL": { "const": "C" },
+                "PATH": { "const": "" },
+                "TZ": { "const": "UTC" }
+              }
+            }
+          }
+        }
+      }
+    },
     "hostRecipe": {
       "type": "object",
       "additionalProperties": false,
@@ -160,6 +300,19 @@
           "type": "string",
           "pattern": "^[a-f0-9]{64}$"
         }
+      }
+    }
+  },
+  "$defs": {
+    "sha": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "dependencyMap": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string",
+        "minLength": 1
       }
     }
   }

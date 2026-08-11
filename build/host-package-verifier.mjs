@@ -6,13 +6,13 @@ import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import Ajv2020 from "ajv/dist/2020.js";
 import {
-  parsePairs,
   readJson,
   removeWritableTree,
   ROOT,
   shaFile,
   writeJson,
 } from "./lib/files.mjs";
+import { parseHostPackageVerifierArguments } from "./host-package-input-contract.mjs";
 import { trustedGoEnvironment, verifyGoToolchain } from "./locked-inputs.mjs";
 
 const run = promisify(execFile);
@@ -120,12 +120,7 @@ async function validate(value, schemaPath) {
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const args = parsePairs(process.argv.slice(2), [
-    "archive",
-    "build-report",
-    "go",
-    "output",
-  ]);
+  const args = parseHostPackageVerifierArguments(process.argv.slice(2));
   await verifyHostArchive({
     archive: args.archive,
     buildReport: args["build-report"],

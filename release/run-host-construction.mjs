@@ -1,9 +1,16 @@
 #!/usr/bin/env node
 import fs from "node:fs/promises";
+import os from "node:os";
 import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
-import { parsePairs, readJson, ROOT } from "../build/lib/files.mjs";
+import { readJson, ROOT } from "../build/lib/files.mjs";
+import {
+  hostConstructionChildEnvironment,
+  hostPackageAssemblerInvocation,
+  hostPackageVerifierInvocation,
+  parseHostConstructionArguments,
+} from "../build/host-package-input-contract.mjs";
 import { deriveHostSourceClosure } from "../build/host-source-closure.mjs";
 import { assembleHostConstructionResult } from "./hosted-host-construction-result.mjs";
 import { loadCurrentReleaseMatrix } from "./current-release-matrix.mjs";
@@ -113,79 +120,83 @@ export async function runHostConstruction({
     })),
     output: releaseAdmissionVerification,
   });
-  for (const item of prepared) {
-    const { profileId } = item,
-      archive = path.join(
-        assets,
-        `voice-host-${profileId}-darwin-arm64-${version}.zip`,
-      ),
-      verification = path.join(audit, `${profileId}-host-verification-v2.json`);
-    item.attempted = true;
-    try {
-      await run(
-        process.execPath,
-        [
-          "build/host-package-assembler.mjs",
-          "--profile",
-          profileId,
-          "--target",
-          "darwin-arm64",
-          "--inputs",
-          path.join(inputsRoot, profileId),
-          "--output",
-          archive,
-          "--go",
-          go,
-          "--build-environment",
-          buildEnvironment,
-          "--expected-host-source-closure",
-          item.expectedHostSourceClosure,
-          "--source-commit",
-          workflowCheckoutCommit,
-          "--version",
-          version,
-        ],
-        { cwd: ROOT, env: process.env, maxBuffer: 32 * 1024 * 1024 },
-      );
-      item.buildReport = `${archive}.build.json`;
-      item.archive = archive;
-    } catch {
-      item.failureCategory = "host-build-failed";
-      builds.push(item);
-      await fs.rm(path.join(inputsRoot, profileId), {
-        recursive: true,
-        force: true,
-      });
-      break;
+  const childRoot = await fs.mkdtemp(
+      path.join(os.tmpdir(), "voice-host-controller-"),
+    ),
+    childEnvironment = hostConstructionChildEnvironment(childRoot);
+  try {
+    for (const item of prepared) {
+      const { profileId } = item,
+        archive = path.join(
+          assets,
+          `voice-host-${profileId}-darwin-arm64-${version}.zip`,
+        ),
+        verification = path.join(
+          audit,
+          `${profileId}-host-verification-v2.json`,
+        );
+      item.attempted = true;
+      try {
+        await run(
+          process.execPath,
+          hostPackageAssemblerInvocation({
+            profile: profileId,
+            target: "darwin-arm64",
+            inputs: path.join(inputsRoot, profileId),
+            output: archive,
+            go,
+            "build-environment": buildEnvironment,
+            "expected-host-source-closure": item.expectedHostSourceClosure,
+            "source-commit": workflowCheckoutCommit,
+            version,
+          }),
+          {
+            cwd: ROOT,
+            env: childEnvironment,
+            maxBuffer: 32 * 1024 * 1024,
+          },
+        );
+        item.buildReport = `${archive}.build.json`;
+        item.archive = archive;
+      } catch {
+        item.failureCategory = "host-build-failed";
+        builds.push(item);
+        await fs.rm(path.join(inputsRoot, profileId), {
+          recursive: true,
+          force: true,
+        });
+        break;
+      }
+      try {
+        await run(
+          process.execPath,
+          hostPackageVerifierInvocation({
+            archive,
+            "build-report": item.buildReport,
+            go,
+            output: verification,
+          }),
+          {
+            cwd: ROOT,
+            env: childEnvironment,
+            maxBuffer: 32 * 1024 * 1024,
+          },
+        );
+        item.hostVerification = verification;
+        builds.push(item);
+      } catch {
+        item.failureCategory = "host-verification-failed";
+        builds.push(item);
+        break;
+      } finally {
+        await fs.rm(path.join(inputsRoot, profileId), {
+          recursive: true,
+          force: true,
+        });
+      }
     }
-    try {
-      await run(
-        process.execPath,
-        [
-          "build/host-package-verifier.mjs",
-          "--archive",
-          archive,
-          "--build-report",
-          item.buildReport,
-          "--go",
-          go,
-          "--output",
-          verification,
-        ],
-        { cwd: ROOT, env: process.env, maxBuffer: 32 * 1024 * 1024 },
-      );
-      item.hostVerification = verification;
-      builds.push(item);
-    } catch {
-      item.failureCategory = "host-verification-failed";
-      builds.push(item);
-      break;
-    } finally {
-      await fs.rm(path.join(inputsRoot, profileId), {
-        recursive: true,
-        force: true,
-      });
-    }
+  } finally {
+    await fs.rm(childRoot, { recursive: true, force: true });
   }
   await cleanInputs(inputsRoot);
   const result = await assembleHostConstructionResult({
@@ -204,19 +215,7 @@ export async function runHostConstruction({
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
-  const args = parsePairs(process.argv.slice(2), [
-    "source-admission",
-    "release-admission-verification",
-    "qualification-set",
-    "workflow-checkout-commit",
-    "inputs-root",
-    "assets",
-    "audit",
-    "go",
-    "build-environment",
-    "version",
-    "output",
-  ]);
+  const args = parseHostConstructionArguments(process.argv.slice(2));
   await runHostConstruction({
     sourceAdmission: args["source-admission"],
     releaseAdmissionVerification: args["release-admission-verification"],

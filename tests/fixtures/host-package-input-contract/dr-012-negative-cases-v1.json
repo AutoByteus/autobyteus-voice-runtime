@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "cases": [
+    {
+      "caseId": "dependency-mismatch",
+      "subject": "package",
+      "path": ["devDependencies", "ajv"],
+      "value": "8.19.0",
+      "error": "devDependencies differs from lock root"
+    },
+    {
+      "caseId": "node-engine-mismatch",
+      "subject": "package",
+      "path": ["engines", "node"],
+      "value": "22.22.0",
+      "error": "Node engine mismatch"
+    },
+    {
+      "caseId": "lockfile-version-mismatch",
+      "subject": "lock",
+      "path": ["lockfileVersion"],
+      "value": 2,
+      "error": "exact lockfile v3"
+    },
+    {
+      "caseId": "unsupported-install-field",
+      "subject": "package",
+      "path": ["workspaces"],
+      "value": ["packages/*"],
+      "error": "Unsupported Host package manifest fields"
+    },
+    {
+      "caseId": "lifecycle-script",
+      "subject": "package",
+      "path": ["scripts", "prepare"],
+      "value": "node build/host-package-assembler.mjs",
+      "error": "lifecycle scripts forbidden"
+    }
+  ]
+}

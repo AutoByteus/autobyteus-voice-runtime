@@ -5,7 +5,6 @@ import path from "node:path";
 import { execFile } from "node:child_process";
 import { promisify } from "node:util";
 import {
-  parsePairs,
   readJson,
   removeWritableTree,
   ROOT,
@@ -13,6 +12,7 @@ import {
   targetParts,
   writeJson,
 } from "./lib/files.mjs";
+import { parseHostPackageAssemblerArguments } from "./host-package-input-contract.mjs";
 import {
   trustedGoEnvironment,
   verifyGoToolchain,
@@ -40,17 +40,7 @@ import {
 import { PROFILE_BUILDER_INPUT_PATTERNS } from "./profile-builders/host-input-ownership.mjs";
 import { compileStagedHostTools } from "./host-tool-build.mjs";
 const run = promisify(execFile),
-  args = parsePairs(process.argv.slice(2), [
-    "profile",
-    "target",
-    "inputs",
-    "output",
-    "go",
-    "build-environment",
-    "expected-host-source-closure",
-    "source-commit",
-    "version",
-  ]);
+  args = parseHostPackageAssemblerArguments(process.argv.slice(2));
 assertNoUntrustedNativeBuildOverrides();
 if (
   !/^[a-f0-9]{40}$/.test(args["source-commit"]) ||

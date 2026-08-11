@@ -261,9 +261,79 @@ function hostClosureFixture(profileId, digit) {
       compiler: "compiler/tool",
     },
     buildFlags: ["-trimpath"],
+    hostPackageInput: hostPackageInputFixture(),
     hostRecipe: { fileName: `${profileId}-host.json`, sha256: "d".repeat(64) },
     modelCompatibilityRequirement: { sha256: "e".repeat(64) },
     modelAdmissionRoot: { sha256: "f".repeat(64) },
+  };
+}
+
+function hostPackageInputFixture() {
+  return {
+    schemaVersion: 1,
+    packageManager: "npm",
+    installArguments: ["ci", "--ignore-scripts"],
+    lockfileVersion: 3,
+    nodeVersion: "22.23.1",
+    dependencyMaps: {
+      dependencies: {},
+      devDependencies: { ajv: "8.20.0" },
+      optionalDependencies: {},
+      peerDependencies: {},
+    },
+    selectedEnvironment: {
+      target: "darwin-arm64",
+      nodeExecutableSha256: "a".repeat(64),
+      pathPolicy: "isolated-verified-tools-v1",
+      locale: "C",
+      clearedOverrides: ["CC"],
+    },
+    directInvocation: {
+      controller: "release/run-host-construction.mjs",
+      controllerArguments: [
+        "source-admission",
+        "release-admission-verification",
+        "qualification-set",
+        "workflow-checkout-commit",
+        "inputs-root",
+        "assets",
+        "audit",
+        "go",
+        "build-environment",
+        "version",
+        "output",
+      ],
+      assembler: "build/host-package-assembler.mjs",
+      assemblerArguments: [
+        "profile",
+        "target",
+        "inputs",
+        "output",
+        "go",
+        "build-environment",
+        "expected-host-source-closure",
+        "source-commit",
+        "version",
+      ],
+      verifier: "build/host-package-verifier.mjs",
+      verifierArguments: ["archive", "build-report", "go", "output"],
+      childEnvironmentKeys: [
+        "HOME",
+        "LANG",
+        "LC_ALL",
+        "PATH",
+        "TEMP",
+        "TMP",
+        "TMPDIR",
+        "TZ",
+      ],
+      fixedChildEnvironment: {
+        LANG: "C",
+        LC_ALL: "C",
+        PATH: "",
+        TZ: "UTC",
+      },
+    },
   };
 }
 
