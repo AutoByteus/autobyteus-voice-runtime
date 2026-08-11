@@ -1,0 +1,59 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "hosted-release-audit",
+  "repository": "AutoByteus/autobyteus-voice-runtime",
+  "workflowRunId": "31467686540",
+  "workflowRunAttempt": "1",
+  "workflowCheckoutCommit": "34db749f543609fd397e25f08102c790eca568de",
+  "runnerLabel": "macos-26",
+  "releaseTag": "v1.0.0",
+  "runtimeVersion": "1.0.0",
+  "phases": [
+    {
+      "phase": "checkout",
+      "outcome": "succeeded"
+    },
+    {
+      "phase": "setup-node",
+      "outcome": "succeeded"
+    },
+    {
+      "phase": "setup-go",
+      "outcome": "succeeded"
+    },
+    {
+      "phase": "source-admission",
+      "outcome": "succeeded"
+    },
+    {
+      "phase": "hosted-toolchain",
+      "outcome": "succeeded"
+    },
+    {
+      "phase": "input-hydration",
+      "outcome": "succeeded"
+    },
+    {
+      "phase": "host-construction",
+      "outcome": "failed"
+    },
+    {
+      "phase": "release-composition",
+      "outcome": "unattempted"
+    },
+    {
+      "phase": "publication",
+      "outcome": "unattempted"
+    },
+    {
+      "phase": "postpublication-verification",
+      "outcome": "unattempted"
+    },
+    {
+      "phase": "quarantine",
+      "outcome": "unattempted"
+    }
+  ],
+  "decision": "fail",
+  "failureCategory": "host-construction-failed"
+}

@@ -13,8 +13,8 @@ installation, or release is part of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-013`
-- Notes: exact renewed promotion R is integrated unchanged; F=D closure equality, reuse-permitted authority, focused 22/22, and all API/reviewer checks pass. Maintained-main W integration and publication remain.
+- Current revision: `DR-014`
+- Notes: maintained-main/admission and Chinese host equality pass, but standard-hosted run 31467686540 failed closed because the English archive differs from focused authority. No tag or release exists.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,11 +155,11 @@ installation, or release is part of this ticket.
 
 ## Final Status
 
-**Pass / release-ready.** API-REV-028 renewed focused/admitted authority at the
-same exact D source and promoted exact R. Both Host Source Closures are equal,
-Policy 3 returns `reuse-permitted`, and bounded checks pass. No tag, release,
-or asset exists yet; maintained-main W integration and hosted publication
-remain Delivery-owned.
+**Blocked / Unclear — release unpublished.** Exact R/W admission, hosted
+toolchain, hydration, and Chinese archive equality pass, but production run
+`31467686540` produced a different English archive/file-manifest identity from
+focused authority. The workflow failed closed before composition. No tag,
+release, or asset exists.
 
 ## Aggregate API Renewal Delivery Gate — DR-006
 
@@ -270,3 +270,17 @@ remain Delivery-owned.
 - No Delivery product/profile/performance qualification, inference, model download, release, or user-state action.
 - Documentation: explicit no long-lived prose impact; ticket-local DR-013 only.
 - Next action: push ticket branch; integrate maintained-main W; run Release Admission Verification 1; dispatch standard-hosted construction, exact nine-asset publication, and downloaded-byte verification.
+
+## Standard-Hosted Equality Failure — DR-014
+
+- Exact checkout: maintained-main `W = 34db749f543609fd397e25f08102c790eca568de`; exact reviewed R remains unchanged in ancestry.
+- Production run: `31467686540`; standard GitHub-hosted `macos-26`.
+- Passed: source/admission, exact Xcode/CMake toolchain, host-only hydration, and Chinese archive equality.
+- Failed: English expected archive `9d7d7b501229e85fc2ad54996f716d79eb59077a56c30ce3ce580c619fbcdc4a`; hosted archive `0910bdd7946bf59563bf09f62964149e1f556b253eadd83bb96cc25ed8ec204e`.
+- English detail: descriptor SHA-256 and 6,503-entry count match; file-manifest hashes differ; hosted extracted size is 435 bytes smaller than focused authority.
+- Workflow result: `host-construction-failed`; composition, publication, downloaded verification, and quarantine unattempted.
+- Publication state: v1.0.0 tag absent, GitHub release absent, zero assets.
+- Execution boundary: no product/profile/performance qualification, inference, model download, desktop, or user/shared-state action.
+- Classification/routing: `Unclear` to Code Reviewer for failure-origin determination; subsequent fix owner depends on that result.
+- Guard: do not rerun, regenerate authority, or weaken equality.
+- Evidence: `delivery-evidence/release-31467686540/`, checksum manifest Pass.

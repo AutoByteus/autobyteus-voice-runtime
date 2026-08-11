@@ -1,0 +1,1125 @@
+{
+  "schemaVersion": 1,
+  "artifactKind": "release-admission-verification",
+  "releaseSourceAdmission": {
+    "fileName": "v1.0.0-release-source-admission-v4.json",
+    "sizeBytes": 4607,
+    "sha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7"
+  },
+  "focusedSourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "admittedSourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "authorityPromotionCommit": "ef0874577b2d96a8e2afc59b2334a484a9699cda",
+  "workflowCheckoutCommit": "34db749f543609fd397e25f08102c790eca568de",
+  "sourceClosurePolicy": {
+    "fileName": "relevant-source-closure-v3.json",
+    "sizeBytes": 3129,
+    "sha256": "c7cd2e5ede4a96f6990145a4719912e6dd7dc97fa85d157ea0f68ab37af1e676"
+  },
+  "protectedMembers": [
+    {
+      "fileName": "release/admission/v1.0.0-branch-catalog-projection-v3.json",
+      "sizeBytes": 2401,
+      "sha256": "50fd053cecda7e8a4bf393cfc36556fc21a128289b2111024f307d752c346d97"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-branch-catalog-projection-verification-v3.json",
+      "sizeBytes": 370,
+      "sha256": "f6d9e6640a7f9c0d5b64af419eb7e545f2818b4c642eff2497492a9f2a89c44f"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-chinese-profile-execution-closure-v2.json",
+      "sizeBytes": 1426,
+      "sha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-english-profile-execution-closure-v2.json",
+      "sizeBytes": 1454,
+      "sha256": "cc21fac5b7ce1798ad0166aca0e29ce65c99007ffdea0ea5dfc8304f6f2f2299"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-focused-qualification-set-v3.json",
+      "sizeBytes": 2215,
+      "sha256": "e19cd853c4810f033ad619c38ed9b4288ab81b50cfc82731f33f31fb28aad8a7"
+    },
+    {
+      "fileName": "release/admission/v1.0.0-release-source-admission-v4.json",
+      "sizeBytes": 4607,
+      "sha256": "dddd91052a9a08fcb9668d3e76df4c1b1537fc57a4346c368d433e3db9228bc7"
+    }
+  ],
+  "admittedRange": {
+    "changedPaths": [],
+    "changedPathsSha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "decision": "reuse-permitted"
+  },
+  "postPromotionRange": {
+    "changedPaths": [
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/API-VOICE-026-focused-renewal-summary.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/SHA256SUMS.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/branch-catalog-projection-v3.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/branch-catalog-projection-verification-v3.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/branch-catalog-projection-verification.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/branch-catalog-projection-verification.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/branch-catalog-projection.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/branch-catalog-projection.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/chinese-current-execution-subject.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/chinese-focused-qualification-input.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/chinese-historical-execution-subject.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/chinese-profile-execution-closure-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/chinese-profile-execution-closure.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/chinese-profile-execution-closure.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/derive-execution-subjects.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/english-current-execution-subject.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/english-focused-qualification-input.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/english-historical-execution-subject.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/english-profile-execution-closure-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/english-profile-execution-closure.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/english-profile-execution-closure.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/focused-authority-SHA256SUMS.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/focused-qualification-set-v3.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/focused-qualification-set.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/focused-qualification-set.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/profile-execution-closure-basis.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/release-source-admission-v4.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/release-source-admission.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/release-source-admission.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/checksum-verification.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/cleanup/postcleanup-status.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/cleanup/precleanup-status.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/environment/host-build-environment-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/environment/host-inventory.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-chinese-a.command",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-chinese-a.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-chinese-a.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-chinese-b.command",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-chinese-b.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-chinese-b.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-english-a.command",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-english-a.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-english-a.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-english-b.command",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-english-b.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/build-english-b.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-double-build-identities.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-host-build-report-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-host-input-manifest.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-host-input-provenance-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-host-reproducibility-proof-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-host-verification-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-host-verification.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-host-verification.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-prebuild-host-source-closure-v1.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-reproducibility.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/chinese-reproducibility.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/derive-prebuild-closures.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-double-build-identities.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-host-build-report-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-host-input-manifest.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-host-input-provenance-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-host-reproducibility-proof-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-host-verification-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-host-verification.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-host-verification.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-prebuild-host-source-closure-v1.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-reproducibility.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/english-reproducibility.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/host-build/prebuild-closure-results.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/inputs/chinese-host-input-manifest.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/inputs/chinese-host-input-provenance-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/inputs/english-host-input-manifest.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/inputs/english-host-input-provenance-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/inputs/materialize-chinese.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/inputs/materialize-chinese.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/inputs/materialize-english.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/inputs/materialize-english.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/api-e2e-preinstall-release-evidence-v4.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/build-preinstall-catalog.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-install-event-verification.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-installed-store-verification.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-production-install.command",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-production-install.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-production-install.jsonl.gz",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-production-install.stderr",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-status-after-install.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-status-after-install.jsonl",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/chinese-status-after-install.stderr",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-install-event-verification.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-installed-store-verification.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-production-install.command",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-production-install.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-production-install.jsonl.gz",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-production-install.stderr",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-status-after-install.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-status-after-install.jsonl",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/english-status-after-install.stderr",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/install-processes.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/preinstall-catalog-assets.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/install/voice-runtime-catalog-v4.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/json-parse-verification.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/committed-authority-verification.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/committed-authority-verification.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/independent-committed-authority-verification.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/independent-promotion-shape.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/postcommit-status.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/postpromotion-check-release-pipeline.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/postpromotion-check-release-pipeline.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/promote-release-authority.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/promote-release-authority.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/promotion-commit.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/promotion-commit.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/release-admission-verification-v1.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/staged-diff-check.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/staged-exact-six.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/promotion/verification-clone.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/assigned-worktree-initial-status.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/exact-source-initial-state.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/execution-subjects.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/focused-contract-closure-release.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/focused-contract-closure-release.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/npm-ci.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/npm-run-check-release-pipeline.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/npm-run-check-release-pipeline.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/npm-run-check.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/npm-run-check.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/repository/worktree-add.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/chinese-host-expectation-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/chinese-offline-retained-clip-smoke.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/chinese-offline-retained-clip-smoke.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/chinese-offline-retained-clip-smoke.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/chinese-relocated-extract-report.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/chinese-relocated-extract.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/chinese-relocated-extract.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/english-host-expectation-v2.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/english-offline-retained-clip-smoke.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/english-offline-retained-clip-smoke.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/english-offline-retained-clip-smoke.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/english-relocated-extract-report.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/english-relocated-extract.exit-code",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/english-relocated-extract.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/runtime/retained-clip-authority.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-063-host-package-input-source-review.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-064-package-action-indirection-review.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-065-workflow-executable-resolution-review.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-066-workflow-executable-resolution.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-067-focused-renewal-authority-review.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/SHA256SUMS.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/crr063-focused-12.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/crr063-focused-13.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/crr063-full-check.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/crr063-release-pipeline.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/workflow-second-install-probe.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-064/SHA256SUMS.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-064/crr064-focused.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-064/crr064-full-check.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-064/crr064-release-pipeline.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-064/workflow-package-manager-probes.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/SHA256SUMS.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/actionlint-probes.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/crr065-focused.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/crr065-full-check.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/crr065-release-pipeline.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/custom-shell-indirection.patch",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/inline-action-indirection.patch",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/source-audit.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/static-checks.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/workflow-executable-probes.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/SHA256SUMS.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/actionlint-probes.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/crr066-focused.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/crr066-full-check.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/crr066-release-pipeline.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/custom-shell.patch",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/extra-run.patch",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/inline-action.patch",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/job-default-shell.patch",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/source-audit.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/static-checks.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-066/workflow-executable-probes.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/SHA256SUMS.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/api-rev-028-checksums.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/check-release-pipeline.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/full-pinned-go-check.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/independent-authority-verification.json",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/production-lineage-verifier.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/promotion-identity-and-shape.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/static-integrity.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/delivery-focused-renewal-authority-integration-SHA256SUMS.txt",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "A",
+        "path": "tickets/done/voice-input-runtime-reliability/delivery-focused-renewal-authority-integration-check.log",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-report.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/code-review-revision-record.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/delivery-revision-record.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/docs-sync-report.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/handoff-summary.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/implementation-handoff.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/implementation-revision-record.md",
+        "classification": "documentation-record-only"
+      },
+      {
+        "status": "M",
+        "path": "tickets/done/voice-input-runtime-reliability/release-deployment-report.md",
+        "classification": "documentation-record-only"
+      }
+    ],
+    "changedPathsSha256": "b143d1bfdcf4b9cf2d03568a60c8914034ae9bb3b5cc7826af11ed184cc0197b",
+    "decision": "reuse-permitted"
+  },
+  "profiles": [
+    {
+      "profileId": "english",
+      "focusedHostSourceClosure": {
+        "sizeBytes": 43398,
+        "sha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+      },
+      "admittedHostSourceClosure": {
+        "sizeBytes": 43398,
+        "sha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+      },
+      "workflowHostSourceClosure": {
+        "sizeBytes": 43398,
+        "sha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+      },
+      "focusedToAdmittedEqual": true,
+      "admittedToWorkflowEqual": true
+    },
+    {
+      "profileId": "chinese",
+      "focusedHostSourceClosure": {
+        "sizeBytes": 704820,
+        "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+      },
+      "admittedHostSourceClosure": {
+        "sizeBytes": 704820,
+        "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+      },
+      "workflowHostSourceClosure": {
+        "sizeBytes": 704820,
+        "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+      },
+      "focusedToAdmittedEqual": true,
+      "admittedToWorkflowEqual": true
+    }
+  ],
+  "checks": {
+    "focusedAncestorOfAdmitted": true,
+    "admittedAncestorOfPromotion": true,
+    "promotionSingleParent": true,
+    "promotionDirectChild": true,
+    "promotionExactAdditions": true,
+    "promotionUnique": true,
+    "promotionAncestorOfWorkflow": true,
+    "workflowCheckoutVerified": true,
+    "maintainedMainVerified": true,
+    "protectedMembersImmutable": true
+  },
+  "decision": "pass"
+}

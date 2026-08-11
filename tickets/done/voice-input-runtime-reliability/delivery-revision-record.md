@@ -17,6 +17,7 @@
 | `DR-011`    | `code_reviewer` handoff after CRR-061, API-REV-027, and CRR-062                        | `DR-010 — hosted tool lock blocked`      | `Pass / retry-ready — exact hosted toolchain selection and truthful early-failure audit pass on real macos-26; latest main already integrated`                 | `delivery-hosted-toolchain-integration-check.log`, `delivery-hosted-toolchain-integration-SHA256SUMS.txt`, delivery handoff artifacts          |
 | `DR-012`    | Production standard-hosted release retry `31425696064`                                | `DR-011 — retry-ready`                   | `Blocked / Design Impact — toolchain/hydration pass, but package.json-only Host Source Closure drift conflicts with Policy 3 reuse; no archive or release`      | `delivery-evidence/release-31425696064/`, `handoff-summary.md`, `release-deployment-report.md`                                                 |
 | `DR-013`    | `code_reviewer` handoff after CRR-067, API-REV-028, and CRR-068                        | `DR-012 — closure authority blocked`     | `Pass / release-ready — exact renewed R integrated unchanged; F=D, equal host closures, reuse-permitted, focused 22/22, and all authority checks pass`         | `delivery-focused-renewal-authority-integration-check.log`, `delivery-focused-renewal-authority-integration-SHA256SUMS.txt`, handoff artifacts |
+| `DR-014`    | Production standard-hosted release run `31467686540`                                  | `DR-013 — release-ready`                 | `Blocked / Unclear — admission and Chinese equality pass; English hosted archive differs from focused authority; no tag or release created`                    | `delivery-evidence/release-31467686540/`, `delivery-focused-renewal-maintained-main-check.log`, handoff artifacts                              |
 
 ## Revision Entries
 
@@ -237,3 +238,20 @@
 - User gate: prior explicit runtime-only v1.0.0 finalize/release authorization remains applicable; renewed authority resolves evidence/closure identity without changing user-facing release scope.
 - Evidence: `delivery-focused-renewal-authority-integration-check.log`, SHA-256 `9ba7b55fd54c6540c27755ec3ecf06531b39af74480f1dd47d71af985ac35938`, bound by `delivery-focused-renewal-authority-integration-SHA256SUMS.txt`.
 - Current result: `Pass / release-ready`; push the ticket branch, refresh/merge exact candidate to maintained main W, run Release Admission Verification 1, and execute the standard-hosted release/publication/download-verification sequence.
+
+### DR-014 — Production hosted English archive equality failed closed
+
+- Date: 2026-08-11
+- Trigger: user-authorized standard-hosted v1.0.0 release run `31467686540` from exact maintained-main `W = 34db749f543609fd397e25f08102c790eca568de`.
+- Maintained-main integration: exact reviewed R remains an unchanged ancestor of W; all six protected authority blobs match R. Focused release coverage passed 22/22, all API-REV-028 checksum rows passed, and Release Admission Verification 1 passed before dispatch.
+- Passing hosted gates: checkout, exact Node/Go, source/admission, Xcode/CMake selection, and host-only input hydration.
+- Chinese host: exact archive equality passed at `b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df`.
+- English host failure: expected archive `9d7d7b501229e85fc2ad54996f716d79eb59077a56c30ce3ce580c619fbcdc4a`; hosted archive `0910bdd7946bf59563bf09f62964149e1f556b253eadd83bb96cc25ed8ec204e`. Descriptor identity and 6,503-entry count match, but the file-manifest identities differ and hosted extracted content is 435 bytes smaller.
+- Failure boundary: production owner rejected `Hosted host differs from focused host authority.` Composition, publication, downloaded-byte verification, and quarantine were unattempted.
+- Publication state: `v1.0.0` tag absent; GitHub release absent; zero release assets.
+- Delivery execution boundary: no product/profile/provider/inference/corpus/performance qualification, no model-weight download, and no desktop or user/shared-state action.
+- Classification: `Unclear / release-blocking build reproducibility failure`. Retained evidence does not contain both English manifests/archives needed to identify the differing members; Delivery must not weaken equality, regenerate authority, or retry.
+- Routing: Code Reviewer for failure-origin determination, followed by the appropriate Implementation or Solution owner.
+- Evidence: `delivery-evidence/release-31467686540/`; its `SHA256SUMS.txt` verifies run metadata, workflow log, retained audit, closure/verification records, comparison, failure summary, and release state.
+- Historical truth: DR-010, DR-012, and DR-014 remain truthful failed production attempts and must not be relabeled.
+- Current result: `Blocked`; no release exists.

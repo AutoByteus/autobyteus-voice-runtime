@@ -2,7 +2,7 @@
 
 ## Status
 
-- Delivery status: **renewed focused authority R is reviewed and integrated unchanged; equal host closures and all bounded release checks pass; maintained-main W integration and production publication remain**.
+- Delivery status: **production run 31467686540 failed closed because the standard-hosted English archive differs from focused authority; v1.0.0 remains unpublished**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
@@ -14,8 +14,19 @@
 - Current integrated authority candidate before the DR-009 record commit: `3c091aae1a7acb12f3d021a2b0b8d49336f730e5`
 - Reviewed API/E2E artifact HEAD: `5333d1d00c31fc9fe6fe2dcfe86219e2b894bebe`
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
-- Initial finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`; current finalized W: `743597440277e39155b059a475d6820ddc9ff831`
+- Initial finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`; release checkout W: `34db749f543609fd397e25f08102c790eca568de`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Standard-Hosted Equality Failure — DR-014
+
+- Run: `31467686540` from exact maintained-main `W = 34db749f543609fd397e25f08102c790eca568de`.
+- Release Admission Verification 1, exact hosted toolchain selection, host-only hydration, and Chinese archive equality all passed.
+- Chinese exact archive: `b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df`.
+- English expected/hosted archives: `9d7d7b50...cdc4a` / `0910bdd7...204e`; descriptor and 6,503-entry count match, but file-manifest identity differs and hosted extracted content is 435 bytes smaller.
+- The workflow failed closed before bundle composition. Tag, release, and assets remain absent.
+- No heavy qualification, model weight, desktop, or user/shared-state action occurred.
+- Classification: **Unclear / release-blocking reproducibility failure**. Do not retry, regenerate authority, or relax whole-archive equality until failure-origin review resolves it.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31467686540/`.
 
 ## Focused Renewal Authority — DR-013
 

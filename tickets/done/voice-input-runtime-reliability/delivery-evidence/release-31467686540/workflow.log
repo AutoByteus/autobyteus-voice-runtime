@@ -1,0 +1,543 @@
+release	Set up job	﻿2026-08-11T07:07:25.7456970Z Current runner version: '2.336.0'
+release	Set up job	2026-08-11T07:07:25.7499190Z ##[group]Runner Image Provisioner
+release	Set up job	2026-08-11T07:07:25.7502290Z Hosted Compute Agent
+release	Set up job	2026-08-11T07:07:25.7503290Z Version: 20260707.563
+release	Set up job	2026-08-11T07:07:25.7505280Z Commit: 02667638d2b423fbc733a8e32a88b44996a3ba6e
+release	Set up job	2026-08-11T07:07:25.7506720Z Build Date: 2026-07-07T19:33:50Z
+release	Set up job	2026-08-11T07:07:25.7507920Z Worker ID: {7547e314-6f87-45ed-a76b-1a231bfca499}
+release	Set up job	2026-08-11T07:07:25.7509130Z Azure Region: westus
+release	Set up job	2026-08-11T07:07:25.7510100Z ##[endgroup]
+release	Set up job	2026-08-11T07:07:25.7514380Z ##[group]Operating System
+release	Set up job	2026-08-11T07:07:25.7515490Z macOS
+release	Set up job	2026-08-11T07:07:25.7516320Z 26.5.2
+release	Set up job	2026-08-11T07:07:25.7517180Z 25F84
+release	Set up job	2026-08-11T07:07:25.7518060Z ##[endgroup]
+release	Set up job	2026-08-11T07:07:25.7518990Z ##[group]Runner Image
+release	Set up job	2026-08-11T07:07:25.7520120Z Image: macos-26-arm64
+release	Set up job	2026-08-11T07:07:25.7521120Z Version: 20260728.0273.1
+release	Set up job	2026-08-11T07:07:25.7523210Z Included Software: https://github.com/actions/runner-images/blob/macos-26-arm64/20260728.0273/images/macos/macos-26-arm64-Readme.md
+release	Set up job	2026-08-11T07:07:25.7534970Z Image Release: https://github.com/actions/runner-images/releases/tag/macos-26-arm64%2F20260728.0273
+release	Set up job	2026-08-11T07:07:25.7535860Z ##[endgroup]
+release	Set up job	2026-08-11T07:07:25.7536970Z ##[group]GITHUB_TOKEN Permissions
+release	Set up job	2026-08-11T07:07:25.7540580Z Actions: read
+release	Set up job	2026-08-11T07:07:25.7540970Z Contents: write
+release	Set up job	2026-08-11T07:07:25.7541330Z Metadata: read
+release	Set up job	2026-08-11T07:07:25.7541700Z ##[endgroup]
+release	Set up job	2026-08-11T07:07:25.7543670Z Secret source: Actions
+release	Set up job	2026-08-11T07:07:25.7544360Z Prepare workflow directory
+release	Set up job	2026-08-11T07:07:25.8124840Z Prepare all required actions
+release	Set up job	2026-08-11T07:07:25.8169740Z Getting action download info
+release	Set up job	2026-08-11T07:07:26.1572130Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+release	Set up job	2026-08-11T07:07:26.6846190Z Download action repository 'actions/setup-node@v4' (SHA:49933ea5288caeca8642d1e84afbd3f7d6820020)
+release	Set up job	2026-08-11T07:07:26.8790570Z Download action repository 'actions/setup-go@v5' (SHA:40f1582b2485089dde7abd97c1529aa768e1baff)
+release	Set up job	2026-08-11T07:07:27.9130470Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+release	Set up job	2026-08-11T07:07:28.2116240Z Complete job name: release
+release	Check out exact maintained-main source	﻿2026-08-11T07:07:28.2602740Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2611400Z ##[group]Run actions/checkout@v4
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2612050Z with:
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2612450Z   fetch-depth: 0
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2612950Z   repository: AutoByteus/autobyteus-voice-runtime
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2616160Z   token: ***
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2616520Z   ssh-strict: true
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2616930Z   ssh-user: git
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2617280Z   persist-credentials: true
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2617660Z   clean: true
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2618030Z   sparse-checkout-cone-mode: true
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2618690Z   fetch-tags: false
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2619040Z   show-progress: true
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2619410Z   lfs: false
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2619790Z   submodules: false
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2620230Z   set-safe-directory: true
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2620630Z   allow-unsafe-pr-checkout: false
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2621550Z env:
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2621950Z   VOICE_RELEASE_TAG: v1.0.0
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2622350Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Check out exact maintained-main source	2026-08-11T07:07:28.2622810Z ##[endgroup]
+release	Check out exact maintained-main source	2026-08-11T07:07:28.6954430Z Syncing repository: AutoByteus/autobyteus-voice-runtime
+release	Check out exact maintained-main source	2026-08-11T07:07:28.6956310Z ##[group]Getting Git version info
+release	Check out exact maintained-main source	2026-08-11T07:07:28.6957420Z Working directory is '/Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime'
+release	Check out exact maintained-main source	2026-08-11T07:07:28.6958310Z [command]/opt/homebrew/bin/git version
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7516740Z git version 2.55.0
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7528830Z ##[endgroup]
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7536970Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/e419b971-4e02-4916-a630-10d2b1aa58c1/.gitconfig'
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7543980Z Temporarily overriding HOME='/Users/runner/work/_temp/e419b971-4e02-4916-a630-10d2b1aa58c1' before making global git config changes
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7545160Z Adding repository directory to the temporary git global config as a safe directory
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7546690Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7670670Z Deleting the contents of '/Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime'
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7672020Z ##[group]Initializing the repository
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7675610Z [command]/opt/homebrew/bin/git init /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7878000Z hint: Using 'master' as the name for the initial branch. This default branch name
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7885890Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7887260Z hint: to use in all of your new repositories, which will suppress this warning,
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7887970Z hint: call:
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7888380Z hint:
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7888920Z hint: 	git config --global init.defaultBranch <name>
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7889460Z hint:
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7890000Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7890880Z hint: 'development'. The just-created branch can be renamed via this command:
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7892460Z hint:
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7892980Z hint: 	git branch -m <name>
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7893460Z hint:
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7894080Z hint: Disable this message with "git config set advice.defaultBranchName false"
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7895160Z Initialized empty Git repository in /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/.git/
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7896960Z [command]/opt/homebrew/bin/git remote add origin https://github.com/AutoByteus/autobyteus-voice-runtime
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7965710Z ##[endgroup]
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7966480Z ##[group]Disabling automatic garbage collection
+release	Check out exact maintained-main source	2026-08-11T07:07:28.7967890Z [command]/opt/homebrew/bin/git config --local gc.auto 0
+release	Check out exact maintained-main source	2026-08-11T07:07:28.8047210Z ##[endgroup]
+release	Check out exact maintained-main source	2026-08-11T07:07:28.8047880Z ##[group]Setting up auth
+release	Check out exact maintained-main source	2026-08-11T07:07:28.8048750Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+release	Check out exact maintained-main source	2026-08-11T07:07:28.8113710Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+release	Check out exact maintained-main source	2026-08-11T07:07:28.9663430Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+release	Check out exact maintained-main source	2026-08-11T07:07:28.9766300Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+release	Check out exact maintained-main source	2026-08-11T07:07:29.0798520Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+release	Check out exact maintained-main source	2026-08-11T07:07:29.1117360Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+release	Check out exact maintained-main source	2026-08-11T07:07:29.1917970Z [command]/opt/homebrew/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+release	Check out exact maintained-main source	2026-08-11T07:07:29.1991080Z ##[endgroup]
+release	Check out exact maintained-main source	2026-08-11T07:07:29.1991840Z ##[group]Fetching the repository
+release	Check out exact maintained-main source	2026-08-11T07:07:29.1997130Z [command]/opt/homebrew/bin/git -c protocol.version=2 fetch --prune --no-recurse-submodules origin +refs/heads/*:refs/remotes/origin/* +refs/tags/*:refs/tags/*
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9960880Z From https://github.com/AutoByteus/autobyteus-voice-runtime
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9963290Z  * [new branch]      codex/voice-input-bilingual-runtime -> origin/codex/voice-input-bilingual-runtime
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9964800Z  * [new branch]      codex/voice-input-runtime-reliability -> origin/codex/voice-input-runtime-reliability
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9967100Z  * [new branch]      codex/voice-input-runtime-reliability-postarchive-fix -> origin/codex/voice-input-runtime-reliability-postarchive-fix
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9969500Z  * [new branch]      codex/voice-runtime-qualified-recovery -> origin/codex/voice-runtime-qualified-recovery
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9975070Z  * [new branch]      main       -> origin/main
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9982520Z  * [new tag]         v0.1.1     -> v0.1.1
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9983780Z  * [new tag]         v0.2.0     -> v0.2.0
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9984620Z  * [new tag]         v0.3.0     -> v0.3.0
+release	Check out exact maintained-main source	2026-08-11T07:07:30.9987400Z [command]/opt/homebrew/bin/git branch --list --remote origin/main
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0105450Z   origin/main
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0111840Z [command]/opt/homebrew/bin/git rev-parse refs/remotes/origin/main
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0188420Z 34db749f543609fd397e25f08102c790eca568de
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0191970Z ##[endgroup]
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0193070Z ##[group]Determining the checkout info
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0194710Z ##[endgroup]
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0195520Z [command]/opt/homebrew/bin/git sparse-checkout disable
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0298600Z [command]/opt/homebrew/bin/git config --local --unset-all extensions.worktreeConfig
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0375790Z ##[group]Checking out the ref
+release	Check out exact maintained-main source	2026-08-11T07:07:31.0378500Z [command]/opt/homebrew/bin/git checkout --progress --force -B main refs/remotes/origin/main
+release	Check out exact maintained-main source	2026-08-11T07:07:31.5624290Z Switched to a new branch 'main'
+release	Check out exact maintained-main source	2026-08-11T07:07:31.5724690Z branch 'main' set up to track 'origin/main'.
+release	Check out exact maintained-main source	2026-08-11T07:07:31.6033450Z ##[endgroup]
+release	Check out exact maintained-main source	2026-08-11T07:07:31.6200940Z [command]/opt/homebrew/bin/git log -1 --format=%H
+release	Check out exact maintained-main source	2026-08-11T07:07:31.6238770Z 34db749f543609fd397e25f08102c790eca568de
+release	Initialize truthful hosted release audit	﻿2026-08-11T07:07:31.6420950Z ##[group]Run set -euo pipefail
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6421960Z [36;1mset -euo pipefail[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6422810Z [36;1mROOT="$RUNNER_TEMP/voice-release"[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6423990Z [36;1mmkdir -p "$ROOT"/{cache,inputs,assets,bundle,audit,tools}[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6425320Z [36;1mnode release/hosted-release-audit.mjs initialize \[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6426540Z [36;1m  --output "$ROOT/audit/hosted-release-audit-v1.json" \[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6427880Z [36;1m  --repository "$GITHUB_REPOSITORY" --workflow-run-id "$GITHUB_RUN_ID" \[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6429220Z [36;1m  --workflow-run-attempt "$GITHUB_RUN_ATTEMPT" \[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6430540Z [36;1m  --workflow-checkout-commit "$GITHUB_SHA" --runner-label macos-26 \[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6432110Z [36;1m  --release-tag "$VOICE_RELEASE_TAG" --runtime-version "$VOICE_RUNTIME_VERSION"[0m
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6481090Z shell: /bin/bash -e {0}
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6481900Z env:
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6482540Z   VOICE_RELEASE_TAG: v1.0.0
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6483410Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Initialize truthful hosted release audit	2026-08-11T07:07:31.6484180Z ##[endgroup]
+release	Select exact Node runtime	﻿2026-08-11T07:07:32.1712480Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+release	Select exact Node runtime	2026-08-11T07:07:32.1714110Z ##[group]Run actions/setup-node@v4
+release	Select exact Node runtime	2026-08-11T07:07:32.1731270Z with:
+release	Select exact Node runtime	2026-08-11T07:07:32.1731460Z   node-version: 22.23.1
+release	Select exact Node runtime	2026-08-11T07:07:32.1731650Z   cache: npm
+release	Select exact Node runtime	2026-08-11T07:07:32.1731800Z   always-auth: false
+release	Select exact Node runtime	2026-08-11T07:07:32.1731960Z   check-latest: false
+release	Select exact Node runtime	2026-08-11T07:07:32.1734260Z   token: ***
+release	Select exact Node runtime	2026-08-11T07:07:32.1734450Z env:
+release	Select exact Node runtime	2026-08-11T07:07:32.1734580Z   VOICE_RELEASE_TAG: v1.0.0
+release	Select exact Node runtime	2026-08-11T07:07:32.1734780Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Select exact Node runtime	2026-08-11T07:07:32.1734990Z ##[endgroup]
+release	Select exact Node runtime	2026-08-11T07:07:32.4188950Z (node:4650) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+release	Select exact Node runtime	2026-08-11T07:07:32.4293920Z (Use `node --trace-deprecation ...` to show where the warning was created)
+release	Select exact Node runtime	2026-08-11T07:07:32.4356280Z Found in cache @ /Users/runner/hostedtoolcache/node/22.23.1/arm64
+release	Select exact Node runtime	2026-08-11T07:07:32.4357050Z ##[group]Environment details
+release	Select exact Node runtime	2026-08-11T07:07:33.1677730Z node: v22.23.1
+release	Select exact Node runtime	2026-08-11T07:07:33.1695190Z npm: 10.9.8
+release	Select exact Node runtime	2026-08-11T07:07:33.1723810Z yarn: 1.22.22
+release	Select exact Node runtime	2026-08-11T07:07:33.1731940Z ##[endgroup]
+release	Select exact Node runtime	2026-08-11T07:07:33.1798480Z [command]/Users/runner/hostedtoolcache/node/22.23.1/arm64/bin/npm config get cache
+release	Select exact Node runtime	2026-08-11T07:07:33.4057230Z /Users/runner/.npm
+release	Select exact Node runtime	2026-08-11T07:07:33.6001910Z npm cache is not found
+release	Select exact Go runtime	﻿2026-08-11T07:07:33.6142860Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+release	Select exact Go runtime	2026-08-11T07:07:33.6144050Z ##[group]Run actions/setup-go@v5
+release	Select exact Go runtime	2026-08-11T07:07:33.6144260Z with:
+release	Select exact Go runtime	2026-08-11T07:07:33.6144440Z   go-version: 1.26.5
+release	Select exact Go runtime	2026-08-11T07:07:33.6144630Z   cache: false
+release	Select exact Go runtime	2026-08-11T07:07:33.6144800Z   check-latest: false
+release	Select exact Go runtime	2026-08-11T07:07:33.6146970Z   token: ***
+release	Select exact Go runtime	2026-08-11T07:07:33.6147110Z env:
+release	Select exact Go runtime	2026-08-11T07:07:33.6147260Z   VOICE_RELEASE_TAG: v1.0.0
+release	Select exact Go runtime	2026-08-11T07:07:33.6147450Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Select exact Go runtime	2026-08-11T07:07:33.6147640Z ##[endgroup]
+release	Select exact Go runtime	2026-08-11T07:07:33.7569630Z Setup go version spec 1.26.5
+release	Select exact Go runtime	2026-08-11T07:07:33.7604440Z (node:4799) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+release	Select exact Go runtime	2026-08-11T07:07:33.7605290Z Found in cache @ /Users/runner/hostedtoolcache/go/1.26.5/arm64
+release	Select exact Go runtime	2026-08-11T07:07:33.7642460Z (Use `node --trace-deprecation ...` to show where the warning was created)
+release	Select exact Go runtime	2026-08-11T07:07:33.7642990Z Added go to the path
+release	Select exact Go runtime	2026-08-11T07:07:33.7647470Z Successfully set up Go version 1.26.5
+release	Select exact Go runtime	2026-08-11T07:07:33.8863060Z go version go1.26.5 darwin/arm64
+release	Select exact Go runtime	2026-08-11T07:07:33.8865070Z 
+release	Select exact Go runtime	2026-08-11T07:07:33.8865510Z ##[group]go env
+release	Select exact Go runtime	2026-08-11T07:07:35.7449210Z AR='ar'
+release	Select exact Go runtime	2026-08-11T07:07:35.7449850Z CC='clang'
+release	Select exact Go runtime	2026-08-11T07:07:35.7450230Z CGO_CFLAGS='-O2 -g'
+release	Select exact Go runtime	2026-08-11T07:07:35.7450440Z CGO_CPPFLAGS=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7450750Z CGO_CXXFLAGS='-O2 -g'
+release	Select exact Go runtime	2026-08-11T07:07:35.7450990Z CGO_ENABLED='1'
+release	Select exact Go runtime	2026-08-11T07:07:35.7451280Z CGO_FFLAGS='-O2 -g'
+release	Select exact Go runtime	2026-08-11T07:07:35.7471750Z CGO_LDFLAGS='-O2 -g'
+release	Select exact Go runtime	2026-08-11T07:07:35.7472130Z CXX='clang++'
+release	Select exact Go runtime	2026-08-11T07:07:35.7472320Z GCCGO='gccgo'
+release	Select exact Go runtime	2026-08-11T07:07:35.7472500Z GO111MODULE=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7472680Z GOARCH='arm64'
+release	Select exact Go runtime	2026-08-11T07:07:35.7472900Z GOARM64='v8.0'
+release	Select exact Go runtime	2026-08-11T07:07:35.7473110Z GOAUTH='netrc'
+release	Select exact Go runtime	2026-08-11T07:07:35.7473300Z GOBIN=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7473670Z GOCACHE='/Users/runner/Library/Caches/go-build'
+release	Select exact Go runtime	2026-08-11T07:07:35.7474180Z GOCACHEPROG=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7474430Z GODEBUG=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7474990Z GOENV='/Users/runner/Library/Application Support/go/env'
+release	Select exact Go runtime	2026-08-11T07:07:35.7475420Z GOEXE=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7475590Z GOEXPERIMENT=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7475820Z GOFIPS140='off'
+release	Select exact Go runtime	2026-08-11T07:07:35.7476030Z GOFLAGS=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7477580Z GOGCCFLAGS='-fPIC -arch arm64 -pthread -fno-caret-diagnostics -Qunused-arguments -fmessage-length=0 -ffile-prefix-map=/var/folders/df/djsxfhc17x95674wsm_g8s980000gn/T/go-build1075149937=/tmp/go-build -gno-record-gcc-switches -fno-common'
+release	Select exact Go runtime	2026-08-11T07:07:35.7478530Z GOHOSTARCH='arm64'
+release	Select exact Go runtime	2026-08-11T07:07:35.7478740Z GOHOSTOS='darwin'
+release	Select exact Go runtime	2026-08-11T07:07:35.7479090Z GOINSECURE=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7479660Z GOMOD='/Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/go.mod'
+release	Select exact Go runtime	2026-08-11T07:07:35.7480150Z GOMODCACHE='/Users/runner/go/pkg/mod'
+release	Select exact Go runtime	2026-08-11T07:07:35.7480430Z GONOPROXY=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7480610Z GONOSUMDB=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7480790Z GOOS='darwin'
+release	Select exact Go runtime	2026-08-11T07:07:35.7481040Z GOPATH='/Users/runner/go'
+release	Select exact Go runtime	2026-08-11T07:07:35.7481240Z GOPRIVATE=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7481660Z GOPROXY='https://proxy.golang.org,direct'
+release	Select exact Go runtime	2026-08-11T07:07:35.7482030Z GOROOT='/Users/runner/hostedtoolcache/go/1.26.5/arm64'
+release	Select exact Go runtime	2026-08-11T07:07:35.7484800Z GOSUMDB='sum.golang.org'
+release	Select exact Go runtime	2026-08-11T07:07:35.7485060Z GOTELEMETRY='local'
+release	Select exact Go runtime	2026-08-11T07:07:35.7485530Z GOTELEMETRYDIR='/Users/runner/Library/Application Support/go/telemetry'
+release	Select exact Go runtime	2026-08-11T07:07:35.7485880Z GOTMPDIR=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7486030Z GOTOOLCHAIN='auto'
+release	Select exact Go runtime	2026-08-11T07:07:35.7486440Z GOTOOLDIR='/Users/runner/hostedtoolcache/go/1.26.5/arm64/pkg/tool/darwin_arm64'
+release	Select exact Go runtime	2026-08-11T07:07:35.7486830Z GOVCS=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7487020Z GOVERSION='go1.26.5'
+release	Select exact Go runtime	2026-08-11T07:07:35.7487220Z GOWORK=''
+release	Select exact Go runtime	2026-08-11T07:07:35.7487460Z PKG_CONFIG='pkg-config'
+release	Select exact Go runtime	2026-08-11T07:07:35.7488370Z 
+release	Select exact Go runtime	2026-08-11T07:07:35.7488940Z ##[endgroup]
+release	Verify source and committed admission	﻿2026-08-11T07:07:35.7532030Z ##[group]Run set -euo pipefail
+release	Verify source and committed admission	2026-08-11T07:07:35.7532310Z [36;1mset -euo pipefail[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7532530Z [36;1mtest "$VOICE_RUNTIME_VERSION" = 1.0.0[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7532800Z [36;1mtest "$VOICE_RELEASE_TAG" = v1.0.0[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7533020Z [36;1mtest "$(node --version)" = v22.23.1[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7533260Z [36;1mtest "$(git rev-parse HEAD)" = "$GITHUB_SHA"[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7533500Z [36;1mgit fetch origin main --tags[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7533780Z [36;1mtest "$(git rev-parse origin/main)" = "$GITHUB_SHA"[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7534100Z [36;1mtest -z "$(git tag -l -- "$VOICE_RELEASE_TAG")"[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7534440Z [36;1m! gh release view "$VOICE_RELEASE_TAG" >/dev/null 2>&1[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7534700Z [36;1mnpm ci --ignore-scripts[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7534940Z [36;1mnode tooling/check-release-pipeline.mjs[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7535160Z [36;1mnode --test \[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7535400Z [36;1m  tests/release/catalog-v4.test.mjs \[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7535800Z [36;1m  tests/release/host-construction-result.test.mjs \[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7536170Z [36;1m  tests/release/host-release-contracts.test.mjs \[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7536550Z [36;1m  tests/release/prepublication-chain.test.mjs \[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7536880Z [36;1m  tests/release/release-source-admission-verifier.test.mjs \[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7537290Z [36;1m  tests/release/relevant-source-closure-v3.test.mjs[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7537770Z [36;1mnode release/verify-release-source-admission.mjs --repository "$GITHUB_WORKSPACE" \[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7538330Z [36;1m  --workflow-checkout-commit "$GITHUB_SHA" --mode lineage[0m
+release	Verify source and committed admission	2026-08-11T07:07:35.7578490Z shell: /bin/bash -e {0}
+release	Verify source and committed admission	2026-08-11T07:07:35.7578740Z env:
+release	Verify source and committed admission	2026-08-11T07:07:35.7578920Z   VOICE_RELEASE_TAG: v1.0.0
+release	Verify source and committed admission	2026-08-11T07:07:35.7579160Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Verify source and committed admission	2026-08-11T07:07:35.7581600Z   GH_TOKEN: ***
+release	Verify source and committed admission	2026-08-11T07:07:35.7581830Z ##[endgroup]
+release	Verify source and committed admission	2026-08-11T07:07:36.3795520Z From https://github.com/AutoByteus/autobyteus-voice-runtime
+release	Verify source and committed admission	2026-08-11T07:07:36.3899010Z  * branch            main       -> FETCH_HEAD
+release	Verify source and committed admission	2026-08-11T07:07:38.9600750Z 
+release	Verify source and committed admission	2026-08-11T07:07:38.9705900Z added 8 packages, and audited 9 packages in 2s
+release	Verify source and committed admission	2026-08-11T07:07:38.9810110Z 
+release	Verify source and committed admission	2026-08-11T07:07:38.9884670Z 3 packages are looking for funding
+release	Verify source and committed admission	2026-08-11T07:07:38.9900770Z   run `npm fund` for details
+release	Verify source and committed admission	2026-08-11T07:07:38.9901210Z 
+release	Verify source and committed admission	2026-08-11T07:07:38.9903940Z found 0 vulnerabilities
+release	Verify source and committed admission	2026-08-11T07:07:39.5794220Z TAP version 13
+release	Verify source and committed admission	2026-08-11T07:07:40.0137300Z # Subtest: Catalog 4 binds exact admitted host/model compatibility pairs
+release	Verify source and committed admission	2026-08-11T07:07:40.0140390Z ok 1 - Catalog 4 binds exact admitted host/model compatibility pairs
+release	Verify source and committed admission	2026-08-11T07:07:40.0154790Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.0172930Z   duration_ms: 340.410833
+release	Verify source and committed admission	2026-08-11T07:07:40.0177710Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.0178190Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:40.1316290Z # Subtest: host construction truthfully retains first-profile and pre-build failures
+release	Verify source and committed admission	2026-08-11T07:07:40.1357540Z ok 2 - host construction truthfully retains first-profile and pre-build failures
+release	Verify source and committed admission	2026-08-11T07:07:40.1368900Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.1369860Z   duration_ms: 454.712917
+release	Verify source and committed admission	2026-08-11T07:07:40.1370540Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.1371830Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:40.1480880Z # Subtest: the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+release	Verify source and committed admission	2026-08-11T07:07:40.1581650Z ok 3 - the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+release	Verify source and committed admission	2026-08-11T07:07:40.1680850Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.1782600Z   duration_ms: 4.169791
+release	Verify source and committed admission	2026-08-11T07:07:40.1849400Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.1857670Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:40.1954830Z # Subtest: one standard-hosted job builds hosts without model or product execution
+release	Verify source and committed admission	2026-08-11T07:07:40.1974300Z ok 4 - one standard-hosted job builds hosts without model or product execution
+release	Verify source and committed admission	2026-08-11T07:07:40.2076200Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.2177510Z   duration_ms: 15.593916
+release	Verify source and committed admission	2026-08-11T07:07:40.2300380Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.2403370Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:40.2512260Z # Subtest: the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+release	Verify source and committed admission	2026-08-11T07:07:40.2621830Z ok 5 - the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+release	Verify source and committed admission	2026-08-11T07:07:40.2727480Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.2831760Z   duration_ms: 2.698167
+release	Verify source and committed admission	2026-08-11T07:07:40.2933270Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.3034300Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:40.3128720Z # Subtest: the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+release	Verify source and committed admission	2026-08-11T07:07:40.3140760Z ok 6 - the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+release	Verify source and committed admission	2026-08-11T07:07:40.3141740Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.3142210Z   duration_ms: 60.55525
+release	Verify source and committed admission	2026-08-11T07:07:40.3142780Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.3143230Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:40.3144030Z # Subtest: an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+release	Verify source and committed admission	2026-08-11T07:07:40.3145280Z ok 7 - an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+release	Verify source and committed admission	2026-08-11T07:07:40.3146390Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.3146900Z   duration_ms: 13.02975
+release	Verify source and committed admission	2026-08-11T07:07:40.3147370Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.3147950Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:40.3155800Z # Subtest: managed recovery and combined-package entrypoints are absent
+release	Verify source and committed admission	2026-08-11T07:07:40.3156500Z ok 8 - managed recovery and combined-package entrypoints are absent
+release	Verify source and committed admission	2026-08-11T07:07:40.3157110Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.3157510Z   duration_ms: 2.859958
+release	Verify source and committed admission	2026-08-11T07:07:40.3157880Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.3158260Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:40.3780810Z # Subtest: the prepublication seal closes exactly eight prior assets plus checksums
+release	Verify source and committed admission	2026-08-11T07:07:40.3819630Z ok 9 - the prepublication seal closes exactly eight prior assets plus checksums
+release	Verify source and committed admission	2026-08-11T07:07:40.3824640Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:40.3826490Z   duration_ms: 129.203583
+release	Verify source and committed admission	2026-08-11T07:07:40.3842980Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:40.3843470Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:42.6963230Z # Subtest: Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+release	Verify source and committed admission	2026-08-11T07:07:42.6967730Z ok 10 - Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+release	Verify source and committed admission	2026-08-11T07:07:42.7021620Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:42.7022820Z   duration_ms: 2319.757833
+release	Verify source and committed admission	2026-08-11T07:07:42.7023780Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:42.7024510Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:45.8334760Z # Subtest: lineage verifier accepts later documentation-only W and rejects archive impact
+release	Verify source and committed admission	2026-08-11T07:07:45.8409740Z ok 11 - lineage verifier accepts later documentation-only W and rejects archive impact
+release	Verify source and committed admission	2026-08-11T07:07:45.8411910Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:45.8432460Z   duration_ms: 3144.282208
+release	Verify source and committed admission	2026-08-11T07:07:45.8433010Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:45.8433410Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:47.0912770Z # Subtest: lineage-aware protection rejects mutation followed by byte-identical revert
+release	Verify source and committed admission	2026-08-11T07:07:47.0954950Z ok 12 - lineage-aware protection rejects mutation followed by byte-identical revert
+release	Verify source and committed admission	2026-08-11T07:07:47.0955530Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:47.0955830Z   duration_ms: 1252.113041
+release	Verify source and committed admission	2026-08-11T07:07:47.0956280Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:47.0956530Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:48.6788900Z # Subtest: lineage verifier accepts an integration merge that preserves the R-bearing tree
+release	Verify source and committed admission	2026-08-11T07:07:48.6818490Z ok 13 - lineage verifier accepts an integration merge that preserves the R-bearing tree
+release	Verify source and committed admission	2026-08-11T07:07:48.6838310Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:48.6849220Z   duration_ms: 1590.492209
+release	Verify source and committed admission	2026-08-11T07:07:48.6865070Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:48.6895960Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:50.9689210Z # Subtest: lineage verifier rejects bound policy drift and checkout closure drift
+release	Verify source and committed admission	2026-08-11T07:07:50.9790900Z ok 14 - lineage verifier rejects bound policy drift and checkout closure drift
+release	Verify source and committed admission	2026-08-11T07:07:50.9791700Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:50.9792230Z   duration_ms: 2291.614333
+release	Verify source and committed admission	2026-08-11T07:07:50.9795070Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:50.9796010Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:51.5982120Z # Subtest: Admission 4 schema forbids self and later lineage edges
+release	Verify source and committed admission	2026-08-11T07:07:51.5988230Z ok 15 - Admission 4 schema forbids self and later lineage edges
+release	Verify source and committed admission	2026-08-11T07:07:51.5989270Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:51.5990110Z   duration_ms: 629.985166
+release	Verify source and committed admission	2026-08-11T07:07:51.5991090Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:51.5991420Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:52.5468980Z # Subtest: promotion rejects checksum drift and verifier rejects a seventh promoted path
+release	Verify source and committed admission	2026-08-11T07:07:52.5472850Z ok 16 - promotion rejects checksum drift and verifier rejects a seventh promoted path
+release	Verify source and committed admission	2026-08-11T07:07:52.5473740Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:52.5474110Z   duration_ms: 949.383375
+release	Verify source and committed admission	2026-08-11T07:07:52.5474560Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:52.5474800Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:52.5542330Z # Subtest: Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+release	Verify source and committed admission	2026-08-11T07:07:52.5543500Z ok 17 - Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+release	Verify source and committed admission	2026-08-11T07:07:52.5544180Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:52.5544750Z   duration_ms: 8.456375
+release	Verify source and committed admission	2026-08-11T07:07:52.5545000Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:52.5545180Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:52.5545890Z # Subtest: same-specificity matches choose their strictest result without reintroducing broader prefixes
+release	Verify source and committed admission	2026-08-11T07:07:52.5546910Z ok 18 - same-specificity matches choose their strictest result without reintroducing broader prefixes
+release	Verify source and committed admission	2026-08-11T07:07:52.5547460Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:52.5547690Z   duration_ms: 1.368667
+release	Verify source and committed admission	2026-08-11T07:07:52.5547980Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:52.5548250Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:52.5548760Z # Subtest: complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+release	Verify source and committed admission	2026-08-11T07:07:52.5549640Z ok 19 - complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+release	Verify source and committed admission	2026-08-11T07:07:52.5550130Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:52.5550300Z   duration_ms: 251.716208
+release	Verify source and committed admission	2026-08-11T07:07:52.5550560Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:52.5550800Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:52.5551510Z # Subtest: mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+release	Verify source and committed admission	2026-08-11T07:07:52.5552460Z ok 20 - mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+release	Verify source and committed admission	2026-08-11T07:07:52.5552940Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:52.5553150Z   duration_ms: 280.392917
+release	Verify source and committed admission	2026-08-11T07:07:52.5553500Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:52.5553710Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:52.5554130Z # Subtest: frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+release	Verify source and committed admission	2026-08-11T07:07:52.5554910Z ok 21 - frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+release	Verify source and committed admission	2026-08-11T07:07:52.5555350Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:52.5555660Z   duration_ms: 19.509209
+release	Verify source and committed admission	2026-08-11T07:07:52.5555860Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:52.5556080Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:52.5556820Z # Subtest: production Admission 4 retains historical API-REV-025 subjects but requires current focused renewal
+release	Verify source and committed admission	2026-08-11T07:07:52.5557770Z ok 22 - production Admission 4 retains historical API-REV-025 subjects but requires current focused renewal
+release	Verify source and committed admission	2026-08-11T07:07:52.5558340Z   ---
+release	Verify source and committed admission	2026-08-11T07:07:52.5558640Z   duration_ms: 300.934917
+release	Verify source and committed admission	2026-08-11T07:07:52.5558940Z   type: 'test'
+release	Verify source and committed admission	2026-08-11T07:07:52.5559230Z   ...
+release	Verify source and committed admission	2026-08-11T07:07:52.5563160Z 1..22
+release	Verify source and committed admission	2026-08-11T07:07:52.5563330Z # tests 22
+release	Verify source and committed admission	2026-08-11T07:07:52.5563600Z # suites 0
+release	Verify source and committed admission	2026-08-11T07:07:52.5563840Z # pass 22
+release	Verify source and committed admission	2026-08-11T07:07:52.5564130Z # fail 0
+release	Verify source and committed admission	2026-08-11T07:07:52.5564370Z # cancelled 0
+release	Verify source and committed admission	2026-08-11T07:07:52.5564580Z # skipped 0
+release	Verify source and committed admission	2026-08-11T07:07:52.5564730Z # todo 0
+release	Verify source and committed admission	2026-08-11T07:07:52.5565040Z # duration_ms 12990.439458
+release	Select exact hosted Xcode SDK and CMake toolchain	﻿2026-08-11T07:07:54.2912070Z ##[group]Run set -euo pipefail
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2912910Z [36;1mset -euo pipefail[0m
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2913190Z [36;1mROOT="$RUNNER_TEMP/voice-release"[0m
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2913590Z [36;1mCMAKE="$(node release/hosted-toolchain.mjs --tools-root "$ROOT/tools" \[0m
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2914070Z [36;1m  --runner-label macos-26 \[0m
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2914480Z [36;1m  --output "$ROOT/audit/hosted-toolchain-selection-v1.json")"[0m
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2914900Z [36;1mprintf 'cmake=%s\n' "$CMAKE" >> "$GITHUB_OUTPUT"[0m
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2954090Z shell: /bin/bash -e {0}
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2954300Z env:
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2954520Z   VOICE_RELEASE_TAG: v1.0.0
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2954710Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Select exact hosted Xcode SDK and CMake toolchain	2026-08-11T07:07:54.2955010Z ##[endgroup]
+release	Capture hosted authority and hydrate host-only inputs	﻿2026-08-11T07:08:02.4893840Z ##[group]Run set -euo pipefail
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4894480Z [36;1mset -euo pipefail[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4894860Z [36;1mROOT="$RUNNER_TEMP/voice-release"[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4895420Z [36;1mCMAKE="/Users/runner/work/_temp/voice-release/tools/cmake-4.2.0-macos-universal/CMake.app/Contents/bin/cmake"[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4896020Z [36;1mnode build/host-build-environment.mjs --cmake "$CMAKE" \[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4896550Z [36;1m  --runner-label macos-26 --output "$ROOT/host-build-environment-v2.json"[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4897100Z [36;1mnode build/hydrate-host-input-cache.mjs \[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4897530Z [36;1m  --english build/input-recipes/english-host-darwin-arm64-v2.json \[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4898130Z [36;1m  --chinese build/input-recipes/chinese-host-darwin-arm64-v2.json --cache "$ROOT/cache"[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4898780Z [36;1mfor PROFILE in english chinese; do[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4899210Z [36;1m  node build/materialize-release-inputs.mjs \[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4899720Z [36;1m    --recipe "build/input-recipes/${PROFILE}-host-darwin-arm64-v2.json" \[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4900230Z [36;1m    --cache "$ROOT/cache" --repository "$GITHUB_WORKSPACE" \[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4900790Z [36;1m    --destination "$ROOT/inputs/$PROFILE" --source-commit "$GITHUB_SHA"[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4901190Z [36;1mdone[0m
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4956130Z shell: /bin/bash -e {0}
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4956490Z env:
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4956750Z   VOICE_RELEASE_TAG: v1.0.0
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4957030Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Capture hosted authority and hydrate host-only inputs	2026-08-11T07:08:02.4957380Z ##[endgroup]
+release	Build and independently verify exact runtime hosts	﻿2026-08-11T07:09:02.4971430Z ##[group]Run set -euo pipefail
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4972200Z [36;1mset -euo pipefail[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4972630Z [36;1mROOT="$RUNNER_TEMP/voice-release"; GO="$(go env GOROOT)/bin/go"[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4973200Z [36;1m/usr/bin/sandbox-exec -f benchmark/sandbox/darwin-arm64-network-denied-v1.sb \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4974060Z [36;1m  "$(command -v node)" release/run-host-construction.mjs \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4974730Z [36;1m  --source-admission release/admission/v1.0.0-release-source-admission-v4.json \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4978640Z [36;1m  --release-admission-verification "$ROOT/audit/release-admission-verification-v1.json" \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4980390Z [36;1m  --qualification-set release/admission/v1.0.0-focused-qualification-set-v3.json \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4981740Z [36;1m  --workflow-checkout-commit "$GITHUB_SHA" --inputs-root "$ROOT/inputs" \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4983050Z [36;1m  --assets "$ROOT/assets" --audit "$ROOT/audit" --go "$GO" \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4984670Z [36;1m  --build-environment "$ROOT/host-build-environment-v2.json" \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4985700Z [36;1m  --version "$VOICE_RUNTIME_VERSION" \[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.4986850Z [36;1m  --output "$ROOT/audit/hosted-host-construction-result-v3.json"[0m
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.5636670Z shell: /bin/bash -e {0}
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.5637430Z env:
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.5637900Z   VOICE_RELEASE_TAG: v1.0.0
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.5638620Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Build and independently verify exact runtime hosts	2026-08-11T07:09:02.5639190Z ##[endgroup]
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5028590Z file:///Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/release/hosted-host-construction-result.mjs:106
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5030780Z       throw new Error("Hosted host differs from focused host authority.");
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5031300Z             ^
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5031560Z 
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5031940Z Error: Hosted host differs from focused host authority.
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5033520Z     at assembleHostConstructionResult (file:///Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/release/hosted-host-construction-result.mjs:106:13)
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5035750Z     at async runHostConstruction (file:///Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/release/run-host-construction.mjs:202:18)
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5037510Z     at async file:///Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime/release/run-host-construction.mjs:219:3
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5038120Z 
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5038310Z Node.js v22.23.1
+release	Build and independently verify exact runtime hosts	2026-08-11T07:15:10.5134240Z ##[error]Process completed with exit code 1.
+release	Finalize truthful hosted release audit	﻿2026-08-11T07:15:10.5370770Z ##[group]Run set -euo pipefail
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5371140Z [36;1mset -euo pipefail[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5371430Z [36;1mAUDIT="$RUNNER_TEMP/voice-release/audit/hosted-release-audit-v1.json"[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5371990Z [36;1mnode release/hosted-release-audit.mjs finalize --input "$AUDIT" --output "$AUDIT" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5372410Z [36;1m  --checkout "success" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5372610Z [36;1m  --setup-node "success" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5372960Z [36;1m  --setup-go "success" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5373270Z [36;1m  --source-admission "success" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5373550Z [36;1m  --hosted-toolchain "success" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5373770Z [36;1m  --input-hydration "success" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5373980Z [36;1m  --host-construction "failure" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5374200Z [36;1m  --release-composition "skipped" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5374490Z [36;1m  --publication "skipped" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5374780Z [36;1m  --postpublication-verification "skipped" \[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.5375160Z [36;1m  --quarantine "skipped"[0m
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.6450110Z shell: /bin/bash -e {0}
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.6450300Z env:
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.6450560Z   VOICE_RELEASE_TAG: v1.0.0
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.6450790Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Finalize truthful hosted release audit	2026-08-11T07:15:10.6450960Z ##[endgroup]
+release	Retain release audit	﻿2026-08-11T07:15:10.7649130Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+release	Retain release audit	2026-08-11T07:15:10.7650540Z ##[group]Run actions/upload-artifact@v4
+release	Retain release audit	2026-08-11T07:15:10.7650830Z with:
+release	Retain release audit	2026-08-11T07:15:10.7651150Z   name: voice-runtime-host-release-audit-31467686540
+release	Retain release audit	2026-08-11T07:15:10.7651610Z   path: /Users/runner/work/_temp/voice-release/audit/
+release	Retain release audit	2026-08-11T07:15:10.7651940Z   if-no-files-found: error
+release	Retain release audit	2026-08-11T07:15:10.7652240Z   retention-days: 90
+release	Retain release audit	2026-08-11T07:15:10.7652440Z   compression-level: 6
+release	Retain release audit	2026-08-11T07:15:10.7652730Z   overwrite: false
+release	Retain release audit	2026-08-11T07:15:10.7652970Z   include-hidden-files: false
+release	Retain release audit	2026-08-11T07:15:10.7653220Z env:
+release	Retain release audit	2026-08-11T07:15:10.7653400Z   VOICE_RELEASE_TAG: v1.0.0
+release	Retain release audit	2026-08-11T07:15:10.7653690Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Retain release audit	2026-08-11T07:15:10.7653990Z ##[endgroup]
+release	Retain release audit	2026-08-11T07:15:11.1503420Z (node:47889) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+release	Retain release audit	2026-08-11T07:15:11.1504170Z (Use `node --trace-deprecation ...` to show where the warning was created)
+release	Retain release audit	2026-08-11T07:15:11.1553860Z With the provided path, there will be 7 files uploaded
+release	Retain release audit	2026-08-11T07:15:11.1556430Z Artifact name is valid!
+release	Retain release audit	2026-08-11T07:15:11.1556820Z Root directory input is valid!
+release	Retain release audit	2026-08-11T07:15:11.4028990Z Beginning upload of artifact content to blob storage
+release	Retain release audit	2026-08-11T07:15:11.4586000Z (node:47889) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+release	Retain release audit	2026-08-11T07:15:11.7219120Z Uploaded bytes 179579
+release	Retain release audit	2026-08-11T07:15:11.7733510Z Finished uploading artifact content to blob storage!
+release	Retain release audit	2026-08-11T07:15:11.7735710Z SHA256 digest of uploaded artifact zip is 84cf3424ee3f4553ceec49ba9ef64ff82cfc1e8a2b8db5ac08f0853770a93d77
+release	Retain release audit	2026-08-11T07:15:11.7737060Z Finalizing artifact upload
+release	Retain release audit	2026-08-11T07:15:11.9606540Z Artifact voice-runtime-host-release-audit-31467686540.zip successfully finalized. Artifact ID 9092294437
+release	Retain release audit	2026-08-11T07:15:11.9610580Z Artifact voice-runtime-host-release-audit-31467686540 has been successfully uploaded! Final size is 179579 bytes. Artifact ID is 9092294437
+release	Retain release audit	2026-08-11T07:15:11.9637510Z Artifact download URL: https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/31467686540/artifacts/9092294437
+release	Fail finalization after publication or verification failure	﻿2026-08-11T07:15:11.9875630Z ##[group]Run test "skipped" = success
+release	Fail finalization after publication or verification failure	2026-08-11T07:15:11.9876530Z [36;1mtest "skipped" = success[0m
+release	Fail finalization after publication or verification failure	2026-08-11T07:15:11.9877150Z [36;1mtest "skipped" = success[0m
+release	Fail finalization after publication or verification failure	2026-08-11T07:15:11.9979500Z shell: /bin/bash -e {0}
+release	Fail finalization after publication or verification failure	2026-08-11T07:15:11.9979910Z env:
+release	Fail finalization after publication or verification failure	2026-08-11T07:15:11.9980310Z   VOICE_RELEASE_TAG: v1.0.0
+release	Fail finalization after publication or verification failure	2026-08-11T07:15:11.9980770Z   VOICE_RUNTIME_VERSION: 1.0.0
+release	Fail finalization after publication or verification failure	2026-08-11T07:15:11.9981200Z ##[endgroup]
+release	Fail finalization after publication or verification failure	2026-08-11T07:15:12.0424390Z ##[error]Process completed with exit code 1.
+release	Post Check out exact maintained-main source	﻿2026-08-11T07:15:12.0546180Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.0547360Z Post job cleanup.
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.1575690Z [command]/opt/homebrew/bin/git version
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.1851010Z git version 2.55.0
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.1870390Z Copying '/Users/runner/.gitconfig' to '/Users/runner/work/_temp/af4d94d3-4c8b-48c0-b089-d2abbdb95655/.gitconfig'
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.1878260Z Temporarily overriding HOME='/Users/runner/work/_temp/af4d94d3-4c8b-48c0-b089-d2abbdb95655' before making global git config changes
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.1879600Z Adding repository directory to the temporary git global config as a safe directory
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.1882960Z [command]/opt/homebrew/bin/git config --global --add safe.directory /Users/runner/work/autobyteus-voice-runtime/autobyteus-voice-runtime
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.2017660Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp core\.sshCommand
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.2087720Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.3172460Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.3236580Z http.https://github.com/.extraheader
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.3243580Z [command]/opt/homebrew/bin/git config --local --unset-all http.https://github.com/.extraheader
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.3321780Z [command]/opt/homebrew/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.4184450Z [command]/opt/homebrew/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+release	Post Check out exact maintained-main source	2026-08-11T07:15:12.4253250Z [command]/opt/homebrew/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+release	Complete job	﻿2026-08-11T07:15:12.5058170Z Cleaning up orphan processes
+release	Complete job	2026-08-11T07:15:13.3864480Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-go@v5, actions/setup-node@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

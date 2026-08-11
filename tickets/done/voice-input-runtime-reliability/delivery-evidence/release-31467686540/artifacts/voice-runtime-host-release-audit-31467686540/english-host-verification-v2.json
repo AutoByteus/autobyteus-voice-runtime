@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 2,
+  "hostPackageId": "voice.host.english.mlx-whisper.darwin-arm64",
+  "hostRoot": "host",
+  "archiveSha256": "0910bdd7946bf59563bf09f62964149e1f556b253eadd83bb96cc25ed8ec204e",
+  "descriptorSha256": "e6b46a9445d2268f0d82deb506d0d7b993c4eca89aa163ffd16c0a364b202f2a",
+  "fileManifestSha256": "22f545dd38e255d25e020815b07c6e25d587f24655caa2a3e6ddf3774c3fc04d",
+  "extractedSizeBytes": 723873277,
+  "entryCount": 6503,
+  "modesVerified": true,
+  "descriptorSchemaValid": true,
+  "fileManifestSchemaValid": true,
+  "modelPayloadAbsent": true
+}

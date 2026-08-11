@@ -179,3 +179,14 @@ tag publication, published-byte verification, and the deferred target set.
 - Long-lived docs decision: `No change`. The renewal corrects source/authority identity only; README and release notes remain accurate for host-only runtimes, on-demand models, current darwin-arm64 scope, standard-hosted publication, and nine assets.
 - Delivery execution: no product/profile/performance qualification or model download.
 - Result: `Pass / release-ready`; maintained-main W integration and production publication remain Delivery-owned.
+
+## Delivery Round 13 — Standard-Hosted Equality Failure
+
+- Finalized maintained main: `W = 34db749f543609fd397e25f08102c790eca568de`; exact R is retained unchanged and Release Admission Verification 1 passes.
+- Production run: `31467686540` on standard GitHub-hosted `macos-26`.
+- Passing gates: source/admission, exact hosted toolchain, input hydration, and exact Chinese host equality.
+- Failure: English hosted archive/file-manifest identities differ from the focused authority although descriptor identity and entry count match. The hosted tree is 435 extracted bytes smaller.
+- Publication result: fail closed before composition; no tag, release, or asset.
+- Long-lived docs decision: `No product/operator prose change`. Runtime behavior, model delivery, supported matrix, and intended release content are unchanged. The reproducibility failure is recorded in ticket-local durable evidence and must be resolved before publication.
+- Delivery execution: no product/profile/performance qualification, inference, or model download.
+- Result: `Blocked / Unclear`; route for failure-origin determination and do not retry or weaken equality.
