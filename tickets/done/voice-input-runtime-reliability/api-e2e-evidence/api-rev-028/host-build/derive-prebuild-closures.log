@@ -1,0 +1,14 @@
+{
+  "schemaVersion": 1,
+  "sourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "profiles": {
+    "english": {
+      "hostSourceClosureSizeBytes": 43398,
+      "hostSourceClosureSha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+    },
+    "chinese": {
+      "hostSourceClosureSizeBytes": 704820,
+      "hostSourceClosureSha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+    }
+  }
+}

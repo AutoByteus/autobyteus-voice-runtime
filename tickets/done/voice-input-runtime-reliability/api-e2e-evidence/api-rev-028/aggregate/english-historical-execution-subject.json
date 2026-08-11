@@ -1,0 +1,44 @@
+{
+  "profileId": "english",
+  "inferenceCoreFiles": [
+    {
+      "path": "providers/english-mlx/provider-lock.json",
+      "sizeBytes": 1286,
+      "sha256": "f90052ddb57b322ff4297f63559061ee32d6f73aa46eee7e8f6ab3c0c44882bd"
+    },
+    {
+      "path": "providers/english-mlx/worker.py",
+      "sizeBytes": 173,
+      "sha256": "3be3380fc089f8fad6c03e71cf5aad82a7ebd20dc733eb7947e344c1b5ff5ae4"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/audio.py",
+      "sizeBytes": 1589,
+      "sha256": "940b370bc34fe25471e53c5dc128f22ca79dacad837e495de5fdc15cdf1b8c4f"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/exact_json.py",
+      "sizeBytes": 727,
+      "sha256": "31de5c1694d5580bfe28cf1dff6f0cc72f9b85f4bcad8a58846a0565e837e76b"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/normalization.py",
+      "sizeBytes": 4586,
+      "sha256": "d20801fb9b2bc96e8b9af55a5f4939b362f855a3a3d25ba5ad40e3710d926c27"
+    },
+    {
+      "path": "providers/python/autobyteus_voice_provider/protocol.py",
+      "sizeBytes": 5440,
+      "sha256": "e32075631c52589ef2adf88c6ce23f0c91e43f1cd1b25121aff761aceb20ce32"
+    }
+  ],
+  "adapterExclusions": [
+    "providers/english-mlx/recognizer.py",
+    "providers/python/autobyteus_voice_provider/bootstrap.py",
+    "providers/python/autobyteus_voice_provider/session.py"
+  ],
+  "configurationSha256": "92d2d60a599910dbfd79ce407a655ec3d268c7810eb963021e1bd4d72c64c980",
+  "modelManifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+  "trustedOutputSha256": "8f9d0abfa27c563f02a12fd468f3eb48b075334b5c1d9f3255ec808a7cadad9f",
+  "sourceCommit": "32829080938911f0f46390a3fd2af823e105bd32"
+}

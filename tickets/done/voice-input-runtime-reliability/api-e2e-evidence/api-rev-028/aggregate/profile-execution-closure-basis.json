@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-022",
+  "historicalSourceCommit": "32829080938911f0f46390a3fd2af823e105bd32",
+  "currentSourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "profiles": {
+    "english": {
+      "inferenceCoreFiles": [
+        {
+          "path": "providers/english-mlx/provider-lock.json",
+          "historicalSha256": "f90052ddb57b322ff4297f63559061ee32d6f73aa46eee7e8f6ab3c0c44882bd",
+          "currentSha256": "f90052ddb57b322ff4297f63559061ee32d6f73aa46eee7e8f6ab3c0c44882bd",
+          "equal": true
+        },
+        {
+          "path": "providers/english-mlx/worker.py",
+          "historicalSha256": "3be3380fc089f8fad6c03e71cf5aad82a7ebd20dc733eb7947e344c1b5ff5ae4",
+          "currentSha256": "3be3380fc089f8fad6c03e71cf5aad82a7ebd20dc733eb7947e344c1b5ff5ae4",
+          "equal": true
+        },
+        {
+          "path": "providers/python/autobyteus_voice_provider/audio.py",
+          "historicalSha256": "940b370bc34fe25471e53c5dc128f22ca79dacad837e495de5fdc15cdf1b8c4f",
+          "currentSha256": "940b370bc34fe25471e53c5dc128f22ca79dacad837e495de5fdc15cdf1b8c4f",
+          "equal": true
+        },
+        {
+          "path": "providers/python/autobyteus_voice_provider/exact_json.py",
+          "historicalSha256": "31de5c1694d5580bfe28cf1dff6f0cc72f9b85f4bcad8a58846a0565e837e76b",
+          "currentSha256": "31de5c1694d5580bfe28cf1dff6f0cc72f9b85f4bcad8a58846a0565e837e76b",
+          "equal": true
+        },
+        {
+          "path": "providers/python/autobyteus_voice_provider/normalization.py",
+          "historicalSha256": "d20801fb9b2bc96e8b9af55a5f4939b362f855a3a3d25ba5ad40e3710d926c27",
+          "currentSha256": "d20801fb9b2bc96e8b9af55a5f4939b362f855a3a3d25ba5ad40e3710d926c27",
+          "equal": true
+        },
+        {
+          "path": "providers/python/autobyteus_voice_provider/protocol.py",
+          "historicalSha256": "e32075631c52589ef2adf88c6ce23f0c91e43f1cd1b25121aff761aceb20ce32",
+          "currentSha256": "e32075631c52589ef2adf88c6ce23f0c91e43f1cd1b25121aff761aceb20ce32",
+          "equal": true
+        }
+      ],
+      "adapterExclusions": [
+        "providers/english-mlx/recognizer.py",
+        "providers/python/autobyteus_voice_provider/bootstrap.py",
+        "providers/python/autobyteus_voice_provider/session.py"
+      ],
+      "configurationBasis": {
+        "engineConfigurationSha256": "c892f1f8b2ee99f7580036beb3df2725b4d89615907386ad83e481497ad63a88",
+        "profileResourcePolicySha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+        "protocolSchemaSha256": "8ad5b79320f01bc2b01821b2a592b337f8b62521929adf0f4ad281b34cbb7b27",
+        "audioContractSha256": "0f37e24ef9b5792504346bd77a6adcc803ad8b5bb547a682044989bf6d8a3213",
+        "canonicalSha256": "92d2d60a599910dbfd79ce407a655ec3d268c7810eb963021e1bd4d72c64c980"
+      },
+      "modelManifestSha256": "623ad1e90eb305e703f09a15e2325be2026aa39dea98bb34f1859ac953836593",
+      "trustedOutputSha256": "8f9d0abfa27c563f02a12fd468f3eb48b075334b5c1d9f3255ec808a7cadad9f"
+    },
+    "chinese": {
+      "inferenceCoreFiles": [
+        {
+          "path": "providers/chinese-funasr/CMakeLists.txt",
+          "historicalSha256": "24fdb921ddcc33f6e834069f6a87c1b3e2e7e368c858b2ca122fe38d80410b35",
+          "currentSha256": "24fdb921ddcc33f6e834069f6a87c1b3e2e7e368c858b2ca122fe38d80410b35",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/provider-lock.json",
+          "historicalSha256": "19088f62c5ce6701c4776ce8f7467de4df07d6ab749b63add9ef50b18fdc6bbb",
+          "currentSha256": "19088f62c5ce6701c4776ce8f7467de4df07d6ab749b63add9ef50b18fdc6bbb",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/audio.cpp",
+          "historicalSha256": "f02673b09cdf89e432a2131ada57f1317a1d64c8c52b3343ea449632143491ff",
+          "currentSha256": "f02673b09cdf89e432a2131ada57f1317a1d64c8c52b3343ea449632143491ff",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/audio.h",
+          "historicalSha256": "f450bebadbfc18e24c3b97fb21b2546ecba406739748a459789aeac7a6f450d2",
+          "currentSha256": "f450bebadbfc18e24c3b97fb21b2546ecba406739748a459789aeac7a6f450d2",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/audio_features.cpp",
+          "historicalSha256": "ac62276109362a1e4588e711e622a86e1140d0157157e28872e4791f516cb27d",
+          "currentSha256": "ac62276109362a1e4588e711e622a86e1140d0157157e28872e4791f516cb27d",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/audio_features.h",
+          "historicalSha256": "c6ab4f8c1db60eb52a77590dcc531be8c0523326df55dd66a92c2a705d948b06",
+          "currentSha256": "c6ab4f8c1db60eb52a77590dcc531be8c0523326df55dd66a92c2a705d948b06",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/funasr_engine.cpp",
+          "historicalSha256": "e2c2db6290b98abe55440c10d90683e99ceafdc67e2e2327b3230b4713ab943d",
+          "currentSha256": "e2c2db6290b98abe55440c10d90683e99ceafdc67e2e2327b3230b4713ab943d",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/funasr_engine.h",
+          "historicalSha256": "285662e176acab00b82079d79da2ef6463c8aa9345da3fabf424b094c63a638b",
+          "currentSha256": "285662e176acab00b82079d79da2ef6463c8aa9345da3fabf424b094c63a638b",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/normalization.cpp",
+          "historicalSha256": "bc79d3026ab8c4ff50e96b7b060b4951a8bd8602afcd0878783d1d6f0736d622",
+          "currentSha256": "bc79d3026ab8c4ff50e96b7b060b4951a8bd8602afcd0878783d1d6f0736d622",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/normalization.h",
+          "historicalSha256": "e0eaaeb54fb51fff982488df97bde948943a4063b7b85cb85a7e9446d7f30949",
+          "currentSha256": "e0eaaeb54fb51fff982488df97bde948943a4063b7b85cb85a7e9446d7f30949",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/package_integrity.cpp",
+          "historicalSha256": "be743a06e21b61b31af0efab0bd0dc797fb8ac3a17604b00c2b3836dbb130be0",
+          "currentSha256": "be743a06e21b61b31af0efab0bd0dc797fb8ac3a17604b00c2b3836dbb130be0",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/package_integrity.h",
+          "historicalSha256": "ebf923a82874051ba813f576538be2fc920744bbb41efaad1f97cfb3a23c7123",
+          "currentSha256": "ebf923a82874051ba813f576538be2fc920744bbb41efaad1f97cfb3a23c7123",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/package_integrity_apple.cpp",
+          "historicalSha256": "62c9e5bbf3a6efb6fd7df9c4c1fa7d94e59187ad4f1897dd1ac76e2ef16abd01",
+          "currentSha256": "62c9e5bbf3a6efb6fd7df9c4c1fa7d94e59187ad4f1897dd1ac76e2ef16abd01",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/preparation_diagnostics.cpp",
+          "historicalSha256": "67d28aaee49a7a78b837f42a5b3138d4bcaa6222c1b78a8847e3787410090e5c",
+          "currentSha256": "67d28aaee49a7a78b837f42a5b3138d4bcaa6222c1b78a8847e3787410090e5c",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/preparation_diagnostics.h",
+          "historicalSha256": "99f5172763b85673bd2cc0f85052fe3ef9986713ee4d080c80f8df6bc4468ff7",
+          "currentSha256": "99f5172763b85673bd2cc0f85052fe3ef9986713ee4d080c80f8df6bc4468ff7",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/result_policy.cpp",
+          "historicalSha256": "e2ecf9b95f4a2d9c486f53d412971a3b6268a0830a31b5c46ad8706f8a8047e6",
+          "currentSha256": "e2ecf9b95f4a2d9c486f53d412971a3b6268a0830a31b5c46ad8706f8a8047e6",
+          "equal": true
+        },
+        {
+          "path": "providers/chinese-funasr/src/result_policy.h",
+          "historicalSha256": "4227a39c839964de12bc313c074cbba17da319e559e160fc10d8c6b27c6ccd70",
+          "currentSha256": "4227a39c839964de12bc313c074cbba17da319e559e160fc10d8c6b27c6ccd70",
+          "equal": true
+        }
+      ],
+      "adapterExclusions": [
+        "providers/chinese-funasr/src/main.cpp",
+        "providers/chinese-funasr/src/session.cpp",
+        "providers/chinese-funasr/src/session.h"
+      ],
+      "configurationBasis": {
+        "engineConfigurationSha256": "ad42cf319e1970e62594c1fe10b12ace2dcd8917755b8f38883ffedcc3c781ef",
+        "profileResourcePolicySha256": "d27110777f885f28569b6e53e7386a3d97e6c23cfe004efc295192b121663744",
+        "protocolSchemaSha256": "8ad5b79320f01bc2b01821b2a592b337f8b62521929adf0f4ad281b34cbb7b27",
+        "audioContractSha256": "0f37e24ef9b5792504346bd77a6adcc803ad8b5bb547a682044989bf6d8a3213",
+        "canonicalSha256": "aa50b05a04a2df598db2a9a829856e3d46e636f8ada032c4b1682acc0c84aa8d"
+      },
+      "modelManifestSha256": "09bf363a22ff7c98e53945e51544da09af0a96a7ad996b6ff991ef782a83c4da",
+      "trustedOutputSha256": "ded872d120c23ca6f8793ce90f03ef097591e790f91e45cc0b93de6797abfb09"
+    }
+  }
+}

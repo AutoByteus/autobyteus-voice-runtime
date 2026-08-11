@@ -1,0 +1,1 @@
+/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/extract/English Host ü/host/bin/voice-model-manager install-profile --profile english --catalog /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/catalog/voice-runtime-catalog-v4.json --install-root /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/stores-v2/english

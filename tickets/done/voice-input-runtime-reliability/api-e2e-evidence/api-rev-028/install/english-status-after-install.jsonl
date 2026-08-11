@@ -1,0 +1,2 @@
+{"schemaVersion":1,"operationId":"0ee5ba1c-18fe-4d3f-adb0-0e15d6fbeb3f","operation":"status-profile","profileId":"english","target":{"platform":"darwin","architecture":"arm64"},"sequence":1,"phase":"checking","timestamp":"2026-08-11T06:38:12.215963Z"}
+{"schemaVersion":1,"operationId":"0ee5ba1c-18fe-4d3f-adb0-0e15d6fbeb3f","operation":"status-profile","profileId":"english","target":{"platform":"darwin","architecture":"arm64"},"sequence":2,"phase":"status-result","timestamp":"2026-08-11T06:38:12.988132Z","profileState":"active"}

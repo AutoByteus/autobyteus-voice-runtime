@@ -1,0 +1,377 @@
+Voice Input Runtime Reliability — focused renewal authority integration check
+timestamp_utc=2026-08-11T07:01:51Z
+origin_main=27effcb6238b11ff3e41ad2473adf4e6d9fa6586
+D=77092392ce565f887c4698a3a12f384ea41b5e02
+R=ef0874577b2d96a8e2afc59b2334a484a9699cda
+candidate=dc8a6f92f14bc7dbe10b14b47d8fe3c8b731ebc7
+R_parents=77092392ce565f887c4698a3a12f384ea41b5e02
+
+== protected R additions and candidate blob equality ==
+aa607120571e83fd4e3b11dd65380ab245fef4f8 release/admission/v1.0.0-branch-catalog-projection-v3.json
+4aafbb8d69da37bd11c32d065549be59483ee855 release/admission/v1.0.0-branch-catalog-projection-verification-v3.json
+c13d5035cfe62e9ec2a104764ccbd4c3887ead84 release/admission/v1.0.0-chinese-profile-execution-closure-v2.json
+015ee34faf60c0acfda5e83b26bd6b004e90db8d release/admission/v1.0.0-english-profile-execution-closure-v2.json
+b011362e533444c1c97650f5cd4dbe30eb5f313f release/admission/v1.0.0-focused-qualification-set-v3.json
+88e06c098be765b4f9c779276edda5042480ee58 release/admission/v1.0.0-release-source-admission-v4.json
+
+== authority semantics ==
+{
+  "focusedSourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "admittedSourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "decision": "reuse-permitted",
+  "profiles": [
+    {
+      "profileId": "english",
+      "equal": true,
+      "focusedHostSourceClosure": {
+        "sizeBytes": 43398,
+        "sha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+      },
+      "admittedHostSourceClosure": {
+        "sizeBytes": 43398,
+        "sha256": "d900867c44ff9ef84cab88274558228e56333571d3ab890c8f5186ee0ef805ab"
+      },
+      "hostArchive": {
+        "fileName": "voice-host-english-darwin-arm64-1.0.0.zip",
+        "sizeBytes": 207494198,
+        "sha256": "9d7d7b501229e85fc2ad54996f716d79eb59077a56c30ce3ce580c619fbcdc4a"
+      }
+    },
+    {
+      "profileId": "chinese",
+      "equal": true,
+      "focusedHostSourceClosure": {
+        "sizeBytes": 704820,
+        "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+      },
+      "admittedHostSourceClosure": {
+        "sizeBytes": 704820,
+        "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+      },
+      "hostArchive": {
+        "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip",
+        "sizeBytes": 9663578,
+        "sha256": "b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df"
+      }
+    }
+  ]
+}
+
+== focused release pipeline ==
+
+> @autobyteus/voice-input-runtime@1.0.0 check:release-pipeline
+> node tooling/check-release-pipeline.mjs && node --test tests/release/catalog-v4.test.mjs tests/release/host-construction-result.test.mjs tests/release/host-release-contracts.test.mjs tests/release/prepublication-chain.test.mjs tests/release/release-source-admission-verifier.test.mjs tests/release/relevant-source-closure-v3.test.mjs
+
+TAP version 13
+# Subtest: Catalog 4 binds exact admitted host/model compatibility pairs
+ok 1 - Catalog 4 binds exact admitted host/model compatibility pairs
+  ---
+  duration_ms: 188.430833
+  type: 'test'
+  ...
+# Subtest: host construction truthfully retains first-profile and pre-build failures
+ok 2 - host construction truthfully retains first-profile and pre-build failures
+  ---
+  duration_ms: 258.33325
+  type: 'test'
+  ...
+# Subtest: the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+ok 3 - the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+  ---
+  duration_ms: 1.303375
+  type: 'test'
+  ...
+# Subtest: one standard-hosted job builds hosts without model or product execution
+ok 4 - one standard-hosted job builds hosts without model or product execution
+  ---
+  duration_ms: 2.897083
+  type: 'test'
+  ...
+# Subtest: the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+ok 5 - the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+  ---
+  duration_ms: 0.559125
+  type: 'test'
+  ...
+# Subtest: the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+ok 6 - the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+  ---
+  duration_ms: 31.827167
+  type: 'test'
+  ...
+# Subtest: an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+ok 7 - an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+  ---
+  duration_ms: 8.874834
+  type: 'test'
+  ...
+# Subtest: managed recovery and combined-package entrypoints are absent
+ok 8 - managed recovery and combined-package entrypoints are absent
+  ---
+  duration_ms: 2.410916
+  type: 'test'
+  ...
+# Subtest: the prepublication seal closes exactly eight prior assets plus checksums
+ok 9 - the prepublication seal closes exactly eight prior assets plus checksums
+  ---
+  duration_ms: 81.658334
+  type: 'test'
+  ...
+# Subtest: Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+ok 10 - Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+  ---
+  duration_ms: 2625.440834
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts later documentation-only W and rejects archive impact
+ok 11 - lineage verifier accepts later documentation-only W and rejects archive impact
+  ---
+  duration_ms: 3337.221
+  type: 'test'
+  ...
+# Subtest: lineage-aware protection rejects mutation followed by byte-identical revert
+ok 12 - lineage-aware protection rejects mutation followed by byte-identical revert
+  ---
+  duration_ms: 1534.928875
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts an integration merge that preserves the R-bearing tree
+ok 13 - lineage verifier accepts an integration merge that preserves the R-bearing tree
+  ---
+  duration_ms: 2026.97325
+  type: 'test'
+  ...
+# Subtest: lineage verifier rejects bound policy drift and checkout closure drift
+ok 14 - lineage verifier rejects bound policy drift and checkout closure drift
+  ---
+  duration_ms: 2756.236625
+  type: 'test'
+  ...
+# Subtest: Admission 4 schema forbids self and later lineage edges
+ok 15 - Admission 4 schema forbids self and later lineage edges
+  ---
+  duration_ms: 741.388333
+  type: 'test'
+  ...
+# Subtest: promotion rejects checksum drift and verifier rejects a seventh promoted path
+ok 16 - promotion rejects checksum drift and verifier rejects a seventh promoted path
+  ---
+  duration_ms: 1475.304542
+  type: 'test'
+  ...
+# Subtest: Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+ok 17 - Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+  ---
+  duration_ms: 4.126417
+  type: 'test'
+  ...
+# Subtest: same-specificity matches choose their strictest result without reintroducing broader prefixes
+ok 18 - same-specificity matches choose their strictest result without reintroducing broader prefixes
+  ---
+  duration_ms: 1.016958
+  type: 'test'
+  ...
+# Subtest: complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+ok 19 - complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+  ---
+  duration_ms: 300.464
+  type: 'test'
+  ...
+# Subtest: mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+ok 20 - mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+  ---
+  duration_ms: 319.385042
+  type: 'test'
+  ...
+# Subtest: frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+ok 21 - frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+  ---
+  duration_ms: 49.894292
+  type: 'test'
+  ...
+# Subtest: production Admission 4 retains historical API-REV-025 subjects but requires current focused renewal
+ok 22 - production Admission 4 retains historical API-REV-025 subjects but requires current focused renewal
+  ---
+  duration_ms: 340.413459
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 14594.427125
+
+== API-REV-028 checksums ==
+./API-VOICE-026-focused-renewal-summary.json: OK
+./aggregate/branch-catalog-projection-v3.json: OK
+./aggregate/branch-catalog-projection-verification-v3.json: OK
+./aggregate/branch-catalog-projection-verification.exit-code: OK
+./aggregate/branch-catalog-projection-verification.log: OK
+./aggregate/branch-catalog-projection.exit-code: OK
+./aggregate/branch-catalog-projection.log: OK
+./aggregate/chinese-current-execution-subject.json: OK
+./aggregate/chinese-focused-qualification-input.json: OK
+./aggregate/chinese-historical-execution-subject.json: OK
+./aggregate/chinese-profile-execution-closure-v2.json: OK
+./aggregate/chinese-profile-execution-closure.exit-code: OK
+./aggregate/chinese-profile-execution-closure.log: OK
+./aggregate/derive-execution-subjects.log: OK
+./aggregate/english-current-execution-subject.json: OK
+./aggregate/english-focused-qualification-input.json: OK
+./aggregate/english-historical-execution-subject.json: OK
+./aggregate/english-profile-execution-closure-v2.json: OK
+./aggregate/english-profile-execution-closure.exit-code: OK
+./aggregate/english-profile-execution-closure.log: OK
+./aggregate/focused-authority-SHA256SUMS.txt: OK
+./aggregate/focused-qualification-set-v3.json: OK
+./aggregate/focused-qualification-set.exit-code: OK
+./aggregate/focused-qualification-set.log: OK
+./aggregate/profile-execution-closure-basis.json: OK
+./aggregate/release-source-admission-v4.json: OK
+./aggregate/release-source-admission.exit-code: OK
+./aggregate/release-source-admission.log: OK
+./cleanup/postcleanup-status.txt: OK
+./cleanup/precleanup-status.txt: OK
+./environment/host-build-environment-v2.json: OK
+./environment/host-inventory.txt: OK
+./host-build/build-chinese-a.command: OK
+./host-build/build-chinese-a.exit-code: OK
+./host-build/build-chinese-a.log: OK
+./host-build/build-chinese-b.command: OK
+./host-build/build-chinese-b.exit-code: OK
+./host-build/build-chinese-b.log: OK
+./host-build/build-english-a.command: OK
+./host-build/build-english-a.exit-code: OK
+./host-build/build-english-a.log: OK
+./host-build/build-english-b.command: OK
+./host-build/build-english-b.exit-code: OK
+./host-build/build-english-b.log: OK
+./host-build/chinese-double-build-identities.txt: OK
+./host-build/chinese-host-build-report-v2.json: OK
+./host-build/chinese-host-input-manifest.json: OK
+./host-build/chinese-host-input-provenance-v2.json: OK
+./host-build/chinese-host-reproducibility-proof-v2.json: OK
+./host-build/chinese-host-verification-v2.json: OK
+./host-build/chinese-host-verification.exit-code: OK
+./host-build/chinese-host-verification.log: OK
+./host-build/chinese-prebuild-host-source-closure-v1.json: OK
+./host-build/chinese-reproducibility.exit-code: OK
+./host-build/chinese-reproducibility.log: OK
+./host-build/derive-prebuild-closures.log: OK
+./host-build/english-double-build-identities.txt: OK
+./host-build/english-host-build-report-v2.json: OK
+./host-build/english-host-input-manifest.json: OK
+./host-build/english-host-input-provenance-v2.json: OK
+./host-build/english-host-reproducibility-proof-v2.json: OK
+./host-build/english-host-verification-v2.json: OK
+./host-build/english-host-verification.exit-code: OK
+./host-build/english-host-verification.log: OK
+./host-build/english-prebuild-host-source-closure-v1.json: OK
+./host-build/english-reproducibility.exit-code: OK
+./host-build/english-reproducibility.log: OK
+./host-build/prebuild-closure-results.json: OK
+./inputs/chinese-host-input-manifest.json: OK
+./inputs/chinese-host-input-provenance-v2.json: OK
+./inputs/english-host-input-manifest.json: OK
+./inputs/english-host-input-provenance-v2.json: OK
+./inputs/materialize-chinese.exit-code: OK
+./inputs/materialize-chinese.log: OK
+./inputs/materialize-english.exit-code: OK
+./inputs/materialize-english.log: OK
+./install/api-e2e-preinstall-release-evidence-v4.json: OK
+./install/build-preinstall-catalog.log: OK
+./install/chinese-install-event-verification.json: OK
+./install/chinese-installed-store-verification.json: OK
+./install/chinese-production-install.command: OK
+./install/chinese-production-install.exit-code: OK
+./install/chinese-production-install.jsonl.gz: OK
+./install/chinese-production-install.stderr: OK
+./install/chinese-status-after-install.exit-code: OK
+./install/chinese-status-after-install.jsonl: OK
+./install/chinese-status-after-install.stderr: OK
+./install/english-install-event-verification.json: OK
+./install/english-installed-store-verification.json: OK
+./install/english-production-install.command: OK
+./install/english-production-install.exit-code: OK
+./install/english-production-install.jsonl.gz: OK
+./install/english-production-install.stderr: OK
+./install/english-status-after-install.exit-code: OK
+./install/english-status-after-install.jsonl: OK
+./install/english-status-after-install.stderr: OK
+./install/install-processes.txt: OK
+./install/preinstall-catalog-assets.txt: OK
+./install/voice-runtime-catalog-v4.json: OK
+./json-parse-verification.txt: OK
+./promotion/committed-authority-verification.exit-code: OK
+./promotion/committed-authority-verification.log: OK
+./promotion/independent-committed-authority-verification.json: OK
+./promotion/independent-promotion-shape.txt: OK
+./promotion/postcommit-status.txt: OK
+./promotion/postpromotion-check-release-pipeline.exit-code: OK
+./promotion/postpromotion-check-release-pipeline.log: OK
+./promotion/promote-release-authority.exit-code: OK
+./promotion/promote-release-authority.log: OK
+./promotion/promotion-commit.log: OK
+./promotion/promotion-commit.txt: OK
+./promotion/release-admission-verification-v1.json: OK
+./promotion/staged-diff-check.txt: OK
+./promotion/staged-exact-six.txt: OK
+./promotion/verification-clone.log: OK
+./repository/assigned-worktree-initial-status.txt: OK
+./repository/exact-source-initial-state.txt: OK
+./repository/execution-subjects.txt: OK
+./repository/focused-contract-closure-release.exit-code: OK
+./repository/focused-contract-closure-release.log: OK
+./repository/npm-ci.log: OK
+./repository/npm-run-check-release-pipeline.exit-code: OK
+./repository/npm-run-check-release-pipeline.log: OK
+./repository/npm-run-check.exit-code: OK
+./repository/npm-run-check.log: OK
+./repository/worktree-add.log: OK
+./runtime/chinese-host-expectation-v2.json: OK
+./runtime/chinese-offline-retained-clip-smoke.exit-code: OK
+./runtime/chinese-offline-retained-clip-smoke.json: OK
+./runtime/chinese-offline-retained-clip-smoke.log: OK
+./runtime/chinese-relocated-extract-report.json: OK
+./runtime/chinese-relocated-extract.exit-code: OK
+./runtime/chinese-relocated-extract.log: OK
+./runtime/english-host-expectation-v2.json: OK
+./runtime/english-offline-retained-clip-smoke.exit-code: OK
+./runtime/english-offline-retained-clip-smoke.json: OK
+./runtime/english-offline-retained-clip-smoke.log: OK
+./runtime/english-relocated-extract-report.json: OK
+./runtime/english-relocated-extract.exit-code: OK
+./runtime/english-relocated-extract.log: OK
+./runtime/retained-clip-authority.txt: OK
+
+== CRR-067 evidence checksums ==
+/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/api-rev-028-checksums.log: OK
+/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/check-release-pipeline.log: OK
+/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/full-pinned-go-check.log: OK
+/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/independent-authority-verification.json: OK
+/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/production-lineage-verifier.log: OK
+/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/promotion-identity-and-shape.log: OK
+/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-067/static-integrity.log: OK
+
+== retained DR-012 evidence checksums ==
+./audit/english-prebuild-host-source-closure-v1.json: OK
+./audit/hosted-release-audit-v1.json: OK
+./audit/hosted-toolchain-selection-v1.json: OK
+./english-host-source-closure.diff: OK
+./failure-summary.md: OK
+./release-state.txt: OK
+./run.json: OK
+./workflow.log: OK
+
+== publication guards ==
+release_v1.0.0=ABSENT
+tag_v1.0.0=ABSENT
+
+RESULT=PASS_FOCUSED_RENEWAL_AUTHORITY_CANDIDATE
+PRODUCT_PROFILE_PERFORMANCE_EXECUTED=0
+MODEL_WEIGHTS_DOWNLOADED=0
+RELEASE_CREATED=NO

@@ -1,0 +1,8 @@
+API/E2E-owned model stores and relocated extracts removed:
+absent /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/stores
+absent /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/stores-v2
+absent /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/extract
+absent /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/verification-checkout
+Owned process scan after cleanup:
+Promotion worktree retained for Code Review:
+ef0874577b2d96a8e2afc59b2334a484a9699cda

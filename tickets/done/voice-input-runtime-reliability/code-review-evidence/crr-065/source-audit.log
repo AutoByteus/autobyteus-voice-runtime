@@ -1,0 +1,30 @@
+IR-041 changed implementation source effective non-empty lines
+build/host-package-input-contract.mjs	413
+build/host-source-closure.mjs	170
+build/workflow-executable-surface.mjs	176
+IR-039..IR-041 affected implementation source effective non-empty lines
+.github/workflows/release-voice-runtime.yml	212
+build/host-package-input-contract.mjs	413
+build/host-package-assembler.mjs	226
+build/host-package-verifier.mjs	126
+build/host-source-closure.mjs	170
+build/workflow-executable-surface.mjs	176
+contracts/package/host-source-closure-v1.schema.json	319
+release/run-host-construction.mjs	236
+tooling/check-release-pipeline.mjs	66
+identities
+847b5fa726017078219533512c6188559c31eebd
+908ebcb8505f3e3330ae9d5d15847deb616ffe63
+447d34148500ef56aad94a62da215e7f3066e2b6
+847b5fa726017078219533512c6188559c31eebd
+source-to-artifact
+M	tickets/done/voice-input-runtime-reliability/implementation-handoff.md
+M	tickets/done/voice-input-runtime-reliability/implementation-revision-record.md
+worktree
+ M tickets/done/voice-input-runtime-reliability/code-review-report.md
+ M tickets/done/voice-input-runtime-reliability/code-review-revision-record.md
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-063-host-package-input-source-review.md
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-064-package-action-indirection-review.md
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-064/
+?? tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/

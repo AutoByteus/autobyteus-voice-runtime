@@ -1,0 +1,46 @@
+{
+  "schemaVersion": 1,
+  "scenarioId": "API-VOICE-021",
+  "profileId": "chinese",
+  "decision": "pass",
+  "networkDeniedSandbox": "/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/repository/benchmark/sandbox/darwin-arm64-network-denied-v1.sb",
+  "audio": {
+    "path": "/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/clips/audio/fleurs-zh-1660-r235.wav",
+    "sha256": "f24a03299a08b700c7096fdb5f9c9debaf35cad48f04d343126dcc84c9e7f865"
+  },
+  "approved": {
+    "clipId": "fleurs-zh-1660-r235",
+    "audioSha256": "f24a03299a08b700c7096fdb5f9c9debaf35cad48f04d343126dcc84c9e7f865",
+    "outcome": "transcript",
+    "rawText": "浪漫主义具有很强的文化决定论色彩，这源于歌德、费希特和施莱德格尔等作家。",
+    "normalizedText": "浪漫主义具有很强的文化决定论色彩，这源于歌德、费希特和施莱德格尔等作家。",
+    "detectedLanguage": "zh"
+  },
+  "observed": {
+    "detectedLanguage": "zh",
+    "metrics": {
+      "audioDurationMs": 9600,
+      "inferenceMs": 521.785209,
+      "normalizationMs": 0.171042
+    },
+    "normalizedText": "浪漫主义具有很强的文化决定论色彩，这源于歌德、费希特和施莱德格尔等作家。",
+    "outcome": "transcript",
+    "protocolVersion": 1,
+    "rawText": "浪漫主义具有很强的文化决定论色彩，这源于歌德、费希特和施莱德格尔等作家。",
+    "requestId": "28e72d7c-74eb-4a68-bfa4-31b0235518f9",
+    "type": "transcription-result"
+  },
+  "timings": {
+    "handshakeMs": 1381.445375,
+    "preparationMs": 12437.227834000001,
+    "startToReadyMs": 13818.678292,
+    "lastRequestMs": 523.7377919999999
+  },
+  "shutdown": {
+    "code": 0,
+    "signal": null
+  },
+  "error": null,
+  "providerStderr": "VOICE_PROVIDER_DIAGNOSTIC_REDACTED",
+  "providerStderrBytes": 1042
+}

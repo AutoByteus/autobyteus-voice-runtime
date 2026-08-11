@@ -1,0 +1,10 @@
+{
+  "accepted": true,
+  "injectedCommand": "npm install --ignore-scripts --no-save ajv@8.19.0",
+  "installArguments": [
+    "ci",
+    "--ignore-scripts"
+  ],
+  "declaredAjv": "8.20.0",
+  "directController": "release/run-host-construction.mjs"
+}

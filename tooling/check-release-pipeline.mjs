@@ -11,6 +11,7 @@ import {
 const schemas = [
   "contracts/build/host-build-report-v2.schema.json",
   "contracts/build/host-verification-v2.schema.json",
+  "contracts/package/host-source-closure-v1.schema.json",
   "contracts/release/focused-qualification-set-v3.schema.json",
   "contracts/release/hosted-host-construction-result-v3.schema.json",
   "contracts/release/hosted-release-audit-v1.schema.json",

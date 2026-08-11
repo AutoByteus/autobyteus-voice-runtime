@@ -1,0 +1,16 @@
+promotionCommit=ef0874577b2d96a8e2afc59b2334a484a9699cda
+parentCommit=77092392ce565f887c4698a3a12f384ea41b5e02
+expectedParent=77092392ce565f887c4698a3a12f384ea41b5e02
+parentExact=true
+A	release/admission/v1.0.0-branch-catalog-projection-v3.json
+A	release/admission/v1.0.0-branch-catalog-projection-verification-v3.json
+A	release/admission/v1.0.0-chinese-profile-execution-closure-v2.json
+A	release/admission/v1.0.0-english-profile-execution-closure-v2.json
+A	release/admission/v1.0.0-focused-qualification-set-v3.json
+A	release/admission/v1.0.0-release-source-admission-v4.json
+100644 blob aa607120571e83fd4e3b11dd65380ab245fef4f8	release/admission/v1.0.0-branch-catalog-projection-v3.json
+100644 blob 4aafbb8d69da37bd11c32d065549be59483ee855	release/admission/v1.0.0-branch-catalog-projection-verification-v3.json
+100644 blob c13d5035cfe62e9ec2a104764ccbd4c3887ead84	release/admission/v1.0.0-chinese-profile-execution-closure-v2.json
+100644 blob 015ee34faf60c0acfda5e83b26bd6b004e90db8d	release/admission/v1.0.0-english-profile-execution-closure-v2.json
+100644 blob b011362e533444c1c97650f5cd4dbe30eb5f313f	release/admission/v1.0.0-focused-qualification-set-v3.json
+100644 blob 88e06c098be765b4f9c779276edda5042480ee58	release/admission/v1.0.0-release-source-admission-v4.json

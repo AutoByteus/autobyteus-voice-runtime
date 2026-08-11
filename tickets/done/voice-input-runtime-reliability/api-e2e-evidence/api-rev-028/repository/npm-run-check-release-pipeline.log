@@ -1,0 +1,146 @@
+
+> @autobyteus/voice-input-runtime@1.0.0 check:release-pipeline
+> node tooling/check-release-pipeline.mjs && node --test tests/release/catalog-v4.test.mjs tests/release/host-construction-result.test.mjs tests/release/host-release-contracts.test.mjs tests/release/prepublication-chain.test.mjs tests/release/release-source-admission-verifier.test.mjs tests/release/relevant-source-closure-v3.test.mjs
+
+TAP version 13
+# Subtest: Catalog 4 binds exact admitted host/model compatibility pairs
+ok 1 - Catalog 4 binds exact admitted host/model compatibility pairs
+  ---
+  duration_ms: 193.613791
+  type: 'test'
+  ...
+# Subtest: host construction truthfully retains first-profile and pre-build failures
+ok 2 - host construction truthfully retains first-profile and pre-build failures
+  ---
+  duration_ms: 254.314292
+  type: 'test'
+  ...
+# Subtest: the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+ok 3 - the release contract contains exactly two hosts, two locators, four metadata assets, and checksums
+  ---
+  duration_ms: 0.851875
+  type: 'test'
+  ...
+# Subtest: one standard-hosted job builds hosts without model or product execution
+ok 4 - one standard-hosted job builds hosts without model or product execution
+  ---
+  duration_ms: 3.41875
+  type: 'test'
+  ...
+# Subtest: the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+ok 5 - the hosted workflow selects the exact reviewed toolchain before hydration and always retains an initialized audit
+  ---
+  duration_ms: 0.627417
+  type: 'test'
+  ...
+# Subtest: the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+ok 6 - the hosted toolchain owner selects and authenticates the exact Xcode SDK and CMake identities
+  ---
+  duration_ms: 33.484792
+  type: 'test'
+  ...
+# Subtest: an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+ok 7 - an early hosted-toolchain failure retains a truthful terminal audit and leaves later work unattempted
+  ---
+  duration_ms: 10.797625
+  type: 'test'
+  ...
+# Subtest: managed recovery and combined-package entrypoints are absent
+ok 8 - managed recovery and combined-package entrypoints are absent
+  ---
+  duration_ms: 1.73475
+  type: 'test'
+  ...
+# Subtest: the prepublication seal closes exactly eight prior assets plus checksums
+ok 9 - the prepublication seal closes exactly eight prior assets plus checksums
+  ---
+  duration_ms: 89.057084
+  type: 'test'
+  ...
+# Subtest: Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+ok 10 - Admission 4 promotion and Verification 1 close exact F/D/R/W authority
+  ---
+  duration_ms: 2884.534958
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts later documentation-only W and rejects archive impact
+ok 11 - lineage verifier accepts later documentation-only W and rejects archive impact
+  ---
+  duration_ms: 3693.943125
+  type: 'test'
+  ...
+# Subtest: lineage-aware protection rejects mutation followed by byte-identical revert
+ok 12 - lineage-aware protection rejects mutation followed by byte-identical revert
+  ---
+  duration_ms: 1602.268041
+  type: 'test'
+  ...
+# Subtest: lineage verifier accepts an integration merge that preserves the R-bearing tree
+ok 13 - lineage verifier accepts an integration merge that preserves the R-bearing tree
+  ---
+  duration_ms: 2284.191208
+  type: 'test'
+  ...
+# Subtest: lineage verifier rejects bound policy drift and checkout closure drift
+ok 14 - lineage verifier rejects bound policy drift and checkout closure drift
+  ---
+  duration_ms: 3298.748083
+  type: 'test'
+  ...
+# Subtest: Admission 4 schema forbids self and later lineage edges
+ok 15 - Admission 4 schema forbids self and later lineage edges
+  ---
+  duration_ms: 790.350833
+  type: 'test'
+  ...
+# Subtest: promotion rejects checksum drift and verifier rejects a seventh promoted path
+ok 16 - promotion rejects checksum drift and verifier rejects a seventh promoted path
+  ---
+  duration_ms: 1685.133375
+  type: 'test'
+  ...
+# Subtest: Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+ok 17 - Relevant Source Closure 3 selects exact rules before prefixes and keeps closed protections
+  ---
+  duration_ms: 4.466375
+  type: 'test'
+  ...
+# Subtest: same-specificity matches choose their strictest result without reintroducing broader prefixes
+ok 18 - same-specificity matches choose their strictest result without reintroducing broader prefixes
+  ---
+  duration_ms: 1.086042
+  type: 'test'
+  ...
+# Subtest: complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+ok 19 - complete A/M/D/R inventory classifies rename endpoints independently at their strictest impact
+  ---
+  duration_ms: 314.724541
+  type: 'test'
+  ...
+# Subtest: mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+ok 20 - mandatory IR-036 regression fixture is release-only on add and modify while its sibling stays aggregate
+  ---
+  duration_ms: 325.489916
+  type: 'test'
+  ...
+# Subtest: frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+ok 21 - frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
+  ---
+  duration_ms: 59.725625
+  type: 'test'
+  ...
+# Subtest: production Admission 4 retains historical API-REV-025 subjects but requires current focused renewal
+ok 22 - production Admission 4 retains historical API-REV-025 subjects but requires current focused renewal
+  ---
+  duration_ms: 377.015458
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 16331.224958

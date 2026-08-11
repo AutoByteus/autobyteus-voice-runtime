@@ -1,0 +1,1 @@
+/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/extract/Chinese Host 中文/host/bin/voice-model-manager install-profile --profile chinese --catalog /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/catalog/voice-runtime-catalog-v4.json --install-root /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/stores-v2/chinese

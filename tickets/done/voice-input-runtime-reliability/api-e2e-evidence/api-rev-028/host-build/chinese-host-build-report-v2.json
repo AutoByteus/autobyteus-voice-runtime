@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 2,
+  "artifactKind": "host-build-report",
+  "sourceCommit": "77092392ce565f887c4698a3a12f384ea41b5e02",
+  "packageVersion": "1.0.0",
+  "hostPackageId": "voice.host.chinese.funasr-native.darwin-arm64",
+  "profileId": "chinese",
+  "target": {
+    "platform": "darwin",
+    "architecture": "arm64"
+  },
+  "providerId": "autobyteus.voice.funasr-nano-q8",
+  "modelAssetId": "voice.model.chinese.fun-asr-nano-gguf-q8.v1",
+  "recipe": {
+    "fileName": "chinese-host-darwin-arm64-v2.json",
+    "sizeBytes": 12798,
+    "sha256": "6ca6b45f060310a994b9fd3023123765c89ec730740ee12531df87c28061a1b3"
+  },
+  "inputManifest": {
+    "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip.inputs.json",
+    "sizeBytes": 703763,
+    "sha256": "b6c5b2e3e5f37c9366ecf0696226d27e96f568fa456e2d74bc9710ba741a213e"
+  },
+  "inputProvenance": {
+    "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip.provenance.json",
+    "sizeBytes": 9602,
+    "sha256": "549d641242b227753537949d19397d027029beea5312b45a01dc68c58d3bc6dc"
+  },
+  "hostBuildEnvironment": {
+    "fileName": "host-build-environment-v2.json",
+    "sizeBytes": 4340,
+    "sha256": "1ffed2538d3d65c1fbb62d319e7d66d27b840652eca8cb524ae876a68467bf2a"
+  },
+  "toolProvenance": {
+    "fileName": "host-tool-provenance-v2.json",
+    "sizeBytes": 1441,
+    "sha256": "4962ff500bd232fc5640e460907374f9e32e241cf0ba305edc4aea51f266bb20"
+  },
+  "hostSourceClosure": {
+    "fileName": "host-source-closure-v1.json",
+    "sizeBytes": 704820,
+    "sha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39"
+  },
+  "modelAdmissionRoot": {
+    "fileName": "model-admission-root-v1.json",
+    "sizeBytes": 1324,
+    "sha256": "7a49df7e07d907818a02e3f5f12a58c47b5116d5e9deb2fd67caad1dcc97f0a8"
+  },
+  "compatibilityRequirement": {
+    "fileName": "model-compatibility-requirement-v1.json",
+    "sizeBytes": 1005,
+    "sha256": "217c57429dd08e1ff5e17c02c7cc95d947a07ac541e5f3220b8e6319b57675b2"
+  },
+  "descriptor": {
+    "fileName": "runtime-host-v2.json",
+    "sizeBytes": 2159,
+    "sha256": "0cc487ac20aec67cdededce22d6f4660e3a7f7ac90f6ab5293443627865af960"
+  },
+  "fileManifest": {
+    "fileName": "host-files-v2.json",
+    "sizeBytes": 4303,
+    "sha256": "a6b979b1365cc6849b27402c830869bb884d185b25dec5fc7811148ef4b43a7a"
+  },
+  "noticeInventory": {
+    "fileName": "THIRD_PARTY_NOTICES.json",
+    "sizeBytes": 2226,
+    "sha256": "f260d4b18a924eb4964154496a77efe42183d5a6908990c9c887be27e6719c50"
+  },
+  "launcher": {
+    "fileName": "voice-provider",
+    "sizeBytes": 3986738,
+    "sha256": "fb85084f9bf5479894c2048406b2d8e7073aa0ad0bc32f8db54f6da3db22ff45"
+  },
+  "modelManager": {
+    "fileName": "voice-model-manager",
+    "sizeBytes": 9286034,
+    "sha256": "82643fb6f016edfbecfd38f6f28c6d0cc184ae24d1d5218e397a94e6c31249ff"
+  },
+  "productTestsExecuted": 0,
+  "modelBytesDownloaded": 0,
+  "providersLaunched": 0,
+  "archive": {
+    "fileName": "voice-host-chinese-darwin-arm64-1.0.0.zip",
+    "sizeBytes": 9663578,
+    "sha256": "b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df",
+    "extractedSizeBytes": 19614207,
+    "entryCount": 22
+  }
+}

@@ -2,12 +2,12 @@
 
 ## Upstream Artifact Package
 
-- Requirements: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
+- Requirements doc: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/requirements.md`
 - Investigation notes: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/investigation-notes.md`
 - Design spec: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-spec.md`
-- Primary on-demand model supplement: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/on-demand-model-assets.md`
-- Release-pipeline authority: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/release-pipeline-ownership.md`
-- Supplemental authorities:
+- Supplemental task artifacts:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/on-demand-model-assets.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/release-pipeline-ownership.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/benchmark-protocol.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/current-platform-qualification.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/voice-runtime-contract.md`
@@ -19,136 +19,149 @@
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/english-preservation-v2/SHA256SUMS.txt`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/chinese-qualification-v2/SHA256SUMS.txt`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/evidence/cold-preparation-stability/SHA256SUMS.txt`
-- Solution and architecture records:
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
-- Still-relevant prior review/API/Delivery records:
+- Solution revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/solution-revision-record.md`
+- Design review report: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/design-review-report.md`
+- Architecture review revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-input-runtime-reliability/tickets/in-progress/voice-input-runtime-reliability/architecture-review-revision-record.md`
+- Current and prior implementation/review/API records:
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-handoff.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-057-release-admission-policy-conflict.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-059-release-authority-commit-review.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-063-host-package-input-source-review.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-064-package-action-indirection-review.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-064/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-065-workflow-executable-resolution-review.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-065/SHA256SUMS.txt`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-test-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/SHA256SUMS.txt`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-025/API-VOICE-017-024-execution-summary.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/docs-sync-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/release-deployment-report.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-final-main-integration-check.log`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-final-main-integration-SHA256SUMS.txt`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-059-release-authority-commit-review.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-026/SHA256SUMS.txt`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31420271551/failure-summary.md`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31420271551/run.json`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31420271551/workflow.log`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31420271551/release-state.txt`
-  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31420271551/SHA256SUMS.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-027/SHA256SUMS.txt`
+- Triggering Delivery records and evidence:
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/docs-sync-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/release-deployment-report.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/failure-summary.md`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/english-host-source-closure.diff`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/audit/english-prebuild-host-source-closure-v1.json`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/audit/hosted-release-audit-v1.json`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/audit/hosted-toolchain-selection-v1.json`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/run.json`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/workflow.log`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/release-state.txt`
+  - `/Users/normy/autobyteus_org/autobyteus-voice-runtime/tickets/done/voice-input-runtime-reliability/delivery-evidence/release-31425696064/SHA256SUMS.txt`
 
 ## Current Implementation Summary
 
-`IR-038` implements the narrow DR-010 release-host correction against current maintained main `a486c998481a4d6649d3245c24f0c8e954785594`. The standard `macos-26` job now initializes an uploadable run audit immediately after checkout, selects the installed exact Xcode 26.1.1 / SDK 26.1 through `xcode-select`, downloads and SHA-256-authenticates the exact official CMake 4.2.0 archive, verifies the selected SDK settings and CMake executable identities, and supplies only that verified CMake path to the existing Host Build Environment 2 owner. A separate final audit step atomically projects every GitHub step outcome so an early tool/source/input/build failure remains truthful and uploadable rather than being masked by an empty audit directory.
+`IR-042` completes the remaining `CR-F-050` representation gap after `CRR-065`. The closure-bound workflow helper now treats the maintained-main step list as one strict executable surface: every step must use a canonical block map, select exactly one `run` or `uses` mechanism, and match the reviewed ordered run/action metadata. Flow-style actions, custom or default shell selection, extra steps, alternate action/run fields, and action/input/environment drift fail closed. The exact actionlint-valid flow-style `actions/github-script@v7` and custom-shell npm-install probes now reject, while non-executable workflow name/comment metadata remains neutral.
 
-- Implementation cycle: `Delivery Local Fix after DR-010`
+- Implementation cycle: `Local Fix after CRR-065`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision: `IR-038`
-- Related solution revision: `SR-024` remains the implemented release/runtime authority; no design reset
-- Related architecture revision: `ARCH-REV-024` Pass; no new architecture finding
-- Related code review: `CRR-059` remains the reviewed release-authority baseline; current source review pending
-- Related API/E2E revision: `API-REV-026` remains the accepted release-authority validation; applicable hosted-tool validation is downstream
-- Related Delivery revision: `DR-010` / hosted run `31420271551` Fail — Local Fix
-- Source base: `a486c998481a4d6649d3245c24f0c8e954785594`
-- Source commit: `b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`
-- Result: `Implementation Complete — Ready for Code Review`
+- Current implementation revision ID: `IR-042`
+- Related solution revision IDs: `SR-025`
+- Related architecture-review revision IDs: `ARCH-REV-025` Pass
+- Related code-review revision IDs: `CRR-063`, `CRR-064`, `CRR-065` Fail — Local Fix; current re-review pending
+- Related API/E2E revision IDs: historical `API-REV-025`; hosted failure context `API-REV-027`; renewed focused API/E2E pending
+- Related delivery revision IDs: `DR-012`
+- Triggering finding IDs: remaining `CR-F-050`; `CR-F-049` resolved
+- Source base: `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`
+- Current source commit: `77092392ce565f887c4698a3a12f384ea41b5e02` after IR-041 source `447d34148500ef56aad94a62da215e7f3066e2b6`
+- Result: `Implementation Complete — Ready for Code Re-review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior / Requirements                          | Approved Change / Preserved Outcome                                                                                                                                  | Implemented Production Path / Key Files                                                                                                        | Result / Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `BEH-013`; `R-023`; `AC-026`, `AC-035`           | Use only included standard `macos-26` capacity while selecting the exact reviewed native toolchain; never relax the lock or switch infrastructure.                   | `.github/workflows/release-voice-runtime.yml`; `release/hosted-toolchain.mjs`; `contracts/release/hosted-toolchain-selection-v1.schema.json`   | The release owner switches to the installed non-default `/Applications/Xcode_26.1.1.app/Contents/Developer`, verifies exact Xcode build 17B100, SDK 26.1 and SDKSettings digest, downloads only the pinned official CMake 4.2.0 archive, verifies archive and executable SHA-256, and exposes the verified executable path as the step output consumed by Host Build Environment 2. Runner, Xcode, SDK, archive, executable, topology, and version drift fail before hydration.                                                      |
-| `BEH-013`; `R-014`, `R-024`; `AC-027`, `AC-035`  | Retain truthful external audit evidence even when the primary release path fails before construction or publication.                                                 | `release/hosted-release-audit.mjs`; `contracts/release/hosted-release-audit-v1.schema.json`; workflow initialization/finalization/upload steps | An atomic audit is seeded immediately after checkout, before Node/Go/source/tool selection. Finalization maps the exact ordered checkout through quarantine outcomes to succeeded, failed, cancelled, or unattempted; chooses the first incomplete primary phase as the failure category; and writes `pass` only when every primary phase succeeds. A failed tool selection therefore records `hosted-toolchain-failed` and later input/build/publish phases as unattempted; upload no longer depends on a later environment record. |
-| Host Source Closure 1 / Host Build Environment 2 | Keep the existing independent build-environment verifier authoritative and preserve focused-to-hosted whole-archive equality.                                        | `release/hosted-toolchain.mjs` -> `build/host-build-environment.mjs` -> `release/run-host-construction.mjs`                                    | The new release-only controller selects/provisions; it does not weaken or replace the existing environment capture/verification. The existing owner still rejects Node/CMake/Xcode/SDK/tool-byte drift and construction still requires exact focused archive equality before tag.                                                                                                                                                                                                                                                    |
-| Preserved runtime and release scope              | No product/profile/provider/inference/corpus/performance work, model-weight download, alternate runner, tag, release, asset, desktop, or user-state behavior change. | Release-only source classification and current workflow sequencing                                                                             | All seven source paths classify `release-pipeline-only`; the current delta recomputes to `reuse-permitted`. No runtime, provider, model, archive-format, nine-asset membership, admission authority, or published bytes changed. Historical run `31420271551` remains Fail.                                                                                                                                                                                                                                                          |
+| Behavior ID                                                           | Approved Change / Preserved Outcome                                                                                                                                                          | Implemented Production Path / Key Files                                                                                                                       | Result / Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEH-004`; `R-018`, `R-030`; `AC-006`, `AC-036`; `CR-F-050`           | Bind every executable workflow path that can affect package installation/construction while excluding unrelated metadata.                                                                    | `build/host-package-input-contract.mjs`; `build/workflow-executable-surface.mjs`; `.github/workflows/release-voice-runtime.yml`; Host Source Closure producer | The public contract delegates only its private workflow parsing mechanism. The helper admits one exact `npm ci --ignore-scripts`, derives the package projection from it, and validates the complete ordered action and run-step projection. Every step must be a canonical block map with exactly one execution mechanism; exact action identities/inputs/conditions and run IDs/conditions/environment/continuation fields are closed. Flow steps, custom/default shell, extra steps, executable-field drift, and direct package-manager drift reject. The helper's bytes remain in Host Source Closure. |
+| `BEH-007`; `R-014`, `R-024`; `AC-010`, `AC-025`, `AC-035`; `CR-F-049` | Preserve historical focused evidence while requiring current-source focused renewal.                                                                                                         | `tests/release/relevant-source-closure-v3.test.mjs`; `release/source-closure.mjs`                                                                             | The current `F..D` regression passes the exact API-REV-025 subjects and observes their two profile identities remain internally equal, but requires the durable Admission 4 result and terminal error to be `focused-qualification-required`. It asserts the Host Package Input Contract source is focused-impact and no longer claims stale production acceptance.                                                                                                                                                                                                                                        |
+| `BEH-013`; `R-014`, `R-024`, `R-029`; `AC-010`, `AC-035`              | Keep the reviewed direct construction path explicit and closed.                                                                                                                              | `release/run-host-construction.mjs`; `build/host-package-{assembler,verifier}.mjs`                                                                            | Controller, assembler, and verifier retain contract-owned exact ordered arguments and the deterministic child environment. No npm build/exec/npx construction, direct workflow bypass, raw manifest fallback, second validator, or caller-supplied projection exists.                                                                                                                                                                                                                                                                                                                                      |
+| DR-012 production regression                                          | A script-only manifest delta and unrelated workflow metadata must not alter archive identity, while dependency/engine/install/invocation/environment/source changes fail or renew authority. | `tests/fixtures/host-package-input-contract/`; `tests/build/host-package-input-contract.test.mjs`; `tests/build/host-source-closure.test.mjs`                 | Frozen F/W fixtures still project identically. Production-shaped negatives include the exact direct and block-action install probes plus the CRR-065 actionlint-valid flow-style action and custom-shell indirections, reviewed-action input drift, npm-script indirection, changed install arguments, an alternate manager, dependency/engine/lock/lifecycle/recipe/environment/Node drift, unexpected arguments, and closure-source mutation.                                                                                                                                                            |
 
 ## Key Files Or Areas
 
-- Hosted toolchain selection owner: `release/hosted-toolchain.mjs`
-- Tool selection contract: `contracts/release/hosted-toolchain-selection-v1.schema.json`
-- Early/terminal run audit owner: `release/hosted-release-audit.mjs`
-- Run audit contract: `contracts/release/hosted-release-audit-v1.schema.json`
-- Standard-hosted workflow: `.github/workflows/release-voice-runtime.yml`
-- Production-shaped release coverage: `tests/release/host-release-contracts.test.mjs`
-- Strict schema gate: `tooling/check-release-pipeline.mjs`
+- Host Package Input Contract 1 owner: `build/host-package-input-contract.mjs`
+- Private executable workflow-surface mechanism: `build/workflow-executable-surface.mjs`
+- Host Source Closure 1 producer and strict schema: `build/host-source-closure.mjs`, `contracts/package/host-source-closure-v1.schema.json`
+- Direct construction boundaries: `release/run-host-construction.mjs`, `build/host-package-assembler.mjs`, `build/host-package-verifier.mjs`
+- DR-012 coverage: `tests/build/host-package-input-contract.test.mjs`, `tests/build/host-source-closure.test.mjs`, `tests/fixtures/host-package-input-contract/`
+- Release admission fixture and schema gate: `tests/release/release-admission-fixture.mjs`, `tooling/check-release-pipeline.mjs`
 
 ## Important Assumptions
 
-- The standard `macos-26` arm64 image retains the reviewed Xcode 26.1.1 installation at `/Applications/Xcode_26.1.1.app`; absence, symlink/path drift, retargeting, SDK drift, or byte drift blocks rather than selecting another toolchain.
-- The exact CMake 4.2.0 macOS universal archive remains available at its immutable versioned URL. Availability is not authority: the source and extracted executable must match the pinned SHA-256 identities before use.
-- `actions/setup-node` and `actions/setup-go` remain the existing exact Node/Go selectors. The audit initializer intentionally uses only Node core modules so it can run before setup and survive a later setup/source failure.
+- `package-lock.json` remains the exact install-graph authority. Repository `package.json` is accepted only through the current strict semantic contract; adding a new install-affecting field requires a reviewed contract update.
+- The production workflow continues to contain exactly one `npm ci --ignore-scripts` hydration and one direct `node release/run-host-construction.mjs` construction entry with the reviewed argument order.
+- The release-pipeline source gate is invoked directly with the same checked-in Node controller and six test paths; `package.json` remains a local developer facade, not hosted package-manager execution.
+- The selected Host Build Environment 2 record remains the independent tool authority. The contract authenticates the executing Node against it and does not create a parallel tool identity.
 
 ## Known Risks
 
-- Implementation did not dispatch GitHub Actions or exercise the real hosted image. Independent source review and applicable API/E2E hosted validation must confirm Xcode selection, CMake download/extraction, Host Build Environment 2 capture, and audit retention on the managed runner.
-- This correction does not authorize hydration, host construction, tag, release, publication, or retry. Delivery owns any later workflow dispatch after source/API gates pass.
-- If GitHub removes the exact installed Xcode or the exact CMake artifact becomes unavailable, the workflow remains intentionally blocked; there is no latest/default/brew/alternate-runner fallback.
+- Active production admission is intentionally absent. Source review must pass, then API/E2E must create renewed focused archive/evidence authority before any promotion or Delivery attempt.
+- Implementation checks used current source-shaped fixtures and repository gates; they did not build production hosts twice, install a production manifest, run an offline clip, compare Profile Execution Closure 2, or create release authority.
+- Any corrected Execution Closure 2 mismatch requires full qualification; no shortcut or stale API-REV-025 reuse exists.
 
 ## Task Design Health Assessment Implementation Check
 
-- Change posture: `Delivery failure Local Fix`
-- Root cause classification: `Local Implementation Defect`
-- Refactor needed now: `No broader refactor`; the existing standard-hosted release and Host Build Environment owners remain correct
-- Why: the workflow consumed mutable image defaults instead of explicitly selecting/provisioning its already reviewed locked tools, and its audit upload depended on a record written after that failure point. Two narrow release-owned controllers close those local sequencing/identity gaps without bypassing the environment or release authority boundaries.
-- Design impact: `None`; DR-010 explicitly classified the bounded fix and the current design already requires exact tool selection and pretag blocking.
+- Reviewed change posture: `Local Fix after CRR-065 within SR-025`
+- Reviewed root-cause classification: `Host source-identity boundary/ownership defect plus missing package-input invariant`
+- Reviewed refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`): `No broader refactor needed; close the existing sole semantic owner and correct the stale test`
+- Implementation matched the reviewed assessment (`Yes`/`No`): `Yes`
+- If challenged, routed as `Design Impact` (`Yes`/`No`/`N/A`): `N/A`
+- Evidence / notes: both actionlint-valid alternate probes were reproduced. The correction keeps one public contract and its closure-bound private parser, rejects noncanonical executable representations and alternate shells, and preserves SR-025's metadata-neutral and focused-renewal results.
 
 ## Legacy / Compatibility Removal Check
 
 - Backward-compatibility mechanisms introduced: `None`
-- Legacy/default tool fallback retained: `No`
-- Alternate runner or package-manager fallback introduced: `No`
-- Existing Host Build Environment 2 verification bypassed: `No`
-- Shared structures remain tight: `Yes` — selection and run-outcome audit are separate exact contracts
-- Changed source size guardrails: `Pass` — `release/hosted-toolchain.mjs` is 180 effective non-empty lines and `release/hosted-release-audit.mjs` is 198; neither exceeds 500 or the >220 changed-source pressure threshold.
+- Legacy old-behavior retained in scope: `No`
+- Dead/obsolete code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths removed in scope: `Yes` — the exact stale six-file API-REV-025 production admission bundle was deleted.
+- Shared structures remain tight (no one-for-all base or overlapping parallel shapes introduced): `Yes`
+- Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes`
+- Changed source implementation files stayed within proactive size-pressure guardrails (`>500` avoided; `>220` assessed/acted on): `Yes` — the public contract is 413 effective non-empty lines and the cohesive private helper is 283; all changed production modules remain below 500.
+- Notes: there is no raw-hash fallback, caller override, npm-build path, old closure injection, or active Admission 4 compatibility reader.
 
-## Persisted Data Transition Check
+## Persisted Data Transition Check (When Applicable)
 
-- Approved decision: `Not Affected`
-- Evidence: both new JSON artifacts are per-run GitHub Actions audit outputs. No runtime store, model state, archive, release authority, catalog, manifest, tag, published asset, or historical evidence is migrated or rewritten.
-- Deviation: `None`
+- Approved decision (`Not Affected`/`Directly Usable — No Migration`/`Discard or Rebuild`/`Migration Required`): `Discard or Rebuild` for the stale active production admission bundle; historical evidence is `Not Affected`.
+- Design-spec decision reference: SR-025 `release-pipeline-ownership.md` Authority Transition / Production Admission Bundle and the design-review persisted-data assessment.
+- Implementation follows the approved decision without an unapproved migration or version-specific runtime fallback: `Yes`
+- Direct-use evidence or discard/rebuild result, when applicable: the six active API-REV-025 files under `release/admission/` are deleted; API/E2E must later regenerate all six from renewed current proof. Historical API-REV-025 and DR-012 evidence remains byte-preserved under ticket evidence.
+- Migration implementation and focused checks, only when `Migration Required`: `N/A`
+- Deviation from the reviewed transition decision: `None`
 
 ## Environment Or Dependency Notes
 
 - Repository/worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
 - Branch: `codex/voice-runtime-qualified-recovery`
-- Maintained-main base: `a486c998481a4d6649d3245c24f0c8e954785594`
-- Exact Go used for full validation: `/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go` (`go1.26.5 darwin/arm64`)
-- Exact release tool identities selected by source: Node `22.23.1`; Go `1.26.5`; Xcode `26.1.1` build `17B100`; macOS SDK `26.1` / SDKSettings SHA-256 `5129596158c8ed65953feb9f40eac98e74c8e4fcf5acb5629a0642f3f65663ff`; CMake archive SHA-256 `b8b040a06343b2b6bc090b03a9c2bb4e98037518846989fb7c40ebbf30655c5d`; CMake executable SHA-256 `d03ae0d5208459e5339a1ee62c0d0698132f9488e9c47216b0f2b8141f970fbb`.
-- No package, lockfile, runtime dependency, provider, model, or archive dependency changed.
+- Base: `origin/main` `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`
+- Current source commit: `77092392ce565f887c4698a3a12f384ea41b5e02`
+- Full-check Go: `/private/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go`
+- No package dependency or lockfile bytes changed. No provider, model, runtime protocol, archive format, catalog, asset membership, or desktop source changed.
 
 ## Local Implementation Checks Run
 
-- `node tooling/check-release-pipeline.mjs` plus focused `tests/release/host-release-contracts.test.mjs` — Pass, including exact workflow order/output binding, exact Xcode/SDK/CMake identity projection, wrong runner/CMake digest rejection, early tool-failure audit retention, all-pass audit finalization, and legacy absence.
-- `npm run check:release-pipeline` — Pass, `22/22` release-pipeline tests.
-- `VOICE_GO=/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go npm run check` — Pass: source guards; `7/7` Python plus compileall; all Go and evidence checks; `107/107` Node TAP tests with no skips or failures.
-- Exact retained CMake 4.2.0 archive and extracted executable were locally rehashed to the pinned source identities; this was identity confirmation only, not hosted API/E2E execution.
-- Prettier, strict public-schema compilation, effective-line checks, `git diff --check`, `git show --check b5d3c2fb8cd59c7fe40fa06546f3d6ae1b123636`, and Release Source Closure 3 classification all passed. The seven source paths are `release-pipeline-only`; decision `reuse-permitted`.
+- `node --test tests/build/host-package-input-contract.test.mjs tests/build/host-source-closure.test.mjs tests/release/host-release-contracts.test.mjs tests/release/relevant-source-closure-v3.test.mjs` — Pass, `18/18`, including exact actionlint-valid flow-style action and custom-shell install-indirection negatives, canonical block-action and action-input drift negatives, metadata equality, helper closure binding, and truthful focused-renewal result.
+- `npm run check:release-pipeline` — Pass, `22/22`.
+- `VOICE_GO=/private/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go npm run check` — Pass: source guards; `7/7` Python plus compileall; all Go/source/evidence checks; `112/112` Node TAP tests, no failures or skips.
+- Changed-file Prettier, strict schema compilation, effective source-line assessment, `git diff --check`, staged diff checks, and source commit validation passed.
 
-These are implementation-scoped source/contract/unit checks, not hosted API/E2E or release sign-off.
+These are implementation-scoped source/contract/unit/repository checks, not API/E2E qualification or release sign-off.
 
-## Frontend Rendered-Result Check
+## Frontend Rendered-Result Check (When Applicable)
 
-Not Applicable — this is a runtime release-workflow/tool/audit correction; no frontend or desktop source changed.
+Not Applicable — this is a runtime build/source-authority correction; no rendered frontend or desktop source changed.
 
 ## Downstream Coverage Hints / Suggested Scenarios
 
-1. On an included standard `macos-26` arm64 runner, prove the selector changes `xcode-select -p` to the exact versioned Xcode 26.1.1 developer directory, `xcodebuild -version` is build 17B100, `xcrun` selects SDK 26.1, and SDKSettings matches the pinned digest.
-2. Prove the downloaded official CMake archive and extracted executable match both pinned SHA-256 identities and the produced Host Build Environment 2 record independently revalidates the same selected toolchain.
-3. Force a bounded hosted-toolchain failure before hydration; require `hosted-release-audit-v1.json` to upload with `decision: fail`, `failureCategory: hosted-toolchain-failed`, and every later phase `unattempted` while no input/cache/build/tag/release/asset side effect occurs.
-4. Confirm the successful path passes tool selection into the existing hydration/construction owner without `DEVELOPER_DIR`, `SDKROOT`, ambient CMake, brew, latest, alternate runner, or source-lock relaxation.
-5. Recompute the actual source delta from `a486c998...` to `b5d3c2f...` under Policy 3 and require all seven source paths to remain release-pipeline-only/reuse-permitted before Delivery retry.
+1. Re-review the production contract against the real workflow, manifest, lock, recipes, Host Build Environment 2 records, and exact controller/assembler/verifier invocation; independently exercise all fail-closed negative subjects.
+2. API/E2E must perform two network-denied deterministic Runtime Host Archive 2 builds per profile, independent host verification, compliance/size/reproducibility checks, and exact whole-archive equality.
+3. API/E2E must install each actual production manifest, retain the approved offline clip smoke, and independently compare the new Profile Execution Closure 2 with the accepted full-qualification authority. Any mismatch routes to full qualification.
+4. Only after those passes may API/E2E create a new Focused Qualification Set 3, Branch Catalog Projection 3 and verification, Release Source Admission 4, and the exact-six direct-child promotion `R`; repository-resident authority must return through Code Review.
+5. Delivery later owns refreshed-main verification, focused-to-hosted whole-archive equality, standard-hosted construction, exact nine-asset publication, downloaded-byte verification, and quarantine. Implementation and Delivery do not write focused admission authority.
 
 ## API / E2E / Executable Coverage Investigation And Execution Still Required
 
-Required and owned downstream after Source Pass. Applicable validation should focus on the real standard-hosted tool-selection/environment/audit boundary and should not run product/profile/provider/inference/corpus/performance qualification or download model weights. This implementation did not dispatch the workflow, hydrate inputs, build hosts, tag, publish, or touch desktop/user state.
+Required and exclusively downstream-owned after Source Pass. Implementation did not execute production host builds, install production manifests, download model weights, start providers, run retained clips/corpora/performance/30-30-100 qualification, compare Profile Execution Closure 2, create focused QSet/projection/admission authority, promote `R`, dispatch release, merge, tag, publish, or edit desktop/user state. A Profile Execution Closure 2 mismatch requires full qualification.

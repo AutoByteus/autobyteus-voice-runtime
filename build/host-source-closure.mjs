@@ -8,14 +8,17 @@ import {
   shaFile,
   writeJson,
 } from "./lib/files.mjs";
+import { HostPackageInputContract } from "./host-package-input-contract.mjs";
 const COMMON = [
   "go.mod",
   "go.sum",
-  "package.json",
   "package-lock.json",
   "THIRD_PARTY_NOTICES.json",
+  "build/host-package-input-contract.mjs",
+  "build/workflow-executable-surface.mjs",
   "build/host-source-closure.mjs",
   "build/host-package-assembler.mjs",
+  "build/host-package-verifier.mjs",
   "build/host-package-staging.mjs",
   "build/host-tool-build.mjs",
   "build/host-build-evidence.mjs",
@@ -41,6 +44,7 @@ const COMMON = [
   "contracts/catalog/current-release-matrix-v2.json",
   "contracts/catalog/current-release-matrix-v2.schema.json",
   "release/current-release-matrix.mjs",
+  "release/run-host-construction.mjs",
 ];
 const validateClosure = new Ajv2020({ allErrors: true, strict: true }).compile(
   JSON.parse(
@@ -81,7 +85,12 @@ export async function deriveHostSourceClosure({
   compatibilityPath,
   outputPath,
 }) {
-  const files = new Set(COMMON);
+  const hostPackageInput = await HostPackageInputContract.assertCurrent({
+      repository,
+      recipePath,
+      buildEnvironment,
+    }),
+    files = new Set(COMMON);
   for (const tree of TREES)
     for (const relative of await regularFiles(path.join(repository, tree)))
       files.add(`${tree}/${relative}`);
@@ -141,6 +150,7 @@ export async function deriveHostSourceClosure({
       `cmake-parallelism=${buildEnvironment.configuration.parallelism}`,
       `native-flag-policy=${buildEnvironment.configuration.flagPolicy}`,
     ],
+    hostPackageInput,
     hostRecipe: {
       fileName: path.basename(recipePath),
       sha256: await shaFile(recipePath),

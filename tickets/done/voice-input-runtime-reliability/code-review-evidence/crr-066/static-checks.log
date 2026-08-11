@@ -1,0 +1,4 @@
+$ npx prettier --check build/workflow-executable-surface.mjs tests/build/host-package-input-contract.test.mjs
+Checking formatting...
+All matched files use Prettier code style!
+$ git diff --check 447d34148500ef56aad94a62da215e7f3066e2b6 77092392ce565f887c4698a3a12f384ea41b5e02

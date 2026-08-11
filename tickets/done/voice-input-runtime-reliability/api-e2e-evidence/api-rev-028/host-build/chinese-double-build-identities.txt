@@ -1,0 +1,6 @@
+b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df  /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/builds/chinese-a/voice-host-chinese-darwin-arm64-1.0.0.zip
+b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df  /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/builds/chinese-b/voice-host-chinese-darwin-arm64-1.0.0.zip
+67162e766d30685f6c4da03dff8df526a7d621e66213d02db49e09047492aa84  /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/builds/chinese-a/voice-host-chinese-darwin-arm64-1.0.0.zip.build.json
+67162e766d30685f6c4da03dff8df526a7d621e66213d02db49e09047492aa84  /private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/builds/chinese-b/voice-host-chinese-darwin-arm64-1.0.0.zip.build.json
+archive_cmp_exit=0
+report_cmp_exit=0

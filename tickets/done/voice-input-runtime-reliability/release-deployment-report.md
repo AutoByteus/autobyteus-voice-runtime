@@ -13,8 +13,8 @@ installation, or release is part of this ticket.
 - Handoff summary: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/handoff-summary.md`
 - Status: `Updated`
 - Delivery revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-revision-record.md`
-- Current revision: `DR-012`
-- Notes: maintained-main and exact hosted-toolchain gates pass, but production run 31425696064 failed before archive compilation on a package.json-only Host Source Closure versus Policy 3 authority inconsistency. No tag or release exists.
+- Current revision: `DR-013`
+- Notes: exact renewed promotion R is integrated unchanged; F=D closure equality, reuse-permitted authority, focused 22/22, and all API/reviewer checks pass. Maintained-main W integration and publication remain.
 
 ## Initial Delivery Integration Refresh
 
@@ -155,11 +155,11 @@ installation, or release is part of this ticket.
 
 ## Final Status
 
-**Blocked / Design Impact — release unpublished.** Exact W and the hosted
-toolchain gate pass, but run `31425696064` proved that Policy 3 permits a
-`package.json` release-test-path change which Host Source Closure 1 rejects by
-hashing the whole file. Delivery cannot select the authoritative correction.
-No archive, tag, release, or asset exists.
+**Pass / release-ready.** API-REV-028 renewed focused/admitted authority at the
+same exact D source and promoted exact R. Both Host Source Closures are equal,
+Policy 3 returns `reuse-permitted`, and bounded checks pass. No tag, release,
+or asset exists yet; maintained-main W integration and hosted publication
+remain Delivery-owned.
 
 ## Aggregate API Renewal Delivery Gate — DR-006
 
@@ -257,3 +257,16 @@ No archive, tag, release, or asset exists.
 - Publication: no archive, tag, release, or asset; no heavy qualification/model download.
 - Classification/routing: `Design Impact` to `solution_designer`.
 - Evidence: `delivery-evidence/release-31425696064/`, checksum manifest Pass.
+
+## Focused Renewal Release Readiness — DR-013
+
+- Exact chain: `D = 77092392ce565f887c4698a3a12f384ea41b5e02`; implementation artifact `7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203`; promotion `R = ef0874577b2d96a8e2afc59b2334a484a9699cda`.
+- Reviews: CRR-067 `Pass / 98.1%`; API-REV-028 accepted; CRR-068 `Not Applicable`.
+- Latest base: `origin/main @ 27effcb6238b11ff3e41ad2473adf4e6d9fa6586`, unchanged/already integrated.
+- Exact promotion: sole parent D, exactly six protected `release/admission/` additions, merged unchanged as second parent of candidate `dc8a6f92f14bc7dbe10b14b47d8fe3c8b731ebc7`.
+- Authority: F=D, reuse-permitted, English closure `d900867c...05ab`, Chinese closure `4c68c311...cc39`, both exact/equal.
+- Expected archives: English `9d7d7b501229e85fc2ad54996f716d79eb59077a56c30ce3ce580c619fbcdc4a`; Chinese `b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df`.
+- Integrated checks: protected blobs; production focused suite 22/22; API-REV-028 141 checksums; CRR-067 checksums; retained DR-012 checksums; tag/release absence — Pass.
+- No Delivery product/profile/performance qualification, inference, model download, release, or user-state action.
+- Documentation: explicit no long-lived prose impact; ticket-local DR-013 only.
+- Next action: push ticket branch; integrate maintained-main W; run Release Admission Verification 1; dispatch standard-hosted construction, exact nine-asset publication, and downloaded-byte verification.

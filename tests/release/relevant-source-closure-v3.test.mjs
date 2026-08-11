@@ -253,7 +253,7 @@ test("frozen CRR-057 213-path transition resolves to exact Policy 3 expectations
   assert.equal(fixture.expectedDecision, "reuse-permitted");
 });
 
-test("production Admission 4 assembler accepts actual current F..D with exact API-REV-025 subjects", async () => {
+test("production Admission 4 retains historical API-REV-025 subjects but requires current focused renewal", async () => {
   const admittedSourceCommit = await rev(projectRoot),
     evidenceRoot = path.join(
       projectRoot,
@@ -298,23 +298,31 @@ test("production Admission 4 assembler accepts actual current F..D with exact AP
           )),
         })),
       ),
-      admission = await assembleReleaseSourceAdmission({
+      output = path.join(temporary, "release-source-admission-v4.json");
+    await assert.rejects(
+      assembleReleaseSourceAdmission({
         repository: projectRoot,
         focusedSourceCommit: historicalFocusedSource,
         admittedSourceCommit,
         focusedAuthorities,
         admittedHostClosures,
-        output: path.join(temporary, "release-source-admission-v4.json"),
-      });
-    assert.equal(admission.decision, "reuse-permitted");
+        output,
+      }),
+      (error) => {
+        assert.equal(error.code, "SOURCE_ADMISSION_BLOCKED");
+        assert.match(error.message, /focused-qualification-required/);
+        return true;
+      },
+    );
+    const admission = JSON.parse(await fs.readFile(output, "utf8"));
+    assert.equal(admission.decision, "focused-qualification-required");
     assert.equal(admission.profiles.length, 2);
     assert.ok(admission.profiles.every((profile) => profile.equal));
     assert.ok(
       admission.changedPaths.some(
         (row) =>
-          row.path ===
-            "tests/release/fixtures/ir-036-f-to-d-changed-paths-v1.json" &&
-          row.classification === "release-pipeline-only",
+          row.path === "build/host-package-input-contract.mjs" &&
+          row.classification === "focused-qualification-required",
       ),
     );
   } finally {

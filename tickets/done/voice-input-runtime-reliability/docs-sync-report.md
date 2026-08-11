@@ -168,3 +168,14 @@ tag publication, published-byte verification, and the deferred target set.
 - Long-lived docs decision: `No product/operator prose change`. Runtime behavior, on-demand model lifecycle, supported matrix, and intended nine-asset release remain unchanged; the blocker is an authority-design inconsistency recorded in ticket-local evidence.
 - Publication result: no archive, tag, release, or asset.
 - Result: `Blocked / Design Impact` to `solution_designer`; a reviewed authority decision is required before another retry.
+
+## Delivery Round 12 — Focused Renewal Authority
+
+- Refreshed base: `origin/main @ 27effcb6238b11ff3e41ad2473adf4e6d9fa6586`; unchanged and already an ancestor of the candidate.
+- Reviewed resolution: `D = 77092392ce565f887c4698a3a12f384ea41b5e02`, artifact `7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203`, exact promotion `R = ef0874577b2d96a8e2afc59b2334a484a9699cda`, CRR-067 Pass, API-REV-028 acceptance, CRR-068 Not Applicable.
+- Exact integration: R was merged without regeneration/edit. Its sole-parent D edge, exact six `release/admission/` additions, and protected blobs remain unchanged.
+- Authority result: focused source equals admitted source D; both English/Chinese Host Source Closures are exact and equal; Policy 3 decision is `reuse-permitted`.
+- Integrated validation: focused 22/22, API-REV-028 141/141 checksums, CRR-067 evidence, retained DR-012 evidence, and no-tag/no-release guards all pass.
+- Long-lived docs decision: `No change`. The renewal corrects source/authority identity only; README and release notes remain accurate for host-only runtimes, on-demand models, current darwin-arm64 scope, standard-hosted publication, and nine assets.
+- Delivery execution: no product/profile/performance qualification or model download.
+- Result: `Pass / release-ready`; maintained-main W integration and production publication remain Delivery-owned.

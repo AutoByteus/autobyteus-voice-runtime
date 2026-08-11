@@ -1,0 +1,13 @@
+{
+  "profileId": "chinese",
+  "hostArchivePath": "/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/builds/chinese-a/voice-host-chinese-darwin-arm64-1.0.0.zip",
+  "hostSourceClosureSha256": "4c68c31177a215a8c38237d820e5bf8057d8ab6eb50cfdcae106fbdc0fe6cc39",
+  "hostSourceClosureSizeBytes": 704820,
+  "hostDescriptorSha256": "0cc487ac20aec67cdededce22d6f4660e3a7f7ac90f6ab5293443627865af960",
+  "hostFileManifestSha256": "a6b979b1365cc6849b27402c830869bb884d185b25dec5fc7811148ef4b43a7a",
+  "modelAdmissionRootSha256": "7a49df7e07d907818a02e3f5f12a58c47b5116d5e9deb2fd67caad1dcc97f0a8",
+  "modelManifestPath": "/private/tmp/autobyteus-voice-api-e2e-r28-20260811-v1/repository/release/model-manifests/voice-model-chinese-fun-asr-nano-gguf-q8-v1.json",
+  "compatibilityPairSha256": "44bdf379680c06a34610d09e0185544b84082120d41488f7698cd54b5eda75f8",
+  "executionClosureVerificationPath": "/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-evidence/api-rev-028/aggregate/chinese-profile-execution-closure-v2.json",
+  "executionClosureVerificationSha256": "86f06b69682e7755100b68ac91d285a22649e01ca4fed0bd5b77c85c525f1a75"
+}

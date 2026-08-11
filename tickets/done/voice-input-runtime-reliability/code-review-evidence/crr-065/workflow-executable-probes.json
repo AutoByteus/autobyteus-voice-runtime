@@ -1,0 +1,30 @@
+[
+  {
+    "label": "exact-reviewer-unquoted-name",
+    "accepted": false,
+    "error": "Hosted workflow executable action surface changed."
+  },
+  {
+    "label": "quoted-name-action-install-indirection",
+    "accepted": false,
+    "error": "Hosted workflow action fields changed: env,run"
+  },
+  {
+    "label": "inline-action-install-indirection",
+    "accepted": true,
+    "packageManager": "npm",
+    "installArguments": [
+      "ci",
+      "--ignore-scripts"
+    ]
+  },
+  {
+    "label": "custom-shell-install-indirection",
+    "accepted": true,
+    "packageManager": "npm",
+    "installArguments": [
+      "ci",
+      "--ignore-scripts"
+    ]
+  }
+]

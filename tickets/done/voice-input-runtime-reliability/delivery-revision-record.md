@@ -16,6 +16,7 @@
 | `DR-010`    | Standard-hosted v1.0.0 release run `31420271551`                                      | `DR-009 — release-ready`                 | `Blocked / Local Fix — maintained-main W and admission passed; host environment lock rejected current runner before build; no tag or release created`         | `delivery-evidence/release-31420271551/`, `handoff-summary.md`, `release-deployment-report.md`                                                 |
 | `DR-011`    | `code_reviewer` handoff after CRR-061, API-REV-027, and CRR-062                        | `DR-010 — hosted tool lock blocked`      | `Pass / retry-ready — exact hosted toolchain selection and truthful early-failure audit pass on real macos-26; latest main already integrated`                 | `delivery-hosted-toolchain-integration-check.log`, `delivery-hosted-toolchain-integration-SHA256SUMS.txt`, delivery handoff artifacts          |
 | `DR-012`    | Production standard-hosted release retry `31425696064`                                | `DR-011 — retry-ready`                   | `Blocked / Design Impact — toolchain/hydration pass, but package.json-only Host Source Closure drift conflicts with Policy 3 reuse; no archive or release`      | `delivery-evidence/release-31425696064/`, `handoff-summary.md`, `release-deployment-report.md`                                                 |
+| `DR-013`    | `code_reviewer` handoff after CRR-067, API-REV-028, and CRR-068                        | `DR-012 — closure authority blocked`     | `Pass / release-ready — exact renewed R integrated unchanged; F=D, equal host closures, reuse-permitted, focused 22/22, and all authority checks pass`         | `delivery-focused-renewal-authority-integration-check.log`, `delivery-focused-renewal-authority-integration-SHA256SUMS.txt`, handoff artifacts |
 
 ## Revision Entries
 
@@ -217,3 +218,22 @@
 - Evidence: `delivery-evidence/release-31425696064/`; `SHA256SUMS.txt` verifies run metadata, workflow log, retained audit, toolchain record, closure, exact closure diff, failure summary, and release state.
 - Historical truth: both DR-010 run `31420271551` and DR-012 run `31425696064` remain failed and must not be relabeled.
 - Current result: `Blocked` for release/publication; maintained-main finalization remains complete and is not undone.
+
+### DR-013 — Focused renewal authority integrated and release-ready
+
+- Date: 2026-08-11
+- Trigger: Code Reviewer handed off CRR-067 `Pass / 98.1%`, API-REV-028 acceptance, and CRR-068 proportional API/E2E test review `Not Applicable` with no findings.
+- Prior authoritative result: `DR-012` — production toolchain/hydration passed but Host Source Closure rejected a `package.json` identity that Policy 3 treated as release-only.
+- Reviewed chain: exact focused/admitted source `D = 77092392ce565f887c4698a3a12f384ea41b5e02`; implementation artifact `7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203`; exact promotion `R = ef0874577b2d96a8e2afc59b2334a484a9699cda`.
+- Upstream preservation: all 141 API-REV-028 checksum rows and all CRR-063 through CRR-067 evidence manifests passed; uncommitted API/reviewer artifacts were checkpointed at `5dc32131a700d681686b66795b9c03ee9d83edf5`.
+- Latest-base refresh: `origin/main` remained `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`; it is the merge base/ancestor of the candidate with left/right `0 / 9`. No base merge or rebase was required.
+- Exact-R integration: merged the existing reviewed R without cherry-picking, regeneration, amendment, or edit. Candidate merge `dc8a6f92f14bc7dbe10b14b47d8fe3c8b731ebc7` has parents checkpoint `5dc3213...` and exact R.
+- Protected promotion shape: R has exactly one parent, exact D, and exactly six `100644` additions under `release/admission/`, with no other tree change. All six R blob identities are unchanged in the integrated candidate.
+- Authority semantics: Admission 4 binds `focusedSourceCommit == admittedSourceCommit == D`, current Policy 3/current matrix/five retained authorities, `decision: reuse-permitted`, and exact equal English/Chinese focused/admitted Host Source Closures.
+- Renewed expected archives: English `9d7d7b501229e85fc2ad54996f716d79eb59077a56c30ce3ce580c619fbcdc4a`, 207,494,198 bytes; Chinese `b12e5669de17b86299e5b7a3d078a85bea3ab396da33e38e291b3d239c8e63df`, 9,663,578 bytes.
+- Integrated-state check: `Pass`; protected shape/blobs and authority semantics pass, focused release coverage passes 22/22, all API-REV-028 and CRR-067 checksums pass, retained DR-012 evidence checksums pass, and v1.0.0 tag/release remain absent.
+- Delivery execution boundary: zero product/profile/provider/inference/corpus/performance qualification, zero model downloads, and zero tag/release/publication actions.
+- Docs sync: `No additional long-lived product/operator impact`. Runtime behavior, host/model split, supported matrix, standard-hosted boundary, and nine-asset scope remain unchanged. Ticket-local records supersede DR-012 with the reviewed renewed authority.
+- User gate: prior explicit runtime-only v1.0.0 finalize/release authorization remains applicable; renewed authority resolves evidence/closure identity without changing user-facing release scope.
+- Evidence: `delivery-focused-renewal-authority-integration-check.log`, SHA-256 `9ba7b55fd54c6540c27755ec3ecf06531b39af74480f1dd47d71af985ac35938`, bound by `delivery-focused-renewal-authority-integration-SHA256SUMS.txt`.
+- Current result: `Pass / release-ready`; push the ticket branch, refresh/merge exact candidate to maintained main W, run Release Admission Verification 1, and execute the standard-hosted release/publication/download-verification sequence.

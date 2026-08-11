@@ -1,0 +1,10 @@
+$ actionlint -ignore SC2251 .github/workflows/release-voice-runtime.yml
+exit=0
+$ actionlint -ignore SC2251 /tmp/crr065-inline.yml
+exit=0
+$ actionlint -ignore SC2251 /tmp/crr065-shell.yml
+exit=0
+$ actionlint -ignore SC2251 /tmp/crr066-spaced-default.yml
+exit=0
+$ actionlint -ignore SC2251 /tmp/crr066-extra-run.yml
+exit=0
