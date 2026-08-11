@@ -15,6 +15,7 @@ const COMMON = [
   "package-lock.json",
   "THIRD_PARTY_NOTICES.json",
   "build/host-package-input-contract.mjs",
+  "build/workflow-executable-surface.mjs",
   "build/host-source-closure.mjs",
   "build/host-package-assembler.mjs",
   "build/host-package-verifier.mjs",

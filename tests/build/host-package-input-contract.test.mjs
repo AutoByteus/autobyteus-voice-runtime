@@ -29,10 +29,15 @@ test("DR-012 script and workflow metadata changes retain one canonical package i
     ),
     hosted = await fixtureRepository(
       "dr-012-package-w.json",
-      workflow.replace(
-        "name: Voice runtime host release",
-        "name: Voice runtime host release after DR-012",
-      ),
+      workflow
+        .replace(
+          "name: Voice runtime host release",
+          "name: Voice runtime host release after DR-012",
+        )
+        .replace(
+          "on:\n",
+          "# Non-executable note: npm install and uses: are metadata here.\non:\n",
+        ),
     );
   try {
     const left = await HostPackageInputContract.assertCurrent({
@@ -148,6 +153,42 @@ test("recipe, environment, package-manager, and argument drift fail closed", asy
         buildEnvironment: environment,
       }),
       /package-manager command must be exact/,
+    );
+    await fs.writeFile(
+      workflowPath,
+      workflow.replace(
+        "      - name: Select exact hosted Xcode SDK and CMake toolchain",
+        `      - name: Undeclared package installation action
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const { execFileSync } = require("node:child_process");
+            execFileSync("npm", ["install", "--ignore-scripts", "--no-save", "ajv@8.19.0"]);
+      - name: Select exact hosted Xcode SDK and CMake toolchain`,
+      ),
+    );
+    await assert.rejects(
+      HostPackageInputContract.assertCurrent({
+        repository,
+        recipePath,
+        buildEnvironment: environment,
+      }),
+      /executable action surface changed/,
+    );
+    await fs.writeFile(
+      workflowPath,
+      workflow.replace(
+        "with: { node-version: 22.23.1, cache: npm }",
+        "with: { node-version: 22.23.1, cache: false }",
+      ),
+    );
+    await assert.rejects(
+      HostPackageInputContract.assertCurrent({
+        repository,
+        recipePath,
+        buildEnvironment: environment,
+      }),
+      /executable action surface changed/,
     );
     await fs.writeFile(
       workflowPath,

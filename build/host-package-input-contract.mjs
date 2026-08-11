@@ -2,6 +2,7 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import Ajv2020 from "ajv/dist/2020.js";
 import { readJson, ROOT, shaFile } from "./lib/files.mjs";
+import { assertHostWorkflowExecutableSurface } from "./workflow-executable-surface.mjs";
 
 const DEPENDENCY_FIELDS = Object.freeze([
     "dependencies",
@@ -66,14 +67,7 @@ const DEPENDENCY_FIELDS = Object.freeze([
     LC_ALL: "C",
     PATH: "",
     TZ: "UTC",
-  }),
-  EXPECTED_PACKAGE_MANAGER_COMMAND = Object.freeze([
-    "npm",
-    "ci",
-    "--ignore-scripts",
-  ]),
-  PACKAGE_MANAGER_EXECUTABLE =
-    /(^|[^A-Za-z0-9_.-])(npm|npx|pnpm|yarn|bun|corepack)(?=$|[^A-Za-z0-9_.-])/g;
+  });
 
 export const HOST_CONSTRUCTION_CONTROLLER_ARGUMENTS = Object.freeze([
   "source-admission",
@@ -302,25 +296,7 @@ function canonicalProjection({
 }
 
 function assertWorkflowInvocation(workflow) {
-  const packageManagerCommands = [];
-  for (const line of workflowRunLines(workflow)) {
-    const managers = [...line.matchAll(PACKAGE_MANAGER_EXECUTABLE)];
-    if (!managers.length) continue;
-    const command = line.trim().split(/\s+/);
-    if (
-      managers.length !== 1 ||
-      JSON.stringify(command) !==
-        JSON.stringify(EXPECTED_PACKAGE_MANAGER_COMMAND)
-    )
-      throw new Error(
-        "Hosted workflow package-manager command must be exact npm ci --ignore-scripts.",
-      );
-    packageManagerCommands.push(command);
-  }
-  if (packageManagerCommands.length !== 1)
-    throw new Error(
-      "Hosted workflow must contain exactly one package-manager command.",
-    );
+  const installCommand = assertHostWorkflowExecutableSurface(workflow);
   if (workflow.includes(ASSEMBLER_PATH) || workflow.includes(VERIFIER_PATH))
     throw new Error(
       "Hosted workflow must enter the direct construction controller only.",
@@ -342,32 +318,7 @@ function assertWorkflowInvocation(workflow) {
     JSON.stringify(HOST_CONSTRUCTION_CONTROLLER_ARGUMENTS)
   )
     throw new Error("Hosted construction controller arguments changed.");
-  return packageManagerCommands[0];
-}
-
-function workflowRunLines(workflow) {
-  if (workflow.includes("\t"))
-    throw new Error("Hosted workflow YAML must not contain tabs.");
-  const source = workflow.split(/\r?\n/),
-    result = [];
-  for (let index = 0; index < source.length; index += 1) {
-    const match = source[index].match(/^(\s*)run:\s*(.*?)\s*$/);
-    if (!match) continue;
-    const marker = match[2];
-    if (!/^[|>][+-]?$/.test(marker)) {
-      result.push(marker);
-      continue;
-    }
-    const ownerIndent = match[1].length;
-    while (index + 1 < source.length) {
-      const candidate = source[index + 1],
-        candidateIndent = candidate.match(/^\s*/)[0].length;
-      if (candidate.trim() && candidateIndent <= ownerIndent) break;
-      index += 1;
-      if (candidate.trim()) result.push(candidate.trim());
-    }
-  }
-  return result;
+  return installCommand;
 }
 
 function parseExactPairs(values, expected, label) {

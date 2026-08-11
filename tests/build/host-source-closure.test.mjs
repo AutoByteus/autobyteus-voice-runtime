@@ -59,6 +59,11 @@ test("Host Source Closure 1 binds exact repository and hosted tool subjects", as
     );
     assert.ok(
       result.value.repositoryFiles.some(
+        (file) => file.path === "build/workflow-executable-surface.mjs",
+      ),
+    );
+    assert.ok(
+      result.value.repositoryFiles.some(
         (file) => file.path === "release/run-host-construction.mjs",
       ),
     );
