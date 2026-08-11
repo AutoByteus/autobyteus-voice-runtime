@@ -2,7 +2,7 @@
 
 ## Status
 
-- Delivery status: **maintained-main and hosted toolchain gates pass, but production run 31425696064 failed closed on a package.json-only Host Source Closure/Policy 3 authority inconsistency; v1.0.0 remains unpublished**.
+- Delivery status: **renewed focused authority R is reviewed and integrated unchanged; equal host closures and all bounded release checks pass; maintained-main W integration and production publication remain**.
 - Ticket: `voice-input-runtime-reliability`
 - Runtime repository: `/Users/normy/autobyteus_org/autobyteus-voice-runtime`
 - Ticket worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
@@ -16,6 +16,19 @@
 - Ticket final commit: `f02ccbf38157c4d13758b5f1cb70eab57cff7237`
 - Initial finalized maintained-main commit: `a890d22031359f53d94c7c67bf183344fb35d904`; current finalized W: `743597440277e39155b059a475d6820ddc9ff831`
 - Intended release: `1.0.0` / `v1.0.0` (tag and release absent)
+
+## Focused Renewal Authority — DR-013
+
+- Review: CRR-067 **Pass / 98.1%**, API-REV-028 accepted, CRR-068 **Not Applicable** with no durable API/E2E test change.
+- Exact subjects: `D = 77092392ce565f887c4698a3a12f384ea41b5e02`; artifact `7cf0dc5d2a4f3d271436bd97e5ee3bd5f5286203`; `R = ef0874577b2d96a8e2afc59b2334a484a9699cda`.
+- Refresh: `origin/main` remains `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`; already integrated.
+- Exact R: one parent D, exact six `100644` admission additions, no other tree change; merged unchanged as second parent of `dc8a6f92f14bc7dbe10b14b47d8fe3c8b731ebc7`.
+- Authority: `focusedSourceCommit == admittedSourceCommit == D`, decision `reuse-permitted`, English and Chinese focused/admitted closures equal.
+- Expected host archives: English `9d7d7b50...cdc4a` / 207,494,198 bytes; Chinese `b12e5669...e63df` / 9,663,578 bytes.
+- Integrated check: protected R blobs, focused 22/22, API-REV-028 141/141, CRR-067 evidence, DR-012 evidence retention, and publication guards all Pass.
+- Delivery ran no product/profile/performance qualification and downloaded no model weights.
+- Status: **release-ready** under the user's existing runtime-only v1.0.0 authorization.
+- Evidence: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/delivery-focused-renewal-authority-integration-SHA256SUMS.txt`.
 
 ## Host Source Closure Authority Failure — DR-012
 
