@@ -28,6 +28,8 @@
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-report.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-revision-record.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-059-release-authority-commit-review.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/CRR-063-host-package-input-source-review.md`
+  - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/code-review-evidence/crr-063/SHA256SUMS.txt`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-requirement-impact.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-coverage-investigation.md`
   - `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/api-e2e-execution-coverage-report.md`
@@ -52,29 +54,29 @@
 
 ## Current Implementation Summary
 
-`IR-039` implements the bounded SR-025 correction against current `origin/main` `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`. One fail-closed Host Package Input Contract 1 now owns package-install and direct-construction semantics. Host Source Closure 1 excludes raw non-lifecycle `package.json` command-facade bytes, retains the exact lock/recipe/tool/input/source authorities, and binds the contract's canonical projection. The direct controller, assembler, and verifier accept only exact ordered arguments; child processes receive only an allowlisted deterministic environment. The stale six-file API-REV-025 production admission bundle is removed because the corrected closure producer requires focused renewal.
+`IR-040` completes the bounded SR-025 correction after `CRR-063`. The one fail-closed Host Package Input Contract 1 now enumerates workflow run commands, admits exactly one package-manager operation with exact tokens `npm ci --ignore-scripts`, derives its package-manager/install projection from that admitted command, and rejects every additional or altered package-manager operation. The hosted source gate runs its 22 release checks directly with Node, leaving npm hydration as the sole package-manager command. The actual-current Admission 4 regression now preserves historical API-REV-025 evidence truthfully while requiring focused renewal.
 
-- Implementation cycle: `Design Impact implementation after DR-012`
+- Implementation cycle: `Local Fix after CRR-063`
 - Implementation revision record: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery/tickets/done/voice-input-runtime-reliability/implementation-revision-record.md`
-- Current implementation revision ID: `IR-039`
+- Current implementation revision ID: `IR-040`
 - Related solution revision IDs: `SR-025`
 - Related architecture-review revision IDs: `ARCH-REV-025` Pass
-- Related code-review revision IDs: prior `CRR-059`; current review pending
+- Related code-review revision IDs: `CRR-063` Fail — Local Fix; current re-review pending
 - Related API/E2E revision IDs: historical `API-REV-025`; hosted failure context `API-REV-027`; renewed focused API/E2E pending
 - Related delivery revision IDs: `DR-012`
-- Triggering finding IDs: `N/A` — DR-012 Design Impact resolved by SR-025
+- Triggering finding IDs: `CR-F-049`, `CR-F-050`
 - Source base: `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`
-- Source commit: `d334c474c264bb59594f5c03ef6246d71d87b707`
-- Result: `Implementation Complete — Ready for Code Review`
+- Current source commit: `a66a7eeb604a94445070b7573abe5a5d6238efc1` after IR-039 source `d334c474c264bb59594f5c03ef6246d71d87b707`
+- Result: `Implementation Complete — Ready for Code Re-review`
 
 ## Reviewed Behavior Implementation Trace
 
-| Behavior ID                                              | Approved Change / Preserved Outcome                                                                                                                                                          | Implemented Production Path / Key Files                                                                                                       | Result / Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| -------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `BEH-004`; `R-018`, `R-030`; `AC-006`, `AC-036`          | Bind actual host package install and construction semantics while excluding unrelated raw command-facade bytes.                                                                              | `build/host-package-input-contract.mjs`; `build/host-source-closure.mjs`; `contracts/package/host-source-closure-v1.schema.json`              | The single contract parses repository manifest, exact lock, recipe, selected Host Build Environment 2, and actual workflow. It enforces lockfile v3, exact dependency/engine agreement, supported package shape, no lifecycle scripts, exact live Node identity, `npm ci --ignore-scripts`, one direct controller, and emits a strict canonical projection. Host closure invokes it internally before repository rows, retains exact `package-lock.json`, validator/controller/assembler/verifier/recipe/tool/input subjects, and never accepts a caller-supplied projection. |
-| `BEH-013`; `R-014`, `R-024`, `R-029`; `AC-010`, `AC-035` | Make the reviewed direct construction path explicit and closed.                                                                                                                              | `.github/workflows/release-voice-runtime.yml`; `release/run-host-construction.mjs`; `build/host-package-{assembler,verifier}.mjs`             | Controller, assembler, and verifier use contract-owned exact ordered argument parsers. Child processes receive only `HOME`, `LANG`, `LC_ALL`, `PATH`, `TEMP`, `TMP`, `TMPDIR`, and `TZ`; locale/timezone are fixed, PATH is empty, and temporary state is private. Unexpected, duplicate, missing, npm-script, npm-exec/npx, or direct workflow bypasses reject.                                                                                                                                                                                                              |
-| `BEH-007`; `R-014`, `R-024`; `AC-010`, `AC-035`          | Renew focused authority after changing the closure producer; do not reuse stale active production evidence.                                                                                  | `release/admission/` removals; `tests/release/release-admission-fixture.mjs`                                                                  | The exact six API-REV-025 production files are removed. Historical ticket/API evidence is untouched. No old closure injection, raw-manifest fallback, digest exception, or compatibility reader was added.                                                                                                                                                                                                                                                                                                                                                                    |
-| DR-012 production regression                             | A script-only manifest delta and unrelated workflow metadata must not alter archive identity, while dependency/engine/install/invocation/environment/source changes fail or renew authority. | `tests/fixtures/host-package-input-contract/`; `tests/build/host-package-input-contract.test.mjs`; `tests/build/host-source-closure.test.mjs` | Frozen F/W fixtures project identically despite the release-test script/name delta. Production-shaped negative cases cover dependency, engine, lock, unsupported keys, lifecycle scripts, recipe/environment/Node drift, npm indirection, unexpected arguments, and closure-source mutation.                                                                                                                                                                                                                                                                                  |
+| Behavior ID                                                           | Approved Change / Preserved Outcome                                                                                                                                                          | Implemented Production Path / Key Files                                                                                                       | Result / Notes                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| --------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `BEH-004`; `R-018`, `R-030`; `AC-006`, `AC-036`; `CR-F-050`           | Bind actual host package install and construction semantics while excluding unrelated raw command-facade bytes.                                                                              | `build/host-package-input-contract.mjs`; `.github/workflows/release-voice-runtime.yml`; Host Source Closure producer/schema                   | The single contract enumerates YAML run-scalar commands, admits exactly one `npm ci --ignore-scripts`, and derives `packageManager`/`installArguments` from those admitted tokens. Additional npm installs, npm script indirection, altered install arguments, alternative package managers, duplicate/absent commands, or hidden extra manager tokens reject. The workflow invokes the unchanged release schema/test gate directly with Node. Exact lock/dependency/engine/Node/environment/direct-controller authority remains bound. |
+| `BEH-007`; `R-014`, `R-024`; `AC-010`, `AC-025`, `AC-035`; `CR-F-049` | Preserve historical focused evidence while requiring current-source focused renewal.                                                                                                         | `tests/release/relevant-source-closure-v3.test.mjs`; `release/source-closure.mjs`                                                             | The current `F..D` regression passes the exact API-REV-025 subjects and observes their two profile identities remain internally equal, but requires the durable Admission 4 result and terminal error to be `focused-qualification-required`. It asserts the Host Package Input Contract source is focused-impact and no longer claims stale production acceptance.                                                                                                                                                                     |
+| `BEH-013`; `R-014`, `R-024`, `R-029`; `AC-010`, `AC-035`              | Keep the reviewed direct construction path explicit and closed.                                                                                                                              | `release/run-host-construction.mjs`; `build/host-package-{assembler,verifier}.mjs`                                                            | Controller, assembler, and verifier retain contract-owned exact ordered arguments and the deterministic child environment. No npm build/exec/npx construction, direct workflow bypass, raw manifest fallback, second validator, or caller-supplied projection exists.                                                                                                                                                                                                                                                                   |
+| DR-012 production regression                                          | A script-only manifest delta and unrelated workflow metadata must not alter archive identity, while dependency/engine/install/invocation/environment/source changes fail or renew authority. | `tests/fixtures/host-package-input-contract/`; `tests/build/host-package-input-contract.test.mjs`; `tests/build/host-source-closure.test.mjs` | Frozen F/W fixtures still project identically. Production-shaped negatives now include the exact reviewer second-install probe (`npm install --ignore-scripts --no-save ajv@8.19.0`), npm-script indirection, changed install arguments, an alternate manager, dependency/engine/lock/lifecycle/recipe/environment/Node drift, unexpected arguments, and closure-source mutation.                                                                                                                                                       |
 
 ## Key Files Or Areas
 
@@ -88,6 +90,7 @@
 
 - `package-lock.json` remains the exact install-graph authority. Repository `package.json` is accepted only through the current strict semantic contract; adding a new install-affecting field requires a reviewed contract update.
 - The production workflow continues to contain exactly one `npm ci --ignore-scripts` hydration and one direct `node release/run-host-construction.mjs` construction entry with the reviewed argument order.
+- The release-pipeline source gate is invoked directly with the same checked-in Node controller and six test paths; `package.json` remains a local developer facade, not hosted package-manager execution.
 - The selected Host Build Environment 2 record remains the independent tool authority. The contract authenticates the executing Node against it and does not create a parallel tool identity.
 
 ## Known Risks
@@ -98,12 +101,12 @@
 
 ## Task Design Health Assessment Implementation Check
 
-- Reviewed change posture: `Design Impact resolved by SR-025`
+- Reviewed change posture: `Local Fix after CRR-063 within SR-025`
 - Reviewed root-cause classification: `Host source-identity boundary/ownership defect plus missing package-input invariant`
-- Reviewed refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`): `Refactor Needed Now — bounded semantic authority replacement`
+- Reviewed refactor decision (`Refactor Needed Now`/`No Refactor Needed`/`Deferred`): `No broader refactor needed; close the existing sole semantic owner and correct the stale test`
 - Implementation matched the reviewed assessment (`Yes`/`No`): `Yes`
 - If challenged, routed as `Design Impact` (`Yes`/`No`/`N/A`): `N/A`
-- Evidence / notes: the correction replaces raw manifest hashing once, within the sole closure producer, and closes the direct invocation/environment boundary. It does not patch the DR-012 digest/path, weaken Policy 3, or add a second projection owner.
+- Evidence / notes: CR-F-049 and CR-F-050 were reproduced on the actual current test/workflow. The correction stays inside the existing package-input/test owners, derives rather than hard-codes the admitted install projection, and preserves SR-025's focused-renewal result.
 
 ## Legacy / Compatibility Removal Check
 
@@ -112,7 +115,7 @@
 - Dead/obsolete code, obsolete files, unused helpers/tests/flags/adapters, and dormant replaced paths removed in scope: `Yes` — the exact stale six-file API-REV-025 production admission bundle was deleted.
 - Shared structures remain tight (no one-for-all base or overlapping parallel shapes introduced): `Yes`
 - Canonical shared design guidance was reapplied during implementation, and file-level design weaknesses were routed upstream when needed: `Yes`
-- Changed source implementation files stayed within proactive size-pressure guardrails (`>500` avoided; `>220` assessed/acted on): `Yes` — the new contract is 416 effective non-empty lines; changed production modules remain below 500.
+- Changed source implementation files stayed within proactive size-pressure guardrails (`>500` avoided; `>220` assessed/acted on): `Yes` — the cohesive contract is 461 effective non-empty lines; all changed production modules remain below 500.
 - Notes: there is no raw-hash fallback, caller override, npm-build path, old closure injection, or active Admission 4 compatibility reader.
 
 ## Persisted Data Transition Check (When Applicable)
@@ -129,17 +132,16 @@
 - Repository/worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-qualified-recovery`
 - Branch: `codex/voice-runtime-qualified-recovery`
 - Base: `origin/main` `27effcb6238b11ff3e41ad2473adf4e6d9fa6586`
-- Source commit: `d334c474c264bb59594f5c03ef6246d71d87b707`
+- Current source commit: `a66a7eeb604a94445070b7573abe5a5d6238efc1`
 - Full-check Go: `/private/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go`
 - No package dependency or lockfile bytes changed. No provider, model, runtime protocol, archive format, catalog, asset membership, or desktop source changed.
 
 ## Local Implementation Checks Run
 
-- `node --test tests/build/host-package-input-contract.test.mjs tests/build/host-source-closure.test.mjs tests/release/host-release-contracts.test.mjs` — Pass, `12/12`.
-- `node tooling/check-release-pipeline.mjs && node --test tests/build/host-package-input-contract.test.mjs tests/build/host-source-closure.test.mjs tests/release/release-source-admission-verifier.test.mjs` — Pass, `13/13`.
+- `node --test tests/build/host-package-input-contract.test.mjs tests/build/host-source-closure.test.mjs tests/release/host-release-contracts.test.mjs tests/release/relevant-source-closure-v3.test.mjs` — Pass, `18/18`, including the exact second-install negative and truthful current-source focused-renewal result.
 - `npm run check:release-pipeline` — Pass, `22/22`.
 - `VOICE_GO=/private/tmp/autobyteus-go1.26.5-sr021-v2/go/bin/go npm run check` — Pass: source guards; `7/7` Python plus compileall; all Go/source/evidence checks; `112/112` Node TAP tests, no failures or skips.
-- Changed-file Prettier, strict schema compilation, effective source-line assessment, `git diff --cached --check`, and source commit creation passed.
+- Changed-file Prettier, strict schema compilation, effective source-line assessment, `git diff --check`, staged diff checks, and source commit validation passed.
 
 These are implementation-scoped source/contract/unit/repository checks, not API/E2E qualification or release sign-off.
 
