@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import argparse
-import audioop
+import array
 import json
 import math
 import re
@@ -45,14 +45,33 @@ def is_probable_no_speech(audio_path: str) -> bool:
         payload = wav_file.readframes(frame_count)
 
     if frame_count == 0 or not payload:
-      return True
+        return True
 
     duration_seconds = frame_count / float(sample_rate)
     if duration_seconds < 0.15:
         return True
 
-    rms = audioop.rms(payload, sample_width)
-    return rms < 120
+    return pcm_rms(payload, sample_width) < 120
+
+
+ARRAY_TYPECODES = {1: "b", 2: "h", 4: "i"}
+
+
+def pcm_rms(payload: bytes, sample_width: int) -> int:
+    """Root mean square of little-endian signed PCM samples, the value audioop.rms gave."""
+    usable = payload[: len(payload) - len(payload) % sample_width]
+    if sample_width == 3:
+        samples = [
+            int.from_bytes(usable[index : index + 3], "little", signed=True)
+            for index in range(0, len(usable), 3)
+        ]
+    else:
+        samples = array.array(ARRAY_TYPECODES[sample_width], usable)
+        if sys.byteorder == "big":
+            samples.byteswap()
+    if not samples:
+        return 0
+    return int(math.sqrt(sum(sample * sample for sample in samples) / len(samples)))
 
 
 @dataclass

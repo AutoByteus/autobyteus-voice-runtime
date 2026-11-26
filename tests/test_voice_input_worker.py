@@ -1,9 +1,12 @@
+import array
 import contextlib
 import importlib.util
 import io
 import json
 import math
+import random
 import struct
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -268,6 +271,68 @@ class BackendLoadTests(unittest.TestCase):
         self.assertEqual(result, voice_input_worker.TranscriptionResult(text="hi", detected_language="en"))
         self.assertEqual(transcribed[-1][1]["vad_filter"], True)
         self.assertEqual(len(constructed), 1)
+
+
+def rt010_cases() -> list:
+    """The synthetic PCM cases of RT-010 (probes/rms_equivalence.py), generated in the same order with the same seed."""
+    random.seed(7)
+    cases = []
+    for width, low, high in [(1, -128, 127), (2, -32768, 32767), (4, -2**31, 2**31 - 1)]:
+        code = {1: "b", 2: "h", 4: "i"}[width]
+        for name, values in [
+            ("silence", [0] * 4000), ("quiet", [random.randint(-90, 90) for _ in range(4000)]),
+            ("threshold", [119, -119, 120, -120] * 1000), ("full-scale", [high, low] * 2000),
+            ("random", [random.randint(low, high) for _ in range(4000)]),
+        ]:
+            samples = array.array(code, values)
+            if sys.byteorder == "big":
+                samples.byteswap()
+            cases.append((f"{name}-w{width}", samples.tobytes(), width))
+    return cases
+
+
+def pcm24(values: list) -> bytes:
+    return b"".join(value.to_bytes(3, "little", signed=True) for value in values)
+
+
+class LoudnessTests(unittest.TestCase):
+    """`pcm_rms` gives the values `audioop.rms` gave (RT-010, evidence/P5-rms-equivalence.txt), without `audioop`."""
+
+    RT010_VALUES = {
+        "silence-w1": 0, "quiet-w1": 52, "threshold-w1": 119, "full-scale-w1": 127, "random-w1": 73,
+        "silence-w2": 0, "quiet-w2": 52, "threshold-w2": 119, "full-scale-w2": 32767, "random-w2": 18698,
+        "silence-w4": 0, "quiet-w4": 51, "threshold-w4": 119, "full-scale-w4": 2147483647, "random-w4": 1231625032,
+    }
+
+    def test_equals_the_audioop_values_of_rt010(self) -> None:
+        results = {name: voice_input_worker.pcm_rms(payload, width) for name, payload, width in rt010_cases()}
+        self.assertEqual(results, self.RT010_VALUES)
+
+    def test_three_byte_samples(self) -> None:
+        self.assertEqual(voice_input_worker.pcm_rms(pcm24([119, -119, 120, -120] * 10), 3), 119)
+        self.assertEqual(voice_input_worker.pcm_rms(pcm24([8388607, -8388608] * 10), 3), 8388607)
+
+    def test_empty_payload_is_zero_and_a_partial_trailing_sample_is_ignored(self) -> None:
+        self.assertEqual(voice_input_worker.pcm_rms(b"", 2), 0)
+        self.assertEqual(voice_input_worker.pcm_rms(b"\x10", 2), 0)
+        self.assertEqual(voice_input_worker.pcm_rms(struct.pack("<hh", 300, -300) + b"\x10", 2), 300)
+
+
+class StartFailureProcessTests(unittest.TestCase):
+    """AC-007: the worker file run as the launcher runs it; import-time output counts too."""
+
+    def test_missing_model_folder_gives_no_stdout_one_stderr_line_and_exit_1(self) -> None:
+        with tempfile.TemporaryDirectory(prefix="voice-input-worker-process-") as temp_dir_name:
+            missing = str(Path(temp_dir_name) / "no-such-model")
+            completed = subprocess.run(
+                [sys.executable, str(MODULE_PATH), "serve", "--backend", "mlx", "--model-path", missing],
+                stdin=subprocess.DEVNULL, capture_output=True, text=True, timeout=60,
+            )
+        self.assertEqual(completed.stdout, "")
+        lines = completed.stderr.strip().splitlines()
+        self.assertEqual(len(lines), 1, completed.stderr)
+        self.assertTrue(lines[0].startswith("Voice Input worker could not start the mlx backend:"), lines[0])
+        self.assertEqual(completed.returncode, 1)
 
 
 if __name__ == "__main__":
