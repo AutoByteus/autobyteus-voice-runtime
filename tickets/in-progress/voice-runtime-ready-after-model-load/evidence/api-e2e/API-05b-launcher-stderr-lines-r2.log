@@ -1,0 +1,9 @@
+# API-05b round 2 (18f9e12): a missing model folder through the bundle's launcher (its .venv: Python 3.11.15), and the same worker file on system Python 3.9.6 and Homebrew Python 3.14.2
+# Commands: env -i HOME=/tmp/ab655-api/home PATH=/usr/bin:/bin <cmd> serve --backend mlx --model-path /tmp/ab655-api/no-such-model, with <cmd> = /tmp/ab655-api/ext-mlx/runtime/bin/voice-input-worker | /usr/bin/python3 <worker> | /opt/homebrew/bin/python3.14 <worker>
+# Date: 2026-11-26T12:29:43Z
+== launcher-py3.11: exit 1, stdout lines 0, stderr lines 1
+Voice Input worker could not start the mlx backend: model folder not found: /tmp/ab655-api/no-such-model
+== system-py3.9: exit 1, stdout lines 0, stderr lines 1
+Voice Input worker could not start the mlx backend: model folder not found: /tmp/ab655-api/no-such-model
+== homebrew-py3.14: exit 1, stdout lines 0, stderr lines 1
+Voice Input worker could not start the mlx backend: model folder not found: /tmp/ab655-api/no-such-model

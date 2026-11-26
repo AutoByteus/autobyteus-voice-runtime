@@ -1,0 +1,14 @@
+# API-02 round 2: the workflow's verify job from the clean clone at 18f9e12
+# Commands (in /tmp/ab655-api/fresh, after git clean of __pycache__): node --test tests/*.test.mjs; python3.11 / python3.14 -m unittest tests/test_voice_input_worker.py
+# Date: 2026-11-26T12:29:54Z
+18f9e12 fix(autobyteus-655): measure loudness without audioop so a failed start writes one stderr line
+# pass 2
+# fail 0
+== /opt/homebrew/bin/python3.11
+Ran 16 tests in 0.092s
+
+OK
+== /opt/homebrew/bin/python3.14
+Ran 16 tests in 0.105s
+
+OK

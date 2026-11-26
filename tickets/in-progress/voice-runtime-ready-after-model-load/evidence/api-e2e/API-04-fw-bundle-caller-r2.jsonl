@@ -1,0 +1,15 @@
+// # Round 2 (18f9e12 bundle over the round-1 root, its bootstrapped Python 3.11.15 .venv kept): two normal starts through the real desktop VoiceInputRuntimeService; clips: silence, quiet noise (±90, rms 52), en.wav, en2.wav, en.wav
+// # Command: env -i HOME=/tmp/ab655-api/home TMPDIR=$TMPDIR PATH=<login PATH> AB655_LOGIN_PATH=<login PATH> HF_HUB_OFFLINE=1 node probes/drive.mjs /tmp/ab655-api/ext-fw <label> silence.wav quiet.wav en.wav en2.wav en.wav
+// # Date: 2026-11-26T12:30:15Z
+{"label":"B1-start","step":"transcribe","clip":"silence.wav","startedAtMs":2,"tookMs":1959,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"quiet.wav","startedAtMs":1961,"tookMs":2,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en.wav","startedAtMs":1963,"tookMs":872,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en2.wav","startedAtMs":2835,"tookMs":718,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en.wav","startedAtMs":3553,"tookMs":723,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"stopped","atMs":4299}
+{"label":"B2-start","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":1174,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B2-start","step":"transcribe","clip":"quiet.wav","startedAtMs":1175,"tookMs":2,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B2-start","step":"transcribe","clip":"en.wav","startedAtMs":1177,"tookMs":715,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B2-start","step":"transcribe","clip":"en2.wav","startedAtMs":1892,"tookMs":733,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B2-start","step":"transcribe","clip":"en.wav","startedAtMs":2626,"tookMs":738,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B2-start","step":"stopped","atMs":3387}

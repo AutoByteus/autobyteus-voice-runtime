@@ -14,9 +14,10 @@ The plan. Results, confidence and the broader-validation decision are in `api-e2
 - Implementation Revision Record: `implementation-revision-record.md`
 - Code Review Report / Revision Record: `N/A — not applicable` (direct low-risk route)
 - API/E2E Revision Record: `api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-001`
-- Current Investigation Round: 1
-- Trigger: implementation IR-001, direct route
+- Current API/E2E Revision ID: `API-REV-002`
+- Current Investigation Round: 2
+- Trigger: implementation IR-002 (SR-002: DEC-009 revised, DEC-010 and AC-007 added) answering CRR-001 / API-REV-001 (AC-004 Fail)
+- Prior Investigation Reviewed: round 1 (API-REV-001)
 
 Repository `autobyteus-voice-runtime`, worktree `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-ready-after-model-load`,
 branch `codex/voice-runtime-ready-after-model-load`, code under test `050cca1` (head `21d4260`), base tag `v0.3.0` (`251eab8`).
@@ -114,6 +115,22 @@ models, ffmpeg and a desktop caller from another repository, so they stay ticket
 ## Ambiguities Or Reroute Triggers
 
 None.
+
+## Round 2 Rerun Plan
+
+- Validated before: code `050cca1`. Now: code `18f9e12` (head `1a20726`). `git diff --name-only 050cca1 18f9e12`: `runtime/voice_input_worker.py` (`audioop` → `pcm_rms` in the silence check; an indentation fix), `tests/test_voice_input_worker.py` (AC-007 subprocess test, `pcm_rms` cases), `DESIGN.md`, ticket documents. Launcher, requirements, build script, `load` and `start_backend` unchanged.
+- New criterion AC-007 (SR-002): proven by the repository's subprocess test (API-01/API-02 on 3.9, 3.11, 3.14) and live by API-05/05b on the launcher's 3.11 and on 3.9.
+
+| Case | Decision | Reason |
+| --- | --- | --- |
+| API-05, API-05b (prior failure) | Rerun first | the failure under test; on the launcher's Python 3.11 through the real caller, and the worker file on 3.9 and 3.14 |
+| API-01, API-02 | Rerun | worker and tests changed; now on Python 3.9, 3.11 and 3.14 |
+| API-03 (normal starts B), API-04 (B) | Rerun with bundles rebuilt from `18f9e12` | the silence check changed: silence, a near-silent noise clip (±90) and speech through the caller |
+| API-03 run A, API-04 run A (first install) | Still valid | launcher and requirements unchanged; the worker file is not part of the bootstrap |
+| API-03b, API-04b | Still valid | 0.3.0 baseline; the VAD probe exercises `load`/`transcribe_file`, unchanged |
+| API-06 | Rerun | safety, per round |
+
+The rebuilt bundle is extracted over each test extension root's `runtime/`, keeping the `.venv` the launcher bootstrapped in round 1 (same requirements; a real reinstall would bootstrap an identical one).
 
 ## Investigation Decision
 

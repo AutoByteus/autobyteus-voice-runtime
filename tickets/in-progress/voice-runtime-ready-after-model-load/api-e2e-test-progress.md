@@ -20,3 +20,14 @@
 | 2026-11-26 13:16 | API-05 | Completed | Fail | no ready, exit 1, no process left, cause named; but on the launcher's Python 3.11 stderr = 3 lines (audioop DeprecationWarning + reason): caller error text not one line (AC-004/REQ-003). Python 3.9: 1 line |
 | 2026-11-26 13:16 | API-06 | Completed | Pass | identical |
 | 2026-11-26 13:17 | API-06 | Checkpoint | | correction of the row above: not byte-identical; only temp/ mtime changed, by the founder's own running app (its 0.3.0 worker); no command here touched the path |
+| 2026-11-26 13:29 | round 2 | Checkpoint | | IR-002 (18f9e12): rerun API-05/05b first, then API-01/02/03B/04B/06 |
+| 2026-11-26 13:29 | API-05 | Started | | round 2: start failures through the caller on the launcher's 3.11 |
+| 2026-11-26 13:29 | API-05 | Completed | Pass | round 2: 3 failures, each 1 line in the caller's error, exit before ready, no process left |
+| 2026-11-26 13:29 | API-05b | Started | | launcher 3.11 / system 3.9 / python3.14 line counts |
+| 2026-11-26 13:29 | API-05b | Completed | Pass | 1 stderr line on 3.11 (launcher), 3.9, 3.14 |
+| 2026-11-26 13:29 | API-01/API-02 | Started | | unit + node in the worktree; verify job in the clean clone at 18f9e12 |
+| 2026-11-26 13:30 | API-01/API-02 | Completed | Pass | 16 OK on 3.9/3.11/3.14; node 2/2; clean clone same |
+| 2026-11-26 13:30 | API-03/API-04 | Started | | round 2 normal starts through the caller, MLX and faster-whisper |
+| 2026-11-26 13:30 | API-03/API-04 | Completed | Pass | round 2: MLX first 182-187 ms; fw first 715-872 vs later 718-738; silence+quiet noSpeech |
+| 2026-11-26 13:30 | API-06 | Completed | Pass | see evidence: only temp/ mtime (founder's app) |
+| 2026-11-26 13:31 | round 2 | Completed | Pass | reports written; cleanup next |

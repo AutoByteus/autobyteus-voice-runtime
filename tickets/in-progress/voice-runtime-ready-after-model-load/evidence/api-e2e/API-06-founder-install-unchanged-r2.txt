@@ -1,0 +1,9 @@
+# API-06 round 2: read-only stat list of ~/.autobyteus/extensions/voice-input; round-1 'before' list vs now
+# Date: 2026-11-26T12:30:34Z
+entries before: 20070, now: 20070
+20070c20070
+< 1795694860 64 /Users/normy/.autobyteus/extensions/voice-input/temp
+---
+> 1795696040 64 /Users/normy/.autobyteus/extensions/voice-input/temp
+22112 /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/
+Only temp/ (where the desktop writes each dictation clip) may differ, from the founder's own running app (process line above). No command here named ~/.autobyteus.

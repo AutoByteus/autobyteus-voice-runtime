@@ -1,0 +1,28 @@
+# Round 2: bundles rebuilt by scripts/build-runtime.sh from the clean clone at 18f9e12, extracted over the test extension roots' runtime/ (their bootstrapped .venv kept)
+# Commit: 18f9e12; Date: 2026-11-26T12:29:18Z
+Packaging voice runtime
+Platform: darwin
+Arch: arm64
+Runtime version: 0.3.1
+Entrypoint: bin/voice-input-worker
+Runtime bundle written to:
+  /tmp/ab655-api/dist/voice-input-runtime-darwin-arm64.tar.gz
+Packaging voice runtime
+Platform: darwin
+Arch: x64
+Runtime version: 0.3.1
+Entrypoint: bin/voice-input-worker
+Runtime bundle written to:
+  /tmp/ab655-api/dist/voice-input-runtime-darwin-x64.tar.gz
+8af57bf28bb39276669599eb8e2d4831315cb00a204414e6027fb1102382b68b  /tmp/ab655-api/dist/voice-input-runtime-darwin-arm64.tar.gz
+e6168dfcc863d146771363cd1155b43a120cd04af5490ebde238f0bfcca521aa  /tmp/ab655-api/dist/voice-input-runtime-darwin-x64.tar.gz
+worker in each root vs 18f9e12:
+  commit 1249f8ee7f044fcec3d3ced7c33d133a3518af63a24497c19f2d27f04d8e76f5  -
+  ext-mlx 1249f8ee7f044fcec3d3ced7c33d133a3518af63a24497c19f2d27f04d8e76f5  /tmp/ab655-api/ext-mlx/runtime/voice_input_worker.py
+0
+  ext-mlx-corrupt 1249f8ee7f044fcec3d3ced7c33d133a3518af63a24497c19f2d27f04d8e76f5  /tmp/ab655-api/ext-mlx-corrupt/runtime/voice_input_worker.py
+0
+  ext-fw 1249f8ee7f044fcec3d3ced7c33d133a3518af63a24497c19f2d27f04d8e76f5  /tmp/ab655-api/ext-fw/runtime/voice_input_worker.py
+0
+  ext-fw-corrupt 1249f8ee7f044fcec3d3ced7c33d133a3518af63a24497c19f2d27f04d8e76f5  /tmp/ab655-api/ext-fw-corrupt/runtime/voice_input_worker.py
+0
