@@ -157,3 +157,46 @@ Nothing is released. After a release: callers pin a tag, so going back means pin
 - Integration: `origin/release/0.3` was `8d154d9`, the ticket branch's base, so the branch was already current and nothing was rerun.
 - Verification (audit): AC-008's dispatched run 45825122803 on `19f8ad2` succeeded; GitHub shows `success`, with the four builds and verify succeeding and publish skipped. API-08 shows releases and tags unchanged, and API-09 shows bundles matching v0.3.0 except the worker. Head `3f0917d` changes no workflow, runtime, scripts or tests since `19f8ad2`. AC-001…AC-005 and AC-007 hold (`runtime/` and `tests/` unchanged since `18f9e12`). Accepted risk DEC-006 unchanged.
 - Finalization, release and AC-002: see "Release Record DR-003" below.
+
+### Release Record DR-003
+
+- Ticket branch `codex/voice-runtime-release-runner`:
+  - pre-push checks: names pass; `gitleaks` over `origin/release/0.3..HEAD` found no leaks;
+  - pushed `3f0917d..3d06b9d`.
+- Merge: `origin/release/0.3` fetched and still `8d154d9`; `--no-ff` merge `6ceebcd`, its tree identical to the verified head; gitleaks clean; pushed `8d154d9..6ceebcd`.
+- AC-008 second run, the build-only run of the merge push: run 45826109140 (https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/45826109140), event `push`, ref `release/0.3`, sha `6ceebcd`.
+  - Resolve, the four builds and Verify succeeded; Publish was skipped.
+  - Every build printed `Runtime version: 0.0.0-ci.6ceebcd452c3`.
+  - No release and no new tag.
+- Tag: annotated `v0.3.2` → `6ceebcd`, the commit the build-only run proved, with nothing in between. Pushed after `origin/release/0.3` was fetched and still `6ceebcd`. `v0.3.1` is unmoved and has no release.
+- Release run: 45826223605 (https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/45826223605), ref `v0.3.2`, sha `6ceebcd`. All 7 jobs succeeded, Publish included. No failed jobs.
+- Release: https://github.com/AutoByteus/autobyteus-voice-runtime/releases/tag/v0.3.2 (not a draft, not a pre-release, target `6ceebcd…`). 5 assets:
+  - `voice-input-runtime-darwin-arm64.tar.gz`, `-darwin-x64.tar.gz`, `-linux-x64.tar.gz` and `-win32-x64.tar.gz` (4526 bytes each);
+  - `voice-input-runtime-manifest.json` (2655 bytes).
+- Assets checked (`evidence/delivery/DEL-release-v0.3.2-runs-and-assets.log`):
+  - manifest `runtimeVersion` `0.3.2`; asset URLs under `releases/download/v0.3.2/`;
+  - every bundle's sha256 matches the manifest;
+  - the three Unix bundles are identical: worker sha256 `1249f8ee…`, the file validated in rounds 2 and 3;
+  - win32: worker `fb587acf…` (CRLF), `bin/voice-input-worker.cmd` CRLF.
+  - Result: **Completed**, not partial.
+- AC-002 on the released darwin-arm64 bundle (`evidence/delivery/DEL-AC-002-released-v0.3.2-darwin-arm64.jsonl`):
+  - Setup: the bundle downloaded from the release and extracted into a test-owned extension root `/tmp/ab655-del-v032/ext`; model an APFS clone of the fixture `whisper-small-mlx`; `installation.json` as the desktop writes it. Driven through the desktop's real `VoiceInputRuntimeService` (esbuild bundle, shellEnv stubbed), `env -i` with a temp `HOME` and `HF_HUB_OFFLINE=1`.
+  - Run A, first start (the launcher bootstrapped `.venv` from the network): the first request completed at 78305 ms, waiting for `ready`. `en.wav` took 205 ms, `en2.wav` 184 ms, `en.wav` 188 ms.
+  - Runs B and C, normal starts: `ready` within 1285 and 1272 ms; first dictation `en.wav` 191 and 194 ms; later 179–187 ms.
+  - Texts: "Please summarize the meeting notes and send them to the team.", "The quick brown fox jumps over the lazy dog."
+  - Silence and quiet noise: `noSpeech:true`. 0 worker processes left after each run.
+  - **Pass**: first dictation after `ready` 191–205 ms (< 1,000 ms, target ~0.3 s), against 23.4 s on 0.3.0 (API-03b).
+- Founder's install (`evidence/delivery/DEL-founder-install-unchanged-v0.3.2.txt`): 20070 entries before and after, `diff` IDENTICAL. His own 0.3.0 worker (pid 22112) was left running.
+- Release guide: followed as rewritten in this round. The release confirmed its steps; no correction needed.
+- Cleanup, right after this record is pushed:
+  - remove the worktrees `voice-runtime-release-runner` and `voice-runtime-0.3.1-release`;
+  - delete the local `codex/voice-runtime-release-runner` and `release/0.3`, and the remote `codex/voice-runtime-release-runner` (API/E2E's request);
+  - remove `/tmp/ab655-delivered` and this delivery's `/tmp/ab655-del-v032`.
+  - Left for their owners: `/tmp/ab655` (Solution Designer) and `/tmp/ab655-rel` (API/E2E).
+  - This record's push runs one more build-only run on `release/0.3`; its result is reported in the terminal message.
+- The user's checkout `/Users/normy/autobyteus_org/autobyteus-voice-runtime` is on `main`, not the target branch, so it is not updated (left untouched).
+- Rollout to users: the desktop app pins `v0.3.0` in the superrepo's `extensionCatalog.ts`. 0.3.2 reaches users when a caller pins it; the autobyteus-516 extension's pin moves from 0.3.1 to 0.3.2 (DEC-011).
+- Final status:
+  - Verification: complete. Repository finalization: complete. Release: **Completed** (`v0.3.2`).
+  - AC-006 and AC-008: Pass. Accepted risk: DEC-006.
+  - Unresolved blocker: none.

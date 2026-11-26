@@ -1,0 +1,28 @@
+# Release v0.3.2: runs, release and asset checks
+## build-only run of the merge push
+{"c":"success","ev":"push","jobs":["Resolve Voice Runtime Release Metadata: success","Verify Runtime Packaging: success","Build darwin x64: success","Build win32 x64: success","Build linux x64: success","Build darwin arm64: success","Publish Voice Runtime Release: skipped"],"ref":"release/0.3","sha":"6ceebcd452c31eca92c2d2caa5c5390d07589c57","url":"https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/45826109140"}
+Build darwin x64	2026-11-26T13:07:46.8498565Z Runtime version: 0.0.0-ci.6ceebcd452c3
+Build win32 x64	2026-11-26T13:07:50.8437999Z Runtime version: 0.0.0-ci.6ceebcd452c3
+Build linux x64	2026-11-26T13:07:46.4669805Z Runtime version: 0.0.0-ci.6ceebcd452c3
+Build darwin arm64	2026-11-26T13:07:52.5795991Z Runtime version: 0.0.0-ci.6ceebcd452c3
+## tag run
+{"c":"success","ev":"push","jobs":["Resolve Voice Runtime Release Metadata: success","Verify Runtime Packaging: success","Build win32 x64: success","Build darwin x64: success","Build darwin arm64: success","Build linux x64: success","Publish Voice Runtime Release: success"],"ref":"v0.3.2","sha":"6ceebcd452c31eca92c2d2caa5c5390d07589c57","url":"https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/45826223605"}
+## release
+{"assets":["voice-input-runtime-darwin-arm64.tar.gz 4526","voice-input-runtime-darwin-x64.tar.gz 4526","voice-input-runtime-linux-x64.tar.gz 4526","voice-input-runtime-manifest.json 2655","voice-input-runtime-win32-x64.tar.gz 4526"],"draft":false,"pre":false,"tag":"v0.3.2","target":"6ceebcd452c31eca92c2d2caa5c5390d07589c57","url":"https://github.com/AutoByteus/autobyteus-voice-runtime/releases/tag/v0.3.2"}
+## downloaded assets: sha256 vs manifest, worker hashes, line endings
+manifest runtimeVersion 0.3.2
+voice-input-runtime-darwin-arm64.tar.gz sha256 079f54b44b050d0a matches manifest mlx
+    ./voice_input_worker.py 10911 1249f8ee7f044fce LF
+voice-input-runtime-darwin-x64.tar.gz sha256 079f54b44b050d0a matches manifest faster-whisper
+    ./voice_input_worker.py 10911 1249f8ee7f044fce LF
+voice-input-runtime-linux-x64.tar.gz sha256 079f54b44b050d0a matches manifest faster-whisper
+    ./voice_input_worker.py 10911 1249f8ee7f044fce LF
+voice-input-runtime-win32-x64.tar.gz sha256 1727f56614fa51b5 matches manifest faster-whisper
+    ./bin/voice-input-worker.cmd 1936 27e746619e72ac3f CRLF
+    ./voice_input_worker.py 11224 fb587acf884b7c98 CRLF
+## remote tags
+251eab80a1cfd6a6d4c4d2a1fdbe1c06c3923dde	refs/tags/v0.3.0
+0699d621d24406858ddaa340966595e4473687e0	refs/tags/v0.3.1
+b1e14ab4baaf73dfbee1acb804afe66aed5641e5	refs/tags/v0.3.1^{}
+6d7f6a1d557e9545f146311d33e6d4f244d3f9a7	refs/tags/v0.3.2
+6ceebcd452c31eca92c2d2caa5c5390d07589c57	refs/tags/v0.3.2^{}

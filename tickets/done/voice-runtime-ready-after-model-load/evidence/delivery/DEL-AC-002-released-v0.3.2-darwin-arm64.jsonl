@@ -1,0 +1,27 @@
+// # AC-002 on the RELEASED v0.3.2 darwin-arm64 bundle (gh release download v0.3.2; sha256 matches the release manifest), extracted into a test-owned extension root, through the desktop's real VoiceInputRuntimeService (esbuild bundle of autobyteus-web/electron/extensions/voice-input/voiceInputRuntimeService.ts, shellEnv stubbed); model: APFS clone of /tmp/ab655/cow/models/whisper-small-mlx
+// # Command: env -i HOME=/tmp/ab655-del-v032/home TMPDIR=$TMPDIR PATH=<login PATH> AB655_LOGIN_PATH=<login PATH> HF_HUB_OFFLINE=1 node drive.mjs /tmp/ab655-del-v032/ext <label> silence.wav quiet.wav en.wav en2.wav en.wav
+// # Date: 2026-11-26T13:09:50Z
+{"label":"A-first-start-bootstrap","step":"inspect","inspection":{"ready":true,"runtimeEntrypoint":"/tmp/ab655-del-v032/ext/runtime/bin/voice-input-worker","modelPath":"/tmp/ab655-del-v032/ext/models/whisper-small-mlx","runtimeVersion":"0.3.2","modelVersion":"mlx-community/whisper-small-mlx","backendKind":"mlx","error":null}}
+{"label":"A-first-start-bootstrap","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":78305,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"A-first-start-bootstrap","step":"transcribe","clip":"quiet.wav","startedAtMs":78306,"tookMs":3,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"A-first-start-bootstrap","step":"transcribe","clip":"en.wav","startedAtMs":78309,"tookMs":205,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-start-bootstrap","step":"transcribe","clip":"en2.wav","startedAtMs":78514,"tookMs":184,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-start-bootstrap","step":"transcribe","clip":"en.wav","startedAtMs":78698,"tookMs":188,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-start-bootstrap","step":"stopped","atMs":78913}
+// after A-first-start-bootstrap: worker processes left for /tmp/ab655-del-v032/ext: 0
+{"label":"B-start","step":"inspect","inspection":{"ready":true,"runtimeEntrypoint":"/tmp/ab655-del-v032/ext/runtime/bin/voice-input-worker","modelPath":"/tmp/ab655-del-v032/ext/models/whisper-small-mlx","runtimeVersion":"0.3.2","modelVersion":"mlx-community/whisper-small-mlx","backendKind":"mlx","error":null}}
+{"label":"B-start","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":1285,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B-start","step":"transcribe","clip":"quiet.wav","startedAtMs":1286,"tookMs":3,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B-start","step":"transcribe","clip":"en.wav","startedAtMs":1289,"tookMs":191,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B-start","step":"transcribe","clip":"en2.wav","startedAtMs":1480,"tookMs":179,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B-start","step":"transcribe","clip":"en.wav","startedAtMs":1660,"tookMs":187,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B-start","step":"stopped","atMs":1866}
+// after B-start: worker processes left for /tmp/ab655-del-v032/ext: 0
+{"label":"C-start","step":"inspect","inspection":{"ready":true,"runtimeEntrypoint":"/tmp/ab655-del-v032/ext/runtime/bin/voice-input-worker","modelPath":"/tmp/ab655-del-v032/ext/models/whisper-small-mlx","runtimeVersion":"0.3.2","modelVersion":"mlx-community/whisper-small-mlx","backendKind":"mlx","error":null}}
+{"label":"C-start","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":1272,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"C-start","step":"transcribe","clip":"quiet.wav","startedAtMs":1273,"tookMs":3,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"C-start","step":"transcribe","clip":"en.wav","startedAtMs":1276,"tookMs":194,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"C-start","step":"transcribe","clip":"en2.wav","startedAtMs":1470,"tookMs":182,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"C-start","step":"transcribe","clip":"en.wav","startedAtMs":1653,"tookMs":186,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"C-start","step":"stopped","atMs":1857}
+// after C-start: worker processes left for /tmp/ab655-del-v032/ext: 0

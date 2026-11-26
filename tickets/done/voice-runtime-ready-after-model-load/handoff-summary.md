@@ -53,3 +53,11 @@
   - The bundles match v0.3.0's 7 entries and modes except the worker (`API-09-artifacts-vs-v0.3.0.jsonl`); worker sha256 `1249f8ee…` (win32 CRLF `fb587acf…`); the win32 `.cmd` keeps CRLF.
   - The second AC-008 run, the push of the merge to `release/0.3`, is in the release record below.
 - AC-001…AC-005 and AC-007 still hold: `runtime/` and `tests/` are unchanged since `18f9e12`.
+
+## Release (DR-003)
+
+- **`v0.3.2` released**: https://github.com/AutoByteus/autobyteus-voice-runtime/releases/tag/v0.3.2. The tag is on `6ceebcd`, the `release/0.3` merge proven by its build-only run 45826109140. Release run 45826223605, all jobs green.
+- 5 assets: the darwin-arm64, darwin-x64, linux-x64 and win32-x64 bundles and `voice-input-runtime-manifest.json`. The manifest names 0.3.2, every sha256 matches, and the workers are the validated file (win32 with CRLF).
+- AC-002 on the released darwin-arm64 bundle, through the desktop's real service: first dictation after `ready` took 191–205 ms with correct texts. `ready` came after 1.27–1.29 s on normal starts, and after 78.3 s on the first start with the venv bootstrap. The founder's install is identical before and after.
+- `v0.3.1` stays a tag without a release.
+- The desktop app still pins `v0.3.0`. 0.3.2 reaches users when a caller pins it (the autobyteus-516 pin moves to 0.3.2).

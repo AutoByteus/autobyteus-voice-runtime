@@ -1,0 +1,4 @@
+# Founder install, read-only stat list of ~/.autobyteus/extensions/voice-input before and after the AC-002 runs on the released v0.3.2 bundle
+# Command: find ~/.autobyteus/extensions/voice-input -exec stat -f '%m %z %N' {} + | sort -k3 (before and after); diff
+entries before: 20070, after: 20070
+diff: IDENTICAL
