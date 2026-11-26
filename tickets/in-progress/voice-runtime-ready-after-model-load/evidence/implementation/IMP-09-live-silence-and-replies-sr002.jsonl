@@ -1,0 +1,19 @@
+# IMP-09 live after SR-002: silence answers and transcription unchanged (AC-005), both backends
+# Command: python3 probes/drive_worker.py <entry> <backend> <model> en.wav silence.wav quiet.wav [en2.wav]; quiet.wav = 1 s random samples in [-90, 90] (seed 1)
+# Commit: 18f9e12 (worker and tests; run on the identical working tree before the commit)
+# Environment: macOS arm64 (Darwin 25.5); HOME=/tmp/ab655/home HF_HUB_OFFLINE=1; worker = this worktree's runtime/voice_input_worker.py; both venvs Python 3.9.6
+# Date: 2026-11-26
+
+## MLX (APFS clone)
+{"event": "first-message", "atMs": 3316, "message": {"type": "ready", "backendKind": "mlx"}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 199, "reply": {"requestId": "r0", "ok": true, "text": "Please summarize the meeting notes and send them to the team.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "silence.wav", "tookMs": 3, "reply": {"requestId": "r1", "ok": true, "text": "", "detectedLanguage": null, "noSpeech": true, "error": null}}
+{"event": "transcription", "clip": "quiet.wav", "tookMs": 0, "reply": {"requestId": "r2", "ok": true, "text": "", "detectedLanguage": null, "noSpeech": true, "error": null}}
+{"event": "transcription", "clip": "en2.wav", "tookMs": 182, "reply": {"requestId": "r3", "ok": true, "text": "The quick brown fox jumps over the lazy dog.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "exit", "code": 0, "stderrTail": ""}
+## faster-whisper (isolated)
+{"event": "first-message", "atMs": 1939, "message": {"type": "ready", "backendKind": "faster-whisper"}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 786, "reply": {"requestId": "r0", "ok": true, "text": "Please summarize the meeting notes and send them to the team.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "silence.wav", "tookMs": 1, "reply": {"requestId": "r1", "ok": true, "text": "", "detectedLanguage": null, "noSpeech": true, "error": null}}
+{"event": "transcription", "clip": "quiet.wav", "tookMs": 0, "reply": {"requestId": "r2", "ok": true, "text": "", "detectedLanguage": null, "noSpeech": true, "error": null}}
+{"event": "exit", "code": 0, "stderrTail": "[2026-11-26 13:26:22.835] [ctranslate2] [thread 227513645] [warning] Tip: experimental MPS backend is available and often 2x+ faster than CPU on Apple Silicon (varies by workload and hardware). Try device=\"mps\".\n"}

@@ -1,0 +1,25 @@
+# IMP-07 reproduction (SR-002): the new loudness and process tests on the IR-001 worker (050cca1, imports audioop)
+# Command: <python> -m unittest tests/test_voice_input_worker.py, in a copy holding 050cca1:runtime/voice_input_worker.py and the new tests
+# Commit: 050cca1 worker + working-tree tests
+# Environment: macOS (Darwin 25.5); /usr/bin/python3 3.9.6, python3.11 3.11.15, python3.14 3.14.2
+# Date: 2026-11-26
+
+== Python 3.9.6
+ERROR: test_empty_payload_is_zero_and_a_partial_trailing_sample_is_ignored (tests.test_voice_input_worker.LoudnessTests)
+ERROR: test_equals_the_audioop_values_of_rt010 (tests.test_voice_input_worker.LoudnessTests)
+ERROR: test_three_byte_samples (tests.test_voice_input_worker.LoudnessTests)
+Ran 16 tests in 0.116s
+FAILED (errors=3)
+== Python 3.11.15
+ERROR: test_empty_payload_is_zero_and_a_partial_trailing_sample_is_ignored (tests.test_voice_input_worker.LoudnessTests.test_empty_payload_is_zero_and_a_partial_trailing_sample_is_ignored)
+ERROR: test_equals_the_audioop_values_of_rt010 (tests.test_voice_input_worker.LoudnessTests.test_equals_the_audioop_values_of_rt010)
+ERROR: test_three_byte_samples (tests.test_voice_input_worker.LoudnessTests.test_three_byte_samples)
+FAIL: test_missing_model_folder_gives_no_stdout_one_stderr_line_and_exit_1 (tests.test_voice_input_worker.StartFailureProcessTests.test_missing_model_folder_gives_no_stdout_one_stderr_line_and_exit_1)
+AssertionError: 3 != 1 : /private/tmp/ab655/impl/repro/runtime/voice_input_worker.py:3: DeprecationWarning: 'audioop' is deprecated and slated for removal in Python 3.13
+Ran 16 tests in 0.080s
+FAILED (failures=1, errors=3)
+== Python 3.14.2
+ERROR: test_voice_input_worker (unittest.loader._FailedTest.test_voice_input_worker)
+ModuleNotFoundError: No module named 'audioop'
+Ran 1 test in 0.000s
+FAILED (errors=1)
