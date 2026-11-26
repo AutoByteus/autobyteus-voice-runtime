@@ -22,6 +22,7 @@ validation. A ticket's results and evidence belong in that ticket's validation r
 | Live worker | the worker file with the real speech library and a real model, timed over its protocol | `python3 <ticket>/probes/drive_worker.py <entry> <backend> <model folder> <clip>…` with an entry script that runs a venv's Python on `runtime/voice_input_worker.py` |
 | Real bundle | what users install: the bundle built by `scripts/build-runtime.sh`, extracted into a test-owned extension folder, its launcher bootstrapping `.venv` itself (network: pip) | build with `AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR=<tmp>/dist scripts/build-runtime.sh <platform> <arch>`, then drive it through the desktop caller (next row) |
 | Desktop caller | the unchanged desktop service (`autobyteus-web/electron/extensions/voice-input/voiceInputRuntimeService.ts` in the workspace superrepo) against a real install: `ready`, replies, and a start failure's stderr as the user's error | bundle that file with the superrepo's esbuild into a temp folder, with `electron/utils/shellEnv` replaced by a stub returning a given PATH (see `tickets/*/probes/build.mjs`, `drive.mjs`, `shellEnvStub.ts` of autobyteus-655); write the extension folder's `installation.json` as the desktop does; run `node drive.mjs <extension folder> <label> <clips>…` with `HOME=<temp>` |
+| Release workflow, build-only | the workflow on GitHub's current runner images: the four builds and the verify job, with no release and no tag | push the ticket branch, then `gh workflow run release-voice-runtime.yml -R AutoByteus/autobyteus-voice-runtime --ref <branch> -f runtime_version=<x.y.z> -f publish=false` (a push to `release/**` runs the same build-only); then compare `gh run download <run>` with the previous release's bundles: entries, sizes, modes, and the win32 `.cmd` keeps CRLF |
 
 There are no gated suites in the repository: live and bundle runs are ticket probes, because they need models,
 `ffmpeg` and the desktop's code from another repository.
@@ -35,6 +36,8 @@ The release runner checks out the tag and runs the workflow's jobs; nothing is i
   runner's) and the build job's command (`scripts/build-runtime.sh <platform> <arch>` with
   `AUTOBYTEUS_VOICE_RUNTIME_VERSION`).
 - Build-input paths: `scripts/`, `runtime/`, `metadata/`, `tests/`, `.github/workflows/`.
+- A change to `.github/workflows/` also needs the build-only release run on GitHub before it merges: runner images,
+  job conditions and dispatch inputs are evaluated only there.
 
 ## Choosing The Layer
 
