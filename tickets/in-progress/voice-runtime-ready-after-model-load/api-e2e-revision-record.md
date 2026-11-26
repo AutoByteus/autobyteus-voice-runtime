@@ -8,6 +8,7 @@ The latest coverage investigation and execution coverage report remain authorita
 | --- | --- | --- | --- | --- |
 | API-REV-001 | Implementation engineer, `implementation-handoff.md` IR-001 (direct route, round 1) | SR-001, IR-001 | N/A | Fail / 84% |
 | API-REV-002 | Implementation engineer, `implementation-handoff.md` IR-002 (round 2) | SR-002, IR-002, CRR-001 | Fail / 84% | Pass / 95.5% |
+| API-REV-003 | Implementation engineer, `implementation-handoff.md` IR-003 (round 3, after delivery DR-002) | SR-003, IR-003, DR-002 | Pass / 95.5% | Pass / 95.5% |
 
 ## Revision Entries
 
@@ -57,3 +58,24 @@ None.
 - New or remaining failure IDs: none.
 - Recommended owner: delivery engineer.
 - Remaining risks: RSK-001 (faster-whisper on other platforms); FU-001 open; the VAD first-request load (~30 ms, observation); AC-006 for delivery.
+
+### API-REV-003 — The release workflow proven on GitHub before a tag (AC-008)
+
+- Triggering role, report path, and round: implementation engineer, `implementation-handoff.md` (IR-003), round 3, after delivery DR-002 (the v0.3.1 tag run cancelled both darwin builds: `macos-14` retired).
+- Triggering finding or case IDs: AC-008 (new in SR-003).
+- Related revision IDs: SR-003 (DEC-011…DEC-013, REQ-006, AC-008), IR-003, DR-002.
+- Why recorded: the new criterion's result.
+- Coverage decisions or durable test paths changed: none in the tests; `TESTING.md` gains the build-only release run as a layer and the rule that a workflow change needs it before merge.
+- Cases: API-07 reused (IMP-12); API-08 (build-only dispatch from the pushed ticket branch, run 45825122803); API-09 (its artifacts vs the v0.3.0 bundles). API-01…API-06 still valid: `runtime/` and `tests/` unchanged since `18f9e12`.
+- Commands, environment, fixture, or broader-validation delta: GitHub Actions; the ticket branch pushed (no tag, no release, nothing on `release/0.3`).
+
+#### Prior Failure Resolution
+
+None in this round (DR-002's blocked release is delivery's; the fix it needed is proven by API-08/API-09).
+
+- Canonical artifacts updated: coverage investigation (round 3 plan), execution report, this record, progress log, `TESTING.md`.
+- Prior result and confidence: Pass, 95.5%
+- Current result and confidence: Pass, 95.5%
+- New or remaining failure IDs: none.
+- Recommended owner: delivery engineer.
+- Remaining risks: RSK-003 (`-latest` images change; the push to `release/**` now runs the workflow on every merge); the resolve step still interpolates `${{ inputs.runtime_version }}` into bash (pre-existing, outside SR-003; only repository writers can dispatch); RSK-001; FU-001.

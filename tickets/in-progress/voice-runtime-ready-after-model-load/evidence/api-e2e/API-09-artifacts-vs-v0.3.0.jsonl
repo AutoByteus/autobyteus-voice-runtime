@@ -1,0 +1,12 @@
+// # API-09: the run's four artifacts (run 45825122803, commit 19f8ad2 / workflow fix 100e5a0) vs the v0.3.0 release bundles: entries, sizes, modes, types; launcher line endings
+// # Command: gh run download 45825122803; gh release download v0.3.0 -p 'voice-input-runtime-*.tar.gz'; python3 -I compare_bundles.py <v030> <run> (script kept as API-09-compare_bundles.py)
+// # Date: 2026-11-26T13:03:23Z
+{"bundle": "voice-input-runtime-darwin-arm64.tar.gz", "entries": 7, "sameEntryNames": true, "differences": [{"entry": "voice_input_worker.py", "v0.3.0": {"type": "file", "size": 7632, "mode": "0o644", "crlf": null, "lf_only": null}, "new": {"type": "file", "size": 10911, "mode": "0o644", "crlf": null, "lf_only": null}}], "launchers": {"bin/voice-input-worker": {"crlf": false, "lf_only": true, "mode": "0o755"}}}
+{"bundle": "voice-input-runtime-darwin-x64.tar.gz", "entries": 7, "sameEntryNames": true, "differences": [{"entry": "voice_input_worker.py", "v0.3.0": {"type": "file", "size": 7632, "mode": "0o644", "crlf": null, "lf_only": null}, "new": {"type": "file", "size": 10911, "mode": "0o644", "crlf": null, "lf_only": null}}], "launchers": {"bin/voice-input-worker": {"crlf": false, "lf_only": true, "mode": "0o755"}}}
+{"bundle": "voice-input-runtime-linux-x64.tar.gz", "entries": 7, "sameEntryNames": true, "differences": [{"entry": "voice_input_worker.py", "v0.3.0": {"type": "file", "size": 7632, "mode": "0o644", "crlf": null, "lf_only": null}, "new": {"type": "file", "size": 10911, "mode": "0o644", "crlf": null, "lf_only": null}}], "launchers": {"bin/voice-input-worker": {"crlf": false, "lf_only": true, "mode": "0o755"}}}
+{"bundle": "voice-input-runtime-win32-x64.tar.gz", "entries": 7, "sameEntryNames": true, "differences": [{"entry": "voice_input_worker.py", "v0.3.0": {"type": "file", "size": 7870, "mode": "0o755", "crlf": null, "lf_only": null}, "new": {"type": "file", "size": 11224, "mode": "0o755", "crlf": null, "lf_only": null}}], "launchers": {"bin/voice-input-worker.cmd": {"crlf": true, "lf_only": false, "mode": "0o644"}}}
+// commit worker sha256 1249f8ee7f044fce; with CRLF fb587acf884b7c98
+// voice-input-runtime-darwin-arm64.tar.gz worker sha256 1249f8ee7f044fce
+// voice-input-runtime-darwin-x64.tar.gz worker sha256 1249f8ee7f044fce
+// voice-input-runtime-linux-x64.tar.gz worker sha256 1249f8ee7f044fce
+// voice-input-runtime-win32-x64.tar.gz worker sha256 fb587acf884b7c98

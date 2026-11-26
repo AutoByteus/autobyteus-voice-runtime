@@ -31,3 +31,9 @@
 | 2026-11-26 13:30 | API-03/API-04 | Completed | Pass | round 2: MLX first 182-187 ms; fw first 715-872 vs later 718-738; silence+quiet noSpeech |
 | 2026-11-26 13:30 | API-06 | Completed | Pass | see evidence: only temp/ mtime (founder's app) |
 | 2026-11-26 13:31 | round 2 | Completed | Pass | reports written; cleanup next |
+| 2026-11-26 14:01 | round 3 | Checkpoint | | IR-003 (100e5a0): API-07 reused IMP-12; API-08 dispatch; API-09 artifact comparison |
+| 2026-11-26 14:01 | API-08 | Started | | push ticket branch + dispatch build-only |
+| 2026-11-26 14:03 | API-08 | Completed | Pass | run 45825122803 success; 4 builds + verify green; publish skipped; ubuntu-26.04 / windows-2025-vs2026; releases and tags unchanged |
+| 2026-11-26 14:03 | API-09 | Started | | artifact comparison vs v0.3.0 |
+| 2026-11-26 14:04 | API-09 | Completed | Pass | 7 entries each; only the worker differs; modes same; win32 .cmd CRLF; workers = commit's |
+| 2026-11-26 14:04 | round 3 | Completed | Pass | reports written |
