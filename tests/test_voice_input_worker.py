@@ -1,11 +1,17 @@
+import contextlib
 import importlib.util
+import io
+import json
 import math
 import struct
+import sys
 import tempfile
 import unittest
+import warnings
 import wave
 from pathlib import Path
 from types import ModuleType
+from typing import Optional
 from unittest import mock
 
 
@@ -69,6 +75,199 @@ class VoiceInputWorkerTests(unittest.TestCase):
                 voice_input_worker.prepare_model_install(str(model_path), "fixtures/model", "main")
 
             self.assertTrue((model_path / "weights.bin").exists())
+
+
+def run_serve(backend_kind: str, model_path: str, stdin_text: str = "") -> tuple[int, list[dict], str]:
+    """Runs `main()` as `serve`; returns the exit code, the stdout messages and the stderr text."""
+    stdout, stderr = io.StringIO(), io.StringIO()
+    argv = ["voice_input_worker.py", "serve", "--backend", backend_kind, "--model-path", model_path]
+    with mock.patch.object(sys, "argv", argv), mock.patch.object(sys, "stdin", io.StringIO(stdin_text)), \
+            contextlib.redirect_stdout(stdout), contextlib.redirect_stderr(stderr):
+        code = voice_input_worker.main()
+    messages = [json.loads(line) for line in stdout.getvalue().splitlines() if line.strip()]
+    return code, messages, stderr.getvalue()
+
+
+class RecordingBackend(voice_input_worker.Backend):
+    """A stand-in backend: records the start's order and the warm-up clip it was given."""
+
+    def __init__(self, events: list, fail_with: Optional[Exception] = None, warn: Optional[str] = None):
+        self.events = events
+        self.fail_with = fail_with
+        self.warn = warn
+        self.clip_path: Optional[str] = None
+        self.clip_facts: dict = {}
+
+    def load(self, warm_up_clip: str) -> None:
+        self.events.append("load")
+        self.clip_path = warm_up_clip
+        with wave.open(warm_up_clip, "rb") as wav_file:
+            self.clip_facts = {
+                "channels": wav_file.getnchannels(), "width": wav_file.getsampwidth(),
+                "rate": wav_file.getframerate(), "frames": wav_file.getnframes(),
+            }
+        self.clip_facts["silent"] = voice_input_worker.is_probable_no_speech(warm_up_clip)
+        if self.warn:
+            warnings.warn(self.warn)
+        if self.fail_with:
+            raise self.fail_with
+
+    def transcribe_file(self, audio_path: str, language_mode):
+        self.events.append(("transcribe", audio_path, language_mode))
+        return voice_input_worker.TranscriptionResult(text="hello", detected_language="en")
+
+
+class WorkerStartTests(unittest.TestCase):
+    """`serve` writes `ready` only after the backend loaded and transcribed the warm-up clip (AC-001, AC-004)."""
+
+    def setUp(self) -> None:
+        self._temp = tempfile.TemporaryDirectory(prefix="voice-input-worker-start-")
+        self.model_path = str(Path(self._temp.name) / "model")
+        Path(self.model_path).mkdir()
+
+    def tearDown(self) -> None:
+        self._temp.cleanup()
+
+    def serve_with(self, backend: RecordingBackend, stdin_text: str = "", backend_kind: str = "mlx"):
+        def build(kind: str, model_path: str):
+            backend.events.append(("build", kind, model_path))
+            return backend
+        original_emit = voice_input_worker.emit
+
+        def recording_emit(payload):
+            backend.events.append(("emit", payload.get("type") or payload.get("requestId")))
+            original_emit(payload)
+
+        with mock.patch.object(voice_input_worker, "build_backend", build), \
+                mock.patch.object(voice_input_worker, "emit", recording_emit):
+            return run_serve(backend_kind, self.model_path, stdin_text)
+
+    def test_writes_ready_only_after_load_returned(self) -> None:
+        events: list = []
+        backend = RecordingBackend(events)
+        code, messages, stderr = self.serve_with(backend)
+        self.assertEqual(code, 0)
+        self.assertEqual(messages, [{"type": "ready", "backendKind": "mlx"}])
+        self.assertEqual(events, [("build", "mlx", self.model_path), "load", ("emit", "ready")])
+        self.assertEqual(stderr, "")
+
+    def test_warm_up_clip_is_a_one_second_non_silent_wav_removed_after_the_start(self) -> None:
+        backend = RecordingBackend([])
+        self.serve_with(backend)
+        self.assertEqual(backend.clip_facts, {"channels": 1, "width": 2, "rate": 16000, "frames": 16000, "silent": False})
+        self.assertIsNotNone(backend.clip_path)
+        self.assertFalse(Path(backend.clip_path).exists())
+
+    def test_failed_load_writes_no_ready_one_stderr_line_and_exits_1(self) -> None:
+        events: list = []
+        backend = RecordingBackend(events, fail_with=RuntimeError("Unsupported model binary version.\nSecond line"))
+        code, messages, stderr = self.serve_with(backend, stdin_text='{"type":"transcribe-file","requestId":"r0"}\n',
+                                                 backend_kind="faster-whisper")
+        self.assertEqual(code, 1)
+        self.assertEqual(messages, [])
+        self.assertEqual(stderr, "Voice Input worker could not start the faster-whisper backend: "
+                                 "RuntimeError: Unsupported model binary version. Second line\n")
+        self.assertNotIn(("emit", "ready"), events)
+        self.assertFalse(Path(backend.clip_path).exists())
+
+    def test_missing_model_folder_is_a_start_failure_with_its_own_reason(self) -> None:
+        missing = str(Path(self._temp.name) / "missing-model")
+        events: list = []
+        backend = RecordingBackend(events)
+
+        def build(kind: str, model_path: str):
+            events.append("build")
+            return backend
+        with mock.patch.object(voice_input_worker, "build_backend", build):
+            code, messages, stderr = run_serve("mlx", missing)
+        self.assertEqual(code, 1)
+        self.assertEqual(messages, [])
+        self.assertEqual(stderr, f"Voice Input worker could not start the mlx backend: model folder not found: {missing}\n")
+        self.assertEqual(events, [])
+
+    def test_known_urllib3_openssl_warning_stays_off_stderr(self) -> None:
+        backend = RecordingBackend([], warn="urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'.")
+        with warnings.catch_warnings():
+            warnings.simplefilter("default")
+            code, _, stderr = self.serve_with(backend)
+        self.assertEqual(code, 0)
+        self.assertEqual(stderr, "")
+
+    def test_serves_requests_after_ready_with_unchanged_replies(self) -> None:
+        silence = Path(self._temp.name) / "silence.wav"
+        write_wav(silence, [0] * 3200)
+        tone = Path(self._temp.name) / "tone.wav"
+        write_wav(tone, [int(10000 * math.sin((index / 16000.0) * 2.0 * math.pi * 440.0)) for index in range(8000)])
+        requests = "\n".join(json.dumps(request) for request in [
+            {"type": "transcribe-file", "requestId": "r0", "audioPath": str(silence), "languageMode": "en"},
+            {"type": "transcribe-file", "requestId": "r1", "audioPath": str(tone), "languageMode": "auto"},
+            {"type": "ping", "requestId": "r2"},
+        ]) + "\n"
+        code, messages, _ = self.serve_with(RecordingBackend([]), stdin_text=requests)
+        self.assertEqual(code, 0)
+        self.assertEqual(messages, [
+            {"type": "ready", "backendKind": "mlx"},
+            {"requestId": "r0", "ok": True, "text": "", "detectedLanguage": None, "noSpeech": True, "error": None},
+            {"requestId": "r1", "ok": True, "text": "hello", "detectedLanguage": "en", "noSpeech": False, "error": None},
+            {"requestId": "r2", "ok": False, "text": "", "detectedLanguage": None, "noSpeech": False,
+             "error": "Unsupported request type: ping"},
+        ])
+
+
+class BackendLoadTests(unittest.TestCase):
+    """Each backend's `load` imports its library, loads the model and really transcribes the clip (stand-in libraries)."""
+
+    def test_mlx_load_transcribes_the_clip_through_the_public_call_and_requests_reuse_it(self) -> None:
+        calls: list = []
+
+        def fake_transcribe(audio_path, **kwargs):
+            calls.append((audio_path, kwargs))
+            return {"text": " hi ", "language": "en"}
+
+        fake_mlx = ModuleType("mlx_whisper")
+        fake_mlx.transcribe = fake_transcribe  # type: ignore[attr-defined]
+        backend = voice_input_worker.MlxBackend("/models/whisper-small-mlx")
+        with mock.patch.dict("sys.modules", {"mlx_whisper": fake_mlx}):
+            backend.load("/tmp/warm-up.wav")
+        self.assertEqual(calls, [("/tmp/warm-up.wav", {"path_or_hf_repo": "/models/whisper-small-mlx", "language": "en"})])
+        # Requests use what `load` imported: no library import after the start.
+        with mock.patch.dict("sys.modules", {"mlx_whisper": None}):
+            result = backend.transcribe_file("/tmp/request.wav", None)
+        self.assertEqual(result, voice_input_worker.TranscriptionResult(text="hi", detected_language="en"))
+        self.assertEqual(calls[-1], ("/tmp/request.wav", {"path_or_hf_repo": "/models/whisper-small-mlx"}))
+
+    def test_faster_whisper_load_builds_the_model_and_decodes_the_clip_without_voice_detection(self) -> None:
+        constructed: list = []
+        transcribed: list = []
+        consumed: list = []
+
+        class FakeWhisperModel:
+            def __init__(self, model_path, **kwargs):
+                constructed.append((model_path, kwargs))
+
+            def transcribe(self, audio_path, **kwargs):
+                transcribed.append((audio_path, kwargs))
+
+                def segments():
+                    consumed.append(audio_path)
+                    yield type("Segment", (), {"text": " hi "})()
+                return segments(), type("Info", (), {"language": "en"})()
+
+        fake_fw = ModuleType("faster_whisper")
+        fake_fw.WhisperModel = FakeWhisperModel  # type: ignore[attr-defined]
+        backend = voice_input_worker.FasterWhisperBackend("/models/faster-whisper-small")
+        with mock.patch.dict("sys.modules", {"faster_whisper": fake_fw}):
+            backend.load("/tmp/warm-up.wav")
+        self.assertEqual(constructed, [("/models/faster-whisper-small", {"device": "cpu", "compute_type": "int8"})])
+        self.assertEqual(transcribed, [("/tmp/warm-up.wav", {
+            "language": "en", "vad_filter": False, "beam_size": 1, "condition_on_previous_text": False,
+        })])
+        self.assertEqual(consumed, ["/tmp/warm-up.wav"])
+        with mock.patch.dict("sys.modules", {"faster_whisper": None}):
+            result = backend.transcribe_file("/tmp/request.wav", "en")
+        self.assertEqual(result, voice_input_worker.TranscriptionResult(text="hi", detected_language="en"))
+        self.assertEqual(transcribed[-1][1]["vad_filter"], True)
+        self.assertEqual(len(constructed), 1)
 
 
 if __name__ == "__main__":

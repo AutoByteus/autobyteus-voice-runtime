@@ -2,10 +2,15 @@
 import argparse
 import audioop
 import json
+import math
+import re
 import shutil
 import socket
+import struct
 import sys
+import tempfile
 import traceback
+import warnings
 import wave
 from dataclasses import dataclass
 from pathlib import Path
@@ -57,6 +62,10 @@ class TranscriptionResult:
 
 
 class Backend:
+    def load(self, warm_up_clip: str) -> None:
+        """Imports the backend's library, loads its model and transcribes the clip through the real call; raises on failure."""
+        raise NotImplementedError
+
     def transcribe_file(self, audio_path: str, language_mode: Optional[str]) -> TranscriptionResult:
         raise NotImplementedError
 
@@ -84,16 +93,16 @@ class MlxBackend(Backend):
         self.model_path = model_path
         self._transcribe = None
 
-    def _ensure_transcribe(self):
-        if self._transcribe is not None:
-            return self._transcribe
+    def load(self, warm_up_clip: str) -> None:
+        # mlx-whisper loads the model inside its first `transcribe` call (its own cache, keyed by the model path);
+        # the warm-up transcription is that call, so requests after it reuse the loaded model.
         from mlx_whisper import transcribe  # type: ignore
 
         self._transcribe = transcribe
-        return self._transcribe
+        self.transcribe_file(warm_up_clip, "en")
 
     def transcribe_file(self, audio_path: str, language_mode: Optional[str]) -> TranscriptionResult:
-        transcribe = self._ensure_transcribe()
+        transcribe = self._transcribe
         kwargs: dict[str, Any] = {
             "path_or_hf_repo": self.model_path,
         }
@@ -110,9 +119,7 @@ class FasterWhisperBackend(Backend):
         self.model_path = model_path
         self._model = None
 
-    def _ensure_model(self):
-        if self._model is not None:
-            return self._model
+    def load(self, warm_up_clip: str) -> None:
         from faster_whisper import WhisperModel  # type: ignore
 
         self._model = WhisperModel(
@@ -120,11 +127,18 @@ class FasterWhisperBackend(Backend):
             device="cpu",
             compute_type="int8",
         )
-        return self._model
+        # Voice detection off: it would drop the tone and the decoder would never run. The segments are lazy.
+        segments, _ = self._model.transcribe(
+            warm_up_clip,
+            language="en",
+            vad_filter=False,
+            beam_size=1,
+            condition_on_previous_text=False,
+        )
+        list(segments)
 
     def transcribe_file(self, audio_path: str, language_mode: Optional[str]) -> TranscriptionResult:
-        model = self._ensure_model()
-        segments, info = model.transcribe(
+        segments, info = self._model.transcribe(
             audio_path,
             language=language_mode,
             vad_filter=True,
@@ -144,6 +158,43 @@ def build_backend(kind: str, model_path: str) -> Backend:
     if kind == "faster-whisper":
         return FasterWhisperBackend(model_path)
     raise ValueError(f"Unsupported backend kind: {kind}")
+
+
+class ModelFolderNotFoundError(Exception):
+    def __init__(self, model_path: str):
+        super().__init__(f"model folder not found: {model_path}")
+
+
+def write_warm_up_clip(directory: str) -> str:
+    """A 1 s, 440 Hz, 16 kHz mono 16-bit WAV: short, and loud enough not to count as silence."""
+    sample_rate = 16000
+    path = str(Path(directory) / "warm-up.wav")
+    samples = (int(10000 * math.sin(2.0 * math.pi * 440.0 * index / sample_rate)) for index in range(sample_rate))
+    with wave.open(path, "wb") as wav_file:
+        wav_file.setnchannels(1)
+        wav_file.setsampwidth(2)
+        wav_file.setframerate(sample_rate)
+        wav_file.writeframes(b"".join(struct.pack("<h", sample) for sample in samples))
+    return path
+
+
+def start_backend(kind: str, model_path: str) -> Backend:
+    """The worker's start: the backend loads its model and transcribes a generated clip before anything is announced."""
+    if not Path(model_path).is_dir():
+        raise ModelFolderNotFoundError(model_path)
+    # Importing huggingface_hub on a LibreSSL Python warns about urllib3; that is not a start problem (stderr is the
+    # failure text callers show).
+    warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL")
+    backend = build_backend(kind, model_path)
+    with tempfile.TemporaryDirectory(prefix="voice-input-warm-up-") as directory:
+        backend.load(write_warm_up_clip(directory))
+    return backend
+
+
+def start_failure_line(kind: str, error: Exception) -> str:
+    reason = str(error) if isinstance(error, ModelFolderNotFoundError) else f"{error.__class__.__name__}: {error}"
+    one_line = re.sub(r"\s*\n\s*", " ", reason).strip()
+    return f"Voice Input worker could not start the {kind} backend: {one_line}"
 
 
 def emit(payload: dict[str, Any]) -> None:
@@ -171,7 +222,12 @@ def main() -> int:
         prepare_model_install(args.model_path, args.model_source_repo, args.model_source_revision)
         return 0
 
-    backend = build_backend(args.backend, args.model_path)
+    try:
+        backend = start_backend(args.backend, args.model_path)
+    except Exception as error:
+        sys.stderr.write(start_failure_line(args.backend, error) + "\n")
+        sys.stderr.flush()
+        return 1
     emit({
         "type": "ready",
         "backendKind": args.backend,
