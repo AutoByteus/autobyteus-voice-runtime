@@ -2,8 +2,8 @@
 
 ## Solution And Approval Basis
 
-- Current solution revision ID: `SR-002` (resolves code review CRR-001, Design Impact on DEC-009: AC-004 failed on the launcher's Python 3.11)
-- Approved requirements baseline / revision, who approved, and approval reference: `requirements-doc.md` at SR-001, approved by the Solution Designer within the direction, founder informed (requirements doc, Document Status)
+- Current solution revision ID: `SR-003` (the `v0.3.1` release run published nothing: the workflow pins the retired `macos-14` image, DR-002). Earlier: SR-002 resolved code review CRR-001
+- Approved requirements baseline / revision, who approved, and approval reference: `requirements-doc.md` at SR-003 (REQ-005/AC-006 revised to `v0.3.2`, REQ-006, AC-008, DEC-011…DEC-013) and SR-001, approved by the Solution Designer within the direction, founder informed (requirements doc, Document Status)
 - Behavior-defining supplements and their approval references: None
 - User approval of the design, when the direction requires it: `Not required` (the release itself needs the founder's word: DEC-007)
 - Design status: `Ready`
@@ -21,6 +21,7 @@
 - Size rationale and supporting evidence: one source file changes (`runtime/voice_input_worker.py`: a start step in `main`, a `load` per backend, the lazy loaders removed), its test file grows, the build script's default version moves to 0.3.1, and `DESIGN.md` is created. No new module, no new dependency.
 - Architectural risk: `Low`
 - Risk rationale and supporting evidence: the protocol's message shapes are unchanged; the timing of `ready` and the failure form before it change, and both were checked against the only existing caller (no `ready` timeout; exit before `ready` → its stderr shown) and with the real libraries (RT-006, RT-007). No persistence, security, concurrency or deployment surface changes; the release goes through the existing workflow, only on the founder's word.
+- SR-003 (release workflow): one YAML file changes (runner labels, a `publish` dispatch input, a `release/**` push trigger, the publish job's condition) and the build script's default version. Still `Small` / `Low`: the bundles' contents and the publishing steps are unchanged, and AC-008 proves the workflow on GitHub before any tag.
 - Escalation trigger: a caller found to time out on `ready`, a library behavior that differs on Linux or Windows, or any need to add a protocol message.
 
 ## Architecture Investigation Evidence
@@ -42,7 +43,8 @@
 
 - In scope: UC-001…UC-003 in code; UC-004 at delivery (release on the founder's word). Files: `runtime/voice_input_worker.py` (start step; SR-002: the silence check's loudness computed with the standard library instead of `audioop`, identical results), `tests/test_voice_input_worker.py` (SR-002: a subprocess start-failure test), `scripts/build-runtime.sh` (default version), `DESIGN.md` (created).
 - Derived consumers: the `ready` message keeps its shape; its meaning tightens (written only after a successful start). Readers: the desktop's `handleWorkerStdout` (resolves on `ready`, unchanged) and `handleWorkerExit` (rejects with stderr, unchanged); the 516 Voice Input package (designed for this meaning). No change needed in either.
-- Deliberately left alone: request handling and the silence rule itself (threshold 120, minimum 0.15 s: only how the loudness number is computed changes, RT-010), the `prepare` command, the launchers, the manifest generator, the release workflow, `main`'s v1.0 work.
+- SR-003 (release workflow, DEC-011…DEC-013): `.github/workflows/release-voice-runtime.yml` (runner labels; build-only runs on push to `release/**` and on a dispatch with `publish` false; publish only for a `v*` tag or a dispatch with `publish` true); `scripts/build-runtime.sh` default version 0.3.1 → 0.3.2; `DESIGN.md` (Release section and design case DC-002). RELEASE.md's pre-tag step is the delivery engineer's (its document).
+- Deliberately left alone: the Node 20 deprecation warnings of the `@v4` actions (warnings only); the `v0.3.1` tag (never moved, DEC-011); request handling and the silence rule itself (threshold 120, minimum 0.15 s: only how the loudness number is computed changes, RT-010), the `prepare` command, the launchers, the manifest generator, the release workflow, `main`'s v1.0 work.
 - Follow-ups: FU-001. FU-002 (`audioop` removed in Python 3.13) is resolved by this ticket (DEC-010) for the worker's own import; whether the pinned speech libraries install on Python 3.13+ is not claimed.
 
 ## Relevant Behavior And Production-Path Map (Mandatory)
@@ -245,7 +247,8 @@ N/A.
 | --- | --- | --- | --- | --- | --- |
 | `runtime/voice_input_worker.py` | worker | `main`, backends | The worker process: start, backends, request loop | Existing single-file worker; stays one concern | — |
 | `tests/test_voice_input_worker.py` | tests | — | Unit tests with stand-in libraries | Existing | — |
-| `scripts/build-runtime.sh` | build | — | Default `RUNTIME_VERSION` 0.3.0 → 0.3.1 | Existing | — |
+| `scripts/build-runtime.sh` | build | — | Default `RUNTIME_VERSION` 0.3.0 → 0.3.1 (SR-003: → 0.3.2) | Existing | — |
+| `.github/workflows/release-voice-runtime.yml` | release | workflow | SR-003: runners, build-only runs, publish condition | Existing single workflow; build-only and publishing share the same build and verify jobs, so what is proven before the tag is what the tag builds | — |
 | `DESIGN.md` | project | — | Architecture, protocol, conventions | Created (project-documents rule) | — |
 
 ## Applied Patterns (If Any)
@@ -273,6 +276,16 @@ N/A (no folder change).
 | Loudness (SR-002) | `samples = array.array({1:"b",2:"h",4:"i"}[width], payload)` (byteswap on big-endian hosts; width 3 decoded with `int.from_bytes(..., "little", signed=True)`), `rms = int(math.sqrt(sum(s*s for s in samples) / len(samples)))`, empty → 0 | Keeping `audioop`, or a numpy import (a dependency the worker module must not need at import) | Same numbers as `audioop.rms` (RT-010) |
 | Start-failure test (SR-002) | `subprocess.run([sys.executable, str(MODULE_PATH), "serve", "--backend", "mlx", "--model-path", <missing>])`: stdout `""`, `stderr.strip().splitlines()` has exactly one line starting `Voice Input worker could not start the mlx backend:`, returncode 1 | Calling `main()` in-process (cannot see import-time warnings) | The check that would have caught CRR-001, at the earliest stage (CI) |
 
+### Release workflow (SR-003)
+
+| Topic | Good Example | Bad / Avoided Shape | Why The Example Matters |
+| --- | --- | --- | --- |
+| Triggers | `on: push: { branches: ["release/**"], tags: ["v*"] }`; `workflow_dispatch` inputs `runtime_version` (required, string) and `publish` (boolean, default `false`, "Publish a GitHub release for runtime_version") | A separate build-only workflow file (two copies of the build jobs drift apart) | The same jobs run before and at the tag (DEC-013) |
+| Resolve job | tag push: version from the tag (unchanged); dispatch: from the input (unchanged); branch push: `runtime_version=0.0.0-ci.<first 12 of GITHUB_SHA>` and an empty `release_tag`; output `publish` = `true` for a tag push or a dispatch with `publish` true, else `false` | Deriving a version from a branch name (`release/0.3` → `release/0.3`) | The build script only prints the version; publishing reads the output |
+| Publish job | `if: needs.resolve-release.outputs.publish == 'true'`, otherwise unchanged (`needs` all builds and verify) | Publishing from a branch push | No release or tag without the decision (DEC-007) |
+| Runners | darwin arm64, darwin x64, linux x64: `ubuntu-latest`; win32 x64: `windows-latest` | `macos-14`, `macos-15`, `ubuntu-22.04`, `windows-2022` (pinned images retire, RT-012) | Packaging needs no Mac (RT-013); the Windows checkout supplies the launcher's CRLF line endings (RT-013) |
+| Everything else | Matrix entries, `build-runtime.sh` call, artifact names, manifest generation, `softprops/action-gh-release@v2` step: unchanged | Changing asset names or the manifest | Callers and the 516 package read them |
+
 ## Backward-Compatibility Rejection Log (Mandatory)
 
 | Candidate Compatibility Mechanism | Why It Was Considered | Rejection Decision | Clean-Cut Replacement / Removal Plan |
@@ -291,6 +304,7 @@ N/A.
 3. `scripts/build-runtime.sh`: default version 0.3.1.
 4. Run `python3 -m unittest tests/test_voice_input_worker.py` and `node --test tests/*.test.mjs` (the workflow's own checks).
 4a. SR-002: replace `audioop.rms` with the loudness function and drop `import audioop`; unit tests: the loudness function equals the known `audioop.rms` values of RT-010 (silence 0, threshold 119, quiet 52, full scale 32767 at width 2; widths 1 and 4), and the subprocess start-failure test (AC-007) runs under every Python the tests run on.
+6. SR-003: change the workflow as "Release workflow (SR-003)" shows and the build script's default version to 0.3.2. Check it with `actionlint` when available (else a YAML parse) and the repository tests. Push the ticket branch and run the workflow from it by dispatch with `runtime_version` 0.3.2 and `publish` false (AC-008): four builds and verify green, publish skipped, no release or tag created; compare the four artifacts with the 0.3.0 bundles (entries, sizes, modes, the win32 CRLF). Delivery: merge to `release/0.3`; the push run must be green before tagging `v0.3.2`.
 5. Live: build the darwin-arm64 bundle locally, install it into an isolated folder with the cloned model (or point `probes/drive_worker.py` at the worker with the cloned venv), and run AC-002…AC-004 (MLX on a clone, faster-whisper in an isolated install); compare the founder's install timestamps before and after.
 
 ## Key Tradeoffs
@@ -302,6 +316,7 @@ N/A.
 
 - RSK-001: Linux/Windows/Intel-Mac faster-whisper not run live (DEC-006).
 - RSK-002: memory from start (accepted).
+- RSK-003 (SR-003): `-latest` images change over time; a future image change shows on the next push to the release line, before a tag (DEC-013).
 - A caller with a short `ready` timeout would now time out on a cold start (none exists: ASM-001).
 
 ## Guidance For Implementation

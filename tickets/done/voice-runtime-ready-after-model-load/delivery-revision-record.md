@@ -6,6 +6,7 @@
 | --- | --- | --- | --- | --- |
 | DR-001 | API/E2E handoff after API-REV-002 (direct route) | N/A | Delivery Completed (finalized into `release/0.3`; not tagged) | `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`, `RELEASE.md` (created) |
 | DR-002 | Release Requested: `v0.3.1` (founder's word) | Delivery Completed (not tagged) | Blocked: darwin builds refused the retired `macos-14` runner; nothing published | `release-deployment-report.md` (Release Round DR-002) |
+| DR-003 | API/E2E handoff after API-REV-003 (workflow fix, AC-008) | Blocked | see the DR-003 entry | `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md` (Round DR-003), `RELEASE.md` |
 
 ## Revision Entries
 

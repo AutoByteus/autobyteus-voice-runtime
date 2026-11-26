@@ -149,3 +149,11 @@ Nothing is released. After a release: callers pin a tag, so going back means pin
 - AC-002 on the released bundle: not run (nothing published).
 - Cleanup: not done. The worktree and local `release/0.3` are kept for the next round.
 - Status: **Blocked**. Recipient: Solution Designer (a new change for a release request).
+
+## Round DR-003: workflow fix merged; `v0.3.2` released
+
+- Trigger: API/E2E handoff after API-REV-003 (AC-008 Pass, 95.5%; direct route, test-code review Not Required). Release decision: the founder's word (DEC-007), which covers re-cutting the release as `v0.3.2` (DEC-011).
+- Release guide: `RELEASE.md`, rewritten in this round as standing rules (`docs-sync-report.md`, Round 3).
+- Integration: `origin/release/0.3` was `8d154d9`, the ticket branch's base, so the branch was already current and nothing was rerun.
+- Verification (audit): AC-008's dispatched run 45825122803 on `19f8ad2` succeeded; GitHub shows `success`, with the four builds and verify succeeding and publish skipped. API-08 shows releases and tags unchanged, and API-09 shows bundles matching v0.3.0 except the worker. Head `3f0917d` changes no workflow, runtime, scripts or tests since `19f8ad2`. AC-001…AC-005 and AC-007 hold (`runtime/` and `tests/` unchanged since `18f9e12`). Accepted risk DEC-006 unchanged.
+- Finalization, release and AC-002: see "Release Record DR-003" below.

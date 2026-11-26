@@ -30,7 +30,12 @@ has a different architecture and keeps its own design notes.
   desktop app installs from it.
 - **Release** (`.github/workflows/release-voice-runtime.yml`): a `v*` tag builds the
   four bundles, runs the tests, generates the manifest and publishes the GitHub
-  release.
+  release. A push to a `release/**` branch, or a dispatch with `publish` false,
+  runs the same builds and tests without publishing, so the commit to be tagged
+  is proven first. Bundles are packaging only (copy and `tar`): darwin and linux
+  build on `ubuntu-latest`; win32 builds on `windows-latest`, whose checkout gives
+  the `.cmd` launcher its CRLF line endings. Use GitHub's `-latest` runner labels,
+  never a pinned image.
 
 ## The Worker Protocol
 
@@ -88,3 +93,18 @@ cases are appended with the next `DC-` number.
   launcher runs the worker.
 - **Lesson:** check stdout/stderr behavior as a separate process on the Pythons the
   launcher can pick; fix our own warnings at their source instead of filtering them.
+
+### DC-002: A pinned runner image retired, and the tag was the workflow's first run (autobyteus-655)
+
+- **Problem:** the release workflow pinned `runs-on: macos-14` for the darwin bundles.
+  GitHub retired that image, so the `v0.3.1` tag run cancelled both darwin builds and
+  published nothing, after the tag was already pushed.
+- **How it was found:** only at the tag: the workflow ran on `v*` tags, and a manual
+  dispatch would have published.
+- **Wrong assumption:** a workflow that worked at the last release still works, and the
+  darwin bundles need a Mac. They are packaging only and identical to the linux bundle.
+- **Fix:** `-latest` runner labels, a Mac-free build for darwin, and build-only runs on
+  every push to a `release/**` branch and on a dispatch with `publish` false.
+- **Lesson:** a step that cannot be undone (a pushed tag) must not be the first run of
+  what it triggers; prove the same jobs on the same commit first, and avoid
+  dependencies (a pinned image, an OS) the work does not need.

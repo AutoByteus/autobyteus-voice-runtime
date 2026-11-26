@@ -14,8 +14,9 @@ The plan. Results, confidence and the broader-validation decision are in `api-e2
 - Implementation Revision Record: `implementation-revision-record.md`
 - Code Review Report / Revision Record: `N/A — not applicable` (direct low-risk route)
 - API/E2E Revision Record: `api-e2e-revision-record.md`
-- Current API/E2E Revision ID: `API-REV-002`
-- Current Investigation Round: 2
+- Current API/E2E Revision ID: `API-REV-003`
+- Current Investigation Round: 3 (worktree `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-release-runner`, branch `codex/voice-runtime-release-runner`, base `origin/release/0.3` `8d154d9`)
+- Round 3 trigger: implementation IR-003 (SR-003: DEC-011…DEC-013, REQ-006, AC-008) after delivery DR-002 (the v0.3.1 tag run cancelled both darwin builds: retired `macos-14`)
 - Trigger: implementation IR-002 (SR-002: DEC-009 revised, DEC-010 and AC-007 added) answering CRR-001 / API-REV-001 (AC-004 Fail)
 - Prior Investigation Reviewed: round 1 (API-REV-001)
 
@@ -131,6 +132,21 @@ None.
 | API-06 | Rerun | safety, per round |
 
 The rebuilt bundle is extracted over each test extension root's `runtime/`, keeping the `.venv` the launcher bootstrapped in round 1 (same requirements; a real reinstall would bootstrap an identical one).
+
+## Round 3 Rerun Plan (AC-008)
+
+- Validated before: code `18f9e12`. Now: code `100e5a0`. `git diff --name-only 18f9e12 100e5a0` outside tickets: `.github/workflows/release-voice-runtime.yml`, `scripts/build-runtime.sh` (default 0.3.2), `DESIGN.md`, `RELEASE.md`, `TESTING.md`. `runtime/` and `tests/` unchanged, so API-01…API-06 (API-REV-002) still hold.
+- Surface: the release workflow on GitHub (the real runner images and GitHub's evaluation of the `publish` input and the job `if:`), which no local run can prove.
+- Safety: no tag, no release, no push to `release/0.3` (delivery's); only the ticket branch is pushed. The ticket branch's own workflow file triggers on `release/**` and `v*` only, so its push starts nothing; `main` holds a workflow at the same path, so `gh workflow run --ref <ticket branch>` runs the ticket branch's file.
+
+| Case ID | Criteria | Surface | Kind | Planned Command Or Steps | Why |
+| --- | --- | --- | --- | --- | --- |
+| API-07 | REQ-006 (resolve logic, lint) | workflow file | Reused | IMP-12 (actionlint 1.7.11 clean; the resolve step rendered and run for five event cases) | ran on `100e5a0`, the commit under test |
+| API-08 | AC-008 | GitHub Actions, build-only dispatch from the ticket branch | Journey | push `codex/voice-runtime-release-runner`; `gh workflow run release-voice-runtime.yml --ref codex/voice-runtime-release-runner -f runtime_version=0.3.2 -f publish=false`; job conclusions; each job's runner image from its log; releases and remote tags before and after | the only proof of GitHub's input/`if:` evaluation and the current images |
+| API-09 | AC-008 (bundle content) | the run's four artifacts vs the v0.3.0 release bundles | Journey | `gh run download`; `gh release download v0.3.0`; compare tar entries, sizes and modes; win32 launcher line endings | "same entries, sizes and modes except the changed worker and its version; win32 keeps CRLF" |
+
+- The alternate "a failing build fails the run, still without publishing": a job-level `if:` without a status function implies `success()`, so `publish-release` is skipped when a needed job fails; the v0.3.1 tag run shows it on GitHub (builds cancelled, publish skipped). Recorded from that run; no failing build is forced.
+- The push of the merge to `release/0.3` (AC-008's second run) is delivery's.
 
 ## Investigation Decision
 

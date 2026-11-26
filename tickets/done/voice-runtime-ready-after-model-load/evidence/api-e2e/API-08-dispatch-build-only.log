@@ -1,0 +1,69 @@
+# API-08 build-only dispatch of 'Voice Runtime Release' from the ticket branch (AC-008)
+# Commands: git push origin HEAD:refs/heads/codex/voice-runtime-release-runner; gh workflow run release-voice-runtime.yml -R AutoByteus/autobyteus-voice-runtime --ref codex/voice-runtime-release-runner -f runtime_version=0.3.2 -f publish=false
+# Commit: 19f8ad2 (workflow fix 100e5a0); Date: 2026-11-26T13:01:21Z
+== before: releases
+v0.3.0	Latest	v0.3.0	2026-03-09T06:31:50Z
+Voice Input Runtime v0.2.0		v0.2.0	2026-03-09T05:31:17Z
+v0.1.1		v0.1.1	2026-03-08T10:12:28Z
+== before: remote tags
+refs/tags/v0.1.1
+refs/tags/v0.2.0
+refs/tags/v0.3.0
+refs/tags/v0.3.1
+refs/tags/v0.3.1^{}
+remote: 
+remote: Create a pull request for 'codex/voice-runtime-release-runner' on GitHub by visiting:        
+remote:      https://github.com/AutoByteus/autobyteus-voice-runtime/pull/new/codex/voice-runtime-release-runner        
+remote: 
+To https://github.com/AutoByteus/autobyteus-voice-runtime.git
+ * [new branch]      HEAD -> codex/voice-runtime-release-runner
+push exit 0
+== runs triggered by the push (expected none):
+0
+dispatch exit 0
+== run 45825122803
+workflow_dispatch	codex/voice-runtime-release-runner	19f8ad25516d848282b88fc309204653828792d4	completed	success	https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/45825122803
+== jobs (name, conclusion, runner labels)
+join(",") cannot be applied to: null
+  Resolve Voice Runtime Release Metadata | ##[group]Runner Image Provisioner;Version: 20261111.635;##[group]Operating System; | [36;1m  runtime_version="0.3.2"[0m
+  Verify Runtime Packaging | ##[group]Runner Image Provisioner;Version: 20261111.635;##[group]Operating System; | 
+  Build linux x64 | ##[group]Runner Image Provisioner;Version: 20261111.635;##[group]Operating System; | Runtime version: 0.3.2
+  Build win32 x64 | ##[group]Runner Image Provisioner;Version: 20261111.635;##[group]Operating System; | Runtime version: 0.3.2
+  Build darwin x64 | ##[group]Runner Image Provisioner;Version: 20261111.635;##[group]Operating System; | Runtime version: 0.3.2
+  Build darwin arm64 | ##[group]Runner Image Provisioner;Version: 20261111.635;##[group]Operating System; | Runtime version: 0.3.2
+== after: releases
+v0.3.0	Latest	v0.3.0	2026-03-09T06:31:50Z
+Voice Input Runtime v0.2.0		v0.2.0	2026-03-09T05:31:17Z
+v0.1.1		v0.1.1	2026-03-08T10:12:28Z
+== after: remote tags
+refs/tags/v0.1.1
+refs/tags/v0.2.0
+refs/tags/v0.3.0
+refs/tags/v0.3.1
+refs/tags/v0.3.1^{}
+== jobs (name, conclusion) — corrected query
+Resolve Voice Runtime Release Metadata	success
+Verify Runtime Packaging	success
+Build linux x64	success
+Build win32 x64	success
+Build darwin x64	success
+Build darwin arm64	success
+Publish Voice Runtime Release	skipped
+== each job's runner image, from its log (the 'Operating System' and 'Runner Image' groups)
+  Resolve Voice Runtime Release Metadata: Ubuntu 26.04.1 LTS | Image: ubuntu-26.04 Version: 20261116.202.1 
+  Verify Runtime Packaging: Ubuntu 26.04.1 LTS | Image: ubuntu-26.04 Version: 20261116.202.1 
+  Build linux x64: Ubuntu 26.04.1 LTS | Image: ubuntu-26.04 Version: 20261116.88.1 
+  Build win32 x64: Microsoft Windows Server 2025 10.0.26100 Datacenter | 
+  Build darwin x64: Ubuntu 26.04.1 LTS | Image: ubuntu-26.04 Version: 20261116.202.1 
+  Build darwin arm64: Ubuntu 26.04.1 LTS | Image: ubuntu-26.04 Version: 20261116.202.1 
+== Build win32 x64 (job 139927237806): log excerpt
+Version: 20261111.635
+Image: windows-2025-vs2026
+Version: 20261116.315.1
+Runtime version: 0.3.2
+== Verify Runtime Packaging (job 139927237730): log excerpt
+Version: 20261111.635
+Image: ubuntu-26.04
+Version: 20261116.202.1
+Ran 16 tests in 0.068s
+OK

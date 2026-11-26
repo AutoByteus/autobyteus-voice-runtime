@@ -1,9 +1,27 @@
-# Handoff — Architecture Design Complete (autobyteus-655, SR-002)
+# Handoff — Architecture Design Complete (autobyteus-655, SR-003)
 
 ## Result
 
 - Classification: `Architecture Design Complete`; `task_size` `Small`, `architectural_risk` `Low` (design spec).
 - Route: direct implementation (`/implementation_engineer`), per the handoff rule for Small/Medium and Low.
+
+## SR-003 (after delivery DR-002): the release workflow
+
+- **What happened:** on the founder's word ("Of course publish without any doubts"), delivery pushed tag `v0.3.1` (`b1e14ab`). Run 45823708736 cancelled both darwin builds: the workflow pins `runs-on: macos-14`, which GitHub retired on 2026-11-02. Publishing was skipped, so there is no release. Nothing had run the workflow before the tag (RT-012).
+- **Decisions:**
+  - DEC-011: release the fix as `v0.3.2`. `v0.3.1` stays as it is: never moved, no release.
+  - DEC-012: the darwin and linux bundles build on `ubuntu-latest`, win32 on `windows-latest`. Packaging is copy plus `tar`; the 0.3.0 darwin bundles equal the linux bundle, and the win32 launcher's CRLF comes from the Windows checkout (RT-013).
+  - DEC-013: build-only runs on every push to `release/**` and on a dispatch with `publish` false; publishing only for a `v*` tag or a dispatch with `publish` true.
+- **To do (design spec: "Release workflow (SR-003)" and Change Sequence step 6):**
+  1. Change `.github/workflows/release-voice-runtime.yml`: triggers, resolve outputs (`publish`; branch-push version `0.0.0-ci.<sha12>`), the publish job's `if`, the runner labels. Nothing else changes.
+  2. Change `scripts/build-runtime.sh`'s default version to 0.3.2.
+  3. Lint or parse the YAML; run the repository tests.
+- **Proof (AC-008, API/E2E):** push the ticket branch, then dispatch the workflow from it with `runtime_version` 0.3.2 and `publish` false. Expected: four builds and verify green, publish skipped, no release or tag created. Compare the artifacts with the `v0.3.0` bundles: entries, sizes and modes; win32 keeps CRLF.
+- **Delivery afterwards:**
+  - merge into `release/0.3` and wait for that push run to be green;
+  - tag `v0.3.2` and run AC-006;
+  - add the pre-tag step to RELEASE.md (its document).
+- **Unchanged:** the worker and its validation (API-REV-002, DR-001). `DESIGN.md` gains the Release update and DC-002.
 
 ## SR-002 (after code review CRR-001): what changes for implementation
 
@@ -53,7 +71,8 @@
 ## Workspace
 
 - Repository `/Users/normy/autobyteus_org/autobyteus-voice-runtime` (`github.com/AutoByteus/autobyteus-voice-runtime`).
-- Worktree `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-ready-after-model-load`, branch `codex/voice-runtime-ready-after-model-load`, base tag `v0.3.0` (`251eab8`).
+- SR-003 worktree `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-release-runner`, branch `codex/voice-runtime-release-runner`, base `origin/release/0.3` at `8d154d9`; finalization target `release/0.3`. (SR-001/002 worked in `voice-runtime-ready-after-model-load`, removed at DR-001.)
+- Earlier: worktree `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-ready-after-model-load`, branch `codex/voice-runtime-ready-after-model-load`, base tag `v0.3.0` (`251eab8`).
 - Finalization target: a maintenance branch `release/0.3`, created from `v0.3.0` at delivery; `v0.3.1` is tagged there only on the founder's word (DEC-005, DEC-007). `main` is not touched.
 - The repository has no `TESTING.md` or `RELEASE.md`; under the team rules API/E2E and delivery create them when they first need them.
 
@@ -66,3 +85,4 @@
 
 - SR-001: rules read 2026-11-26; matching rule: Architecture Design Complete, Small/Medium and Low → `/implementation_engineer`.
 - SR-002: after code review CRR-001 (Design Impact on DEC-009), same rule → `/implementation_engineer`.
+- SR-003: after delivery DR-002 (blocked release), Small/Low, same rule → `/implementation_engineer`.
