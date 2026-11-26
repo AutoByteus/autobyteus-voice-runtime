@@ -2,6 +2,8 @@ name: Voice Runtime Release
 
 on:
   push:
+    branches:
+      - "release/**"
     tags:
       - "v*"
   workflow_dispatch:
@@ -10,6 +12,11 @@ on:
         description: "Voice runtime version (example: 0.1.0)"
         required: true
         type: string
+      publish:
+        description: "Publish a GitHub release for runtime_version"
+        required: false
+        type: boolean
+        default: false
 
 permissions:
   contents: write
@@ -21,6 +28,7 @@ jobs:
     outputs:
       runtime_version: ${{ steps.resolve.outputs.runtime_version }}
       release_tag: ${{ steps.resolve.outputs.release_tag }}
+      publish: ${{ steps.resolve.outputs.publish }}
     steps:
       - name: Resolve version and tag
         id: resolve
@@ -30,12 +38,25 @@ jobs:
             runtime_version="${{ inputs.runtime_version }}"
             runtime_version="${runtime_version#v}"
             release_tag="v${runtime_version}"
-          else
+            publish="${{ inputs.publish }}"
+          elif [[ "${GITHUB_REF_TYPE}" == "tag" ]]; then
             release_tag="${GITHUB_REF_NAME}"
             runtime_version="${release_tag#v}"
+            publish="true"
+          else
+            # Build-only run on a release branch push: no release, so no tag.
+            runtime_version="0.0.0-ci.${GITHUB_SHA:0:12}"
+            release_tag=""
+            publish="false"
           fi
-          echo "runtime_version=${runtime_version}" >> "$GITHUB_OUTPUT"
-          echo "release_tag=${release_tag}" >> "$GITHUB_OUTPUT"
+          if [[ "${publish}" != "true" ]]; then
+            publish="false"
+          fi
+          {
+            echo "runtime_version=${runtime_version}"
+            echo "release_tag=${release_tag}"
+            echo "publish=${publish}"
+          } >> "$GITHUB_OUTPUT"
 
   build-runtime:
     name: Build ${{ matrix.platform }} ${{ matrix.arch }}
@@ -47,16 +68,16 @@ jobs:
         include:
           - platform: darwin
             arch: arm64
-            runner: macos-14
+            runner: ubuntu-latest
           - platform: darwin
             arch: x64
-            runner: macos-14
+            runner: ubuntu-latest
           - platform: linux
             arch: x64
-            runner: ubuntu-22.04
+            runner: ubuntu-latest
           - platform: win32
             arch: x64
-            runner: windows-2022
+            runner: windows-latest
     steps:
       - name: Checkout runtime repository
         uses: actions/checkout@v4
@@ -93,6 +114,7 @@ jobs:
 
   publish-release:
     name: Publish Voice Runtime Release
+    if: needs.resolve-release.outputs.publish == 'true'
     needs:
       - resolve-release
       - build-runtime
