@@ -1,0 +1,75 @@
+# IMP-12 workflow lint, resolve-step simulation, repository tests and local bundle build (SR-003)
+# Command: actionlint .github/workflows/release-voice-runtime.yml; ruby YAML parse; /tmp/ab655/impl/resolve_cases.sh (script below); <python> -m unittest -v tests/test_voice_input_worker.py for 3.9/3.11/3.14; node --test tests/*.test.mjs; AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR=<tmp> scripts/build-runtime.sh <platform> <arch> without a version variable
+# Commit: working tree on top of 9be0c4f (committed next as the IR-003 fix)
+# Environment: macOS (Darwin 25.5); actionlint 1.7.11; Python 3.9.6, 3.11.15, 3.14.2; node v22.23.1
+# Date: 2026-11-26
+
+== actionlint (changed file)
+no findings
+== YAML parse
+triggers: {"push"=>{"branches"=>["release/**"], "tags"=>["v*"]}, "workflow_dispatch"=>{"inputs"=>{"runtime_version"=>{"description"=>"Voice runtime version (example: 0.1.0)", "required"=>true, "type"=>"string"}, "publish"=>{"description"=>"Publish a GitHub release for runtime_version", "required"=>false, "type"=>"boolean", "default"=>false}}}}
+runners: darwin-arm64=ubuntu-latest, darwin-x64=ubuntu-latest, linux-x64=ubuntu-latest, win32-x64=windows-latest
+publish-release if: needs.resolve-release.outputs.publish == 'true'
+resolve outputs: runtime_version, release_tag, publish
+== resolve step simulation
+== tag push v0.3.2
+runtime_version=0.3.2
+release_tag=v0.3.2
+publish=true
+== push to release/0.3
+runtime_version=0.0.0-ci.8d154d9a1b2c
+release_tag=
+publish=false
+== dispatch 0.3.2 publish=false
+runtime_version=0.3.2
+release_tag=v0.3.2
+publish=false
+== dispatch v0.3.2 publish=true
+runtime_version=0.3.2
+release_tag=v0.3.2
+publish=true
+== dispatch 0.3.2 publish empty (input omitted by an API call)
+runtime_version=0.3.2
+release_tag=v0.3.2
+publish=false
+== unit Python 3.9.6
+Ran 16 tests in 0.122s
+
+OK
+== unit Python 3.11.15
+Ran 16 tests in 0.082s
+
+OK
+== unit Python 3.14.2
+Ran 16 tests in 0.113s
+
+OK
+== node
+# tests 2
+# pass 2
+# fail 0
+== local build, default version
+Runtime version: 0.3.2
+Runtime version: 0.3.2
+Runtime version: 0.3.2
+Runtime version: 0.3.2
+ 
+4907 voice-input-runtime-darwin-arm64.tar.gz
+4913 voice-input-runtime-darwin-x64.tar.gz
+4909 voice-input-runtime-linux-x64.tar.gz
+4858 voice-input-runtime-win32-x64.tar.gz
+
+--- resolve_cases.sh
+#!/bin/bash
+# Renders the resolve step's ${{ }} expressions the way GitHub would for each event and runs it with bash.
+T=/tmp/ab655/impl/resolve.tmpl
+run() { # label event ref_type ref_name input_version input_publish
+  out=$(mktemp); script=$(sed -e "s|\${{ github.event_name }}|$2|g" -e "s|\${{ inputs.runtime_version }}|$5|g" -e "s|\${{ inputs.publish }}|$6|g" "$T")
+  GITHUB_OUTPUT=$out GITHUB_REF_TYPE=$3 GITHUB_REF_NAME=$4 GITHUB_SHA=8d154d9a1b2c3d4e5f60718293a4b5c6d7e8f901 bash -euo pipefail -c "$script"
+  echo "== $1"; cat "$out"; rm -f "$out"
+}
+run "tag push v0.3.2" push tag v0.3.2 "" ""
+run "push to release/0.3" push branch release/0.3 "" ""
+run "dispatch 0.3.2 publish=false" workflow_dispatch branch codex/voice-runtime-release-runner 0.3.2 false
+run "dispatch v0.3.2 publish=true" workflow_dispatch branch release/0.3 v0.3.2 true
+run "dispatch 0.3.2 publish empty (input omitted by an API call)" workflow_dispatch branch release/0.3 0.3.2 ""

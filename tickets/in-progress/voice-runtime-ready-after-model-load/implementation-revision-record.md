@@ -8,6 +8,7 @@ The current code and `implementation-handoff.md` remain authoritative.
 | --- | --- | --- | --- | --- | --- |
 | IR-001 | Solution Designer / `handoff-architecture-design-complete.md` / initial | N/A | `Initial Baseline` | SR-001 | Implemented, self-checked (IMP-00…IMP-06), sent to API/E2E |
 | IR-002 | Solution Designer / `handoff-architecture-design-complete.md` SR-002 section / round 2 | CRR-001 | `Design Impact` (resolved by SR-002) | SR-002, CRR-001, API-REV-001 | Implemented, self-checked (IMP-07…IMP-11), sent to API/E2E |
+| IR-003 | Solution Designer / `handoff-architecture-design-complete.md` SR-003 section / round 3 | DR-002 | `Design Impact` (resolved by SR-003) | SR-003, DR-002, API-REV-002 | Implemented, self-checked (IMP-12), sent to API/E2E |
 
 ## Revision Entries
 
@@ -55,3 +56,37 @@ The current code and `implementation-handoff.md` remain authoritative.
   - IMP-11: in the founder's install, only the `temp/` mtime changed, from the app's own running worker.
 - Next recipient or routing: API/E2E (Small + Low, direct route). It retests API-05/05b on the launcher's Python 3.11.
 - Remaining limitations or risks: the live venvs here are Python 3.9; the launcher's 3.11 path is proven by the process test, and the real bundle is API/E2E's. `TESTING.md` Setup still mentions `audioop` (API/E2E's document). RSK-001, RSK-002 and FU-001 are unchanged.
+
+### IR-003 — The release workflow builds on current runners and proves itself before a tag
+
+- Triggering role, report path, and round: Solution Designer, `handoff-architecture-design-complete.md` (SR-003 section), round 3. SR-003 answers delivery DR-002 (`delivery-revision-record.md`, `release-deployment-report.md`): the `v0.3.1` tag run cancelled both darwin builds on the retired `macos-14` image, and nothing was published.
+- Triggering finding IDs: DR-002.
+- Classification: `Design Impact`, resolved upstream by SR-003 (DEC-011…DEC-013); this round implements it.
+- Prior authoritative result: IR-002 (`18f9e12`, merged into `release/0.3`). The workflow pinned `macos-14`, `ubuntu-22.04` and `windows-2022`, ran only for `v*` tags and dispatches, and always published.
+- Current authoritative result: `100e5a0` on `codex/voice-runtime-release-runner` (base `8d154d9`).
+- Related solution revision IDs: SR-003
+- Related architecture-review revision IDs: N/A
+- Related code-review revision IDs: N/A
+- Related API/E2E revision IDs: API-REV-002 (worker validation, unchanged)
+- Related delivery revision IDs: DR-001, DR-002
+- Why this baseline or implementation revision is recorded: implement the design's "Release workflow (SR-003)" table and Change Sequence step 6.
+- Approved behavior or requirement IDs affected: BEH-004; REQ-005, REQ-006; AC-008 (AC-006 at delivery).
+- Implementation delta:
+  - **Triggers:** `push` also runs for `branches: ["release/**"]`. `workflow_dispatch` gains `publish` (boolean, default `false`).
+  - **`resolve-release`:** new output `publish`. A tag push publishes. A dispatch publishes only when `publish` is `true`. A branch push builds version `0.0.0-ci.${GITHUB_SHA:0:12}` with an empty `release_tag` and does not publish. The three outputs are written in one grouped redirect.
+  - **`publish-release`:** `if: needs.resolve-release.outputs.publish == 'true'`.
+  - **Runners:** darwin arm64, darwin x64 and linux x64 build on `ubuntu-latest`, win32 x64 on `windows-latest`.
+  - **Build script:** `scripts/build-runtime.sh` defaults to `0.3.2`.
+- Changed files or areas: `.github/workflows/release-voice-runtime.yml`, `scripts/build-runtime.sh`.
+- Local validation and result (IMP-12):
+  - actionlint 1.7.11 finds nothing. It found nothing before the change either, and shellcheck's SC2129 note on the three separate redirects was fixed by grouping them.
+  - The YAML parses.
+  - The resolve step, rendered for a tag push, a `release/0.3` push and three dispatches (publish true, false and empty), gives the expected outputs.
+  - The unit tests pass on Python 3.9, 3.11 and 3.14, and the node tests pass.
+  - The four bundles build locally and print `Runtime version: 0.3.2`.
+- Next recipient or routing: API/E2E (Small + Low, direct route) for AC-008 on GitHub.
+- Remaining limitations or risks:
+  - GitHub's own evaluation of the dispatch input and the `if:` is proven only by AC-008.
+  - RSK-003: `-latest` images change over time.
+  - `${{ inputs.runtime_version }}` is still inlined in bash. This is pre-existing and outside the SR-003 table; only repository writers can dispatch.
+  - The local win32 build does not show CRLF; the `windows-latest` checkout supplies it.
