@@ -1,0 +1,33 @@
+# IMP-05 live request replies after ready (AC-005)
+# Command: python3 requests_live.py <entry> <backend> <model> en2.wav (script below), both backends
+# Commit: 050cca1
+# Environment: macOS arm64 (Darwin 25.5); HOME=/tmp/ab655/home HF_HUB_OFFLINE=1; worker = this worktree's runtime/voice_input_worker.py
+# Date: 2026-11-26
+
+{"event": "first-message", "message": {"type": "ready", "backendKind": "mlx"}}
+{"event": "reply", "sent": "unknown-request", "reply": {"requestId": "u1", "ok": false, "text": "", "detectedLanguage": null, "noSpeech": false, "error": "Unsupported request type: unknown-request"}}
+{"event": "reply", "sent": "transcribe-file", "reply": {"requestId": "m1", "ok": false, "text": "", "detectedLanguage": null, "noSpeech": false, "error": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ab655/impl/no-such-clip.wav'"}}
+{"event": "reply", "sent": "transcribe-file", "reply": {"requestId": "t1", "ok": true, "text": "The quick brown fox jumps over the lazy dog.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "exit", "code": 0}
+{"event": "first-message", "message": {"type": "ready", "backendKind": "faster-whisper"}}
+{"event": "reply", "sent": "unknown-request", "reply": {"requestId": "u1", "ok": false, "text": "", "detectedLanguage": null, "noSpeech": false, "error": "Unsupported request type: unknown-request"}}
+{"event": "reply", "sent": "transcribe-file", "reply": {"requestId": "m1", "ok": false, "text": "", "detectedLanguage": null, "noSpeech": false, "error": "FileNotFoundError: [Errno 2] No such file or directory: '/tmp/ab655/impl/no-such-clip.wav'"}}
+{"event": "reply", "sent": "transcribe-file", "reply": {"requestId": "t1", "ok": true, "text": "The quick brown fox jumps over the lazy dog.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "exit", "code": 0}
+
+--- script
+"""Live AC-005: after ready, an unsupported request type and a missing audio file are answered ok:false and the worker keeps serving."""
+import json, subprocess, sys, time
+entry, backend, model, clip = sys.argv[1:5]
+p = subprocess.Popen([entry, "serve", "--backend", backend, "--model-path", model], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+print(json.dumps({"event": "first-message", "message": json.loads(p.stdout.readline())}))
+reqs = [
+    {"type": "unknown-request", "requestId": "u1"},
+    {"type": "transcribe-file", "requestId": "m1", "audioPath": "/tmp/ab655/impl/no-such-clip.wav", "languageMode": "auto"},
+    {"type": "transcribe-file", "requestId": "t1", "audioPath": clip, "languageMode": "auto"},
+]
+for r in reqs:
+    p.stdin.write(json.dumps(r) + "\n"); p.stdin.flush()
+    print(json.dumps({"event": "reply", "sent": r["type"], "reply": json.loads(p.stdout.readline())}))
+p.stdin.close(); code = p.wait(timeout=60)
+print(json.dumps({"event": "exit", "code": code}))
