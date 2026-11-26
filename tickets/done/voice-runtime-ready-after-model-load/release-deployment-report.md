@@ -97,4 +97,30 @@ Nothing is released. After a release: callers pin a tag, so going back means pin
 
 ## Finalization Record
 
-(filled after the push)
+- Pre-push checks:
+  - cross-OS file names (no `< > : " | ? * \`, trailing dot or space, device names; paths ≤ 200): pass;
+  - `gitleaks git --log-opts="v0.3.0..HEAD" --redact .`: no leaks (12 commits).
+- Ticket branch: `codex/voice-runtime-ready-after-model-load` at `1c1723b` (archive commit, after the as-found commit `39716ac`), pushed as a new branch.
+- Finalization target: `origin/release/0.3` did not exist (`git ls-remote`). It was created locally from `v0.3.0` (`251eab8`).
+- Merge: `git merge --no-ff` of the ticket branch → `a0a3ca8`; its tree is identical to the verified head. `main` untouched.
+- Push: `release/0.3` pushed as a new branch (`a0a3ca8`). A branch push starts no workflow (the release workflow runs on `v*` tags); `gh run list` showed no new run. No `v0.3.1` tag exists.
+- Repository finalization status: `Completed`. This record follows as a `docs(delivery)` commit on `release/0.3`.
+
+## Post-Finalization Cleanup
+
+- Worktree: `/Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-ready-after-model-load`.
+- Right after this record is pushed:
+  - remove and prune the worktree;
+  - delete the local `codex/voice-runtime-ready-after-model-load` and `release/0.3` branches (both on the remote);
+  - keep `origin/codex/voice-runtime-ready-after-model-load`.
+- API/E2E's temporary fixtures under `/tmp/ab655*` are outside the repository and not this delivery's; they are left in place.
+- The user's checkout `/Users/normy/autobyteus_org/autobyteus-voice-runtime` is on `main`, not the target branch `release/0.3`, so it is not updated (left untouched).
+
+## Final Status
+
+- Verification complete (from the evidence): `Yes` (AC-006 is the release, pending the founder)
+- Repository finalization complete: `Yes`
+- Applicable release/deployment/rollout complete or not required: `Not required` until the founder's word
+- Applicable safe cleanup complete or not required: right after this record is pushed (above)
+- Unresolved blocker: `None`
+- Successful terminal package eligible for return: `Yes`
