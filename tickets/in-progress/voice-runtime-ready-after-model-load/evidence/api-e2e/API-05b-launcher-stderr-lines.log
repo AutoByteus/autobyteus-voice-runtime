@@ -1,0 +1,9 @@
+# API-05b: the bundle's launcher (bin/voice-input-worker, venv on Python 3.11.15 as the launcher bootstrapped it) with a missing model folder, and the same worker file on the system Python 3.9.6 for comparison
+# Commands: env -i HOME=/tmp/ab655-api/home PATH=/usr/bin:/bin /tmp/ab655-api/ext-mlx/runtime/bin/voice-input-worker serve --backend mlx --model-path /tmp/ab655-api/no-such-model ; env -i HOME=/tmp/ab655-api/home PATH=/usr/bin:/bin /usr/bin/python3 /tmp/ab655-api/ext-mlx/runtime/voice_input_worker.py serve --backend mlx --model-path /tmp/ab655-api/no-such-model
+# Commit: 050cca1 bundle; Date: 2026-11-26T12:16:24Z
+== launcher-py3.11: exit 1, stdout lines 0, stderr lines 3
+/tmp/ab655-api/ext-mlx/runtime/voice_input_worker.py:3: DeprecationWarning: 'audioop' is deprecated and slated for removal in Python 3.13
+  import audioop
+Voice Input worker could not start the mlx backend: model folder not found: /tmp/ab655-api/no-such-model
+== system-py3.9: exit 1, stdout lines 0, stderr lines 1
+Voice Input worker could not start the mlx backend: model folder not found: /tmp/ab655-api/no-such-model

@@ -1,0 +1,26 @@
+# API-02 the release workflow's verify job from a clean clone
+# Steps: git clone --no-local <worktree> /tmp/ab655-api/fresh; git checkout 050cca1; node --test tests/*.test.mjs; python3.11 -m unittest tests/test_voice_input_worker.py; (also python3.14, the Homebrew python3)
+# Runner: ubuntu-latest has Python 3.12; here 3.11 and 3.14 bracket it
+# Date: 2026-11-26T12:08:22Z
+++ git clone -q --no-local /Users/normy/autobyteus_org/autobyteus-worktrees/voice-runtime-ready-after-model-load /tmp/ab655-api/fresh
+++ cd /tmp/ab655-api/fresh
+++ git checkout -q 050cca1
+++ git log --oneline -1
+050cca1 fix(autobyteus-655): the worker writes ready only after its backend can transcribe
+++ node --test tests/build-runtime.test.mjs tests/generate-manifest.test.mjs
+++ grep -E '^# (pass|fail)'
+# pass 2
+# fail 0
+++ /opt/homebrew/bin/python3.11 -m unittest tests/test_voice_input_worker.py
+++ tail -3
+Ran 12 tests in 0.039s
+
+OK
+++ /opt/homebrew/bin/python3.14 -m unittest tests/test_voice_input_worker.py
+++ tail -6
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

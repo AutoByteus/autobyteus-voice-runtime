@@ -1,0 +1,6 @@
+// # API-03 baseline C: the v0.3.0 darwin-arm64 bundle (built from tag v0.3.0) with the same venv and model, through the same caller. Date: 2026-11-26T12:11:26Z
+{"label":"C-0.3.0","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":193,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"C-0.3.0","step":"transcribe","clip":"en.wav","startedAtMs":194,"tookMs":23422,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"C-0.3.0","step":"transcribe","clip":"en2.wav","startedAtMs":23616,"tookMs":190,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"C-0.3.0","step":"transcribe","clip":"en.wav","startedAtMs":23806,"tookMs":181,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"C-0.3.0","step":"stopped","atMs":24005}

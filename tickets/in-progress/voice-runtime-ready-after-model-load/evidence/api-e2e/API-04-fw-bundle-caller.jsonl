@@ -1,0 +1,16 @@
+// # API-04: darwin-x64 bundle (050cca1, faster-whisper backend) on this arm64 Mac, first install (launcher bootstraps .venv with faster-whisper==1.2.1), then a normal start; real desktop VoiceInputRuntimeService
+// # Command: env -i HOME=/tmp/ab655-api/home TMPDIR=$TMPDIR PATH=<login PATH> AB655_LOGIN_PATH=<login PATH> HF_HUB_OFFLINE=1 node /tmp/ab655-api/caller/drive.mjs /tmp/ab655-api/ext-fw <label> silence.wav en.wav en2.wav en.wav
+// # Date: 2026-11-26T12:12:25Z
+{"label":"A-first-install","step":"inspect","inspection":{"ready":true,"runtimeEntrypoint":"/tmp/ab655-api/ext-fw/runtime/bin/voice-input-worker","modelPath":"/tmp/ab655-api/ext-fw/models/faster-whisper-small","runtimeVersion":"0.3.1","modelVersion":"Systran/faster-whisper-small","backendKind":"faster-whisper","error":null}}
+{"label":"A-first-install","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":28209,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"A-first-install","step":"transcribe","clip":"en.wav","startedAtMs":28210,"tookMs":1805,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-install","step":"transcribe","clip":"en2.wav","startedAtMs":30015,"tookMs":856,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-install","step":"transcribe","clip":"en.wav","startedAtMs":30871,"tookMs":1045,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-install","step":"stopped","atMs":31945}
+{"label":"B1-start","step":"inspect","inspection":{"ready":true,"runtimeEntrypoint":"/tmp/ab655-api/ext-fw/runtime/bin/voice-input-worker","modelPath":"/tmp/ab655-api/ext-fw/models/faster-whisper-small","runtimeVersion":"0.3.1","modelVersion":"Systran/faster-whisper-small","backendKind":"faster-whisper","error":null}}
+{"label":"B1-start","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":2284,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en.wav","startedAtMs":2285,"tookMs":1165,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en2.wav","startedAtMs":3451,"tookMs":1497,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en.wav","startedAtMs":4948,"tookMs":1236,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"stopped","atMs":6213}
+// EXIT 0

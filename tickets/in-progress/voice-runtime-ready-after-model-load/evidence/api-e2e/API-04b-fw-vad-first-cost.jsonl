@@ -1,0 +1,11 @@
+// # API-04b: is the first request after ready slower on faster-whisper, and is the VAD model load the cause? Fresh process per line, alternating modes, 4 rounds; the bundle's venv (Python 3.11.15, faster-whisper 1.2.1) and the bundled worker (050cca1)
+// # Command: env -i HOME=/tmp/ab655-api/home PATH=/usr/bin:/bin HF_HUB_OFFLINE=1 /tmp/ab655-api/ext-fw/runtime/.venv/bin/python API-04b-fw_vad_first_cost.py /tmp/ab655-api/ext-fw/models/faster-whisper-small /tmp/ab655/clips/en.wav <plain|preload-vad>
+// # Date: 2026-11-26T12:13:44Z; load: 14.09 13.70 20.65
+{"mode": "plain", "readyMs": 4503, "vadLoadMs": null, "requestsMs": [2637, 2849, 4738], "text": "Please summarize the meeting notes and send them to the team."}
+{"mode": "preload-vad", "readyMs": 3758, "vadLoadMs": 36, "requestsMs": [2952, 2663, 2437], "text": "Please summarize the meeting notes and send them to the team."}
+{"mode": "plain", "readyMs": 5730, "vadLoadMs": null, "requestsMs": [2239, 1169, 1104], "text": "Please summarize the meeting notes and send them to the team."}
+{"mode": "preload-vad", "readyMs": 1315, "vadLoadMs": 31, "requestsMs": [903, 832, 794], "text": "Please summarize the meeting notes and send them to the team."}
+{"mode": "plain", "readyMs": 2003, "vadLoadMs": null, "requestsMs": [1824, 1916, 1025], "text": "Please summarize the meeting notes and send them to the team."}
+{"mode": "preload-vad", "readyMs": 1219, "vadLoadMs": 30, "requestsMs": [727, 852, 1111], "text": "Please summarize the meeting notes and send them to the team."}
+{"mode": "plain", "readyMs": 1846, "vadLoadMs": null, "requestsMs": [932, 817, 779], "text": "Please summarize the meeting notes and send them to the team."}
+{"mode": "preload-vad", "readyMs": 1306, "vadLoadMs": 29, "requestsMs": [729, 707, 670], "text": "Please summarize the meeting notes and send them to the team."}
