@@ -1,0 +1,4 @@
+{"event": "first-message", "atMs": 5222, "message": {"type": "ready", "backendKind": "mlx"}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 280, "reply": {"requestId": "r0", "ok": true, "text": "Please summarize the meeting notes and send them to the team.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "en2.wav", "tookMs": 430, "reply": {"requestId": "r1", "ok": true, "text": "The quick brown fox jumps over the lazy dog.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "exit", "code": 0, "stderrTail": "/private/tmp/ab655/cow/runtime/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\n"}
