@@ -124,3 +124,28 @@ Nothing is released. After a release: callers pin a tag, so going back means pin
 - Applicable safe cleanup complete or not required: right after this record is pushed (above)
 - Unresolved blocker: `None`
 - Successful terminal package eligible for return: `Yes`
+
+## Release Round DR-002: `v0.3.1` (Release Requested) — Blocked
+
+- Request: the founder, 2026-11-26, relayed by the Solution Designer: "Of course publish without any doubts" (`handoff-release-requested.md` in the Solution Designer's receipts for autobyteus-655). Stable patch `v0.3.1` from `release/0.3`.
+- Release guide: `RELEASE.md` on `release/0.3` (`b1e14ab`), "Cutting The Release". No checks before tagging beyond the ticket's (none listed).
+- Tag: `origin/release/0.3` fetched and still `b1e14ab`. Annotated tag `v0.3.1` (`0699d62`) → `b1e14ab`, pushed 2026-11-26.
+- Pipeline: run 45823708736 (https://github.com/AutoByteus/autobyteus-voice-runtime/actions/runs/45823708736), event `push`, ref `v0.3.1`, sha `b1e14ab`. GitHub shows it under `main`'s name for the same file path ("Voice runtime host release"); `main`'s file has only `workflow_dispatch`, and the jobs are the tagged 0.3 workflow's.
+  - Resolve Voice Runtime Release Metadata: success. Build linux x64: success. Build win32 x64: success. Verify Runtime Packaging: success.
+  - Build darwin arm64: **cancelled**. Build darwin x64: **cancelled**. Both ended within a second, with no runner and no steps.
+  - Publish Voice Runtime Release: **skipped** (it needs every build).
+
+| Failed Run And Job | Classification | Log Lines That Show The Cause | Action | Result |
+| --- | --- | --- | --- | --- |
+| 45823708736 / Build darwin arm64, Build darwin x64 | **Ours** (workflow configuration; the same commit fails again) | Annotation on both jobs: `The configuration 'macos-14-arm64-us-default' is not supported`. The workflow pins `runner: macos-14` (`.github/workflows/release-voice-runtime.yml:50,53`); GitHub retired the macOS 14 image on 2026-11-02 (https://github.blog/changelog/2026-10-01-github-actions-macos-14-runner-image-retirement) | No rerun (the log settles it). Handed to the Solution Designer as a new change (release request) | Blocked |
+
+- Published artifacts: **none**. No GitHub release `v0.3.1` exists and no assets were published. This is not a partial release; the tag exists without a release.
+- The tag `v0.3.1` stays as it is (never move or delete a pushed tag).
+- Also in the run, warnings only: actions/checkout@v4 and upload-artifact@v4 target Node.js 20, forced to Node.js 24.
+- Decision needed before the next release round (founder / Solution Designer):
+  - (a) Fix the workflow's macOS runner on `release/0.3` and tag `v0.3.2` (RELEASE.md Recovery: fix forward). The autobyteus-516 extension pins 0.3.1 and would need 0.3.2.
+  - (b) After the fix, run the workflow by `workflow_dispatch` from `release/0.3` with `runtime_version` 0.3.1. It publishes under the existing tag `v0.3.1`, with assets built from the fixed commit; the worker code is identical to the tag's, but the source differs from the tag's commit.
+- Stage that let it through: nothing before the tag runs the release workflow, and the 0.3 workflow has no build-only mode (`workflow_dispatch` publishes). A retired runner label shows only on GitHub's runners. Proposed for the fix: a build-only option, plus a pre-tag build-only run in RELEASE.md. API/E2E should confirm that no local check can reproduce runner availability (Release Failures rule) before the release guide takes that check.
+- AC-002 on the released bundle: not run (nothing published).
+- Cleanup: not done. The worktree and local `release/0.3` are kept for the next round.
+- Status: **Blocked**. Recipient: Solution Designer (a new change for a release request).

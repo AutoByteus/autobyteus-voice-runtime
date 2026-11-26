@@ -5,6 +5,7 @@
 | Revision ID | Entry Point / Trigger | Prior Result | Current Result | Affected Canonical Artifacts |
 | --- | --- | --- | --- | --- |
 | DR-001 | API/E2E handoff after API-REV-002 (direct route) | N/A | Delivery Completed (finalized into `release/0.3`; not tagged) | `docs-sync-report.md`, `handoff-summary.md`, `release-deployment-report.md`, `RELEASE.md` (created) |
+| DR-002 | Release Requested: `v0.3.1` (founder's word) | Delivery Completed (not tagged) | Blocked: darwin builds refused the retired `macos-14` runner; nothing published | `release-deployment-report.md` (Release Round DR-002) |
 
 ## Revision Entries
 
@@ -23,3 +24,15 @@
 - Why this baseline was recorded: first delivery round.
 - Next recipient/action: Solution Designer (terminal receipt). On the founder's word, a release round: tag `v0.3.1` on `release/0.3`, watch the workflow, and repeat AC-002 on the released bundle.
 - Remaining blockers, rollback concerns, or untested scope: AC-006 pending the founder; DEC-006; FU-001 open.
+
+### DR-002 — Release `v0.3.1`: tag pushed, darwin builds refused (`macos-14` retired), nothing published
+
+- Delivery round and trigger: release request (founder's word, 2026-11-26, via the Solution Designer).
+- Prior authoritative result: `Delivery Completed` (DR-001, not tagged)
+- Current authoritative result: `Blocked`
+- What was done: tag `v0.3.1` → `b1e14ab` pushed; run 45823708736. Linux, Windows and verify succeeded. Both darwin builds were cancelled (`The configuration 'macos-14-arm64-us-default' is not supported`), so publish was skipped: no release, no assets.
+- Classification: ours (workflow pins a retired runner image). For a release request, a new change for the Solution Designer.
+- Decision needed: `v0.3.2` after the fix, or a `workflow_dispatch` of 0.3.1 from the fixed `release/0.3`. The autobyteus-516 extension pins 0.3.1.
+- Release/publication/deployment report: `release-deployment-report.md`, "Release Round DR-002"
+- Terminal return to the Solution Designer: `Blocked` (sent)
+- Next recipient/action: Solution Designer (new change: the workflow's macOS runner; build-only option proposed)
