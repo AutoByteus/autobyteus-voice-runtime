@@ -47,3 +47,14 @@
 - Result: `Pass`
 - Next delivery action: finalize into `release/0.3`. No tag without the founder's word (DEC-007).
 - Notes: `scripts/generate-manifest.mjs` still defaults to `0.3.0`, while `scripts/build-runtime.sh` defaults to `0.3.1`. The design leaves this alone because the workflow sets the version from the tag. `RELEASE.md` says the defaults are not used in a release.
+
+## Round 3 (DR-003): the release workflow fix
+
+- Trigger: API/E2E handoff after API-REV-003 (AC-008 Pass, 95.5%), following DR-002's blocked `v0.3.1` run. Base `origin/release/0.3` `8d154d9`, already current.
+- Changed by the ticket: `.github/workflows/release-voice-runtime.yml` (`100e5a0`: `-latest` runners, build-only on `release/**` pushes and on a dispatch without `publish`, publish gated). `DESIGN.md` (Solution Designer: Release section, design case DC-002) and `TESTING.md` (API/E2E `83539d8`: the build-only release run as a test layer, required before merging a workflow change) checked against the workflow: accurate.
+- `RELEASE.md` (delivery, its owner): rewritten to standing rules.
+  - Checks Before Tagging: tag only a commit whose `release/**` build-only run succeeded, with no commit between that run and the tag.
+  - Watching: the new runners; the run is listed under `main`'s workflow name; the manifest's `runtimeVersion` and `sha256` checks.
+  - Recovery: a tag whose run published nothing stays; a retired runner is our failure and needs a fix plus the next patch.
+  - `workflow_dispatch` with `publish=true` only republishes a tag after a platform failure.
+  - Removed: references to this ticket and other tickets, dates, and the *(not yet run)* markers. The release this round cuts confirms the steps; corrections, if any, are in the release record.

@@ -1,6 +1,6 @@
 # Handoff Summary: voice-runtime-ready-after-model-load (autobyteus-655)
 
-- Status: verified from the evidence (audited, not redone), archived and finalized into the new maintenance branch `release/0.3`. **Not tagged or published**: `v0.3.1` waits for the founder's word (DEC-007, AC-006).
+- Status (DR-003): released as **`v0.3.2`** on `release/0.3`, on the founder's word (DEC-007). `v0.3.1` (DR-002) is a tag without a release: its run could not build the darwin bundles on the retired `macos-14` runner, and nothing was published (DEC-011: fix forward). See the release record at the end of this summary.
 - Classification: `task_size=Small`, `architectural_risk=Low`, direct route. Test-code review Not Required. Code review CRR-001 classified round 1's failure as Design Impact, which SR-002/IR-002 fixed. API/E2E API-REV-002 Pass, 95.5%.
 
 ## What Changed
@@ -42,3 +42,14 @@
 ## Follow-ups
 
 - FU-001 (MLX needs `ffmpeg`) is open, for the Solution Designer to send. FU-002 is resolved here.
+
+## Round 3 (DR-003): release workflow fix and `v0.3.2`
+
+- The fix (`100e5a0`, SR-003, IR-003):
+  - darwin arm64, darwin x64 and linux x64 bundles build on `ubuntu-latest`; win32 builds on `windows-latest` (DEC-012).
+  - A push to `release/**`, or a dispatch without `publish`, builds and tests without publishing; only a `v*` tag or `publish=true` publishes (DEC-013).
+- AC-008, audited:
+  - Dispatched build-only run 45825122803 on `19f8ad2`: all four builds and verify succeeded, publish skipped, releases and tags unchanged (`API-08-dispatch-build-only.log`; GitHub shows `success`).
+  - The bundles match v0.3.0's 7 entries and modes except the worker (`API-09-artifacts-vs-v0.3.0.jsonl`); worker sha256 `1249f8ee…` (win32 CRLF `fb587acf…`); the win32 `.cmd` keeps CRLF.
+  - The second AC-008 run, the push of the merge to `release/0.3`, is in the release record below.
+- AC-001…AC-005 and AC-007 still hold: `runtime/` and `tests/` are unchanged since `18f9e12`.
