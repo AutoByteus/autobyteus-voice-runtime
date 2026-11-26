@@ -2,7 +2,7 @@
 
 ## Solution And Approval Basis
 
-- Current solution revision ID: `SR-001`
+- Current solution revision ID: `SR-002` (resolves code review CRR-001, Design Impact on DEC-009: AC-004 failed on the launcher's Python 3.11)
 - Approved requirements baseline / revision, who approved, and approval reference: `requirements-doc.md` at SR-001, approved by the Solution Designer within the direction, founder informed (requirements doc, Document Status)
 - Behavior-defining supplements and their approval references: None
 - User approval of the design, when the direction requires it: `Not required` (the release itself needs the founder's word: DEC-007)
@@ -13,7 +13,7 @@
 
 ## Current-State Read
 
-`main()` in `runtime/voice_input_worker.py` builds the backend (`:174`) and writes `ready` at once (`:175-178`). The backend constructors store the model path only (`:82-85`, `:108-111`); MLX imports `mlx_whisper` inside the first transcription (`:87-93`) and `mlx_whisper.transcribe` then loads the model through its own cache (`mlx_whisper/transcribe.py:146-147`); faster-whisper builds `WhisperModel` inside the first transcription (`:113-123`). Near-silent audio is answered before any model use (`:35-50`, `:203-212`). So the first non-silent request pays the import, the load and the first-run cost (RT-001…RT-005). The worker module imports no speech library at load time, and the tests run without them (`tests/test_voice_input_worker.py`). Today's caller waits for `ready` without a timeout and turns a worker exit before `ready` into an error with the stderr text (`voiceInputRuntimeService.ts:134-143,145-208` on the superrepo's `origin/personal`).
+`main()` in `runtime/voice_input_worker.py` builds the backend (`:174`) and writes `ready` at once (`:175-178`). The backend constructors store the model path only (`:82-85`, `:108-111`); MLX imports `mlx_whisper` inside the first transcription (`:87-93`) and `mlx_whisper.transcribe` then loads the model through its own cache (`mlx_whisper/transcribe.py:146-147`); faster-whisper builds `WhisperModel` inside the first transcription (`:113-123`). Near-silent audio is answered before any model use (`:35-50`, `:203-212`); its loudness is `audioop.rms` (`:49`), the module's only `audioop` use; `audioop` is imported at module level (`:3`), deprecated in Python 3.11/3.12 (an import warning when the worker runs as `__main__`) and removed in 3.13 (RT-011, FU-002). So the first non-silent request pays the import, the load and the first-run cost (RT-001…RT-005). The worker module imports no speech library at load time, and the tests run without them (`tests/test_voice_input_worker.py`). Today's caller waits for `ready` without a timeout and turns a worker exit before `ready` into an error with the stderr text (`voiceInputRuntimeService.ts:134-143,145-208` on the superrepo's `origin/personal`).
 
 ## Task Size And Architectural Risk (Mandatory)
 
@@ -40,10 +40,10 @@
 
 ## Change Scope (Mandatory)
 
-- In scope: UC-001…UC-003 in code; UC-004 at delivery (release on the founder's word). Files: `runtime/voice_input_worker.py`, `tests/test_voice_input_worker.py`, `scripts/build-runtime.sh` (default version), `DESIGN.md` (created).
+- In scope: UC-001…UC-003 in code; UC-004 at delivery (release on the founder's word). Files: `runtime/voice_input_worker.py` (start step; SR-002: the silence check's loudness computed with the standard library instead of `audioop`, identical results), `tests/test_voice_input_worker.py` (SR-002: a subprocess start-failure test), `scripts/build-runtime.sh` (default version), `DESIGN.md` (created).
 - Derived consumers: the `ready` message keeps its shape; its meaning tightens (written only after a successful start). Readers: the desktop's `handleWorkerStdout` (resolves on `ready`, unchanged) and `handleWorkerExit` (rejects with stderr, unchanged); the 516 Voice Input package (designed for this meaning). No change needed in either.
-- Deliberately left alone: request handling, silence detection, the `prepare` command, the launchers, the manifest generator, the release workflow, `main`'s v1.0 work.
-- Follow-ups: FU-001.
+- Deliberately left alone: request handling and the silence rule itself (threshold 120, minimum 0.15 s: only how the loudness number is computed changes, RT-010), the `prepare` command, the launchers, the manifest generator, the release workflow, `main`'s v1.0 work.
+- Follow-ups: FU-001. FU-002 (`audioop` removed in Python 3.13) is resolved by this ticket (DEC-010) for the worker's own import; whether the pinned speech libraries install on Python 3.13+ is not claimed.
 
 ## Relevant Behavior And Production-Path Map (Mandatory)
 
@@ -163,6 +163,7 @@ N/A.
 | --- | --- | --- | --- |
 | `MlxBackend._ensure_transcribe` (`:87-93`) | Loading moves to `load` | `MlxBackend.load` | `transcribe_file` uses what `load` stored |
 | `FasterWhisperBackend._ensure_model` (`:113-123`) | Same | `FasterWhisperBackend.load` | Same |
+| `import audioop` (`:3`) and `audioop.rms` (`:49` at `v0.3.0`) | Deprecated (3.11/3.12 import warning breaks REQ-003's one line) and removed in 3.13 (FU-002) | A small loudness function in the worker (`array` + `math`, widths 1–4) | Identical values (RT-010); SR-002 |
 
 ## Return Or Event Spine(s) (If Applicable)
 
@@ -268,7 +269,9 @@ N/A (no folder change).
 | MLX `load` | `from mlx_whisper import transcribe; self._transcribe = transcribe; self.transcribe_file(clip, "en")` (the first `transcribe` call loads the model into mlx-whisper's own cache; later calls reuse it) | `ModelHolder.get_model(path, mx.float16)`: relies on an internal class and must repeat `transcribe`'s dtype choice | Same effect through the public call |
 | faster-whisper `load` | `self._model = WhisperModel(path, device="cpu", compute_type="int8")`; then `segments, _ = self._model.transcribe(clip, language="en", vad_filter=False, beam_size=1, condition_on_previous_text=False); list(segments)` | Warm-up through `transcribe_file` (`vad_filter=True`): voice detection drops the tone and the decoder never runs; or not consuming the generator (it is lazy) | The warm-up must really decode |
 | `main` start | `try: check folder; backend = build_backend(...); with TemporaryDirectory() as d: clip = write_warm_up_clip(d); backend.load(clip)` / `except Exception as error: stderr line; return 1` → then `emit(ready)` | `emit(ready)` before `load`, or a traceback on stderr | The caller shows all of stderr |
-| Warning filter | `warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL")` before `load` | Silencing all warnings | Only the known noise (RT-007) |
+| Warning filter | `warnings.filterwarnings("ignore", message="urllib3 v2 only supports OpenSSL")` before `load` | Silencing all warnings; or filtering our own module's warnings (SR-002: remove their cause instead) | Third-party noise only (RT-007); our own warnings are fixed at the source |
+| Loudness (SR-002) | `samples = array.array({1:"b",2:"h",4:"i"}[width], payload)` (byteswap on big-endian hosts; width 3 decoded with `int.from_bytes(..., "little", signed=True)`), `rms = int(math.sqrt(sum(s*s for s in samples) / len(samples)))`, empty → 0 | Keeping `audioop`, or a numpy import (a dependency the worker module must not need at import) | Same numbers as `audioop.rms` (RT-010) |
+| Start-failure test (SR-002) | `subprocess.run([sys.executable, str(MODULE_PATH), "serve", "--backend", "mlx", "--model-path", <missing>])`: stdout `""`, `stderr.strip().splitlines()` has exactly one line starting `Voice Input worker could not start the mlx backend:`, returncode 1 | Calling `main()` in-process (cannot see import-time warnings) | The check that would have caught CRR-001, at the earliest stage (CI) |
 
 ## Backward-Compatibility Rejection Log (Mandatory)
 
@@ -287,6 +290,7 @@ N/A.
 2. Implement in `runtime/voice_input_worker.py`; remove the lazy loaders.
 3. `scripts/build-runtime.sh`: default version 0.3.1.
 4. Run `python3 -m unittest tests/test_voice_input_worker.py` and `node --test tests/*.test.mjs` (the workflow's own checks).
+4a. SR-002: replace `audioop.rms` with the loudness function and drop `import audioop`; unit tests: the loudness function equals the known `audioop.rms` values of RT-010 (silence 0, threshold 119, quiet 52, full scale 32767 at width 2; widths 1 and 4), and the subprocess start-failure test (AC-007) runs under every Python the tests run on.
 5. Live: build the darwin-arm64 bundle locally, install it into an isolated folder with the cloned model (or point `probes/drive_worker.py` at the worker with the cloned venv), and run AC-002…AC-004 (MLX on a clone, faster-whisper in an isolated install); compare the founder's install timestamps before and after.
 
 ## Key Tradeoffs

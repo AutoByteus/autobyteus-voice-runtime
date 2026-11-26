@@ -3,14 +3,14 @@
 ## Document Status
 
 - Status: `Approved`
-- Current solution revision ID: `SR-001`
+- Current solution revision ID: `SR-002`
 - Package identifier: `voice-runtime-ready-after-model-load`
 - Request / ticket: Project Task `autobyteus-655` (prerequisite PRE-001 of autobyteus-516)
 - Requested by: `/project_task_manager` (run `project_task_manager_7c8dce0c4a8b44f88e776a83809dee03`), on the autobyteus-516 Solution Designer's request
 - Requirements owner: Solution Designer
 - Date: 2026-11-26
 - Approved by and reference: `Solution Designer within the direction (user informed)`. Direction: the Task (fix readiness in the runtime for both backends, protocol otherwise unchanged, 0.3.1 from the 0.3.0 line, release on the founder's word) and the founder's words relayed in it ("whatever is more reasonable architecture-wise … you will decide"). The founder is informed in the Solution Designer conversation of 2026-11-26.
-- Exact approved requirements baseline / solution revision: this document at SR-001
+- Exact approved requirements baseline / solution revision: this document as approved at SR-001; SR-002 revises DEC-009 and adds DEC-010 and AC-007 within the direction (no change to intended behavior: REQ-003 already required one stderr line), founder informed
 - Behavior-defining supplements and their approved versions: None
 
 ## Problem And Desired Outcome
@@ -95,6 +95,7 @@ None.
 | AC-003 | REQ-001, REQ-002 | BEH-001, SCN-001/002 | Real 0.3.1 worker, faster-whisper, isolated install | `ready` after the load; the first transcription after `ready` within the range of later ones; texts correct | — | Live (macOS arm64 CPU; DEC-006) |
 | AC-004 | REQ-003 | BEH-003, SCN-003 | Model folder missing or corrupt; MLX with no `ffmpeg` on PATH | No `ready`; one stderr line naming backend and cause; exit code non-zero; today's caller would show that text | — | Unit + live |
 | AC-005 | REQ-004 | BEH-002 | Existing and new unit tests; live requests | Same reply shapes; silence → `noSpeech:true`; unsupported request type → `ok:false`; `prepare` unchanged | — | Unit + live |
+| AC-007 | REQ-003, REQ-004 | BEH-002, BEH-003, SCN-003 | The worker run as a separate process exactly as the launcher runs it (`<python> voice_input_worker.py serve --backend mlx --model-path <missing>`), on the CI Python and on the launcher's preferred Python 3.11; silence check on 16-bit silence, quiet noise, the 119/120 threshold and speech | No stdout; exactly one stderr line starting `Voice Input worker could not start the mlx backend:`; exit 1. Silence answers identical to 0.3.0's `audioop.rms` (< 120 → `noSpeech`) | — | Unit test in CI (subprocess) + live (API-05/05b on 3.11 and 3.9) |
 | AC-006 | REQ-005 | BEH-004, SCN-004 | Founder's word; tag `v0.3.1` on the 0.3.x line | Workflow green; release `v0.3.1` has the four bundles and the manifest naming 0.3.1; the AC-002 run repeated on the released darwin-arm64 bundle | Without the founder's word: nothing tagged | Delivery |
 
 ## Relevant Scenarios And Journeys
@@ -153,7 +154,8 @@ None.
 | DEC-006 | How are faster-whisper bundles for Linux, Windows and Intel Mac proven? | No such machines here | Same Python code and pinned library on macOS arm64 CPU (live) plus the workflow's unit tests on ubuntu | Accept: the change is pure Python with the same library calls on every platform; risk low | Solution Designer | Decided |
 | DEC-007 | Tag and publish 0.3.1 | A release is hard to undo | — | Ask the founder after validation, before tagging | Founder | Needs user (at release time) |
 | DEC-008 | What does a missing model folder report? | REQ-003's reason must be clear | MLX turns a missing path into a Hugging Face repo id and reports `HFValidationError: Repo id must be…` (RT-007), and online it could try a download | The worker checks that the model folder exists before loading and reports "model folder not found: <path>": an explicit rule, not the library's guess | Solution Designer | Decided |
-| DEC-009 | Library warnings in a start-up failure's stderr | Today's caller shows all of stderr as the error | MLX's import prints a 2-line `urllib3` `NotOpenSSLWarning` on the system Python (RT-007; also in 0.3.0) | The worker silences exactly that warning class, so a failure's stderr is the reason line; other warnings stay | Solution Designer | Decided |
+| DEC-009 | Library warnings in a start-up failure's stderr | Today's caller shows all of stderr as the error | MLX's import prints a 2-line `urllib3` `NotOpenSSLWarning` on the system Python (RT-007; also in 0.3.0) | The worker silences exactly that third-party warning, so a failure's stderr is the reason line. **Revised in SR-002:** the first version was checked on Python 3.9 only; on the launcher's preferred Python 3.11 the worker's own `import audioop` adds a 2-line `DeprecationWarning` (CRR-001, API-05b). A warning from our own code is removed at its cause (DEC-010), not filtered; the targeted filter stays for third-party noise only | Solution Designer | Decided (revised SR-002) |
+| DEC-010 | `audioop` (deprecated in 3.11/3.12, removed in 3.13) | Its import warning breaks REQ-003 on the launcher's Python 3.11; on 3.13+ the worker cannot import at all (FU-002) | (1) Filter its `DeprecationWarning` before the import (smallest; FU-002 stays); (2) compute the silence check's loudness with the standard library | (2): one RMS computation (`audioop.rms`) is the only use (`voice_input_worker.py:54`); the standard-library version gives identical values on real recordings and edge cases (RT-010: 0 of 17 differ, widths 1/2/4, including the 119/120 threshold). It removes the cause instead of adding a second filter, and the worker no longer imports a removed module (FU-002 resolved by this ticket). Silence answers stay exactly as in 0.3.0 | Solution Designer (founder's direction 2026-11-26: "do the design which makes it architecturally easy, you know, clean") | Decided |
 
 ## Traceability
 

@@ -1,0 +1,18 @@
+en.wav             width=2 audioop=       3839 stdlib=       3839 OK  noSpeech(<120): False/False
+en2.wav            width=2 audioop=       3888 stdlib=       3888 OK  noSpeech(<120): False/False
+silence-w1         width=1 audioop=          0 stdlib=          0 OK  noSpeech(<120): True/True
+quiet-w1           width=1 audioop=         52 stdlib=         52 OK  noSpeech(<120): True/True
+threshold-w1       width=1 audioop=        119 stdlib=        119 OK  noSpeech(<120): True/True
+full-scale-w1      width=1 audioop=        127 stdlib=        127 OK  noSpeech(<120): False/False
+random-w1          width=1 audioop=         73 stdlib=         73 OK  noSpeech(<120): True/True
+silence-w2         width=2 audioop=          0 stdlib=          0 OK  noSpeech(<120): True/True
+quiet-w2           width=2 audioop=         52 stdlib=         52 OK  noSpeech(<120): True/True
+threshold-w2       width=2 audioop=        119 stdlib=        119 OK  noSpeech(<120): True/True
+full-scale-w2      width=2 audioop=      32767 stdlib=      32767 OK  noSpeech(<120): False/False
+random-w2          width=2 audioop=      18698 stdlib=      18698 OK  noSpeech(<120): False/False
+silence-w4         width=4 audioop=          0 stdlib=          0 OK  noSpeech(<120): True/True
+quiet-w4           width=4 audioop=         51 stdlib=         51 OK  noSpeech(<120): True/True
+threshold-w4       width=4 audioop=        119 stdlib=        119 OK  noSpeech(<120): True/True
+full-scale-w4      width=4 audioop= 2147483647 stdlib= 2147483647 OK  noSpeech(<120): False/False
+random-w4          width=4 audioop= 1231625032 stdlib= 1231625032 OK  noSpeech(<120): False/False
+mismatches: 0 of 17

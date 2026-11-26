@@ -68,4 +68,23 @@ adding, never by renaming or removing.
 
 ## Design Cases
 
-None yet.
+Each case records a design mistake found in this project and what it taught.
+Read the cases before designing or reviewing a change of the same shape. New
+cases are appended with the next `DC-` number.
+
+### DC-001: One Python checked for the worker's stderr (autobyteus-655)
+
+- **Problem:** a start failure had to write exactly one stderr line, because callers
+  show all of stderr as the error. The design silenced one known library warning and
+  was checked on Python 3.9 only. On Python 3.11, the launcher's first choice, the
+  worker's own `import audioop` added a two-line `DeprecationWarning`.
+- **How it was found:** API/E2E ran the worker through the bundle's launcher on the
+  Python it bootstraps; the unit tests call `main()` in-process and cannot see
+  import-time warnings.
+- **Wrong assumption:** the interpreter used for the check stood for every
+  interpreter the launcher can pick (`python3.11`, `3.10`, `3.9`, then any `python3`).
+- **Fix:** remove the cause in our own code (the deprecated module), keep a filter
+  only for third-party noise, and test start failures as a subprocess run the way the
+  launcher runs the worker.
+- **Lesson:** check stdout/stderr behavior as a separate process on the Pythons the
+  launcher can pick; fix our own warnings at their source instead of filtering them.

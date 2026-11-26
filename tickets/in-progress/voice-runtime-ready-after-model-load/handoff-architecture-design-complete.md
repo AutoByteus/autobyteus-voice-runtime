@@ -1,9 +1,20 @@
-# Handoff — Architecture Design Complete (autobyteus-655, SR-001)
+# Handoff — Architecture Design Complete (autobyteus-655, SR-002)
 
 ## Result
 
 - Classification: `Architecture Design Complete`; `task_size` `Small`, `architectural_risk` `Low` (design spec).
 - Route: direct implementation (`/implementation_engineer`), per the handoff rule for Small/Medium and Low.
+
+## SR-002 (after code review CRR-001): what changes for implementation
+
+- **Cause:** DEC-009 was checked on Python 3.9 only. On the launcher's Python 3.11 the worker's own `import audioop` prints a 2-line `DeprecationWarning`, so a failed start writes 3 stderr lines (AC-004 failed, API-05/05b). `audioop` is also gone in Python 3.13 (FU-002).
+- **Decision (DEC-010):** remove `audioop`, instead of filtering its warning. Its only use is the silence check's loudness (`audioop.rms`); a standard-library version (`array` + `math`) gives identical numbers on real recordings and edge cases (RT-010, `evidence/P5-rms-equivalence.txt`: 0 of 17 differ, widths 1/2/4, threshold 119/120). The `urllib3` filter stays (third-party noise only).
+- **To do (design spec, Change Sequence 4a and Concrete Examples):**
+  1. Replace `audioop.rms` with a loudness function (widths 1–4; width 3 via `int.from_bytes`; empty → 0) and drop `import audioop`.
+  2. Unit-test the function against the RT-010 values.
+  3. Add a subprocess test (AC-007) that runs `voice_input_worker.py serve --backend mlx --model-path <missing>` with `sys.executable`, exactly as the launcher does. It asserts no stdout, exactly one stderr line starting `Voice Input worker could not start the mlx backend:`, and exit 1. It is the local check that would have caught CRR-001.
+- **Retest afterwards (API/E2E):** API-05 and API-05b on the launcher's Python 3.11 and on 3.9 (fixtures kept in `/tmp/ab655-api`); silence answers unchanged.
+- **Also:** `DESIGN.md` gains design case DC-001; FU-002 is marked resolved in this ticket.
 
 ## Request And Direction
 
@@ -53,4 +64,5 @@
 
 ## Handoff Route Record
 
-- Rules read 2026-11-26; matching rule: Architecture Design Complete, Small/Medium and Low → `/implementation_engineer`.
+- SR-001: rules read 2026-11-26; matching rule: Architecture Design Complete, Small/Medium and Low → `/implementation_engineer`.
+- SR-002: after code review CRR-001 (Design Impact on DEC-009), same rule → `/implementation_engineer`.
