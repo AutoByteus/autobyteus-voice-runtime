@@ -6,18 +6,18 @@ validation. A ticket's results and evidence belong in that ticket's validation r
 
 ## Setup
 
-- From the repository root. Node (any current LTS) for the packaging tests; a Python 3.9–3.12 for the worker tests
-  (the speech libraries are not needed: the tests use stand-in libraries).
-- Python versions matter. The worker imports `audioop`, which Python 3.13 removed and 3.11–3.12 warn about. The
-  launcher picks `python3.11`, `python3.10`, `python3.9`, then `python3`, from the PATH it is given, so a real install
-  runs on whichever of those the machine has first. macOS's system Python is 3.9; the release workflow's tests run on
-  `ubuntu-latest`'s `python3`.
+- From the repository root. Node (any current LTS) for the packaging tests; Python for the worker tests (the speech
+  libraries are not needed: the tests use stand-in libraries).
+- Python versions matter. The launcher picks `python3.11`, `python3.10`, `python3.9`, then `python3`, from the PATH it
+  is given, so a real install runs on whichever of those the machine has first. macOS's system Python is 3.9; the
+  release workflow's tests run on `ubuntu-latest`'s `python3`. Run the worker tests on 3.9, on 3.11 and on the newest
+  Python you have: an interpreter's own warnings reach stderr, which callers show.
 
 ## Test Layers
 
 | Layer | What it proves | Command |
 | --- | --- | --- |
-| Worker unit tests | `serve`/`prepare` logic, the protocol's messages, start order and start failures, with stand-in speech libraries | `python3 -m unittest -v tests/test_voice_input_worker.py` (also with each Python a real install can pick: `/usr/bin/python3` (3.9), `python3.11`) |
+| Worker unit tests | `serve`/`prepare` logic, the protocol's messages, start order and start failures with stand-in speech libraries; one test runs the worker file as a separate process, as the launcher does, and checks its stdout, stderr lines and exit code | `<python> -m unittest -v tests/test_voice_input_worker.py` for each Python a real install can pick (`/usr/bin/python3` 3.9, `python3.11`, the newest) |
 | Packaging tests | `build-runtime.sh` bundle contents, the manifest generator | `node --test tests/*.test.mjs` |
 | Live worker | the worker file with the real speech library and a real model, timed over its protocol | `python3 <ticket>/probes/drive_worker.py <entry> <backend> <model folder> <clip>…` with an entry script that runs a venv's Python on `runtime/voice_input_worker.py` |
 | Real bundle | what users install: the bundle built by `scripts/build-runtime.sh`, extracted into a test-owned extension folder, its launcher bootstrapping `.venv` itself (network: pip) | build with `AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR=<tmp>/dist scripts/build-runtime.sh <platform> <arch>`, then drive it through the desktop caller (next row) |
@@ -41,8 +41,9 @@ The release runner checks out the tag and runs the workflow's jobs; nothing is i
 - Worker logic or protocol: unit tests, then the live worker on each backend you can run (MLX on Apple Silicon,
   faster-whisper on any Mac's CPU).
 - Anything a caller reads (stdout messages, stderr, exit codes, start time): also the real bundle through the
-  desktop caller, on the Python the launcher picks. A run of the worker file on another Python does not prove it
-  (autobyteus-655: Python 3.9 gave one stderr line, the launcher's 3.11 gave three).
+  desktop caller, on the Python the launcher picks. A run of the worker file on another Python does not prove it:
+  stderr depends on the interpreter (its deprecation warnings), and an in-process unit test cannot see import-time
+  output.
 - Launcher or packaging: the real bundle's first install (fresh `.venv`).
 - Stand-in libraries do not prove the real ones; the worker file run directly does not prove the launcher.
 
