@@ -1,0 +1,18 @@
+# IMP-02 live MLX (AC-002, AC-005)
+# Command: python3 probes/drive_worker.py <entry: APFS-clone venv python + worktree worker> mlx /tmp/ab655/cow/models/whisper-small-mlx en.wav en2.wav silence.wav
+# Commit: 050cca1
+# Environment: macOS arm64 (Darwin 25.5); HOME=/tmp/ab655/home HF_HUB_OFFLINE=1; worker = this worktree's runtime/voice_input_worker.py; python = /tmp/ab655/cow/runtime/.venv (APFS clone of the founder's install), model = APFS clone whisper-small-mlx, ffmpeg on PATH
+# Date: 2026-11-26
+
+{"event": "first-message", "atMs": 6118, "message": {"type": "ready", "backendKind": "mlx"}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 752, "reply": {"requestId": "r0", "ok": true, "text": "Please summarize the meeting notes and send them to the team.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "en2.wav", "tookMs": 694, "reply": {"requestId": "r1", "ok": true, "text": "The quick brown fox jumps over the lazy dog.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "silence.wav", "tookMs": 6, "reply": {"requestId": "r2", "ok": true, "text": "", "detectedLanguage": null, "noSpeech": true, "error": null}}
+{"event": "exit", "code": 0, "stderrTail": ""}
+
+# Run 2 (same command, clips en.wav en2.wav en.wav)
+{"event": "first-message", "atMs": 5639, "message": {"type": "ready", "backendKind": "mlx"}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 366, "reply": {"requestId": "r0", "ok": true, "text": "Please summarize the meeting notes and send them to the team.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "en2.wav", "tookMs": 273, "reply": {"requestId": "r1", "ok": true, "text": "The quick brown fox jumps over the lazy dog.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 280, "reply": {"requestId": "r2", "ok": true, "text": "Please summarize the meeting notes and send them to the team.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "exit", "code": 0, "stderrTail": ""}

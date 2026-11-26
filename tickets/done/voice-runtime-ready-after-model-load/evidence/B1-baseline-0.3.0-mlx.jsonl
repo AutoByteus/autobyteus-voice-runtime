@@ -1,0 +1,4 @@
+{"event": "first-message", "atMs": 533, "message": {"type": "ready", "backendKind": "mlx"}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 25676, "reply": {"requestId": "r0", "ok": false, "text": "", "detectedLanguage": null, "noSpeech": false, "error": "FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'"}}
+{"event": "transcription", "clip": "en2.wav", "tookMs": 17, "reply": {"requestId": "r1", "ok": false, "text": "", "detectedLanguage": null, "noSpeech": false, "error": "FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'"}}
+{"event": "exit", "code": 0, "stderrTail": "lose_fds,\n  File \"/Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py\", line 1821, in _execute_child\n    raise child_exception_type(errno_num, err_msg, err_filename)\nFileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'\n"}

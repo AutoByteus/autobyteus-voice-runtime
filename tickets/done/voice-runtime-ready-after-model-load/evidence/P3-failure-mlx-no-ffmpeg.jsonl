@@ -1,0 +1,2 @@
+{"event": "first-message", "atMs": 1945, "message": null}
+{"event": "exit", "code": 1, "stderr": "/private/tmp/ab655/cow/runtime/.venv/lib/python3.9/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nVoice Input worker could not start the mlx backend: FileNotFoundError: [Errno 2] No such file or directory: 'ffmpeg'\n"}

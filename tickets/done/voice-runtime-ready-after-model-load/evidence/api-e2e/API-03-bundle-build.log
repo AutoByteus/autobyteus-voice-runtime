@@ -1,0 +1,31 @@
+# API-03/API-04 setup: bundles built by the release build script from the clean clone at 050cca1
+# Command: AUTOBYTEUS_VOICE_RUNTIME_DIST_DIR=/tmp/ab655-api/dist scripts/build-runtime.sh darwin arm64 ; … darwin x64
+# Date: 2026-11-26T12:08:41Z
+Packaging voice runtime
+Platform: darwin
+Arch: arm64
+Runtime version: 0.3.1
+Entrypoint: bin/voice-input-worker
+Runtime bundle written to:
+  /tmp/ab655-api/dist/voice-input-runtime-darwin-arm64.tar.gz
+Packaging voice runtime
+Platform: darwin
+Arch: x64
+Runtime version: 0.3.1
+Entrypoint: bin/voice-input-worker
+Runtime bundle written to:
+  /tmp/ab655-api/dist/voice-input-runtime-darwin-x64.tar.gz
+total 32
+drwxr-xr-x@ 4 normy  wheel   128 Nov 26 13:08 .
+drwxr-xr-x@ 5 normy  wheel   160 Nov 26 13:08 ..
+-rw-r--r--@ 1 normy  wheel  4632 Nov 26 13:08 voice-input-runtime-darwin-arm64.tar.gz
+-rw-r--r--@ 1 normy  wheel  4636 Nov 26 13:08 voice-input-runtime-darwin-x64.tar.gz
+./
+./bin/
+./requirements-mlx.txt
+./run_pip_ipv4.py
+./voice_input_worker.py
+./requirements-faster-whisper.txt
+./bin/voice-input-worker
+87fe9b5985b79591956d74e78abedbe1755a96b3a6b82173a6ffc2880dc91554  /tmp/ab655-api/dist/voice-input-runtime-darwin-arm64.tar.gz
+f0ab4fa5aa3e2c1ecded1836337d1357ff5801b9ed4c5dbe2b7fa62d15f3f19c  /tmp/ab655-api/dist/voice-input-runtime-darwin-x64.tar.gz

@@ -1,0 +1,18 @@
+# IMP-11 founder install unchanged (SR-002 round)
+# Command: find /Users/normy/.autobyteus/extensions/voice-input -exec stat -f '%m %z %N' {} + (read-only) before IMP-09 and after IMP-10; diff
+# Commit: 18f9e12 (worker and tests; run on the identical working tree before the commit)
+# Environment: macOS arm64 (Darwin 25.5); HOME=/tmp/ab655/home HF_HUB_OFFLINE=1; worker = this worktree's runtime/voice_input_worker.py; both venvs Python 3.9.6
+# Date: 2026-11-26
+
+before: 20070 entries; after: 20070 entries
+differences:
+2c2
+< 1795695919 64 /Users/normy/.autobyteus/extensions/voice-input/temp
+---
+> 1795695986 64 /Users/normy/.autobyteus/extensions/voice-input/temp
+
+Only the mtime of the install's own temp/ folder changed (13:26:26; the folder is empty), as in RT-008. The founder's
+app worker was running at the time: pid 22112, started Wed Nov 25 21:07:23 2026, the install's own Python on
+~/.autobyteus/extensions/voice-input/runtime (ps). The app writes and removes its recordings in that folder during dictation.
+The test workers ran with HOME=/tmp/ab655/home, models and venvs under /tmp/ab655, and the warm-up clip in the system
+temp folder. Nothing they ran names ~/.autobyteus. No other entry changed: same 20,070 entries, sizes and mtimes.

@@ -1,0 +1,52 @@
+// # API-03 run A: darwin-arm64 bundle (050cca1), first install (launcher bootstraps .venv), real desktop VoiceInputRuntimeService (superrepo 7c08c09a1a file, login-PATH lookup stubbed with the user's login PATH)
+// # Command: env -i HOME=/tmp/ab655-api/home TMPDIR=$TMPDIR PATH=<login PATH> AB655_LOGIN_PATH=<login PATH> HF_HUB_OFFLINE=1 node /tmp/ab655-api/caller/drive.mjs /tmp/ab655-api/ext-mlx A-first-install silence.wav en.wav en2.wav en.wav
+// # Date: 2026-11-26T12:09:27Z
+{"label":"A-first-install","step":"inspect","inspection":{"ready":true,"runtimeEntrypoint":"/tmp/ab655-api/ext-mlx/runtime/bin/voice-input-worker","modelPath":"/tmp/ab655-api/ext-mlx/models/whisper-small-mlx","runtimeVersion":"0.3.1","modelVersion":"mlx-community/whisper-small-mlx","backendKind":"mlx","error":null}}
+{"label":"A-first-install","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":85498,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"A-first-install","step":"transcribe","clip":"en.wav","startedAtMs":85499,"tookMs":227,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-install","step":"transcribe","clip":"en2.wav","startedAtMs":85726,"tookMs":207,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-install","step":"transcribe","clip":"en.wav","startedAtMs":85933,"tookMs":211,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"A-first-install","step":"stopped","atMs":86168}
+// EXIT 0
+// # Runs B1, B2: the same 0.3.1 install, normal starts (venv in place). Date: 2026-11-26T12:11:25Z
+node:internal/fs/promises:639
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'silence.wav'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1252:14)
+    at async file:///private/tmp/ab655-api/caller/drive.mjs:13:57 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'silence.wav'
+}
+
+Node.js v22.23.1
+node:internal/fs/promises:639
+  return new FileHandle(await PromisePrototypeThen(
+                        ^
+
+Error: ENOENT: no such file or directory, open 'silence.wav'
+    at async open (node:internal/fs/promises:639:25)
+    at async Object.readFile (node:internal/fs/promises:1252:14)
+    at async file:///private/tmp/ab655-api/caller/drive.mjs:13:57 {
+  errno: -2,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'silence.wav'
+}
+
+Node.js v22.23.1
+// # The ENOENT above is a probe argument mistake (a stray 'silence.wav' clip argument); the driver failed before starting any worker. Runs B1, B2 again. Date: 2026-11-26T12:12:03Z
+{"label":"B1-start","step":"transcribe","clip":"silence.wav","startedAtMs":2,"tookMs":1502,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en.wav","startedAtMs":1504,"tookMs":199,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en2.wav","startedAtMs":1703,"tookMs":178,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"transcribe","clip":"en.wav","startedAtMs":1881,"tookMs":184,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B1-start","step":"stopped","atMs":2086}
+{"label":"B2-start","step":"transcribe","clip":"silence.wav","startedAtMs":1,"tookMs":1376,"result":{"ok":true,"text":"","detectedLanguage":null,"noSpeech":true,"error":null}}
+{"label":"B2-start","step":"transcribe","clip":"en.wav","startedAtMs":1377,"tookMs":188,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B2-start","step":"transcribe","clip":"en2.wav","startedAtMs":1565,"tookMs":179,"result":{"ok":true,"text":"The quick brown fox jumps over the lazy dog.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B2-start","step":"transcribe","clip":"en.wav","startedAtMs":1744,"tookMs":185,"result":{"ok":true,"text":"Please summarize the meeting notes and send them to the team.","detectedLanguage":"en","noSpeech":false,"error":null}}
+{"label":"B2-start","step":"stopped","atMs":1948}

@@ -1,0 +1,10 @@
+# IMP-06 founder install unchanged
+# Command: find /Users/normy/.autobyteus/extensions/voice-input -exec stat -f '%m %z %N' {} + (read-only) before IMP-02 and after IMP-05; cmp
+# Commit: 050cca1
+# Environment: macOS arm64 (Darwin 25.5); HOME=/tmp/ab655/home HF_HUB_OFFLINE=1; worker = this worktree's runtime/voice_input_worker.py
+# Date: 2026-11-26
+
+before: 20070 entries, sha256 2c76eb147357e7b34ae3304e47c55efa63d6766f0b06c618f0391e5d1873ec56
+after:  20070 entries, sha256 2c76eb147357e7b34ae3304e47c55efa63d6766f0b06c618f0391e5d1873ec56
+cmp: IDENTICAL (no mtime or size changed, no entry added or removed)
+leftover voice-input-warm-up-* folders in the temp folder: 0

@@ -1,0 +1,12 @@
+# IMP-03 live faster-whisper (AC-003, AC-005)
+# Command: python3 probes/drive_worker.py <entry: isolated venv python + worktree worker> faster-whisper /tmp/ab655/fw/models/faster-whisper-small en.wav en2.wav en.wav silence.wav
+# Commit: 050cca1
+# Environment: macOS arm64 (Darwin 25.5); HOME=/tmp/ab655/home HF_HUB_OFFLINE=1; worker = this worktree's runtime/voice_input_worker.py; python = /tmp/ab655/fw/venv (isolated, faster-whisper 1.2.1), model = isolated faster-whisper-small, CPU int8
+# Date: 2026-11-26
+
+{"event": "first-message", "atMs": 6691, "message": {"type": "ready", "backendKind": "faster-whisper"}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 3856, "reply": {"requestId": "r0", "ok": true, "text": "Please summarize the meeting notes and send them to the team.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "en2.wav", "tookMs": 4043, "reply": {"requestId": "r1", "ok": true, "text": "The quick brown fox jumps over the lazy dog.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "en.wav", "tookMs": 2893, "reply": {"requestId": "r2", "ok": true, "text": "Please summarize the meeting notes and send them to the team.", "detectedLanguage": "en", "noSpeech": false, "error": null}}
+{"event": "transcription", "clip": "silence.wav", "tookMs": 3, "reply": {"requestId": "r3", "ok": true, "text": "", "detectedLanguage": null, "noSpeech": true, "error": null}}
+{"event": "exit", "code": 0, "stderrTail": "[2026-11-26 12:58:40.825] [ctranslate2] [thread 226685694] [warning] Tip: experimental MPS backend is available and often 2x+ faster than CPU on Apple Silicon (varies by workload and hardware). Try device=\"mps\".\n"}

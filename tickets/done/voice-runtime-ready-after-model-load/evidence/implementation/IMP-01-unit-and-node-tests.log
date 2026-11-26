@@ -1,0 +1,33 @@
+# IMP-01 unit and node tests after the fix
+# Command: python3 -m unittest -v tests/test_voice_input_worker.py; node --test tests/*.test.mjs
+# Commit: 050cca1
+# Environment: macOS (Darwin 25.5), /usr/bin/python3 3.9.6, node v22.23.1; stand-in speech libraries (no real library imported)
+# Date: 2026-11-26
+
+test_faster_whisper_load_builds_the_model_and_decodes_the_clip_without_voice_detection (tests.test_voice_input_worker.BackendLoadTests) ... ok
+test_mlx_load_transcribes_the_clip_through_the_public_call_and_requests_reuse_it (tests.test_voice_input_worker.BackendLoadTests) ... ok
+test_is_probable_no_speech_accepts_non_silent_audio (tests.test_voice_input_worker.VoiceInputWorkerTests) ... ok
+test_is_probable_no_speech_detects_silence (tests.test_voice_input_worker.VoiceInputWorkerTests) ... ok
+test_normalize_language_mode (tests.test_voice_input_worker.VoiceInputWorkerTests) ... ok
+test_prepare_model_install_downloads_into_model_directory (tests.test_voice_input_worker.VoiceInputWorkerTests) ... ok
+test_failed_load_writes_no_ready_one_stderr_line_and_exits_1 (tests.test_voice_input_worker.WorkerStartTests) ... ok
+test_known_urllib3_openssl_warning_stays_off_stderr (tests.test_voice_input_worker.WorkerStartTests) ... ok
+test_missing_model_folder_is_a_start_failure_with_its_own_reason (tests.test_voice_input_worker.WorkerStartTests) ... ok
+test_serves_requests_after_ready_with_unchanged_replies (tests.test_voice_input_worker.WorkerStartTests) ... ok
+test_warm_up_clip_is_a_one_second_non_silent_wav_removed_after_the_start (tests.test_voice_input_worker.WorkerStartTests) ... ok
+test_writes_ready_only_after_load_returned (tests.test_voice_input_worker.WorkerStartTests) ... ok
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.074s
+
+OK
+--- node
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 466.169458

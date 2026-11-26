@@ -1,0 +1,15 @@
+# API-06 read-only stat list (mtime size path) of ~/.autobyteus/extensions/voice-input before API-01 and after API-05
+# Command: find ~/.autobyteus/extensions/voice-input -exec stat -f '%m %z %N' {} + | sort ; cmp
+# Date: 2026-11-26T12:16:38Z
+entries before: 20070, after: 20070
+/tmp/ab655-api/founder-before.txt /tmp/ab655-api/founder-after.txt differ: char 3007707, line 20070
+diff:
+20070c20070
+< 1795694860 64 /Users/normy/.autobyteus/extensions/voice-input/temp
+---
+> 1795695320 64 /Users/normy/.autobyteus/extensions/voice-input/temp
+22112 /Applications/Xcode.app/Contents/Developer/Library/Frameworks/Python3.framework/Versions/3.9/Resources/Python.app/
+The only change is the mtime of the install's temp/ folder (13:07:40 -> 13:15:20 CET), where the desktop writes and
+removes each dictation clip. The founder's own app was running its 0.3.0 worker at the time (process line above).
+No command of this validation named ~/.autobyteus: every extension root is under /tmp/ab655-api and HOME was
+/tmp/ab655-api/home. The other 20,069 entries are identical.

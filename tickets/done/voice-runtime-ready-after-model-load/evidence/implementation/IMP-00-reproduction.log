@@ -1,0 +1,14 @@
+# IMP-00 reproduction: the new worker tests on the v0.3.0 worker
+# Command: python3 -m unittest tests/test_voice_input_worker.py
+# Commit: c550116 (worker as at v0.3.0) + the new tests
+# Environment: macOS (Darwin 25.5), /usr/bin/python3 3.9.6
+# Date: 2026-11-26
+
+ERROR: test_faster_whisper_load_builds_the_model_and_decodes_the_clip_without_voice_detection (tests.test_voice_input_worker.BackendLoadTests)
+ERROR: test_mlx_load_transcribes_the_clip_through_the_public_call_and_requests_reuse_it (tests.test_voice_input_worker.BackendLoadTests)
+FAIL: test_failed_load_writes_no_ready_one_stderr_line_and_exits_1 (tests.test_voice_input_worker.WorkerStartTests)
+FAIL: test_missing_model_folder_is_a_start_failure_with_its_own_reason (tests.test_voice_input_worker.WorkerStartTests)
+FAIL: test_warm_up_clip_is_a_one_second_non_silent_wav_removed_after_the_start (tests.test_voice_input_worker.WorkerStartTests)
+FAIL: test_writes_ready_only_after_load_returned (tests.test_voice_input_worker.WorkerStartTests)
+Ran 12 tests in 0.025s
+FAILED (failures=4, errors=2)
